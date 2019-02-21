@@ -1,29 +1,69 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <transition :name="transitionName">
+      <keep-alive :max="10">
+        <router-view v-wechat-title="$route.meta.title"/>
+      </keep-alive>
+    </transition>
   </div>
 </template>
+<script lang="ts">
+import { Component, Prop, Vue, Watch } from "vue-property-decorator";
+import { Route } from "vue-router";
 
-<style lang="scss">
+@Component
+export default class App extends Vue {
+  private transitionName = "slide-right";
+
+  @Watch("$route")
+  private onRouteChanged(to: Route, from: Route) {
+    const remove = (array: string[], value: string) => {
+      for (let i = 0; i < array.length; i++)
+        if (array[i] === value) array.splice(i, 1), i--;
+
+      return array;
+    };
+    const toDepth = remove(to.path.split("/"), "").length;
+    const fromDepth = remove(from.path.split("/"), "").length;
+
+    // 改变动画效果
+    this.transitionName = toDepth < fromDepth ? "slide-right" : "slide-left";
+  }
+}
+</script>
+
+<style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+
+.slide-right-enter-active,
+.slide-right-leave-active,
+.slide-left-enter-active,
+.slide-left-leave-active {
+  transition: all 0.5s;
+  background-color: #fff;
+}
+.slide-left-leave-active,
+.slide-right-leave-active {
+  position: relative;
+}
+.slide-left-enter-active,
+.slide-right-enter-active {
+  position: absolute;
+  top: 3rem;
+}
+.slide-left-leave-active,
+.slide-right-enter {
+  transform: translateX(-100%);
+}
+.slide-left-enter,
+.slide-right-leave-active {
+  transform: translateX(100%);
 }
 </style>

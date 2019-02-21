@@ -1,0 +1,13 @@
+body {
+    min-height: 100%;
+}
+
+.Ctn {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.text-black {
+    color: black;
+}

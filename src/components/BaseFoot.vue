@@ -1,0 +1,83 @@
+<template>
+  <div :id="myId" class="Footer">
+    <div class="footerCtn">
+      <div>行遍千山万水，归来仍是东师青年——</div>
+      <div class="footLogo rotate">
+        <img src="/img/icon/logo.png" style="width:100%;height:100%;">
+      </div>
+    </div>
+    <span v-if="desc">{{ desc }}\n</span>
+    <span v-if="author">编辑人：{{ author }}</span>
+    <span v-if="time">最后编辑于{{ time }}</span>
+    <span v-if="time || author">
+      <br>
+    </span>Copyright © 2017-2018 HopeStudio
+  </div>
+</template>
+<script lang="ts">
+import { Component, Prop, Vue } from "vue-property-decorator";
+
+@Component
+export default class BaseFoot extends Vue {
+  @Prop(Number) private myId!: number;
+
+  @Prop(String) private desc!: string;
+
+  @Prop({ type: String, default: "Mr.Hope" }) private author!: string;
+
+  @Prop(String) private time!: string;
+}
+</script>
+<style scoped>
+.Footer {
+  margin-top: 27px;
+  padding: 8px 5%;
+  font-size: 12px;
+  color: #888;
+  text-align: center;
+}
+
+.footerCtn {
+  font-size: 10px;
+  letter-spacing: 1px;
+  line-height: 1.6;
+  font-weight: 300;
+  text-align: center;
+  color: #888;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nm .footerCtn {
+  color: #777;
+}
+.footLogo {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+}
+@media (min-width: 600px) {
+  .footerCtn {
+    font-size: 12px;
+  }
+}
+
+@keyframes rotate {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.rotate {
+  -webkit-animation: 9.5s linear 0s normal none infinite rotate;
+  animation: 9.5s linear 0s normal none infinite rotate;
+}
+</style>
