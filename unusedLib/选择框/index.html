@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>带点击动画特效的CSS3单选框和复选框|DEMO_jQuery之家-自由分享jQuery、html5、css3的插件库</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="htmleaf-content">
+        <table>
+            <tr>
+                <th>Tipo</th>
+                <td>Checkbox</td>
+                <td>Radio</td>
+            </tr>
+            <tr>
+                <th>Color por defecto</th>
+                <td>
+                    <input type="checkbox" checked>
+                    <input class="indeterminate" type="checkbox">
+                    <input type="checkbox">
+                </td>
+                <td>
+                    <input type="radio" name="group1">
+                    <input type="radio" name="group1">
+                    <input type="radio" name="group1" checked>
+                </td>
+            </tr>
+            <tr>
+                <th>Azul</th>
+                <td>
+                    <input class="blue" type="checkbox">
+                    <input class="blue" type="checkbox">
+                    <input class="blue" type="checkbox" checked>
+                </td>
+                <td>
+                    <input class="blue" type="radio" name="group2">
+                    <input class="blue" type="radio" name="group2" checked>
+                    <input class="blue" type="radio" name="group2">
+                </td>
+            </tr>
+            <tr>
+                <th>Rojo</th>
+                <td>
+                    <input class="red" type="checkbox" checked>
+                    <input class="red" type="checkbox">
+                    <input class="red indeterminate" type="checkbox">
+                </td>
+                <td>
+                    <input class="red" type="radio" name="group3">
+                    <input class="red" type="radio" name="group3">
+                    <input class="red" type="radio" name="group3" checked>
+                </td>
+            </tr>
+            <tr>
+                <th>Naranja</th>
+                <td>
+                    <input class="orange indeterminate" type="checkbox">
+                    <input class="orange" type="checkbox" checked>
+                    <input class="orange" type="checkbox">
+                </td>
+                <td>
+                    <input class="orange" type="radio" name="group4" checked>
+                    <input class="orange" type="radio" name="group4">
+                    <input class="orange" type="radio" name="group4">
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+        $(".indeterminate").prop("indeterminate", true);
+    </script>
+</body>
+
+</html>

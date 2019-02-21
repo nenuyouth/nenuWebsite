@@ -2,7 +2,8 @@
   <div id="app">
     <transition :name="transitionName">
       <keep-alive :max="10">
-        <router-view v-wechat-title="$route.meta.title"/>
+        <router-view/>
+        <!-- <router-view v-wechat-title="$route.meta.title"/> -->
       </keep-alive>
     </transition>
   </div>
@@ -28,6 +29,12 @@ export default class App extends Vue {
 
     // 改变动画效果
     this.transitionName = toDepth < fromDepth ? "slide-right" : "slide-left";
+
+    // 路由发生变化修改页面title
+    if (to.meta && to.meta.title) {
+      document.getElementsByTagName("title")[0].innerText = to.meta.title;
+      document.title = to.meta.title;
+    }
   }
 }
 </script>

@@ -19,17 +19,6 @@ import "./lib/public.css";
 
 Vue.config.productionTip = false; // 阻止 vue 在启动时生成生产提示。
 
-router.beforeEach((to, from, next) => {
-  // 路由发生变化修改页面title
-  if (to.meta.title) {
-    document.getElementsByTagName("title")[0].innerText = to.meta.title;
-    document.title = to.meta.title;
-  }
-
-  // 调用next钩子函数
-  next();
-});
-
 new Vue({
   router,
   store,

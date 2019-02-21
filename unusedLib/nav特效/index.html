@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery和CSS3带变形特效的固定导航菜单|DEMO_jQuery之家-自由分享jQuery、html5、css3的插件库</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <nav>
+            <div id="drop">
+                <div>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+        <ul>
+            <li>home</li>
+            <li>about</li>
+            <li>login</li>
+            <li>contact</li>
+            <li>privacy</li>
+        </ul>
+        <h1>
+            <br>
+            <br>Scroll
+            <br>&dArr;</h1>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        $(window).scroll(function() {
+            var scroll = $(window).scrollTop();
+            if (scroll > 100) $('#drop').addClass('active');
+            else if (scroll < 80) $('#drop').removeClass('active');
+        });
+
+        $('#drop, nav ~ ul li').click(function() {
+            $('nav, #drop span').toggleClass('open');
+            $('body').toggleClass('hidden');
+            $(window).scrollTop(0); // Yes. This is cheating...
+        });
+    </script>
+</body>
+
+</html>

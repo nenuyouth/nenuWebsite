@@ -46,9 +46,7 @@
       }
     ],
     "no-internal-module": true,
-    "no-magic-numbers": false,
     "no-namespace": true,
-    "no-non-null-assertion": true,
     "no-parameter-reassignment": true,
     "no-reference": true,
     "no-unnecessary-type-assertion": true,
@@ -67,6 +65,8 @@
     "interface-name": false,
     "ordered-imports": false,
     "object-literal-sort-keys": false,
-    "no-consecutive-blank-lines": false
+    "no-consecutive-blank-lines": false,
+    "no-magic-numbers": false,
+    "no-non-null-assertion": false
   }
 }

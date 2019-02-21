@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2 class="px-3 pt-3">东师指南</h2>
-    <hr />
+    <hr>
     <div class="row">
       <div class="w-100"></div>
       <router-link
@@ -10,10 +10,7 @@
         class="col-3 col-md-2 guideListButton"
         v-for="item in guidelist"
       >
-        <img
-          :src="require(`@/icon/guide/${item[1]}.svg`)"
-          class="img-fluid px-2 py-1"
-        />
+        <img :src="require(`@/icon/guide/${item[1]}.svg`)" class="img-fluid px-2 py-1">
         <div class="p text-center py-1">{{ item[0] }}</div>
       </router-link>
     </div>

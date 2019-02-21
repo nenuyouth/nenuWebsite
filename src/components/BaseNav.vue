@@ -1,15 +1,7 @@
 <template>
-  <nav
-    class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm"
-    id="nav"
-  >
+  <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm" id="nav">
     <div class="navbar-toggler">
-      <div
-        class="nav-btn my-2"
-        data-target="#mainNav"
-        data-toggle="collapse"
-        id="myNavBtn"
-      >
+      <div class="nav-btn my-2" data-target="#mainNav" data-toggle="collapse" id="myNavBtn">
         <span class="line"></span>
         <span class="line"></span>
         <span class="line"></span>
@@ -21,10 +13,8 @@
         class="d-inline-block my-2 mr-2"
         src="/img/icon/nenuyouth.png"
         style="width:1.5rem;height:1.5rem;"
-      />
-      <span class="text-black" style="vertical-align:middle"
-        >东北师范大学学生会</span
       >
+      <span class="text-black" style="vertical-align:middle">东北师范大学学生会</span>
     </router-link>
     <div class="collapse navbar-collapse" id="mainNav">
       <ul class="navbar-nav mr-auto">
@@ -42,24 +32,17 @@
             data-toggle="dropdown"
             href="#"
             id="dropdown1"
-            >东师风貌</a
-          >
+          >东师风貌</a>
           <div aria-labelledby="dropdown1" class="dropdown-menu">
-            <router-link class="dropdown-item" to="/scene/benbu"
-              >本部校区</router-link
-            >
-            <router-link class="dropdown-item" to="/scene/jingyue"
-              >净月校区</router-link
-            >
+            <router-link class="dropdown-item" to="/scene/benbu">本部校区</router-link>
+            <router-link class="dropdown-item" to="/scene/jingyue">净月校区</router-link>
           </div>
         </li>
         <li class="nav-item">
           <router-link class="nav-link" to="/about">深入了解</router-link>
         </li>
         <li class="nav-item">
-          <router-link class="nav-link" to="/about/question"
-            >疑难解答</router-link
-          >
+          <router-link class="nav-link" to="/about/question">疑难解答</router-link>
         </li>
       </ul>
     </div>
@@ -79,7 +62,7 @@ export default class BaseNav extends Vue {
   }
 }
 </script>
-<style>
+<style scoped>
 /* nav自定义调整 */
 body {
   padding-top: 3rem;
