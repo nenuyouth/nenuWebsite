@@ -50,12 +50,7 @@
     "no-parameter-reassignment": true,
     "no-reference": true,
     "no-unnecessary-type-assertion": true,
-    "no-console": [
-      true,
-      "log",
-      "warn",
-      "error"
-    ],
+    "no-console": false,
     "arrow-parens": [
       true,
       "ban-single-arg-parens"

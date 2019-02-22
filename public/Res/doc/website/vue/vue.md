@@ -1,16 +1,18 @@
 # Vue文件编写说明
 
-> 作者：Mr.Hope 最后编辑于2019/02/18
+> 作者：Mr.Hope 最后编辑于2019/02/22
 
 Vue文件即是一个组件文件，组件文件既可以成为其他vue文件的一个组件，又可以添加到router中成为一个页面视图。
 
 Vue文件主要由三部分构成：
 
 - `template`对应网站视图树，即html部分
+
 - `script`对应网站的脚本。即js部分，默认为Javascript，可以添加`lang="ts"`来指定页面脚本文件为`Typescript`
+
 - `style`对应网站的样式，即css部分，可以通过添加`scoped`属性来指定样式只在当前文件生效。
 
-在脚本部分中，如有需要，需要使用export default向外暴露一个对象以供Router或其他Vue文件引用。
+在脚本部分中，如有需要，需要使用`export default{}`向外暴露一个对象以供Router或其他Vue文件引用。
 
 在html标签中，由于页面都被Router托管，如需要跳转到本网站的其他视图上去，需要使用`<route-link to="内部url地址">链接文字</route-link>`
 
@@ -96,4 +98,9 @@ export default {
     </p>
   </div>
 </template>
+<script>
+export default{
+  name: "Page404"
+}
+</script>
 ```

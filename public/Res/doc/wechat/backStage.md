@@ -34,9 +34,9 @@
 
 ## 订阅号后台介绍
 
-![介绍1](/Res/md/image/backStage1.png)
-![介绍2](/Res/md/image/backStage2.png)
-![介绍3](/Res/md/image/backStage3.png)
+![介绍1](/Res/doc/image/backStage1.png)
+![介绍2](/Res/doc/image/backStage2.png)
+![介绍3](/Res/doc/image/backStage3.png)
 
 ## 后台消息回复原则
 

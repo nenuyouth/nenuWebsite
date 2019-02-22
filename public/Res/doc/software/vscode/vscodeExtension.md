@@ -1,20 +1,21 @@
 # VS Code扩展使用说明
 
+> 作者：Mr.Hope 最后编辑与2019/02/22
+
 以下是推荐的VsCode扩展：
 
 ## 基本
 
-- Chinese (Simplified) Language Pack for Visual Studio Code
+- Chinese (Simplified) Language Pack for Visual Studio Code (为Vscode提供简体中文支持)
 - vscode-pdf(直接在vscode中打开PDF)
 - Vs Live Share(Vscode实时分享)
 - VS Live Share Audio(Vscode实时分享语音通话)
 
 ## 网页
 
-- Beautify(对html、js、css等提供样式美化)
+- Beautify css/sass/scss/less(为css等层叠样式表提供格式化功能)
 - Debugger for Chrome(在Chrome中调试代码)
-- Eslint(需要eslint模块，辅助进行js美化)
-- HTML CSS Support(提供id、class补全，[Zen Code](https://baike.baidu.com/item/Zen%20Coding/10219092)模式)
+- ESLint(需要eslint模块，辅助进行js美化)
 - IntelliSense for CSS class names in HTML(通过检索link的外部css提供自动补全class，使用bootstrap的时候超有用)
 - JS-CSS-HTML Formatter(提供JS-CSS-HTML的格式化)
 - JS & CSS Minifier(提供对Javascript与Css的压缩功能)
@@ -32,10 +33,10 @@
 ## 服务器
 
 - Apache Conf(帮助highlight Apache配置文件)
-- PHP cs fixer(PHP文件样式修复)
 - PHP Debug(PHP逐行调试，需要XDebug)
-- PHP Extension Pack(提供PHP调试包)
-- PHP IntelliSense(提供PHP函数补全)
+- PHP Intelephense(提供PHP函数补全)
+- PHP IntelliSense(提供PHP格式化)
+- phpcs(PHP错误检查与修复)
 
 ## 编程
 
@@ -63,6 +64,7 @@
 
 ## npm
 
+- Node.js Modules Intellisense (提供nodeJS模块智能提示)
 - npm(为vscode添加npm支持)
 - npm Intellisense(为vscode添加npm模块导入补全)
 

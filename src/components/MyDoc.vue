@@ -106,7 +106,11 @@ export default class MyDoc extends Vue {
       url: `/Res/doc/${path}.md`,
       dataType: "text",
       success: data => {
-        markdown = data;
+        // 如果链接地址错误，提示反馈并返回到上一个界面
+        if (data.slice(1, 9) === "!DOCTYPE") {
+          alert("链接地址有误，请汇报给Mr.Hope!");
+          router.back();
+        } else markdown = data; // 链接地址正确，直接赋值
       }
     });
 
@@ -131,7 +135,6 @@ export default class MyDoc extends Vue {
     // 返回docTitle和aside
     Vue.nextTick(() => {
       // 设置网页标题
-      // this.docTitle = $("h1").text();
       document.title = $("h1").text();
 
       $("h1,h2,h3,h4").each((index, domEle) => {
@@ -147,40 +150,33 @@ export default class MyDoc extends Vue {
           }
         }
       });
-      // $("h1,h2,h3,h4").each((index, element) => {
-      //   if (
-      //     element.children().length === 0 &&
-      //     (element.attr("id")!.indexOf("href") as any) === -1
-      //   ) {
-      //   const title = element.text();
-      //   const level = element[0].tagName[1];
-      //   asideTemp.push([
-      //     `<a class="myh${level}" href="#${title}">${title}</a>`,
-      //     level
-      //   ]);
-      // }
-      // });
+
       this.aside = asideTemp;
     });
 
     Vue.nextTick(() => {
       $(() => {
-        // // 注册界面滚动动画效果
-        // $("a.myh1,a.myh2,a.myh3,a.myh4,a.md-a").click(function() {
-        //   $("html, body").animate(
-        //     {
-        //       // @ts-ignore
-        //       scrollTop: `${$($(this).attr("href")).offset().top - 50}px`
-        //     },
-        //     { duration: 500, easing: "swing" }
-        //   );
-        //   return false;
-        // });
+        // 注册界面滚动动画效果
+        $("a.myh1,a.myh2,a.myh3,a.myh4,a.md-a").click(event => {
+          const id = $(event.currentTarget).attr("href");
+          if (id) {
+            const offset = $(id).offset();
+            if (offset) {
+              const toTop = offset.top;
+              $("html, body").animate(
+                { scrollTop: `${toTop - 50}px` },
+                { duration: 500, easing: "swing" }
+              );
+              return false;
+            }
+          }
+        });
+
         // 注册文档间跳转逻辑
         $(() => {
-          $("a.md-link").click(function() {
-            const url = $(this).attr("href");
-            if (url) {
+          $("a.md-link").click(event => {
+            const url = $(event.currentTarget).attr("href");
+            if (url)
               if (url && url[0] === "/") router.push(url);
               else if (
                 url.indexOf("http://") !== -1 ||
@@ -191,34 +187,37 @@ export default class MyDoc extends Vue {
                 const base = route.path.slice(0, route.path.lastIndexOf("/"));
                 router.push(`${base}/${url}`);
               }
-              return false;
-            }
+            else alert("链接地址有误，请汇报给Mr.Hope!");
+
+            return false;
           });
         });
-        // 目录效果实现
-        // $("#asideSlideBtn").click(event => {
-        //   $("#asideSlide").animate(
-        //     {
-        //       left:
-        //         $(window).width() ||
-        //         document.documentElement.clientWidth -
-        //           ($("#asideSlide").width() as number)
-        //     },
-        //     { duration: 500, easing: "swing" }
-        //   );
-        //   $("#asideScreenMask").fadeIn(500);
-        //   $("#asideSlideBtn").fadeOut(500);
-        //   event.stopPropagation();
-        // });
 
-        // $("#asideScreenMask").click(() => {
-        //   $("#asideSlide").animate(
-        //     { left: "100%" },
-        //     { duration: 500, easing: "swing" }
-        //   );
-        //   $("#asideSlideBtn").fadeIn(500);
-        //   $("#asideScreenMask").fadeOut(500);
-        // });
+        // 目录效果实现;
+        $("#asideSlideBtn").click(event => {
+          const asideWidth = $("#asideSlide").width();
+          if (asideWidth)
+            $("#asideSlide").animate(
+              {
+                left:
+                  ($(window).width() || document.documentElement.clientWidth) -
+                  asideWidth
+              },
+              { duration: 500, easing: "swing" }
+            );
+          $("#asideScreenMask").fadeIn(500);
+          $("#asideSlideBtn").fadeOut(500);
+          event.stopPropagation();
+        });
+
+        $("#asideScreenMask").click(() => {
+          $("#asideSlide").animate(
+            { left: "100%" },
+            { duration: 500, easing: "swing" }
+          );
+          $("#asideSlideBtn").fadeIn(500);
+          $("#asideScreenMask").fadeOut(500);
+        });
       });
     });
   }

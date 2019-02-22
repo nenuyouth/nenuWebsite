@@ -14,7 +14,7 @@ Visual Studio Code由微软出品，但它不是那个大块头的Visual Studio�
 
 安装过程中，请务必钩上以下选项：
 
-![install-vsc](/Res/md/image/install-vsc.png)
+![install-vsc](/Res/doc/image/install-vsc.png)
 
 - 将“通过Code打开”操作添加到Windows资源管理器目录上下文菜单
 
@@ -24,11 +24,11 @@ Visual Studio Code由微软出品，但它不是那个大块头的Visual Studio�
 
 先运行Automator，选择“服务”：
 
-![automator-service](/Res/md/image/automator-service.png)
+![automator-service](/Res/doc/image/automator-service.png)
 
 然后，执行以下操作：
 
-![automator](/Res/md/image/automator.jpg)
+![automator](/Res/doc/image/automator.jpg)
 
 1. 在右侧面板选择“服务”收到选定的“文件夹”，位于“Finder.app“，该选项是为了从Finder中接收一个文件夹；
 
@@ -45,7 +45,7 @@ done
 
 保存为“Open With VSCode”后，打开Finder，选中一个文件夹，点击右键，“服务”，就可以看到“Open With VSCode”菜单：
 
-![open-with-vscode](/Res/md/image/open-with-vscode.png)
+![open-with-vscode](/Res/doc/image/open-with-vscode.png)
 
 ## 运行和调试JavaScript
 

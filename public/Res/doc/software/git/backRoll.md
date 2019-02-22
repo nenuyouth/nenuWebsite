@@ -81,7 +81,7 @@ eaadf4e385e865d25c48e7ca9c8395c3f7dfaef0 wrote a readme file
 
 每提交一个新版本，实际上Git就会把它们自动串成一条时间线。如果使用可视化工具查看Git历史，就可以更清楚地看到提交历史的时间线：
 
-![git时间线](/Res/md/image/gitTimeline.jpg)
+![git时间线](/Res/doc/image/gitTimeline.jpg)
 
 ## 回退版本
 
@@ -146,11 +146,11 @@ Git is free software distributed under the GPL.
 
 Git的版本回退速度非常快，因为Git在内部有个指向当前版本的`HEAD`指针，当你回退版本的时候，Git仅仅是把`HEAD`从指向append GPL：
 
-![示例图4](/Res/md/image/git1.jpg)
+![示例图4](/Res/doc/image/git1.jpg)
 
 改为指向`add distributed`：
 
-![示例图5](/Res/md/image/git2.jpg)
+![示例图5](/Res/doc/image/git2.jpg)
 
 然后顺便把工作区的文件更新了。所以你让`HEAD`指向哪个版本号，你就把当前版本定位在哪。
 

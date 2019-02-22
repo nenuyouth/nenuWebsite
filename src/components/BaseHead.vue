@@ -1,5 +1,6 @@
 <template>
-  <div v-wechat-title="title">
+  <div>
+    <!-- <div v-wechat-title="title"> -->
     <div :id="myId" class="title">{{ title }}</div>
     <hr>
   </div>
@@ -12,6 +13,10 @@ export default class BaseHead extends Vue {
   @Prop(Number) private myId!: number;
 
   @Prop({ type: String, required: true }) private title!: string;
+
+  private mounted() {
+    document.title = this.title;
+  }
 }
 </script>
 <style scoped>

@@ -1,7 +1,7 @@
 <template>
   <div :id="myId" class="ImgCtn">
     <div class="imgCtn" v-if="!loaded">
-      <img :src="'/icon/' + (error ? 'error' : 'loading') + '.svg'" class="imgIcon">
+      <img :src="require(`@/icon/${error ? 'error' : 'loading'}.svg`)" class="imgIcon">
       <span>{{ error ? "图片加载失败" : "加载中..." }}</span>
     </div>
     <img :src="src" class="img" v-else>

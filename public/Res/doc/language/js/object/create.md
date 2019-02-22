@@ -88,7 +88,7 @@ xiaoming instanceof Student; // true
 
 看晕了吧？用一张图来表示这些乱七八糟的关系就是：
 
-![protos](/Res/md/image/protos.png)
+![protos](/Res/doc/image/protos.png)
 
 红色箭头是原型链。注意，`Student.prototype`指向的对象就是`xiaoming`、`xiaohong`的原型对象，这个原型对象自己还有个属性`constructor`，指向`Student`函数本身。
 
@@ -114,7 +114,7 @@ xiaoming.hello === xiaohong.hello; // false
 
 要让创建的对象共享一个`hello`函数，根据对象的属性查找原则，我们只要把`hello`函数移动到`xiaoming`、`xiaohong`这些对象共同的原型上就可以了，也就是`Student.prototype`：
 
-![protos2](/Res/md/image/protos2.png)
+![protos2](/Res/doc/image/protos2.png)
 
 修改代码如下：
 

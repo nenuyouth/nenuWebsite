@@ -1,6 +1,6 @@
 # 东师校会新媒体中心学习资料
 
-> 作者：Mr.Hope 最后编辑于2018年12月3日23时
+> 作者：Mr.Hope 最后编辑于2018年2月22日16时
 
 ## 主要文档列表
 
@@ -10,7 +10,7 @@
 
 ---
 
-## 网站文档列表
+## 前端开发文档
 
 - ## [网页前端开发综述](doc/website/websiteDev)
 
@@ -25,6 +25,23 @@
   - ### [ES6教程](doc/language/js/es6/catalog)
 
   - ### [jQuery教程](doc/website/jQuery/guide)
+
+### Typescript
+
+- ### [Typescript介绍](doc/language/ts/intro)
+- ### [Typescript教程](https://ts.xcatliu.com/)(online)
+
+### Vue开发教程
+
+- ### [Vue.js开发](/doc/website/vue/intro)
+
+- ### [vue单文件组件介绍](/doc/website/vue/vue)
+
+- ### [Vue Router介绍](/doc/website/vue/router)
+
+- ### [Vue与小程序的比对](/doc/website/vue/compare)
+
+- ### [个人开发的Vue组件文档](/doc/website/vue/component)
 
 ---
 

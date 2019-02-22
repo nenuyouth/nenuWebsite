@@ -164,7 +164,7 @@ new Promise(function (resolve, reject) {
 
 可见Promise最大的好处是在异步执行的流程中，把执行代码和处理结果的代码清晰地分离了：
 
-![promise](/Res/md/image/promise.png)
+![promise](/Res/doc/image/promise.png)
 
 Promise还可以做更多的事情，比如，有若干个异步任务，需要先做任务1，如果成功后再做任务2，任何任务失败则不再继续并执行错误处理函数。
 

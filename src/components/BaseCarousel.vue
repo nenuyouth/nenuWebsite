@@ -10,7 +10,12 @@
       ></li>
     </ol>
     <div class="carousel-inner">
-      <a :class="`carousel-item ${item.activeStatus}`" :href="item.href" :key="item.heading" v-for="item in list">
+      <div
+        :class="`carousel-item ${item.activeStatus}`"
+        :key="item.heading"
+        @click="navigate(item.url)"
+        v-for="item in list"
+      >
         <img :alt="item.alt" :src="item.src" class="d-block w-100">
         <div :class="`carousel-caption ${item.colorStatus} prominent`">
           <h1 class="display-4 d-none d-sm-block">{{ item.heading }}</h1>
@@ -20,10 +25,10 @@
           <p
             class="d-none d-lg-block text-right font-weight-light"
             style="line-height: 1;"
-            v-if="item.clickDesc"
-          >{{ item.clickDesc }}</p>
+            v-if="item.desc"
+          >{{ item.desc }}</p>
         </div>
-      </a>
+      </div>
     </div>
     <a :href="`#display${myId}`" class="carousel-control-prev" data-slide="prev" role="button" v-if="!single">
       <span aria-hidden="true" class="carousel-control-prev-icon"></span>
@@ -45,6 +50,7 @@ interface Carousel {
   enSubhead?: string;
   desc?: string;
   alt?: string;
+  url?: string;
   black?: boolean;
   activeStatus?: string;
   colorStatus?: string;
@@ -56,9 +62,23 @@ export default class BaseCarousel extends Vue {
 
   private list: Carousel[] = [];
 
-  @Prop(Number) private myId!: number;
+  @Prop([Number, String]) private myId!: number | string;
 
   @Prop({ type: Array, required: true }) private content!: Carousel[];
+
+  private navigate(url: string | undefined) {
+    if (url)
+      if (url[0] === "/") this.$router.push(url);
+      else if (url.indexOf("http://") !== -1 || url.indexOf("https://") !== -1)
+        window.open(url);
+      else {
+        const base = this.$route.path.slice(
+          0,
+          this.$route.path.lastIndexOf("/")
+        );
+        this.$router.push(`${base}/${url}`);
+      }
+  }
 
   private mounted() {
     // 复制content内容到data中

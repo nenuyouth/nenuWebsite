@@ -5,7 +5,7 @@
       <p :style="myStyle" v-html="pText"></p>
       <div class="Ctn" v-if="src">
         <div class="iOSImgCtn" v-if="!loaded">
-          <img :src="'/icon/' + (error ? 'error' : 'loading') + '.svg'" class="imgIcon">
+          <img :src="require(`@/icon/${error ? 'error' : 'loading'}.svg`)" class="imgIcon">
           <span>{{ error ? "图片加载失败" : "加载中..." }}</span>
         </div>
         <img :src="src" class="iOS-img" v-else>
@@ -30,7 +30,6 @@ enum Align {
 
 @Component
 export default class BaseP extends Vue {
-
   // 对text进行处理以在网页上正常显示空格与换行
   get pText() {
     return this.text.replace(/\n/g, "<br/>").replace(/\s/g, "&ensp;");

@@ -9,21 +9,27 @@
 - [安装Node.js](/doc/software/nodeJS/install)
 - [添加到path](/doc/basic/addPath)
 
-## 初始化版本库并下载网页代码
+## 初始化版本库、下载网页代码并安装npm模块
 
-新建文件夹并使用`git init`命令初始化git repo。
+1. 在合适位置新建文件夹并使用`git init`命令初始化git repo。
 
-使用`git clone`命令复制vue版本库，版本库地址为`git@gitee.com/nenuStudentUnion/vueProject.git`。
+2. 在文件管理器中的地址栏输入cmd，以在当前界面打开终端。
 
-> 克隆前请确认已经生成本机密钥并添加至码云公共账号中。添加方法详见[此处](/doc/software/git/remote)
+3. 使用`git remote add origin git@gitee.com/nenuStudentUnion/website.git`添加远程库。
 
-## 安装npm模块
+4. 使用`git pull origin`命令，从远程库拉取最新代码。
 
-1. 使用vscode打开文件夹，打开终端(快捷键`Ctrl + 反引号`)。
-2. 使用`npm install`命令安装模块
-3. 使用`npm install -g @vue/cli`命令全局安装vue-cli3(可选)
-4. 使用`npm install -g ncu`命令全局安装node模块更新检查器(可选)
-5. 使用`npm install -g npx`命令全局安装node模块命令执行器(可选)
+    > 拉取代码前请确认已经生成本机密钥并添加至码云公共账号中。添加方法详见[此处](/doc/software/git/remote)
+
+5. 使用`git checkout master`命令切换到主分支上。
+
+6. 使用`npm install`命令安装模块(。
+
+7. 使用`npm install -g @vue/cli`命令全局安装vue-cli3
+
+8. 使用`npm install -g ncu`命令全局安装node模块更新检查器(可选)
+
+  使用`npm install -g npx`命令全局安装node模块命令执行器(可选)
 
 > [npm模块介绍](/doc/software/nodeJS/module)
 

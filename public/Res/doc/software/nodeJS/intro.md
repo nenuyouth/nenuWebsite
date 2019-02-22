@@ -43,3 +43,9 @@ Chrome浏览器是跨Windows和Mac平台的，并且，Google认为要运行现�
 具体做法是将来io.js将首先添加新的特性，如果大家测试用得爽，就把新特性加入Node.js。io.js是“尝鲜版”，而Node.js是线上稳定版，相当于Fedora Linux和RHEL的关系。
 
 本章教程的所有代码都在Node.js上调试通过。如果你要尝试io.js也是可以的，不过两者如果遇到一些区别请自行查看io.js的文档。
+
+## Node相关链接
+
+- [node官网](https://nodejs.org/en/)(online)
+- [node最新文档](https://nodejs.org/en/docs/)(online)
+- [node最新API文档](https://nodejs.org/dist/latest-v10.x/docs/api/)(online)

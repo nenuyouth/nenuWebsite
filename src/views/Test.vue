@@ -46,7 +46,8 @@
     <base-foot></base-foot>
   </div>
 </template>
-<script>
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
 import BaseCarousel from "@/components/BaseCarousel.vue";
 import BaseH3 from "@/components/BaseH3.vue";
 import BaseP from "@/components/BaseP.vue";
@@ -56,7 +57,7 @@ import BasePhone from "@/components/BasePhone.vue";
 import BaseHead from "@/components/BaseHead.vue";
 import BaseFoot from "@/components/BaseFoot.vue";
 
-export default {
+@Component({
   components: {
     BaseCarousel,
     BaseH3,
@@ -67,6 +68,7 @@ export default {
     BaseHead,
     BaseFoot
   }
-};
+})
+export default class Test extends Vue {}
 </script>
 <style></style>
