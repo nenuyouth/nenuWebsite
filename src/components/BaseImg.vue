@@ -21,11 +21,13 @@ export default class BaseImg extends Vue {
 
   // 图片载入状态
   private loaded = false;
+
   private error = false;
 
   private mounted() {
     // 加载图片
     const img = new Image(); // 创建新Image实例
+
     img.src = this.src;
 
     // 如果图片已经被缓存立即结束函数

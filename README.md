@@ -6,7 +6,7 @@
 
 ## 组件介绍与使用手册
 
-查看[自定义组件文档](/tree/master/public/Res/md/website/vue/component.md)
+查看[自定义组件文档](/tree/master/public/Res/doc/website/vue/component.md)
 
 ## Node.js库使用
 

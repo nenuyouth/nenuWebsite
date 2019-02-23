@@ -157,12 +157,6 @@ export default class SchoolGzh extends Vue {
     }
   ];
 }
-// export default {
-//   name: "SchoolGzh",
-//   data: () => ({
-//
-//   })
-// };
 </script>
 <style scoped>
 .col-fix {

@@ -3,12 +3,14 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 
-// 此部分仍待修复
 // tslint:disable-next-line: no-import-side-effect
 import "./registerServiceWorker";
+// FIXME: 此部分仍待修复
 
-// 引入font-awesome
-// import "font-awesome/css/font-awesome.css";
+/*
+ * 引入font-awesome
+ * import "font-awesome/css/font-awesome.css";
+ */
 
 // 自定义组件部分
 import MyNav from "./components/MyNav.vue";
@@ -30,6 +32,7 @@ new Vue({
   router,
   render: h => h(MyNav)
 }).$mount("nav");
+
 new Vue({
   router,
   render: h => h(MyFooter)

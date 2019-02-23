@@ -27,7 +27,9 @@ export default class Doc extends Vue {
     let finalPath = "";
 
     // 处理获得最终路径
-    for (const path of paths) if (path) finalPath += `/${path}`;
+    paths.forEach(path => {
+      if (path) finalPath += `/${path}`;
+    });
 
     return finalPath;
   }
@@ -35,16 +37,17 @@ export default class Doc extends Vue {
   @Watch("$route")
   private OnRouteUpdate(to: any, from: any) {
     const remove = (array: string[], value: string) => {
-      for (let i = 0; i < array.length; i++)
+      for (let i = 0; i < array.length; i += 1)
         if (array[i] === value) {
           array.splice(i, 1);
-          i--;
+          i -= 1;
         }
 
       return array;
     };
     const toDepth = remove(to.path.split("/"), "").length;
     const fromDepth = remove(from.path.split("/"), "").length;
+
     this.transitionName = toDepth < fromDepth ? "slide-right" : "slide-left";
   }
 }

@@ -44,6 +44,7 @@ export default class MyPage extends Vue {
 
   private update() {
     const pagedata = JSON.parse(this.mydata).slice(0);
+
     pagedata.forEach((element: any, index: number) => {
       element.id = index;
       element.tag = `base-${element.tag}`;

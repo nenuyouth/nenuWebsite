@@ -19,8 +19,11 @@ export default class App extends Vue {
   @Watch("$route")
   private onRouteChanged(to: Route, from: Route) {
     const remove = (array: string[], value: string) => {
-      for (let i = 0; i < array.length; i++)
-        if (array[i] === value) array.splice(i, 1), i--;
+      for (let i = 0; i < array.length; i += 1)
+        if (array[i] === value) {
+          array.splice(i, 1);
+          i -= 1;
+        }
 
       return array;
     };

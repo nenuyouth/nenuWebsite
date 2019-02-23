@@ -59,7 +59,7 @@ import { Component, Vue, Watch } from "vue-property-decorator";
 
 @Component
 export default class BaseFooter extends Vue {
-  private mounted() {
+  private static mounted() {
     $(window).scroll(() => {
       if (($(window).scrollTop() || window.pageYOffset) > 100)
         $(".scrollTop").fadeIn(500);
@@ -70,8 +70,9 @@ export default class BaseFooter extends Vue {
     });
   }
 
+// FIXME: 页脚显示仍然异常
   @Watch("$route")
-  private onRouteUpdate() {
+  private static onRouteUpdate() {
     $("#footer").css("opacity", "0");
     setTimeout(() => {
       $("#footer").css("opacity", "1");

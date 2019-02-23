@@ -60,6 +60,7 @@ export default class BaseList extends Vue {
 
   get listItem() {
     const listItem = this.content.splice(0);
+
     listItem.forEach((element: List, index: number) => {
       if (this.myId) element.id = `list${this.myId}-${index}`;
       element.text2 = `${element.text}Key`;

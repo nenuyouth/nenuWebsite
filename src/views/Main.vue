@@ -53,9 +53,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import BaseCarousel from "@/components/BaseCarousel.vue";
 
-@Component({
-  components: { BaseCarousel }
-})
+@Component({components: { BaseCarousel }})
 export default class Main extends Vue {
   private carouselData = {
     myId: "Main",

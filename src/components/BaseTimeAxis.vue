@@ -36,11 +36,12 @@ export default class BaseTimeAxis extends Vue {
   private timeList!: TimeList[];
 
   get list() {
-    const list = new Array();
-    this.timeList.forEach((element: TimeList, index: number) => {
+    const list: string[] = [];
+
+    this.timeList.forEach((element, index) => {
       list[index] = element.text
-        .replace(/\n/g, "<br/>")
-        .replace(/\s/g, "&ensp;");
+        .replace(/\n/gu, "<br/>")
+        .replace(/\s/gu, "&ensp;");
     });
 
     return list;

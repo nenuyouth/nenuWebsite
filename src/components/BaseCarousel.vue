@@ -76,6 +76,7 @@ export default class BaseCarousel extends Vue {
           0,
           this.$route.path.lastIndexOf("/")
         );
+
         this.$router.push(`${base}/${url}`);
       }
   }

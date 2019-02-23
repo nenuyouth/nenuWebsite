@@ -32,12 +32,14 @@ enum Align {
 export default class BaseP extends Vue {
   // 对text进行处理以在网页上正常显示空格与换行
   get pText() {
-    return this.text.replace(/\n/g, "<br/>").replace(/\s/g, "&ensp;");
+    return this.text.replace(/\n/gu, "<br/>").replace(/\s/gu, "&ensp;");
   }
 
   // 图片加载状态
   public loaded = false;
+
   public error = false;
+
   @Prop(Number) private myId!: number;
 
   @Prop({ type: String, required: true }) private text!: string;
@@ -58,6 +60,7 @@ export default class BaseP extends Vue {
     // 图片处理
     if (this.src) {
       const img = new Image();
+
       img.src = this.src;
       if (img.complete) {
         this.loaded = true;
@@ -68,7 +71,8 @@ export default class BaseP extends Vue {
         this.error = true;
       };
       img.onload = () => {
-        (img.onload = null), (this.loaded = true);
+        img.onload = null;
+        this.loaded = true;
       };
     }
   }

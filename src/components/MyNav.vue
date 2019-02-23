@@ -53,10 +53,10 @@ import { Component, Vue } from "vue-property-decorator";
 
 @Component
 export default class MyNav extends Vue {
-  private mounted() {
+  private static mounted() {
     $(() => {
-      $(".nav-btn").click(function() {
-        $(this).toggleClass("active");
+      $(".nav-btn").click(event => {
+        $(event.currentTarget).toggleClass("active");
       });
     });
   }

@@ -31,11 +31,16 @@
   RewriteRule . /pc/index.html [L]
 
   # DEV
-  # RewriteCond %{HTTP_HOST} ^(www\.)?nenu\.com [NC]
-  # RewriteCond %{HTTP_REFERER} !(www\.)?nenu.com/ [NC]
-  # RewriteCond %{REQUEST_FILENAME} !-f
-  # RewriteCond %{REQUEST_FILENAME} !-d
-  # RewriteRule . /index.html [L]
+  RewriteCond %{HTTP_HOST} ^(www\.)?nenu\.com [NC]
+  RewriteCond %{HTTP_REFERER} !(www\.)?nenu.com/ [NC]
+  RewriteRule ^index\.html$ - [L]
+
+  # DEV
+  RewriteCond %{HTTP_HOST} ^(www\.)?nenu\.com [NC]
+  RewriteCond %{HTTP_REFERER} !(www\.)?nenu.com/ [NC]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
 
   # DEV
   # RewriteCond %{HTTP_HOST} ^(www\.)?mrhope\.com [NC]
@@ -43,18 +48,18 @@
   # RewriteRule ^index\.html$ /pc/index.html [L]
 
   # DEV
-  # RewriteCond %{HTTP_HOST} ^(www\.)?mrhope\.com [NC]
-  # RewriteCond %{HTTP_REFERER} !(www\.)?mrhope.com/ [NC]
-  # RewriteCond %{REQUEST_URI} !^/mp
-  # RewriteCond %{REQUEST_FILENAME} !-f
-  # RewriteCond %{REQUEST_FILENAME} !-d
-  # RewriteRule . /pc/index.html [L]
+  RewriteCond %{HTTP_HOST} ^(www\.)?mrhope\.com [NC]
+  RewriteCond %{HTTP_REFERER} !(www\.)?mrhope.com/ [NC]
+  RewriteCond %{REQUEST_URI} !^/mp
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /pc/index.html [L]
 
   # DEV
   RewriteCond %{HTTP_REFERER} !^$
   RewriteCond %{HTTP_REFERER} !(www\.)?nenuyouth.com/ [NC]
   RewriteCond %{HTTP_REFERER} !(www\.)?mrhope.top/ [NC]
-  # RewriteCond %{HTTP_REFERER} !(www\.)?nenu.com/ [NC]
+  RewriteCond %{HTTP_REFERER} !(www\.)?nenu.com/ [NC]
   # RewriteCond %{HTTP_REFERER} !(www\.)?mrhope.com/ [NC]
   RewriteRule .*\.(gif|jpeg|jpg|png)$ /img/404pic.jpg
 </IfModule>

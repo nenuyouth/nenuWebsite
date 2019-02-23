@@ -43,18 +43,18 @@ const myRenderMD = new marked.Renderer();
 // 覆写heading转码
 myRenderMD.heading = (text, level) => {
   let id = "";
+
   if (text.indexOf("a href") !== -1)
     id = text.slice(text.indexOf(">") + 1, text.indexOf("</a>"));
 
-  return `<h${level} id="${id ? id : text}">${text}</h${level}>`;
+  return `<h${level} id="${id || text}">${text}</h${level}>`;
 };
 
 // 覆写链接转码
 myRenderMD.link = (href, title, text) => {
   if (href[0] === "#")
-    return `<a class='md-a' href='${href}' title='${
-      title ? title : text
-    }'>${text}</a>`;
+    return `<a class='md-a' href='${href}' title='${title ||
+      text}'>${text}</a>`;
 
   return `<a class='md-link' href='${href}' title='${text}' >${text}</a>`;
 };
@@ -70,10 +70,14 @@ marked.setOptions({
   smartLists: true, // 是否使用更先进列表样式
   smartypants: false, // 是否对部分内容添加额外符号
   xhtml: true, // 是否闭合空标签
-  highlight: (code, lang) =>
-    lang && hljs.getLanguage(lang)
-      ? hljs.highlight(lang, code, true).value
-      : hljs.highlightAuto(code).value // highlight代码块
+  highlight: (code, lang) => {
+    const highLightMode =
+      lang && hljs.getLanguage(lang) ?
+        hljs.highlight(lang, code, true).value :
+        hljs.highlightAuto(code).value; // highlight代码块
+
+    return highLightMode;
+  }
 });
 
 @Component
@@ -94,7 +98,7 @@ export default class MyDoc extends Vue {
   @Prop(String) private path!: string;
 
   private loadDoc() {
-    const path = this.path;
+    const { path } = this;
     let markdown = "";
     const asideTemp: string[][] = [];
     const route = this.$route;
@@ -119,15 +123,14 @@ export default class MyDoc extends Vue {
 
     // 窗口大小获取
     $(() => {
-      const ctx = this;
       this.windowWidth =
         $(window).width() || document.documentElement.clientWidth;
       this.windowHeight =
         $(window).height() || document.documentElement.clientHeight;
       $(window).resize(() => {
-        ctx.windowWidth =
+        this.windowWidth =
           $(window).width() || document.documentElement.clientWidth;
-        ctx.windowHeight =
+        this.windowHeight =
           $(window).height() || document.documentElement.clientHeight;
       });
     });
@@ -140,9 +143,11 @@ export default class MyDoc extends Vue {
       $("h1,h2,h3,h4").each((index, domEle) => {
         if ($(domEle).children().length === 0) {
           const id = $(domEle).attr("id");
+
           if (id && id.indexOf("href") === -1) {
             const title = $(domEle).text();
             const level = $(domEle)[0].tagName[1];
+
             asideTemp.push([
               `<a class="myh${level}" href="#${title}">${title}</a>`,
               level
@@ -159,23 +164,28 @@ export default class MyDoc extends Vue {
         // 注册界面滚动动画效果
         $("a.myh1,a.myh2,a.myh3,a.myh4,a.md-a").click(event => {
           const id = $(event.currentTarget).attr("href");
+
           if (id) {
             const offset = $(id).offset();
+
             if (offset) {
               const toTop = offset.top;
+
               $("html, body").animate(
                 { scrollTop: `${toTop - 50}px` },
                 { duration: 500, easing: "swing" }
               );
-              return false;
             }
           }
+
+          return false;
         });
 
         // 注册文档间跳转逻辑
         $(() => {
           $("a.md-link").click(event => {
             const url = $(event.currentTarget).attr("href");
+
             if (url)
               if (url && url[0] === "/") router.push(url);
               else if (
@@ -185,6 +195,7 @@ export default class MyDoc extends Vue {
                 window.open(url);
               else {
                 const base = route.path.slice(0, route.path.lastIndexOf("/"));
+
                 router.push(`${base}/${url}`);
               }
             else alert("链接地址有误，请汇报给Mr.Hope!");
@@ -196,6 +207,7 @@ export default class MyDoc extends Vue {
         // 目录效果实现;
         $("#asideSlideBtn").click(event => {
           const asideWidth = $("#asideSlide").width();
+
           if (asideWidth)
             $("#asideSlide").animate(
               {
@@ -205,6 +217,7 @@ export default class MyDoc extends Vue {
               },
               { duration: 500, easing: "swing" }
             );
+
           $("#asideScreenMask").fadeIn(500);
           $("#asideSlideBtn").fadeOut(500);
           event.stopPropagation();
@@ -261,10 +274,12 @@ export default class MyDoc extends Vue {
   top: 20%;
   left: -36px;
   font-size: 18px;
-  padding: 15px 8px;
+  padding: 12px 8px;
   font-weight: 500;
   line-height: 1.3;
   background-color: #ffffff;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
 }
 #asideCtn {
   position: fixed;

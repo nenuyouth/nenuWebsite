@@ -35,6 +35,7 @@ export default class BasePage extends Vue {
 
   get myData() {
     const myData = this.pagedata.slice(0);
+
     myData.forEach((element: any, index: number) => {
       element.myId = index;
       element.tag = `base-${element.tag}`;
