@@ -1,14 +1,26 @@
 module.exports = {
+
+  // 阻止eslint读取父目录或总配置文件的规则
   root: true,
+
+  // 代码所在环境
   env: {
-    node: true
+    node: true,
+    browser: true,
+    commonjs: true,
+    es6: true,
+    jquery: true
   },
+
+  // 所使用的规则配置
   extends: [
     "eslint:recommended",
     'plugin:vue/essential',
     '@vue/airbnb',
     '@vue/typescript'
   ],
+
+  // 自定义的额外规则
   rules: {
     "accessor-pairs": "error",
     "array-bracket-newline": ["error", { "multiline": true }],
@@ -30,7 +42,9 @@ module.exports = {
     "callback-return": "error",
     "camelcase": "error",
     "capitalized-comments": "error",
-    "class-methods-use-this": "error",
+
+    // 因为vue的原因此项需要设置off
+    "class-methods-use-this": "off",
     "comma-dangle": ["error", "never"],
     "comma-spacing": "error",
     "comma-style": ["error", "last"],
@@ -255,6 +269,8 @@ module.exports = {
 
     "no-param-reassign": "off",
   },
+
+  // 设置eslint解释起
   parserOptions: {
     parser: '@typescript-eslint/parser'
   }

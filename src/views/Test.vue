@@ -69,6 +69,6 @@ import BaseFoot from "@/components/BaseFoot.vue";
     BaseFoot
   }
 })
-export default class Test extends Vue {}
+export default class TestPage extends Vue {}
 </script>
 <style></style>

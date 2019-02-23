@@ -60,6 +60,18 @@
 npm install
 ```
 
+## 更新项目依赖
+
+```shell
+npm update
+```
+
+或
+
+```shell
+npm install
+```
+
 ### 启动开发环境
 
 ```shell
@@ -76,12 +88,6 @@ npm run build
 ```
 
 > 执行构建，将构建成功的网页输出至/dist目录
-
-### 执行测试
-
-```shell
-npm run test
-```
 
 #### 执行文件提示和文件修复
 

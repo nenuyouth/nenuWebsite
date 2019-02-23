@@ -72,9 +72,9 @@ marked.setOptions({
   xhtml: true, // 是否闭合空标签
   highlight: (code, lang) => {
     const highLightMode =
-      lang && hljs.getLanguage(lang) ?
-        hljs.highlight(lang, code, true).value :
-        hljs.highlightAuto(code).value; // highlight代码块
+      lang && hljs.getLanguage(lang)
+        ? hljs.highlight(lang, code, true).value
+        : hljs.highlightAuto(code).value; // highlight代码块
 
     return highLightMode;
   }
@@ -253,8 +253,8 @@ export default class MyDoc extends Vue {
 }
 #asideSlide {
   position: fixed;
-  height: calc(100% - 40.4px);
-  top: 40.4px;
+  height: calc(100% - 2.5rem);
+  top: 2.5rem;
   left: 100%;
   text-align: right;
   z-index: 1040;
@@ -262,8 +262,8 @@ export default class MyDoc extends Vue {
 #asideScreenMask {
   position: fixed;
   width: 100%;
-  height: calc(100% - 40.4px);
-  top: 40.4px;
+  height: calc(100% - 2.5rem);
+  top: 2.5rem;
   left: 0;
   background-color: rgba(127, 127, 127, 0.15);
   z-index: 1030;
@@ -273,19 +273,19 @@ export default class MyDoc extends Vue {
   width: 36px;
   top: 20%;
   left: -36px;
-  font-size: 18px;
-  padding: 12px 8px;
-  font-weight: 500;
-  line-height: 1.3;
+  padding: 8px;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 1.5;
+  color: rgb(44, 62, 80);
   background-color: #ffffff;
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
 }
 #asideCtn {
   position: fixed;
-  top: 4rem;
-  text-align: center;
-  width: 280px;
+  top: 2.5rem;
+  width: 265px;
 }
 @media (min-width: 1200px) {
   #asideCtn {
@@ -294,7 +294,7 @@ export default class MyDoc extends Vue {
 }
 
 #aside {
-  padding: 15px;
+  /* padding: 15px; */
   text-align: left;
   width: 200px;
   /* max-width: 200px; */
@@ -313,48 +313,50 @@ export default class MyDoc extends Vue {
   display: none;
 }
 
-.myli2 {
-  list-style: circle;
-  margin-left: 1rem;
-}
-
-.myli3 {
-  list-style: disc;
-  margin-left: 2rem;
-}
-.myli4 {
-  list-style: square;
-  margin-left: 3rem;
-}
-
 .myh1,
 .myh2,
 .myh3,
 .myh4 {
   display: block;
-  color: #333333;
-  list-style-type: disc;
+  color: rgb(44, 62, 80);
+}
+.myh1:visited,
+.myh2:visited,
+.myh3:visited,
+.myh4:visited {
+  text-decoration: none;
+}
+.myh1:hover,
+.myh2:hover,
+.myh3:hover,
+.myh4:hover {
+  text-decoration: none;
+  color: #000;
+  background-color: rgba(127, 127, 127, 0.15);
 }
 
 .myh1 {
   text-align: center;
-  font-size: 20px;
+  font-size: 17px;
   font-weight: 600;
-  margin: 5px auto 8px auto;
+  margin: 0 auto 10px auto;
+  padding: 10px 0;
   border-bottom: 0.5px solid #cacaca;
 }
 .myh2 {
-  font-size: 17px;
-  font-weight: 500;
-  margin: 5px auto;
-  letter-spacing: 0.5px;
+  font-size: 16.5px;
+  font-weight: 700;
+  padding: 0 24px;
+  margin-bottom: 8px;
+  line-height: 1.8;
+  color: rgb(44, 62, 80);
 }
 .myh3 {
-  font-size: 16px;
-  margin: 3px auto;
+  font-size: 15px;
+  padding: 6px 16px 6px 32px;
 }
 .myh4 {
   font-size: 14px;
-  margin: 2px auto;
+  padding: 3px 45px;
 }
 </style>

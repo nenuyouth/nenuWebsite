@@ -14,7 +14,7 @@
         src="/img/icon/nenuyouth.png"
         style="width:1.5rem;height:1.5rem;"
       >
-      <span class="text-black" style="vertical-align:middle">东北师范大学学生会</span>
+      <span class="text-black" style="vertical-align:middle;">东北师范大学学生会</span>
     </router-link>
     <div class="collapse navbar-collapse" id="mainNav">
       <ul class="navbar-nav mr-auto">
@@ -53,7 +53,7 @@ import { Component, Vue } from "vue-property-decorator";
 
 @Component
 export default class BaseNav extends Vue {
-  private static mounted() {
+  private mounted() {
     $(() => {
       $(".nav-btn").click(event => {
         $(event.currentTarget).toggleClass("active");
@@ -63,11 +63,6 @@ export default class BaseNav extends Vue {
 }
 </script>
 <style scoped>
-/* nav自定义调整 */
-body {
-  padding-top: 3rem;
-}
-
 .navbar {
   padding: 0 0.5em;
 }
@@ -126,5 +121,11 @@ body {
 
 a .router-link-exact-active {
   color: #42b983;
+}
+</style>
+<style>
+/* nav调整 */
+body {
+  padding-top: 3rem;
 }
 </style>

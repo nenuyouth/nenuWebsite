@@ -1,6 +1,10 @@
 # Vue.js
 
-## Vue.js是世界上主流的渐近式JavaScript框架。
+## Vue.js介绍
+
+Vue.js是世界上主流的渐近式JavaScript框架。其生态比较繁荣，且很多组件都由官方进行维护、同步更新。相比React虽然第三方组件及支持少一些，但是其各模块之间兼容性良好，不会发生冲突。
+
+## Vue文档
 
 - ### [介绍视频网址](https://v.youku.com/v_show/id_XMzMwMTYyODMyNA==.html?refer=shipinyunPC_operation.liuliling_bofangqi_1244000_fQZ7Fj_18101900)(online)
 
@@ -10,8 +14,3 @@
 - ### [Vue CLI 3配置](https://cli.vuejs.org/zh/config/)(online)
 - ### [Vue Router 介绍](https://router.vuejs.org/zh/guide/#html)(online)
 - ### [Vue Router 配置](https://cli.vuejs.org/zh/config/)(online)
-
----
-
-- ### [Vue.js安装](install)
-- ### [Vue.js组件文档](component)

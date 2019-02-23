@@ -1,16 +1,16 @@
 <template>
   <transition :name="transitionName" mode="in-out">
     <keep-alive>
-      <my-doc :key="path" :path="path"></my-doc>
+      <base-doc :key="path" :path="path"></base-doc>
     </keep-alive>
   </transition>
 </template>
 
 <script lang="ts">
-import MyDoc from "@/components/MyDoc.vue";
+import BaseDoc from "@/components/BaseDoc.vue";
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 
-@Component({ components: { MyDoc } })
+@Component({ components: { BaseDoc } })
 export default class Doc extends Vue {
   private transitionName = "slide-left";
 

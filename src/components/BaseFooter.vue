@@ -1,7 +1,7 @@
 <template>
   <div id="footer">
     <div class="scrollTop" style="display:none">
-      <img alt class="img-fluid" src="/img/icon/backTop.svg">
+      <img alt class="img-fluid backTop" src="/img/icon/backTop.svg">
     </div>
     <footer class="footer">
       <div class="container">
@@ -59,7 +59,7 @@ import { Component, Vue, Watch } from "vue-property-decorator";
 
 @Component
 export default class BaseFooter extends Vue {
-  private static mounted() {
+  private mounted() {
     $(window).scroll(() => {
       if (($(window).scrollTop() || window.pageYOffset) > 100)
         $(".scrollTop").fadeIn(500);
@@ -70,9 +70,9 @@ export default class BaseFooter extends Vue {
     });
   }
 
-// FIXME: 页脚显示仍然异常
+  // FIXME: 页脚显示仍然异常
   @Watch("$route")
-  private static onRouteUpdate() {
+  private onRouteUpdate() {
     $("#footer").css("opacity", "0");
     setTimeout(() => {
       $("#footer").css("opacity", "1");
@@ -87,10 +87,6 @@ export default class BaseFooter extends Vue {
 }
 
 @media (min-width: 992px) {
-  #app {
-    background-color: #fff;
-    margin-bottom: 192px;
-  }
   .footer {
     position: fixed;
     z-index: -1;
@@ -98,12 +94,24 @@ export default class BaseFooter extends Vue {
     width: 100%;
   }
 }
-
+.backTop {
+  background-color: #fff;
+  border-radius: 50%;
+}
 .scrollTop {
   position: fixed;
   right: 20px;
   bottom: 60px;
   z-index: 1030;
   width: 35px;
+}
+</style>
+<style>
+/* footer调整 */
+@media (min-width: 992px) {
+  #app {
+    background-color: #fff;
+    margin-bottom: 192px;
+  }
 }
 </style>

@@ -13,8 +13,8 @@ import "./registerServiceWorker";
  */
 
 // 自定义组件部分
-import MyNav from "./components/MyNav.vue";
-import MyFooter from "./components/MyFooter.vue";
+import BaseNav from "./components/BaseNav.vue";
+import BaseFooter from "./components/BaseFooter.vue";
 
 // 自定义css样式
 import "./lib/public.css";
@@ -30,10 +30,10 @@ new Vue({
 // 挂载自定义nav与footer组件
 new Vue({
   router,
-  render: h => h(MyNav)
+  render: h => h(BaseNav)
 }).$mount("nav");
 
 new Vue({
   router,
-  render: h => h(MyFooter)
+  render: h => h(BaseFooter)
 }).$mount("footer");

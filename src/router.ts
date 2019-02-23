@@ -31,7 +31,7 @@ export default new Router({
       component: () => import(/* webpackChunkName: "guide" */ "./views/Guide.vue")
     },
     {
-      path: "/test",
+      path: "/testpage",
       name: "test",
       component: () => import(/* webpackChunkName: "test" */ "./views/Test.vue")
     },
@@ -135,6 +135,7 @@ export default new Router({
       component: Page404
     }
   ],
+
   // 记住滚动位置
   scrollBehavior(to, from, savedPosition) {
     let position;
