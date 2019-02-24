@@ -24,7 +24,12 @@
             <ul class="list-unstyled mb-3">
               <li :key="listItem" v-for="listItem in item.desc" v-html="listItem"></li>
             </ul>
-            <router-link :to="item.url" class="btn btn-lg btn-block btn-primary" tag="button" type="button">了解更多</router-link>
+            <router-link
+              :to="item.url"
+              class="btn btn-lg btn-block btn-primary"
+              tag="button"
+              type="button"
+            >了解更多</router-link>
           </div>
         </div>
         <div class="card-body d-none d-md-block">
@@ -35,14 +40,19 @@
           <ul class="list-unstyled mb-3">
             <li :key="listItem" v-for="listItem in item.desc" v-html="listItem"></li>
           </ul>
-          <router-link :to="item.url" class="btn cardBtn1 btn-outline-primary" tag="button" type="button">了解更多</router-link>
+          <router-link
+            :to="item.url"
+            class="btn cardBtn1 btn-outline-primary"
+            tag="button"
+            type="button"
+          >了解更多</router-link>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Prop, Vue } from 'vue-property-decorator';
 
 interface Card {
   title: string;
@@ -52,7 +62,6 @@ interface Card {
   id?: string;
 }
 
-@Component
 export default class BaseCard extends Vue {
   @Prop(Number) private myId!: number;
 

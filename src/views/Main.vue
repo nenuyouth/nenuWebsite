@@ -53,9 +53,9 @@
 import { Component, Vue } from 'vue-property-decorator';
 import BaseCarousel from '@/components/BaseCarousel.vue';
 
-@Component({components: { BaseCarousel }})
+@Component({ components: { BaseCarousel } })
 export default class Main extends Vue {
-  private carouselData = {
+  private readonly carouselData = {
     myId: 'Main',
     content: [
       {
@@ -89,7 +89,7 @@ export default class Main extends Vue {
     ]
   };
 
-  private guidelist = [
+  private readonly guidelist = [
     ['报到', 'check'],
     ['寝室', 'dorm'],
     ['生活', 'life'],
@@ -117,8 +117,8 @@ export default class Main extends Vue {
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
   line-height: 1.5;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
   border: 1px solid #dee2e6;
 }
 </style>

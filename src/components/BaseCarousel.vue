@@ -30,18 +30,30 @@
         </div>
       </div>
     </div>
-    <a :href="`#display${myId}`" class="carousel-control-prev" data-slide="prev" role="button" v-if="!single">
+    <a
+      :href="`#display${myId}`"
+      class="carousel-control-prev"
+      data-slide="prev"
+      role="button"
+      v-if="!single"
+    >
       <span aria-hidden="true" class="carousel-control-prev-icon"></span>
       <span class="sr-only">Previous</span>
     </a>
-    <a :href="`#display${myId}`" class="carousel-control-next" data-slide="next" role="button" v-if="!single">
+    <a
+      :href="`#display${myId}`"
+      class="carousel-control-next"
+      data-slide="next"
+      role="button"
+      v-if="!single"
+    >
       <span aria-hidden="true" class="carousel-control-next-icon"></span>
       <span class="sr-only">Next</span>
     </a>
   </div>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Prop, Vue } from 'vue-property-decorator';
 
 interface Carousel {
   heading: string;
@@ -56,7 +68,6 @@ interface Carousel {
   colorStatus?: string;
 }
 
-@Component
 export default class BaseCarousel extends Vue {
   private single = false;
 
@@ -69,13 +80,9 @@ export default class BaseCarousel extends Vue {
   private navigate(url: string | undefined) {
     if (url)
       if (url[0] === '/') this.$router.push(url);
-      else if (url.indexOf('http://') !== -1 || url.indexOf('https://') !== -1)
-        window.open(url);
+      else if (url.indexOf('http://') !== -1 || url.indexOf('https://') !== -1) window.open(url);
       else {
-        const base = this.$route.path.slice(
-          0,
-          this.$route.path.lastIndexOf('/')
-        );
+        const base = this.$route.path.slice(0, this.$route.path.lastIndexOf('/'));
 
         this.$router.push(`${base}/${url}`);
       }

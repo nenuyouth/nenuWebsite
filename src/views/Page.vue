@@ -2,11 +2,11 @@
   <base-page :key="url" :pagedata="pageData" v-if="pageData"></base-page>
 </template>
 <script lang="ts">
-import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
-import BasePage from '@/components/BasePage.vue';
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { Route } from 'vue-router';
+import BasePage from '@/components/BasePage.vue';
 
-@Component({components: { BasePage }})
+@Component({ components: { BasePage } })
 export default class Page extends Vue {
   private pageData: any[] = [];
 
@@ -23,8 +23,7 @@ export default class Page extends Vue {
     while (!Number.isNaN(Number(path.charAt(length)))) length -= 1;
     const folder = path.substring(0, length + 1);
 
-    if (Number.isNaN(Number(path.charAt(path.length - 1))))
-      finalPath = `${path}0`;
+    if (Number.isNaN(Number(path.charAt(path.length - 1)))) finalPath = `${path}0`;
 
     // 获得json文件
     $.ajax({

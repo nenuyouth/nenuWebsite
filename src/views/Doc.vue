@@ -35,7 +35,7 @@ export default class Doc extends Vue {
   }
 
   @Watch('$route')
-  private OnRouteUpdate(to: any, from: any) {
+  private onRouteUpdate(to: any, from: any) {
     const remove = (array: string[], value: string) => {
       for (let i = 0; i < array.length; i += 1)
         if (array[i] === value) {

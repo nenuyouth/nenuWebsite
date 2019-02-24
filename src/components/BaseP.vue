@@ -15,7 +15,7 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Prop, Vue } from 'vue-property-decorator';
 
 interface Style {
   [propName: string]: string;
@@ -28,17 +28,16 @@ enum Align {
   'justify'
 }
 
-@Component
 export default class BaseP extends Vue {
   // 对text进行处理以在网页上正常显示空格与换行
-  get pText() {
+  protected get pText() {
     return this.text.replace(/\n/gu, '<br/>').replace(/\s/gu, '&ensp;');
   }
 
   // 图片加载状态
-  public loaded = false;
+  private loaded = false;
 
-  public error = false;
+  private error = false;
 
   @Prop(Number) private myId!: number;
 
@@ -71,8 +70,8 @@ export default class BaseP extends Vue {
         this.error = true;
       };
       img.onload = () => {
-        img.onload = null;
         this.loaded = true;
+        delete img.onload;
       };
     }
   }

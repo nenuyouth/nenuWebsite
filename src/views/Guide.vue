@@ -34,7 +34,7 @@ import { Component, Vue } from 'vue-property-decorator';
 
 @Component
 export default class Guide extends Vue {
-  private guidelist = [
+  private readonly guidelist = [
     ['报到', 'check'],
     ['寝室', 'dorm'],
     ['生活', 'life'],

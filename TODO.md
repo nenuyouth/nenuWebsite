@@ -18,3 +18,7 @@
 ## Guide
 
 - 重新组织json文件，恢复图标
+
+## tslint
+
+-尝试将"no-require-imports"改为true

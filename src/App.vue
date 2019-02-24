@@ -1,7 +1,7 @@
 <template>
-  <div id='app'>
-    <transition :name='transitionName'>
-      <keep-alive :max='10'>
+  <div id="app">
+    <transition :name="transitionName">
+      <keep-alive :max="10">
         <router-view/>
         <!-- <router-view v-wechat-title="$route.meta.title"/> -->
       </keep-alive>
@@ -9,10 +9,9 @@
   </div>
 </template>
 <script lang='ts'>
-import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
+import { Prop, Vue, Watch } from 'vue-property-decorator';
 import { Route } from 'vue-router';
 
-@Component
 export default class App extends Vue {
   private transitionName = 'slide-right';
 

@@ -1,4 +1,12 @@
-module.exports = {};
+module.exports = {
+  chainWebpack: config => {
+    const svgRule = config.module.rule('svg');
+
+    svgRule.uses.clear();
+
+    svgRule.use('vue-svg-loader').loader('vue-svg-loader');
+  }
+};
 /*
  * default config
  * baseUrl: "/", 网站在服务器上的目录位置

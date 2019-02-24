@@ -9,9 +9,9 @@
 import { Component, Vue } from 'vue-property-decorator';
 import BaseTimeAxis from '@/components/BaseTimeAxis.vue';
 
-@Component({components: { BaseTimeAxis }})
+@Component({ components: { BaseTimeAxis } })
 export default class Calendar extends Vue {
-  private timeList = [
+  private readonly timeList = [
     {
       title: '1946年',
       text: '东北师范大学建校'

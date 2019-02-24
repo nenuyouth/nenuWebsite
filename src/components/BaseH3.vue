@@ -2,13 +2,12 @@
   <div :id="myId" :style="myStyle" class="myH3">{{ text }}</div>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Prop, Vue } from 'vue-property-decorator';
 
 interface Style {
   [propName: string]: string;
 }
 
-@Component
 export default class BaseH3 extends Vue {
   @Prop(Number) private myId!: number;
 

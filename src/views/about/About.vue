@@ -31,8 +31,8 @@ export default class About extends Vue {}
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
   line-height: 1.5;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
   border: 1px solid #dee2e6;
 }
 </style>

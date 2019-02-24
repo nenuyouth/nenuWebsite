@@ -9,9 +9,8 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Prop, Vue } from 'vue-property-decorator';
 
-@Component
 export default class BaseImg extends Vue {
   @Prop(Number) private myId!: number;
 
@@ -44,8 +43,8 @@ export default class BaseImg extends Vue {
 
     // 图片加载成功
     img.onload = () => {
-      img.onload = null;
       this.loaded = true;
+      delete img.onload;
     };
   }
 }

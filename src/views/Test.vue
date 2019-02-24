@@ -49,13 +49,13 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import BaseCarousel from '@/components/BaseCarousel.vue';
+import BaseFoot from '@/components/BaseFoot.vue';
 import BaseH3 from '@/components/BaseH3.vue';
-import BaseP from '@/components/BaseP.vue';
+import BaseHead from '@/components/BaseHead.vue';
 import BaseImg from '@/components/BaseImg.vue';
 import BaseList from '@/components/BaseList.vue';
+import BaseP from '@/components/BaseP.vue';
 import BasePhone from '@/components/BasePhone.vue';
-import BaseHead from '@/components/BaseHead.vue';
-import BaseFoot from '@/components/BaseFoot.vue';
 
 @Component({
   components: {

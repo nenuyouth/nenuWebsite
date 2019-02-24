@@ -42,13 +42,12 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Prop, Vue } from 'vue-property-decorator';
 
 interface List {
   [propName: string]: string;
 }
 
-@Component
 export default class BaseList extends Vue {
   @Prop(Number) private myId!: number;
 
@@ -204,7 +203,7 @@ export default class BaseList extends Vue {
 }
 
 .access:after {
-  content: " ";
+  content: ' ';
   display: inline-block;
   width: 7px;
   height: 7px;

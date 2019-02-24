@@ -2,6 +2,7 @@
   <div id="footer">
     <div class="scrollTop" style="display:none">
       <img alt class="img-fluid backTop" src="/img/icon/backTop.svg">
+      <!-- <back-top/> -->
     </div>
     <footer class="footer">
       <div class="container">
@@ -45,7 +46,10 @@
                 <a class="text-muted" href="http://v.douyin.com/84sfcf/">抖音</a>
               </li>
               <li>
-                <a class="text-muted" href="http://wpa.qq.com/msgrd?v=3&amp;uin=1793612094&amp;site=qq&amp;menu=yes">QQ</a>
+                <a
+                  class="text-muted"
+                  href="http://wpa.qq.com/msgrd?v=3&amp;uin=1793612094&amp;site=qq&amp;menu=yes"
+                >QQ</a>
               </li>
             </ul>
           </div>
@@ -55,28 +59,34 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Vue, Watch } from 'vue-property-decorator';
+import { Vue, Watch } from 'vue-property-decorator';
+// import backTop from '@/a/backTop.svg';
 
-@Component
+// @Component({ components: { backTop } })
 export default class BaseFooter extends Vue {
   private mounted() {
-    $(window).scroll(() => {
-      if (($(window).scrollTop() || window.pageYOffset) > 100)
-        $('.scrollTop').fadeIn(500);
+    // 注册“返回顶部”按钮动作
+    $(window).on('scroll', () => {
+      if (($(window).scrollTop() || window.pageYOffset) > 100) $('.scrollTop').fadeIn(500);
       else $('.scrollTop').fadeOut(500);
     });
-    $('.scrollTop').click(() => {
+    $('.scrollTop').on('click', () => {
       $('body,html').animate({ scrollTop: 0 }, 800);
     });
-  }
 
-  // FIXME: 页脚显示仍然异常
-  @Watch('$route')
-  private onRouteUpdate() {
-    $('#footer').css('opacity', '0');
-    setTimeout(() => {
-      $('#footer').css('opacity', '1');
-    }, 600);
+    // 注册页面跳转时页脚显示效果
+
+    this.$router.beforeEach((to, from, next) => {
+      const windowWidth = $(window).width() || document.documentElement.clientWidth;
+
+      $('#footer').css({ visibility: 'hidden', opacity: 0.01 });
+      setTimeout(() => {
+        $('#footer').css('visibility', '');
+        Vue.nextTick().then(() => {
+          $('#footer').css('opacity', 1);
+        });
+      }, 1000);
+    });
   }
 }
 </script>

@@ -25,7 +25,7 @@ new Vue({
   router,
   store,
   render: h => h(App) // render函数创建了一个元素
-}).$mount('#app'); // 创建元素被挂载到id='app'元素上，挂载时会销毁被挂载元素实例
+}).$mount('app'); // 创建元素被挂载到app标签上，挂载时会销毁被挂载元素实例
 
 // 挂载自定义nav与footer组件
 new Vue({

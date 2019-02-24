@@ -49,13 +49,12 @@
   </nav>
 </template>
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import Vue from 'vue';
 
-@Component
 export default class BaseNav extends Vue {
   private mounted() {
     $(() => {
-      $('.nav-btn').click(event => {
+      $('.nav-btn').on('click', event => {
         $(event.currentTarget).toggleClass('active');
       });
     });
