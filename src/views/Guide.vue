@@ -30,23 +30,23 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue } from 'vue-property-decorator';
 
 @Component
 export default class Guide extends Vue {
   private guidelist = [
-    ["报到", "check"],
-    ["寝室", "dorm"],
-    ["生活", "life"],
-    ["食堂", "dining"],
-    ["校园卡", "card"],
-    ["校园网", "network"],
-    ["学习", "study"],
-    ["附近", "nearby"],
-    ["学生组织", "studentOrg"],
-    ["社团", "corporation"],
-    ["资助", "subsidize"],
-    ["交通", "traffic"]
+    ['报到', 'check'],
+    ['寝室', 'dorm'],
+    ['生活', 'life'],
+    ['食堂', 'dining'],
+    ['校园卡', 'card'],
+    ['校园网', 'network'],
+    ['学习', 'study'],
+    ['附近', 'nearby'],
+    ['学生组织', 'studentOrg'],
+    ['社团', 'corporation'],
+    ['资助', 'subsidize'],
+    ['交通', 'traffic']
   ];
 }
 </script>

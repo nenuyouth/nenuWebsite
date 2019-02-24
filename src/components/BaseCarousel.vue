@@ -41,7 +41,7 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from 'vue-property-decorator';
 
 interface Carousel {
   heading: string;
@@ -68,13 +68,13 @@ export default class BaseCarousel extends Vue {
 
   private navigate(url: string | undefined) {
     if (url)
-      if (url[0] === "/") this.$router.push(url);
-      else if (url.indexOf("http://") !== -1 || url.indexOf("https://") !== -1)
+      if (url[0] === '/') this.$router.push(url);
+      else if (url.indexOf('http://') !== -1 || url.indexOf('https://') !== -1)
         window.open(url);
       else {
         const base = this.$route.path.slice(
           0,
-          this.$route.path.lastIndexOf("/")
+          this.$route.path.lastIndexOf('/')
         );
 
         this.$router.push(`${base}/${url}`);
@@ -88,16 +88,16 @@ export default class BaseCarousel extends Vue {
     // 对list进行处理
     this.list.forEach((element: Carousel, index: number) => {
       // 初始化生效信息
-      element.activeStatus = index === 0 ? "active" : "";
+      element.activeStatus = index === 0 ? 'active' : '';
 
       // 使黑文字配置生效
       if (element.black === true) {
-        element.colorStatus = "text-black";
+        element.colorStatus = 'text-black';
         delete element.black;
       }
 
       // 确保轮播图有替代文字
-      if (!element.alt) element.alt = "轮播图背景";
+      if (!element.alt) element.alt = '轮播图背景';
     });
 
     // 只有一张轮播图时隐藏控件

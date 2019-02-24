@@ -55,27 +55,27 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Vue, Watch } from "vue-property-decorator";
+import { Component, Vue, Watch } from 'vue-property-decorator';
 
 @Component
 export default class BaseFooter extends Vue {
   private mounted() {
     $(window).scroll(() => {
       if (($(window).scrollTop() || window.pageYOffset) > 100)
-        $(".scrollTop").fadeIn(500);
-      else $(".scrollTop").fadeOut(500);
+        $('.scrollTop').fadeIn(500);
+      else $('.scrollTop').fadeOut(500);
     });
-    $(".scrollTop").click(() => {
-      $("body,html").animate({ scrollTop: 0 }, 800);
+    $('.scrollTop').click(() => {
+      $('body,html').animate({ scrollTop: 0 }, 800);
     });
   }
 
   // FIXME: 页脚显示仍然异常
-  @Watch("$route")
+  @Watch('$route')
   private onRouteUpdate() {
-    $("#footer").css("opacity", "0");
+    $('#footer').css('opacity', '0');
     setTimeout(() => {
-      $("#footer").css("opacity", "1");
+      $('#footer').css('opacity', '1');
     }, 600);
   }
 }

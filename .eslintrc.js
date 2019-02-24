@@ -14,7 +14,7 @@ module.exports = {
 
   // 所使用的规则配置
   extends: [
-    "eslint:recommended",
+    'eslint:recommended',
     'plugin:vue/essential',
     '@vue/airbnb',
     '@vue/typescript'
@@ -23,12 +23,12 @@ module.exports = {
   // 自定义的额外规则
   rules: {
     "accessor-pairs": "error",
-    "array-bracket-newline": ["error", { "multiline": true }],
+    "array-bracket-newline": [ "error", { "multiline": true } ],
     "array-bracket-spacing": "warn",
     "array-callback-return": "error",
-    "array-element-newline": ["error", "consistent"],
+    "array-element-newline": [ "error", "consistent" ],
     "arrow-body-style": "error",
-    "arrow-parens": ["error", "as-needed"],
+    "arrow-parens": [ "error", "as-needed" ],
     "arrow-spacing": [
       "error",
       {
@@ -45,16 +45,16 @@ module.exports = {
 
     // 因为vue的原因此项需要设置off
     "class-methods-use-this": "off",
-    "comma-dangle": ["error", "never"],
+    "comma-dangle": [ "error", "never" ],
     "comma-spacing": "error",
-    "comma-style": ["error", "last"],
-    "complexity": ["warn", { "max": 25 }],
-    "computed-property-spacing": ["error", "never"],
+    "comma-style": [ "error", "last" ],
+    "complexity": [ "warn", { "max": 25 } ],
+    "computed-property-spacing": [ "error", "never" ],
     "consistent-return": "error",
     "consistent-this": "error",
-    "curly": ["error", "multi"],
+    "curly": [ "error", "multi" ],
     "default-case": "warn",
-    "dot-location": ["error", "property"],
+    "dot-location": [ "error", "property" ],
     "dot-notation": "error",
     "eol-last": "error",
     "eqeqeq": "error",
@@ -70,7 +70,7 @@ module.exports = {
     "id-blacklist": "error",
     "id-length": "off",
     "id-match": "error",
-    "implicit-arrow-linebreak": ["error", "beside"],
+    "implicit-arrow-linebreak": [ "error", "beside" ],
     "indent": "off",
     "init-declarations": "off",
     "jsx-quotes": "error",
@@ -86,11 +86,11 @@ module.exports = {
     "max-lines": "off",
     "max-lines-per-function": "off",
     "max-nested-callbacks": "error",
-    "max-params": ["error", { "max": 5 }],
+    "max-params": [ "error", { "max": 5 } ],
     "max-statements": "off",
     "max-statements-per-line": "error",
     "multiline-comment-style": "error",
-    "multiline-ternary": ["error", "always-multiline"],
+    "multiline-ternary": [ "error", "always-multiline" ],
     "new-parens": "error",
     "newline-per-chained-call": "error",
     "no-alert": "warn",
@@ -130,7 +130,7 @@ module.exports = {
     "no-misleading-character-class": "error",
     "no-mixed-operators": [
       "error",
-      { "groups": [["&", "|", "^", "~", "<<", ">>", ">>>"], ["&&", "||"]] }
+      { "groups": [ [ "&", "|", "^", "~", "<<", ">>", ">>>" ], [ "&&", "||" ] ] }
     ],
     "no-mixed-requires": "error",
     "no-multi-assign": "off",
@@ -150,7 +150,7 @@ module.exports = {
     "no-new-require": "error",
     "no-new-wrappers": "error",
     "no-octal-escape": "error",
-    "no-param-reassign": "off",
+    "no-param-reassign": [ "error", { "props": false } ],
     "no-path-concat": "error",
     "no-plusplus": "off",
     "no-process-env": "off",
@@ -162,12 +162,12 @@ module.exports = {
     "no-restricted-modules": "error",
     "no-restricted-properties": "error",
     "no-restricted-syntax": "error",
-    "no-return-assign": ["error", "except-parens"],
+    "no-return-assign": [ "error", "except-parens" ],
     "no-return-await": "error",
     "no-script-url": "error",
     "no-self-compare": "error",
     "no-sequences": "off",
-    "no-shadow": ["error", { "hoist": "all" }],
+    "no-shadow": [ "error", { "hoist": "all" } ],
     "no-shadow-restricted-names": "error",
     "no-sync": "off",
     "no-tabs": "error",
@@ -191,11 +191,11 @@ module.exports = {
     "no-useless-return": "error",
     "no-var": "error",
     "no-void": "error",
-    "no-warning-comments": ["warn", { "terms": ["todo", "fixme", "xxx"], "location": "start" }],
+    "no-warning-comments": [ "warn", { "terms": [ "todo", "fixme", "xxx" ], "location": "start" } ],
     "no-whitespace-before-property": "error",
     "no-with": "error",
-    "nonblock-statement-body-position": ["error", "any"],
-    "object-curly-newline": ["error",
+    "nonblock-statement-body-position": [ "error", "any" ],
+    "object-curly-newline": [ "error",
       {
         "ObjectExpression": { "multiline": true },
         "ObjectPattern": { "multiline": true },
@@ -209,14 +209,14 @@ module.exports = {
     "one-var": "error",
     "one-var-declaration-per-line": "error",
     "operator-assignment": "error",
-    "operator-linebreak": ["error", "after"],
+    "operator-linebreak": [ "error", "after", { "overrides": { "?": "before", ":": "before" } } ],
     "padded-blocks": "off",
     "padding-line-between-statements": [
       "error",
       { blankLine: "always", prev: "directive", next: "*" },
       { blankLine: "any", prev: "directive", next: "directive" },
-      { blankLine: "always", prev: ["const", "let", "var"], next: "*" },
-      { blankLine: "any", prev: ["const", "let", "var"], next: ["const", "let", "var"] },
+      { blankLine: "always", prev: [ "const", "let", "var" ], next: "*" },
+      { blankLine: "any", prev: [ "const", "let", "var" ], next: [ "const", "let", "var" ] },
       { blankLine: "always", prev: "*", next: "return" }
     ],
     "prefer-arrow-callback": "error",
@@ -229,8 +229,8 @@ module.exports = {
     "prefer-spread": "error",
     "prefer-template": "error",
     "quote-props": "off",
-    "quotes": ["warn", "double"],
-    "radix": ["error", "as-needed"],
+    "quotes": [ "warn", "single" ],
+    "radix": [ "error", "as-needed" ],
     "require-atomic-updates": "error",
     "require-await": "error",
     "require-unicode-regexp": "error",
@@ -246,7 +246,7 @@ module.exports = {
 
     "space-before-blocks": "error",
     "space-before-function-paren": "off",
-    "space-in-parens": ["error", "never"],
+    "space-in-parens": [ "error", "never" ],
     "space-infix-ops": "error",
     "space-unary-ops": "error",
     "spaced-comment": "error",
@@ -259,15 +259,13 @@ module.exports = {
       }
     ],
     "symbol-description": "error",
-    "template-curly-spacing": ["error", "never"],
+    "template-curly-spacing": [ "error", "never" ],
     "template-tag-spacing": "error",
-    "unicode-bom": ["error", "never"],
+    "unicode-bom": [ "error", "never" ],
     "vars-on-top": "error",
     "wrap-regex": "error",
     "yield-star-spacing": "error",
-    "yoda": ["error", "never"],
-
-    "no-param-reassign": "off",
+    "yoda": [ "error", "never" ]
   },
 
   // 设置eslint解释起

@@ -50,58 +50,58 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import BaseCarousel from "@/components/BaseCarousel.vue";
+import { Component, Vue } from 'vue-property-decorator';
+import BaseCarousel from '@/components/BaseCarousel.vue';
 
 @Component({components: { BaseCarousel }})
 export default class Main extends Vue {
   private carouselData = {
-    myId: "Main",
+    myId: 'Main',
     content: [
       {
-        heading: "NENUYouth",
-        subhead: "东师微信小程序已上线",
-        enSubhead: "Wechat Miniprogram is released！",
-        alt: "东师微信小程序已上线",
-        src: "/img/main/main0.jpg",
-        url: "https://mp.weixin.qq.com/s/w_CbkYVuTcByXCxEnlJ63w",
-        desc: "点击查看图文详情",
+        heading: 'NENUYouth',
+        subhead: '东师微信小程序已上线',
+        enSubhead: 'Wechat Miniprogram is released！',
+        alt: '东师微信小程序已上线',
+        src: '/img/main/main0.jpg',
+        url: 'https://mp.weixin.qq.com/s/w_CbkYVuTcByXCxEnlJ63w',
+        desc: '点击查看图文详情',
         black: true
       },
       {
-        heading: "我是东师",
-        subhead: "未来，请多指教",
-        enSubhead: "New Experience, New Us!",
-        alt: "未来，请多指教",
-        src: "/img/main/main1.jpg",
-        url: "https://mp.weixin.qq.com/s/yv66H-tCPyrHuSEc1cOK5Q",
-        desc: "点击查看图文详情"
+        heading: '我是东师',
+        subhead: '未来，请多指教',
+        enSubhead: 'New Experience, New Us!',
+        alt: '未来，请多指教',
+        src: '/img/main/main1.jpg',
+        url: 'https://mp.weixin.qq.com/s/yv66H-tCPyrHuSEc1cOK5Q',
+        desc: '点击查看图文详情'
       },
       {
-        heading: "东师姑娘",
-        subhead: "这里有一首歌唱给你听",
-        enSubhead: "We prepare a song for you, girls.",
-        src: "/img/main/main2.jpg",
-        url: "https://mp.weixin.qq.com/s/QcPo0a57ZY-aI5PWXbM7tA",
-        alt: "这里有一首歌唱给你听",
-        desc: "点击查看图文详情"
+        heading: '东师姑娘',
+        subhead: '这里有一首歌唱给你听',
+        enSubhead: 'We prepare a song for you, girls.',
+        src: '/img/main/main2.jpg',
+        url: 'https://mp.weixin.qq.com/s/QcPo0a57ZY-aI5PWXbM7tA',
+        alt: '这里有一首歌唱给你听',
+        desc: '点击查看图文详情'
       }
     ]
   };
 
   private guidelist = [
-    ["报到", "check"],
-    ["寝室", "dorm"],
-    ["生活", "life"],
-    ["食堂", "dining"],
-    ["校园卡", "card"],
-    ["校园网", "network"],
-    ["学习", "study"],
-    ["附近", "nearby"],
-    ["学生组织", "studentOrg"],
-    ["社团", "corporation"],
-    ["资助", "subsidize"],
-    ["交通", "traffic"]
+    ['报到', 'check'],
+    ['寝室', 'dorm'],
+    ['生活', 'life'],
+    ['食堂', 'dining'],
+    ['校园卡', 'card'],
+    ['校园网', 'network'],
+    ['学习', 'study'],
+    ['附近', 'nearby'],
+    ['学生组织', 'studentOrg'],
+    ['社团', 'corporation'],
+    ['资助', 'subsidize'],
+    ['交通', 'traffic']
   ];
 }
 </script>

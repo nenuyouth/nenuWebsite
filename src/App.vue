@@ -1,22 +1,22 @@
 <template>
-  <div id="app">
-    <transition :name="transitionName">
-      <keep-alive :max="10">
+  <div id='app'>
+    <transition :name='transitionName'>
+      <keep-alive :max='10'>
         <router-view/>
         <!-- <router-view v-wechat-title="$route.meta.title"/> -->
       </keep-alive>
     </transition>
   </div>
 </template>
-<script lang="ts">
-import { Component, Prop, Vue, Watch } from "vue-property-decorator";
-import { Route } from "vue-router";
+<script lang='ts'>
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
+import { Route } from 'vue-router';
 
 @Component
 export default class App extends Vue {
-  private transitionName = "slide-right";
+  private transitionName = 'slide-right';
 
-  @Watch("$route")
+  @Watch('$route')
   private onRouteChanged(to: Route, from: Route) {
     const remove = (array: string[], value: string) => {
       for (let i = 0; i < array.length; i += 1)
@@ -27,15 +27,15 @@ export default class App extends Vue {
 
       return array;
     };
-    const toDepth = remove(to.path.split("/"), "").length;
-    const fromDepth = remove(from.path.split("/"), "").length;
+    const toDepth = remove(to.path.split('/'), '').length;
+    const fromDepth = remove(from.path.split('/'), '').length;
 
     // 改变动画效果
-    this.transitionName = toDepth < fromDepth ? "slide-right" : "slide-left";
+    this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left';
 
     // 路由发生变化修改页面title
     if (to.meta && to.meta.title) {
-      document.getElementsByTagName("title")[0].innerText = to.meta.title;
+      document.getElementsByTagName('title')[0].innerText = to.meta.title;
       document.title = to.meta.title;
     }
   }

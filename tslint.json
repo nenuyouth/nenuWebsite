@@ -12,7 +12,7 @@
   "rules": {
     "quotemark": [
       true,
-      "double"
+      "single"
     ],
     "indent": [
       true,
@@ -58,6 +58,7 @@
     ],
     "no-empty": true,
     "no-shadowed-variable": true,
+    "increment-decrement": true,
     "interface-name": false,
     "ordered-imports": false,
     "object-literal-sort-keys": false,

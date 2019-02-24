@@ -2,9 +2,9 @@
   <base-page :key="url" :pagedata="pageData" v-if="pageData"></base-page>
 </template>
 <script lang="ts">
-import { Component, Vue, Prop, Watch } from "vue-property-decorator";
-import BasePage from "@/components/BasePage.vue";
-import { Route } from "vue-router";
+import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
+import BasePage from '@/components/BasePage.vue';
+import { Route } from 'vue-router';
 
 @Component({components: { BasePage }})
 export default class Page extends Vue {
@@ -15,7 +15,7 @@ export default class Page extends Vue {
   // 加载页面
   private loadPage(path: string) {
     let jsonData: any[] = [];
-    let finalPath = "";
+    let finalPath = '';
 
     // 确定文件夹名称
     let { length } = path;
@@ -30,7 +30,7 @@ export default class Page extends Vue {
     $.ajax({
       async: false,
       url: `/Res/page/${folder}/${finalPath || path}.json`,
-      dataType: "text",
+      dataType: 'text',
       success: data => {
         jsonData = JSON.parse(data);
       }
@@ -48,9 +48,9 @@ export default class Page extends Vue {
     this.loadPage(this.path);
   }
 
-  @Watch("$route")
+  @Watch('$route')
   private onRouteChange(to: Route, from: Route) {
-    const paths = this.$route.path.split("/");
+    const paths = this.$route.path.split('/');
 
     this.loadPage(paths[paths.length - 1]);
   }

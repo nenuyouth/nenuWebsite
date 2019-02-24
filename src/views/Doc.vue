@@ -1,20 +1,20 @@
 <template>
-  <transition :name="transitionName" mode="in-out">
+  <transition :name='transitionName' mode='in-out'>
     <keep-alive>
-      <base-doc :key="path" :path="path"></base-doc>
+      <base-doc :key='path' :path='path'></base-doc>
     </keep-alive>
   </transition>
 </template>
 
 <script lang="ts">
-import BaseDoc from "@/components/BaseDoc.vue";
-import { Component, Prop, Vue, Watch } from "vue-property-decorator";
+import BaseDoc from '@/components/BaseDoc.vue';
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 
 @Component({ components: { BaseDoc } })
 export default class Doc extends Vue {
-  private transitionName = "slide-left";
+  private transitionName = 'slide-left';
 
-  @Prop({ type: String, default: "main" }) private path1!: string;
+  @Prop({ type: String, default: 'main' }) private path1!: string;
 
   @Prop(String) private path2!: string;
 
@@ -22,9 +22,9 @@ export default class Doc extends Vue {
 
   @Prop(String) private path4!: string;
 
-  get path() {
+  private get path() {
     const paths = [this.path1, this.path2, this.path3, this.path4];
-    let finalPath = "";
+    let finalPath = '';
 
     // 处理获得最终路径
     paths.forEach(path => {
@@ -34,7 +34,7 @@ export default class Doc extends Vue {
     return finalPath;
   }
 
-  @Watch("$route")
+  @Watch('$route')
   private OnRouteUpdate(to: any, from: any) {
     const remove = (array: string[], value: string) => {
       for (let i = 0; i < array.length; i += 1)
@@ -45,10 +45,10 @@ export default class Doc extends Vue {
 
       return array;
     };
-    const toDepth = remove(to.path.split("/"), "").length;
-    const fromDepth = remove(from.path.split("/"), "").length;
+    const toDepth = remove(to.path.split('/'), '').length;
+    const fromDepth = remove(from.path.split('/'), '').length;
 
-    this.transitionName = toDepth < fromDepth ? "slide-right" : "slide-left";
+    this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left';
   }
 }
 </script>

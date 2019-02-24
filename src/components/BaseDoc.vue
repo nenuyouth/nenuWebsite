@@ -13,7 +13,7 @@
     <div class="row">
       <div class="col-12 col-lg-9 markdown-body" v-html="compiledMarkdown" v-if="compiledMarkdown"></div>
       <div class="col-12 col-lg-9" v-else>
-        <p>加载中......</p>
+        <loading/>
       </div>
       <div class="d-none d-lg-block col-lg-3">
         <div :style="`max-height:calc(${windowHeight - 192}px - 4rem);`" id="asideCtn">
@@ -29,30 +29,31 @@
 </template>
 
 <script lang="ts">
-import marked from "marked";
-import hljs from "highlight.js";
-import { Component, Prop, Vue, Watch } from "vue-property-decorator";
-import { Route } from "vue-router";
+import marked from 'marked';
+import hljs from 'highlight.js';
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
+import { Route } from 'vue-router';
+import Loading from '@/components/LoadingIcon.vue';
 
 // 导入css样式
-import "highlight.js/styles/default.css";
-import "github-markdown-css/github-markdown.css";
+import 'highlight.js/styles/default.css';
+import 'github-markdown-css/github-markdown.css';
 
 const myRenderMD = new marked.Renderer();
 
 // 覆写heading转码
 myRenderMD.heading = (text, level) => {
-  let id = "";
+  let id = '';
 
-  if (text.indexOf("a href") !== -1)
-    id = text.slice(text.indexOf(">") + 1, text.indexOf("</a>"));
+  if (text.indexOf('a href') !== -1)
+    id = text.slice(text.indexOf('>') + 1, text.indexOf('</a>'));
 
   return `<h${level} id="${id || text}">${text}</h${level}>`;
 };
 
 // 覆写链接转码
 myRenderMD.link = (href, title, text) => {
-  if (href[0] === "#")
+  if (href[0] === '#')
     return `<a class='md-a' href='${href}' title='${title ||
       text}'>${text}</a>`;
 
@@ -80,16 +81,16 @@ marked.setOptions({
   }
 });
 
-@Component
+@Component({ components: { Loading } })
 export default class MyDoc extends Vue {
   // 控制侧边栏显示
   private aside: string[][] = [];
 
   // 渲染好的html文本
-  private compiledMarkdown = "";
+  private compiledMarkdown = '';
 
   // 文档标题
-  private docTitle = "内部文档";
+  private docTitle = '内部文档';
 
   private windowWidth = 375;
 
@@ -99,7 +100,7 @@ export default class MyDoc extends Vue {
 
   private loadDoc() {
     const { path } = this;
-    let markdown = "";
+    let markdown = '';
     const asideTemp: string[][] = [];
     const route = this.$route;
     const router = this.$router;
@@ -108,11 +109,11 @@ export default class MyDoc extends Vue {
     $.ajax({
       async: false,
       url: `/Res/doc/${path}.md`,
-      dataType: "text",
+      dataType: 'text',
       success: data => {
         // 如果链接地址错误，提示反馈并返回到上一个界面
-        if (data.slice(1, 9) === "!DOCTYPE") {
-          alert("链接地址有误，请汇报给Mr.Hope!");
+        if (data.slice(1, 9) === '!DOCTYPE') {
+          alert('链接地址有误，请汇报给Mr.Hope!');
           router.back();
         } else markdown = data; // 链接地址正确，直接赋值
       }
@@ -138,13 +139,13 @@ export default class MyDoc extends Vue {
     // 返回docTitle和aside
     Vue.nextTick(() => {
       // 设置网页标题
-      document.title = $("h1").text();
+      document.title = $('h1').text();
 
-      $("h1,h2,h3,h4").each((index, domEle) => {
+      $('h1,h2,h3,h4').each((index, domEle) => {
         if ($(domEle).children().length === 0) {
-          const id = $(domEle).attr("id");
+          const id = $(domEle).attr('id');
 
-          if (id && id.indexOf("href") === -1) {
+          if (id && id.indexOf('href') === -1) {
             const title = $(domEle).text();
             const level = $(domEle)[0].tagName[1];
 
@@ -162,8 +163,8 @@ export default class MyDoc extends Vue {
     Vue.nextTick(() => {
       $(() => {
         // 注册界面滚动动画效果
-        $("a.myh1,a.myh2,a.myh3,a.myh4,a.md-a").click(event => {
-          const id = $(event.currentTarget).attr("href");
+        $('a.myh1,a.myh2,a.myh3,a.myh4,a.md-a').click(event => {
+          const id = $(event.currentTarget).attr('href');
 
           if (id) {
             const offset = $(id).offset();
@@ -171,9 +172,9 @@ export default class MyDoc extends Vue {
             if (offset) {
               const toTop = offset.top;
 
-              $("html, body").animate(
+              $('html, body').animate(
                 { scrollTop: `${toTop - 50}px` },
-                { duration: 500, easing: "swing" }
+                { duration: 500, easing: 'swing' }
               );
             }
           }
@@ -183,64 +184,67 @@ export default class MyDoc extends Vue {
 
         // 注册文档间跳转逻辑
         $(() => {
-          $("a.md-link").click(event => {
-            const url = $(event.currentTarget).attr("href");
+          $('a.md-link').click(event => {
+            const url = $(event.currentTarget).attr('href');
 
             if (url)
-              if (url && url[0] === "/") router.push(url);
+              if (url && url[0] === '/') router.push(url);
               else if (
-                url.indexOf("http://") !== -1 ||
-                url.indexOf("https://") !== -1
+                url.indexOf('http://') !== -1 ||
+                url.indexOf('https://') !== -1
               )
                 window.open(url);
               else {
-                const base = route.path.slice(0, route.path.lastIndexOf("/"));
+                const base = route.path.slice(0, route.path.lastIndexOf('/'));
 
                 router.push(`${base}/${url}`);
               }
-            else alert("链接地址有误，请汇报给Mr.Hope!");
+            else alert('链接地址有误，请汇报给Mr.Hope!');
 
             return false;
           });
         });
 
         // 目录效果实现;
-        $("#asideSlideBtn").click(event => {
-          const asideWidth = $("#asideSlide").width();
+        $('#asideSlideBtn').click(event => {
+          const asideWidth = $('#asideSlide').width();
 
           if (asideWidth)
-            $("#asideSlide").animate(
+            $('#asideSlide').animate(
               {
                 left:
                   ($(window).width() || document.documentElement.clientWidth) -
                   asideWidth
               },
-              { duration: 500, easing: "swing" }
+              { duration: 500, easing: 'swing' }
             );
 
-          $("#asideScreenMask").fadeIn(500);
-          $("#asideSlideBtn").fadeOut(500);
+          $('#asideScreenMask').fadeIn(500);
+          $('#asideSlideBtn').fadeOut(500);
           event.stopPropagation();
         });
 
-        $("#asideScreenMask").click(() => {
-          $("#asideSlide").animate(
-            { left: "100%" },
-            { duration: 500, easing: "swing" }
+        $('#asideScreenMask').click(() => {
+          $('#asideSlide').animate(
+            { left: '100%' },
+            { duration: 500, easing: 'swing' }
           );
-          $("#asideSlideBtn").fadeIn(500);
-          $("#asideScreenMask").fadeOut(500);
+          $('#asideSlideBtn').fadeIn(500);
+          $('#asideScreenMask').fadeOut(500);
         });
       });
     });
+
+    return true;
   }
 
   private mounted() {
     this.loadDoc();
   }
 
-  @Watch("$route")
+  @Watch('$route')
   private OnRouteUpdate(to: Route, from: Route) {
+    this.compiledMarkdown = '';
     this.loadDoc();
   }
 }

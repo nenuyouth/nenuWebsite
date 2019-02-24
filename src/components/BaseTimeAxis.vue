@@ -19,7 +19,7 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from 'vue-property-decorator';
 
 interface TimeList {
   title: string;
@@ -40,8 +40,8 @@ export default class BaseTimeAxis extends Vue {
 
     this.timeList.forEach((element, index) => {
       list[index] = element.text
-        .replace(/\n/gu, "<br/>")
-        .replace(/\s/gu, "&ensp;");
+        .replace(/\n/gu, '<br/>')
+        .replace(/\s/gu, '&ensp;');
     });
 
     return list;

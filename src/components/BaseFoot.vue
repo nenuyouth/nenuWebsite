@@ -15,7 +15,7 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
 export default class BaseFoot extends Vue {
@@ -23,7 +23,7 @@ export default class BaseFoot extends Vue {
 
   @Prop(String) private desc!: string;
 
-  @Prop({ type: String, default: "Mr.Hope" }) private author!: string;
+  @Prop({ type: String, default: 'Mr.Hope' }) private author!: string;
 
   @Prop(String) private time!: string;
 }

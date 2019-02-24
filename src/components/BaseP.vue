@@ -15,24 +15,24 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from 'vue-property-decorator';
 
 interface Style {
   [propName: string]: string;
 }
 
 enum Align {
-  "left",
-  "right",
-  "center",
-  "justify"
+  'left',
+  'right',
+  'center',
+  'justify'
 }
 
 @Component
 export default class BaseP extends Vue {
   // 对text进行处理以在网页上正常显示空格与换行
   get pText() {
-    return this.text.replace(/\n/gu, "<br/>").replace(/\s/gu, "&ensp;");
+    return this.text.replace(/\n/gu, '<br/>').replace(/\s/gu, '&ensp;');
   }
 
   // 图片加载状态
@@ -54,7 +54,7 @@ export default class BaseP extends Vue {
 
   @Prop([String, Object]) private headStyle!: string | Style;
 
-  @Prop({ default: "left" }) private align!: Align;
+  @Prop({ default: 'left' }) private align!: Align;
 
   private mounted() {
     // 图片处理

@@ -6,16 +6,16 @@
   </div>
 </template>
 <script lang="ts">
-import BaseHead from "@/components/BaseHead.vue";
-import BaseH3 from "@/components/BaseH3.vue";
-import BaseP from "@/components/BaseP.vue";
-import BaseImg from "@/components/BaseImg.vue";
-import BaseList from "@/components/BaseList.vue";
-import BaseCarousel from "@/components/BaseCarousel.vue";
-import BasePhone from "@/components/BasePhone.vue";
-import BaseFoot from "@/components/BaseFoot.vue";
+import BaseHead from '@/components/BaseHead.vue';
+import BaseH3 from '@/components/BaseH3.vue';
+import BaseP from '@/components/BaseP.vue';
+import BaseImg from '@/components/BaseImg.vue';
+import BaseList from '@/components/BaseList.vue';
+import BaseCarousel from '@/components/BaseCarousel.vue';
+import BasePhone from '@/components/BasePhone.vue';
+import BaseFoot from '@/components/BaseFoot.vue';
 
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component({
   components: {
@@ -30,7 +30,7 @@ import { Component, Prop, Vue } from "vue-property-decorator";
   }
 })
 export default class BasePage extends Vue {
-  @Prop({ type: Array, required: true, default: [{ tag: "error" }] })
+  @Prop({ type: Array, required: true, default: [{ tag: 'error' }] })
   private pagedata!: any[];
 
   get myData() {
