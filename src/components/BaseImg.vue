@@ -44,8 +44,9 @@ export default class BaseImg extends Vue {
 
     // 图片加载成功
     img.onload = () => {
-      img.onload = null;
       this.loaded = true;
+
+      delete img.onload;
     };
   }
 }

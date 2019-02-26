@@ -31,10 +31,10 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 })
 export default class BasePage extends Vue {
   @Prop({ type: Array, required: true, default: [{ tag: 'error' }] })
-  private pagedata!: any[];
+  private readonly pagedata!: any[];
 
   get myData() {
-    const myData = this.pagedata.slice(0);
+    const myData = JSON.parse(JSON.stringify(this.pagedata));
 
     myData.forEach((element: any, index: number) => {
       element.myId = index;

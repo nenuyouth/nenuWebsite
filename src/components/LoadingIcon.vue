@@ -8,7 +8,7 @@
 <script lang="ts">
 import Vue from 'vue';
 
-export default class LoadingIcon extends Vue {}
+export default class Loading extends Vue {}
 </script>
 
 <style>

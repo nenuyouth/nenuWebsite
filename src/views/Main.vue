@@ -12,7 +12,6 @@
     </div>
     <div class="container">
       <base-carousel v-bind="carouselData"></base-carousel>
-      <!-- <main-carousel></main-carousel> -->
     </div>
     <div class="container">
       <div class="row">
@@ -53,7 +52,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 import BaseCarousel from '@/components/BaseCarousel.vue';
 
-@Component({components: { BaseCarousel }})
+@Component({ components: { BaseCarousel } })
 export default class Main extends Vue {
   private carouselData = {
     myId: 'Main',
@@ -117,8 +116,8 @@ export default class Main extends Vue {
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
   line-height: 1.5;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
   border: 1px solid #dee2e6;
 }
 </style>

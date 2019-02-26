@@ -24,7 +24,12 @@
             <ul class="list-unstyled mb-3">
               <li :key="listItem" v-for="listItem in item.desc" v-html="listItem"></li>
             </ul>
-            <router-link :to="item.url" class="btn btn-lg btn-block btn-primary" tag="button" type="button">了解更多</router-link>
+            <router-link
+              :to="item.url"
+              class="btn btn-lg btn-block btn-primary"
+              tag="button"
+              type="button"
+            >了解更多</router-link>
           </div>
         </div>
         <div class="card-body d-none d-md-block">
@@ -35,7 +40,12 @@
           <ul class="list-unstyled mb-3">
             <li :key="listItem" v-for="listItem in item.desc" v-html="listItem"></li>
           </ul>
-          <router-link :to="item.url" class="btn cardBtn1 btn-outline-primary" tag="button" type="button">了解更多</router-link>
+          <router-link
+            :to="item.url"
+            class="btn cardBtn1 btn-outline-primary"
+            tag="button"
+            type="button"
+          >了解更多</router-link>
         </div>
       </div>
     </div>
@@ -61,7 +71,7 @@ export default class BaseCard extends Vue {
   private cardList: Card[] = [];
 
   private created() {
-    this.cardList = this.list.slice(0);
+    this.cardList = JSON.parse(JSON.stringify(this.list));
     this.cardList.forEach((element: Card, index) => {
       element.id = `${this.myId}card-collapse-${index}`;
     });

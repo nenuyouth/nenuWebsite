@@ -31,7 +31,7 @@
         </div>
         <div
           :class="List.icon ? 'listIconDivline' : ''"
-          :key="List.text2"
+          :key="List.textKey"
           class="link-divline"
           v-if="List.display !== false"
         ></div>
@@ -59,11 +59,11 @@ export default class BaseList extends Vue {
   @Prop([String, Boolean]) private foot!: string | boolean;
 
   get listItem() {
-    const listItem = this.content.splice(0);
+    const listItem = JSON.parse(JSON.stringify(this.content));
 
     listItem.forEach((element: List, index: number) => {
       if (this.myId) element.id = `list${this.myId}-${index}`;
-      element.text2 = `${element.text}Key`;
+      element.textKey = `${element.text}Key`;
     });
 
     return listItem;
@@ -204,7 +204,7 @@ export default class BaseList extends Vue {
 }
 
 .access:after {
-  content: " ";
+  content: ' ';
   display: inline-block;
   width: 7px;
   height: 7px;

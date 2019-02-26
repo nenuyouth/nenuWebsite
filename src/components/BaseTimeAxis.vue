@@ -39,9 +39,7 @@ export default class BaseTimeAxis extends Vue {
     const list: string[] = [];
 
     this.timeList.forEach((element, index) => {
-      list[index] = element.text
-        .replace(/\n/gu, '<br/>')
-        .replace(/\s/gu, '&ensp;');
+      list[index] = element.text.replace(/\n/gu, '<br/>').replace(/\s/gu, '&ensp;');
     });
 
     return list;
@@ -58,7 +56,7 @@ export default class BaseTimeAxis extends Vue {
 
 .tiemAxisBox:before,
 .tiemAxisBox:after {
-  content: "";
+  content: '';
   height: 30px;
   width: 50px;
   background: #909090;
@@ -92,7 +90,7 @@ export default class BaseTimeAxis extends Vue {
 }
 .tiemAxisBox .timeAxisCtn:before,
 .tiemAxisBox .timeAxisCtn:after {
-  content: "";
+  content: '';
   background-color: #00b3ad;
   height: 80px;
   width: 50px;

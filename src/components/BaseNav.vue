@@ -55,11 +55,13 @@ import { Component, Vue } from 'vue-property-decorator';
 export default class BaseNav extends Vue {
   private mounted() {
     $(() => {
-      $('.nav-btn').click(event => {
+      $('.nav-btn').on('click', event => {
         $(event.currentTarget).toggleClass('active');
       });
     });
   }
+
+  // TODO:添加route监听，设置文字激活效果
 }
 </script>
 <style scoped>

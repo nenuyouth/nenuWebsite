@@ -30,11 +30,23 @@
         </div>
       </div>
     </div>
-    <a :href="`#display${myId}`" class="carousel-control-prev" data-slide="prev" role="button" v-if="!single">
+    <a
+      :href="`#display${myId}`"
+      class="carousel-control-prev"
+      data-slide="prev"
+      role="button"
+      v-if="!single"
+    >
       <span aria-hidden="true" class="carousel-control-prev-icon"></span>
       <span class="sr-only">Previous</span>
     </a>
-    <a :href="`#display${myId}`" class="carousel-control-next" data-slide="next" role="button" v-if="!single">
+    <a
+      :href="`#display${myId}`"
+      class="carousel-control-next"
+      data-slide="next"
+      role="button"
+      v-if="!single"
+    >
       <span aria-hidden="true" class="carousel-control-next-icon"></span>
       <span class="sr-only">Next</span>
     </a>
@@ -69,13 +81,9 @@ export default class BaseCarousel extends Vue {
   private navigate(url: string | undefined) {
     if (url)
       if (url[0] === '/') this.$router.push(url);
-      else if (url.indexOf('http://') !== -1 || url.indexOf('https://') !== -1)
-        window.open(url);
+      else if (url.indexOf('http://') !== -1 || url.indexOf('https://') !== -1) window.open(url);
       else {
-        const base = this.$route.path.slice(
-          0,
-          this.$route.path.lastIndexOf('/')
-        );
+        const base = this.$route.path.slice(0, this.$route.path.lastIndexOf('/'));
 
         this.$router.push(`${base}/${url}`);
       }
@@ -83,12 +91,12 @@ export default class BaseCarousel extends Vue {
 
   private mounted() {
     // 复制content内容到data中
-    this.list = this.content.slice(0);
+    this.list = JSON.parse(JSON.stringify(this.content));
 
     // 对list进行处理
     this.list.forEach((element: Carousel, index: number) => {
       // 初始化生效信息
-      element.activeStatus = index === 0 ? 'active' : '';
+      if (index === 0) element.activeStatus = 'active';
 
       // 使黑文字配置生效
       if (element.black === true) {
