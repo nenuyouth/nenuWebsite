@@ -39,17 +39,17 @@ new Vue({
 }).$mount('footer');
 
 // 注册页面跳转时页脚显示效果;
-router.beforeEach((to, from, next) => {
-  const windowWidth = $(window).width() || document.documentElement.clientWidth;
+// router.beforeEach((to, from, next) => {
+//   const windowWidth = $(window).width() || document.documentElement.clientWidth;
 
-  $('#footer').css({ visibility: 'hidden', opacity: 0.01 });
-  setTimeout(
-    () => {
-      $('#footer').css('visibility', '');
-      Vue.nextTick().then(() => {
-        $('#footer').css('opacity', 1);
-      });
-    },
-    1000
-  );
-});
+//   $('#footer').css({ visibility: 'hidden', opacity: 0.01 });
+//   setTimeout(
+//     () => {
+//       $('#footer').css('visibility', '');
+//       Vue.nextTick().then(() => {
+//         $('#footer').css('opacity', 1);
+//       });
+//     },
+//     1000
+//   );
+// });

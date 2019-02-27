@@ -1,13 +1,16 @@
 <template>
   <div class="container mt-3 pb-3">
     <!-- <div v-wechat-title="docTitle"></div> -->
-    <div id="asideScreenMask" style="display:none;"></div>
-    <div class="d-block d-lg-none" id="asideSlide">
-      <div class="shadow" id="asideSlideBtn">目录</div>
+    <div @click="asideHidden()" id="asideScreenMask" style="display:none;"></div>
+    <div class="d-block d-lg-none" id="asideSlide" v-if="aside.length!==0">
+      <div @click="asideDisplay()" class="shadow" id="asideSlideBtn">目录</div>
       <aside class="shadow" id="aside">
-        <ul class="ulReboot">
-          <li :class="`myli${item[1]}`" :key="item[0]" v-for="item in aside" v-html="item[0]"></li>
-        </ul>
+        <div
+          :class="`h${title.level} asideHeading`"
+          :key="title.text"
+          @click="scrollToHeading(title.text)"
+          v-for="title in aside"
+        >{{title.text}}</div>
       </aside>
     </div>
     <div class="row">
@@ -15,16 +18,19 @@
       <div class="col-12 col-lg-9" v-else>
         <loading/>
       </div>
-      <div class="d-none d-lg-block col-lg-3">
+      <div class="d-none d-lg-block col-lg-3" v-if="aside.length!==0">
         <div :style="`max-height:calc(${windowHeight - 192}px - 4rem);`" id="asideCtn">
           <aside
             :style="`max-height:calc(${windowHeight - 222}px - 4rem);`"
             class="shadow"
             id="aside"
           >
-            <ul class="ulReboot">
-              <li :class="`myli${item[1]}`" :key="item[0]" v-for="item in aside" v-html="item[0]"></li>
-            </ul>
+            <div
+              :class="`h${title.level} asideHeading`"
+              :key="title.text"
+              @click="scrollToHeading(title.text)"
+              v-for="title in aside"
+            >{{title.text}}</div>
           </aside>
         </div>
       </div>
@@ -43,12 +49,18 @@ import Loading from '@/components/LoadingIcon.vue';
 import 'highlight.js/styles/default.css';
 import 'github-markdown-css/github-markdown.css';
 
+interface Aside {
+  text: string;
+  level: string;
+}
+
 const myRenderMD = new marked.Renderer();
 
 // 覆写heading转码
 myRenderMD.heading = (text, level) => {
   let id = '';
 
+  // 如果heading中存在链接，则将id设置成该链接
   if (text.indexOf('a href') !== -1) id = text.slice(text.indexOf('>') + 1, text.indexOf('</a>'));
 
   return `<h${level} id="${id || text}">${text}</h${level}>`;
@@ -56,9 +68,10 @@ myRenderMD.heading = (text, level) => {
 
 // 覆写链接转码
 myRenderMD.link = (href, title, text) => {
-  if (href[0] === '#') return `<a class='md-a' href='${href}' title='${title || text}'>${text}</a>`;
-
-  return `<a class='md-link' href='${href}' title='${text}' >${text}</a>`;
+  // 如果包含#，意味着是该网页内部跳转
+  return href[0] === '#'
+    ? `<a class='md-a' href='${href}' title='${title || text}'>${text}</a>`
+    : `<a class='md-link' href='${href}' title='${text}' >${text}</a>`;
 };
 
 // 设置marked插件
@@ -83,8 +96,8 @@ marked.setOptions({
 
 @Component({ components: { Loading } })
 export default class BaseDoc extends Vue {
-  // 控制侧边栏显示
-  private aside: string[][] = [];
+  // 侧边栏内容
+  private aside: Aside[] = [];
 
   // 渲染好的html文本
   private compiledMarkdown = '';
@@ -92,10 +105,11 @@ export default class BaseDoc extends Vue {
   // 文档标题
   private docTitle = '内部文档';
 
+  // 默认的页面宽高
   private windowWidth = 375;
-
   private windowHeight = 750;
 
+  // MarkDown路径
   @Prop(String) private path!: string;
 
   private loadMarkdown() {
@@ -122,9 +136,7 @@ export default class BaseDoc extends Vue {
   }
 
   // 初始化目录
-  private initCatalog() {
-    const asideTemp: string[][] = [];
-
+  private catalogGernarate() {
     // 设置网页标题
     document.title = $('h1').text();
 
@@ -134,104 +146,99 @@ export default class BaseDoc extends Vue {
         const id = $(domEle).attr('id');
 
         if (id && id.indexOf('href') === -1) {
-          const title = $(domEle).text();
+          const text = $(domEle).text();
           const level = $(domEle)[0].tagName[1];
 
-          asideTemp.push([`<a class="myh${level}" href="#${title}">${title}</a>`, level]);
+          this.aside.push({ text, level });
         }
       }
     });
-
-    this.aside = asideTemp;
   }
 
-  // 注册页面动作
-  private registAction() {
+  private registerAction() {
     const route = this.$route;
     const router = this.$router;
 
-    // DOM完成时注册
-    $(() => {
-      // 窗口大小获取并注册监听窗口大小
-      $(() => {
-        this.windowWidth = $(window).width() || document.documentElement.clientWidth;
-        this.windowHeight = $(window).height() || document.documentElement.clientHeight;
-        $(window).on('resize', () => {
-          this.windowWidth = $(window).width() || document.documentElement.clientWidth;
-          this.windowHeight = $(window).height() || document.documentElement.clientHeight;
-        });
-      });
+    // 注册页面内部链接点击时的滚动动画效果
+    $('a.md-a').on('click', event => {
+      const id = $(event.currentTarget).attr('href');
 
-      // 注册界面滚动动画效果
-      $('a.myh1,a.myh2,a.myh3,a.myh4,a.md-a').on('click', event => {
-        const id = $(event.currentTarget).attr('href');
+      if (id) {
+        const offset = $(id).offset();
 
-        if (id) {
-          const offset = $(id).offset();
+        if (offset) {
+          const toTop = offset.top;
 
-          if (offset) {
-            const toTop = offset.top;
-
-            $('html, body').animate({ scrollTop: `${toTop - 50}px` }, { duration: 500, easing: 'swing' });
-          }
+          $('html, body').animate({ scrollTop: `${toTop - 50}px` }, { duration: 500, easing: 'swing' });
         }
+      }
 
-        return false;
-      });
-
-      // 注册文档间跳转逻辑
-      $(() => {
-        $('a.md-link').on('click', event => {
-          const url = $(event.currentTarget).attr('href');
-
-          if (url)
-            if (url && url[0] === '/') router.push(url);
-            else if (url.indexOf('http://') !== -1 || url.indexOf('https://') !== -1) window.open(url);
-            else {
-              const base = route.path.slice(0, route.path.lastIndexOf('/'));
-
-              router.push(`${base}/${url}`);
-            }
-          else alert('链接地址有误，请汇报给Mr.Hope!');
-
-          return false;
-        });
-      });
-
-      // 目录滑出效果实现
-      $('#asideSlideBtn').on('click', event => {
-        const asideWidth = $('#asideSlide').width();
-
-        if (asideWidth)
-          $('#asideSlide').animate(
-            { left: ($(window).width() || document.documentElement.clientWidth) - asideWidth },
-            { duration: 500, easing: 'swing' }
-          );
-
-        $('#asideScreenMask').fadeIn(500);
-        $('#asideSlideBtn').fadeOut(500);
-        event.stopPropagation(); // 阻止原生动作
-      });
-
-      // 目录隐藏效果实现
-      $('#asideScreenMask').on('click', () => {
-        $('#asideSlide').animate({ left: '100%' }, { duration: 500, easing: 'swing' });
-        $('#asideSlideBtn').fadeIn(500);
-        $('#asideScreenMask').fadeOut(500);
-      });
+      event.preventDefault();
     });
+
+    // 注册文档间跳转逻辑
+    $('a.md-link').on('click', event => {
+      const url = $(event.currentTarget).attr('href');
+
+      if (url)
+        if (url && url[0] === '/') router.push(url);
+        else if (url.indexOf('http://') !== -1 || url.indexOf('https://') !== -1) window.open(url);
+        else {
+          const base = route.path.slice(0, route.path.lastIndexOf('/'));
+
+          router.push(`${base}/${url}`);
+        }
+      else alert('链接地址有误，请汇报给Mr.Hope!');
+
+      event.preventDefault();
+    });
+  }
+
+  private scrollToHeading(text: string) {
+    const offset = $(`#${text}`).offset();
+
+    if (offset) {
+      const toTop = offset.top;
+
+      $('html, body').animate({ scrollTop: `${toTop - 50}px` }, { duration: 500, easing: 'swing' });
+    }
+  }
+
+  // 目录滑出效果实现
+  private asideDisplay() {
+    const asideWidth = $('#asideSlide').width();
+
+    if (asideWidth)
+      $('#asideSlide').animate(
+        { left: ($(window).width() || document.documentElement.clientWidth) - asideWidth },
+        { duration: 500, easing: 'swing' }
+      );
+
+    $('#asideScreenMask').fadeIn(500);
+    $('#asideSlideBtn').fadeOut(500);
+  }
+
+  // 目录隐藏效果实现
+  private asideHidden() {
+    $('#asideSlide').animate({ left: '100%' }, { duration: 500, easing: 'swing' });
+    $('#asideSlideBtn').fadeIn(500);
+    $('#asideScreenMask').fadeOut(500);
   }
 
   private mounted() {
     this.loadMarkdown();
 
-    Vue.nextTick()
-      .then(() => {
-        this.initCatalog();
-      })
-      .then(() => {
-        this.registAction();
+    Vue.nextTick().then(() => {
+      this.catalogGernarate();
+      this.registerAction();
+      // 窗口大小获取并注册监听窗口大小
+      this.windowWidth = $(window).width() || document.documentElement.clientWidth;
+      this.windowHeight = $(window).height() || document.documentElement.clientHeight;
+      $(window).on('resize', () => {
+        this.windowWidth = $(window).width() || document.documentElement.clientWidth;
+        this.windowHeight = $(window).height() || document.documentElement.clientHeight;
       });
+    });
   }
 
   @Watch('$route')
@@ -243,20 +250,13 @@ export default class BaseDoc extends Vue {
         this.loadMarkdown();
       })
       .then(() => {
-        this.initCatalog();
-      })
-      .then(() => {
-        this.registAction();
+        this.catalogGernarate();
+        this.registerAction();
       });
   }
 }
 </script>
-<style>
-.ulReboot {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-}
+<style scoped>
 #asideSlide {
   position: fixed;
   height: calc(100% - 2.5rem);
@@ -300,13 +300,12 @@ export default class BaseDoc extends Vue {
 }
 
 #aside {
-  /* padding: 15px; */
   text-align: left;
   width: 200px;
-  /* max-width: 200px; */
   background-color: #ffffff;
   overflow-y: auto;
 }
+
 #asideSlide #aside {
   margin: 0 0 0 auto;
   height: 100%;
@@ -319,30 +318,21 @@ export default class BaseDoc extends Vue {
   display: none;
 }
 
-.myh1,
-.myh2,
-.myh3,
-.myh4 {
+.asideHeading {
   display: block;
   color: rgb(44, 62, 80);
   word-wrap: break-word;
 }
-.myh1:visited,
-.myh2:visited,
-.myh3:visited,
-.myh4:visited {
+.asideHeading:visited {
   text-decoration: none;
 }
-.myh1:hover,
-.myh2:hover,
-.myh3:hover,
-.myh4:hover {
+.asideHeading:hover {
   text-decoration: none;
   color: #000;
   background-color: rgba(127, 127, 127, 0.15);
 }
 
-.myh1 {
+.h1 {
   text-align: center;
   font-size: 17px;
   font-weight: 600;
@@ -350,7 +340,7 @@ export default class BaseDoc extends Vue {
   padding: 15px 0;
   border-bottom: 0.5px solid #cacaca;
 }
-.myh2 {
+.h2 {
   font-size: 16.5px;
   font-weight: 700;
   padding: 0 24px;
@@ -358,11 +348,11 @@ export default class BaseDoc extends Vue {
   line-height: 1.8;
   color: rgb(44, 62, 80);
 }
-.myh3 {
+.h3 {
   font-size: 15px;
   padding: 6px 16px 6px 32px;
 }
-.myh4 {
+.h4 {
   font-size: 14px;
   padding: 3px 45px;
 }

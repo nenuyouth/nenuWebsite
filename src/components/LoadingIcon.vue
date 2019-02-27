@@ -1,5 +1,5 @@
 <template>
-  <div class="loader-wrapper">
+  <div class="loadingIcon">
     <img alt="加" class="loader1" src="/img/icon/gear.svg">
     <img alt="载" class="loader2" src="/img/icon/gearRed.svg">
     <img alt="中" class="loader3" src="/img/icon/gear.svg">
@@ -11,8 +11,8 @@ import Vue from 'vue';
 export default class Loading extends Vue {}
 </script>
 
-<style>
-.loader-wrapper {
+<style scoped>
+.loadingIcon {
   width: 60px;
   height: 60px;
   margin: 20px auto 10px auto;

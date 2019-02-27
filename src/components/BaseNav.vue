@@ -1,7 +1,14 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm" id="nav">
     <div class="navbar-toggler">
-      <div class="nav-btn my-2" data-target="#mainNav" data-toggle="collapse" id="myNavBtn">
+      <div
+        :class="active?'active':''"
+        @click="navBtnHandler"
+        class="nav-btn my-2"
+        data-target="#mainNav"
+        data-toggle="collapse"
+        id="myNavBtn"
+      >
         <span class="line"></span>
         <span class="line"></span>
         <span class="line"></span>
@@ -53,12 +60,10 @@ import { Component, Vue } from 'vue-property-decorator';
 
 @Component
 export default class BaseNav extends Vue {
-  private mounted() {
-    $(() => {
-      $('.nav-btn').on('click', event => {
-        $(event.currentTarget).toggleClass('active');
-      });
-    });
+  private active = false;
+
+  private navBtnHandler() {
+    this.active = !this.active;
   }
 
   // TODO:添加route监听，设置文字激活效果

@@ -44,10 +44,10 @@ npm是什么东东？npm其实是Node.js的包管理工具（package manager）�
 
 ```shell
 C:\>npm -v
-6.7.0
+6.8.0
 ```
 
-> 如果版本号小于v6.7.0，说明npm版本较低，请使用此命令升级到最新版本：`npm install -g npm`。
+> 如果版本号小于v6.8.0，说明npm版本较低，请使用此命令升级到最新版本：`npm install -g npm`。
 
 如果直接输入npm，你会看到类似下面的输出：
 
