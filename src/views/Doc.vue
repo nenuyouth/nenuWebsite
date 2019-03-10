@@ -1,7 +1,7 @@
 <template>
-  <transition :name='transitionName' mode='in-out'>
+  <transition :name="transitionName" mode="in-out">
     <keep-alive>
-      <base-doc :key='path' :path='path'></base-doc>
+      <base-doc :key="path" :path="path"></base-doc>
     </keep-alive>
   </transition>
 </template>

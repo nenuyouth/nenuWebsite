@@ -62,6 +62,18 @@ where <command> is one of:
 
 上面的一大堆文字告诉你，npm需要跟上命令。现在我们不用关心这些命令，后面会一一讲到。目前，你只需要确保npm正确安装了，能运行就行。
 
+## 墙
+
+大家都知道天朝是有墙的，有的时候，访问国外的nodeJS服务器可能会十分缓慢以至于你想把它砸了。
+
+所以贴心的马云爸爸提供了淘宝镜像，淘宝镜像有一个自己定制的`cnpm`工具，服务器在国内，十分快捷。不过大家在使用`cnpm`安装模块之后再使用npm安装会报错，只能重新删掉`node_modules`文件夹重新执行`npm install`全新安装才会不报错。
+
+安装`cnpm`的命令如下：
+
+```shell
+npm install -g cnpm --registry=https://registry.npm.taobao.org
+```
+
 ## 小结
 
 请在本机安装Node.js环境，并确保node和npm能正常运行。

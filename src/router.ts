@@ -1,5 +1,13 @@
+/*
+ * @Author: Mr.Hope
+ * @LastEditors: Mr.Hope
+ * @Description: router配置文件
+ * @Date: 2019-02-26 23:43:23
+ * @LastEditTime: 2019-03-10 09:48:25
+ */
+
 import Vue from 'vue';
-import Router from 'vue-router';
+import Router, { Route } from 'vue-router';
 import Main from './views/Main.vue';
 import Page404 from './views/Page404.vue';
 
@@ -9,7 +17,11 @@ Vue.use(Router); // 使用官方Router
 
 // Vue.use(Title); // 启用wechat客户端内对title属性的支持。
 
-// 暴露Router对象
+/**
+ * @description: 暴露Router对象
+ * @param {router} router配置
+ * @return: router对象
+ */
 export default new Router({
   // 使用html5的history API
   mode: 'history',
@@ -136,7 +148,14 @@ export default new Router({
     }
   ],
 
-  // 记住滚动位置
+  /**
+   * 保存滚动位置
+   *
+   * @param to 新页面route对象
+   * @param from 旧页面route对象
+   * @param savedPosition 上次保存的滚动位置
+   * @returns 返回网页滚动位置
+   */
   scrollBehavior(to, from, savedPosition) {
 
     return savedPosition || { x: 0, y: 0 };

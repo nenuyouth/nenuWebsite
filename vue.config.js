@@ -1,3 +1,10 @@
+/*
+ * @Author: Mr.Hope
+ * @LastEditors: Mr.Hope
+ * @Description: vue配置文件
+ * @Date: 2019-02-27 00:00:08
+ * @LastEditTime: 2019-03-08 23:18:29
+ */
 module.exports = {};
 /*
  * default config

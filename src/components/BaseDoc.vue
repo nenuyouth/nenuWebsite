@@ -15,7 +15,7 @@
     </div>
     <div class="row">
       <div class="col-12 col-lg-9 markdown-body" v-html="compiledMarkdown" v-if="compiledMarkdown"></div>
-      <div class="col-12 col-lg-9" v-else>
+      <div class="col-12 col-lg-8 offset-lg-2 loadingCtn" v-else>
         <loading/>
       </div>
       <div class="d-none d-lg-block col-lg-3" v-if="aside.length!==0">
@@ -39,6 +39,7 @@
 </template>
 
 <script lang="ts">
+import axios from 'axios';
 import marked from 'marked';
 import hljs from 'highlight.js';
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
@@ -87,10 +88,7 @@ marked.setOptions({
   xhtml: true, // 是否闭合空标签
   highlight: (code, lang) => {
     // Highlight代码块
-    const highLightMode =
-      lang && hljs.getLanguage(lang) ? hljs.highlight(lang, code, true).value : hljs.highlightAuto(code).value;
-
-    return highLightMode;
+    return lang && hljs.getLanguage(lang) ? hljs.highlight(lang, code, true).value : hljs.highlightAuto(code).value;
   }
 });
 
@@ -118,21 +116,15 @@ export default class BaseDoc extends Vue {
     const router = this.$router;
 
     // 获取markdown文件
-    $.ajax({
-      async: false,
-      url: `/Res/doc/${path}.md`,
-      dataType: 'text',
-      success: data => {
-        // 如果链接地址错误，提示反馈并返回到上一个界面
-        if (data.slice(1, 9) === '!DOCTYPE') {
-          alert('链接地址有误，请汇报给Mr.Hope!');
-          router.back();
-        } else markdown = data; // 链接地址正确，直接赋值
-      }
+    axios.get(`/Res/doc/${path}.md`).then(response => {
+      // 如果链接地址错误，提示反馈并返回到上一个界面
+      if (response.data.slice(1, 9) === '!DOCTYPE') {
+        alert('链接地址有误，请汇报给Mr.Hope!');
+        router.back();
+      } else markdown = response.data; // 链接地址正确，直接赋值
+      // 返回html
+      this.compiledMarkdown = marked(markdown);
     });
-
-    // 返回html
-    this.compiledMarkdown = marked(markdown);
   }
 
   // 初始化目录
@@ -231,6 +223,7 @@ export default class BaseDoc extends Vue {
     Vue.nextTick().then(() => {
       this.catalogGernarate();
       this.registerAction();
+
       // 窗口大小获取并注册监听窗口大小
       this.windowWidth = $(window).width() || document.documentElement.clientWidth;
       this.windowHeight = $(window).height() || document.documentElement.clientHeight;
@@ -257,6 +250,13 @@ export default class BaseDoc extends Vue {
 }
 </script>
 <style scoped>
+.loadingCtn {
+  min-height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #asideSlide {
   position: fixed;
   height: calc(100% - 2.5rem);

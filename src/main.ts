@@ -1,16 +1,19 @@
+/*
+ * @Author: Mr.Hope
+ * @LastEditors: Mr.Hope
+ * @Description: 主脚本文件
+ * @Date: 2019-02-27 00:00:08
+ * @LastEditTime: 2019-03-10 09:32:24
+ */
+
+/* eslint-disable no-console */
+// tslint:disable no-console
+
+import { register } from 'register-service-worker';
 import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
 import store from './store';
-
-// tslint:disable-next-line: no-import-side-effect
-import './registerServiceWorker';
-// FIXME: 此部分仍待修复
-
-/*
- * 引入font-awesome
- * import "font-awesome/css/font-awesome.css";
- */
 
 // 自定义组件部分
 import BaseNav from './components/BaseNav.vue';
@@ -18,6 +21,36 @@ import BaseFooter from './components/BaseFooter.vue';
 
 // 自定义css样式
 import './lib/public.css';
+
+// 引入Ant Design
+import { Button } from 'ant-design-vue';
+Vue.use(Button);
+
+if (process.env.NODE_ENV === 'production')
+  register(`${process.env.BASE_URL}service-worker.js`, {
+    registrationOptions: { scope: './' },
+    ready() {
+      console.log('App is being served from cache by a service worker.\nFor more details, visit https://goo.gl/AFskqB');
+    },
+    cached() {
+      console.log('Content has been cached for offline use.');
+    },
+    updated() {
+      console.log('New content is available; please refresh.');
+    },
+    offline() {
+      console.log('No internet connection found. App is running in offline mode.');
+    },
+    error(error) {
+      console.error('Error during service worker registration:', error);
+    }
+  });
+
+
+/*
+ * 引入font-awesome
+ * import "font-awesome/css/font-awesome.css";
+ */
 
 Vue.config.productionTip = false; // 阻止 vue 在启动时生成生产提示。
 
@@ -38,7 +71,7 @@ new Vue({
   render: h => h(BaseFooter)
 }).$mount('footer');
 
-// 注册页面跳转时页脚显示效果;
+// FIXME:注册页面跳转时页脚显示效果;
 // router.beforeEach((to, from, next) => {
 //   const windowWidth = $(window).width() || document.documentElement.clientWidth;
 

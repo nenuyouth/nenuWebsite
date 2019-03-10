@@ -1,7 +1,7 @@
 <template>
-  <div id='app'>
-    <transition :name='transitionName'>
-      <keep-alive :max='10'>
+  <div id="app">
+    <transition :name="transitionName">
+      <keep-alive :max="10">
         <router-view/>
         <!-- <router-view v-wechat-title="$route.meta.title"/> -->
       </keep-alive>

@@ -1,3 +1,10 @@
+/*
+ * @Author: Mr.Hope
+ * @LastEditors: Mr.Hope
+ * @Description: eslint配置文件
+ * @Date: 2019-02-26 23:43:23
+ * @LastEditTime: 2019-03-10 09:28:04
+ */
 module.exports = {
   // 阻止eslint读取父目录或总配置文件的规则
   root: true,
@@ -37,7 +44,7 @@ module.exports = {
     ],
     'block-scoped-var': 'error',
     'block-spacing': 'error',
-    'brace-style': 'error',
+    'brace-style': ['error', '1tbs', { allowSingleLine: true }],
     'callback-return': 'error',
     camelcase: 'error',
     'capitalized-comments': 'error',
@@ -196,14 +203,12 @@ module.exports = {
     'no-whitespace-before-property': 'error',
     'no-with': 'error',
     'nonblock-statement-body-position': ['error', 'any'],
-    'object-curly-newline': ['error',
-      {
-        ExportDeclaration: { multiline: true, minProperties: 3 },
-        ImportDeclaration: { multiline: true, minProperties: 5 },
-        ObjectExpression: { multiline: true },
-        ObjectPattern: { multiline: true }
-      }
-    ],
+    'object-curly-newline': ['error', {
+      ExportDeclaration: { multiline: true, minProperties: 3 },
+      ImportDeclaration: { multiline: true, minProperties: 5 },
+      ObjectExpression: { multiline: true },
+      ObjectPattern: { multiline: true }
+    }],
     'object-curly-spacing': 'off',
     'object-property-newline': 'off',
     'object-shorthand': 'error',

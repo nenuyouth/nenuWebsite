@@ -33,7 +33,7 @@ export default class Page extends Vue {
       success: data => {
         try {
           jsonData = JSON.parse(data);
-        } catch {
+        } catch (err) {
           console.warn('JSON解析失败');
         }
       }
