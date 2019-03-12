@@ -8,8 +8,11 @@
           <img :src="require(`@/icon/${error ? 'error' : 'loading'}.svg`)" class="imgIcon">
           <span>{{ error ? "图片加载失败" : "加载中..." }}</span>
         </div>
-        <img :src="src" class="img" v-else>
-        <div class="imgDesc" v-text="desc ? '▲' + desc : ''"></div>
+        <img :src="src" @click="preview" class="img" v-else>
+        <div class="imgDesc">{{desc ? '▲' + desc : ''}}</div>
+        <div @click="hidePreview" class="preview" v-if="showImg">
+          <img :src="src" class="previewImg">
+        </div>
       </div>
     </div>
   </div>
@@ -39,6 +42,9 @@ export default class BaseP extends Vue {
   public loaded = false;
 
   public error = false;
+
+  // 图片展示
+  private showImg = false;
 
   @Prop(Number) private myId!: number;
 
@@ -83,6 +89,14 @@ export default class BaseP extends Vue {
         delete img.onload;
       };
     }
+  }
+
+  private preview() {
+    this.showImg = true;
+  }
+
+  private hidePreview() {
+    this.showImg = false;
   }
 }
 </script>
@@ -198,5 +212,22 @@ export default class BaseP extends Vue {
 
 .nm .imgDesc {
   color: #ddd;
+}
+
+.preview {
+  position: fixed;
+  top: 4rem;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #00000026;
+}
+
+.previewImg {
+  max-width: 90%;
+  max-height: 100%;
 }
 </style>
