@@ -16,6 +16,7 @@
     案例：输入 `div>ul>li` 按下 `Tab`
 
     结果：
+
     ```html
     <div>
         <ul>
@@ -29,6 +30,7 @@
     案例：输入 `div+p+bq` 按下 `Tab`
 
     结果：
+
     ```html
     <div></div>
     <p></p>
@@ -40,6 +42,7 @@
     案例：输入 `div+div>p>span+em^bq` 按下 `Tab`
 
     结果：
+
     ```html
     <div></div>
     <div>
@@ -53,6 +56,7 @@
     案例：输入 `div>ul>li*5` 按下 `Tab`
 
     结果：
+
     ```html
     <div>
         <ul>
@@ -64,7 +68,7 @@
         </ul>
     </div>
     ```
-    
+
 5. 使用“()”将元素分组
 
     "+" 后面的元素与括号中的第一个元素属于兄弟关系
@@ -72,6 +76,7 @@
     案例：输入 `div>(header>ul>li*2)+footer>p` 按下 `Tab`
 
     结果：
+
     ```html
     <div>
         <header>
@@ -93,6 +98,7 @@
     案例：输入 `div#header+div.page+div#footer.class1.class2.class3` 按下 `Tab`
 
     结果：
+
     ```html
     <div id="header"></div>
     <div class="page"></div>
@@ -103,6 +109,7 @@
     案例：输入`td[title='hello' colspan=3]` 按下 `Tab`
 
     结果：
+
     ```html
     <td title="hello" colspan="3"></td>
     ```
@@ -112,6 +119,7 @@
     案例：输入`li.item$*3` 按下 `Tab`
 
     结果：
+
     ```html
     <li class="item1"></li>
     <li class="item2"></li>
@@ -123,6 +131,7 @@
     案例：输入`li.item$@3*3` 按下 `Tab`
 
     结果：
+
     ```html
     <li class="item3"></li>
     <li class="item4"></li>
@@ -134,6 +143,7 @@
     案例：输入`li.item$@-3*3` 按下 `Tab`
 
     结果：
+
     ```html
     <li class="item5"></li>
     <li class="item4"></li>
@@ -145,6 +155,7 @@
     案例：输入`a[href=me.htm]{click me}` 按下 `Tab`
 
     结果：
+
     ```html
     <a href="me.htm">click me</a>
     ```

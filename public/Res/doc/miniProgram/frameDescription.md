@@ -14,7 +14,7 @@
 
 ## 开发工具
 
-开发工具使用vscode，具体详见[vscode说明](/doc/software/vscode/vscodeInstruction)或[vscode简单说明](/doc/software/vscode/vscodeSimple)
+开发工具使用vscode，具体详见[vscode说明](/doc/software/vscode/readme)或[vscode简单说明](/doc/software/vscode/vscodeSimple)
 
 ## 开发说明
 

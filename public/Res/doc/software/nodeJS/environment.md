@@ -99,7 +99,7 @@ hello/ <-- workspace dir
 
 ## VSCode教程
 
-- ## [点击此处](../../../software/vscode/vscodeInstruction)
+- ## [点击此处](../../../software/vscode/readme)
 
 ## 视频演示
 

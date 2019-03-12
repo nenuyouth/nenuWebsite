@@ -4,7 +4,7 @@
 
 ## 安装Node.js
 
-目前Node.js的最新的LTS版本是10.15.1。首先，从Node.js官网下载对应平台的安装程序。[Windows下载地址](https://nodejs.org/dist/v10.15.1/node-v10.15.1-x64.msi)
+目前Node.js的最新的LTS版本是10.15.3。首先，从Node.js官网下载对应平台的安装程序。[Windows下载地址](https://nodejs.org/dist/v10.15.3/node-v10.15.3-x64.msi)
 
 - 在Windows上安装时务必选择全部组件，包括勾选`Add to Path`。
 
@@ -12,7 +12,7 @@
 
   ```cmd
   C:\Users\IEUser>node -v
-  v10.15.1
+  v10.15.3
   ```
 
   继续在命令提示符输入node，此刻你将进入Node.js的交互环境。在交互环境下，你可以输入任意JavaScript语句，例如`100+200`，回车后将得到输出结果。
@@ -23,7 +23,7 @@
 
   ```shell
   $ node -v
-  v10.15.1
+  v10.15.3
   ```
 
 > 如果版本号小于v10.15.1，说明Node.js版本较低，请重新安装最新版本。
@@ -44,10 +44,10 @@ npm是什么东东？npm其实是Node.js的包管理工具（package manager）�
 
 ```shell
 C:\>npm -v
-6.8.0
+6.9.0
 ```
 
-> 如果版本号小于v6.8.0，说明npm版本较低，请使用此命令升级到最新版本：`npm install -g npm`。
+> 如果版本号小于v6.9.0，说明npm版本较低，请使用此命令升级到最新版本：`npm install -g npm`。
 
 如果直接输入npm，你会看到类似下面的输出：
 

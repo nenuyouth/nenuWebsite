@@ -15,7 +15,7 @@ import { Route } from 'vue-router';
 export default class Doc extends Vue {
   private transitionName = 'slide-left';
 
-  @Prop({ type: String, default: 'main' }) private path1!: string;
+  @Prop({ type: String, default: 'readme' }) private path1!: string;
 
   @Prop(String) private path2!: string;
 

@@ -111,18 +111,24 @@ export default class BaseDoc extends Vue {
   @Prop(String) private path!: string;
 
   private async loadMarkdown() {
-    const path = this.path;
-    let markdown = '';
+    const path = encodeURIComponent(this.path.slice(1));
+    // const path = this.path;
     const router = this.$router;
 
     // 获取markdown文件
-    await axios.get(`/Res/doc/${path}.md`).then(response => {
-      // 如果链接地址错误，提示反馈并返回到上一个界面
-      if (response.data.slice(1, 9) === '!DOCTYPE') {
+    await axios.get(`/server/doc2.php?password=5201314&path=${path}`).then(response => {
+      if (response.data.slice(0, 6) === '<br />') {
         alert('链接地址有误，请汇报给Mr.Hope!');
         router.back();
-      } else this.compiledMarkdown = marked(response.data); // 链接地址正确，直接运算返回html
+      } else this.compiledMarkdown = marked(response.data);
     });
+    // await axios.get(`/Res/doc/${path}.md`).then(response => {
+    //   // 如果链接地址错误，提示反馈并返回到上一个界面
+    //   if (response.data.slice(1, 9) === '!DOCTYPE') {
+    //     alert('链接地址有误，请汇报给Mr.Hope!');
+    //     router.back();
+    //   } else this.compiledMarkdown = marked(response.data); // 链接地址正确，直接运算返回html
+    // });
   }
 
   // 初始化目录
