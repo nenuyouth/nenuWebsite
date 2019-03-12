@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: eslint配置文件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-03-11 19:12:27
+ * @LastEditTime: 2019-03-12 12:29:29
  */
 module.exports = {
   // 阻止eslint读取父目录或总配置文件的规则
@@ -76,7 +76,9 @@ module.exports = {
     'id-blacklist': 'error',
     'id-length': 'off',
     'id-match': 'error',
-    'implicit-arrow-linebreak': ['error', 'beside'],
+    // 'implicit-arrow-linebreak': ['error', 'beside'],
+    // 防止因为自动换行造成的报错
+    'implicit-arrow-linebreak': ['off', 'beside'],
     indent: 'off',
     'init-declarations': 'off',
     'jsx-quotes': 'error',
@@ -108,7 +110,8 @@ module.exports = {
     'no-bitwise': 'error',
     'no-buffer-constructor': 'error',
     'no-caller': 'error',
-    'no-confusing-arrow': 'error',
+    // 简化代码，忽略迷惑的箭头函数提示
+    'no-confusing-arrow': 'off',
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-continue': 'error',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',

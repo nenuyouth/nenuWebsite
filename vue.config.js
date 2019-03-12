@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: vue配置文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-03-12 12:00:39
+ * @LastEditTime: 2019-03-12 12:43:34
  */
 /**
  * @description: vue输出配置
@@ -28,7 +28,7 @@ module.exports = {
   configureWebpack: { devtool: 'source-map' },
   devServer: {
     overlay: {
-      warnings: true,
+      warnings: false,
       errors: true
     },
     proxy: 'http://nenu.com'

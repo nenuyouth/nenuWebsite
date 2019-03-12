@@ -67,13 +67,11 @@ myRenderMD.heading = (text, level) => {
   return `<h${level} id="${id || text}">${text}</h${level}>`;
 };
 
-// 覆写链接转码
-myRenderMD.link = (href, title, text) => {
-  // 如果包含#，意味着是该网页内部跳转
-  return href[0] === '#'
+// 覆写链接转码，如果包含#，意味着是该网页内部跳转
+myRenderMD.link = (href, title, text) =>
+  href[0] === '#'
     ? `<a class='md-a' href='${href}' title='${title || text}'>${text}</a>`
-    : `<a class='md-link' href='${href}' title='${text}' >${text}</a>`;
-};
+    : `<a class='md-link' href='${href}' title='${text}'>${text}</a>`;
 
 // 设置marked插件
 marked.setOptions({
@@ -86,10 +84,9 @@ marked.setOptions({
   smartLists: true, // 是否使用更先进列表样式
   smartypants: false, // 是否对部分内容添加额外符号
   xhtml: true, // 是否闭合空标签
-  highlight: (code, lang) => {
-    // Highlight代码块
-    return lang && hljs.getLanguage(lang) ? hljs.highlight(lang, code, true).value : hljs.highlightAuto(code).value;
-  }
+  // Highlight代码块
+  highlight: (code, lang) =>
+    lang && hljs.getLanguage(lang) ? hljs.highlight(lang, code, true).value : hljs.highlightAuto(code).value
 });
 
 @Component({ components: { Loading } })
@@ -105,6 +102,7 @@ export default class BaseDoc extends Vue {
 
   // 默认的页面宽高
   private windowWidth = 375;
+
   private windowHeight = 750;
 
   // MarkDown路径
@@ -117,18 +115,15 @@ export default class BaseDoc extends Vue {
 
     // 获取markdown文件
     await axios.get(`/server/doc2.php?password=5201314&path=${path}`).then(response => {
-      if (response.data.slice(0, 6) === '<br />') {
-        alert('链接地址有误，请汇报给Mr.Hope!');
-        router.back();
-      } else this.compiledMarkdown = marked(response.data);
+      if (response.data.slice(0, 6) === '<br />')
+        axios.get(`/server/doc2.php?password=5201314&path=${path}%2freadme`).then(response2 => {
+          if (response2.data.slice(0, 6) === '<br />') {
+            alert('链接地址有误，请汇报给Mr.Hope!');
+            router.back();
+          } else this.compiledMarkdown = marked(response2.data);
+        });
+      else this.compiledMarkdown = marked(response.data);
     });
-    // await axios.get(`/Res/doc/${path}.md`).then(response => {
-    //   // 如果链接地址错误，提示反馈并返回到上一个界面
-    //   if (response.data.slice(1, 9) === '!DOCTYPE') {
-    //     alert('链接地址有误，请汇报给Mr.Hope!');
-    //     router.back();
-    //   } else this.compiledMarkdown = marked(response.data); // 链接地址正确，直接运算返回html
-    // });
   }
 
   // 初始化目录

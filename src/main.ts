@@ -3,11 +3,14 @@
  * @LastEditors: Mr.Hope
  * @Description: 主脚本文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-03-11 17:29:05
+ * @LastEditTime: 2019-03-12 12:39:00
  */
 
 /* eslint-disable no-console */
 // tslint:disable no-console
+
+// 引入Ant Design
+import { Button } from 'ant-design-vue';
 
 import { register } from 'register-service-worker';
 import Vue from 'vue';
@@ -22,8 +25,6 @@ import BaseFooter from './components/BaseFooter.vue';
 // 自定义css样式
 import './lib/public.css';
 
-// 引入Ant Design
-import { Button } from 'ant-design-vue';
 Vue.use(Button);
 
 if (process.env.NODE_ENV === 'production')
@@ -71,18 +72,19 @@ new Vue({
   render: h => h(BaseFooter)
 }).$mount('footer');
 
-// FIXME:注册页面跳转时页脚显示效果;
-// router.beforeEach((to, from, next) => {
-//   const windowWidth = $(window).width() || document.documentElement.clientWidth;
-
-//   $('#footer').css({ visibility: 'hidden', opacity: 0.01 });
-//   setTimeout(
-//     () => {
-//       $('#footer').css('visibility', '');
-//       Vue.nextTick().then(() => {
-//         $('#footer').css('opacity', 1);
-//       });
-//     },
-//     1000
-//   );
-// });
+/*
+ * FIXME:注册页面跳转时页脚显示效果;
+ * router.beforeEach((to, from, next) => {
+ *   const windowWidth = $(window).width() || document.documentElement.clientWidth*
+ *   $('#footer').css({ visibility: 'hidden', opacity: 0.01 });
+ *   setTimeout(
+ *     () => {
+ *       $('#footer').css('visibility', '');
+ *       Vue.nextTick().then(() => {
+ *         $('#footer').css('opacity', 1);
+ *       });
+ *     },
+ *     1000
+ *   );
+ * });
+ */

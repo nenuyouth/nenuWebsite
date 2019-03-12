@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: router配置文件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-03-12 11:22:19
+ * @LastEditTime: 2019-03-12 12:06:24
  */
 
 import Vue from 'vue';
@@ -56,6 +56,9 @@ export default new Router({
       component: () => import(/* webpackChunkName: "page" */ './views/Page.vue')
     },
     { path: '/doc/readme', redirect: '/doc' },
+    { path: '/doc/:path1/readme', redirect: '/doc/:path1' },
+    { path: '/doc/:path1/:path2/readme', redirect: '/doc/:path1/:path2' },
+    { path: '/doc/:path1/:path2/:path3/readme', redirect: '/doc/:path1/:path2/:path3' },
     {
       path: '/doc/:path1?/:path2?/:path3?/:path4?',
       props: true,
