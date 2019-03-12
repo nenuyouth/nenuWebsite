@@ -16,6 +16,7 @@
     "github-markdown-css": "^3.0.1",
     "highlight.js": "^9.15.6",
     "marked": "^0.6.1",
+    "mavon-editor": "^2.7.0",
     "register-service-worker": "^1.6.2",
     "vue": "^2.6.8",
     "vue-class-component": "^7.0.1",
@@ -26,7 +27,7 @@
   "devDependencies": {
     "@types/highlight.js": "^9.12.3",
     "@types/jquery": "^3.3.29",
-    "@types/marked": "0.6.2",
+    "@types/marked": "0.6.3",
     "@vue/cli-plugin-babel": "^3.5.0",
     "@vue/cli-plugin-eslint": "^3.5.0",
     "@vue/cli-plugin-pwa": "^3.5.0",

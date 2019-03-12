@@ -9,6 +9,7 @@
 <script lang="ts">
 import BaseDoc from '@/components/BaseDoc.vue';
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
+import { Route } from 'vue-router';
 
 @Component({ components: { BaseDoc } })
 export default class Doc extends Vue {
@@ -35,7 +36,7 @@ export default class Doc extends Vue {
   }
 
   @Watch('$route')
-  private onRouteUpdate(to: any, from: any) {
+  private onRouteUpdate(to: Route, from: Route) {
     const remove = (array: string[], value: string) => {
       for (let i = 0; i < array.length; i += 1)
         if (array[i] === value) {

@@ -61,7 +61,7 @@ const myRenderMD = new marked.Renderer();
 myRenderMD.heading = (text, level) => {
   let id = '';
 
-  // 如果heading中存在链接，则将id设置成该链接
+  // 如果heading中存在链接，则将id设置成该链接的文字
   if (text.indexOf('a href') !== -1) id = text.slice(text.indexOf('>') + 1, text.indexOf('</a>'));
 
   return `<h${level} id="${id || text}">${text}</h${level}>`;
@@ -110,25 +110,25 @@ export default class BaseDoc extends Vue {
   // MarkDown路径
   @Prop(String) private path!: string;
 
-  private loadMarkdown() {
+  private async loadMarkdown() {
     const path = this.path;
     let markdown = '';
     const router = this.$router;
 
     // 获取markdown文件
-    axios.get(`/Res/doc/${path}.md`).then(response => {
+    await axios.get(`/Res/doc/${path}.md`).then(response => {
       // 如果链接地址错误，提示反馈并返回到上一个界面
       if (response.data.slice(1, 9) === '!DOCTYPE') {
         alert('链接地址有误，请汇报给Mr.Hope!');
         router.back();
-      } else markdown = response.data; // 链接地址正确，直接赋值
-      // 返回html
-      this.compiledMarkdown = marked(markdown);
+      } else this.compiledMarkdown = marked(response.data); // 链接地址正确，直接运算返回html
     });
   }
 
   // 初始化目录
   private catalogGernarate() {
+    const aside: Aside[] = [];
+
     // 设置网页标题
     document.title = $('h1').text();
 
@@ -141,10 +141,12 @@ export default class BaseDoc extends Vue {
           const text = $(domEle).text();
           const level = $(domEle)[0].tagName[1];
 
-          this.aside.push({ text, level });
+          aside.push({ text, level });
         }
       }
     });
+
+    this.aside = aside;
   }
 
   private registerAction() {
@@ -158,13 +160,17 @@ export default class BaseDoc extends Vue {
       if (id) {
         const offset = $(id).offset();
 
-        if (offset) {
-          const toTop = offset.top;
-
-          $('html, body').animate({ scrollTop: `${toTop - 50}px` }, { duration: 500, easing: 'swing' });
-        }
+        if (offset) $('html, body').animate({ scrollTop: `${offset.top - 50}px` }, { duration: 500, easing: 'swing' });
       }
 
+      event.preventDefault();
+    });
+
+    // 注册页面标题点击时的滚动置顶动画效果
+    $('.markdown-body :header').on('click', event => {
+      const offset = $(event.currentTarget).offset();
+
+      if (offset) $('html, body').animate({ scrollTop: `${offset.top - 50}px` }, { duration: 500, easing: 'swing' });
       event.preventDefault();
     });
 
@@ -217,8 +223,8 @@ export default class BaseDoc extends Vue {
     $('#asideScreenMask').fadeOut(500);
   }
 
-  private mounted() {
-    this.loadMarkdown();
+  private async mounted() {
+    await this.loadMarkdown();
 
     Vue.nextTick().then(() => {
       this.catalogGernarate();
@@ -239,8 +245,8 @@ export default class BaseDoc extends Vue {
     this.compiledMarkdown = '';
 
     Vue.nextTick()
-      .then(() => {
-        this.loadMarkdown();
+      .then(async () => {
+        await this.loadMarkdown();
       })
       .then(() => {
         this.catalogGernarate();

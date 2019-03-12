@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: eslint配置文件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-03-10 09:28:04
+ * @LastEditTime: 2019-03-11 19:12:27
  */
 module.exports = {
   // 阻止eslint读取父目录或总配置文件的规则
@@ -274,7 +274,7 @@ module.exports = {
     yoda: ['error', 'never']
   },
 
-  // 设置eslint解释起
+  // 设置eslint解释器
   parserOptions: {
     parser: '@typescript-eslint/parser'
   }
