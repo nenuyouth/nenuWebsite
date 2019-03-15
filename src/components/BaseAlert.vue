@@ -19,7 +19,12 @@ interface ButtonList {
   text: string;
   Func?: object;
 }
-
+/**
+ * @description: alert弹窗
+ * @param title 标题
+ * @param text 内容文字
+ * @param buttonList 按钮列表
+ */
 @Component
 export default class BaseAlert extends Vue {
   @Prop({ default: '', type: String }) private title!: string;

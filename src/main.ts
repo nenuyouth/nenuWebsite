@@ -3,14 +3,14 @@
  * @LastEditors: Mr.Hope
  * @Description: 主脚本文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-03-12 12:39:00
+ * @LastEditTime: 2019-03-15 13:13:28
  */
 
 /* eslint-disable no-console */
 // tslint:disable no-console
 
 // 引入Ant Design
-import { Button } from 'ant-design-vue';
+import { Button, Modal } from 'ant-design-vue';
 
 import { register } from 'register-service-worker';
 import Vue from 'vue';
@@ -26,6 +26,14 @@ import BaseFooter from './components/BaseFooter.vue';
 import './lib/public.css';
 
 Vue.use(Button);
+Vue.use(Modal);
+
+// 向Vue中封装modal方法
+Vue.prototype.$confirm = Modal.confirm;
+Vue.prototype.$error = Modal.error;
+Vue.prototype.$info = Modal.info;
+Vue.prototype.$success = Modal.success;
+Vue.prototype.$warning = Modal.warning;
 
 if (process.env.NODE_ENV === 'production')
   register(`${process.env.BASE_URL}service-worker.js`, {

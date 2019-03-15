@@ -6,9 +6,10 @@
   </div>
 </template>
 <script lang="ts">
-import Vue from 'vue';
+import { Component, Vue } from 'vue-property-decorator';
 
-export default class Loading extends Vue {}
+@Component
+export default class LoadingIcon extends Vue {}
 </script>
 
 <style scoped>

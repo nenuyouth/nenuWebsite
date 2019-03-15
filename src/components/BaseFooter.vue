@@ -2,7 +2,7 @@
   <div id="footer">
     <div class="scrollTop" style="display:none">
       <div class="backTop">
-        <svg aria-hidden="true" role="img" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 512 512">
           <path
             d="M8 256C8 119 119 8 256 8s248 111 248 248-111 248-248 248S8 393 8 256zm143.6 28.9l72.4-75.5V392c0
             13.3 10.7 24 24 24h16c13.3 0 24-10.7 24-24V209.4l72.4 75.5c9.3 9.7 24.8 9.9 34.3.4l10.9-11c9.4-9.4
@@ -57,7 +57,7 @@
               <li>
                 <a
                   class="text-muted"
-                  href="http://wpa.qq.com/msgrd?v=3&amp;uin=1793612094&amp;site=qq&amp;menu=yes"
+                  href="http://wpa.qq.com/msgrd?v=3&uin=1793612094&site=qq&menu=yes"
                 >QQ</a>
               </li>
             </ul>

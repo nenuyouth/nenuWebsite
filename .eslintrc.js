@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: eslint配置文件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-03-12 12:29:29
+ * @LastEditTime: 2019-03-15 12:49:06
  */
 module.exports = {
   // 阻止eslint读取父目录或总配置文件的规则
@@ -99,7 +99,7 @@ module.exports = {
     'max-params': ['error', { max: 5 }],
     'max-statements': 'off',
     'max-statements-per-line': 'error',
-    'multiline-comment-style': 'error',
+    'multiline-comment-style': 'warn',
     'multiline-ternary': ['error', 'always-multiline'],
     'new-parens': 'error',
     'newline-per-chained-call': 'error',

@@ -16,7 +16,7 @@
     <div class="row">
       <div class="col-12 col-lg-9 markdown-body" v-html="compiledMarkdown" v-if="compiledMarkdown"></div>
       <div class="col-12 col-lg-8 offset-lg-2 loadingCtn" v-else>
-        <loading/>
+        <LoadingIcon/>
       </div>
       <div class="d-none d-lg-block col-lg-3" v-if="aside.length!==0">
         <div :style="`max-height:calc(${windowHeight - 192}px - 4rem);`" id="asideCtn">
@@ -44,7 +44,7 @@ import marked from 'marked';
 import hljs from 'highlight.js';
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { Route } from 'vue-router';
-import Loading from '@/components/LoadingIcon.vue';
+import LoadingIcon from '@/components/LoadingIcon.vue';
 
 // 导入css样式
 import 'highlight.js/styles/default.css';
@@ -89,7 +89,7 @@ marked.setOptions({
     lang && hljs.getLanguage(lang) ? hljs.highlight(lang, code, true).value : hljs.highlightAuto(code).value
 });
 
-@Component({ components: { Loading } })
+@Component({ components: { LoadingIcon } })
 export default class BaseDoc extends Vue {
   // 侧边栏内容
   private aside: Aside[] = [];
@@ -110,17 +110,29 @@ export default class BaseDoc extends Vue {
 
   private async loadMarkdown() {
     const path = encodeURIComponent(this.path.slice(1));
-    // const path = this.path;
+    console.log(path);
     const router = this.$router;
 
     // 获取markdown文件
     await axios.get(`/server/doc2.php?password=5201314&path=${path}`).then(response => {
       if (response.data.slice(0, 6) === '<br />')
         axios.get(`/server/doc2.php?password=5201314&path=${path}%2freadme`).then(response2 => {
-          if (response2.data.slice(0, 6) === '<br />') {
-            alert('链接地址有误，请汇报给Mr.Hope!');
-            router.back();
-          } else this.compiledMarkdown = marked(response2.data);
+          if (response2.data.slice(0, 6) === '<br />')
+            this.$confirm({
+              title: '地址错误',
+              content: '链接地址有误，请汇报给Mr.Hope!',
+              autoFocusButton: 'cancel',
+              cancelText: '确定',
+              okText: '汇报',
+              onOk: () => {
+                router.back();
+                window.open('http://wpa.qq.com/msgrd?v=3&uin=1178522294&site=qq&menu=yes');
+              },
+              onCancel: () => {
+                router.back();
+              }
+            });
+          else this.compiledMarkdown = marked(response2.data);
         });
       else this.compiledMarkdown = marked(response.data);
     });
@@ -187,7 +199,22 @@ export default class BaseDoc extends Vue {
 
           router.push(`${base}/${url}`);
         }
-      else alert('链接地址有误，请汇报给Mr.Hope!');
+      else
+        this.$confirm({
+          title: '地址错误',
+          content: '链接地址有误，请汇报给Mr.Hope!',
+          autoFocusButton: 'cancel',
+          cancelText: '确定',
+          okText: '汇报',
+          onOk: () => {
+            router.back();
+            window.open('http://wpa.qq.com/msgrd?v=3&uin=1178522294&site=qq&menu=yes');
+          },
+          onCancel: () => {
+            router.back();
+          }
+        });
+      // else alert('链接地址有误，请汇报给Mr.Hope!');
 
       event.preventDefault();
     });
