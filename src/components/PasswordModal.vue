@@ -70,7 +70,7 @@ export default class PasswordModal extends Vue {
   private async validatePassword() {
     this.validating = true; // 显示加载状态
 
-    await axios.get(`server/passwordValidate.php?password=${this.password}`).then(response => {
+    await axios.get(`/server/passwordValidate.php?password=${this.password}`).then(response => {
       if (response.data === 'correct') {
         // 验证成狗
         this.$emit('login'); // 触发login事件
