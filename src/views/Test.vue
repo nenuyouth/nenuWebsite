@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    <a-button @click="shouModal"></a-button>
     <a href="/doc">内部文档</a>
     <base-head title="张伯望"></base-head>
     <base-list
@@ -70,25 +69,6 @@ import BaseFoot from '@/components/BaseFoot.vue';
     BaseFoot
   }
 })
-export default class TestPage extends Vue {
-  private shouModal() {
-    const router = this.$router;
-
-    this.$confirm({
-      title: '地址错误',
-      content: '链接地址有误，请汇报给Mr.Hope!',
-      autoFocusButton: 'cancel',
-      cancelText: '确定',
-      okText: '汇报',
-      onOk: () => {
-        router.back();
-        window.open('http://wpa.qq.com/msgrd?v=3&uin=1178522294&site=qq&menu=yes');
-      },
-      onCancel: () => {
-        router.back();
-      }
-    });
-  }
-}
+export default class TestPage extends Vue {}
 </script>
 <style></style>

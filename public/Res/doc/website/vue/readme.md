@@ -1,6 +1,6 @@
 # Vue.js
 
-> 作者：Mr.Hope 最后编辑于19/03/12
+> 作者：Mr.Hope 最后编辑于2019/03/16
 
 ## Vue.js介绍
 
@@ -8,12 +8,12 @@ Vue.js是世界上主流的渐近式JavaScript框架。其生态比较繁荣，�
 
 ## Vue.js教程目录
 
-- [Vue开发环境安装](install)
-- [使用VScode进行Vue开发](debug)
-- [Vue文件编写说明](vue)
-- [Vue Router讲解](router)
-- [各组件使用说明](component)
-- [Vue与小程序的异同](compare)
+- [Vue开发环境安装](vue/install)
+- [使用VScode进行Vue开发](vue/debug)
+- [Vue文件编写说明](vue/vue)
+- [Vue Router讲解](vue/router)
+- [各组件使用说明](vue/component)
+- [Vue与小程序的异同](vue/compare)
 
 ## Vue.js文档
 

@@ -3,14 +3,16 @@
  * @LastEditors: Mr.Hope
  * @Description: 主脚本文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-03-15 13:13:28
+ * @LastEditTime: 2019-03-16 11:38:33
  */
 
 /* eslint-disable no-console */
 // tslint:disable no-console
 
 // 引入Ant Design
-import { Button, Modal } from 'ant-design-vue';
+import {
+  Button, Input, Modal, Spin, message
+} from 'ant-design-vue';
 
 import { register } from 'register-service-worker';
 import Vue from 'vue';
@@ -25,43 +27,48 @@ import BaseFooter from './components/BaseFooter.vue';
 // 自定义css样式
 import './lib/public.css';
 
-Vue.use(Button);
-Vue.use(Modal);
-
-// 向Vue中封装modal方法
-Vue.prototype.$confirm = Modal.confirm;
-Vue.prototype.$error = Modal.error;
-Vue.prototype.$info = Modal.info;
-Vue.prototype.$success = Modal.success;
-Vue.prototype.$warning = Modal.warning;
-
-if (process.env.NODE_ENV === 'production')
-  register(`${process.env.BASE_URL}service-worker.js`, {
-    registrationOptions: { scope: './' },
-    ready() {
-      console.log('App is being served from cache by a service worker.\nFor more details, visit https://goo.gl/AFskqB');
-    },
-    cached() {
-      console.log('Content has been cached for offline use.');
-    },
-    updated() {
-      console.log('New content is available; please refresh.');
-    },
-    offline() {
-      console.log('No internet connection found. App is running in offline mode.');
-    },
-    error(error) {
-      console.error('Error during service worker registration:', error);
-    }
-  });
-
-
 /*
  * 引入font-awesome
  * import "font-awesome/css/font-awesome.css";
  */
 
-Vue.config.productionTip = false; // 阻止 vue 在启动时生成生产提示。
+// 使用ant-design
+Vue.use(Button);
+Vue.use(Input);
+Vue.use(Modal);
+Vue.use(Spin);
+
+// 向Vue中封装ant-design方法
+Vue.prototype.$confirm = Modal.confirm;
+Vue.prototype.$error = Modal.error;
+Vue.prototype.$info = Modal.info;
+Vue.prototype.$message = message;
+Vue.prototype.$success = Modal.success;
+Vue.prototype.$warning = Modal.warning;
+
+// 注册service worker
+if (process.env.NODE_ENV === 'production')
+  register(`${process.env.BASE_URL}service-worker.js`, {
+    registrationOptions: { scope: './' },
+    ready() {
+      console.log('APP已被service worker接管缓存');
+    },
+    cached() {
+      console.log('内容已经被缓存以离线显示');
+    },
+    updated() {
+      console.log('内容已更新，请刷新');
+    },
+    offline() {
+      console.log('未检测到网络连接，APP以离线模式启动');
+    },
+    error(error) {
+      console.error('Service worker注册出现错误:', error);
+    }
+  });
+
+// 阻止 vue 在启动时生成生产提示。
+Vue.config.productionTip = false;
 
 new Vue({
   router,

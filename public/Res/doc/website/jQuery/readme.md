@@ -4,18 +4,18 @@
 
 jQuery是一款能够方便快捷的操作DOM，并兼容所有主流浏览器的框架。
 
-- ### [简介](intro)
+- ### [简介](jQuery/intro)
 
-- ### [选择器](selector)
+- ### [选择器](jQuery/selector)
 
-- ### [操作DOM](operateDOM)
+- ### [操作DOM](jQuery/operateDOM)
 
-- ### [修改DOM结构](modifyDOM)
+- ### [修改DOM结构](jQuery/modifyDOM)
 
-- ### [事件](event)
+- ### [事件](jQuery/event)
 
-- ### [动画](animation)
+- ### [动画](jQuery/animation)
 
-- ### [AJAX](AJAX)
+- ### [AJAX](jQuery/AJAX)
 
-- ### [扩展](extend)
+- ### [扩展](jQuery/extend)

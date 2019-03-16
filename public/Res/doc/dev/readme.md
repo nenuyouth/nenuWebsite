@@ -4,7 +4,7 @@
 
 ## 开发简介
 
-- ### [什么是开发](debugInstruction)
+- ### [什么是开发](dev/debugInstruction)
 
 ## 代码学习网站
 

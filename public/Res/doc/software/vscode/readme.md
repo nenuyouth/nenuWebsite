@@ -1,6 +1,6 @@
 # vscode介绍
 
-> 作者：Mr.Hope 最后编辑于2018/09/23
+> 作者：Mr.Hope 最后编辑于2019/03/15
 
 ## 简介
 
@@ -48,7 +48,7 @@ vscode最上方有一排菜单栏，其中有大量的快捷操作，对应的�
 
 扩展可以通过按`F1`或者`Ctrl + Shift + P`来打开命令行窗口，并输入`ext install 扩展名称`来进行安装
 
-[VSCode推荐扩展](vscodeExtension)
+[VSCode推荐扩展](vscode/vscodeExtension)
 
 ## 用vscode打开文件和文件夹
 
@@ -134,7 +134,7 @@ vscode支持打开文件和文件夹。
 
 ## VScode设置
 
-[点击此处](vscodeSettings)
+[点击此处](vscode/vscodeSettings)
 
 ## VScode文档
 

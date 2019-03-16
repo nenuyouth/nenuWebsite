@@ -9,10 +9,16 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-Vue.use(Vuex);
+Vue.use(Vuex);// 使用Vuex
 
 export default new Vuex.Store({
-  state: {},
-  mutations: {},
+  state: {
+    internalLogin: false
+  },
+  mutations: {
+    internalLogin(state) {
+      state.internalLogin = true;
+    }
+  },
   actions: {}
 });

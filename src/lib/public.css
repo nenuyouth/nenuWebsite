@@ -1,13 +1,21 @@
 body {
-    min-height: 100%;
+  min-height: 100%;
 }
 
 .Ctn {
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .text-black {
-    color: black;
+  color: black;
+}
+
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
 }

@@ -4,16 +4,16 @@
 
 ## JavaScript入门教程
 
-- ### [JavaScript简介](jsIntroduction)
-- ### [快速入门](accidence)
-- ### [函数](function)
-- ### [标准对象](object)
-- ### [面向对象](2object)
-- ### [浏览器](browser)
-- ### [ES6教程](es6/readme)
+- ### [JavaScript简介](js/jsIntroduction)
+- ### [快速入门](js/accidence)
+- ### [函数](js/function)
+- ### [标准对象](js/object)
+- ### [面向对象](js/2object)
+- ### [浏览器](js/browser)
+- ### [ES6教程](js/es6/readme)
 - ### [JQuery](/doc/website/jQuery/readme)
-- ### [错误处理](error)
-- ### [underScore](underScore)
+- ### [错误处理](js/error)
+- ### [underScore](js/underScore)
 - ### [node.js](/doc/software/nodeJS/readme)
 
 ---

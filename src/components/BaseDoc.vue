@@ -1,6 +1,11 @@
 <template>
   <div class="container mt-3 pb-3">
-    <!-- <div v-wechat-title="docTitle"></div> -->
+    <!-- 文档标题设置 -->
+    <div v-wechat-title="docTitle"></div>
+
+    <PasswordModal @login="login"/>
+
+    <!-- md及以下屏幕的目录侧边栏 -->
     <div @click="asideHidden()" id="asideScreenMask" style="display:none;"></div>
     <div class="d-block d-lg-none" id="asideSlide" v-if="aside.length!==0">
       <div @click="asideDisplay()" class="shadow" id="asideSlideBtn">目录</div>
@@ -13,24 +18,33 @@
         >{{title.text}}</div>
       </aside>
     </div>
+
     <div class="row">
-      <div class="col-12 col-lg-9 markdown-body" v-html="compiledMarkdown" v-if="compiledMarkdown"></div>
-      <div class="col-12 col-lg-8 offset-lg-2 loadingCtn" v-else>
-        <LoadingIcon/>
+      <!-- markdown渲染主体 -->
+      <div class="col-12 col-lg-9">
+        <a-spin :spinning="!loaded">
+          <LoadingIcon slot="indicator"/>
+          <div class="markdown-body" v-html="compiledMarkdown"></div>
+        </a-spin>
       </div>
-      <div class="d-none d-lg-block col-lg-3" v-if="aside.length!==0">
+
+      <!-- lg及以上屏幕的目录侧边栏 -->
+      <div class="d-none d-lg-block col-lg-3">
         <div :style="`max-height:calc(${windowHeight - 192}px - 4rem);`" id="asideCtn">
           <aside
             :style="`max-height:calc(${windowHeight - 222}px - 4rem);`"
             class="shadow"
             id="aside"
           >
-            <div
-              :class="`h${title.level} asideHeading`"
-              :key="title.text"
-              @click="scrollToHeading(title.text)"
-              v-for="title in aside"
-            >{{title.text}}</div>
+            <a-spin :spinning="!loaded">
+              <LoadingIcon slot="indicator"/>
+              <div
+                :class="`h${title.level} asideHeading`"
+                :key="title.text"
+                @click="scrollToHeading(title.text)"
+                v-for="title in aside"
+              >{{title.text}}</div>
+            </a-spin>
           </aside>
         </div>
       </div>
@@ -45,10 +59,12 @@ import hljs from 'highlight.js';
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { Route } from 'vue-router';
 import LoadingIcon from '@/components/LoadingIcon.vue';
+import PasswordModal from '@/components/PasswordModal.vue';
 
 // 导入css样式
 import 'highlight.js/styles/default.css';
 import 'github-markdown-css/github-markdown.css';
+import { Input } from 'ant-design-vue';
 
 interface Aside {
   text: string;
@@ -64,7 +80,8 @@ myRenderMD.heading = (text, level) => {
   // 如果heading中存在链接，则将id设置成该链接的文字
   if (text.indexOf('a href') !== -1) id = text.slice(text.indexOf('>') + 1, text.indexOf('</a>'));
 
-  return `<h${level} id="${id || text}">${text}</h${level}>`;
+  return `<h${level} id="${id ||
+    text}" class="mdHeading"><img class="mdIcon" src="/img/icon/link.svg" />${text}</h${level}>`;
 };
 
 // 覆写链接转码，如果包含#，意味着是该网页内部跳转
@@ -89,10 +106,20 @@ marked.setOptions({
     lang && hljs.getLanguage(lang) ? hljs.highlight(lang, code, true).value : hljs.highlightAuto(code).value
 });
 
-@Component({ components: { LoadingIcon } })
+@Component({ components: { LoadingIcon, PasswordModal } })
 export default class BaseDoc extends Vue {
   // 侧边栏内容
   private aside: Aside[] = [];
+
+  private passwordModal = true;
+
+  private displayPassword = false;
+
+  private password = '';
+
+  private validating = false;
+
+  private loaded = false;
 
   // 渲染好的html文本
   private compiledMarkdown = '';
@@ -108,15 +135,15 @@ export default class BaseDoc extends Vue {
   // MarkDown路径
   @Prop(String) private path!: string;
 
+  // 加载Markdown
   private async loadMarkdown() {
     const path = encodeURIComponent(this.path.slice(1));
-    console.log(path);
     const router = this.$router;
 
     // 获取markdown文件
-    await axios.get(`/server/doc2.php?password=5201314&path=${path}`).then(response => {
+    await axios.get(`/server/doc.php?password=5201314&path=${path}`).then(response => {
       if (response.data.slice(0, 6) === '<br />')
-        axios.get(`/server/doc2.php?password=5201314&path=${path}%2freadme`).then(response2 => {
+        axios.get(`/server/doc.php?password=5201314&path=${path}%2freadme`).then(response2 => {
           if (response2.data.slice(0, 6) === '<br />')
             this.$confirm({
               title: '地址错误',
@@ -124,6 +151,7 @@ export default class BaseDoc extends Vue {
               autoFocusButton: 'cancel',
               cancelText: '确定',
               okText: '汇报',
+              okType: 'danger',
               onOk: () => {
                 router.back();
                 window.open('http://wpa.qq.com/msgrd?v=3&uin=1178522294&site=qq&menu=yes');
@@ -132,9 +160,15 @@ export default class BaseDoc extends Vue {
                 router.back();
               }
             });
-          else this.compiledMarkdown = marked(response2.data);
+          else {
+            this.compiledMarkdown = marked(response2.data);
+            this.loaded = true;
+          }
         });
-      else this.compiledMarkdown = marked(response.data);
+      else {
+        this.compiledMarkdown = marked(response.data);
+        this.loaded = true;
+      }
     });
   }
 
@@ -143,11 +177,11 @@ export default class BaseDoc extends Vue {
     const aside: Aside[] = [];
 
     // 设置网页标题
-    document.title = $('h1').text();
+    this.docTitle = $('h1').text();
 
     // 设置目录
     $('h1,h2,h3,h4').each((index, domEle) => {
-      if ($(domEle).children().length === 0) {
+      if ($(domEle).children()[0].tagName === 'IMG') {
         const id = $(domEle).attr('id');
 
         if (id && id.indexOf('href') === -1) {
@@ -162,6 +196,7 @@ export default class BaseDoc extends Vue {
     this.aside = aside;
   }
 
+  // 注册页面内动作
   private registerAction() {
     const route = this.$route;
     const router = this.$router;
@@ -179,11 +214,36 @@ export default class BaseDoc extends Vue {
       event.preventDefault();
     });
 
+    // 注册页面标题悬停时的动画效果
+    $('.markdown-body :header').on('mouseover', event => {
+      $(event.currentTarget)
+        .children('img')
+        .css({ display: 'inline-block' });
+    });
+    $('.markdown-body :header').on('mouseout', event => {
+      $(event.currentTarget)
+        .children('img')
+        .css({ display: 'none' });
+    });
+
     // 注册页面标题点击时的滚动置顶动画效果
     $('.markdown-body :header').on('click', event => {
       const offset = $(event.currentTarget).offset();
 
-      if (offset) $('html, body').animate({ scrollTop: `${offset.top - 50}px` }, { duration: 500, easing: 'swing' });
+      if (offset) {
+        // 滚动动画效果
+        $('html, body').animate({ scrollTop: `${offset.top - 50}px` }, { duration: 500, easing: 'swing' });
+
+        // 链接图标的动画效果
+        $(event.currentTarget)
+          .children('img')
+          .css({ display: 'inline-block' });
+        setTimeout(() => {
+          $(event.currentTarget)
+            .children('img')
+            .css({ display: 'none' });
+        }, 1500);
+      }
       event.preventDefault();
     });
 
@@ -220,6 +280,7 @@ export default class BaseDoc extends Vue {
     });
   }
 
+  // 侧边栏点击项目滚动标题实现
   private scrollToHeading(text: string) {
     const offset = $(`#${text}`).offset();
 
@@ -252,25 +313,17 @@ export default class BaseDoc extends Vue {
   }
 
   private async mounted() {
-    await this.loadMarkdown();
-
-    Vue.nextTick().then(() => {
-      this.catalogGernarate();
-      this.registerAction();
-
-      // 窗口大小获取并注册监听窗口大小
+    // 窗口大小获取并注册监听窗口大小
+    this.windowWidth = $(window).width() || document.documentElement.clientWidth;
+    this.windowHeight = $(window).height() || document.documentElement.clientHeight;
+    $(window).on('resize', () => {
       this.windowWidth = $(window).width() || document.documentElement.clientWidth;
       this.windowHeight = $(window).height() || document.documentElement.clientHeight;
-      $(window).on('resize', () => {
-        this.windowWidth = $(window).width() || document.documentElement.clientWidth;
-        this.windowHeight = $(window).height() || document.documentElement.clientHeight;
-      });
     });
   }
 
-  @Watch('$route')
-  private onRouteUpdate(to: Route, from: Route) {
-    this.compiledMarkdown = '';
+  private login() {
+    this.loaded = false;
 
     Vue.nextTick()
       .then(async () => {
@@ -281,6 +334,36 @@ export default class BaseDoc extends Vue {
         this.registerAction();
       });
   }
+  // private async mounted() {
+  //   await this.loadMarkdown();
+
+  //   Vue.nextTick().then(() => {
+  //     this.catalogGernarate();
+  //     this.registerAction();
+
+  //     // 窗口大小获取并注册监听窗口大小
+  //     this.windowWidth = $(window).width() || document.documentElement.clientWidth;
+  //     this.windowHeight = $(window).height() || document.documentElement.clientHeight;
+  //     $(window).on('resize', () => {
+  //       this.windowWidth = $(window).width() || document.documentElement.clientWidth;
+  //       this.windowHeight = $(window).height() || document.documentElement.clientHeight;
+  //     });
+  //   });
+  // }
+
+  // @Watch('$route')
+  // private onRouteUpdate(to: Route, from: Route) {
+  //   this.loaded = false;
+
+  //   Vue.nextTick()
+  //     .then(async () => {
+  //       await this.loadMarkdown();
+  //     })
+  //     .then(() => {
+  //       this.catalogGernarate();
+  //       this.registerAction();
+  //     });
+  // }
 }
 </script>
 <style scoped>
@@ -299,6 +382,7 @@ export default class BaseDoc extends Vue {
   text-align: right;
   z-index: 1040;
 }
+
 #asideScreenMask {
   position: fixed;
   width: 100%;
@@ -308,6 +392,7 @@ export default class BaseDoc extends Vue {
   background-color: rgba(127, 127, 127, 0.15);
   z-index: 1030;
 }
+
 #asideSlideBtn {
   position: absolute;
   width: 36px;
@@ -327,6 +412,7 @@ export default class BaseDoc extends Vue {
   top: 4rem;
   width: 265px;
 }
+
 @media (min-width: 1200px) {
   #asideCtn {
     width: 300px;
@@ -364,6 +450,7 @@ export default class BaseDoc extends Vue {
   text-decoration: none;
   color: #000;
   background-color: rgba(127, 127, 127, 0.15);
+  cursor: pointer;
 }
 
 .h1 {
@@ -389,5 +476,38 @@ export default class BaseDoc extends Vue {
 .h4 {
   font-size: 14px;
   padding: 3px 45px;
+}
+</style>
+<style>
+.mdHeading {
+  cursor: pointer;
+}
+.mdIcon {
+  display: none;
+}
+h1 .mdIcon {
+  margin-left: -35px;
+  margin-right: 3px;
+  width: 32px;
+  height: 32px;
+}
+
+h2 .mdIcon {
+  margin-left: -26px;
+  margin-right: 2px;
+  width: 24px;
+  height: 24px;
+}
+
+h3 .mdIcon {
+  margin-left: -22px;
+  margin-right: 2px;
+}
+
+h4 .mdIcon {
+  margin-left: -18px;
+  margin-right: 2px;
+  width: 16px;
+  height: 16px;
 }
 </style>
