@@ -11,18 +11,35 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);// 使用Vuex
 
+interface DocList {
+  [propName: string]: string;
+}
+
+export interface State {
+  compiledMarkdown: DocList;
+  docLoading: boolean;
+  internalLogin: boolean;
+}
+
+const myState: State = {
+  compiledMarkdown: {},
+  docLoading: true,
+  internalLogin: false
+};
+
 export default new Vuex.Store({
-  state: {
-    compiledMarkdown: '',
-    internalLogin: false
-  },
+  state: myState,
   mutations: {
-    internalLogin(state) {
-      state.internalLogin = true;
+    compiledMarkdown(state: State, compiledMarkdown: string[]) {
+      Vue.set(state.compiledMarkdown, compiledMarkdown[0], compiledMarkdown[1]);
     },
-    compiledMarkdown(state, compiledMarkdown) {
-      state.compiledMarkdown = compiledMarkdown;
+    docLoading(state: State, docLoading: boolean) {
+      state.docLoading = docLoading;
+    },
+    internalLogin(state: State) {
+      state.internalLogin = true;
     }
+
   },
   actions: {}
 });

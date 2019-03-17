@@ -3,23 +3,17 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-03-17 11:14:18
+ * @LastEditTime: 2019-03-17 19:26:05
  -->
 <template>
-  <div class="container mt-3 pb-3">
-    <!-- 文档标题设置 -->
-    <div v-wechat-title="docTitle"></div>
-
-    <PasswordModal @login="login" v-if="!$store.state.internalLogin"/>
-
+  <div class="container mt-3 pb-3" v-wechat-title="docTitle">
     <div class="row">
       <!-- markdown渲染主体 -->
       <div class="col-12 col-lg-9">
         <!-- 加载状态 -->
-        <a-spin :spinning="!loaded">
+        <a-spin :spinning="$store.state.docLoading">
           <LoadingIcon slot="indicator"/>
-          <div class="markdown-body" v-html="compiledMarkdown"></div>
-          <!-- <div class="markdown-body" v-html="compiledMarkdown"></div> -->
+          <div class="markdown-body" v-html="docContent"></div>
         </a-spin>
       </div>
 
@@ -31,7 +25,7 @@
             class="shadow"
             id="aside"
           >
-            <a-spin :spinning="!loaded">
+            <a-spin :spinning="$store.state.docLoading">
               <LoadingIcon slot="indicator"/>
               <div
                 :class="`h${title.level} asideHeading`"
@@ -47,10 +41,10 @@
 
     <!-- md及以下屏幕的目录侧边栏 -->
     <!-- 屏幕蒙层 -->
-    <div @click="asideHidden()" id="asideScreenMask" style="display:none;"></div>
+    <div @click="asideHidden" id="asideScreenMask" style="display:none;"></div>
     <!-- 侧边目录 -->
     <div class="d-block d-lg-none" id="asideSlide" v-if="aside.length!==0">
-      <div @click="asideDisplay()" class="shadow" id="asideSlideBtn">目录</div>
+      <div @click="asideDisplay" class="shadow" id="asideSlideBtn">目录</div>
       <aside class="shadow" id="aside">
         <div
           :class="`h${title.level} asideHeading`"
@@ -64,139 +58,33 @@
 </template>
 
 <script lang="ts">
-import axios from 'axios';
-import marked from 'marked';
-import hljs from 'highlight.js';
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { Route } from 'vue-router';
 import LoadingIcon from '@/components/LoadingIcon.vue';
-import PasswordModal from '@/components/PasswordModal.vue';
 
 // 导入css样式
 import 'highlight.js/styles/default.css';
 import 'github-markdown-css/github-markdown.css';
-import { Input } from 'ant-design-vue';
 
 interface Aside {
   text: string;
   level: string;
 }
 
-// 初始化Markdown渲染实例
-const myRenderMD = new marked.Renderer();
-
-// 覆写heading转码
-myRenderMD.heading = (text, level) => {
-  let id = '';
-
-  // 如果heading中存在链接，则将id设置成该链接的文字
-  if (text.indexOf('a href') !== -1) id = text.slice(text.indexOf('>') + 1, text.indexOf('</a>'));
-
-  return `<h${level} id="${id ||
-    text}" class="mdHeading"><img class="mdIcon" src="/img/icon/link.svg" />${text}</h${level}>`;
-};
-
-// 覆写链接转码，如果包含#，意味着是该网页内部跳转
-myRenderMD.link = (href, title, text) =>
-  href[0] === '#'
-    ? `<a class='md-a' href='${href}' title='${title || text}'>${text}</a>`
-    : `<a class='md-link' href='${href}' title='${text}'>${text}</a>`;
-
-// 设置marked插件
-marked.setOptions({
-  renderer: myRenderMD, // 控制输出渲染
-  gfm: true, // 是否使用GitHub改进标准的Markdown
-  tables: true, // 是否使用gtm table
-  breaks: false, // 使用GitHub Flavored Markdown控制换行输出<br>
-  pedantic: false, // 是否尽量接近原生markdown.pl
-  sanitize: true, // 是否清理内部html内容
-  smartLists: true, // 是否使用更先进列表样式
-  smartypants: false, // 是否对部分内容添加额外符号
-  xhtml: true, // 是否闭合空标签
-  // Highlight代码块
-  highlight: (code, lang) =>
-    lang && hljs.getLanguage(lang) ? hljs.highlight(lang, code, true).value : hljs.highlightAuto(code).value
-});
-
-@Component({ components: { LoadingIcon, PasswordModal } })
+@Component({ components: { LoadingIcon } })
 export default class BaseDoc extends Vue {
-  // 侧边栏内容
-  private aside: Aside[] = [];
-
   // 文档标题
   private docTitle = '内部文档';
 
-  // Markdown加载状态
-  private loaded = false;
-  // Markdown编译内容
-  private compiledMarkdown = '';
+  // 侧边栏内容
+  private aside: Aside[] = [];
 
   // 默认的页面宽高
   private windowWidth = 375;
   private windowHeight = 750;
 
-  // Markdown路径
-  @Prop(String) private path!: string;
-  // MarkDown基准路径字符数
-  @Prop(Number) private baselength!: number;
-
-  // 加载Markdown
-  private async loadMarkdown(newPath?: string) {
-    const path = encodeURIComponent(newPath ? newPath.slice(this.baselength) : this.path);
-    const router = this.$router;
-
-    console.log(path);
-    // 获取markdown文件
-    await axios.get(`/server/doc.php?password=5201314&path=${path}`).then(async response => {
-      if (response.data.slice(0, 6) === '<br />')
-        await axios
-          .get(`/server/doc.php?password=5201314&path=${path}%2freadme`)
-          .then(response2 => {
-            if (response2.data.slice(0, 6) === '<br />')
-              this.$confirm({
-                title: '地址错误',
-                content: '链接地址有误，请汇报给Mr.Hope!',
-                autoFocusButton: 'cancel',
-                cancelText: '确定',
-                okText: '汇报',
-                okType: 'danger',
-                onOk: () => {
-                  if (!newPath) router.back();
-                  window.open('http://wpa.qq.com/msgrd?v=3&uin=1178522294&site=qq&menu=yes');
-                },
-                onCancel: () => {
-                  if (!newPath) router.back();
-                }
-              });
-            else {
-              this.$store.commit('compiledMarkdown', marked(response2.data));
-              this.loaded = true;
-            }
-          })
-          .catch(err => {
-            this.$confirm({
-              title: '网络请求错误',
-              content: `请求文档出错，错误码为：\n${err}\n您可以汇报给Mr.Hope！`,
-              autoFocusButton: 'cancel',
-              cancelText: '确定',
-              okText: '汇报',
-              okType: 'danger',
-              onOk: () => {
-                if (!newPath) router.back();
-                window.open('http://wpa.qq.com/msgrd?v=3&uin=1178522294&site=qq&menu=yes');
-              },
-              onCancel: () => {
-                if (!newPath) router.back();
-              }
-            });
-          });
-      else {
-        this.$store.commit('compiledMarkdown', marked(response.data));
-        this.loaded = true;
-      }
-    });
-    console.log(this.$store.state.compiledMarkdown);
-  }
+  // Markdown内容
+  @Prop(String) private docContent!: string;
 
   // 初始化目录
   private catalogGernarate() {
@@ -223,7 +111,7 @@ export default class BaseDoc extends Vue {
   }
 
   // 注册页面内动作
-  private registerAction() {
+  private actionRegister() {
     const route = this.$route;
     const router = this.$router;
 
@@ -278,9 +166,14 @@ export default class BaseDoc extends Vue {
       const url = $(event.currentTarget).attr('href');
 
       if (url)
-        if (url && url[0] === '/') router.push(url);
-        else if (url.indexOf('http://') !== -1 || url.indexOf('https://') !== -1) window.open(url);
+        if (url && url[0] === '/')
+          // 内部绝对路径
+          router.push(url);
+        else if (url.indexOf('http://') !== -1 || url.indexOf('https://') !== -1)
+          // 外部链接
+          window.open(url);
         else {
+          // 内部相对路径
           const base = route.path.slice(0, route.path.lastIndexOf('/'));
 
           router.push(`${base}/${url}`);
@@ -301,7 +194,6 @@ export default class BaseDoc extends Vue {
             router.back();
           }
         });
-      // else alert('链接地址有误，请汇报给Mr.Hope!');
 
       event.preventDefault();
     });
@@ -339,62 +231,41 @@ export default class BaseDoc extends Vue {
     $('#asideScreenMask').fadeOut(500);
   }
 
-  private login() {
-    this.loaded = false;
-
-    Vue.nextTick()
-      .then(async () => {
-        await this.loadMarkdown();
-        this.compiledMarkdown = this.$store.state.compiledMarkdown;
-      })
-      .then(() => {
-        this.catalogGernarate();
-        this.registerAction();
-      });
-  }
-
-  private async mounted() {
-    console.log('mount');
-    // 如果已经登陆
-    if (this.$store.state.internalLogin) {
-      await this.loadMarkdown();
-      this.compiledMarkdown = this.$store.state.compiledMarkdown;
-
+  private mounted() {
+    console.info('basedoc mounted');
+    if (this.docContent)
       Vue.nextTick().then(() => {
         this.catalogGernarate();
-        this.registerAction();
-
-        // 窗口大小获取并注册监听窗口大小
-        this.windowWidth = $(window).width() || document.documentElement.clientWidth;
-        this.windowHeight = $(window).height() || document.documentElement.clientHeight;
-        $(window).on('resize', () => {
-          this.windowWidth = $(window).width() || document.documentElement.clientWidth;
-          this.windowHeight = $(window).height() || document.documentElement.clientHeight;
-        });
+        this.actionRegister();
+        this.$store.commit('docLoading', false);
       });
-    }
-  }
-  private beforeRouteEnter(to: Route, from: Route, next: () => void) {
-    console.log('beforeEnter');
-    next();
-  }
-  private beforeRouteUpdate(to: Route, from: Route, next: () => void) {
-    console.log('beforeRouteUpdate');
-    this.loaded = false;
 
-    this.loadMarkdown(to.path).then(() => {
-      next();
+    // 获取窗口大小并注册监听窗口大小
+    this.windowWidth = $(window).width() || document.documentElement.clientWidth;
+    this.windowHeight = $(window).height() || document.documentElement.clientHeight;
+    $(window).on('resize', () => {
+      this.windowWidth = $(window).width() || document.documentElement.clientWidth;
+      this.windowHeight = $(window).height() || document.documentElement.clientHeight;
     });
   }
 
-  @Watch('$route')
-  private onRouteUpdate(to: Route, from: Route) {
-    console.log('routeUpdate');
-    this.compiledMarkdown = this.$store.state.compiledMarkdown;
+  private activated() {
+    console.info(`basedoc ${this.$route.path} activated`);
+    if (this.docContent) this.$store.commit('docLoading', false);
+  }
 
+  private deactivated() {
+    console.info(`basedoc ${this.$route.path} deactivated`);
+  }
+
+  @Watch('docContent')
+  private docContentUpdateHadnler() {
+    console.info(`basedoc ${this.$route.path} docContentUpdate`);
     Vue.nextTick().then(() => {
       this.catalogGernarate();
-      this.registerAction();
+      this.actionRegister();
+      // 通知父组件加载完成
+      this.$store.commit('docLoading', false);
     });
   }
 }
@@ -405,6 +276,10 @@ export default class BaseDoc extends Vue {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.markdown-body {
+  min-height: 200px;
 }
 
 #asideSlide {

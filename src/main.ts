@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主脚本文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-03-16 11:38:33
+ * @LastEditTime: 2019-03-17 19:38:32
  */
 
 /* eslint-disable no-console */
@@ -16,6 +16,7 @@ import {
 
 import { register } from 'register-service-worker';
 import Vue from 'vue';
+import Component from 'vue-class-component';
 import App from './App.vue';
 import router from './router';
 import store from './store';
@@ -26,6 +27,14 @@ import BaseFooter from './components/BaseFooter.vue';
 
 // 自定义css样式
 import './lib/public.css';
+
+
+// 在组件实例中Hook route方法
+Component.registerHooks([
+  'beforeRouteEnter',
+  'beforeRouteLeave',
+  'beforeRouteUpdate'
+]);
 
 /*
  * 引入font-awesome
