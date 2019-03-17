@@ -19,12 +19,14 @@ export interface State {
   compiledMarkdown: DocList;
   docLoading: boolean;
   internalLogin: boolean;
+  internalPassword: string;
 }
 
 const myState: State = {
   compiledMarkdown: {},
   docLoading: true,
-  internalLogin: false
+  internalLogin: false,
+  internalPassword: ''
 };
 
 export default new Vuex.Store({
@@ -38,6 +40,9 @@ export default new Vuex.Store({
     },
     internalLogin(state: State) {
       state.internalLogin = true;
+    },
+    internalPassword(state: State, password: string) {
+      state.internalPassword = password;
     }
 
   },

@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-03-17 19:26:05
+ * @LastEditTime: 2019-03-17 21:25:09
  -->
 <template>
   <div class="container mt-3 pb-3" v-wechat-title="docTitle">
@@ -41,10 +41,10 @@
 
     <!-- md及以下屏幕的目录侧边栏 -->
     <!-- 屏幕蒙层 -->
-    <div @click="asideHidden" id="asideScreenMask" style="display:none;"></div>
+    <div @click="asideToggle" id="asideScreenMask" style="display:none;"></div>
     <!-- 侧边目录 -->
     <div class="d-block d-lg-none" id="asideSlide" v-if="aside.length!==0">
-      <div @click="asideDisplay" class="shadow" id="asideSlideBtn">目录</div>
+      <div @click="asideToggle" class="shadow" id="asideSlideBtn">目录</div>
       <aside class="shadow" id="aside">
         <div
           :class="`h${title.level} asideHeading`"
@@ -78,6 +78,9 @@ export default class BaseDoc extends Vue {
 
   // 侧边栏内容
   private aside: Aside[] = [];
+
+  // 侧边栏是否弹出
+  private asideExpand = false;
 
   // 默认的页面宽高
   private windowWidth = 375;
@@ -142,23 +145,25 @@ export default class BaseDoc extends Vue {
 
     // 注册页面标题点击时的滚动置顶动画效果
     $('.markdown-body :header').on('click', event => {
-      const offset = $(event.currentTarget).offset();
+      // 如果当前标题只有一个childNode，即标题内不存在链接仅有图片node，进行滚动动画
+      if ($(event.currentTarget).children().length === 1) {
+        const offset = $(event.currentTarget).offset();
 
-      if (offset) {
-        // 滚动动画效果
-        $('html, body').animate({ scrollTop: `${offset.top - 50}px` }, { duration: 500, easing: 'swing' });
+        if (offset) {
+          // 滚动动画效果
+          $('html, body').animate({ scrollTop: `${offset.top - 50}px` }, { duration: 500, easing: 'swing' });
 
-        // 链接图标的动画效果
-        $(event.currentTarget)
-          .children('img')
-          .css({ display: 'inline-block' });
-        setTimeout(() => {
+          // 链接图标的动画效果
           $(event.currentTarget)
             .children('img')
-            .css({ display: 'none' });
-        }, 1500);
+            .css({ display: 'inline-block' });
+          setTimeout(() => {
+            $(event.currentTarget)
+              .children('img')
+              .css({ display: 'none' });
+          }, 1500);
+        }
       }
-      event.preventDefault();
     });
 
     // 注册文档间跳转逻辑
@@ -210,25 +215,31 @@ export default class BaseDoc extends Vue {
     }
   }
 
-  // 目录滑出效果实现
-  private asideDisplay() {
-    const asideWidth = $('#asideSlide').width();
+  // 目录切换
+  private asideToggle() {
+    // 如果侧边栏已经展开，则收起
+    if (this.asideExpand) {
+      $('#asideSlide').animate({ left: '100%' }, { duration: 500, easing: 'swing' });
+      $('#asideSlideBtn').fadeIn(500);
+      $('#asideScreenMask').fadeOut(500);
 
-    if (asideWidth)
-      $('#asideSlide').animate(
-        { left: ($(window).width() || document.documentElement.clientWidth) - asideWidth },
-        { duration: 500, easing: 'swing' }
-      );
+      // 否则展开侧边栏
+    } else {
+      // 获得侧边栏长度
+      const asideWidth = $('#asideSlide').width();
 
-    $('#asideScreenMask').fadeIn(500);
-    $('#asideSlideBtn').fadeOut(500);
-  }
+      if (asideWidth)
+        $('#asideSlide').animate(
+          { left: ($(window).width() || document.documentElement.clientWidth) - asideWidth },
+          { duration: 500, easing: 'swing' }
+        );
 
-  // 目录隐藏效果实现
-  private asideHidden() {
-    $('#asideSlide').animate({ left: '100%' }, { duration: 500, easing: 'swing' });
-    $('#asideSlideBtn').fadeIn(500);
-    $('#asideScreenMask').fadeOut(500);
+      $('#asideScreenMask').fadeIn(500);
+      $('#asideSlideBtn').fadeOut(500);
+    }
+
+    // aside状态变更
+    this.asideExpand = !this.asideExpand;
   }
 
   private mounted() {
@@ -246,6 +257,23 @@ export default class BaseDoc extends Vue {
     $(window).on('resize', () => {
       this.windowWidth = $(window).width() || document.documentElement.clientWidth;
       this.windowHeight = $(window).height() || document.documentElement.clientHeight;
+
+      // 如果是md及以下屏幕且侧边栏展开，重新调整侧边栏位置
+      if (this.windowWidth < 992 && this.asideExpand) {
+        // 获得侧边栏长度
+        const asideWidth = $('#asideSlide').width();
+
+        if (asideWidth)
+          // 改变侧边栏位置
+          $('#asideSlide').css({ left: ($(window).width() || document.documentElement.clientWidth) - asideWidth });
+
+        // 如果是lg以上屏幕，收起侧边栏
+      } else if (this.windowWidth >= 992 && this.asideExpand) {
+        this.asideExpand = false;
+        $('#asideSlide').animate({ left: '100%' }, { duration: 500, easing: 'swing' });
+        $('#asideSlideBtn').fadeIn(500);
+        $('#asideScreenMask').fadeOut(500);
+      }
     });
   }
 

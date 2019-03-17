@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-03-17 19:23:34
+ * @LastEditTime: 2019-03-17 21:10:57
  -->
 <template>
   <!-- Container -->
@@ -51,7 +51,11 @@ export default class MyDoc extends Vue {
   private async login() {
     // 如果该路径markdown未被缓存则获取之
     if (!this.$store.state.compiledMarkdown[this.path])
-      await getCompiledMarkdown(this.path || 'readme', this, '/server/doc.php?password=5201314&path=');
+      await getCompiledMarkdown(
+        this.path || 'readme',
+        this,
+        `/server/doc.php?password=${this.$store.state.internalPassword}&path=`
+      );
 
     // 当路径改变时写入编译后的html
     this.compiledMarkdown = this.$store.state.compiledMarkdown[this.path];
@@ -63,7 +67,11 @@ export default class MyDoc extends Vue {
     if (this.$store.state.internalLogin) {
       // 如果该路径markdown未被缓存则获取之
       if (!this.$store.state.compiledMarkdown[this.path])
-        await getCompiledMarkdown(this.path || 'readme', this, '/server/doc.php?password=5201314&path=');
+        await getCompiledMarkdown(
+          this.path || 'readme',
+          this,
+          `/server/doc.php?password=${this.$store.state.internalPassword}&path=`
+        );
 
       // 写入编译后的html
       this.compiledMarkdown = this.$store.state.compiledMarkdown[this.path];

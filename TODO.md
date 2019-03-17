@@ -6,8 +6,6 @@
 
 ## Doc
 
-- doc组件需要加入访问密码
-- doc组件添加loading动画
 - doc组件侧边栏滚动条优化
 - doc添加anchor支持
 

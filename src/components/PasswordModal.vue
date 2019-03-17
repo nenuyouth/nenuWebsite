@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 密码验证
  * @Date: 2019-03-16 13:44:32
- * @LastEditTime: 2019-03-17 11:25:10
+ * @LastEditTime: 2019-03-17 21:10:33
  -->
 <template>
   <!-- 密码输入框 -->
@@ -101,9 +101,10 @@ export default class PasswordModal extends Vue {
     await axios.get(`/server/passwordValidate.php?password=${this.password}`).then(response => {
       if (response.data === 'correct') {
         // 验证成狗
-        this.$emit('login'); // 触发login事件
         this.modalDisplay = false; // 隐藏弹窗
         this.$store.commit('internalLogin'); // 改变internalLogin state
+        this.$store.commit('internalPassword', this.password); // 改变internalPassword state
+        this.$emit('login'); // 触发login事件
       } else {
         this.password = ''; // 清空密码
         this.$message.error('密码错误'); // 提示密码错误

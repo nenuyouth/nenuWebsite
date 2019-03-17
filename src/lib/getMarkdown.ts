@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown文件获取
  * @Date: 2019-03-17 16:48:38
- * @LastEditTime: 2019-03-17 20:39:11
+ * @LastEditTime: 2019-03-17 21:00:38
  */
 import Vue from 'vue';
 import axios from 'axios';
@@ -59,7 +59,7 @@ const myAlert = (ctx: Vue, netError?: boolean, err?: string) => {
   ctx.$store.commit('docLoading', false);
   ctx.$confirm({
     title: netError ? '网络请求错误' : '地址错误',
-    content: netError ? `请求文档出错，错误码为：\n${err}\n` : '链接地址有误。' + '请汇报给Mr.Hope!',
+    content: netError ? `请求文档出错，错误码为：\n${err}\n您可以汇报给Mr.Hope!` : '链接地址有误。请汇报给Mr.Hope!',
     autoFocusButton: 'cancel',
     cancelText: '确定',
     okText: '汇报',
@@ -93,8 +93,7 @@ const getCompiledMarkdown = async (path: string, ctx: Vue, url?: string) => {
             if (response2.data.slice(0, 6) === '<br />') {
               navigate = false;
               myAlert(ctx);
-            }
-            else store.commit('compiledMarkdown', [path, marked(response2.data)]);
+            } else store.commit('compiledMarkdown', [path, marked(response2.data)]);
           })
           .catch(err => {
             navigate = false;
