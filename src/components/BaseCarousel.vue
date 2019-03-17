@@ -1,3 +1,10 @@
+<!--
+ * @Author: Mr.Hope
+ * @LastEditors: Mr.Hope
+ * @Description: 卡片组件
+ * @Date: 2019-02-27 00:00:08
+ * @LastEditTime: 2019-03-16 19:33:47
+ -->
 <template>
   <div :id="`display${myId}`" class="carousel slide w-100" data-ride="carousel">
     <ol class="carousel-indicators" v-if="!single">
@@ -56,26 +63,35 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
 interface Carousel {
-  heading: string;
-  subhead: string;
-  src: string;
-  enSubhead?: string;
-  desc?: string;
-  alt?: string;
-  url?: string;
-  black?: boolean;
+  // 必填项
+  heading: string; // 主标题
+  subhead: string; // 副标题
+  src: string; // 图片地址
+
+  // 选填项
+  enSubhead?: string; // 英文小标题
+  desc?: string; // 轮播图说明
+  alt?: string; // 轮播图片替代文字
+  url?: string; // 轮播图跳转地址
+  black?: boolean; // 轮播图文字是否为黑色（默认为白色）
+
+  // 内部属性
   activeStatus?: string;
   colorStatus?: string;
 }
 
 @Component
 export default class BaseCarousel extends Vue {
+  // 是否是单个轮播图
   private single = false;
 
+  // 轮播图列表
   private list: Carousel[] = [];
 
+  // 组件id
   @Prop([Number, String]) private myId!: number | string;
 
+  // 组件内容
   @Prop({ type: Array, required: true }) private content!: Carousel[];
 
   private navigate(url: string | undefined) {
@@ -95,7 +111,7 @@ export default class BaseCarousel extends Vue {
 
     // 对list进行处理
     this.list.forEach((element: Carousel, index: number) => {
-      // 初始化生效信息
+      // 初始化第一张轮播图激活信息
       if (index === 0) element.activeStatus = 'active';
 
       // 使黑文字配置生效

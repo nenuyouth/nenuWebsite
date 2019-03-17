@@ -1,3 +1,10 @@
+<!--
+ * @Author: Mr.Hope
+ * @LastEditors: Mr.Hope
+ * @Description: 基础页脚
+ * @Date: 2019-02-27 00:00:08
+ * @LastEditTime: 2019-03-16 19:27:08
+ -->
 <template>
   <div :id="myId" class="Footer">
     <div class="footerCtn">

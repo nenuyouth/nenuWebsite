@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: router配置文件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-03-15 16:17:17
+ * @LastEditTime: 2019-03-17 10:21:36
  */
 
 import Vue from 'vue';
@@ -60,7 +60,6 @@ export default new Router({
     { path: '/doc/:path1/:path2/:path3/readme', redirect: '/doc/:path1/:path2/:path3' },
     {
       path: '/doc/:path1?/:path2?/:path3?/:path4?',
-      props: true,
       meta: { title: '内部文档' },
       component: () => import(/* webpackChunkName: "doc" */ './views/Doc.vue')
     },

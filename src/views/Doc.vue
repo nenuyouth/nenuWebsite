@@ -1,38 +1,24 @@
 <template>
   <transition :name="transitionName" mode="in-out">
     <keep-alive>
-      <base-doc :key="path" :path="path"></base-doc>
+      <MyDoc :baselength="5" :key="path" :path="path"></MyDoc>
     </keep-alive>
   </transition>
 </template>
 
 <script lang="ts">
-import BaseDoc from '@/components/BaseDoc.vue';
+import MyDoc from '@/components/MyDoc.vue';
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { Route } from 'vue-router';
 
-@Component({ components: { BaseDoc } })
+@Component({ components: { MyDoc } })
 export default class Doc extends Vue {
   private transitionName = 'slide-left';
 
-  @Prop({ type: String, default: 'readme' }) private path1!: string;
-
-  @Prop(String) private path2!: string;
-
-  @Prop(String) private path3!: string;
-
-  @Prop(String) private path4!: string;
-
   private get path() {
-    const paths = [this.path1, this.path2, this.path3, this.path4];
-    let finalPath = '';
+    const markDownPath = this.$route.path.slice(5);
 
-    // 处理获得最终路径
-    paths.forEach(path => {
-      if (path) finalPath += `/${path}`;
-    });
-
-    return finalPath;
+    return markDownPath || 'readme';
   }
 
   @Watch('$route')

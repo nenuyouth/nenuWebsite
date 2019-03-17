@@ -1,12 +1,19 @@
+<!--
+ * @Author: Mr.Hope
+ * @LastEditors: Mr.Hope
+ * @Description: 基础图片
+ * @Date: 2019-02-27 00:00:08
+ * @LastEditTime: 2019-03-16 19:43:16
+ -->
 <template>
   <div :id="myId" class="ImgCtn">
     <div class="imgCtn" v-if="!loaded">
       <img :src="require(`@/icon/${error ? 'error' : 'loading'}.svg`)" class="imgIcon">
       <span>{{ error ? "图片加载失败" : "加载中..." }}</span>
     </div>
-    <img :src="src" @click="preview" class="img" v-else>
+    <img :src="src" @click="showImg = true" class="img" v-else>
     <div class="imgDesc">{{desc ? '▲' + desc : ''}}</div>
-    <div @click="hidePreview" class="preview" v-if="showImg">
+    <div @click="showImg = false" class="preview" v-if="showImg">
       <img :src="src" class="previewImg">
     </div>
   </div>
@@ -24,7 +31,6 @@ export default class BaseImg extends Vue {
 
   // 图片载入状态
   private loaded = false;
-
   private error = false;
 
   // 图片展示
@@ -54,14 +60,6 @@ export default class BaseImg extends Vue {
 
       delete img.onload;
     };
-  }
-
-  private preview() {
-    this.showImg = true;
-  }
-
-  private hidePreview() {
-    this.showImg = false;
   }
 }
 </script>
@@ -132,7 +130,7 @@ export default class BaseImg extends Vue {
 
 .preview {
   position: fixed;
-  top: 4rem;
+  top: 0;
   bottom: 0;
   left: 0;
   right: 0;
@@ -145,5 +143,6 @@ export default class BaseImg extends Vue {
 .previewImg {
   max-width: 90%;
   max-height: 100%;
+  border-radius: 5px;
 }
 </style>

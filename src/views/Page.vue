@@ -1,3 +1,10 @@
+<!--
+ * @Author: Mr.Hope
+ * @LastEditors: Mr.Hope
+ * @Description: 自动生成界面
+ * @Date: 2019-02-27 00:00:08
+ * @LastEditTime: 2019-03-17 11:24:25
+ -->
 <template>
   <base-page :key="url" :pagedata="pageData" v-if="pageData"></base-page>
 </template>
@@ -40,6 +47,7 @@ export default class Page extends Vue {
           autoFocusButton: 'cancel',
           cancelText: '确定',
           okText: '汇报',
+          okType: 'danger',
           onOk: () => {
             router.back();
             window.open('http://wpa.qq.com/msgrd?v=3&uin=1178522294&site=qq&menu=yes');
@@ -52,7 +60,7 @@ export default class Page extends Vue {
     });
   }
 
-  get url() {
+  private get url() {
     return this.$route.path;
   }
 

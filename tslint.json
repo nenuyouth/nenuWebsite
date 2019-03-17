@@ -25,15 +25,12 @@
     ],
     "member-access": [
       true,
-      "no-public",
       "check-accessor",
       "check-constructor"
     ],
     "member-ordering": [
       true,
-      {
-        "fields-first": "private-instance-method"
-      }
+      "fields-first"
     ],
     "no-any": false,
     "no-empty-interface": true,

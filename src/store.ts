@@ -13,11 +13,15 @@ Vue.use(Vuex);// 使用Vuex
 
 export default new Vuex.Store({
   state: {
+    compiledMarkdown: '',
     internalLogin: false
   },
   mutations: {
     internalLogin(state) {
       state.internalLogin = true;
+    },
+    compiledMarkdown(state, compiledMarkdown) {
+      state.compiledMarkdown = compiledMarkdown;
     }
   },
   actions: {}

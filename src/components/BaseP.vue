@@ -1,3 +1,10 @@
+<!--
+ * @Author: Mr.Hope
+ * @LastEditors: Mr.Hope
+ * @Description: Base Paragraph
+ * @Date: 2019-02-27 00:00:08
+ * @LastEditTime: 2019-03-16 19:43:19
+ -->
 <template>
   <div :id="myId" class="Ctn">
     <div :style="headStyle" class="iOShead" v-if="head">{{ head }}</div>
@@ -8,9 +15,9 @@
           <img :src="require(`@/icon/${error ? 'error' : 'loading'}.svg`)" class="imgIcon">
           <span>{{ error ? "图片加载失败" : "加载中..." }}</span>
         </div>
-        <img :src="src" @click="preview" class="img" v-else>
+        <img :src="src" @click="showImg = true" class="img" v-else>
         <div class="imgDesc">{{desc ? '▲' + desc : ''}}</div>
-        <div @click="hidePreview" class="preview" v-if="showImg">
+        <div @click="showImg = false" class="preview" v-if="showImg">
           <img :src="src" class="previewImg">
         </div>
       </div>
@@ -33,14 +40,8 @@ enum Align {
 
 @Component
 export default class BaseP extends Vue {
-  // 对text进行处理以在网页上正常显示空格与换行
-  get pText() {
-    return this.text.replace(/\n/gu, '<br/>').replace(/\s/gu, '&ensp;');
-  }
-
   // 图片加载状态
   public loaded = false;
-
   public error = false;
 
   // 图片展示
@@ -61,6 +62,11 @@ export default class BaseP extends Vue {
   @Prop([String, Object]) private headStyle!: string | Style;
 
   @Prop({ default: 'left' }) private align!: Align;
+
+  // 对text进行处理以在网页上正常显示空格与换行
+  private get pText() {
+    return this.text.replace(/\n/gu, '<br/>').replace(/\s/gu, '&ensp;');
+  }
 
   private mounted() {
     // 图片处理
@@ -89,14 +95,6 @@ export default class BaseP extends Vue {
         delete img.onload;
       };
     }
-  }
-
-  private preview() {
-    this.showImg = true;
-  }
-
-  private hidePreview() {
-    this.showImg = false;
   }
 }
 </script>
@@ -216,7 +214,7 @@ export default class BaseP extends Vue {
 
 .preview {
   position: fixed;
-  top: 4rem;
+  top: 0;
   bottom: 0;
   left: 0;
   right: 0;

@@ -35,7 +35,7 @@ export default class BaseTimeAxis extends Vue {
   @Prop({ required: true, type: Array })
   private timeList!: TimeList[];
 
-  get list() {
+  private get list() {
     const list: string[] = [];
 
     this.timeList.forEach((element, index) => {

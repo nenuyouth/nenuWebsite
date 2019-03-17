@@ -13,7 +13,7 @@ const mavonEditor = require('mavon-editor');
 
 @Component({ components: { mavonEditor } })
 export default class MarkdownEditor extends Vue {
-  editable = false;
+  private editable = false;
 
   private mounted() {
     // TODO:

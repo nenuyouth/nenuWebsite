@@ -1,3 +1,10 @@
+<!--
+ * @Author: Mr.Hope
+ * @LastEditors: Mr.Hope
+ * @Description: 网页页脚
+ * @Date: 2019-02-26 23:43:23
+ * @LastEditTime: 2019-03-17 11:23:34
+ -->
 <template>
   <div id="footer">
     <div class="scrollTop" style="display:none">

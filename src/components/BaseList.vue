@@ -58,7 +58,8 @@ export default class BaseList extends Vue {
 
   @Prop([String, Boolean]) private foot!: string | boolean;
 
-  get listItem() {
+  private get listItem() {
+    // 创建副本
     const listItem = JSON.parse(JSON.stringify(this.content));
 
     listItem.forEach((element: List, index: number) => {

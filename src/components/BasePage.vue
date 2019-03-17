@@ -1,3 +1,10 @@
+<!--
+ * @Author: Mr.Hope
+ * @LastEditors: Mr.Hope
+ * @Description: 基础页面显示
+ * @Date: 2019-02-24 22:21:25
+ * @LastEditTime: 2019-03-17 11:25:33
+ -->
 <template>
   <div class="container">
     <template v-for="item in myData">
@@ -33,7 +40,7 @@ export default class BasePage extends Vue {
   @Prop({ type: Array, required: true, default: [{ tag: 'error' }] })
   private readonly pagedata!: any[];
 
-  get myData() {
+  private get myData() {
     const myData = JSON.parse(JSON.stringify(this.pagedata));
 
     myData.forEach((element: any, index: number) => {

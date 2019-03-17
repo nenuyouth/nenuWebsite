@@ -1,7 +1,14 @@
+<!--
+ * @Author: Mr.Hope
+ * @LastEditors: Mr.Hope
+ * @Description: 基础主标题
+ * @Date: 2019-02-27 00:00:08
+ * @LastEditTime: 2019-03-16 19:30:10
+ -->
 <template>
   <div>
-    <!-- <div v-wechat-title="title"> -->
-    <div :id="myId" class="title">{{ title }}</div>
+    <!-- 设置网页title -->
+    <div :id="myId" class="title" v-wechat-title="title">{{ title }}</div>
     <hr>
   </div>
 </template>
@@ -13,10 +20,6 @@ export default class BaseHead extends Vue {
   @Prop(Number) private myId!: number;
 
   @Prop({ type: String, required: true }) private title!: string;
-
-  private mounted() {
-    document.title = this.title;
-  }
 }
 </script>
 <style scoped>

@@ -1,3 +1,10 @@
+<!--
+ * @Author: Mr.Hope
+ * @LastEditors: Mr.Hope
+ * @Description: 基础标题
+ * @Date: 2019-02-27 00:00:08
+ * @LastEditTime: 2019-03-16 19:29:03
+ -->
 <template>
   <div :id="myId" :style="myStyle" class="myH3">{{ text }}</div>
 </template>
