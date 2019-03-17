@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown文件获取
  * @Date: 2019-03-17 16:48:38
- * @LastEditTime: 2019-03-17 18:22:57
+ * @LastEditTime: 2019-03-17 20:39:11
  */
 import Vue from 'vue';
 import axios from 'axios';
@@ -48,47 +48,65 @@ marked.setOptions({
     lang && hljs.getLanguage(lang) ? hljs.highlight(lang, code, true).value : hljs.highlightAuto(code).value
 });
 
-// store: Store<any>
+/**
+ * 自定义弹窗警告
+ *
+ * @param ctx Vue组件对象指针
+ * @param [netError] 错误类型是否为网络错误
+ * @param [err] 额外的错误信息
+ */
+const myAlert = (ctx: Vue, netError?: boolean, err?: string) => {
+  ctx.$store.commit('docLoading', false);
+  ctx.$confirm({
+    title: netError ? '网络请求错误' : '地址错误',
+    content: netError ? `请求文档出错，错误码为：\n${err}\n` : '链接地址有误。' + '请汇报给Mr.Hope!',
+    autoFocusButton: 'cancel',
+    cancelText: '确定',
+    okText: '汇报',
+    okType: 'danger',
+    onOk: () => {
+      window.open('http://wpa.qq.com/msgrd?v=3&uin=1178522294&site=qq&menu=yes');
+    }
+  });
+};
+
+/**
+ * 获取编译后的markdown
+ *
+ * @param path Markdown路径
+ * @param ctx Vue组件对象指针
+ * @param [url] 服务器请求路经
+ * @returns 是否继续导航
+ */
 const getCompiledMarkdown = async (path: string, ctx: Vue, url?: string) => {
   const store = ctx.$store;
   const docContent = store.state.compiledMarkdown.path;
+  let navigate = true;
 
   if (!docContent)
     // 如果未下载并处理过markdown文件，立即下载并缓存
-    await axios.get(url ? url + path : `/server/doc.php?password=5201314&path=${path}`).then(async response => {
+    await axios.get(`${url}${path}`).then(async response => {
       if (response.data.slice(0, 6) === '<br />')
         await axios
-          .get(url ? `${url + path}%2freadme` : `/server/doc.php?password=5201314&path=${path}%2freadme`)
+          .get(`${url}${path}%2freadme`)
           .then(response2 => {
-            if (response2.data.slice(0, 6) === '<br />')
-              ctx.$confirm({
-                title: '地址错误',
-                content: '链接地址有误，请汇报给Mr.Hope!',
-                autoFocusButton: 'cancel',
-                cancelText: '确定',
-                okText: '汇报',
-                okType: 'danger',
-                onOk: () => {
-                  window.open('http://wpa.qq.com/msgrd?v=3&uin=1178522294&site=qq&menu=yes');
-                }
-              });
+            if (response2.data.slice(0, 6) === '<br />') {
+              navigate = false;
+              myAlert(ctx);
+            }
             else store.commit('compiledMarkdown', [path, marked(response2.data)]);
           })
           .catch(err => {
-            ctx.$confirm({
-              title: '网络请求错误',
-              content: `请求文档出错，错误码为：\n${err}\n您可以汇报给Mr.Hope！`,
-              autoFocusButton: 'cancel',
-              cancelText: '确定',
-              okText: '汇报',
-              okType: 'danger',
-              onOk: () => {
-                window.open('http://wpa.qq.com/msgrd?v=3&uin=1178522294&site=qq&menu=yes');
-              }
-            });
+            navigate = false;
+            myAlert(ctx, true, err);
           });
       else store.commit('compiledMarkdown', [path, marked(response.data)]);
+    }).catch(err => {
+      navigate = false;
+      myAlert(ctx, true, err);
     });
+
+  return navigate;
 };
 
 export default getCompiledMarkdown;

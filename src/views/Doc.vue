@@ -20,20 +20,20 @@ export default class Doc extends Vue {
   }
 
   // 文档路径改变
-  private async beforeRouteUpdate(to: Route, from: Route, next: () => void) {
+  private async beforeRouteUpdate(to: Route, from: Route, next: (navigate?: boolean) => void) {
     console.info('Doc beforeRouteUpdate');
     const path = to.path.slice(this.baselength) || 'readme';
-
+    let navigate = true;
     // 显示加载状态
     this.$store.commit('docLoading', true);
 
     // 如果将转入的页面markdown未缓存
     if (!this.$store.state.compiledMarkdown[path])
-      // 预先获取markdown文件
-      await getCompiledMarkdown(path, this, '/server/doc.php?password=5201314&path=');
+      // 通过获取markdown文件情况决定是否导航
+      navigate = await getCompiledMarkdown(path, this, '/server/doc.php?password=5201314&path=');
 
-    // 继续导航
-    next();
+    // 调用Hook，结束函数
+    next(navigate);
   }
 }
 </script>
