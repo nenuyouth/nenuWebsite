@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-03-17 21:25:09
+ * @LastEditTime: 2019-03-18 18:06:19
  -->
 <template>
   <div class="container mt-3 pb-3" v-wechat-title="docTitle">
@@ -243,12 +243,10 @@ export default class BaseDoc extends Vue {
   }
 
   private mounted() {
-    console.info('basedoc mounted');
     if (this.docContent)
       Vue.nextTick().then(() => {
         this.catalogGernarate();
         this.actionRegister();
-        this.$store.commit('docLoading', false);
       });
 
     // 获取窗口大小并注册监听窗口大小
@@ -278,17 +276,11 @@ export default class BaseDoc extends Vue {
   }
 
   private activated() {
-    console.info(`basedoc ${this.$route.path} activated`);
     if (this.docContent) this.$store.commit('docLoading', false);
-  }
-
-  private deactivated() {
-    console.info(`basedoc ${this.$route.path} deactivated`);
   }
 
   @Watch('docContent')
   private docContentUpdateHadnler() {
-    console.info(`basedoc ${this.$route.path} docContentUpdate`);
     Vue.nextTick().then(() => {
       this.catalogGernarate();
       this.actionRegister();

@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-03-17 21:10:57
+ * @LastEditTime: 2019-03-18 18:03:47
  -->
 <template>
   <!-- Container -->
@@ -62,7 +62,6 @@ export default class MyDoc extends Vue {
   }
 
   private async mounted() {
-    console.info('mydoc mounted');
     // 如果已经登陆,直接加载，否则等待login函数触发
     if (this.$store.state.internalLogin) {
       // 如果该路径markdown未被缓存则获取之
@@ -80,14 +79,12 @@ export default class MyDoc extends Vue {
 
   @Watch('path')
   private pathUpdate(to: string, from: string) {
-    console.info('mydoc pathUpdate');
     // 当路径改变时写入编译后的html
     this.compiledMarkdown = this.$store.state.compiledMarkdown[this.path];
   }
 
   @Watch('$route')
   private onRouteUpdate(to: Route, from: Route) {
-    console.info('mydoc routeUpdate');
     // 定义比较函数
     const remove = (array: string[], value: string) => {
       for (let i = 0; i < array.length; i += 1)

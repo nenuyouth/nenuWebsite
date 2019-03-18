@@ -3,21 +3,17 @@
  * @LastEditors: Mr.Hope
  * @Description: 主脚本文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-03-17 19:38:32
+ * @LastEditTime: 2019-03-18 18:15:05
  */
-
-/* eslint-disable no-console */
-// tslint:disable no-console
 
 // 引入Ant Design
 import {
   Button, Input, Modal, Spin, message
 } from 'ant-design-vue';
-
-import { register } from 'register-service-worker';
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import App from './App.vue';
+import registerServiceWorker from './registerServiceWorker';
 import router from './router';
 import store from './store';
 
@@ -56,25 +52,7 @@ Vue.prototype.$success = Modal.success;
 Vue.prototype.$warning = Modal.warning;
 
 // 注册service worker
-if (process.env.NODE_ENV === 'production')
-  register(`${process.env.BASE_URL}service-worker.js`, {
-    registrationOptions: { scope: './' },
-    ready() {
-      console.log('APP已被service worker接管缓存');
-    },
-    cached() {
-      console.log('内容已经被缓存以离线显示');
-    },
-    updated() {
-      console.log('内容已更新，请刷新');
-    },
-    offline() {
-      console.log('未检测到网络连接，APP以离线模式启动');
-    },
-    error(error) {
-      console.error('Service worker注册出现错误:', error);
-    }
-  });
+registerServiceWorker();
 
 // 阻止 vue 在启动时生成生产提示。
 Vue.config.productionTip = false;

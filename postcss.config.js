@@ -1,4 +1,4 @@
-/*
+/**
  * @Author: Mr.Hope
  * @LastEditors: Mr.Hope
  * @Description: postcss配置

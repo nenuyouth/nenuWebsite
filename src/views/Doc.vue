@@ -21,7 +21,6 @@ export default class Doc extends Vue {
 
   // 文档路径改变
   private async beforeRouteUpdate(to: Route, from: Route, next: (navigate?: boolean) => void) {
-    console.info('Doc beforeRouteUpdate');
     const path = to.path.slice(this.baselength) || 'readme';
     let navigate = true;
 

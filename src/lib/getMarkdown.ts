@@ -1,15 +1,14 @@
-/*
+/**
  * @Author: Mr.Hope
  * @LastEditors: Mr.Hope
  * @Description: Markdown文件获取
  * @Date: 2019-03-17 16:48:38
- * @LastEditTime: 2019-03-17 21:00:38
+ * @LastEditTime: 2019-03-18 16:48:20
  */
 import Vue from 'vue';
 import axios from 'axios';
 import hljs from 'highlight.js';
 import marked from 'marked';
-// import { Store } from 'vuex';
 
 // 初始化Markdown渲染实例
 const myRenderMD = new marked.Renderer();
@@ -85,21 +84,11 @@ const getCompiledMarkdown = async (path: string, ctx: Vue, url?: string) => {
 
   if (!docContent)
     // 如果未下载并处理过markdown文件，立即下载并缓存
-    await axios.get(`${url}${path}`).then(async response => {
-      if (response.data.slice(0, 6) === '<br />')
-        await axios
-          .get(`${url}${path}%2freadme`)
-          .then(response2 => {
-            if (response2.data.slice(0, 6) === '<br />') {
-              navigate = false;
-              myAlert(ctx);
-            } else store.commit('compiledMarkdown', [path, marked(response2.data)]);
-          })
-          .catch(err => {
-            navigate = false;
-            myAlert(ctx, true, err);
-          });
-      else store.commit('compiledMarkdown', [path, marked(response.data)]);
+    await axios.get(`${url}${path}`).then(response => {
+      if (response.data === 'file not found') {
+        navigate = false;
+        myAlert(ctx);
+      } else store.commit('compiledMarkdown', [path, marked(response.data)]);
     }).catch(err => {
       navigate = false;
       myAlert(ctx, true, err);
