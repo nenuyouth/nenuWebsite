@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-03-19 16:07:31
+ * @LastEditTime: 2019-03-19 19:02:32
  -->
 <template>
   <div class="container mt-3 pb-3" v-wechat-title="docTitle">
@@ -11,7 +11,7 @@
       <!-- markdown渲染主体 -->
       <div class="col-12 col-lg-9">
         <!-- 加载状态 -->
-        <a-spin :spinning="$store.state.docLoading" tip="加载中...">
+        <a-spin :spinning="$store.state.docLoading">
           <LoadingIcon slot="indicator"/>
           <div class="markdown-body" v-html="docContent"></div>
         </a-spin>
@@ -21,25 +21,27 @@
       <div class="d-none d-lg-block col-lg-3">
         <div id="asideCtn">
           <aside class="shadow" id="aside">
-            <a-spin :spinning="$store.state.docLoading">
-              <LoadingIcon slot="indicator"/>
-              <div @click="scrollTop" class="asideH1 asideHeading">{{docTitle}}</div>
-              <a-anchor
-                :affix="false"
-                :offsetTop="42"
-                :showInkInFixed="true"
-                @click="handleClick"
-                wrapperClass="asideList"
-              >
-                <a-anchor-link
-                  :class="`asideH${title.level} asideHeading`"
-                  :href="`#${title.text}`"
-                  :key="title.text"
-                  :title="title.text"
-                  v-for="title in aside"
-                />
-              </a-anchor>
-            </a-spin>
+            <a-anchor
+              :affix="false"
+              :offsetTop="42"
+              :showInkInFixed="true"
+              @click="handleClick"
+              wrapperClass="asideList"
+            >
+              <a-skeleton
+                :paragraph="{rows: 12,width:['25%','30%','25%','50%','30%','50%','25%','30%','25%','50%','30%','50%']}"
+                :title="false"
+                active
+                v-if="aside.length===0"
+              />
+              <a-anchor-link
+                :class="`asideH${title.level} asideHeading`"
+                :href="`#${title.text}`"
+                :key="title.text"
+                :title="title.text"
+                v-for="title in aside"
+              />
+            </a-anchor>
           </aside>
         </div>
       </div>
@@ -49,7 +51,7 @@
     <!-- 屏幕蒙层 -->
     <div @click="asideToggle" id="asideScreenMask" style="display:none;"></div>
     <!-- 侧边目录 -->
-    <div class="d-block d-lg-none" id="asideSlide" v-if="aside.length!==0">
+    <div class="d-block d-lg-none" id="asideSlide" style="left:100%;" v-if="aside.length!==0">
       <div @click="asideToggle" class="shadow" id="asideSlideBtn">目录</div>
       <aside class="shadow" id="aside">
         <div @click="scrollTop" class="asideH1 asideHeading">{{docTitle}}</div>
@@ -226,30 +228,34 @@ export default class BaseDoc extends Vue {
 
   // 目录切换
   private asideToggle() {
-    // 如果侧边栏已经展开，则收起
-    if (this.asideExpand) {
-      $('#asideSlide').animate({ left: '100%' }, { duration: 500, easing: 'swing' });
-      $('#asideSlideBtn').fadeIn(500);
-      $('#asideScreenMask').fadeOut(500);
+    // 获得侧边栏长度
+    const asideWidth = $('#asideSlide').width();
 
-      // 否则展开侧边栏
-    } else {
-      // 获得侧边栏长度
-      const asideWidth = $('#asideSlide').width();
+    if (asideWidth)
+      if (this.asideExpand) {
+        // 如果侧边栏已经展开，则收起
+        $('#asideSlide').css({
+          left: ($(window).width() || document.documentElement.clientWidth) - asideWidth,
+          right: ''
+        });
+        $('#asideSlide').animate({ left: '100%' }, 500);
+        $('#asideSlideBtn').fadeIn(500);
+        $('#asideScreenMask').fadeOut(500);
 
-      if (asideWidth)
+        // 否则展开侧边栏
+      } else {
         $('#asideSlide').animate(
           { left: ($(window).width() || document.documentElement.clientWidth) - asideWidth },
           500,
           'swing',
           () => {
-            $('#asideSlide').css({ left: `calc(100% - ${asideWidth}px)` });
+            $('#asideSlide').css({ right: '0', left: '' });
           }
         );
 
-      $('#asideScreenMask').fadeIn(500);
-      $('#asideSlideBtn').fadeOut(500);
-    }
+        $('#asideScreenMask').fadeIn(500);
+        $('#asideSlideBtn').fadeOut(500);
+      }
 
     // aside状态变更
     this.asideExpand = !this.asideExpand;
@@ -283,7 +289,7 @@ export default class BaseDoc extends Vue {
       // 如果是lg以上屏幕且侧边栏处于打开状态，收起侧边栏
       if (this.asideExpand && this.windowWidth >= 992) {
         this.asideExpand = false;
-        $('#asideSlide').animate({ left: '100%' }, { duration: 500, easing: 'swing' });
+        $('#asideSlide').animate({ left: '100%' }, 500, 'swing');
         $('#asideSlideBtn').fadeIn(500);
         $('#asideScreenMask').fadeOut(500);
       }
@@ -323,11 +329,17 @@ export default class BaseDoc extends Vue {
   position: fixed;
   height: calc(100% - 2.5rem);
   top: 2.5rem;
-  left: 100%;
   text-align: right;
   z-index: 1040;
 }
 
+#asideSlide #aside {
+  margin-left: auto;
+  max-width: 80vw;
+  height: 100%;
+}
+
+/* 侧边栏Mask*/
 #asideScreenMask {
   position: fixed;
   width: 100%;
@@ -337,7 +349,7 @@ export default class BaseDoc extends Vue {
   background-color: rgba(127, 127, 127, 0.15);
   z-index: 1030;
 }
-
+/* 侧边栏按钮 */
 #asideSlideBtn {
   position: absolute;
   width: 36px;
@@ -352,12 +364,20 @@ export default class BaseDoc extends Vue {
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
 }
+
+/* 目录浮块 */
 #asideCtn {
   position: fixed;
   top: 4rem;
   width: 225px;
 }
 
+#asideCtn #aside {
+  border-radius: 5px;
+  max-height: calc(100vh - 255px);
+}
+
+/* 目录 */
 #aside {
   text-align: left;
   width: auto;
@@ -365,20 +385,15 @@ export default class BaseDoc extends Vue {
   overflow-y: auto;
 }
 
-#asideSlide #aside {
-  margin-left: auto;
-  height: 100%;
-}
-#asideCtn #aside {
-  max-height: calc(100vh - 255px);
-}
-
+/* 目录列表 */
 .asideList {
-  padding-left: 15px;
+  padding: 15px 0 0 15px;
   max-height: 100%;
 }
 
-#aside::-webkit-scrollbar {
+/* 滚动条去除 */
+#asideCtn #aside::-webkit-scrollbar,
+.asideList::-webkit-scrollbar {
   display: none;
 }
 

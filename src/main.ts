@@ -3,13 +3,12 @@
  * @LastEditors: Mr.Hope
  * @Description: 主脚本文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-03-19 14:35:56
+ * @LastEditTime: 2019-03-19 19:04:34
  */
 
 // 引入Ant Design
 import {
-  Anchor,
-  Button, Input, Modal, Spin, message
+  Anchor, Button, Input, Modal, Skeleton, Spin, message
 } from 'ant-design-vue';
 import Vue from 'vue';
 import Component from 'vue-class-component';
@@ -44,6 +43,7 @@ Vue.use(Anchor);
 Vue.use(Button);
 Vue.use(Input);
 Vue.use(Modal);
+Vue.use(Skeleton);
 Vue.use(Spin);
 
 // 配置message

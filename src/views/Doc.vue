@@ -1,5 +1,4 @@
 <template>
-  <!-- <MyDoc :baselength="5" :loading="loading" :path="path"></MyDoc> -->
   <MyDoc :baselength="baselength" :loading="$store.state.docLoading" :path="path"></MyDoc>
 </template>
 

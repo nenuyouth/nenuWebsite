@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: router配置文件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-03-17 10:21:36
+ * @LastEditTime: 2019-03-19 16:46:11
  */
 
 import Vue from 'vue';
