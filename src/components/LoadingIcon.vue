@@ -16,8 +16,9 @@ export default class LoadingIcon extends Vue {}
 .loadingIcon {
   width: 60px;
   height: 60px;
-  margin: 20px auto 10px auto;
-  position: relative;
+  position: absolute;
+  top: calc(50vh - 30px);
+  left: calc(50% - 30px);
 }
 .loader1 {
   display: block;

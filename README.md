@@ -20,39 +20,62 @@
 - vue-class-component
 - vue-property-decorator
 - vuex
-- register-service-worker
-
-#### NPM工具
-
-- ncu
-- npx
 
 #### 第三方库
 
-- jquery3
-- popper.js(bootstrap)
-- bootstrap4(bootstrap栅格系统)
+- ant-design-vue(Ant-design样式库)
+- axios(基于promise的html访问功能)
 - highlight.js(提供md代码高亮)
 - marked(提供md转html)
 - github-markdown-css(提供github md样式)
+- mavon-editor(markdown网页编辑器)
+- register-service-worker
+- vue-wechat-title(设置网页标题)
+
+#### CDN引入
+
+- jquery3
+- popper.js
+- bootstrap4(bootstrap栅格系统)
 
 > 目前暂时取消使用了vue-wechat-title
 
 ### 开发依赖
 
-#### 开发库
-
-- sass
-- sass-loader
-- typescript
-
-### vue开发扩展
+#### Vue-cli相关
 
 - @vue/cli-plugin-babel
 - @vue/cli-plugin-pwa
-- @vue/cli-plugin-typescript
 - @vue/cli-service
-- vue-template-compiler
+
+#### 代码打包相关
+
+- babel-plugin-import
+- fibers
+
+#### 开发语言相关
+
+- vue-template-compiler(vue单文件编译器)
+- less
+- less loader
+- sass
+- sass-loader
+- typescript
+- @types/highlight.js
+- @types/jquery
+- @types/marked
+
+#### 代码检查与格式化工具
+
+- eslint
+- eslint-plugin-vue
+- babel-eslint
+- @vue/cli-plugin-eslint
+- @vue/eslint-config-airbnb
+- @vue/eslint-config-typescript
+- tslint
+- tslint-config-airbnb
+- @vue/cli-plugin-typescript
 
 ## 初始化项目
 
@@ -78,8 +101,14 @@ npm install
 npm run serve
 ```
 
+或
+
+```shell
+npm run dev
+```
+
 > 运行开发环境，可在浏览器通过[http://localhost:8080](http://localhost:8080)直接访问。
-> 使用ctrl+c组合键并按y回车来终止开发环境
+> 使用`ctrl + c`组合键并输入`y`再回车来终止开发环境
 
 ### 构建生产环境
 
@@ -93,6 +122,12 @@ npm run build
 
 ```shell
 npm run lint
+```
+
+与
+
+```shell
+npm run eslint
 ```
 
 ### 自定义配置

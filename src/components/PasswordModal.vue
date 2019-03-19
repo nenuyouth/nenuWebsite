@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 密码验证
  * @Date: 2019-03-16 13:44:32
- * @LastEditTime: 2019-03-18 18:19:03
+ * @LastEditTime: 2019-03-19 00:28:22
  -->
 <template>
   <!-- 密码输入框 -->
@@ -39,24 +39,20 @@
         </div>
 
         <!-- 控制密码显隐图标 -->
-        <svg
-          @click="passwordDisplay=!passwordDisplay"
-          class="icon"
-          slot="suffix"
-          viewBox="0 0 1024 1024"
-        >
-          <path
-            d="M511.8 399.4c62.5 0 113.2 50.6 113.2 113 0 62.5-50.7 113.1-113.2 113.1-62.6
+        <div @click="passwordDisplay=!passwordDisplay" class="togglePassword" slot="suffix">
+          <svg class="icon" viewBox="0 0 1024 1024">
+            <path
+              d="M511.8 399.4c62.5 0 113.2 50.6 113.2 113 0 62.5-50.7 113.1-113.2 113.1-62.6
           0-113.2-50.6-113.2-113.1-0.1-62.4 50.6-113 113.2-113z m0 321.1c115 0 208.3-93.2 208.3-208
           0-114.9-93.3-208-208.3-208-115.1 0-208.4 93.2-208.4 208s93.3 208 208.4 208z m500.3-247.2c7.6 11.1 11.9
           24.7 11.9 39.1 0 11.7-2.8 22.7-8 32.5-3 4.7-6.2 9.3-9.5 13.8C902.9 705 735.8 803.2 545.3 813.6c-11.1
           0.6-22.3 0.9-33.6 0.9s-22.5-0.3-33.6-0.9C286 803.1 117.6 703.1 14.2 554.7c-1.1-1.6-2.3-3.3-3.5-4.9C3.9
           538.9 0 526.1 0 512.5c0-14.5 4.4-28 11.9-39.1l-0.3-0.3c107.5-156.9 287.2-260.5 491.3-263.4 3-0.1 6-0.2
           8.9-0.2 3 0 6 0.1 8.9 0.2 204.2 2.8 383.9 106.6 491.4 263.6z"
-            v-if="passwordDisplay"
-          ></path>
-          <path
-            d="M941.677 391.71c9.338-14.006 6.225-32.681-6.225-43.575-14.006-10.894-32.681-7.781-43.575 6.225-1.557
+              v-if="passwordDisplay"
+            ></path>
+            <path
+              d="M941.677 391.71c9.338-14.006 6.225-32.681-6.225-43.575-14.006-10.894-32.681-7.781-43.575 6.225-1.557
           1.556-174.3 205.426-379.728 205.426-199.2
           0-379.727-205.426-381.283-206.982-10.895-12.45-31.125-14.006-43.576-3.113-12.45 10.894-14.006
           31.125-3.113 43.576 3.113 4.668 40.463 46.687 99.6 93.375l-79.37 82.482c-12.45 12.45-10.893 32.681 1.557
@@ -67,9 +63,10 @@
           21.788-38.906L649.099 595.58c52.914-18.676 101.157-45.132 141.62-73.144l84.038 87.15c6.225 6.225 14.006
           9.338 21.787 9.338 7.781 0 15.563-3.113 21.787-9.337 12.45-12.451 12.45-31.125
           1.557-43.576l-79.37-82.481c63.808-46.689 101.16-91.82 101.16-91.82z"
-            v-else
-          ></path>
-        </svg>
+              v-else
+            ></path>
+          </svg>
+        </div>
       </a-input>
     </form>
     <!-- 自定义对话框按钮 -->
@@ -98,22 +95,27 @@ export default class PasswordModal extends Vue {
 
   // 验证密码
   private async validatePassword() {
-    this.validating = true; // 显示加载状态
+    if (this.password) {
+      // 显示登录状态
+      this.$message.loading('登陆中..', 0);
+      this.validating = true;
 
-    await axios.get(`/server/passwordValidate.php?password=${this.password}`).then(response => {
-      if (response.data === 'correct') {
-        // 验证成狗
-        this.modalDisplay = false; // 隐藏弹窗
-        this.$store.commit('internalLogin'); // 改变internalLogin state
-        this.$store.commit('internalPassword', this.password); // 改变internalPassword state
-        this.$emit('login'); // 触发login事件
-      } else {
-        this.password = ''; // 清空密码
-        this.$message.error('密码错误'); // 提示密码错误
-      }
+      await axios.get(`/server/passwordValidate.php?password=${this.password}`).then(response => {
+        this.$message.destroy();
+        if (response.data === 'correct') {
+          // 验证成狗
+          this.modalDisplay = false; // 隐藏弹窗
+          this.$store.commit('internalLogin'); // 改变internalLogin state
+          this.$store.commit('internalPassword', this.password); // 改变internalPassword state
+          this.$emit('login'); // 触发login事件
+        } else {
+          this.password = ''; // 清空密码
+          this.$message.error('密码错误'); // 提示密码错误
+        }
 
-      this.validating = false; // 取消加载状态
-    });
+        this.validating = false; // 取消加载状态
+      });
+    } else this.$message.warning('请输入密码');
   }
 
   private mounted() {
@@ -126,3 +128,12 @@ export default class PasswordModal extends Vue {
   }
 }
 </script>
+<style>
+.togglePassword {
+  width: 22px;
+  height: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>

@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-03-18 18:06:19
+ * @LastEditTime: 2019-03-19 10:49:55
  -->
 <template>
   <div class="container mt-3 pb-3" v-wechat-title="docTitle">
@@ -11,7 +11,7 @@
       <!-- markdown渲染主体 -->
       <div class="col-12 col-lg-9">
         <!-- 加载状态 -->
-        <a-spin :spinning="$store.state.docLoading">
+        <a-spin :spinning="$store.state.docLoading" tip="加载中...">
           <LoadingIcon slot="indicator"/>
           <div class="markdown-body" v-html="docContent"></div>
         </a-spin>
@@ -19,20 +19,26 @@
 
       <!-- lg及以上屏幕的目录侧边栏 -->
       <div class="d-none d-lg-block col-lg-3">
-        <div :style="`max-height:calc(${windowHeight - 192}px - 4rem);`" id="asideCtn">
-          <aside
-            :style="`max-height:calc(${windowHeight - 222}px - 4rem);`"
-            class="shadow"
-            id="aside"
-          >
+        <div id="asideCtn">
+          <aside class="shadow" id="aside">
             <a-spin :spinning="$store.state.docLoading">
               <LoadingIcon slot="indicator"/>
-              <div
-                :class="`h${title.level} asideHeading`"
-                :key="title.text"
-                @click="scrollToHeading(title.text)"
-                v-for="title in aside"
-              >{{title.text}}</div>
+              <div @click="scrollTop" class="asideH1 asideHeading">{{docTitle}}</div>
+              <a-anchor
+                :affix="false"
+                :offsetTop="42"
+                :showInkInFixed="true"
+                @click="handleClick"
+                wrapperClass="asideList"
+              >
+                <a-anchor-link
+                  :class="`asideH${title.level} asideHeading`"
+                  :href="`#${title.text}`"
+                  :key="title.text"
+                  :title="title.text"
+                  v-for="title in aside"
+                />
+              </a-anchor>
             </a-spin>
           </aside>
         </div>
@@ -46,12 +52,22 @@
     <div class="d-block d-lg-none" id="asideSlide" v-if="aside.length!==0">
       <div @click="asideToggle" class="shadow" id="asideSlideBtn">目录</div>
       <aside class="shadow" id="aside">
-        <div
-          :class="`h${title.level} asideHeading`"
-          :key="title.text"
-          @click="scrollToHeading(title.text)"
-          v-for="title in aside"
-        >{{title.text}}</div>
+        <div @click="scrollTop" class="asideH1 asideHeading">{{docTitle}}</div>
+        <a-anchor
+          :affix="false"
+          :offsetTop="42"
+          :showInkInFixed="true"
+          @click="handleClick"
+          wrapperClass="asideList"
+        >
+          <a-anchor-link
+            :class="`asideH${title.level} asideHeading`"
+            :href="`#${title.text}`"
+            :key="title.text"
+            :title="title.text"
+            v-for="title in aside"
+          />
+        </a-anchor>
       </aside>
     </div>
   </div>
@@ -87,7 +103,8 @@ export default class BaseDoc extends Vue {
   private windowHeight = 750;
 
   // Markdown内容
-  @Prop(String) private docContent!: string;
+  @Prop({ type: String, default: '<h1>加载中</h1><h2>加载中</h2><p>内容正在加载...</p>' })
+  private docContent!: string;
 
   // 初始化目录
   private catalogGernarate() {
@@ -97,7 +114,7 @@ export default class BaseDoc extends Vue {
     this.docTitle = $('h1').text();
 
     // 设置目录
-    $('h1,h2,h3,h4').each((index, domEle) => {
+    $('h2,h3,h4').each((index, domEle) => {
       if ($(domEle).children()[0].tagName === 'IMG') {
         const id = $(domEle).attr('id');
 
@@ -204,17 +221,6 @@ export default class BaseDoc extends Vue {
     });
   }
 
-  // 侧边栏点击项目滚动标题实现
-  private scrollToHeading(text: string) {
-    const offset = $(`#${text}`).offset();
-
-    if (offset) {
-      const toTop = offset.top;
-
-      $('html, body').animate({ scrollTop: `${toTop - 50}px` }, { duration: 500, easing: 'swing' });
-    }
-  }
-
   // 目录切换
   private asideToggle() {
     // 如果侧边栏已经展开，则收起
@@ -227,11 +233,14 @@ export default class BaseDoc extends Vue {
     } else {
       // 获得侧边栏长度
       const asideWidth = $('#asideSlide').width();
-
       if (asideWidth)
         $('#asideSlide').animate(
           { left: ($(window).width() || document.documentElement.clientWidth) - asideWidth },
-          { duration: 500, easing: 'swing' }
+          500,
+          'swing',
+          () => {
+            $('#asideSlide').css({ left: `calc(100% - ${asideWidth}px)` });
+          }
         );
 
       $('#asideScreenMask').fadeIn(500);
@@ -242,7 +251,18 @@ export default class BaseDoc extends Vue {
     this.asideExpand = !this.asideExpand;
   }
 
+  // 侧边栏点击项目滚动标题实现（由a-anchor支持，需要阻止默认事件）
+  private handleClick(e: Event) {
+    e.preventDefault();
+  }
+
+  // 滚动到顶
+  private scrollTop() {
+    $('html, body').animate({ scrollTop: '0px' }, { duration: 500, easing: 'swing' });
+  }
+
   private mounted() {
+    // 加载时执行页面处理
     if (this.docContent)
       Vue.nextTick().then(() => {
         this.catalogGernarate();
@@ -256,17 +276,8 @@ export default class BaseDoc extends Vue {
       this.windowWidth = $(window).width() || document.documentElement.clientWidth;
       this.windowHeight = $(window).height() || document.documentElement.clientHeight;
 
-      // 如果是md及以下屏幕且侧边栏展开，重新调整侧边栏位置
-      if (this.windowWidth < 992 && this.asideExpand) {
-        // 获得侧边栏长度
-        const asideWidth = $('#asideSlide').width();
-
-        if (asideWidth)
-          // 改变侧边栏位置
-          $('#asideSlide').css({ left: ($(window).width() || document.documentElement.clientWidth) - asideWidth });
-
-        // 如果是lg以上屏幕，收起侧边栏
-      } else if (this.windowWidth >= 992 && this.asideExpand) {
+      // 如果是lg以上屏幕且侧边栏处于打开状态，收起侧边栏
+      if (this.asideExpand && this.windowWidth >= 992) {
         this.asideExpand = false;
         $('#asideSlide').animate({ left: '100%' }, { duration: 500, easing: 'swing' });
         $('#asideSlideBtn').fadeIn(500);
@@ -275,6 +286,7 @@ export default class BaseDoc extends Vue {
     });
   }
 
+  // 组件激活时取消显示loading
   private activated() {
     if (this.docContent) this.$store.commit('docLoading', false);
   }
@@ -290,14 +302,15 @@ export default class BaseDoc extends Vue {
   }
 }
 </script>
-<style scoped>
+<style>
+/* 设置loadingicon样式 */
 .loadingCtn {
   min-height: 200px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
+/* markdown主容器class */
 .markdown-body {
   min-height: 200px;
 }
@@ -338,30 +351,29 @@ export default class BaseDoc extends Vue {
 #asideCtn {
   position: fixed;
   top: 4rem;
-  width: 265px;
-}
-
-@media (min-width: 1200px) {
-  #asideCtn {
-    width: 300px;
-  }
+  width: 225px;
 }
 
 #aside {
   text-align: left;
-  width: 200px;
+  width: auto;
   background-color: #ffffff;
   overflow-y: auto;
 }
 
 #asideSlide #aside {
-  margin: 0 0 0 auto;
+  margin-left: auto;
   height: 100%;
 }
 #asideCtn #aside {
-  max-height: calc(100% - 30px);
-  margin: 0 auto;
+  max-height: calc(100vh - 255px);
 }
+
+.asideList {
+  padding-left: 15px;
+  max-height: 100%;
+}
+
 #aside::-webkit-scrollbar {
   display: none;
 }
@@ -371,9 +383,11 @@ export default class BaseDoc extends Vue {
   color: rgb(44, 62, 80);
   word-wrap: break-word;
 }
+
 .asideHeading:visited {
   text-decoration: none;
 }
+
 .asideHeading:hover {
   text-decoration: none;
   color: #000;
@@ -381,32 +395,34 @@ export default class BaseDoc extends Vue {
   cursor: pointer;
 }
 
-.h1 {
+.asideH1 {
   text-align: center;
   font-size: 17px;
   font-weight: 600;
   margin: 0 auto 10px auto;
-  padding: 15px 0;
+  padding: 15px 10px;
   border-bottom: 0.5px solid #cacaca;
 }
-.h2 {
+
+.asideH2 {
   font-size: 16.5px;
   font-weight: 700;
-  padding: 0 24px;
+  padding: 0 14px;
   margin-bottom: 8px;
   line-height: 1.8;
   color: rgb(44, 62, 80);
 }
-.h3 {
+
+.asideH3 {
   font-size: 15px;
-  padding: 6px 16px 6px 32px;
+  padding: 6px 16px 6px 22px;
 }
-.h4 {
+
+.asideH4 {
   font-size: 14px;
-  padding: 3px 45px;
+  padding: 3px 35px;
 }
-</style>
-<style>
+
 .mdHeading {
   cursor: pointer;
 }

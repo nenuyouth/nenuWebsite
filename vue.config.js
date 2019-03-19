@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: vue配置文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-03-16 19:52:47
+ * @LastEditTime: 2019-03-18 20:57:48
  */
 /**
  * @description: vue输出配置
@@ -38,8 +38,8 @@ module.exports = {
       less: {
         // 自定义antd主题
         modifyVars: {
-          'primary-color': '#3cc51f',
-          'link-color': '#3cba92'
+          'primary-color': '#3cba63',
+          'link-color': '#3cba63'
         },
         javascriptEnabled: true
       }

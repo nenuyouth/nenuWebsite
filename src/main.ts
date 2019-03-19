@@ -3,11 +3,12 @@
  * @LastEditors: Mr.Hope
  * @Description: 主脚本文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-03-18 18:15:05
+ * @LastEditTime: 2019-03-19 00:16:23
  */
 
 // 引入Ant Design
 import {
+  Anchor,
   Button, Input, Modal, Spin, message
 } from 'ant-design-vue';
 import Vue from 'vue';
@@ -38,10 +39,18 @@ Component.registerHooks([
  */
 
 // 使用ant-design
+Vue.use(Anchor);
 Vue.use(Button);
 Vue.use(Input);
 Vue.use(Modal);
 Vue.use(Spin);
+
+// 配置message
+message.config({
+  top: `50px`,
+  duration: 3,
+  maxCount: 3
+});
 
 // 向Vue中封装ant-design方法
 Vue.prototype.$confirm = Modal.confirm;
