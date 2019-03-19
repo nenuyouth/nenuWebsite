@@ -1,18 +1,18 @@
 # 东师校会新媒体中心学习资料
 
-> 作者：Mr.Hope 最后编辑于2018年3月16日15时
+> 作者：Mr.Hope 最后编辑于2018年3月19日15时
 
 ## 主要文档列表
 
-- ## [总务-后台运营](doc/wechat/backStage)
-- ## [微信-图文教程](doc/wechat/readme)
-- ## [功能-学习指南](doc/dev/readme)
+- ### [总务-后台运营](doc/wechat/backStage)
+- ### [微信-图文教程](doc/wechat)
+- ### [功能-学习指南](doc/dev)
 
 ---
 
 ## 前端开发文档
 
-- ## [网页前端开发综述](doc/website/readme)
+- ### [网页前端开发综述](doc/website)
 
 ### HTML
 
@@ -20,20 +20,20 @@
 
 ### JavaScript
 
-- ### [js教程](doc/language/js/readme)
+- ### [js教程](doc/language/js)
 
-  - ### [ES6教程](doc/language/js/es6/readme)
+  - ### [ES6教程](doc/language/js/es6)
 
-  - ### [jQuery教程](doc/website/jQuery/readme)
+  - ### [jQuery教程](doc/website/jQuery)
 
 ### Typescript
 
-- ### [Typescript介绍](doc/language/typescript/readme)
+- ### [Typescript介绍](doc/language/typescript)
 - ### [Typescript教程](https://ts.xcatliu.com/)(online)
 
 ### Vue开发教程
 
-- ### [Vue.js开发](/doc/website/vue/intro)
+- ### [Vue.js开发](/doc/website/vue)
 
 - ### [vue单文件组件介绍](/doc/website/vue/vue)
 
@@ -47,11 +47,11 @@
 
 ## 小程序
 
-- ### [小程序开发入门](doc/miniProgram/readme)
+- ### [小程序开发入门](doc/miniProgram)
 - ### [小程序官方开发文档](https://developers.weixin.qq.com/miniprogram/dev/index.html)(online)
 - ### [小程序框架使用说明](doc/miniProgram/frameDescription)
   - ### [tag值参数表](doc/miniProgram/tagList)
-  - ### [setPage库使用说明](doc/miniProgram/setPage) 
+  - ### [setPage库使用说明](doc/miniProgram/setPage)
 
 ### 小程序大众文稿
 
@@ -62,11 +62,11 @@
 
 ## 软件使用文档
 
-- ### [vscode使用说明](doc/software/vscode/readme)
+- ### [vscode使用说明](doc/software/vscode)
 - ### [微信开发者工具使用指南](https://developers.weixin.qq.com/miniprogram/dev/devtools/devtools.html)(online)
-- ### [Git教程](doc/software/git/gitGuide)
-- ### [Node.js教程](doc/software/nodeJS/readme)
-- ### [Apache教程](doc/software/Apache/readme)
+- ### [Git教程](doc/software/git)
+- ### [Node.js教程](doc/software/nodeJS)
+- ### [Apache教程](doc/software/Apache)
 
 ### 其他教程
 

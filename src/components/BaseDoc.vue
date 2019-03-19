@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-03-19 14:40:54
+ * @LastEditTime: 2019-03-19 16:07:31
  -->
 <template>
   <div class="container mt-3 pb-3" v-wechat-title="docTitle">
@@ -116,7 +116,7 @@ export default class BaseDoc extends Vue {
 
     // 设置目录
     document.querySelectorAll('h2,h3,h4').forEach(domEle => {
-      if (domEle.children[0].tagName === 'IMG') {
+      if (domEle.children[0] && domEle.children[0].tagName === 'IMG') {
         const { id } = domEle;
 
         if (id && id.indexOf('href') === -1) {

@@ -1,23 +1,23 @@
 # JavaScript快速入门
 
-> Mr.Hope最后编辑于2018/10/24
+> Mr.Hope最后编辑于2019/03/19
 
-- ## [JavaScript引入、编写、运行与调试](accidence/basic)
+- ### [JavaScript引入、编写、运行与调试](accidence/basic)
 
-- ## [基本语法](accidence/basicExpression)
+- ### [基本语法](accidence/basicExpression)
 
-- ## [数据类型和变量](accidence/variable)
+- ### [数据类型和变量](accidence/variable)
 
-- ## [字符串](accidence/string)
+- ### [字符串](accidence/string)
 
-- ## [数组](accidence/array)
+- ### [数组](accidence/array)
 
-- ## [对象](accidence/object)
+- ### [对象](accidence/object)
 
-- ## [条件判断](accidence/if)
+- ### [条件判断](accidence/if)
 
-- ## [循环](accidence/loop)
+- ### [循环](accidence/loop)
 
-- ## [Map&Set](accidence/mapAndSet)
+- ### [Map&Set](accidence/mapAndSet)
 
-- ## [Iterable](accidence/iterable)
+- ### [Iterable](accidence/iterable)

@@ -7,13 +7,12 @@
 - ### [JavaScript简介](js/jsIntroduction)
 - ### [快速入门](js/accidence)
 - ### [函数](js/function)
-- ### [标准对象](js/object)
-- ### [面向对象](js/2object)
+- ### [对象](js/object)
 - ### [浏览器](js/browser)
 - ### [ES6教程](js/es6/readme)
 - ### [JQuery](/doc/website/jQuery/readme)
 - ### [错误处理](js/error)
-- ### [underScore](js/underScore)
+- ### [underScore](js/underscore)
 - ### [node.js](/doc/software/nodeJS/readme)
 
 ---

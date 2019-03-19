@@ -24,22 +24,22 @@ typeof {}; // 'object'
 
 ## 标准对象
 
-- ## [包装对象](object/wrap)
+- ### [包装对象](object/wrap)
 
-- ## [Date对象](object/date)
+- ### [Date对象](object/date)
 
-- ## [正则表达](object/regExp)
+- ### [正则表达](object/regExp)
 
-- ## [JSON](object/JSON)
+- ### [JSON](object/JSON)
 
 ---
 
 ## 面向对象编程
 
-- ## [对象及原型介绍](object/intro)
+- ### [对象及原型介绍](object/intro)
 
-- ## [创建对象](object/create)
+- ### [创建对象](object/create)
 
-- ## [原型继承](object/inherit)
+- ### [原型继承](object/inherit)
 
-- ## [class继承](object/class)
+- ### [class继承](object/class)

@@ -1,23 +1,23 @@
 # 功能部学习指南
 
-> Mr.Hope 最后编辑于2018/10/24
+> Mr.Hope 最后编辑于2019/03/19
 
 ## 开发简介
 
-- ### [什么是开发](dev/debugInstruction)
+- #### [什么是开发](dev/debugInstruction)
 
 ## 代码学习网站
 
-- ### [菜鸟教程](https://www.runoob.com/)（内容比较新）
-- ### [w3cschool](http://www.w3school.com.cn/)（内容比较旧，有手机APP）
+- #### [菜鸟教程](https://www.runoob.com/)（内容比较新）
+- #### [w3cschool](http://www.w3school.com.cn/)（内容比较旧，有手机APP）
 
 ## 网站开发
 
-- ### [点击跳转](/doc/website/readme)
+- #### [点击跳转](/doc/website/readme)
 
 ## 小程序开发
 
-- ### [点击跳转](/doc/miniProgram/readme)
+- #### [点击跳转](/doc/miniProgram/readme)
 
 ## 后端入门
 
@@ -27,8 +27,8 @@
 
 - #### PHP手册
 
-    - ### [W3School教程](http://www.w3school.com.cn/php/index.asp)(online)
-    - ### [菜鸟教程](https://www.runoob.com/php/php-tutorial.html)(online)
+    - #### [W3School教程](http://www.w3school.com.cn/php/index.asp)(online)
+    - #### [菜鸟教程](https://www.runoob.com/php/php-tutorial.html)(online)
 
 - ### ASP
 
@@ -36,8 +36,8 @@
 
     ASP 文件可包含文本、 HTML 标签和脚本。ASP 文件中的脚本可在服务器上执行。由于 ASP 在服务器上运行，浏览器无需支持客户端脚本就可以显示 ASP 文件！
 
-    - ### [W3School教程](http://www.w3school.com.cn/asp/index.asp)(online)
-    - ### [菜鸟教程](https://www.runoob.com/asp/asp-tutorial.html)(online)
+    - #### [W3School教程](http://www.w3school.com.cn/asp/index.asp)(online)
+    - #### [菜鸟教程](https://www.runoob.com/asp/asp-tutorial.html)(online)
 
 ## 软件介绍
 
@@ -64,15 +64,15 @@
 
 - ### 微信开发者工具
 
-    - ### [查看详情](/doc/miniProgram/readme#微信开发者工具)
+    - #### [查看详情](/doc/miniProgram/readme#微信开发者工具)
 
 - ### Git
 
-    - ### [查看详情](/doc/software/git/readme)
+    - #### [查看详情](/doc/software/git/readme)
 
 - ### Chrome
 
-    - ### [查看详情](/doc/software/Chrome)
+    - #### [查看详情](/doc/software/Chrome)
 
 ## 手机APP
 
