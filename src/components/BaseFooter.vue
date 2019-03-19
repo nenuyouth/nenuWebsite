@@ -3,11 +3,11 @@
  * @LastEditors: Mr.Hope
  * @Description: 网页页脚
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-03-17 11:23:34
+ * @LastEditTime: 2019-03-19 13:22:26
  -->
 <template>
   <div id="footer">
-    <div class="scrollTop" style="display:none">
+    <div @click="scrollTop" class="scrollTop" style="display:none">
       <div class="backTop">
         <svg viewBox="0 0 1024 1024">
           <path
@@ -82,15 +82,16 @@ import { Component, Vue, Watch } from 'vue-property-decorator';
 
 @Component
 export default class BaseFooter extends Vue {
+  // 返回顶部函数
+  private scrollTop() {
+    $('body,html').animate({ scrollTop: 0 }, 800);
+  }
+
   private mounted() {
     // 注册“返回顶部”按钮动作
-    $(window).on('scroll', () => {
+    window.addEventListener('scroll', () => {
       if (($(window).scrollTop() || window.pageYOffset) > 100) $('.scrollTop').fadeIn(500);
       else $('.scrollTop').fadeOut(500);
-    });
-
-    $('.scrollTop').on('click', () => {
-      $('body,html').animate({ scrollTop: 0 }, 800);
     });
   }
 }

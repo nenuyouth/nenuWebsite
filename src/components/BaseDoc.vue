@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-03-19 10:49:55
+ * @LastEditTime: 2019-03-19 14:40:54
  -->
 <template>
   <div class="container mt-3 pb-3" v-wechat-title="docTitle">
@@ -109,20 +109,21 @@ export default class BaseDoc extends Vue {
   // 初始化目录
   private catalogGernarate() {
     const aside: Aside[] = [];
+    const title = document.getElementsByTagName('h1')[0].textContent;
 
     // 设置网页标题
-    this.docTitle = $('h1').text();
+    if (title) this.docTitle = title;
 
     // 设置目录
-    $('h2,h3,h4').each((index, domEle) => {
-      if ($(domEle).children()[0].tagName === 'IMG') {
-        const id = $(domEle).attr('id');
+    document.querySelectorAll('h2,h3,h4').forEach(domEle => {
+      if (domEle.children[0].tagName === 'IMG') {
+        const { id } = domEle;
 
         if (id && id.indexOf('href') === -1) {
-          const text = $(domEle).text();
-          const level = $(domEle)[0].tagName[1];
+          const text = domEle.textContent;
+          const level = domEle.tagName[1];
 
-          aside.push({ text, level });
+          if (text) aside.push({ text, level });
         }
       }
     });
@@ -148,17 +149,19 @@ export default class BaseDoc extends Vue {
       event.preventDefault();
     });
 
-    // 注册页面标题悬停时的动画效果
-    $('.markdown-body :header').on('mouseover', event => {
-      $(event.currentTarget)
-        .children('img')
-        .css({ display: 'inline-block' });
-    });
-    $('.markdown-body :header').on('mouseout', event => {
-      $(event.currentTarget)
-        .children('img')
-        .css({ display: 'none' });
-    });
+    if (!this.$store.state.iOS) {
+      // 注册页面标题悬停时的动画效果
+      $('.markdown-body :header').on('mouseover', event => {
+        $(event.currentTarget)
+          .children('img')
+          .css({ display: 'inline-block' });
+      });
+      $('.markdown-body :header').on('mouseout', event => {
+        $(event.currentTarget)
+          .children('img')
+          .css({ display: 'none' });
+      });
+    }
 
     // 注册页面标题点击时的滚动置顶动画效果
     $('.markdown-body :header').on('click', event => {
@@ -233,6 +236,7 @@ export default class BaseDoc extends Vue {
     } else {
       // 获得侧边栏长度
       const asideWidth = $('#asideSlide').width();
+
       if (asideWidth)
         $('#asideSlide').animate(
           { left: ($(window).width() || document.documentElement.clientWidth) - asideWidth },

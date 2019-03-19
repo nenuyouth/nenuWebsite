@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主脚本文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-03-19 00:16:23
+ * @LastEditTime: 2019-03-19 14:35:56
  */
 
 // 引入Ant Design
@@ -14,6 +14,7 @@ import {
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import App from './App.vue';
+import getOS from './lib/getOS';
 import registerServiceWorker from './registerServiceWorker';
 import router from './router';
 import store from './store';
@@ -47,7 +48,7 @@ Vue.use(Spin);
 
 // 配置message
 message.config({
-  top: `50px`,
+  top: '50px',
   duration: 3,
   maxCount: 3
 });
@@ -62,6 +63,9 @@ Vue.prototype.$warning = Modal.warning;
 
 // 注册service worker
 registerServiceWorker();
+
+// 获得当前环境
+getOS(store);
 
 // 阻止 vue 在启动时生成生产提示。
 Vue.config.productionTip = false;

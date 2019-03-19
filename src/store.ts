@@ -16,6 +16,9 @@ interface DocList {
 }
 
 export interface State {
+  Android: boolean;
+  iOS: boolean;
+  OSVersion: string;
   compiledMarkdown: DocList;
   docLoading: boolean;
   internalLogin: boolean;
@@ -23,6 +26,9 @@ export interface State {
 }
 
 const myState: State = {
+  Android: false,
+  iOS: false,
+  OSVersion: '',
   compiledMarkdown: {},
   docLoading: true,
   internalLogin: false,
@@ -32,6 +38,12 @@ const myState: State = {
 export default new Vuex.Store({
   state: myState,
   mutations: {
+    android(state: State) {
+      state.Android = true;
+    },
+    iOS(state: State) {
+      state.iOS = true;
+    },
     compiledMarkdown(state: State, compiledMarkdown: string[]) {
       Vue.set(state.compiledMarkdown, compiledMarkdown[0], compiledMarkdown[1]);
     },
@@ -43,6 +55,9 @@ export default new Vuex.Store({
     },
     internalPassword(state: State, password: string) {
       state.internalPassword = password;
+    },
+    version(state: State, version: string) {
+      state.OSVersion = version;
     }
 
   },
