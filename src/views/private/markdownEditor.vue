@@ -9,7 +9,6 @@ import 'mavon-editor/dist/css/index.css';
 
 // tslint:disable-next-line:no-var-requires
 const mavonEditor = require('mavon-editor');
-// import { mavonEditor } from 'mavon-editor';
 
 @Component({ components: { mavonEditor } })
 export default class MarkdownEditor extends Vue {

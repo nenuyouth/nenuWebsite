@@ -3,13 +3,18 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-03-18 18:03:47
+ * @LastEditTime: 2019-03-20 11:12:24
  -->
 <template>
   <!-- Container -->
   <div style="width:100%;">
     <!-- 密码弹窗 -->
-    <PasswordModal @login="login" v-if="!$store.state.internalLogin"/>
+    <PasswordModal
+      @login="login"
+      passwordKey="internalPassword"
+      url="/server/passwordValidate"
+      v-if="!$store.state.internalLogin"
+    />
     <!-- <transition :name="transitionName" mode="in-out"> -->
     <keep-alive>
       <!-- 文档显示 -->

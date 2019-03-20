@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 自动生成界面
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-03-17 11:24:25
+ * @LastEditTime: 2019-03-20 00:43:05
  -->
 <template>
   <base-page :key="url" :pagedata="pageData" v-if="pageData"></base-page>
@@ -16,7 +16,7 @@ import BasePage from '@/components/BasePage.vue';
 
 @Component({ components: { BasePage } })
 export default class Page extends Vue {
-  private pageData: any[] = [];
+  private pageData = '';
 
   @Prop(String) private path!: string;
 
@@ -36,7 +36,7 @@ export default class Page extends Vue {
     await axios.get(`/Res/page/${folder}/${finalPath || path}.json`).then(response => {
       try {
         // 设置页面数据
-        if (typeof response.data === 'object') this.pageData = response.data;
+        if (typeof response.data === 'object') this.pageData = JSON.stringify(response.data);
         else throw response.data;
       } catch (err) {
         const router = this.$router;

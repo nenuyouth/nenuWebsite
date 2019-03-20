@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-03-19 19:02:32
+ * @LastEditTime: 2019-03-20 11:05:42
  -->
 <template>
   <div class="container mt-3 pb-3" v-wechat-title="docTitle">
@@ -19,7 +19,7 @@
 
       <!-- lg及以上屏幕的目录侧边栏 -->
       <div class="d-none d-lg-block col-lg-3">
-        <div id="asideCtn">
+        <div id="asideCtn" v-if="!noneCatalog">
           <aside class="shadow" id="aside">
             <a-anchor
               :affix="false"
@@ -51,7 +51,12 @@
     <!-- 屏幕蒙层 -->
     <div @click="asideToggle" id="asideScreenMask" style="display:none;"></div>
     <!-- 侧边目录 -->
-    <div class="d-block d-lg-none" id="asideSlide" style="left:100%;" v-if="aside.length!==0">
+    <div
+      class="d-block d-lg-none"
+      id="asideSlide"
+      style="left:100%;"
+      v-if="!noneCatalog&&aside.length!==0"
+    >
       <div @click="asideToggle" class="shadow" id="asideSlideBtn">目录</div>
       <aside class="shadow" id="aside">
         <div @click="scrollTop" class="asideH1 asideHeading">{{docTitle}}</div>
@@ -97,6 +102,8 @@ export default class BaseDoc extends Vue {
   // 侧边栏内容
   private aside: Aside[] = [];
 
+  private noneCatalog = false;
+
   // 侧边栏是否弹出
   private asideExpand = false;
 
@@ -129,6 +136,8 @@ export default class BaseDoc extends Vue {
         }
       }
     });
+
+    this.noneCatalog = aside.length === 0;
 
     this.aside = aside;
   }
@@ -289,7 +298,7 @@ export default class BaseDoc extends Vue {
       // 如果是lg以上屏幕且侧边栏处于打开状态，收起侧边栏
       if (this.asideExpand && this.windowWidth >= 992) {
         this.asideExpand = false;
-        $('#asideSlide').animate({ left: '100%' }, 500, 'swing');
+        $('#asideSlide').css({ left: '100%', right: '' });
         $('#asideSlideBtn').fadeIn(500);
         $('#asideScreenMask').fadeOut(500);
       }

@@ -1,5 +1,5 @@
 <template>
-  <div id="body">
+  <div style="max-width:100%;">
     <div class="jumbotron text-left">
       <h1>青春遇见梦想</h1>
       <h1>&nbsp;&nbsp;而我刚好在场</h1>
@@ -58,9 +58,9 @@ export default class Main extends Vue {
     myId: 'Main',
     content: [
       {
-        heading: 'NENUYouth',
-        subhead: '东师微信小程序已上线',
-        enSubhead: 'Wechat Miniprogram is released！',
+        caption: 'NENUYouth',
+        subCaption: '东师微信小程序已上线',
+        ensubCaption: 'Wechat Miniprogram is released！',
         alt: '东师微信小程序已上线',
         src: '/img/main/main0.jpg',
         url: 'https://mp.weixin.qq.com/s/w_CbkYVuTcByXCxEnlJ63w',
@@ -68,18 +68,18 @@ export default class Main extends Vue {
         black: true
       },
       {
-        heading: '我是东师',
-        subhead: '未来，请多指教',
-        enSubhead: 'New Experience, New Us!',
+        caption: '我是东师',
+        subCaption: '未来，请多指教',
+        ensubCaption: 'New Experience, New Us!',
         alt: '未来，请多指教',
         src: '/img/main/main1.jpg',
         url: 'https://mp.weixin.qq.com/s/yv66H-tCPyrHuSEc1cOK5Q',
         desc: '点击查看图文详情'
       },
       {
-        heading: '东师姑娘',
-        subhead: '这里有一首歌唱给你听',
-        enSubhead: 'We prepare a song for you, girls.',
+        caption: '东师姑娘',
+        subCaption: '这里有一首歌唱给你听',
+        ensubCaption: 'We prepare a song for you, girls.',
         src: '/img/main/main2.jpg',
         url: 'https://mp.weixin.qq.com/s/QcPo0a57ZY-aI5PWXbM7tA',
         alt: '这里有一首歌唱给你听',

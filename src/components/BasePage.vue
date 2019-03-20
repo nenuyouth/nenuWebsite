@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 基础页面显示
  * @Date: 2019-02-24 22:21:25
- * @LastEditTime: 2019-03-17 11:25:33
+ * @LastEditTime: 2019-03-20 01:03:16
  -->
 <template>
   <div class="container">
@@ -37,11 +37,11 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
   }
 })
 export default class BasePage extends Vue {
-  @Prop({ type: Array, required: true, default: [{ tag: 'error' }] })
-  private readonly pagedata!: any[];
+  @Prop({ type: String, required: true, default: '[{"tag":"error"}]' })
+  private readonly pagedata!: string;
 
   private get myData() {
-    const myData = JSON.parse(JSON.stringify(this.pagedata));
+    const myData = JSON.parse(this.pagedata);
 
     myData.forEach((element: any, index: number) => {
       element.myId = index;
