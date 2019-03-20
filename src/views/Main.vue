@@ -14,24 +14,28 @@
       <base-carousel v-bind="carouselData"></base-carousel>
     </div>
     <div class="container">
-      <div class="row">
-        <div class="col-12 col-lg-6">
+      <a-row>
+        <a-col :lg="12" :xs="24">
           <h2 class="px-3 pt-3">东师指南</h2>
           <hr>
-          <div class="row">
+          <a-row>
             <div class="w-100"></div>
-            <router-link
+            <a-col
               :key="item[1]"
-              :to="`/guide/${item[1]}`"
-              class="col-3 col-md-2 guideListButton"
+              :md="4"
+              :sm="6"
+              :xs="6"
+              class="guideListButton"
               v-for="item in guidelist"
             >
-              <img :src="require(`@/icon/guide/${item[1]}.svg`)" class="img-fluid px-2 py-1">
-              <div class="p text-center py-1">{{ item[0] }}</div>
-            </router-link>
-          </div>
-        </div>
-        <div class="col-12 col-lg-6">
+              <router-link :to="`/guide/${item[1]}`">
+                <img :src="require(`@/icon/guide/${item[1]}.svg`)" class="img-fluid px-2 py-1">
+                <div class="guideButtonDesc">{{ item[0] }}</div>
+              </router-link>
+            </a-col>
+          </a-row>
+        </a-col>
+        <a-col :lg="12" :xs="24">
           <h2 class="px-3 pt-3">东师校历</h2>
           <hr>
           <ul>
@@ -42,8 +46,8 @@
             <li></li>
             <li></li>
           </ul>
-        </div>
-      </div>
+        </a-col>
+      </a-row>
     </div>
   </div>
 </template>
@@ -106,7 +110,6 @@ export default class Main extends Vue {
 </script>
 <style scoped>
 .guideListButton {
-  color: #212529;
   background-color: #f8f9fa;
   display: inline-block;
   font-weight: 400;
@@ -119,5 +122,11 @@ export default class Main extends Vue {
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
     box-shadow 0.15s ease-in-out;
   border: 1px solid #dee2e6;
+}
+
+.guideButtonDesc {
+  text-align: center;
+  color: #212529;
+  padding: 0.25em 0;
 }
 </style>

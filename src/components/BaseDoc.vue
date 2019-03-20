@@ -3,22 +3,22 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-03-20 11:05:42
+ * @LastEditTime: 2019-03-20 11:27:36
  -->
 <template>
   <div class="container mt-3 pb-3" v-wechat-title="docTitle">
-    <div class="row">
+    <a-row class="row">
       <!-- markdown渲染主体 -->
-      <div class="col-12 col-lg-9">
+      <a-col :lg="18" :xs="24">
         <!-- 加载状态 -->
         <a-spin :spinning="$store.state.docLoading">
           <LoadingIcon slot="indicator"/>
           <div class="markdown-body" v-html="docContent"></div>
         </a-spin>
-      </div>
+      </a-col>
 
       <!-- lg及以上屏幕的目录侧边栏 -->
-      <div class="d-none d-lg-block col-lg-3">
+      <a-col :lg="6" class="d-none d-lg-block">
         <div id="asideCtn" v-if="!noneCatalog">
           <aside class="shadow" id="aside">
             <a-anchor
@@ -44,8 +44,8 @@
             </a-anchor>
           </aside>
         </div>
-      </div>
-    </div>
+      </a-col>
+    </a-row>
 
     <!-- md及以下屏幕的目录侧边栏 -->
     <!-- 屏幕蒙层 -->
