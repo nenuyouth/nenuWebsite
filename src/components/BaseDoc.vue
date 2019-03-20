@@ -3,11 +3,11 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-03-20 11:27:36
+ * @LastEditTime: 2019-03-20 23:43:09
  -->
 <template>
   <div class="container mt-3 pb-3" v-wechat-title="docTitle">
-    <a-row class="row">
+    <a-row>
       <!-- markdown渲染主体 -->
       <a-col :lg="18" :xs="24">
         <!-- 加载状态 -->

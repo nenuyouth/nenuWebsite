@@ -3,11 +3,26 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-03-20 11:12:24
+ * @LastEditTime: 2019-03-21 00:05:58
  -->
 <template>
   <!-- Container -->
-  <div style="width:100%;">
+  <div class="w-100">
+    <!-- 面包屑导航 -->
+    <div class="container">
+      <a-breadcrumb>
+        <a-breadcrumb-item>
+          <router-link :to="basepath" v-if="routes.length">
+            <a-icon type="home"/>
+          </router-link>
+          <a-icon type="home" v-else/>
+        </a-breadcrumb-item>
+        <a-breadcrumb-item :key="route" v-for="(route,index) in routes">
+          <template v-if="index===routes.length-1">{{route}}</template>
+          <router-link :to="`${basepath}/${routes.slice(0,index+1).join('/')}`" v-else>{{route}}</router-link>
+        </a-breadcrumb-item>
+      </a-breadcrumb>
+    </div>
     <!-- 密码弹窗 -->
     <PasswordModal
       @login="login"
@@ -46,10 +61,16 @@ export default class MyDoc extends Vue {
   // MarkDown基准路径字符数
   @Prop(Number) private baselength!: number;
 
-  private get path() {
-    const markDownPath = this.$route.path.slice(5);
+  private get basepath() {
+    return this.$route.path.slice(0, this.baselength - 1);
+  }
 
-    return markDownPath || 'readme';
+  private get path() {
+    return this.$route.path.slice(this.baselength) || 'readme';
+  }
+
+  private get routes() {
+    return this.$route.path.slice(this.baselength).split('/');
   }
 
   // 登陆成功，开始获取markdown文件
@@ -57,7 +78,7 @@ export default class MyDoc extends Vue {
     // 如果该路径markdown未被缓存则获取之
     if (!this.$store.state.compiledMarkdown[this.path])
       await getCompiledMarkdown(
-        this.path || 'readme',
+        this.path,
         this,
         `/server/doc.php?password=${this.$store.state.internalPassword}&path=`
       );

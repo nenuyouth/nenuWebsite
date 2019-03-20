@@ -1,6 +1,6 @@
 # 网站前端开发入门
 
-> 作者：Mr.Hope 最后编辑于2019/02/23
+> 作者：Mr.Hope 最后编辑于2019/03/21
 
 网站前端开发需要三件套：**HTML**、**css**和**js**。
 
@@ -29,28 +29,7 @@ HTML 指的是超文本标记语言 (Hyper Text Markup Language)，它不是一�
 
 > 在网页的前端开发中，它描绘了了视图层的具体结构。
 
-### HTML手册
-
-- [W3School教程](http://www.w3school.com.cn/html/index.asp)(online)
-- [菜鸟教程](https://www.runoob.com/html/html-tutorial.html)(online)
-
-## HTML5
-
-HTML5是HTML最新的修订版本，2014年10月由万维网联盟（W3C）完成标准制定。HTML5的设计目的是为了在移动设备上支持多媒体。
-
-HTML5 中的一些有趣的新特性：
-
-- 用于绘画的 canvas 元素
-- 用于媒介回放的 video 和 audio 元素
-- 对本地离线存储的更好的支持
-- 新的特殊内容元素，比如 article、footer、header、nav、section
-- 新的表单控件，比如 calendar、date、time、email、url、search
-
-### HTML5手册
-
-- [W3School教程](http://www.w3school.com.cn/html5/index.asp)(online)
-- [菜鸟教程](https://www.runoob.com/html/html5-intro.html)(online)
-- [MDN教程](https://developer.mozilla.org/zh-CN/docs/Web/HTML)(online)
+- ### [HTML手册及更多介绍](website/html)
 
 ## CSS
 
@@ -60,22 +39,7 @@ CSS 指层叠样式表 (Cascading Style Sheets)
 - 样式通常存储在样式表中
 - 多个样式定义可层叠为一
 
-### css手册
-
-- [W3School教程](http://www.w3school.com.cn/css/index.asp)(online)
-- [菜鸟教程](https://www.runoob.com/css/css-tutorial.html)(online)
-- [MDN教程](https://developer.mozilla.org/zh-CN/docs/Web/CSS)(online)
-
-## CSS3
-
-CSS3是最新的CSS标准，被拆分为"模块"。
-
-模块包括：选择器、盒模型、背景和边框、文字特效、2D/3D转换、动画、多列布局、用户。界面
-
-### CSS3手册
-
-- [W3School教程](http://www.w3school.com.cn/css3/index.asp)(online)
-- [菜鸟教程](https://www.runoob.com/css3/css3-tutorial.html)(online)
+- ### [CSS手册及更多介绍](website/css)
 
 ## JavaScript
 
@@ -105,7 +69,7 @@ ES6是JavaScript的2015标注，现已基本被广泛使用和支持；
 
     jQuery 是一个 JavaScript 库，极大地简化了 JavaScript 编程，很容易学习。
 
-    - [jQuery教程](jQuery/readme)
+    - [jQuery教程](website/jQuery/readme)
     - [W3School](http://www.w3school.com.cn/jquery/index.asp)(online)
     - [菜鸟教程](https://www.runoob.com/jquery/jquery-tutorial.html)(online)
 
@@ -123,6 +87,6 @@ ES6是JavaScript的2015标注，现已基本被广泛使用和支持；
 
     vue是一套轻量化html开发框架，为用于构建用户界面的渐进式框架。小程序的数据绑定是从vue中抽离而来的。与其它大型框架不同的是，Vue 被设计为可以自底向上逐层应用。Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。
 
-  - [vue.js](/doc/website/vue/readme)
+  - [vue.js](website/vue/readme)
 
   - [vue.js官方文档](https://cn.vuejs.org/v2/guide/)(online)

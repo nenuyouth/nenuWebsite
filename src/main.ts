@@ -3,12 +3,12 @@
  * @LastEditors: Mr.Hope
  * @Description: 主脚本文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-03-19 20:11:23
+ * @LastEditTime: 2019-03-20 23:58:40
  */
 
 // 引入Ant Design
 import {
-  Anchor, Button, Carousel, Col, Icon, Input, Modal, Select, Skeleton, Spin, message
+  Anchor, Breadcrumb, Button, Carousel, Col, Icon, Input, Modal, Row, Select, Skeleton, Spin, message
 } from 'ant-design-vue';
 import Vue from 'vue';
 import Component from 'vue-class-component';
@@ -40,12 +40,14 @@ Component.registerHooks([
 
 // 使用ant-design
 Vue.use(Anchor);
+Vue.use(Breadcrumb);
 Vue.use(Button);
 Vue.use(Carousel);
 Vue.use(Col);
 Vue.use(Icon);
 Vue.use(Input);
 Vue.use(Modal);
+Vue.use(Row);
 Vue.use(Select);
 Vue.use(Skeleton);
 Vue.use(Spin);

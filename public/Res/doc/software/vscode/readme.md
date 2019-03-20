@@ -128,7 +128,7 @@ vscode支持打开文件和文件夹。
 
     > 更多请见
     >
-    > [Windows快捷键介绍](/doc/basic/shortCutKey)
+    > [Windows快捷键介绍](/doc/windows/shortCutKey)
     >
     > [VScode快捷键介绍](https://nenuyouth.com/document/software/vscode/vscodeKeyboardShortcutsWindows.pdf)
 
