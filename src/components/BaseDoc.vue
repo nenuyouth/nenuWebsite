@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-03-21 12:19:17
+ * @LastEditTime: 2019-03-21 12:27:25
  -->
 <template>
   <div class="container mt-3 pb-3">
@@ -12,8 +12,12 @@
       <a-col :lg="18" :xs="24">
         <!-- 加载状态 -->
         <a-spin :spinning="$store.state.docLoading">
-          <LoadingIcon slot="indicator"/>
-          <div class="markdown-body" v-html="docContent"></div>
+          <a-icon
+            slot="indicator"
+            style="font-size:60px;position:absolute;top:calc(50% - 30px);left:calc(50% - 30px);"
+            type="loading"
+          />
+          <div class="markdown-body" v-html="docContent"/>
         </a-spin>
       </a-col>
 
@@ -49,7 +53,7 @@
 
     <!-- md及以下屏幕的目录侧边栏 -->
     <!-- 屏幕蒙层 -->
-    <div @click="asideToggle" id="asideScreenMask" style="display:none;"></div>
+    <div @click="asideToggle" id="asideScreenMask" style="display:none;" />
     <!-- 侧边目录 -->
     <div
       class="d-block d-lg-none"
@@ -59,7 +63,7 @@
     >
       <div @click="asideToggle" class="shadow asideSlideBtn">
         <template v-if="asideExpand">
-          <div class="w-100" style="height:21px;"></div>
+          <div class="w-100" style="height:21px;"/>
           <a-icon style="position:absolute;top:10px;left:9.5px;" type="close"/>
         </template>
         <template v-else>目录</template>
@@ -89,7 +93,6 @@
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { Route } from 'vue-router';
-import LoadingIcon from '@/components/LoadingIcon.vue';
 
 // 导入css样式
 import 'highlight.js/styles/default.css';
@@ -100,7 +103,7 @@ interface Aside {
   level: string;
 }
 
-@Component({ components: { LoadingIcon } })
+@Component
 export default class BaseDoc extends Vue {
   // 文档标题
   private docTitle = '内部文档';
