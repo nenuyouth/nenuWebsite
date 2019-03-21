@@ -15,37 +15,33 @@
     </div>
     <div class="container">
       <a-row>
-        <a-col :lg="12" :xs="24">
+        <a-col :xs="24">
           <h2 class="px-3 pt-3">东师指南</h2>
           <hr>
           <a-row>
-            <div class="w-100"></div>
             <a-col
               :key="item[1]"
+              :lg="2"
               :md="4"
-              :sm="6"
               :xs="6"
               class="guideListButton"
               v-for="item in guidelist"
             >
               <router-link :to="`/guide/${item[1]}`">
-                <img :src="require(`@/icon/guide/${item[1]}.svg`)" class="img-fluid px-2 py-1">
-                <div class="guideButtonDesc">{{ item[0] }}</div>
+                <div>
+                  <img :src="require(`@/icon/guide/${item[1]}.svg`)" class="guideIcon px-2 py-1">
+                  <div class="guideButtonDesc">{{ item[0] }}</div>
+                </div>
               </router-link>
             </a-col>
           </a-row>
         </a-col>
-        <a-col :lg="12" :xs="24">
+        <a-col :xs="24">
           <h2 class="px-3 pt-3">东师校历</h2>
           <hr>
-          <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-          </ul>
+          <div style="max-height:600px;overflow-y: auto;">
+            <base-time-axis :time-list="timeList"></base-time-axis>
+          </div>
         </a-col>
       </a-row>
     </div>
@@ -55,8 +51,9 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import BaseCarousel from '@/components/BaseCarousel.vue';
+import BaseTimeAxis from '@/components/BaseTimeAxis.vue';
 
-@Component({ components: { BaseCarousel } })
+@Component({ components: { BaseCarousel, BaseTimeAxis } })
 export default class Main extends Vue {
   private carouselData = {
     myId: 'Main',
@@ -106,24 +103,82 @@ export default class Main extends Vue {
     ['资助', 'subsidize'],
     ['交通', 'traffic']
   ];
+
+  private readonly timeList = [
+    {
+      title: '1946年',
+      text: '东北师范大学建校'
+    },
+    {
+      title: '2018年春季学期',
+      text: '2018年3月15日(正月十八)——2018年7月20日(共20周)'
+    },
+    {
+      title: '2018年暑假',
+      text: '2018年7月21日-2018年9月2日(共6周)'
+    },
+    {
+      title: '2018年秋季学期',
+      text: '2018年9月3日-2019年1月18日(共20周)\n  (2月5日为春节，距春节17天)'
+    },
+    {
+      title: '2019年寒假',
+      text: '2019年1月19日-2019年3月3日(共6周)'
+    },
+    {
+      title: '2019年春季学期',
+      text: '2019年3月4日(正月二十八)——2019年7月12日(共19周)'
+    },
+    {
+      title: '2019年暑假',
+      text: '2019年7月13日-2019年8月25日(共6周)'
+    },
+    {
+      title: '2019年秋季学期',
+      text: '2019年8月26日-2020年1月10日(共20周)\n  (1月25日为春节，距春节15天)'
+    },
+    {
+      title: '2020年寒假',
+      text: '2019年1月11日-2020年2月23日(共6周)'
+    },
+    {
+      title: '2020年春季学期',
+      text: '2020年2月24日(二月初二)——2020年7月17日(共21周)'
+    },
+    {
+      title: '2020年暑假',
+      text: '2020年7月18日-2020年8月30日(共6周)'
+    },
+    {
+      title: '2020年秋季学期',
+      text: '2019年8月31日-2021年1月22日(共21周)\n  (2月12日为春节，距春节20天)'
+    },
+    {
+      title: '2021年寒假',
+      text: '2021年1月23日-2021年3月8日(共6周)'
+    }
+  ];
 }
 </script>
 <style scoped>
 .guideListButton {
-  background-color: #f8f9fa;
-  display: inline-block;
-  font-weight: 400;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
   padding: 0.375rem 0.75rem;
+  border: 1px solid #dee2e6;
+  vertical-align: middle;
+  background-color: #fff;
+  text-align: center;
+  font-weight: 400;
   font-size: 1rem;
   line-height: 1.5;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
-    box-shadow 0.15s ease-in-out;
-  border: 1px solid #dee2e6;
 }
 
+.guideListButton:hover {
+  background-color: #f8f8f8;
+}
+
+.guideIcon {
+  max-width: 100%;
+}
 .guideButtonDesc {
   text-align: center;
   color: #212529;

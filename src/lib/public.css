@@ -8,9 +8,7 @@ body {
   margin: 0 auto;
 }
 
-.text-black {
-  color: black;
-}
+/* iconFont */
 
 .icon {
   width: 1em;
@@ -18,4 +16,10 @@ body {
   vertical-align: -0.15em;
   fill: currentColor;
   overflow: hidden;
+}
+
+/* bootstrap */
+
+.text-black {
+  color: black;
 }

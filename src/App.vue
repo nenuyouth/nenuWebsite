@@ -3,22 +3,26 @@
  * @LastEditors: Mr.Hope
  * @Description: 主视图文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-03-19 21:18:07
+ * @LastEditTime: 2019-03-22 00:36:55
  -->
 <template>
   <div id="app">
+    <my-nav></my-nav>
     <transition :name="transitionName">
       <keep-alive :max="10">
         <router-view v-wechat-title="$route.meta.title"/>
       </keep-alive>
     </transition>
+    <my-footer></my-footer>
   </div>
 </template>
 <script lang='ts'>
 import { Component, Vue, Watch } from 'vue-property-decorator';
 import { Route } from 'vue-router';
+import MyNav from '@/components/Nav.vue';
+import MyFooter from '@/components/Footer.vue';
 
-@Component
+@Component({ components: { MyNav, MyFooter } })
 export default class App extends Vue {
   private transitionName = 'slide-right';
 
@@ -41,7 +45,6 @@ export default class App extends Vue {
   }
 }
 </script>
-
 <style>
 #app {
   -webkit-font-smoothing: antialiased;

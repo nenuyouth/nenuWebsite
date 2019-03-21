@@ -14,4 +14,3 @@ export default class JsonEditor extends Vue {
 </script>
 <style>
 </style>
-

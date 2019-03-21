@@ -37,7 +37,7 @@
     "no-import-side-effect": [
       true,
       {
-        "ignore-module": "(\\.html|\\.css)$"
+        "ignore-module": "(\\.html|\\.css|\\.scss)$"
       }
     ],
     "no-inferrable-types": true,

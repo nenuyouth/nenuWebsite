@@ -3,12 +3,12 @@
  * @LastEditors: Mr.Hope
  * @Description: 主脚本文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-03-20 23:58:40
+ * @LastEditTime: 2019-03-22 00:36:18
  */
 
 // 引入Ant Design
 import {
-  Anchor, Breadcrumb, Button, Carousel, Col, Icon, Input, Modal, Row, Select, Skeleton, Spin, message
+  Anchor, Breadcrumb, Button, Carousel, Col, Icon, Input, Menu, Modal, Row, Select, Skeleton, Spin, message
 } from 'ant-design-vue';
 import Vue from 'vue';
 import Component from 'vue-class-component';
@@ -18,13 +18,9 @@ import registerServiceWorker from './registerServiceWorker';
 import router from './router';
 import store from './store';
 
-// 自定义组件部分
-import BaseNav from './components/BaseNav.vue';
-import BaseFooter from './components/BaseFooter.vue';
-
 // 自定义css样式
+import './lib/customBootstrap.scss';
 import './lib/public.css';
-
 
 // 在组件实例中Hook route方法
 Component.registerHooks([
@@ -46,6 +42,7 @@ Vue.use(Carousel);
 Vue.use(Col);
 Vue.use(Icon);
 Vue.use(Input);
+Vue.use(Menu);
 Vue.use(Modal);
 Vue.use(Row);
 Vue.use(Select);
@@ -67,6 +64,12 @@ Vue.prototype.$message = message;
 Vue.prototype.$success = Modal.success;
 Vue.prototype.$warning = Modal.warning;
 
+// 注册IconFont
+const IconFont = Icon.createFromIconfontCN({ scriptUrl: '//at.alicdn.com/t/font_1091332_2h77a5040ii.js' });
+
+// 全局注册IconFont
+Vue.component('icon-font', IconFont);
+
 // 注册service worker
 registerServiceWorker();
 
@@ -81,17 +84,6 @@ new Vue({
   store,
   render: h => h(App) // render函数创建了一个元素
 }).$mount('#app'); // 创建元素被挂载到id='app'元素上，挂载时会销毁被挂载元素实例
-
-// 挂载自定义nav与footer组件
-new Vue({
-  router,
-  render: h => h(BaseNav)
-}).$mount('nav');
-
-new Vue({
-  router,
-  render: h => h(BaseFooter)
-}).$mount('footer');
 
 /*
  * FIXME:注册页面跳转时页脚显示效果;
