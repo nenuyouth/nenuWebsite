@@ -3,10 +3,10 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-03-20 23:43:09
+ * @LastEditTime: 2019-03-21 12:19:17
  -->
 <template>
-  <div class="container mt-3 pb-3" v-wechat-title="docTitle">
+  <div class="container mt-3 pb-3">
     <a-row>
       <!-- markdown渲染主体 -->
       <a-col :lg="18" :xs="24">
@@ -57,7 +57,13 @@
       style="left:100%;"
       v-if="!noneCatalog&&aside.length!==0"
     >
-      <div @click="asideToggle" class="shadow" id="asideSlideBtn">目录</div>
+      <div @click="asideToggle" class="shadow asideSlideBtn">
+        <template v-if="asideExpand">
+          <div class="w-100" style="height:21px;"></div>
+          <a-icon style="position:absolute;top:10px;left:9.5px;" type="close"/>
+        </template>
+        <template v-else>目录</template>
+      </div>
       <aside class="shadow" id="aside">
         <div @click="scrollTop" class="asideH1 asideHeading">{{docTitle}}</div>
         <a-anchor
@@ -98,7 +104,6 @@ interface Aside {
 export default class BaseDoc extends Vue {
   // 文档标题
   private docTitle = '内部文档';
-
   // 侧边栏内容
   private aside: Aside[] = [];
 
@@ -118,10 +123,11 @@ export default class BaseDoc extends Vue {
   // 初始化目录
   private catalogGernarate() {
     const aside: Aside[] = [];
-    const title = document.getElementsByTagName('h1')[0].textContent;
+    const title = $('h1').text();
 
     // 设置网页标题
-    if (title) this.docTitle = title;
+    this.$emit('title', title);
+    this.docTitle = title;
 
     // 设置目录
     document.querySelectorAll('h2,h3,h4').forEach(domEle => {
@@ -248,7 +254,6 @@ export default class BaseDoc extends Vue {
           right: ''
         });
         $('#asideSlide').animate({ left: '100%' }, 500);
-        $('#asideSlideBtn').fadeIn(500);
         $('#asideScreenMask').fadeOut(500);
 
         // 否则展开侧边栏
@@ -263,7 +268,6 @@ export default class BaseDoc extends Vue {
         );
 
         $('#asideScreenMask').fadeIn(500);
-        $('#asideSlideBtn').fadeOut(500);
       }
 
     // aside状态变更
@@ -299,14 +303,18 @@ export default class BaseDoc extends Vue {
       if (this.asideExpand && this.windowWidth >= 992) {
         this.asideExpand = false;
         $('#asideSlide').css({ left: '100%', right: '' });
-        $('#asideSlideBtn').fadeIn(500);
         $('#asideScreenMask').fadeOut(500);
       }
     });
   }
 
-  // 组件激活时取消显示loading
+  // 组件激活
   private activated() {
+    const title = $('h1').text();
+
+    // 设置网页标题
+    if (title) this.$emit('title', title);
+    // 取消显示loading
     if (this.docContent) this.$store.commit('docLoading', false);
   }
 
@@ -359,7 +367,7 @@ export default class BaseDoc extends Vue {
   z-index: 1030;
 }
 /* 侧边栏按钮 */
-#asideSlideBtn {
+.asideSlideBtn {
   position: absolute;
   width: 36px;
   top: 20%;

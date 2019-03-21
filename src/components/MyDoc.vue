@@ -3,17 +3,31 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-03-21 00:05:58
+ * @LastEditTime: 2019-03-21 11:57:36
  -->
 <template>
   <!-- Container -->
-  <div class="w-100">
+  <div class="w-100" v-wechat-title="docTitle">
     <!-- 面包屑导航 -->
     <div class="container">
-      <a-breadcrumb>
+      <svg @click="$router.back()" style="width:16px;height:16px;" viewBox="0 0 1024 1024">
+        <path
+          d="M393.142857 120.685714l-347.428571 365.714286c-5.485714 7.314286-9.142857 16.457143-9.142857
+          25.6v7.314286c0 1.828571 1.828571 3.657143 1.828571 5.485714 1.828571 5.485714 5.485714 9.142857 9.142857
+          12.8l345.6 363.885714c14.628571 14.628571 36.571429 16.457143 51.2 1.828572 14.628571-14.628571
+          16.457143-36.571429 1.828572-51.2L157.257143 548.571429H950.857143c20.114286 0 36.571429-16.457143
+          36.571428-36.571429s-16.457143-36.571429-36.571428-36.571429H157.257143L448 171.885714c5.485714-7.314286
+          9.142857-16.457143 9.142857-25.6
+          0-9.142857-3.657143-20.114286-10.971428-27.428571-14.628571-12.8-38.4-12.8-53.028572 1.828571z"
+          fill="#00000073"
+          p-id="2525"
+        ></path>
+      </svg>&ensp;
+      <a-breadcrumb style="display:inline-block">
         <a-breadcrumb-item>
           <router-link :to="basepath" v-if="routes.length">
-            <a-icon type="home"/>
+            |&ensp;
+            <a-icon style="font-size:16px;" type="home"/>
           </router-link>
           <a-icon type="home" v-else/>
         </a-breadcrumb-item>
@@ -33,7 +47,7 @@
     <!-- <transition :name="transitionName" mode="in-out"> -->
     <keep-alive>
       <!-- 文档显示 -->
-      <BaseDoc :docContent="compiledMarkdown" :key="path"/>
+      <BaseDoc :docContent="compiledMarkdown" :key="path" @title="docTitle=$event"/>
     </keep-alive>
     <!-- </transition> -->
   </div>
@@ -46,12 +60,11 @@ import BaseDoc from '@/components/BaseDoc.vue';
 import PasswordModal from '@/components/PasswordModal.vue';
 import getCompiledMarkdown from '@/lib/getMarkdown';
 
-// 导入css样式
-import 'highlight.js/styles/default.css';
-import 'github-markdown-css/github-markdown.css';
-
 @Component({ components: { BaseDoc, PasswordModal } })
 export default class MyDoc extends Vue {
+  // 文档标题
+  private docTitle = '内部文档';
+
   // Markdown编译内容
   private compiledMarkdown = '';
 
