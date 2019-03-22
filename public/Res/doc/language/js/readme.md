@@ -4,7 +4,7 @@
 
 ## JavaScript入门教程
 
-- ### [JavaScript简介](js/jsIntroduction)
+- ### [JavaScript简介](js/intro)
 - ### [快速入门](js/accidence)
 - ### [函数](js/function)
 - ### [对象](js/object)

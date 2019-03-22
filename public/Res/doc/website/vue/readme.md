@@ -10,7 +10,7 @@ Vue.js是世界上主流的渐近式JavaScript框架。其生态比较繁荣，�
 
 - [Vue开发环境安装](vue/install)
 - [使用VScode进行Vue开发](vue/debug)
-- [Vue文件编写说明](vue/vue)
+- [Vue单文件组件说明](vue/vue)
 - [Vue Router讲解](vue/router)
 - [各组件使用说明](vue/component)
 - [Vue与小程序的异同](vue/compare)

@@ -14,24 +14,6 @@
       </a-menu-item>
       <base-menu :list="$store.state.menuList"></base-menu>
     </a-menu>
-    <!-- <a-menu :defaultSelectedKeys="['4']" mode="inline" theme="light">
-      <a-menu-item key="1">
-        <a-icon type="user"/>
-        <span class="nav-text">nav 1</span>
-      </a-menu-item>
-      <a-menu-item key="2">
-        <a-icon type="video-camera"/>
-        <span class="nav-text">nav 2</span>
-      </a-menu-item>
-      <a-menu-item key="3">
-        <a-icon type="upload"/>
-        <span class="nav-text">nav 3</span>
-      </a-menu-item>
-      <a-menu-item key="4">
-        <a-icon type="user"/>
-        <span class="nav-text">nav 4</span>
-      </a-menu-item>
-    </a-menu>-->
   </a-layout-sider>
 </template>
 <script lang='ts'>
@@ -40,29 +22,6 @@ import BaseMenu from '@/components/BaseMenu.vue';
 
 @Component({ components: { BaseMenu } })
 export default class Slide extends Vue {
-  // private menuList = [
-  //   {
-  //     key: '1',
-  //     title: 'Option 1'
-  //   },
-  //   {
-  //     key: '2',
-  //     title: 'Navigation 2',
-  //     children: [
-  //       {
-  //         key: '2.1',
-  //         title: 'Navigation 3',
-  //         children: [
-  //           {
-  //             key: '2.1.1',
-  //             title: 'Option 2.1.1'
-  //           }
-  //         ]
-  //       }
-  //     ]
-  //   }
-  // ];
-
   private onCollapse(collapsed: boolean, type: string) {
     console.log(collapsed, type);
   }

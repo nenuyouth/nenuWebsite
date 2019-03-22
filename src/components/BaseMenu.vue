@@ -3,9 +3,10 @@
     :defaultOpenKeys="['2']"
     :defaultSelectedKeys="['1']"
     :inlineCollapsed="collapsed"
+    @select="select"
     mode="inline"
     theme="light"
-    v-model="currentList"
+    v-model="active"
   >
     <template v-for="item in list">
       <a-menu-item :key="item.key" v-if="!item.children">
@@ -29,7 +30,7 @@ import { Route } from 'vue-router';
 @Component({ components: { SubMenu } })
 export default class BaseMenu extends Vue {
   // 当前被选中的菜单列表
-  private currentList = ['/'];
+  private active = ['/'];
 
   // 是否展开
   private collapsed = false;
@@ -37,9 +38,19 @@ export default class BaseMenu extends Vue {
   // 菜单列表
   @Prop(Array) private list!: MenuList[];
 
+  // 点击菜单时进行跳转
+  private select(e) {
+    this.$router.push(e.key);
+  }
+
+  // 挂载时激活对应menu项
+  private mounted() {
+    this.active = [this.$route.path];
+  }
+
   @Watch('$route')
   private onRouteChange(to: Route) {
-    this.currentList = [to.path];
+    this.active = [to.path];
   }
 }
 </script>
