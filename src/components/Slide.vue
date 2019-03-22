@@ -12,7 +12,7 @@
         <img alt="东北师范大学校学生会" class="icon mr-1" src="/img/icon/nenuyouth.png">
         校学生会
       </a-menu-item>
-      <base-menu :list="menuList"></base-menu>
+      <base-menu :list="$store.state.menuList"></base-menu>
     </a-menu>
     <!-- <a-menu :defaultSelectedKeys="['4']" mode="inline" theme="light">
       <a-menu-item key="1">
@@ -40,10 +40,6 @@ import BaseMenu from '@/components/BaseMenu.vue';
 
 @Component({ components: { BaseMenu } })
 export default class Slide extends Vue {
-  // 菜单列表
-  private get menuList() {
-    return this.$store.state.slide;
-  }
   // private menuList = [
   //   {
   //     key: '1',

@@ -1,0 +1,219 @@
+[
+  {
+    "key": "/doc",
+    "title": "主页",
+    "type": "home"
+  },
+  {
+    "key": "menu:/doc/wechat",
+    "title": "微信",
+    "type": "icon-wechat",
+    "children": [
+      {
+        "key": "/doc/wechat",
+        "title": "微信图文编辑",
+        "type": "icon-wechat"
+      },
+      {
+        "key": "/doc/wechat/backstage",
+        "title": "微信后台运营",
+        "type": "icon-backstage"
+      }
+    ]
+  },
+  {
+    "key": "menu:/doc/dev",
+    "title": "开发指南",
+    "type": "icon-kaifa1",
+    "children": [
+      {
+        "key": "/doc/dev",
+        "title": "开发指南",
+        "type": "bulb"
+      },
+      {
+        "key": "/doc/dev/debugInstruction",
+        "title": "什么是开发",
+        "type": "question"
+      }
+    ]
+  },
+  {
+    "key": "menu:/doc/language",
+    "title": "代码语言",
+    "type": "code",
+    "children": [
+      {
+        "key": "menu:/doc/language/js",
+        "title": "JS",
+        "type": "icon-jszhuanhuan",
+        "children": [
+          {
+            "key": "/doc/language/js",
+            "title": "JS指南"
+          },
+          {
+            "key": "/doc/language/js/intro",
+            "title": "JS介绍"
+          },
+          {
+            "key": "/doc/language/js/error",
+            "title": "JS错误"
+          },
+          {
+            "key": "/doc/language/js/accidence",
+            "title": "JS快速入门"
+          }
+        ]
+      },
+      {
+        "key": "/doc/language/typescript",
+        "title": "Typescript",
+        "icon": true,
+        "type": "icon-typescript"
+      }
+    ]
+  },
+  {
+    "key": "menu:/doc/miniProgram",
+    "title": "小程序",
+    "type": "icon-miniProgram",
+    "children": [
+      {
+        "key": "/doc/miniProgram",
+        "title": "小程序介绍",
+        "type": "bulb"
+      },
+      {
+        "key": "/doc/dev/corporationDebug",
+        "title": "社团提交资料说明",
+        "type": "info-circle"
+      },
+      {
+        "key": "/doc/dev/frameDescription",
+        "title": "小程序框架说明",
+        "type": "info-circle"
+      },
+      {
+        "key": "/doc/dev/tagList",
+        "title": "小程序参数表",
+        "type": "tags"
+      },
+      {
+        "key": "/doc/dev/setPage",
+        "title": "setPage JS库说明",
+        "type": "tags"
+      }
+    ]
+  },
+  {
+    "key": "/doc/software",
+    "title": "软件",
+    "icon": "icon-software",
+    "children": [
+      {
+        "key": "/doc/software/Apache",
+        "title": "Apache介绍",
+        "type": "icon-Apache"
+      },
+      {
+        "key": "menu:/doc/software/nodeJS",
+        "title": "nodeJS介绍",
+        "type": "icon-nodeJS",
+        "children": [
+          {
+            "key": "/doc/software/nodeJS",
+            "title": "NodeJS"
+          },
+          {
+            "key": "/doc/software/nodeJS/intro",
+            "title": "NodeJs简介"
+          },
+          {
+            "key": "/doc/software/nodeJS/install",
+            "title": "安装Node"
+          },
+          {
+            "key": "/doc/software/nodeJS/environment",
+            "title": "搭建Node环境"
+          },
+          {
+            "key": "/doc/software/nodeJS/program",
+            "title": "第一个Node程序"
+          },
+          {
+            "key": "/doc/software/nodeJS/module",
+            "title": "NodeJS模块说明"
+          }
+        ]
+      },
+      {
+        "key": "menu:/doc/software/vscode",
+        "title": "VS Code介绍",
+        "type": "icon-vscode",
+        "children": [
+          {
+            "key": "/doc/software/vscode",
+            "title": "VS Code"
+          },
+          {
+            "key": "/doc/software/vscodeSettings",
+            "title": "VSCode设置"
+          },
+          {
+            "key": "/doc/software/vscodeExtension",
+            "title": "VSCode扩展"
+          },
+          {
+            "key": "/doc/software/vscodeSimple",
+            "title": "VScode简单介绍"
+          }
+        ]
+      },
+      {
+        "key": "menu:/doc/software/git",
+        "title": "Git介绍",
+        "type": "icon-git",
+        "children": []
+      }
+    ]
+  },
+  {
+    "key": "/doc/website",
+    "title": "网页开发",
+    "children": [
+      {
+        "key": "/doc/website/css",
+        "title": "CSS介绍",
+        "type": "icon-Apache"
+      },
+      {
+        "key": "/doc/website/vue",
+        "title": "CSS介绍",
+        "type": "icon-Apache"
+      },
+      {
+        "key": "/doc/website/html",
+        "title": "HTML介绍",
+        "type": "html5",
+        "children": [
+          {
+            "key": "/doc/website/html",
+            "title": "HTML",
+            "type": "html5"
+          },
+          {
+            "key": "/doc/website/html/emmet",
+            "title": "Emmet用法",
+            "type": "icon-Apache"
+          }
+        ]
+      },
+      {
+        "key": "/doc/website/jQuery",
+        "title": "jQuery介绍",
+        "type": "icon-Apache"
+      }
+    ]
+  }
+]

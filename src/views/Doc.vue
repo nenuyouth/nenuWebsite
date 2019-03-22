@@ -9,37 +9,12 @@ import { MenuList } from '@/components/BaseSubMenu.vue';
 import { Route } from 'vue-router';
 import getCompiledMarkdown from '@/lib/getMarkdown';
 
+const DocMenuList = require('@/assets/docMenuList.json');
+
 @Component({ components: { MyDoc } })
 export default class Doc extends Vue {
   // 文档基础路径长度
   private baselength = 5;
-
-  // 侧边菜单列表
-  private menuList = [
-    {
-      key: '/doc',
-      title: '主页',
-      type: 'home'
-    },
-    {
-      key: 'menu:/wechat',
-      title: '微信',
-      type: 'heart',
-      children: [
-        {
-          key: '/wechat',
-          title: '图文编辑',
-          type: 'home'
-        },
-        {
-          key: '/wechat/backstage',
-          title: '微信后台',
-          icon: true,
-          type: 'icon-password'
-        }
-      ]
-    }
-  ];
 
   // 文档路径
   private get path() {
@@ -47,8 +22,8 @@ export default class Doc extends Vue {
   }
 
   private mounted() {
-    // TODO:写入菜单
-    this.$store.commit('menuList', this.menuList);
+    // 写入菜单
+    this.$store.commit('menuList', DocMenuList);
   }
 
   // 文档路径改变
