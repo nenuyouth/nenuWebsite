@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-03-21 12:27:25
+ * @LastEditTime: 2019-03-22 16:09:49
  -->
 <template>
   <div class="container mt-3 pb-3">
@@ -53,7 +53,7 @@
 
     <!-- md及以下屏幕的目录侧边栏 -->
     <!-- 屏幕蒙层 -->
-    <div @click="asideToggle" id="asideScreenMask" style="display:none;" />
+    <div @click="asideToggle" id="asideScreenMask" style="display:none;"/>
     <!-- 侧边目录 -->
     <div
       class="d-block d-lg-none"
@@ -322,7 +322,7 @@ export default class BaseDoc extends Vue {
   }
 
   @Watch('docContent')
-  private docContentUpdateHadnler() {
+  private onDocContentChange() {
     Vue.nextTick().then(() => {
       this.catalogGernarate();
       this.actionRegister();

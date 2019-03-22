@@ -3,19 +3,22 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-03-21 18:19:14
+ * @LastEditTime: 2019-03-22 19:40:07
  -->
 <template>
-  <!-- Container -->
+  <!-- 标题设置 -->
   <div class="w-100" v-wechat-title="docTitle">
     <!-- 面包屑导航 -->
-    <div class="container">
-      <icon-font @click="$router.back()" type="icon-back"/>
+    <div class="container mt-2">
+      <!-- 返回按钮 -->
+      <span class="backIcon">
+        <icon-font @click="$router.back()" type="icon-back"/>&ensp;back&ensp;
+      </span>|
       <a-breadcrumb style="display:inline-block">
         <a-breadcrumb-item>
           <router-link :to="basepath" v-if="routes.length">
-            |&ensp;
-            <a-icon style="font-size:16px;" type="home"/>
+            &ensp;
+            <a-icon style="font-size:16px;" type="home"/>&ensp;home
           </router-link>
           <a-icon type="home" v-else/>
         </a-breadcrumb-item>
@@ -105,13 +108,13 @@ export default class MyDoc extends Vue {
   }
 
   @Watch('path')
-  private pathUpdate(to: string, from: string) {
+  private onPathChange(to: string, from: string) {
     // 当路径改变时写入编译后的html
     this.compiledMarkdown = this.$store.state.compiledMarkdown[this.path];
   }
 
   @Watch('$route')
-  private onRouteUpdate(to: Route, from: Route) {
+  private onRouteChange(to: Route, from: Route) {
     // 定义比较函数
     const remove = (array: string[], value: string) => {
       for (let i = 0; i < array.length; i += 1)
@@ -136,6 +139,14 @@ export default class MyDoc extends Vue {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.backIcon {
+  cursor: pointer;
+}
+
+.backIcon:hover {
+  color: #3cba63;
 }
 
 #asideSlide {

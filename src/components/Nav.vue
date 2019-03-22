@@ -1,6 +1,6 @@
 <template>
   <a-menu mode="horizontal" v-model="active">
-    <a-menu-item key="logo" style="padding:0 0 0 20px;">
+    <a-menu-item disabled key="logo" style="padding:0 0 0 20px;">
       <router-link to="/">
         <img
           alt="东师青年"
@@ -46,16 +46,31 @@ import { Route } from 'vue-router';
 
 @Component
 export default class Nav extends Vue {
-  private active = ['home'];
+  private active = [''];
 
+  // 挂载时激活对应menu项
   private mounted() {
     this.active = [this.$route.path];
   }
 
-  // TODO:添加route监听，设置对应激活效果
+  // 监听路径改变，激活对应menu
   @Watch('$route')
-  private routeChange(to: Route) {
-    if (to.path) this.active = [to.path];
+  private onRouteChange(to: Route) {
+    this.active = [to.path];
   }
 }
 </script>
+<style scoped>
+@media (max-width: 992px) {
+  .ant-menu-horizontal {
+    line-height: 38.6px;
+  }
+}
+@media (min-width: 992px) {
+  .ant-menu-horizontal {
+    position: sticky;
+    top: 0px;
+    z-index: 1000;
+  }
+}
+</style>

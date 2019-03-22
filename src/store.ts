@@ -14,6 +14,11 @@ Vue.use(Vuex);// 使用Vuex
 interface DocList {
   [propName: string]: string;
 }
+interface MenuList {
+  key: string;
+  title: string;
+  children?: MenuList;
+}
 
 export interface State {
   Android: boolean;
@@ -23,6 +28,7 @@ export interface State {
   docLoading: boolean;
   internalLogin: boolean;
   internalPassword: string;
+  menuList: MenuList[];
 }
 
 const myState: State = {
@@ -32,7 +38,8 @@ const myState: State = {
   compiledMarkdown: {},
   docLoading: true,
   internalLogin: false,
-  internalPassword: ''
+  internalPassword: '',
+  menuList: []
 };
 
 export default new Vuex.Store({
@@ -41,20 +48,23 @@ export default new Vuex.Store({
     android(state: State) {
       state.Android = true;
     },
-    iOS(state: State) {
-      state.iOS = true;
-    },
     compiledMarkdown(state: State, compiledMarkdown: string[]) {
       Vue.set(state.compiledMarkdown, compiledMarkdown[0], compiledMarkdown[1]);
     },
     docLoading(state: State, docLoading: boolean) {
       state.docLoading = docLoading;
     },
+    iOS(state: State) {
+      state.iOS = true;
+    },
     internalLogin(state: State) {
       state.internalLogin = true;
     },
     internalPassword(state: State, password: string) {
       state.internalPassword = password;
+    },
+    menuList(state: State, menuContent: MenuList[]) {
+      state.menuList = menuContent;
     },
     version(state: State, version: string) {
       state.OSVersion = version;

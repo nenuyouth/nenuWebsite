@@ -3,31 +3,40 @@
  * @LastEditors: Mr.Hope
  * @Description: 主视图文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-03-22 00:36:55
+ * @LastEditTime: 2019-03-22 19:38:25
  -->
 <template>
-  <div id="app">
-    <my-nav></my-nav>
-    <transition :name="transitionName">
-      <keep-alive :max="10">
-        <router-view v-wechat-title="$route.meta.title"/>
-      </keep-alive>
-    </transition>
-    <my-footer></my-footer>
-  </div>
+  <a-layout id="app">
+    <a-layout>
+      <my-slide v-if="$store.state.menuList.length!=0"></my-slide>
+      <a-layout id="body">
+        <my-nav></my-nav>
+        <transition :name="transitionName">
+          <keep-alive :max="10">
+            <router-view v-wechat-title="$route.meta.title"/>
+          </keep-alive>
+        </transition>
+      </a-layout>
+    </a-layout>
+    <my-footer/>
+    <back-top/>
+  </a-layout>
 </template>
 <script lang='ts'>
 import { Component, Vue, Watch } from 'vue-property-decorator';
 import { Route } from 'vue-router';
+import BackTop from '@/components/BackTop.vue';
 import MyNav from '@/components/Nav.vue';
+import MySlide from '@/components/Slide.vue';
 import MyFooter from '@/components/Footer.vue';
 
-@Component({ components: { MyNav, MyFooter } })
+@Component({ components: { BackTop, MyNav, MyFooter, MySlide } })
 export default class App extends Vue {
+  // 动画名称
   private transitionName = 'slide-right';
 
   @Watch('$route')
-  private onRouteChanged(to: Route, from: Route) {
+  private onRouteChange(to: Route, from: Route) {
     const remove = (array: string[], value: string) => {
       for (let i = 0; i < array.length; i += 1)
         if (array[i] === value) {
@@ -46,13 +55,15 @@ export default class App extends Vue {
 }
 </script>
 <style>
+/* App.vue主布局 */
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+}
+
+/* 内容主布局 */
+#body {
+  background-color: #fff;
 }
 
 .slide-right-enter-active,
