@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-03-23 12:12:33
+ * @LastEditTime: 2019-03-23 13:57:07
  -->
 <template>
   <div class="container mt-3 pb-3">
@@ -13,10 +13,11 @@
         <!-- 加载状态 -->
         <a-spin :spinning="$store.state.docLoading">
           <template v-slot:indicator>
-            <a-icon
-              style="font-size:60px;position:absolute;top:calc(50% - 30px);left:calc(50% - 30px);"
+            <img alt="加载中" class="loadingIcon" src="/img/icon/logo.png">
+            <!-- <a-icon
+              style="font-size:80px;position:absolute;top:calc(50% - 40px);left:calc(50% - 40px);"
               type="loading"
-            />
+            />-->
           </template>
           <div class="markdown-body" v-html="docContent"/>
         </a-spin>
@@ -335,11 +336,64 @@ export default class BaseDoc extends Vue {
 </script>
 <style>
 /* 设置loadingicon样式 */
-.loadingCtn {
-  min-height: 200px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.ant-spin-spinning {
+  min-height: calc(100vh - 370px);
+}
+.loadingIcon {
+  width: 80px;
+  height: 80px;
+  margin: 0 !important;
+  top: calc(50% - 40px) !important;
+  left: calc(50% - 40px) !important;
+  -webkit-animation: loading 2s linear 0s none infinite normal;
+  animation: loading 2s linear 0s none infinite normal;
+}
+
+@keyframes loading {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  10% {
+    -webkit-transform: rotate(7.2deg);
+    transform: rotate(7.2deg);
+  }
+  20% {
+    -webkit-transform: rotate(28.8deg);
+    transform: rotate(28.8deg);
+  }
+  30% {
+    -webkit-transform: rotate(64.8deg);
+    transform: rotate(64.8deg);
+  }
+  40% {
+    -webkit-transform: rotate(115.2deg);
+    transform: rotate(115.2deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+  60% {
+    -webkit-transform: rotate(244.8deg);
+    transform: rotate(244.8deg);
+  }
+  70% {
+    -webkit-transform: rotate(295.2deg);
+    transform: rotate(295.2deg);
+  }
+  80% {
+    -webkit-transform: rotate(331.2deg);
+    transform: rotate(331.2deg);
+  }
+  90% {
+    -webkit-transform: rotate(352.8deg);
+    transform: rotate(352.8deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }
 /* markdown主容器class */
 .markdown-body {
