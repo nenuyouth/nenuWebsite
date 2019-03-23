@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-03-23 10:22:26
+ * @LastEditTime: 2019-03-23 11:31:21
  -->
 <template>
   <div class="container mt-3 pb-3">
@@ -12,11 +12,12 @@
       <a-col :lg="18" :xs="24">
         <!-- 加载状态 -->
         <a-spin :spinning="$store.state.docLoading">
-          <a-icon
-            slot="indicator"
-            style="font-size:60px;position:absolute;top:calc(50% - 30px);left:calc(50% - 30px);"
-            type="loading"
-          />
+          <template v-slot:indicator>
+            <a-icon
+              style="font-size:60px;position:absolute;top:calc(50% - 30px);left:calc(50% - 30px);"
+              type="loading"
+            />
+          </template>
           <div class="markdown-body" v-html="docContent"/>
         </a-spin>
       </a-col>
@@ -350,7 +351,7 @@ export default class BaseDoc extends Vue {
   height: 100%;
   top: 0;
   text-align: right;
-  z-index: 1040;
+  z-index: 5;
 }
 
 #asideSlide #aside {
@@ -367,7 +368,7 @@ export default class BaseDoc extends Vue {
   top: 0;
   left: 0;
   background-color: rgba(127, 127, 127, 0.15);
-  z-index: 1030;
+  z-index: 4;
 }
 /* 侧边栏按钮 */
 .asideSlideBtn {

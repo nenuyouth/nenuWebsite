@@ -3,11 +3,11 @@
  * @LastEditors: Mr.Hope
  * @Description: 主视图文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-03-22 19:38:25
+ * @LastEditTime: 2019-03-23 10:52:18
  -->
 <template>
   <a-layout id="app">
-    <a-layout>
+    <a-layout hasSider="true">
       <my-slide v-if="$store.state.menuList.length!=0"></my-slide>
       <a-layout id="body">
         <my-nav></my-nav>
@@ -64,7 +64,19 @@ export default class App extends Vue {
 /* 内容主布局 */
 #body {
   background-color: #fff;
+  /* height: 100vh; */
 }
+/* 侧边栏展开效果优化 */
+@media (max-width: 992px) {
+  #body {
+    width: 100vw;
+    flex: none;
+  }
+}
+
+/* #body::-webkit-scrollbar {
+  display: none;
+} */
 
 .slide-right-enter-active,
 .slide-right-leave-active,

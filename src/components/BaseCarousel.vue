@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 卡片组件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-03-20 00:32:06
+ * @LastEditTime: 2019-03-23 11:32:14
  -->
 <template>
   <a-carousel
@@ -14,12 +14,17 @@
     :speed="speed"
     :vertical="vertical"
   >
-    <div class="arrow" slot="prevArrow" style="left:10px;z-index:1;" v-if="!single&&arrowDisplay">
-      <a-icon type="vertical-right"/>
-    </div>
-    <div class="arrow" slot="nextArrow" style="right:10px;" v-if="!single&&arrowDisplay">
-      <a-icon type="vertical-left"/>
-    </div>
+    <template v-slot:prevArrow>
+      <div class="arrow" style="left:10px;z-index:1;" v-if="!single&&arrowDisplay">
+        <a-icon type="vertical-right"/>
+      </div>
+    </template>
+    <template v-slot:nextArrow>
+      <div class="arrow" style="right:10px;" v-if="!single&&arrowDisplay">
+        <a-icon type="vertical-left"/>
+      </div>
+    </template>
+
     <div :key="item.caption" @click="navigate(item.url)" class="carouselItem" v-for="item in list">
       <img :alt="item.alt" :src="item.src" class="img">
       <div :class="item.color" class="caption">

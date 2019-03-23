@@ -1,13 +1,15 @@
 <template functional>
   <a-sub-menu :key="props.menuInfo.key">
-    <span slot="title">
-      <template v-if="props.menuInfo.type">
-        <icon-font :type="props.menuInfo.type" v-if="props.menuInfo.type.slice(0,5)==='icon-'"/>
-        <a-icon :type="props.menuInfo.type" v-else/>
-      </template>
-      <span class="icon" v-else-if="props.menuInfo.icon"/>
-      <span>{{ props.menuInfo.title }}</span>
-    </span>
+    <template v-slot:title>
+      <span>
+        <template v-if="props.menuInfo.type">
+          <icon-font :type="props.menuInfo.type" v-if="props.menuInfo.type.slice(0,5)==='icon-'"/>
+          <a-icon :type="props.menuInfo.type" v-else/>
+        </template>
+        <span class="icon" v-else-if="props.menuInfo.icon"/>
+        <span>{{ props.menuInfo.title }}</span>
+      </span>
+    </template>
     <template v-for="item in props.menuInfo.children">
       <a-menu-item :key="item.key" v-if="!item.children">
         <template v-if="item.type">

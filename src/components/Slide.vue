@@ -7,13 +7,11 @@
     id="slide"
     theme="light"
   >
-    <a-menu mode="inline" theme="light">
-      <a-menu-item disabled key="title">
-        <img alt="东北师范大学校学生会" class="icon mr-1" src="/img/icon/nenuyouth.png">
-        校学生会
-      </a-menu-item>
-      <base-menu :list="$store.state.menuList"></base-menu>
-    </a-menu>
+    <div class="asideLogo">
+      <img alt="东北师范大学校学生会" class="icon mr-1" src="/img/icon/nenuyouth.png">
+      校学生会
+    </div>
+    <base-menu :list="$store.state.menuList"></base-menu>
   </a-layout-sider>
 </template>
 <script lang='ts'>
@@ -32,9 +30,10 @@ export default class Slide extends Vue {
 }
 </script>
 <style scoped>
-.slideIcon {
-  width: 18px;
-  height: 18px;
+.asideLogo {
+  margin: 0 16px 0 24px;
+  padding: 4px 0 8px 0;
+  line-height: 40px;
 }
 .ant-layout-sider-zero-width-trigger {
   z-index: 100;

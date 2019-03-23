@@ -34,7 +34,7 @@ export default class BackTop extends Vue {
   position: fixed;
   right: 20px;
   bottom: 60px;
-  z-index: 1030;
+  z-index: 3;
   width: 36px;
   height: 36px;
 }

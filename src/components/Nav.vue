@@ -22,9 +22,11 @@
       </router-link>
     </a-menu-item>
     <a-sub-menu>
-      <span class="submenu-title-wrapper" slot="title">
-        <a-icon type="camera"/>东师风貌
-      </span>
+      <template v-slot:title>
+        <span class="submenu-title-wrapper">
+          <a-icon type="camera"/>东师风貌
+        </span>
+      </template>
       <a-menu-item key="scence:1">本部校区</a-menu-item>
       <a-menu-item key="scence:2">净月校区</a-menu-item>
     </a-sub-menu>
@@ -73,7 +75,7 @@ export default class Nav extends Vue {
 }
 @media (min-width: 992px) {
   .ant-menu-horizontal {
-    position: sticky;
+    position: fixed;
     top: 0px;
     z-index: 1000;
   }

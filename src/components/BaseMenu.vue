@@ -3,9 +3,9 @@
     :defaultOpenKeys="['2']"
     :defaultSelectedKeys="['1']"
     :inlineCollapsed="collapsed"
+    :theme="theme"
     @select="select"
     mode="inline"
-    theme="light"
     v-model="active"
   >
     <template v-for="item in list">
@@ -27,6 +27,14 @@ import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import SubMenu, { MenuList } from '@/components/BaseSubMenu.vue';
 import { Route } from 'vue-router';
 
+interface SelectEvent {
+  domEvent: MouseEvent;
+  item: Vue;
+  key: string;
+  keyPath: string[];
+  selectedKeys: string[];
+}
+
 @Component({ components: { SubMenu } })
 export default class BaseMenu extends Vue {
   // 当前被选中的菜单列表
@@ -38,8 +46,12 @@ export default class BaseMenu extends Vue {
   // 菜单列表
   @Prop(Array) private list!: MenuList[];
 
+  private get theme() {
+    return this.$store.state.nightmode ? 'dark' : 'light';
+  }
+
   // 点击菜单时进行跳转
-  private select(e) {
+  private select(e: SelectEvent) {
     this.$router.push(e.key);
   }
 

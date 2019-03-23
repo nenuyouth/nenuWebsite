@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 密码验证
  * @Date: 2019-03-16 13:44:32
- * @LastEditTime: 2019-03-21 17:59:44
+ * @LastEditTime: 2019-03-23 11:29:09
  -->
 <template>
   <!-- 密码输入框 -->
@@ -21,9 +21,9 @@
         <p>用户名：</p>
         <a-input :autocomplete="userNameKey" placeholder="请输入用户名" type="text" v-model="userName">
           <!-- 用户名图标 -->
-          <div slot="prefix">
+          <template v-slot:prefix>
             <icon-font type="icon-user"/>
-          </div>
+          </template>
         </a-input>
       </template>
 
@@ -36,25 +36,23 @@
         v-model="password"
       >
         <!-- 密码图标 -->
-        <icon-font slot="prefix" type="icon-password"/>
+        <template v-slot:prefix>
+          <icon-font type="icon-password"/>
+        </template>
 
         <!-- 控制密码显隐图标 -->
-        <div @click="passwordDisplay=!passwordDisplay" class="togglePassword" slot="suffix">
-          <!-- <a-icon type="eye" v-if="passwordDisplay"/>
-          <a-icon type="eye-invisible" v-else/>-->
-          <icon-font type="icon-eye" v-if="passwordDisplay"/>
-          <icon-font type="icon-eyeClose" v-else/>
-        </div>
+        <template v-slot:suffix>
+          <div @click="passwordDisplay=!passwordDisplay" class="togglePassword">
+            <icon-font type="icon-eye" v-if="passwordDisplay"/>
+            <icon-font type="icon-eyeClose" v-else/>
+          </div>
+        </template>
       </a-input>
     </form>
     <!-- 自定义对话框按钮 -->
-    <a-button
-      :loading="validating"
-      @click="validatePassword"
-      key="submit"
-      slot="footer"
-      type="primary"
-    >确定</a-button>
+    <template v-slot:footer>
+      <a-button :loading="validating" @click="validatePassword" key="submit" type="primary">确定</a-button>
+    </template>
   </a-modal>
 </template>
 <script lang="ts">
