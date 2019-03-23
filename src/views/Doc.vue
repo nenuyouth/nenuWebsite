@@ -9,8 +9,6 @@ import { MenuList } from '@/components/BaseSubMenu.vue';
 import { Route } from 'vue-router';
 import getCompiledMarkdown from '@/lib/getMarkdown';
 
-const DocMenuList = require('@/assets/docMenuList.json');
-
 @Component({ components: { MyDoc } })
 export default class Doc extends Vue {
   // 文档基础路径长度
@@ -23,7 +21,7 @@ export default class Doc extends Vue {
 
   private mounted() {
     // 写入菜单
-    this.$store.commit('menuList', DocMenuList);
+    this.$store.commit('menuList', require('@/assets/docMenuList.json'));
   }
 
   // 文档路径改变

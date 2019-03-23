@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-03-22 16:09:49
+ * @LastEditTime: 2019-03-23 10:22:26
  -->
 <template>
   <div class="container mt-3 pb-3">
@@ -347,8 +347,8 @@ export default class BaseDoc extends Vue {
 
 #asideSlide {
   position: fixed;
-  height: calc(100% - 2.5rem);
-  top: 2.5rem;
+  height: 100%;
+  top: 0;
   text-align: right;
   z-index: 1040;
 }
@@ -363,8 +363,8 @@ export default class BaseDoc extends Vue {
 #asideScreenMask {
   position: fixed;
   width: 100%;
-  height: calc(100% - 2.5rem);
-  top: 2.5rem;
+  height: 100%;
+  top: 0;
   left: 0;
   background-color: rgba(127, 127, 127, 0.15);
   z-index: 1030;

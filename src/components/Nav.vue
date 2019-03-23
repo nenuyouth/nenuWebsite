@@ -1,5 +1,5 @@
 <template>
-  <a-menu mode="horizontal" v-model="active">
+  <a-menu :theme="theme" mode="horizontal" v-model="active">
     <a-menu-item disabled key="logo" style="padding:0 0 0 20px;">
       <router-link to="/">
         <img
@@ -41,12 +41,17 @@
   </a-menu>
 </template>
 <script lang="ts">
-import { Component, Vue, Watch } from 'vue-property-decorator';
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { Route } from 'vue-router';
 
 @Component
 export default class Nav extends Vue {
   private active = [''];
+
+  // 主题计算
+  private get theme() {
+    return this.$store.state.nightmode ? 'dark' : 'light';
+  }
 
   // 挂载时激活对应menu项
   private mounted() {

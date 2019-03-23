@@ -29,6 +29,7 @@ export interface State {
   internalLogin: boolean;
   internalPassword: string;
   menuList: MenuList[];
+  nightmode: boolean;
 }
 
 const myState: State = {
@@ -39,7 +40,8 @@ const myState: State = {
   docLoading: true,
   internalLogin: false,
   internalPassword: '',
-  menuList: []
+  menuList: [],
+  nightmode: false
 };
 
 export default new Vuex.Store({
@@ -68,8 +70,10 @@ export default new Vuex.Store({
     },
     version(state: State, version: string) {
       state.OSVersion = version;
+    },
+    nightmode(state: State) {
+      state.nightmode = !state.nightmode;
     }
-
   },
   actions: {}
 });
