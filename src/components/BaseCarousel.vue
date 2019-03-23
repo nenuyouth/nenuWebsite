@@ -1,9 +1,9 @@
 <!--
  * @Author: Mr.Hope
  * @LastEditors: Mr.Hope
- * @Description: 卡片组件
+ * @Description: 走马灯组件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-03-23 11:32:14
+ * @LastEditTime: 2019-03-23 11:46:53
  -->
 <template>
   <a-carousel

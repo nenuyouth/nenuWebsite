@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 网页页脚
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-03-22 19:32:21
+ * @LastEditTime: 2019-03-23 12:43:26
  -->
 <template>
   <a-layout-footer>
@@ -73,9 +73,10 @@ export default class Footer extends Vue {}
 @media (min-width: 992px) {
   .ant-layout-footer {
     position: fixed;
+    left: 200px;
     z-index: -1;
     bottom: 0;
-    width: 100%;
+    width: calc(100vw - 200px);
   }
 }
 .footerLogo {

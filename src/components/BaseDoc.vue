@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-03-23 11:31:21
+ * @LastEditTime: 2019-03-23 12:12:33
  -->
 <template>
   <div class="container mt-3 pb-3">
@@ -62,7 +62,7 @@
       style="left:100%;"
       v-if="!noneCatalog&&aside.length!==0"
     >
-      <div @click="asideToggle" class="shadow asideSlideBtn">
+      <div @click="asideToggle" class="asideSlideBtn">
         <template v-if="asideExpand">
           <div class="w-100" style="height:21px;"/>
           <a-icon style="position:absolute;top:10px;left:9.5px;" type="close"/>
@@ -384,6 +384,8 @@ export default class BaseDoc extends Vue {
   background-color: #ffffff;
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
+  -webkit-box-shadow: -2px 0 5px rgba(0, 0, 0, 0.15);
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.15);
 }
 
 /* 目录浮块 */
@@ -439,7 +441,7 @@ export default class BaseDoc extends Vue {
   text-align: center;
   font-size: 17px;
   font-weight: 600;
-  margin: 0 auto 10px auto;
+  margin: 0 auto;
   padding: 15px 10px;
   border-bottom: 0.5px solid #cacaca;
 }
@@ -447,8 +449,7 @@ export default class BaseDoc extends Vue {
 .asideH2 {
   font-size: 16.5px;
   font-weight: 700;
-  padding: 0 14px;
-  margin-bottom: 8px;
+  padding: 2px 14px 4px 14px;
   line-height: 1.8;
   color: rgb(44, 62, 80);
 }
@@ -456,6 +457,9 @@ export default class BaseDoc extends Vue {
 .asideH3 {
   font-size: 15px;
   padding: 6px 16px 6px 22px;
+}
+.asideH2 + .asideH3 {
+  padding-top: 10px;
 }
 
 .asideH4 {

@@ -3,23 +3,23 @@
  * @LastEditors: Mr.Hope
  * @Description: 主视图文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-03-23 10:52:18
+ * @LastEditTime: 2019-03-23 12:47:13
  -->
 <template>
-  <a-layout id="app">
-    <a-layout hasSider="true">
-      <my-slide v-if="$store.state.menuList.length!=0"></my-slide>
-      <a-layout id="body">
+  <a-layout hasSider="true" id="app">
+    <my-slide v-if="$store.state.menuList.length!=0"></my-slide>
+    <a-layout>
+      <div id="body">
         <my-nav></my-nav>
         <transition :name="transitionName">
           <keep-alive :max="10">
             <router-view v-wechat-title="$route.meta.title"/>
           </keep-alive>
         </transition>
-      </a-layout>
+        <back-top/>
+        <my-footer/>
+      </div>
     </a-layout>
-    <my-footer/>
-    <back-top/>
   </a-layout>
 </template>
 <script lang='ts'>
