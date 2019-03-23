@@ -3,22 +3,20 @@
  * @LastEditors: Mr.Hope
  * @Description: 主视图文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-03-23 12:47:13
+ * @LastEditTime: 2019-03-23 18:16:06
  -->
 <template>
   <a-layout hasSider="true" id="app">
-    <my-slide v-if="$store.state.menuList.length!=0"></my-slide>
-    <a-layout>
-      <div id="body">
-        <my-nav></my-nav>
-        <transition :name="transitionName">
-          <keep-alive :max="10">
-            <router-view v-wechat-title="$route.meta.title"/>
-          </keep-alive>
-        </transition>
-        <back-top/>
-        <my-footer/>
-      </div>
+    <my-slide v-if="$store.state.menuList.length"></my-slide>
+    <a-layout id="body">
+      <my-nav></my-nav>
+      <transition :name="transitionName">
+        <keep-alive :max="10">
+          <router-view v-wechat-title="$route.meta.title"/>
+        </keep-alive>
+      </transition>
+      <back-top/>
+      <my-footer/>
     </a-layout>
   </a-layout>
 </template>
@@ -64,7 +62,6 @@ export default class App extends Vue {
 /* 内容主布局 */
 #body {
   background-color: #fff;
-  /* height: 100vh; */
 }
 /* 侧边栏展开效果优化 */
 @media (max-width: 992px) {

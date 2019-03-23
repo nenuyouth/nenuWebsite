@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 网页页脚
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-03-23 12:43:26
+ * @LastEditTime: 2019-03-23 18:20:52
  -->
 <template>
   <a-layout-footer>
@@ -63,7 +63,17 @@
 import { Component, Vue, Watch } from 'vue-property-decorator';
 
 @Component
-export default class Footer extends Vue {}
+export default class Footer extends Vue {
+  private get slide() {
+    return this.$store.state.menuList.length;
+  }
+
+  @Watch('slide')
+  private onSlideUpdate(slide: boolean) {
+    if (slide) $('.ant-layout-footer').addClass('slide');
+    else $('.ant-layout-footer').removeClass('slide');
+  }
+}
 </script>
 <style scoped>
 .ant-layout-footer {
@@ -73,12 +83,17 @@ export default class Footer extends Vue {}
 @media (min-width: 992px) {
   .ant-layout-footer {
     position: fixed;
-    left: 200px;
-    z-index: -1;
+    width: 100%;
+    left: 0;
     bottom: 0;
+    z-index: -1;
+  }
+  .ant-layout-footer.slide {
     width: calc(100vw - 200px);
+    left: 200px;
   }
 }
+
 .footerLogo {
   width: 50px;
   height: 50px;

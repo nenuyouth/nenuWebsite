@@ -19,9 +19,13 @@ export default class Doc extends Vue {
     return this.$route.path.slice(this.baselength) || 'readme';
   }
 
-  private mounted() {
+  private activated() {
     // 写入菜单
     this.$store.commit('menuList', require('@/assets/docMenuList.json'));
+  }
+  private deactivated() {
+    // 取消菜单
+    this.$store.commit('menuList', []);
   }
 
   // 文档路径改变
@@ -43,10 +47,6 @@ export default class Doc extends Vue {
 
     // 调用Hook，结束函数
     next(navigate);
-  }
-
-  private beforeDestroy() {
-    this.$store.commit('menuList', []);
   }
 }
 </script>

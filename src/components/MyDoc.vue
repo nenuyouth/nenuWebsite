@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-03-23 11:28:32
+ * @LastEditTime: 2019-03-23 17:53:20
  -->
 <template>
   <!-- 标题设置 -->
@@ -11,8 +11,8 @@
     <!-- 面包屑导航 -->
     <div class="container mt-2">
       <!-- 返回按钮 -->
-      <span class="backIcon">
-        <icon-font @click="$router.back()" type="icon-back"/>&ensp;back&ensp;
+      <span @click="$router.back()" class="backIcon">
+        <icon-font type="icon-back"/>&ensp;back&ensp;
       </span>|
       <a-breadcrumb style="display:inline-block">
         <a-breadcrumb-item>
