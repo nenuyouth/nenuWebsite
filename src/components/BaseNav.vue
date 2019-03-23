@@ -65,8 +65,6 @@ export default class BaseNav extends Vue {
   private navBtnHandler() {
     this.active = !this.active;
   }
-
-  // TODO:添加route监听，设置文字激活效果
 }
 </script>
 <style scoped>

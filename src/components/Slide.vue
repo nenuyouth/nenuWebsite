@@ -1,13 +1,5 @@
 <template>
-  <a-layout-sider
-    @breakpoint="onBreakpoint"
-    @collapse="onCollapse"
-    breakpoint="lg"
-    collapsedWidth="0"
-    id="slide"
-    theme="light"
-    v-model="collapse"
-  >
+  <a-layout-sider :theme="theme" breakpoint="lg" collapsedWidth="0" id="slide" v-model="collapse">
     <span slot="trigger">
       <a-icon type="bars" v-if="collapse"/>
       <a-icon type="close" v-else/>
@@ -28,12 +20,13 @@ export default class Slide extends Vue {
   // 菜单收起状态
   private collapse = false;
 
-  private onCollapse(collapsed: boolean, type: string) {
-    console.log(collapsed, type);
+  private get theme() {
+    return this.$store.state.nightmode ? 'dark' : 'light';
   }
 
-  private onBreakpoint(broken: boolean) {
-    console.log(broken);
+  @Watch('collapse')
+  private onCollapseChange(to: boolean) {
+    $('.ant-layout-sider-children').css({ width: to ? '0px' : '' });
   }
 }
 </script>
@@ -78,4 +71,3 @@ export default class Slide extends Vue {
 }
 /* } */
 </style>
-
