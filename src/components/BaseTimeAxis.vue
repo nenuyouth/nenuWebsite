@@ -11,7 +11,7 @@
       <div class="timeAxisCtn" v-else>
         <h3 :style="item.myStyle" class="timeAxisTitle">{{ item.title }}</h3>
         <div class="inner-content">
-          <div class="timeline-icon" v-html="item.icon" v-if="item.icon"></div>
+          <div class="timeline-icon" v-html="item.icon" v-if="item.icon"/>
           <p class="description" v-html="list[index]"></p>
         </div>
       </div>

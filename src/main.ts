@@ -3,13 +3,15 @@
  * @LastEditors: Mr.Hope
  * @Description: 主脚本文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-03-23 00:35:26
+ * @LastEditTime: 2019-03-24 00:35:28
  */
 
 // 引入Ant Design
 import {
-  Anchor, Breadcrumb, Button, Carousel, Col, Icon, Input, Layout, Menu, Modal, Row, Select, Skeleton, Spin, message
+  Anchor, Breadcrumb, Button, Carousel, Col, Icon, Input,
+  Layout, Menu, Modal, Row, Select, Skeleton, Spin, Timeline, message
 } from 'ant-design-vue';
+import { Route } from 'vue-router';
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import App from './App.vue';
@@ -49,6 +51,7 @@ Vue.use(Row);
 Vue.use(Select);
 Vue.use(Skeleton);
 Vue.use(Spin);
+Vue.use(Timeline);
 
 // 配置message
 message.config({
@@ -80,6 +83,18 @@ getOS(store);
 // 阻止 vue 在启动时生成生产提示。
 Vue.config.productionTip = false;
 
+// 在导航确认后立即更新path值
+router.afterEach((to: Route) => {
+  store.commit('path', to.path);
+});
+
+// 获取屏幕状态
+store.commit('screenWidth', $(window).width() || document.documentElement.clientWidth);
+$(window).on('resize', () => {
+  store.commit('screenWidth', $(window).width() || document.documentElement.clientWidth);
+});
+
+// 声明Vue实例
 new Vue({
   router,
   store,

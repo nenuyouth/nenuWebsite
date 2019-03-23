@@ -300,8 +300,9 @@
       true,
       "LF"
     ],
+    // 部分字符串过长，故关闭
     "max-line-length": [
-      true,
+      false,
       120
     ],
     "newline-before-return": true,

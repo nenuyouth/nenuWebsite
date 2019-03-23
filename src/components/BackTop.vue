@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 返回顶部按钮
  * @Date: 2019-03-22 19:30:08
- * @LastEditTime: 2019-03-23 18:28:11
+ * @LastEditTime: 2019-03-23 22:02:56
  -->
 <template>
   <div @click="scrollTop" class="scrollTop" style="display:none">
@@ -11,7 +11,7 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Vue, Watch } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator';
 
 @Component
 export default class BackTop extends Vue {

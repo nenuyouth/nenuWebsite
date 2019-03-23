@@ -23,7 +23,7 @@
 </template>
 
 <script lang='ts'>
-import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
+import { Component, Prop, Vue } from 'vue-property-decorator';
 import SubMenu, { MenuList } from '@/components/BaseSubMenu.vue';
 import { Route } from 'vue-router';
 
@@ -37,15 +37,18 @@ interface SelectEvent {
 
 @Component({ components: { SubMenu } })
 export default class BaseMenu extends Vue {
-  // 当前被选中的菜单列表
-  private active = ['/'];
-
   // 是否展开
   private collapsed = false;
 
   // 菜单列表
   @Prop(Array) private list!: MenuList[];
 
+  // 当前被选中的菜单列表
+  private get active() {
+    return [this.$store.state.path];
+  }
+
+  // 主题选择
   private get theme() {
     return this.$store.state.nightmode ? 'dark' : 'light';
   }
@@ -53,16 +56,6 @@ export default class BaseMenu extends Vue {
   // 点击菜单时进行跳转
   private select(e: SelectEvent) {
     this.$router.push(e.key);
-  }
-
-  // 挂载时激活对应menu项
-  private mounted() {
-    this.active = [this.$route.path];
-  }
-
-  @Watch('$route')
-  private onRouteChange(to: Route) {
-    this.active = [to.path];
   }
 }
 </script>

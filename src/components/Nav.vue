@@ -48,22 +48,14 @@ import { Route } from 'vue-router';
 
 @Component
 export default class Nav extends Vue {
-  private active = [''];
-
-  // 主题计算
+  // 获得主题
   private get theme() {
     return this.$store.state.nightmode ? 'dark' : 'light';
   }
 
-  // 挂载时激活对应menu项
-  private mounted() {
-    this.active = [this.$route.path];
-  }
-
-  // 监听路径改变，激活对应menu
-  @Watch('$route')
-  private onRouteChange(to: Route) {
-    this.active = [to.path];
+  // 激活对应menu项
+  private get active() {
+    return [this.$store.state.path];
   }
 }
 </script>

@@ -8,41 +8,9 @@
 
 import Vue from 'vue';
 import Vuex from 'vuex';
+import myState, { MenuList, State } from '@/store/state';
 
 Vue.use(Vuex);// 使用Vuex
-
-interface DocList {
-  [propName: string]: string;
-}
-interface MenuList {
-  key: string;
-  title: string;
-  children?: MenuList;
-}
-
-export interface State {
-  Android: boolean;
-  iOS: boolean;
-  OSVersion: string;
-  compiledMarkdown: DocList;
-  docLoading: boolean;
-  internalLogin: boolean;
-  internalPassword: string;
-  menuList: MenuList[];
-  nightmode: boolean;
-}
-
-const myState: State = {
-  Android: false,
-  iOS: false,
-  OSVersion: '',
-  compiledMarkdown: {},
-  docLoading: true,
-  internalLogin: false,
-  internalPassword: '',
-  menuList: [],
-  nightmode: false
-};
 
 export default new Vuex.Store({
   state: myState,
@@ -73,6 +41,25 @@ export default new Vuex.Store({
     },
     nightmode(state: State) {
       state.nightmode = !state.nightmode;
+    },
+    path(state: State, path: string) {
+      state.path = path;
+    },
+    screenWidth(state: State, width: number) {
+      let status;
+      if (width < 576 && state.screenStatus !== 'xs') status = 'xs';
+      else if (width < 768 && state.screenStatus !== 'sm') status = 'sm';
+      else if (width < 992 && state.screenStatus !== 'md') status = 'md';
+      else if (width < 1200 && state.screenStatus !== 'lg') status = 'lg';
+      else if (width < 1600 && state.screenStatus !== 'xl') status = 'xl';
+      else if (state.screenStatus !== 'xxl') status = 'xxl';
+      state.screenWidth = width;
+
+      if (status) {
+        Vue.set(state.screenDesc, state.screenStatus, false);
+        Vue.set(state.screenDesc, status, true);
+        state.screenStatus = status;
+      }
     }
   },
   actions: {}
