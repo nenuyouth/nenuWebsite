@@ -6,7 +6,7 @@
     </span>
     <div class="asideLogo" v-if="!collapse">
       <img alt="东北师范大学校学生会" class="icon mr-1" src="/img/icon/nenuyouth.png">
-      校学生会
+      东师青年
     </div>
     <base-menu :list="$store.state.menuList"></base-menu>
   </a-layout-sider>

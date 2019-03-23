@@ -3,13 +3,11 @@
  * @LastEditors: Mr.Hope
  * @Description: 返回顶部按钮
  * @Date: 2019-03-22 19:30:08
- * @LastEditTime: 2019-03-23 11:46:28
+ * @LastEditTime: 2019-03-23 18:28:11
  -->
 <template>
   <div @click="scrollTop" class="scrollTop" style="display:none">
-    <div class="backTop">
-      <icon-font style="font-size:36px;" type="icon-backTop"/>
-    </div>
+    <icon-font style="font-size:36px;" type="icon-backTop"/>
   </div>
 </template>
 <script lang="ts">
@@ -32,11 +30,6 @@ export default class BackTop extends Vue {
 }
 </script>
 <style scoped>
-.backTop {
-  background-color: #fff;
-  border-radius: 50%;
-}
-
 .scrollTop {
   position: fixed;
   right: 20px;
@@ -44,5 +37,7 @@ export default class BackTop extends Vue {
   z-index: 3;
   width: 36px;
   height: 36px;
+  background-color: #fff;
+  border-radius: 50%;
 }
 </style>

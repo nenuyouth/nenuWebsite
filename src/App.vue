@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主视图文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-03-23 18:16:06
+ * @LastEditTime: 2019-03-23 18:23:42
  -->
 <template>
   <a-layout hasSider="true" id="app">
@@ -70,7 +70,11 @@ export default class App extends Vue {
     flex: none;
   }
 }
-
+@media (min-width: 992px) {
+  #body {
+    padding-top: 48px;
+  }
+}
 /* #body::-webkit-scrollbar {
   display: none;
 } */
