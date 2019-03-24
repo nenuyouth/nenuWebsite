@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主脚本文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-03-24 00:35:28
+ * @LastEditTime: 2019-03-24 09:52:22
  */
 
 // 引入Ant Design
@@ -30,11 +30,6 @@ Component.registerHooks([
   'beforeRouteLeave',
   'beforeRouteUpdate'
 ]);
-
-/*
- * 引入font-awesome
- * import "font-awesome/css/font-awesome.css";
- */
 
 // 使用ant-design
 Vue.use(Anchor);

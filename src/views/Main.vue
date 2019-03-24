@@ -1,5 +1,12 @@
+<!--
+ * @Author: Mr.Hope
+ * @LastEditors: Mr.Hope
+ * @Description: 主页
+ * @Date: 2019-02-27 00:00:08
+ * @LastEditTime: 2019-03-24 12:24:39
+-->
 <template>
-  <div style="max-width:100%;">
+  <div class="container">
     <div class="jumbotron text-left">
       <h1>青春遇见梦想</h1>
       <h1>&nbsp;&nbsp;而我刚好在场</h1>
@@ -10,41 +17,37 @@
         <a class="btn btn-primary btn-lg" href="#" role="button">了解校学生会</a>
       </p>
     </div>
-    <div class="container">
-      <base-carousel v-bind="carouselData"></base-carousel>
-    </div>
-    <div class="container">
-      <a-row>
-        <a-col :xs="24">
-          <h2 class="px-3 pt-3">东师指南</h2>
-          <hr>
-          <a-row>
-            <a-col
-              :key="item[1]"
-              :lg="2"
-              :md="4"
-              :xs="6"
-              class="guideListButton"
-              v-for="item in guidelist"
-            >
-              <router-link :to="`/guide/${item[1]}`">
-                <div>
-                  <img :src="require(`@/icon/guide/${item[1]}.svg`)" class="guideIcon px-2 py-1">
-                  <div class="guideButtonDesc">{{ item[0] }}</div>
-                </div>
-              </router-link>
-            </a-col>
-          </a-row>
-        </a-col>
-        <a-col :xs="24">
-          <h2 class="px-3 pt-3">东师校历</h2>
-          <hr>
-          <div style="max-height:600px;overflow-y: auto;">
-            <base-time-axis :time-list="timeList"></base-time-axis>
-          </div>
-        </a-col>
-      </a-row>
-    </div>
+    <base-carousel v-bind="carouselData"></base-carousel>
+    <a-row>
+      <a-col :xs="24">
+        <h2 class="px-3 pt-3">东师指南</h2>
+        <hr>
+        <a-row>
+          <a-col
+            :key="item[1]"
+            :lg="2"
+            :md="4"
+            :xs="6"
+            class="guideListButton"
+            v-for="item in guidelist"
+          >
+            <router-link :to="`/guide/${item[1]}`">
+              <div>
+                <img :src="require(`@/icon/guide/${item[1]}.svg`)" class="guideIcon px-2 py-1">
+                <div class="guideButtonDesc">{{ item[0] }}</div>
+              </div>
+            </router-link>
+          </a-col>
+        </a-row>
+      </a-col>
+      <a-col :xs="24">
+        <h2 class="px-3 pt-3">东师校历</h2>
+        <hr>
+        <div style="max-height:600px;overflow-y: auto;">
+          <base-time-axis :time-list="timeList"></base-time-axis>
+        </div>
+      </a-col>
+    </a-row>
   </div>
 </template>
 

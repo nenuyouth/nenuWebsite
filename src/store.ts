@@ -47,6 +47,7 @@ export default new Vuex.Store({
     },
     screenWidth(state: State, width: number) {
       let status;
+
       if (width < 576 && state.screenStatus !== 'xs') status = 'xs';
       else if (width < 768 && state.screenStatus !== 'sm') status = 'sm';
       else if (width < 992 && state.screenStatus !== 'md') status = 'md';
