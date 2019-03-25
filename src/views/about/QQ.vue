@@ -14,10 +14,10 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue } from 'vue-property-decorator';
 
 @Component
-export default class About extends Vue {}
+export default class QQ extends Vue {}
 </script>
 <style>
 .guideListButton {

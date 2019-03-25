@@ -7,7 +7,7 @@
 请先安装Node.js并将npm与node添加至path。
 
 - [安装Node.js](/doc/software/nodeJS/install)
-- [添加到path](/doc/basic/addPath)
+- [添加到path](/doc/windows/addPath)
 
 ## 初始化版本库、下载网页代码并安装npm模块
 
@@ -29,7 +29,9 @@
 
 8. 使用`npm install -g ncu`命令全局安装node模块更新检查器(可选)
 
-  使用`npm install -g npx`命令全局安装node模块命令执行器(可选)
+    使用`npm install -g npx`命令全局安装node模块命令执行器(可选)
+
+9. 使用`npm install -g eslint`命令全局安装eslint代码检查器(可选)
 
 > [npm模块介绍](/doc/software/nodeJS/module)
 

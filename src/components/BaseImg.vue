@@ -1,15 +1,25 @@
+<!--
+ * @Author: Mr.Hope
+ * @LastEditors: Mr.Hope
+ * @Description: 基础图片
+ * @Date: 2019-02-27 00:00:08
+ * @LastEditTime: 2019-03-16 19:43:16
+ -->
 <template>
   <div :id="myId" class="ImgCtn">
     <div class="imgCtn" v-if="!loaded">
       <img :src="require(`@/icon/${error ? 'error' : 'loading'}.svg`)" class="imgIcon">
       <span>{{ error ? "图片加载失败" : "加载中..." }}</span>
     </div>
-    <img :src="src" class="img" v-else>
-    <div class="imgDesc" v-text="desc ? '▲' + desc : ''"></div>
+    <img :src="src" @click="showImg = true" class="img" v-else>
+    <div class="imgDesc">{{desc ? '▲' + desc : ''}}</div>
+    <div @click="showImg = false" class="preview" v-if="showImg">
+      <img :src="src" class="previewImg">
+    </div>
   </div>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
 export default class BaseImg extends Vue {
@@ -23,9 +33,13 @@ export default class BaseImg extends Vue {
   private loaded = false;
   private error = false;
 
+  // 图片展示
+  private showImg = false;
+
   private mounted() {
     // 加载图片
     const img = new Image(); // 创建新Image实例
+
     img.src = this.src;
 
     // 如果图片已经被缓存立即结束函数
@@ -42,8 +56,9 @@ export default class BaseImg extends Vue {
 
     // 图片加载成功
     img.onload = () => {
-      img.onload = null;
       this.loaded = true;
+
+      delete img.onload;
     };
   }
 }
@@ -111,5 +126,23 @@ export default class BaseImg extends Vue {
 
 .nm .imgDesc {
   color: #ddd;
+}
+
+.preview {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #00000026;
+}
+
+.previewImg {
+  max-width: 90%;
+  max-height: 100%;
+  border-radius: 5px;
 }
 </style>

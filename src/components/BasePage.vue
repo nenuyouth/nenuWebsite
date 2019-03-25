@@ -1,3 +1,10 @@
+<!--
+ * @Author: Mr.Hope
+ * @LastEditors: Mr.Hope
+ * @Description: 基础页面显示
+ * @Date: 2019-02-24 22:21:25
+ * @LastEditTime: 2019-03-20 01:03:16
+ -->
 <template>
   <div class="container">
     <template v-for="item in myData">
@@ -6,16 +13,16 @@
   </div>
 </template>
 <script lang="ts">
-import BaseHead from "@/components/BaseHead.vue";
-import BaseH3 from "@/components/BaseH3.vue";
-import BaseP from "@/components/BaseP.vue";
-import BaseImg from "@/components/BaseImg.vue";
-import BaseList from "@/components/BaseList.vue";
-import BaseCarousel from "@/components/BaseCarousel.vue";
-import BasePhone from "@/components/BasePhone.vue";
-import BaseFoot from "@/components/BaseFoot.vue";
+import BaseHead from '@/components/BaseHead.vue';
+import BaseH3 from '@/components/BaseH3.vue';
+import BaseP from '@/components/BaseP.vue';
+import BaseImg from '@/components/BaseImg.vue';
+import BaseList from '@/components/BaseList.vue';
+import BaseCarousel from '@/components/BaseCarousel.vue';
+import BasePhone from '@/components/BasePhone.vue';
+import BaseFoot from '@/components/BaseFoot.vue';
 
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component({
   components: {
@@ -30,11 +37,12 @@ import { Component, Prop, Vue } from "vue-property-decorator";
   }
 })
 export default class BasePage extends Vue {
-  @Prop({ type: Array, required: true, default: [{ tag: "error" }] })
-  private pagedata!: any[];
+  @Prop({ type: String, required: true, default: '[{"tag":"error"}]' })
+  private readonly pagedata!: string;
 
-  get myData() {
-    const myData = this.pagedata.slice(0);
+  private get myData() {
+    const myData = JSON.parse(this.pagedata);
+
     myData.forEach((element: any, index: number) => {
       element.myId = index;
       element.tag = `base-${element.tag}`;

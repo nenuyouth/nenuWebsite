@@ -1,106 +1,80 @@
+<!--
+ * @Author: Mr.Hope
+ * @LastEditors: Mr.Hope
+ * @Description: 自动生成界面
+ * @Date: 2019-02-27 00:00:08
+ * @LastEditTime: 2019-03-20 00:43:05
+ -->
 <template>
   <base-page :key="url" :pagedata="pageData" v-if="pageData"></base-page>
 </template>
 <script lang="ts">
-import { Component, Vue, Prop, Watch } from "vue-property-decorator";
-import BasePage from "@/components/BasePage.vue";
-import { Route } from "vue-router";
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
+import { Route } from 'vue-router';
+import axios from 'axios';
+import BasePage from '@/components/BasePage.vue';
 
-@Component({
-  components: { BasePage }
-})
+@Component({ components: { BasePage } })
 export default class Page extends Vue {
-  private pageData: any[] = [];
+  private pageData = '';
 
   @Prop(String) private path!: string;
 
   // 加载页面
-  private loadPage(path: string) {
-    let jsonData: any[] = [];
-    let finalPath = "";
+  private async loadPage(path: string) {
+    let finalPath = '';
 
     // 确定文件夹名称
-    let length = path.length;
-    while (!isNaN(Number(path.charAt(length)))) length--;
-    const folder = path.substring(0, length + 1);
-    if (isNaN(Number(path.charAt(path.length - 1)))) finalPath = `${path}0`;
+    let pathLength = path.length;
+
+    while (!Number.isNaN(Number(path.charAt(pathLength)))) pathLength -= 1;
+    const folder = path.substring(0, pathLength + 1);
+
+    if (Number.isNaN(Number(path.charAt(path.length - 1)))) finalPath = `${path}0`;
 
     // 获得json文件
-    $.ajax({
-      async: false,
-      url: `/Res/page/${folder}/${finalPath ? finalPath : path}.json`,
-      dataType: "text",
-      success: data => {
-        jsonData = JSON.parse(data);
+    await axios.get(`/Res/page/${folder}/${finalPath || path}.json`).then(response => {
+      try {
+        // 设置页面数据
+        if (typeof response.data === 'object') this.pageData = JSON.stringify(response.data);
+        else throw response.data;
+      } catch (err) {
+        const router = this.$router;
+
+        this.$confirm({
+          title: 'JSON解析失败',
+          content: 'JSON解析失败，请汇报给Mr.Hope!',
+          autoFocusButton: 'cancel',
+          cancelText: '确定',
+          okText: '汇报',
+          okType: 'danger',
+          onOk: () => {
+            router.back();
+            window.open('http://wpa.qq.com/msgrd?v=3&uin=1178522294&site=qq&menu=yes');
+          },
+          onCancel: () => {
+            router.back();
+          }
+        });
       }
     });
-
-    // 设置页面数据
-    this.pageData = jsonData;
   }
 
-  get url() {
+  private get url() {
     return this.$route.path;
   }
 
   private mounted() {
-    this.loadPage(this.path);
+    const paths = this.$route.path.split('/');
+
+    if (paths.length > 2) this.loadPage(paths[paths.length - 1]);
   }
 
-  @Watch("$route")
+  @Watch('$route')
   private onRouteChange(to: Route, from: Route) {
-    const paths = this.$route.path.split("/");
-    this.loadPage(paths[paths.length - 1]);
+    const paths = this.$route.path.split('/');
+
+    if (paths.length > 2) this.loadPage(paths[paths.length - 1]);
   }
 }
-// export default {
-//   data: () => ({
-//     pageData: []
-//   }),
-//   props: {
-//     path: String
-//   },
-//   components: {
-//     BasePage
-//   },
-//   methods: {
-//     loadPage(path) {
-//       let jsonData;
-//       let finalPath = "";
-
-//       // 确定文件夹名称
-//       let length = path.length;
-//       while (!isNaN(path.charAt(length))) length--;
-//       const folder = path.substring(0, length + 1);
-//       if (isNaN(path.charAt(path.length - 1))) finalPath = `${path}0`;
-
-//       // 获得json文件
-//       $.ajax({
-//         async: false,
-//         url: `/Res/page/${folder}/${finalPath ? finalPath : path}.json`,
-//         dataType: "text",
-//         success: data => {
-//           jsonData = JSON.parse(data);
-//         }
-//       });
-
-//       // 设置页面数据
-//       this.pageData = jsonData;
-//     }
-//   },
-//   computed: {
-//     url() {
-//       return this.$route.path;
-//     }
-//   },
-//   mounted() {
-//     this.loadPage(this.path);
-//   },
-//   watch: {
-//     $route(to, from) {
-//       const paths = this.$route.path.split("/");
-//       this.loadPage(paths[paths.length - 1]);
-//     }
-//   }
-// };
 </script>

@@ -1,106 +1,207 @@
+<!--
+ * @Author: Mr.Hope
+ * @LastEditors: Mr.Hope
+ * @Description: 走马灯组件
+ * @Date: 2019-02-27 00:00:08
+ * @LastEditTime: 2019-03-23 11:46:53
+ -->
 <template>
-  <div :id="`display${myId}`" class="carousel slide w-100" data-ride="carousel">
-    <ol class="carousel-indicators" v-if="!single">
-      <li
-        :class="item.activeStatus"
-        :data-slide-to="index"
-        :data-target="`#display${myId}`"
-        :key="item.heading"
-        v-for="(item, index) in list"
-      ></li>
-    </ol>
-    <div class="carousel-inner">
-      <div
-        :class="`carousel-item ${item.activeStatus}`"
-        :key="item.heading"
-        @click="navigate(item.url)"
-        v-for="item in list"
-      >
-        <img :alt="item.alt" :src="item.src" class="d-block w-100">
-        <div :class="`carousel-caption ${item.colorStatus} prominent`">
-          <h1 class="display-4 d-none d-sm-block">{{ item.heading }}</h1>
-          <h1 class="font-weight-light d-block d-sm-none">{{ item.heading }}</h1>
-          <h1 class="lead">{{ item.subhead }}</h1>
-          <p class="lead d-none d-sm-block" v-if="item.enSubhead">{{ item.enSubhead }}</p>
-          <p
-            class="d-none d-lg-block text-right font-weight-light"
-            style="line-height: 1;"
-            v-if="item.desc"
-          >{{ item.desc }}</p>
-        </div>
+  <a-carousel
+    :arrows="true"
+    :autoplay="autoplay"
+    :autoplaySpeed="autoplaySpeed"
+    :dots="dots"
+    :speed="speed"
+    :vertical="vertical"
+  >
+    <template v-slot:prevArrow>
+      <div class="arrow" style="left:10px;z-index:1;" v-if="!single&&arrowDisplay">
+        <a-icon type="vertical-right"/>
+      </div>
+    </template>
+    <template v-slot:nextArrow>
+      <div class="arrow" style="right:10px;" v-if="!single&&arrowDisplay">
+        <a-icon type="vertical-left"/>
+      </div>
+    </template>
+
+    <div :key="item.caption" @click="navigate(item.url)" class="carouselItem" v-for="item in list">
+      <img :alt="item.alt" :src="item.src" class="img">
+      <div :class="item.color" class="caption">
+        <h1 class="display-4 d-none d-sm-block">{{ item.caption }}</h1>
+        <h1 class="font-weight-light d-block d-sm-none">{{ item.caption }}</h1>
+        <h1 class="lead">{{ item.subCaption }}</h1>
+        <p class="lead d-none d-sm-block" v-if="item.enSubhead">{{ item.enSubhead }}</p>
+        <p
+          class="d-none d-lg-block text-right font-weight-light"
+          style="line-height: 1;"
+          v-if="item.desc"
+        >{{ item.desc }}</p>
       </div>
     </div>
-    <a :href="`#display${myId}`" class="carousel-control-prev" data-slide="prev" role="button" v-if="!single">
-      <span aria-hidden="true" class="carousel-control-prev-icon"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a :href="`#display${myId}`" class="carousel-control-next" data-slide="next" role="button" v-if="!single">
-      <span aria-hidden="true" class="carousel-control-next-icon"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
+  </a-carousel>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from 'vue-property-decorator';
 
 interface Carousel {
-  heading: string;
-  subhead: string;
-  src: string;
-  enSubhead?: string;
-  desc?: string;
-  alt?: string;
-  url?: string;
-  black?: boolean;
+  // 必填项
+  caption: string; // 主标题
+  subCaption: string; // 副标题
+  src: string; // 图片地址
+
+  // 选填项
+  enSubhead?: string; // 英文小标题
+  desc?: string; // 轮播图说明
+  alt?: string; // 轮播图片替代文字
+  url?: string; // 轮播图跳转地址
+  black?: boolean; // 轮播图文字是否为黑色（默认为白色）
+
+  // 内部属性
   activeStatus?: string;
-  colorStatus?: string;
+  color?: string;
 }
 
 @Component
 export default class BaseCarousel extends Vue {
-  private single = false;
-
-  private list: Carousel[] = [];
-
+  // 组件id
   @Prop([Number, String]) private myId!: number | string;
 
+  // 组件内容
   @Prop({ type: Array, required: true }) private content!: Carousel[];
 
+  // 是否竖直显示
+  @Prop({ type: Boolean, default: false }) private vertical!: boolean;
+
+  // 是否支持自动播放
+  @Prop({ type: Boolean, default: true }) private autoplay!: boolean;
+
+  // 自动播放时间间隔
+  @Prop({ type: Number, default: 3000 }) private autoplaySpeed!: boolean;
+
+  // 切换速度
+  @Prop({ type: Number, default: 500 }) private speed!: number;
+
+  // 是否显示指示点
+  @Prop({ type: Boolean, default: true }) private dotDisplay!: boolean;
+
+  // 是否显示切换箭头
+  @Prop({ type: Boolean, default: true }) private arrowDisplay!: boolean;
+
+  // 切换动画
+  @Prop({ type: String, default: 'easeInOutQuart' }) private easing!: string;
+
+  // 是否显示指示点判断
+  private get dots() {
+    return this.single ? false : this.dotDisplay;
+  }
+
+  // 是否是单个轮播图
+  private single = false;
+
+  // 轮播图列表
+  private list: Carousel[] = [];
+
+  // 点击跳转
   private navigate(url: string | undefined) {
+    const router = this.$router;
+    const route = this.$route;
+
     if (url)
-      if (url[0] === "/") this.$router.push(url);
-      else if (url.indexOf("http://") !== -1 || url.indexOf("https://") !== -1)
+      if (url && url[0] === '/')
+        // 内部绝对路径
+        router.push(url);
+      else if (url.indexOf('http://') !== -1 || url.indexOf('https://') !== -1)
+        // 外部链接
         window.open(url);
       else {
-        const base = this.$route.path.slice(
-          0,
-          this.$route.path.lastIndexOf("/")
-        );
-        this.$router.push(`${base}/${url}`);
+        // 内部相对路径
+        const base = route.path.slice(0, route.path.lastIndexOf('/'));
+
+        router.push(`${base}/${url}`);
       }
   }
 
   private mounted() {
     // 复制content内容到data中
-    this.list = this.content.slice(0);
+    this.list = JSON.parse(JSON.stringify(this.content));
 
     // 对list进行处理
     this.list.forEach((element: Carousel, index: number) => {
-      // 初始化生效信息
-      element.activeStatus = index === 0 ? "active" : "";
+      // 初始化第一张轮播图激活信息
+      if (index === 0) element.activeStatus = 'active';
 
       // 使黑文字配置生效
       if (element.black === true) {
-        element.colorStatus = "text-black";
+        element.color = 'textBlack';
         delete element.black;
       }
 
       // 确保轮播图有替代文字
-      if (!element.alt) element.alt = "轮播图背景";
+      if (!element.alt) element.alt = '轮播图背景';
     });
 
-    // 只有一张轮播图时隐藏控件
+    // 只有一张轮播图时设置为single
     if (this.list.length === 1) this.single = true;
   }
 }
 </script>
+<style scoped>
+.ant-carousel {
+  max-width: 100%;
+}
+.ant-carousel >>> .slick-slide {
+  text-align: center;
+  overflow: hidden;
+}
+
+.ant-carousel >>> .arrow {
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  color: #fff;
+  background-color: rgba(31, 45, 61, 0.11);
+  opacity: 0.3;
+}
+.ant-carousel >>> .arrow:before {
+  display: none;
+}
+.ant-carousel >>> .arrow:hover {
+  opacity: 0.5;
+}
+
+.slick-track {
+  width: 100%;
+}
+
+.carouselItem {
+  position: relative;
+}
+
+.caption {
+  position: absolute;
+  padding-top: 20px;
+  left: 5%;
+  right: 5%;
+  bottom: 20px;
+  color: rgba(255, 255, 255, 1) !important;
+  text-align: center;
+  vertical-align: center;
+}
+.caption h1 {
+  color: #fff;
+}
+.caption h2 {
+  color: #fff;
+}
+.textBlack h1 {
+  color: #000;
+}
+.textBlack h2 {
+  color: #000;
+}
+.img {
+  display: block;
+  width: 100%;
+}
+</style>

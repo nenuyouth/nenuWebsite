@@ -1,345 +1,151 @@
+<!--
+ * @Author: Mr.Hope
+ * @LastEditors: Mr.Hope
+ * @Description: Markdown显示组件
+ * @Date: 2019-02-26 23:43:23
+ * @LastEditTime: 2019-03-25 12:09:02
+ -->
 <template>
-  <div class="container mt-3 pb-3">
-    <!-- <div v-wechat-title="docTitle"></div> -->
-    <div id="asideScreenMask" style="display:none;"></div>
-    <div class="d-block d-lg-none" id="asideSlide">
-      <div class="shadow" id="asideSlideBtn">目录</div>
-      <aside class="shadow" id="aside">
-        <ul class="ulReboot">
-          <li :class="`myli${item[1]}`" :key="item[0]" v-for="item in aside" v-html="item[0]"></li>
-        </ul>
-      </aside>
+  <!-- 标题设置 -->
+  <div class="w-100" v-wechat-title="docTitle">
+    <!-- 面包屑导航 -->
+    <div class="container mt-2">
+      <!-- 返回按钮 -->
+      <span @click="$router.back()" class="backIcon">
+        <icon-font type="icon-back"/>&ensp;back&ensp;
+      </span>|
+      <a-breadcrumb style="display:inline-block">
+        <a-breadcrumb-item>
+          <router-link :to="basepath" v-if="routes.length">
+            &ensp;
+            <a-icon style="font-size:16px;" type="home"/>&ensp;home
+          </router-link>
+          <a-icon type="home" v-else/>
+        </a-breadcrumb-item>
+        <a-breadcrumb-item :key="route" v-for="(route,index) in routes">
+          <template v-if="index===routes.length-1">{{route}}</template>
+          <router-link :to="`${basepath}/${routes.slice(0,index+1).join('/')}`" v-else>{{route}}</router-link>
+        </a-breadcrumb-item>
+      </a-breadcrumb>
     </div>
-    <div class="row">
-      <div class="col-12 col-lg-9 markdown-body" v-html="compiledMarkdown" v-if="compiledMarkdown"></div>
-      <div class="col-12 col-lg-9" v-else>
-        <p>加载中......</p>
-      </div>
-      <div class="d-none d-lg-block col-lg-3">
-        <div :style="`max-height:calc(${windowHeight - 192}px - 4rem);`" id="asideCtn">
-          <aside :style="`max-height:calc(${windowHeight - 222}px - 4rem);`" class="shadow" id="aside">
-            <ul class="ulReboot">
-              <li :class="`myli${item[1]}`" :key="item[0]" v-for="item in aside" v-html="item[0]"></li>
-            </ul>
-          </aside>
-        </div>
-      </div>
-    </div>
+    <!-- 密码弹窗 -->
+    <PasswordModal
+      @login="login"
+      passwordKey="internalPassword"
+      url="/server/passwordValidate"
+      v-if="!$store.state.internalLogin"
+    />
+    <!-- <transition :name="transitionName" mode="in-out"> -->
+    <keep-alive>
+      <!-- 文档显示 -->
+      <doc-view :docContent="compiledMarkdown" :key="path" @title="docTitle=$event"/>
+    </keep-alive>
+    <!-- </transition> -->
   </div>
 </template>
 
 <script lang="ts">
-import marked from "marked";
-import hljs from "highlight.js";
-import { Component, Prop, Vue, Watch } from "vue-property-decorator";
-import { Route } from "vue-router";
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
+import { Route } from 'vue-router';
+import DocView from '@/components/DocView.vue';
+import PasswordModal from '@/components/PasswordModal.vue';
+import getCompiledMarkdown from '@/lib/getMarkdown';
 
-// 导入css样式
-import "highlight.js/styles/default.css";
-import "github-markdown-css/github-markdown.css";
-
-const myRenderMD = new marked.Renderer();
-
-// 覆写heading转码
-myRenderMD.heading = (text, level) => {
-  let id = "";
-  if (text.indexOf("a href") !== -1)
-    id = text.slice(text.indexOf(">") + 1, text.indexOf("</a>"));
-
-  return `<h${level} id="${id ? id : text}">${text}</h${level}>`;
-};
-
-// 覆写链接转码
-myRenderMD.link = (href, title, text) => {
-  if (href[0] === "#")
-    return `<a class='md-a' href='${href}' title='${
-      title ? title : text
-    }'>${text}</a>`;
-
-  return `<a class='md-link' href='${href}' title='${text}' >${text}</a>`;
-};
-
-// 设置marked插件
-marked.setOptions({
-  renderer: myRenderMD, // 控制输出渲染
-  gfm: true, // 是否使用GitHub改进标砖的Markdown
-  tables: true, // 是否使用gtm table
-  breaks: false, // gfm控制换行输出<br>
-  pedantic: false, // 是否尽量接近原生markdown.pl
-  sanitize: true, // 是否清理内部html内容
-  smartLists: true, // 是否使用更先进列表样式
-  smartypants: false, // 是否对部分内容添加额外符号
-  xhtml: true, // 是否闭合空标签
-  highlight: (code, lang) =>
-    lang && hljs.getLanguage(lang)
-      ? hljs.highlight(lang, code, true).value
-      : hljs.highlightAuto(code).value // highlight代码块
-});
-
-@Component
+@Component({ components: { DocView, PasswordModal } })
 export default class MyDoc extends Vue {
-  // 控制侧边栏显示
-  private aside: string[][] = [];
-
-  // 渲染好的html文本
-  private compiledMarkdown = "";
-
   // 文档标题
-  private docTitle = "内部文档";
+  private docTitle = '内部文档';
 
-  private windowWidth = 375;
+  // Markdown编译内容
+  private compiledMarkdown = '';
 
-  private windowHeight = 750;
+  // 动画状态
+  private transitionName = 'slide-left';
 
-  @Prop(String) private path!: string;
+  // MarkDown基准路径字符数
+  @Prop(Number) private baselength!: number;
 
-  private loadDoc() {
-    const path = this.path;
-    let markdown = "";
-    const asideTemp: string[][] = [];
-    const route = this.$route;
-    const router = this.$router;
+  private get basepath() {
+    return this.$route.path.slice(0, this.baselength - 1);
+  }
 
-    // 获取markdown文件
-    $.ajax({
-      async: false,
-      url: `/Res/doc/${path}.md`,
-      dataType: "text",
-      success: data => {
-        // 如果链接地址错误，提示反馈并返回到上一个界面
-        if (data.slice(1, 9) === "!DOCTYPE") {
-          alert("链接地址有误，请汇报给Mr.Hope!");
-          router.back();
-        } else markdown = data; // 链接地址正确，直接赋值
-      }
-    });
+  private get path() {
+    return this.$route.path.slice(this.baselength) || 'readme';
+  }
 
-    // 返回html
-    this.compiledMarkdown = marked(markdown);
+  private get routes() {
+    return this.$route.path.slice(this.baselength).split('/');
+  }
 
-    // 窗口大小获取
-    $(() => {
-      const ctx = this;
-      this.windowWidth =
-        $(window).width() || document.documentElement.clientWidth;
-      this.windowHeight =
-        $(window).height() || document.documentElement.clientHeight;
-      $(window).resize(() => {
-        ctx.windowWidth =
-          $(window).width() || document.documentElement.clientWidth;
-        ctx.windowHeight =
-          $(window).height() || document.documentElement.clientHeight;
-      });
-    });
+  // 登陆成功，开始获取markdown文件
+  private async login() {
+    // 如果该路径markdown未被缓存则获取之
+    if (!this.$store.state.compiledMarkdown[this.path])
+      await getCompiledMarkdown(
+        this.path,
+        this,
+        `/server/doc.php?password=${this.$store.state.internalPassword}&path=`
+      );
 
-    // 返回docTitle和aside
-    Vue.nextTick(() => {
-      // 设置网页标题
-      document.title = $("h1").text();
+    // 当路径改变时写入编译后的html
+    this.compiledMarkdown = this.$store.state.compiledMarkdown[this.path];
+  }
 
-      $("h1,h2,h3,h4").each((index, domEle) => {
-        if ($(domEle).children().length === 0) {
-          const id = $(domEle).attr("id");
-          if (id && id.indexOf("href") === -1) {
-            const title = $(domEle).text();
-            const level = $(domEle)[0].tagName[1];
-            asideTemp.push([
-              `<a class="myh${level}" href="#${title}">${title}</a>`,
-              level
-            ]);
-          }
+  private async mounted() {
+    // 如果已经登陆,直接加载，否则等待login函数触发
+    if (this.$store.state.internalLogin) {
+      // 如果该路径markdown未被缓存则获取之
+      if (!this.$store.state.compiledMarkdown[this.path])
+        await getCompiledMarkdown(
+          this.path || 'readme',
+          this,
+          `/server/doc.php?password=${this.$store.state.internalPassword}&path=`
+        );
+
+      // 写入编译后的html
+      this.compiledMarkdown = this.$store.state.compiledMarkdown[this.path];
+    }
+  }
+
+  @Watch('path')
+  private onPathChange(to: string, from: string) {
+    // 当路径改变时写入编译后的html
+    this.compiledMarkdown = this.$store.state.compiledMarkdown[this.path];
+  }
+
+  @Watch('$route')
+  private onRouteChange(to: Route, from: Route) {
+    // 定义比较函数
+    const remove = (array: string[], value: string) => {
+      for (let i = 0; i < array.length; i += 1)
+        if (array[i] === value) {
+          array.splice(i, 1);
+          i -= 1;
         }
-      });
 
-      this.aside = asideTemp;
-    });
+      return array;
+    };
+    const toDepth = remove(to.path.split('/'), '').length;
+    const fromDepth = remove(from.path.split('/'), '').length;
 
-    Vue.nextTick(() => {
-      $(() => {
-        // 注册界面滚动动画效果
-        $("a.myh1,a.myh2,a.myh3,a.myh4,a.md-a").click(event => {
-          const id = $(event.currentTarget).attr("href");
-          if (id) {
-            const offset = $(id).offset();
-            if (offset) {
-              const toTop = offset.top;
-              $("html, body").animate(
-                { scrollTop: `${toTop - 50}px` },
-                { duration: 500, easing: "swing" }
-              );
-              return false;
-            }
-          }
-        });
-
-        // 注册文档间跳转逻辑
-        $(() => {
-          $("a.md-link").click(event => {
-            const url = $(event.currentTarget).attr("href");
-            if (url)
-              if (url && url[0] === "/") router.push(url);
-              else if (
-                url.indexOf("http://") !== -1 ||
-                url.indexOf("https://") !== -1
-              )
-                window.open(url);
-              else {
-                const base = route.path.slice(0, route.path.lastIndexOf("/"));
-                router.push(`${base}/${url}`);
-              }
-            else alert("链接地址有误，请汇报给Mr.Hope!");
-
-            return false;
-          });
-        });
-
-        // 目录效果实现;
-        $("#asideSlideBtn").click(event => {
-          const asideWidth = $("#asideSlide").width();
-          if (asideWidth)
-            $("#asideSlide").animate(
-              {
-                left:
-                  ($(window).width() || document.documentElement.clientWidth) -
-                  asideWidth
-              },
-              { duration: 500, easing: "swing" }
-            );
-          $("#asideScreenMask").fadeIn(500);
-          $("#asideSlideBtn").fadeOut(500);
-          event.stopPropagation();
-        });
-
-        $("#asideScreenMask").click(() => {
-          $("#asideSlide").animate(
-            { left: "100%" },
-            { duration: 500, easing: "swing" }
-          );
-          $("#asideSlideBtn").fadeIn(500);
-          $("#asideScreenMask").fadeOut(500);
-        });
-      });
-    });
-  }
-
-  private mounted() {
-    this.loadDoc();
-  }
-
-  @Watch("$route")
-  private OnRouteUpdate(to: Route, from: Route) {
-    this.loadDoc();
+    // 决定动画方向
+    this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left';
   }
 }
 </script>
-<style>
-.ulReboot {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-}
-#asideSlide {
-  position: fixed;
-  height: calc(100% - 40.4px);
-  top: 40.4px;
-  left: 100%;
-  text-align: right;
-  z-index: 1040;
-}
-#asideScreenMask {
-  position: fixed;
-  width: 100%;
-  height: calc(100% - 40.4px);
-  top: 40.4px;
-  left: 0;
-  background-color: rgba(127, 127, 127, 0.15);
-  z-index: 1030;
-}
-#asideSlideBtn {
-  position: absolute;
-  width: 36px;
-  top: 20%;
-  left: -36px;
-  font-size: 18px;
-  padding: 15px 8px;
-  font-weight: 500;
-  line-height: 1.3;
-  background-color: #ffffff;
-}
-#asideCtn {
-  position: fixed;
-  top: 4rem;
-  text-align: center;
-  width: 280px;
-}
-@media (min-width: 1200px) {
-  #asideCtn {
-    width: 300px;
-  }
+<style scoped>
+.loadingCtn {
+  min-height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-#aside {
-  padding: 15px;
-  text-align: left;
-  width: 200px;
-  /* max-width: 200px; */
-  background-color: #ffffff;
-  overflow-y: auto;
-}
-#asideSlide #aside {
-  margin: 0 0 0 auto;
-  height: 100%;
-}
-#asideCtn #aside {
-  max-height: calc(100% - 30px);
-  margin: 0 auto;
-}
-#aside::-webkit-scrollbar {
-  display: none;
+.backIcon {
+  cursor: pointer;
 }
 
-.myli2 {
-  list-style: circle;
-  margin-left: 1rem;
-}
-
-.myli3 {
-  list-style: disc;
-  margin-left: 2rem;
-}
-.myli4 {
-  list-style: square;
-  margin-left: 3rem;
-}
-
-.myh1,
-.myh2,
-.myh3,
-.myh4 {
-  display: block;
-  color: #333333;
-  list-style-type: disc;
-}
-
-.myh1 {
-  text-align: center;
-  font-size: 20px;
-  font-weight: 600;
-  margin: 5px auto 8px auto;
-  border-bottom: 0.5px solid #cacaca;
-}
-.myh2 {
-  font-size: 17px;
-  font-weight: 500;
-  margin: 5px auto;
-  letter-spacing: 0.5px;
-}
-.myh3 {
-  font-size: 16px;
-  margin: 3px auto;
-}
-.myh4 {
-  font-size: 14px;
-  margin: 2px auto;
+.backIcon:hover {
+  color: #3cba63;
 }
 </style>

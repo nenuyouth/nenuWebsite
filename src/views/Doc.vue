@@ -1,51 +1,52 @@
 <template>
-  <transition :name="transitionName" mode="in-out">
-    <keep-alive>
-      <my-doc :key="path" :path="path"></my-doc>
-    </keep-alive>
-  </transition>
+  <MyDoc :baselength="baselength" :loading="$store.state.docLoading" :path="path"></MyDoc>
 </template>
 
 <script lang="ts">
-import MyDoc from "@/components/MyDoc.vue";
-import { Component, Prop, Vue, Watch } from "vue-property-decorator";
+import MyDoc from '@/components/MyDoc.vue';
+import { Component, Vue } from 'vue-property-decorator';
+import { MenuList } from '@/components/BaseSubMenu.vue';
+import { Route } from 'vue-router';
+import getCompiledMarkdown from '@/lib/getMarkdown';
 
 @Component({ components: { MyDoc } })
 export default class Doc extends Vue {
-  private transitionName = "slide-left";
+  // 文档基础路径长度
+  private baselength = 5;
 
-  @Prop({ type: String, default: "main" }) private path1!: string;
-
-  @Prop(String) private path2!: string;
-
-  @Prop(String) private path3!: string;
-
-  @Prop(String) private path4!: string;
-
-  get path() {
-    const paths = [this.path1, this.path2, this.path3, this.path4];
-    let finalPath = "";
-
-    // 处理获得最终路径
-    for (const path of paths) if (path) finalPath += `/${path}`;
-
-    return finalPath;
+  // 文档路径
+  private get path() {
+    return this.$route.path.slice(this.baselength) || 'readme';
   }
 
-  @Watch("$route")
-  private OnRouteUpdate(to: any, from: any) {
-    const remove = (array: string[], value: string) => {
-      for (let i = 0; i < array.length; i++)
-        if (array[i] === value) {
-          array.splice(i, 1);
-          i--;
-        }
+  private activated() {
+    // 写入菜单
+    this.$store.commit('menuList', require('@/assets/docMenuList.json'));
+  }
+  private deactivated() {
+    // 取消菜单
+    this.$store.commit('menuList', []);
+  }
 
-      return array;
-    };
-    const toDepth = remove(to.path.split("/"), "").length;
-    const fromDepth = remove(from.path.split("/"), "").length;
-    this.transitionName = toDepth < fromDepth ? "slide-right" : "slide-left";
+  // 文档路径改变
+  private async beforeRouteUpdate(to: Route, from: Route, next: (navigate?: boolean) => void) {
+    const path = to.path.slice(this.baselength) || 'readme';
+    let navigate = true;
+
+    // 显示加载状态
+    this.$store.commit('docLoading', true);
+
+    // 如果将转入的页面markdown未缓存
+    if (!this.$store.state.compiledMarkdown[path])
+      // 通过获取markdown文件情况决定是否导航
+      navigate = await getCompiledMarkdown(
+        path,
+        this,
+        `/server/doc.php?password=${this.$store.state.internalPassword}&path=`
+      );
+
+    // 调用Hook，结束函数
+    next(navigate);
   }
 }
 </script>

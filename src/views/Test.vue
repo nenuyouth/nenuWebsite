@@ -47,15 +47,15 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import BaseCarousel from "@/components/BaseCarousel.vue";
-import BaseH3 from "@/components/BaseH3.vue";
-import BaseP from "@/components/BaseP.vue";
-import BaseImg from "@/components/BaseImg.vue";
-import BaseList from "@/components/BaseList.vue";
-import BasePhone from "@/components/BasePhone.vue";
-import BaseHead from "@/components/BaseHead.vue";
-import BaseFoot from "@/components/BaseFoot.vue";
+import { Component, Vue } from 'vue-property-decorator';
+import BaseCarousel from '@/components/BaseCarousel.vue';
+import BaseH3 from '@/components/BaseH3.vue';
+import BaseP from '@/components/BaseP.vue';
+import BaseImg from '@/components/BaseImg.vue';
+import BaseList from '@/components/BaseList.vue';
+import BasePhone from '@/components/BasePhone.vue';
+import BaseHead from '@/components/BaseHead.vue';
+import BaseFoot from '@/components/BaseFoot.vue';
 
 @Component({
   components: {
@@ -69,6 +69,6 @@ import BaseFoot from "@/components/BaseFoot.vue";
     BaseFoot
   }
 })
-export default class Test extends Vue {}
+export default class TestPage extends Vue {}
 </script>
 <style></style>

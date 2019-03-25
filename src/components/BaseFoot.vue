@@ -1,3 +1,10 @@
+<!--
+ * @Author: Mr.Hope
+ * @LastEditors: Mr.Hope
+ * @Description: 基础页脚
+ * @Date: 2019-02-27 00:00:08
+ * @LastEditTime: 2019-03-16 19:27:08
+ -->
 <template>
   <div :id="myId" class="Footer">
     <div class="footerCtn">
@@ -15,7 +22,7 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
 export default class BaseFoot extends Vue {
@@ -23,7 +30,7 @@ export default class BaseFoot extends Vue {
 
   @Prop(String) private desc!: string;
 
-  @Prop({ type: String, default: "Mr.Hope" }) private author!: string;
+  @Prop({ type: String, default: 'Mr.Hope' }) private author!: string;
 
   @Prop(String) private time!: string;
 }
