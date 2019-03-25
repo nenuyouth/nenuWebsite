@@ -3,10 +3,10 @@
  * @LastEditors: Mr.Hope
  * @Description: Mutation文件
  * @Date: 2019-03-25 10:37:09
- * @LastEditTime: 2019-03-25 10:39:19
+ * @LastEditTime: 2019-03-25 11:19:20
  */
-import { BaseState, MenuList } from './state';
 import Vue from 'vue';
+import { BaseState, MenuList } from './state';
 
 const myMutation = {
   android(state: BaseState) {

@@ -9,11 +9,11 @@
 - ### [函数](js/function)
 - ### [对象](js/object)
 - ### [浏览器](js/browser)
-- ### [ES6教程](js/es6/readme)
-- ### [JQuery](/doc/website/jQuery/readme)
+- ### [ES6教程](js/es6)
+- ### [JQuery](/doc/website/jQuery)
 - ### [错误处理](js/error)
 - ### [underScore](js/underscore)
-- ### [node.js](/doc/software/nodeJS/readme)
+- ### [node.js](/doc/software/nodeJS)
 
 ---
 

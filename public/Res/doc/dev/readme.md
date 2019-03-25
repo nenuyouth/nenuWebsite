@@ -13,11 +13,11 @@
 
 ## 网站开发
 
-- #### [点击跳转](/doc/website/readme)
+- #### [点击跳转](/doc/website)
 
 ## 小程序开发
 
-- #### [点击跳转](/doc/miniProgram/readme)
+- #### [点击跳转](/doc/miniProgram)
 
 ## 后端入门
 
@@ -47,7 +47,7 @@
 
         vscode具有最大的编辑器社区，插件是所有编辑器里最全的。可以通过安装扩展实现几乎所有的功能，但扩展设置界面对新手不够友好，适合有一定经验的开发者。
 
-        - [vscode使用说明](/doc/software/vscode/readme)
+        - [vscode使用说明](/doc/software/vscode)
 
         - [vscode文档](https://code.visualstudio.com/docs)(online)
 
@@ -64,11 +64,11 @@
 
 - ### 微信开发者工具
 
-    - #### [查看详情](/doc/miniProgram/readme#微信开发者工具)
+    - #### [查看详情](/doc/miniProgram#微信开发者工具)
 
 - ### Git
 
-    - #### [查看详情](/doc/software/git/readme)
+    - #### [查看详情](/doc/software/git)
 
 - ### Chrome
 

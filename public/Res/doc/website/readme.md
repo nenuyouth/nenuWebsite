@@ -47,7 +47,7 @@ JavaScript 是 Web 的编程语言，是一种轻量级的编程语言，为可�
 
 ### JavaScript手册
 
-- [JavaScript学习教程](/doc/language/js/readme)
+- [JavaScript学习教程](/doc/language/js)
 
 ### 在线教程
 
@@ -61,7 +61,7 @@ JavaScript 是 Web 的编程语言，是一种轻量级的编程语言，为可�
 
 ES6是JavaScript的2015标注，现已基本被广泛使用和支持；
 
-- [ES6教程](/doc/language/js/es6/readme)
+- [ES6教程](/doc/language/js/es6)
 
 ## 其他网页前端开发框架
 
@@ -69,7 +69,7 @@ ES6是JavaScript的2015标注，现已基本被广泛使用和支持；
 
     jQuery 是一个 JavaScript 库，极大地简化了 JavaScript 编程，很容易学习。
 
-    - [jQuery教程](website/jQuery/readme)
+    - [jQuery教程](website/jQuery)
     - [W3School](http://www.w3school.com.cn/jquery/index.asp)(online)
     - [菜鸟教程](https://www.runoob.com/jquery/jquery-tutorial.html)(online)
 
@@ -87,6 +87,6 @@ ES6是JavaScript的2015标注，现已基本被广泛使用和支持；
 
     vue是一套轻量化html开发框架，为用于构建用户界面的渐进式框架。小程序的数据绑定是从vue中抽离而来的。与其它大型框架不同的是，Vue 被设计为可以自底向上逐层应用。Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。
 
-  - [vue.js](website/vue/readme)
+  - [vue.js](website/vue)
 
   - [vue.js官方文档](https://cn.vuejs.org/v2/guide/)(online)
