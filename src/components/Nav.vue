@@ -65,12 +65,18 @@ export default class Nav extends Vue {
     line-height: 38.6px;
   }
 }
+
+/* lg以上屏幕nav固定 */
 @media (min-width: 992px) {
   .ant-menu-horizontal {
     position: fixed;
     width: 100vw;
     top: 0px;
     z-index: 1000;
+  }
+
+  #body {
+    padding-top: 48px;
   }
 }
 </style>

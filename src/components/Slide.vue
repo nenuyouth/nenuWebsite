@@ -1,5 +1,5 @@
 <template>
-  <a-layout-sider :theme="theme" breakpoint="lg" collapsedWidth="0" id="slide" v-model="collapse">
+  <a-layout-sider :theme="theme" breakpoint="lg" collapsedWidth="0" v-model="collapse">
     <span slot="trigger">
       <a-icon type="bars" v-if="collapse"/>
       <a-icon type="close" v-else/>
@@ -45,22 +45,23 @@ export default class Slide extends Vue {
 }
 </style>
 <style>
-.ant-layout-sider {
-  height: auto;
+#sider {
+  height: 100vh;
 }
 
+/* 保持slide内部元素固定并与屏幕同高可以滚动 */
 .ant-layout-sider-children {
   width: 200px;
   position: fixed;
   z-index: 4;
   top: 0px;
-  height: 100vh;
+  height: 100%;
   overflow-y: auto;
 }
 .ant-layout-sider-children::-webkit-scrollbar {
   display: none;
 }
-/* @media (min-width: 992px) { */
+/* @media (max-width: 992px) { */
 .ant-layout-sider-zero-width-trigger {
   z-index: 100;
   top: 5rem;

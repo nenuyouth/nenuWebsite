@@ -1,10 +1,10 @@
-/*
-* @Author: Mr.Hope
+/**
+ * @Author: Mr.Hope
  * @LastEditors: Mr.Hope
-* @Description: Vuex Screen管理模块
-* @Date: 2019-03-24 23:50:48
+ * @Description: Vuex Screen管理模块
+ * @Date: 2019-03-24 23:50:48
  * @LastEditTime: 2019-03-25 10:10:26
-*/
+ */
 import { ActionContext, Module } from 'vuex';
 import { BaseState } from './state';
 

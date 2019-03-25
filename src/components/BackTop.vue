@@ -3,8 +3,8 @@
  * @LastEditors: Mr.Hope
  * @Description: 返回顶部按钮
  * @Date: 2019-03-22 19:30:08
- * @LastEditTime: 2019-03-23 22:02:56
- -->
+ * @LastEditTime: 2019-03-25 17:05:56
+-->
 <template>
   <div @click="scrollTop" class="scrollTop" style="display:none">
     <icon-font style="font-size:36px;" type="icon-backTop"/>
@@ -22,7 +22,7 @@ export default class BackTop extends Vue {
 
   private mounted() {
     // 注册“返回顶部”按钮动作
-    window.addEventListener('scroll', () => {
+    $(window).on('scroll', () => {
       if (($(window).scrollTop() || window.pageYOffset) > 300) $('.scrollTop').fadeIn(500);
       else $('.scrollTop').fadeOut(500);
     });

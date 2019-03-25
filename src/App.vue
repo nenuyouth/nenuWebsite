@@ -3,20 +3,22 @@
  * @LastEditors: Mr.Hope
  * @Description: 主视图文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-03-23 18:23:42
- -->
+ * @LastEditTime: 2019-03-25 17:05:30
+-->
 <template>
   <a-layout hasSider="true" id="app">
-    <my-slide v-if="$store.state.menuList.length"></my-slide>
+    <my-slide id="slide" v-if="$store.state.menuList.length"></my-slide>
     <a-layout id="body">
-      <my-nav></my-nav>
-      <transition :name="transitionName">
-        <keep-alive :max="10">
-          <router-view v-wechat-title="$route.meta.title"/>
-        </keep-alive>
-      </transition>
+      <my-nav id="nav"/>
+      <a-layout-content id="content">
+        <transition :name="transitionName">
+          <keep-alive :max="10">
+            <router-view v-wechat-title="$route.meta.title"/>
+          </keep-alive>
+        </transition>
+      </a-layout-content>
       <back-top/>
-      <my-footer/>
+      <my-footer id="footer"/>
     </a-layout>
   </a-layout>
 </template>
@@ -60,24 +62,19 @@ export default class App extends Vue {
 }
 
 /* 内容主布局 */
-#body {
+#content {
+  /* 背景色配色 */
   background-color: #fff;
+  /* 防止内部元素无法撑开content */
+  min-height: auto;
 }
-/* 侧边栏展开效果优化 */
+
+/* 侧边栏展开显示配合 */
 @media (max-width: 992px) {
-  #body {
+  #content {
     width: 100vw;
-    flex: none;
   }
 }
-@media (min-width: 992px) {
-  #body {
-    padding-top: 48px;
-  }
-}
-/* #body::-webkit-scrollbar {
-  display: none;
-} */
 
 .slide-right-enter-active,
 .slide-right-leave-active,
