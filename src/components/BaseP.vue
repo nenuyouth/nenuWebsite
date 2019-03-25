@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Base Paragraph
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-03-16 19:43:19
+ * @LastEditTime: 2019-03-25 12:05:25
  -->
 <template>
   <div :id="myId" class="Ctn">
@@ -133,13 +133,41 @@ export default class BaseP extends Vue {
   line-height: 1.6;
   text-align: left;
   background-color: #fefefe;
-  border-top: 1rpx #cac9ce solid;
-  border-bottom: 1rpx #cac9ce solid;
   max-width: 487px;
   margin: 0 auto;
+  position: relative;
 }
 
-.grey.nm .iOSP {
+.grey .iOSP:after,
+.grey .iOSP:before {
+  content: ' ';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  color: #cac9ce;
+}
+
+.grey .iOSP:after {
+  bottom: 0;
+  border-bottom: 1px solid #cac9ce;
+  -webkit-transform-origin: 0 100%;
+  transform-origin: 0 100%;
+  -webkit-transform: scaleY(0.4);
+  transform: scaleY(0.4);
+}
+
+.grey .iOSP:before {
+  top: 0;
+  border-top: 1px solid #cac9ce;
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+  -webkit-transform: scaleY(0.4);
+  transform: scaleY(0.4);
+}
+
+.grey.nm .iOSP:before,
+.grey.nm .iOSP:after {
   border-color: #353631;
 }
 

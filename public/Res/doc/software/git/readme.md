@@ -21,7 +21,7 @@ Git是一个开源的分布式版本控制系统，用于敏捷高效地处理�
 
 ## Git笔记
 
-- ### [Git-cheatSheet](https://nenuyouth.com/document/software/git/gitCheatSheet.pdf)
+- ### [Git-cheatSheet](https://nenuyouth.com/Res/doc/software/git/gitCheatSheet.pdf)
 
 ## 在线教程
 

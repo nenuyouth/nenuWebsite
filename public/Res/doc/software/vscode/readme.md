@@ -130,11 +130,11 @@ vscode支持打开文件和文件夹。
     >
     > [Windows快捷键介绍](/doc/windows/shortCutKey)
     >
-    > [VScode快捷键介绍](https://nenuyouth.com/document/software/vscode/vscodeKeyboardShortcutsWindows.pdf)
+    > [VScode快捷键介绍](https://nenuyouth.com/Res/doc/software/vscode/vscodeKeyboardShortcutsWindows.pdf)
 
 ## VScode设置
 
-[点击此处](vscode/vscodeSettings)
+- #### [点击此处](vscode/vscodeSettings)
 
 ## VScode文档
 

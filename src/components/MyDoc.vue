@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-03-23 17:53:20
+ * @LastEditTime: 2019-03-25 12:09:02
  -->
 <template>
   <!-- 标题设置 -->
@@ -38,7 +38,7 @@
     <!-- <transition :name="transitionName" mode="in-out"> -->
     <keep-alive>
       <!-- 文档显示 -->
-      <BaseDoc :docContent="compiledMarkdown" :key="path" @title="docTitle=$event"/>
+      <doc-view :docContent="compiledMarkdown" :key="path" @title="docTitle=$event"/>
     </keep-alive>
     <!-- </transition> -->
   </div>
@@ -47,11 +47,11 @@
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { Route } from 'vue-router';
-import BaseDoc from '@/components/BaseDoc.vue';
+import DocView from '@/components/DocView.vue';
 import PasswordModal from '@/components/PasswordModal.vue';
 import getCompiledMarkdown from '@/lib/getMarkdown';
 
-@Component({ components: { BaseDoc, PasswordModal } })
+@Component({ components: { DocView, PasswordModal } })
 export default class MyDoc extends Vue {
   // 文档标题
   private docTitle = '内部文档';

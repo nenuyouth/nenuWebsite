@@ -134,19 +134,48 @@ export default class BaseList extends Vue {
 }
 
 .Lctn {
-  width: 100%;
   background-color: #fefefe;
-  border-bottom: 1px #cac9ce solid;
-  border-top: 1px #cac9ce solid;
+  width: 100%;
+  position: relative;
+}
+
+.Lctn:after,
+.Lctn:before {
+  content: ' ';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  color: #cac9ce;
+}
+
+.Lctn:after {
+  bottom: 0;
+  border-bottom: 1px solid #cac9ce;
+  -webkit-transform-origin: 0 100%;
+  transform-origin: 0 100%;
+  -webkit-transform: scaleY(0.4);
+  transform: scaleY(0.4);
+}
+
+.Lctn:before {
+  top: 0;
+  border-top: 1px solid #cac9ce;
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+  -webkit-transform: scaleY(0.4);
+  transform: scaleY(0.4);
 }
 
 @media (min-width: 600px) {
   .Lctn {
-    border: 1px #cac9ce solid;
+    border-left: 1px #cac9ce solid;
+    border-right: 1px #cac9ce solid;
   }
 }
 
-.nm .Lctn {
+.nm .Lctn:after,
+.nm .Lctn:before {
   border-color: #353631;
 }
 
@@ -158,6 +187,12 @@ export default class BaseList extends Vue {
   border-radius: 0;
   border: none;
   color: #000;
+}
+
+.listCtn:hover {
+  background-clip: border-box;
+  background-color: rgba(0, 0, 0, 0.1) !important;
+  opacity: 0.7 !important;
 }
 
 .listCtn:empty {
@@ -225,22 +260,38 @@ export default class BaseList extends Vue {
 }
 
 .link-divline {
-  width: calc(100% - 15px);
+  position: relative;
+}
+
+.link-divline:after {
+  content: ' ';
+  position: absolute;
+  left: 15px;
+  bottom: 0;
+  right: 0;
   height: 1px;
-  margin-left: 15px;
-  background-color: #cac9ce;
+  color: #cac9ce;
+  border-bottom: 1px solid #cac9ce;
+  -webkit-transform-origin: 0 100%;
+  transform-origin: 0 100%;
+  -webkit-transform: scaleY(0.4);
+  transform: scaleY(0.4);
 }
 
-.listIconDivline {
-  margin-left: 50px;
-  width: calc(100% - 50px);
+.listIcon.link-divline {
+  width: 100%;
+  height: 0;
 }
 
-.nm .link-divline {
-  background-color: #353631;
+.listIcon.link-divline:after {
+  left: 50px;
 }
 
-.link-divline:last-child {
+.nm .link-divline:after {
+  border-color: #353631;
+}
+
+.link-divline:last-child:after {
   display: none;
 }
 

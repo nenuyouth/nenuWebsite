@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-03-23 13:57:07
+ * @LastEditTime: 2019-03-25 12:11:37
  -->
 <template>
   <div class="container mt-3 pb-3">
@@ -106,7 +106,7 @@ interface Aside {
 }
 
 @Component
-export default class BaseDoc extends Vue {
+export default class DocView extends Vue {
   // 文档标题
   private docTitle = '内部文档';
   // 侧边栏内容
