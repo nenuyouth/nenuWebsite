@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主页
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-03-25 11:17:10
+ * @LastEditTime: 2019-03-25 12:32:48
 -->
 <template>
   <div class="container">
@@ -43,7 +43,7 @@
       <a-col :xs="24">
         <h2 class="px-3 pt-3">东师校历</h2>
         <hr>
-        <div style="max-height:600px;overflow-y: auto;">
+        <div class="calendarHolder">
           <base-time-line :time-list="timeList"/>
         </div>
       </a-col>
@@ -133,5 +133,12 @@ export default class Main extends Vue {
   text-align: center;
   color: #212529;
   padding: 0.25em 0;
+}
+.calendarHolder {
+  max-height: 300px;
+  overflow-y: auto;
+}
+.calendarHolder::-webkit-scrollbar {
+  display: none;
 }
 </style>

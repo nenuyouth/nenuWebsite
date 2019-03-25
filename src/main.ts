@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主脚本文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-03-25 10:36:32
+ * @LastEditTime: 2019-03-25 12:29:57
  */
 
 // 引入Ant Design
@@ -18,7 +18,7 @@ import _ from 'lodash';
 import App from './App.vue';
 import getOS from './lib/getOS';
 import registerServiceWorker from './registerServiceWorker';
-import router from './router';
+import router from './router/router';
 import store from './store/store';
 
 // 自定义css样式
