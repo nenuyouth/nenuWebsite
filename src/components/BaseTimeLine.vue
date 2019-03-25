@@ -1,6 +1,22 @@
+<!--
+ * @Author: Mr.Hope
+ * @LastEditors: Mr.Hope
+ * @Description: 时间轴插件
+ * @Date: 2019-03-23 18:29:52
+ * @LastEditTime: 2019-03-25 11:09:01
+ -->
 <template>
-  <a-timeline mode="alternate">
+  <a-timeline :mode="mode">
     <a-timeline-item :color="item.color" :key="item.text" v-for="(item,index) in timeList">
+      <template v-if="item.type" v-slot:dot>
+        <icon-font
+          :style="`color:${item.color}`"
+          :type="type"
+          style="font-size:16px;"
+          v-if="item.type.slice(0,5)==='icon-'"
+        />
+        <a-icon :style="`color:${item.color}`" :type="item.type" style="font-size:16px;"/>
+      </template>
       <router-link :to="item.url" v-if="item.url">
         <h3 :style="item.headingStyle" v-if="item.title">{{ item.title }}</h3>
         <p v-html="list[index]"/>
@@ -39,6 +55,10 @@ export default class BaseTimeLine extends Vue {
     });
 
     return list;
+  }
+
+  private get mode() {
+    return this.$store.state.screen.sm ? 'alternate' : 'left';
   }
 }
 </script>

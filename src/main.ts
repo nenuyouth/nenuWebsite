@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主脚本文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-03-24 09:52:22
+ * @LastEditTime: 2019-03-25 10:36:32
  */
 
 // 引入Ant Design
@@ -14,11 +14,12 @@ import {
 import { Route } from 'vue-router';
 import Vue from 'vue';
 import Component from 'vue-class-component';
+import _ from 'lodash';
 import App from './App.vue';
 import getOS from './lib/getOS';
 import registerServiceWorker from './registerServiceWorker';
 import router from './router';
-import store from './store';
+import store from './store/store';
 
 // 自定义css样式
 import './lib/customBootstrap.scss';
@@ -83,11 +84,11 @@ router.afterEach((to: Route) => {
   store.commit('path', to.path);
 });
 
-// 获取屏幕状态
-store.commit('screenWidth', $(window).width() || document.documentElement.clientWidth);
-$(window).on('resize', () => {
-  store.commit('screenWidth', $(window).width() || document.documentElement.clientWidth);
-});
+// 获取屏幕状态，并进行brakpoint状态监听
+store.dispatch('screen', $(window).width() || document.documentElement.clientWidth);
+$(window).on('resize', _.debounce(() => {
+  store.dispatch('screen', $(window).width() || document.documentElement.clientWidth);
+}, 300));
 
 // 声明Vue实例
 new Vue({

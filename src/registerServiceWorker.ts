@@ -1,3 +1,11 @@
+/*
+ * @Author: Mr.Hope
+ * @LastEditors: Mr.Hope
+ * @Description: register-service-worker配置文件
+ * @Date: 2019-02-27 00:00:08
+ * @LastEditTime: 2019-03-25 10:41:57
+ */
+
 /* eslint-disable no-console */
 // tslint:disable no-console
 import { register } from 'register-service-worker';

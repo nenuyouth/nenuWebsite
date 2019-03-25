@@ -241,6 +241,7 @@
     "one-line": [
       false
     ],
+    // 因为类型原因暂时关闭
     "one-variable-per-declaration": true,
     "ordered-imports": [
       true,

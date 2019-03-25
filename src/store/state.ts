@@ -1,31 +1,23 @@
 /*
- * @Author: Mr.Hope
+* @Author: Mr.Hope
  * @LastEditors: Mr.Hope
- * @Description: state文件
- * @Date: 2019-03-24 00:00:21
- * @LastEditTime: 2019-03-24 00:49:13
- */
+* @Description: state文件
+* @Date: 2019-03-24 00:00:21
+ * @LastEditTime: 2019-03-25 00:55:34
+*/
+import { ScreenState } from './screen';
 
 interface DocList {
   [propName: string]: string;
 }
+
 export interface MenuList {
   key: string;
   title: string;
   children?: MenuList;
 }
 
-interface ScreenDescription {
-  [propName: string]: boolean;
-  xs: boolean;
-  sm: boolean;
-  md: boolean;
-  lg: boolean;
-  xl: boolean;
-  xxl: boolean;
-}
-
-export interface State {
+export interface BaseState {
   Android: boolean;
   iOS: boolean;
   OSVersion: string;
@@ -36,12 +28,11 @@ export interface State {
   menuList: MenuList[];
   nightmode: boolean;
   path: string;
-  screenDesc: ScreenDescription;
-  screenStatus: string;
-  screenWidth: number;
+
+  // screen?: ScreenState;
 }
 
-const myState: State = {
+const myState: BaseState = {
   Android: false,
   iOS: false,
   OSVersion: '',
@@ -51,10 +42,7 @@ const myState: State = {
   internalPassword: '',
   menuList: [],
   nightmode: false,
-  path: '',
-  screenDesc: { xs: false, sm: false, md: false, lg: false, xl: true, xxl: false },
-  screenStatus: 'xl',
-  screenWidth: 1440
+  path: ''
 };
 
 export default myState;
