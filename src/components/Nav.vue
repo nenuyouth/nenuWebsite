@@ -60,23 +60,28 @@ export default class Nav extends Vue {
 }
 </script>
 <style scoped>
+#nav {
+  position: fixed;
+  top: 0px;
+  z-index: 100;
+  width: 100vw;
+}
 @media (max-width: 992px) {
-  .ant-menu-horizontal {
+  #nav {
     line-height: 38.6px;
   }
 }
-
+</style>
+<style>
 /* lg以上屏幕nav固定 */
 @media (min-width: 992px) {
-  .ant-menu-horizontal {
-    position: fixed;
-    width: 100vw;
-    top: 0px;
-    z-index: 1000;
-  }
-
   #body {
     padding-top: 48px;
+  }
+}
+@media (max-width: 992px) {
+  #body {
+    padding-top: 40px;
   }
 }
 </style>
