@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-03-25 12:09:02
+ * @LastEditTime: 2019-03-28 21:21:44
  -->
 <template>
   <!-- 标题设置 -->
@@ -16,7 +16,7 @@
       </span>|
       <a-breadcrumb style="display:inline-block">
         <a-breadcrumb-item>
-          <router-link :to="basepath" v-if="routes.length">
+          <router-link :to="basepath" class="homeIcon" v-if="routes.length">
             &ensp;
             <a-icon style="font-size:16px;" type="home"/>&ensp;home
           </router-link>
@@ -50,6 +50,10 @@ import { Route } from 'vue-router';
 import DocView from '@/components/DocView.vue';
 import PasswordModal from '@/components/PasswordModal.vue';
 import getCompiledMarkdown from '@/lib/getMarkdown';
+
+// 导入css样式
+import '@/lib/github-markdown.css';
+import 'highlight.js/styles/atom-one-dark.css';
 
 @Component({ components: { DocView, PasswordModal } })
 export default class MyDoc extends Vue {
@@ -147,5 +151,9 @@ export default class MyDoc extends Vue {
 
 .backIcon:hover {
   color: #3cba63;
+}
+
+.homeIcon {
+  text-decoration: none;
 }
 </style>

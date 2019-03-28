@@ -14,6 +14,8 @@
 
 #### Vue官方库
 
+> 跟进使用最新版官方库
+
 - @vue/cli
 - vue
 - vue-router
@@ -25,6 +27,7 @@
 
 - ant-design-vue(Ant-design样式库)
 - axios(基于promise的html访问功能)
+- bootstrap4(提供简介的class样式)
 - highlight.js(提供md代码高亮)
 - marked(提供md转html)
 - github-markdown-css(提供github md样式)
@@ -34,11 +37,7 @@
 
 #### CDN引入
 
-- jquery3
-- popper.js
-- bootstrap4(bootstrap栅格系统)
-
-> 目前暂时取消使用了vue-wechat-title
+- jquery3.3.1
 
 ### 开发依赖
 

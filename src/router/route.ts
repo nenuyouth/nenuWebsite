@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 路由配置文件
  * @Date: 2019-03-25 12:27:33
- * @LastEditTime: 2019-03-25 12:31:04
+ * @LastEditTime: 2019-03-28 15:44:28
  */
 import Main from '@/views/Main.vue';
 import Page404 from '@/views/Page404.vue';
@@ -22,11 +22,6 @@ const myRoute = [
 
     // 使用import来进行异步调用实现懒加载，打包时，webpack会识别webpackChunkName注释，将相同的一起打包一同执行懒加载
     component: () => import(/* webpackChunkName: "guide" */ '@/views/Guide.vue')
-  },
-  {
-    path: '/testpage',
-    name: 'test',
-    component: () => import(/* webpackChunkName: "test" */ '@/views/Test.vue')
   },
   {
     path: '/page/:path',

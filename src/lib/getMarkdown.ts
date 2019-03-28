@@ -5,6 +5,7 @@
  * @Date: 2019-03-17 16:48:38
  * @LastEditTime: 2019-03-18 16:48:20
  */
+
 import Vue from 'vue';
 import axios from 'axios';
 import hljs from 'highlight.js';
@@ -33,14 +34,15 @@ myRenderMD.link = (href, title, text) =>
 
 // 设置marked插件
 marked.setOptions({
-  renderer: myRenderMD, // 控制输出渲染
+  breaks: true, // 使用GitHub Flavored Markdown控制换行输出<br>
   gfm: true, // 是否使用GitHub改进标准的Markdown
-  tables: true, // 是否使用gtm table
-  breaks: false, // 使用GitHub Flavored Markdown控制换行输出<br>
+  langPrefix: 'hljs ',
   pedantic: false, // 是否尽量接近原生markdown.pl
+  renderer: myRenderMD, // 控制输出渲染
   sanitize: true, // 是否清理内部html内容
   smartLists: true, // 是否使用更先进列表样式
   smartypants: false, // 是否对部分内容添加额外符号
+  tables: true, // 是否使用gtm table
   xhtml: true, // 是否闭合空标签
   // Highlight代码块
   highlight: (code, lang) =>
