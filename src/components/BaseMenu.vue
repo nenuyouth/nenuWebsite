@@ -1,3 +1,10 @@
+<!--
+ * @Author: Mr.Hope
+ * @LastEditors: Mr.Hope
+ * @Description: 基础竖排菜单
+ * @Date: 2019-03-25 12:39:59
+ * @LastEditTime: 2019-03-29 12:38:13
+-->
 <template>
   <a-menu
     :defaultOpenKeys="['2']"

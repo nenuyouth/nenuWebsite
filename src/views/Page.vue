@@ -3,8 +3,8 @@
  * @LastEditors: Mr.Hope
  * @Description: 自动生成界面
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-03-20 00:43:05
- -->
+ * @LastEditTime: 2019-03-29 12:44:40
+-->
 <template>
   <base-page :key="url" :pagedata="pageData" v-if="pageData"></base-page>
 </template>

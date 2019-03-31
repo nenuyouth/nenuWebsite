@@ -3,8 +3,8 @@
  * @LastEditors: Mr.Hope
  * @Description: 走马灯组件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-03-23 11:46:53
- -->
+ * @LastEditTime: 2019-03-29 12:36:48
+-->
 <template>
   <a-carousel
     :arrows="true"

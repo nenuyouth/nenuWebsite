@@ -3,8 +3,8 @@
  * @LastEditors: Mr.Hope
  * @Description: 时间轴插件
  * @Date: 2019-03-23 18:29:52
- * @LastEditTime: 2019-03-25 11:09:01
- -->
+ * @LastEditTime: 2019-03-29 12:41:17
+-->
 <template>
   <a-timeline :mode="mode">
     <a-timeline-item :color="item.color" :key="item.text" v-for="(item,index) in timeList">

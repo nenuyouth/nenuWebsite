@@ -1,3 +1,10 @@
+<!--
+ * @Author: Mr.Hope
+ * @LastEditors: Mr.Hope
+ * @Description: 基础列表
+ * @Date: 2019-03-25 12:39:59
+ * @LastEditTime: 2019-03-29 12:37:24
+-->
 <template>
   <div :id="myId" class="Ctn">
     <template v-if="head !== false">

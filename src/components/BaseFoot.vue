@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 基础页脚
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-03-16 19:27:08
+ * @LastEditTime: 2019-03-29 12:35:38
  -->
 <template>
   <div :id="myId" class="Footer">
@@ -18,7 +18,7 @@
     <span v-if="time">最后编辑于{{ time }}</span>
     <span v-if="time || author">
       <br>
-    </span>Copyright © 2017-2018 HopeStudio
+    </span>Copyright © 2017-2019 HopeStudio
   </div>
 </template>
 <script lang="ts">
