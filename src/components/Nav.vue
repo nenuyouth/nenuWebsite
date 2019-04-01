@@ -16,8 +16,8 @@
         <a-icon type="home"/>主页
       </router-link>
     </a-menu-item>
-    <a-menu-item key="/guide">
-      <router-link to="/guide">
+    <a-menu-item key="/handbook">
+      <router-link to="/handbook">
         <a-icon type="bulb"/>东师指南
       </router-link>
     </a-menu-item>

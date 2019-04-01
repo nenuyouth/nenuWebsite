@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主页
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-03-25 12:32:48
+ * @LastEditTime: 2019-04-01 17:12:16
 -->
 <template>
   <div class="container">
@@ -31,9 +31,9 @@
             class="guideListButton"
             v-for="item in guidelist"
           >
-            <router-link :to="`/guide/${item[1]}`">
+            <router-link :to="`/handbook/${item[1]}`">
               <div>
-                <img :src="require(`@/icon/guide/${item[1]}.svg`)" class="guideIcon px-2 py-1">
+                <img :src="`/img/icon/guide/${item[1]}.svg`" class="guideIcon px-2 py-1">
                 <div class="guideButtonDesc">{{ item[0] }}</div>
               </div>
             </router-link>

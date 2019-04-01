@@ -20,7 +20,8 @@ export interface BaseState {
   Android: boolean;
   iOS: boolean;
   OSVersion: string;
-  compiledMarkdown: DocList;
+  compiledDoc: DocList;
+  compiledGuide: DocList;
   docLoading: boolean;
   internalLogin: boolean;
   internalPassword: string;
@@ -33,7 +34,8 @@ const myState: BaseState = {
   Android: false,
   iOS: false,
   OSVersion: '',
-  compiledMarkdown: {},
+  compiledDoc: {},
+  compiledGuide: {},
   docLoading: true,
   internalLogin: false,
   internalPassword: '',

@@ -76,12 +76,13 @@ const myAlert = (ctx: Vue, netError?: boolean, err?: string) => {
  *
  * @param path Markdown路径
  * @param ctx Vue组件对象指针
+ * @param stateName 存储对象在state中的名称
  * @param [url] 服务器请求路经
  * @returns 是否继续导航
  */
-const getCompiledMarkdown = async (path: string, ctx: Vue, url?: string) => {
+const getCompiledMarkdown = async (path: string, ctx: Vue, stateName: string, url?: string) => {
   const store = ctx.$store;
-  const docContent = store.state.compiledMarkdown.path;
+  const docContent = store.state[stateName].path;
   let navigate = true;
 
   if (!docContent)
@@ -90,7 +91,7 @@ const getCompiledMarkdown = async (path: string, ctx: Vue, url?: string) => {
       if (response.data === 'file not found') {
         navigate = false;
         myAlert(ctx);
-      } else store.commit('compiledMarkdown', [path, marked(response.data)]);
+      } else store.commit('compiledDoc', [path, marked(response.data)]);
     }).catch(err => {
       navigate = false;
       myAlert(ctx, true, err);

@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 基础列表
  * @Date: 2019-03-25 12:39:59
- * @LastEditTime: 2019-03-29 12:37:24
+ * @LastEditTime: 2019-04-01 16:59:54
 -->
 <template>
   <div :id="myId" class="Ctn">
@@ -21,7 +21,7 @@
           v-if="List.display !== false && (List.url || List.aim)"
         >
           <div @click="navigate(List.aim)" class="list-Container" v-if="List.aim">
-            <img :src="List.icon" class="listIcon" v-if="List.icon">
+            <img :src="`/img${List.icon}`" class="listIcon" v-if="List.icon">
             <div class="LinkText">{{ List.text }}</div>
             <div class="linkDesciption access">{{ List.desc }}</div>
           </div>
@@ -31,7 +31,7 @@
             <div class="linkDesciption access">{{ List.desc }}</div>
           </router-link>
           <div class="list-Container" v-else>
-            <img :src="List.icon" class="listIcon" v-if="List.icon">
+            <img :src="`/img${List.icon}`" class="listIcon" v-if="List.icon">
             <div class="LinkText">{{ List.text }}</div>
             <div class="linkDesciption">{{ List.desc }}</div>
           </div>
@@ -57,18 +57,23 @@ interface List {
 
 @Component
 export default class BaseList extends Vue {
+  // id
   @Prop(Number) private myId!: number;
 
+  // list content
   @Prop({ type: Array, required: true }) private content!: List[];
 
+  // list head text
   @Prop([String, Boolean]) private head!: string | boolean;
 
+  // list footer text
   @Prop([String, Boolean]) private foot!: string | boolean;
 
   private get listItem() {
-    // 创建副本
+    // create a copy of @Prop('content)
     const listItem = JSON.parse(JSON.stringify(this.content));
 
+    // add key and item for the listitem in the copy
     listItem.forEach((element: List, index: number) => {
       if (this.myId) element.id = `list${this.myId}-${index}`;
       element.textKey = `${element.text}Key`;
@@ -77,8 +82,9 @@ export default class BaseList extends Vue {
     return listItem;
   }
 
+  // navigate to the right page when clicking on a listitem with link
   private navigate(aim: string) {
-    this.$router.push(`/guide/${aim}`);
+    this.$router.push(`/handbook/${aim}`);
   }
 }
 </script>

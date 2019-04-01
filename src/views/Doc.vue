@@ -3,16 +3,16 @@
 </template>
 
 <script lang="ts">
-import MyDoc from '@/components/MyDoc.vue';
 import { Component, Vue } from 'vue-property-decorator';
 import { MenuList } from '@/components/BaseSubMenu.vue';
 import { Route } from 'vue-router';
+import MyDoc from '@/components/MyDoc.vue';
 import getCompiledMarkdown from '@/lib/getMarkdown';
 
 @Component({ components: { MyDoc } })
 export default class Doc extends Vue {
   // 文档基础路径长度
-  private baselength = 5;
+  private readonly baselength = 5;
 
   // 文档路径
   private get path() {
@@ -37,11 +37,12 @@ export default class Doc extends Vue {
     this.$store.commit('docLoading', true);
 
     // 如果将转入的页面markdown未缓存
-    if (!this.$store.state.compiledMarkdown[path])
+    if (!this.$store.state.compiledDoc[path])
       // 通过获取markdown文件情况决定是否导航
       navigate = await getCompiledMarkdown(
         path,
         this,
+        'compiledDoc',
         `/server/doc.php?password=${this.$store.state.internalPassword}&path=`
       );
 

@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Mutation文件
  * @Date: 2019-03-25 10:37:09
- * @LastEditTime: 2019-03-25 11:19:20
+ * @LastEditTime: 2019-04-01 17:39:47
  */
 import Vue from 'vue';
 import { BaseState, MenuList } from './state';
@@ -12,8 +12,11 @@ const myMutation = {
   android(state: BaseState) {
     state.Android = true;
   },
-  compiledMarkdown(state: BaseState, compiledMarkdown: string[]) {
-    Vue.set(state.compiledMarkdown, compiledMarkdown[0], compiledMarkdown[1]);
+  compiledGuide(state: BaseState, compiledGuide: string[]) {
+    Vue.set(state.compiledGuide, compiledGuide[0], compiledGuide[1]);
+  },
+  compiledDoc(state: BaseState, compiledDoc: string[]) {
+    Vue.set(state.compiledDoc, compiledDoc[0], compiledDoc[1]);
   },
   docLoading(state: BaseState, docLoading: boolean) {
     state.docLoading = docLoading;

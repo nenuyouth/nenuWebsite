@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-04-01 17:42:55
+ * @LastEditTime: 2019-04-01 17:37:46
 -->
 <template>
   <!-- 标题设置 -->
@@ -28,13 +28,6 @@
         </a-breadcrumb-item>
       </a-breadcrumb>
     </div>
-    <!-- 密码弹窗 -->
-    <PasswordModal
-      @login="login"
-      passwordKey="internalPassword"
-      url="/server/passwordValidate"
-      v-if="!$store.state.internalLogin"
-    />
     <!-- <transition :name="transitionName" mode="in-out"> -->
     <keep-alive>
       <!-- 文档显示 -->
@@ -48,17 +41,16 @@
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { Route } from 'vue-router';
 import DocView from '@/components/DocView.vue';
-import PasswordModal from '@/components/PasswordModal.vue';
 import getCompiledMarkdown from '@/lib/getMarkdown';
 
 // 导入css样式
 import '@/lib/github-markdown.css';
 import 'highlight.js/styles/atom-one-dark.css';
 
-@Component({ components: { DocView, PasswordModal } })
+@Component({ components: { DocView } })
 export default class MyDoc extends Vue {
   // 文档标题
-  private docTitle = '内部文档';
+  private docTitle = '东师指南';
 
   // Markdown编译内容
   private compiledMarkdown = '';
@@ -84,39 +76,29 @@ export default class MyDoc extends Vue {
   // 登陆成功，开始获取markdown文件
   private async login() {
     // 如果该路径markdown未被缓存则获取之
-    if (!this.$store.state.compiledDoc[this.path])
-      await getCompiledMarkdown(
-        this.path,
-        this,
-        'compiledDoc',
-        `/server/doc.php?password=${this.$store.state.internalPassword}&path=`
-      );
+    if (!this.$store.state.compiledGuide[this.path])
+      await getCompiledMarkdown(this.path, this, `/server/guide.php?path=`);
 
     // 当路径改变时写入编译后的html
-    this.compiledMarkdown = this.$store.state.compiledDoc[this.path];
+    this.compiledMarkdown = this.$store.state.compiledGuide[this.path];
   }
 
   private async mounted() {
     // 如果已经登陆,直接加载，否则等待login函数触发
     if (this.$store.state.internalLogin) {
       // 如果该路径markdown未被缓存则获取之
-      if (!this.$store.state.compiledDoc[this.path])
-        await getCompiledMarkdown(
-          this.path || 'readme',
-          this,
-          'compiledDoc',
-          `/server/doc.php?password=${this.$store.state.internalPassword}&path=`
-        );
+      if (!this.$store.state.compiledGuide[this.path])
+        await getCompiledMarkdown(this.path || 'readme', this, `/server/guide.php?path=`);
 
       // 写入编译后的html
-      this.compiledMarkdown = this.$store.state.compiledDoc[this.path];
+      this.compiledMarkdown = this.$store.state.compiledGuide[this.path];
     }
   }
 
   @Watch('path')
   private onPathChange(to: string, from: string) {
     // 当路径改变时写入编译后的html
-    this.compiledMarkdown = this.$store.state.compiledDoc[this.path];
+    this.compiledMarkdown = this.$store.state.compiledGuide[this.path];
   }
 
   @Watch('$route')
