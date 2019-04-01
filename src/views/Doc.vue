@@ -1,3 +1,10 @@
+<!--
+ * @Author: Mr.Hope
+ * @LastEditors: Mr.Hope
+ * @Description: Internal Doc Display
+ * @Date: 2019-04-01 23:35:43
+ * @LastEditTime: 2019-04-01 23:50:17
+-->
 <template>
   <MyDoc :baselength="baselength" :loading="$store.state.docLoading" :path="path"/>
 </template>

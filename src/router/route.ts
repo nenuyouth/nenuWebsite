@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 路由配置文件
  * @Date: 2019-03-25 12:27:33
- * @LastEditTime: 2019-04-01 22:39:26
+ * @LastEditTime: 2019-04-01 23:55:46
  */
 import Main from '@/views/Main.vue';
 import Page404 from '@/views/Page404.vue';
@@ -113,20 +113,14 @@ const myRoute = [
     name: 'question',
     component: () => import(/* webpackChunkName: "about" */ '@/views/about/Question.vue')
   },
-  {
-    path: '/guide',
-    name: 'guide',
-    meta: { title: '东师指南' },
-    component: () => import(/* webpackChunkName: "guide" */ '@/views/Guide.vue')
-  },
   { path: '/guide/readme', redirect: '/guide' },
   { path: '/guide/:path1/readme', redirect: '/guide/:path1' },
   { path: '/guide/:path1/:path2/readme', redirect: '/guide/:path1/:path2' },
   { path: '/guide/:path1/:path2/:path3/readme', redirect: '/guide/:path1/:path2/:path3' },
   {
     path: '/guide/:path1?/:path2?/:path3?/:path4?',
-    meta: { title: '内部文档' },
-    component: () => import(/* webpackChunkName: "doc" */ '@/views/Guide.vue')
+    meta: { title: '东师指南' },
+    component: () => import(/* webpackChunkName: "guide" */ '@/views/Guide.vue')
   },
   { path: '/doc/readme', redirect: '/doc' },
   { path: '/doc/:path1/readme', redirect: '/doc/:path1' },

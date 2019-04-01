@@ -25,35 +25,45 @@
         "type": "bulb"
       },
       {
+        "key": "/guide/library/authority",
+        "title": "图书借阅权限",
+        "type": "lock"
+      },
+      {
+        "key": "/guide/library/procedure",
+        "title": "图书借阅流程",
+        "type": "ordered-list"
+      },
+      {
         "key": "/guide/library/ichnography",
         "title": "图书馆楼层平面图",
-        "type": "info-circle"
+        "type": "block"
       },
       {
         "key": "/guide/library/authorization",
         "title": "校外访问授权系统",
-        "type": "info-circle"
+        "type": "api"
       },
       {
         "key": "/guide/library/openTime",
         "title": "图书馆开闭馆时间",
-        "type": "info-circle"
+        "type": "clock-circle"
       },
       {
         "key": "/guide/library/facility",
         "title": "图书馆服务设施",
-        "type": "info-circle"
+        "type": "hdd"
       },
       {
         "key": "/guide/library/location",
         "title": "图书馆位置",
-        "type": "info-circle"
+        "type": "environment"
       }
     ]
   },
   {
     "key": "/guide/NCRE",
     "title": "计算机等级考试",
-    "type": "info-circle"
+    "type": "desktop"
   }
 ]

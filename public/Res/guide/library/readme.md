@@ -6,6 +6,10 @@
 
 - #### [图书检索教程](library/guide)
 
+- #### [图书借阅权限](library/authority)
+
+- #### [图书借阅流程](library/procedure)
+
 - #### [校外访问授权系统](http://resource.library.nenu.edu.cn/)(外部链接)
 
 - #### [图书馆楼层平面图](library/ichnography)

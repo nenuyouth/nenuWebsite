@@ -1,3 +1,10 @@
+<!--
+ * @Author: Mr.Hope
+ * @LastEditors: Mr.Hope
+ * @Description: Guide Doc display
+ * @Date: 2019-04-01 16:10:20
+ * @LastEditTime: 2019-04-01 23:55:59
+-->
 <template>
   <MyGuide :baselength="baselength" :loading="$store.state.docLoading" :path="path"/>
 </template>

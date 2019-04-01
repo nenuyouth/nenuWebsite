@@ -1,6 +1,6 @@
 # NENU StudentUnion Website
 
-> 本项目采用GNU General Public License version 3，使用前请务必注意条款。
+> 本项目并没有附加任何开源协议，请避免使用、改编、移植任何源码
 
 该项目使用Node.js，基于Vue框架制作
 
