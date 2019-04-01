@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主脚本文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-04-01 12:51:31
+ * @LastEditTime: 2019-04-01 22:44:18
  */
 
 // 引入Ant Design
@@ -65,7 +65,7 @@ Vue.prototype.$success = Modal.success;
 Vue.prototype.$warning = Modal.warning;
 
 // 注册IconFont
-const IconFont = Icon.createFromIconfontCN({ scriptUrl: '//at.alicdn.com/t/font_1091332_4ofyaslv7tf.js' });
+const IconFont = Icon.createFromIconfontCN({ scriptUrl: '//at.alicdn.com/t/font_1091332_r6zjdxapqxn.js' });
 
 // 全局注册IconFont
 Vue.component('icon-font', IconFont);
@@ -80,19 +80,21 @@ getOS(store);
 Vue.config.productionTip = false;
 
 // 注册页面跳转时页脚先隐藏，防止页脚干扰显示
-// router.beforeEach((to, from, next) => {
-//   $('#footer').css({ visibility: 'hidden', opacity: 0.01 });
-//   setTimeout(
-//     () => {
-//       $('#footer').css('visibility', '');
-//       Vue.nextTick().then(() => {
-//         $('#footer').fadeIn(500);
-//       });
-//     },
-//     1000
-//   );
-//   next();
-// });
+/*
+ *router.beforeEach((to, from, next) => {
+ *   $('#footer').css({ visibility: 'hidden', opacity: 0.01 });
+ *   setTimeout(
+ *     () => {
+ *       $('#footer').css('visibility', '');
+ *       Vue.nextTick().then(() => {
+ *         $('#footer').fadeIn(500);
+ *       });
+ *     },
+ *     1000
+ *   );
+ *   next();
+ * });
+ */
 
 // 在导航确认后立即更新path值
 router.afterEach((to: Route) => {

@@ -1,9 +1,9 @@
 /*
  * @Author: Mr.Hope
  * @LastEditors: Mr.Hope
- * @Description: vue配置文件
+ * @Description: vue config file
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-03-31 11:20:53
+ * @LastEditTime: 2019-04-01 21:50:58
  */
 
 /**

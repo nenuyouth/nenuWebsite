@@ -1,5 +1,10 @@
 <template>
   <aside>
+    <div :style="collapse?'':'left: 200px;'" @click="trigger" class="d-block d-lg-none slideBtn">
+      <a-icon type="bars" v-if="collapse"/>
+      <a-icon type="close" v-else/>
+    </div>
+    <div @click="trigger" class="slideMask" style="display:none;"/>
     <a-layout-sider
       :theme="theme"
       :trigger="null"
@@ -15,11 +20,6 @@
       </div>
       <base-menu :list="$store.state.menuList"></base-menu>
     </a-layout-sider>
-    <div :style="collapse?'':'left: 200px;'" @click="trigger" class="d-block d-lg-none slideBtn">
-      <a-icon type="bars" v-if="collapse"/>
-      <a-icon type="close" v-else/>
-    </div>
-    <div @click="trigger" class="slideMask" style="display:none;"/>
   </aside>
 </template>
 <script lang='ts'>
@@ -98,7 +98,7 @@ export default class Slide extends Vue {
 
 .slideMask {
   position: fixed;
-  z-index: 98;
+  z-index: 3;
   left: 200px;
   right: 0;
   top: 0;
