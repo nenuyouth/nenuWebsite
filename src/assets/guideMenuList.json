@@ -1,0 +1,24 @@
+[
+  {
+    "key": "/guide",
+    "title": "主页",
+    "type": "home"
+  },
+  {
+    "key": "menu:/guide/library",
+    "title": "图书馆",
+    "type": "icon-library",
+    "children": [
+      {
+        "key": "/guide/library",
+        "title": "图书馆",
+        "type": "icon-library"
+      },
+      {
+        "key": "/guide/library/intro",
+        "title": "图书馆简介",
+        "type": "info-circle"
+      }
+    ]
+  }
+]
