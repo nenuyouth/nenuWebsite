@@ -24,8 +24,8 @@
 
 ![2F](/Res/guide/image/Jingyue2F.jpg)
 
-![3F](/Res/guide/image/Jingyue3F.jpg)
+![3F](/Res/guide/image/Jingyue3F.bmp)
 
-![4F](/Res/guide/image/Jingyue4F.jpg)
+![4F](/Res/guide/image/Jingyue4F.bmp)
 
 ![5F](/Res/guide/image/Jingyue5F.jpg)

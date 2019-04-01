@@ -91,7 +91,7 @@ const getCompiledMarkdown = async (path: string, ctx: Vue, stateName: string, ur
       if (response.data === 'file not found') {
         navigate = false;
         myAlert(ctx);
-      } else store.commit('compiledDoc', [path, marked(response.data)]);
+      } else store.commit(stateName, [path, marked(response.data)]);
     }).catch(err => {
       navigate = false;
       myAlert(ctx, true, err);

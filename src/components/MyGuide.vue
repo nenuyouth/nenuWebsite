@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-04-01 17:37:46
+ * @LastEditTime: 2019-04-01 22:55:45
 -->
 <template>
   <!-- 标题设置 -->
@@ -48,7 +48,7 @@ import '@/lib/github-markdown.css';
 import 'highlight.js/styles/atom-one-dark.css';
 
 @Component({ components: { DocView } })
-export default class MyDoc extends Vue {
+export default class MyGuide extends Vue {
   // 文档标题
   private docTitle = '东师指南';
 
@@ -73,26 +73,13 @@ export default class MyDoc extends Vue {
     return this.$route.path.slice(this.baselength).split('/');
   }
 
-  // 登陆成功，开始获取markdown文件
-  private async login() {
+  private async mounted() {
     // 如果该路径markdown未被缓存则获取之
     if (!this.$store.state.compiledGuide[this.path])
-      await getCompiledMarkdown(this.path, this, `/server/guide.php?path=`);
+      await getCompiledMarkdown(this.path || 'readme', this, 'compiledGuide', '/server/guide.php?path=');
 
-    // 当路径改变时写入编译后的html
+    // 写入编译后的html
     this.compiledMarkdown = this.$store.state.compiledGuide[this.path];
-  }
-
-  private async mounted() {
-    // 如果已经登陆,直接加载，否则等待login函数触发
-    if (this.$store.state.internalLogin) {
-      // 如果该路径markdown未被缓存则获取之
-      if (!this.$store.state.compiledGuide[this.path])
-        await getCompiledMarkdown(this.path || 'readme', this, `/server/guide.php?path=`);
-
-      // 写入编译后的html
-      this.compiledMarkdown = this.$store.state.compiledGuide[this.path];
-    }
   }
 
   @Watch('path')

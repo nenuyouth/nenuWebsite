@@ -10,7 +10,7 @@ import MyGuide from '@/components/MyGuide.vue';
 import getCompiledMarkdown from '@/lib/getMarkdown';
 
 @Component({ components: { MyGuide } })
-export default class Doc extends Vue {
+export default class Guide extends Vue {
   // the length of url base part
   private baselength = 7;
 
@@ -39,7 +39,7 @@ export default class Doc extends Vue {
     // if markdown of this page hasn't been cached
     if (!this.$store.state.compiledGuide[path])
       // decide whether nagivate or not based on the result of getting markdown files
-      navigate = await getCompiledMarkdown(path, this, '/server/handbook.php?path=');
+      navigate = await getCompiledMarkdown(path, this, 'compiledGuide', '/server/guide.php?path=');
 
     // invoke Hook
     next(navigate);
