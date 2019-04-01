@@ -3,8 +3,9 @@
  * @LastEditors: Mr.Hope
  * @Description: vue配置文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-03-18 20:57:48
+ * @LastEditTime: 2019-03-31 11:20:53
  */
+
 /**
  * @description: vue输出配置
  * @property {string} publicPath @default '/' 网站在服务器上的部署位置

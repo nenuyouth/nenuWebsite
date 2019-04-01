@@ -51,11 +51,7 @@
     "no-var-requires": true,
     "only-arrow-functions": true,
     "prefer-for-of": true,
-    "promise-function-async": [
-      true,
-      "check-function-declaration",
-      "check-method-declaration"
-    ],
+    "promise-function-async": true,
     "typedef": false,
     "unified-signatures": true,
     "await-promise": [

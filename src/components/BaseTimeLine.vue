@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 时间轴插件
  * @Date: 2019-03-23 18:29:52
- * @LastEditTime: 2019-03-29 12:41:17
+ * @LastEditTime: 2019-04-01 12:48:25
 -->
 <template>
   <a-timeline :mode="mode">
@@ -17,7 +17,7 @@
         />
         <a-icon :style="`color:${item.color}`" :type="item.type" style="font-size:16px;"/>
       </template>
-      <router-link :to="item.url" v-if="item.url">
+      <router-link :to="item.url" class="timeLineButton" v-if="item.url">
         <h3 :style="item.headingStyle" v-if="item.title">{{ item.title }}</h3>
         <p v-html="list[index]"/>
       </router-link>
@@ -44,9 +44,11 @@ interface TimeList {
 export default class BaseTimeLine extends Vue {
   @Prop(Number) private myId!: number;
 
+  // timelist to display
   @Prop({ required: true, type: Array })
   private timeList!: TimeList[];
 
+  // handle list text
   private get list() {
     const list: string[] = [];
 
@@ -57,10 +59,14 @@ export default class BaseTimeLine extends Vue {
     return list;
   }
 
+  // change display mode according to screen width
   private get mode() {
     return this.$store.state.screen.sm ? 'alternate' : 'left';
   }
 }
 </script>
 <style>
+.timeLineButton {
+  color: rgba(0, 0, 0, 0.65);
+}
 </style>

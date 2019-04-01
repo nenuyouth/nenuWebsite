@@ -1,8 +1,7 @@
 <template>
   <div class="container">
-    <h1>东北师大校历</h1>
+    <h1>东北师大2019年春季学期校历</h1>
     <hr>
-    <div class="desc">点击学期查看学期详情</div>
     <base-time-line :time-list="timeList"/>
   </div>
 </template>
@@ -12,13 +11,6 @@ import BaseTimeLine from '@/components/BaseTimeLine.vue';
 
 @Component({ components: { BaseTimeLine } })
 export default class Calendar extends Vue {
-  private readonly timeList = require('@/assets/calendar/calendar');
+  private readonly timeList = require('@/assets/calendar/2019spring');
 }
 </script>
-<style scoped>
-.desc {
-  color: #888;
-  text-align: right;
-  font-size: 13px;
-}
-</style>
