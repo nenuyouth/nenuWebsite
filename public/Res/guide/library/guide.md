@@ -4,15 +4,15 @@
 
 先访问[图书馆主页](http://www.library.nenu.edu.cn/)
 
-  ![检索首页](/guide/image/libraryGuide1.jpg)
+  ![检索首页](/Res/guide/image/libraryGuide1.jpg)
 
   > 检索首页
 
-  ![检索结果列表](/guide/image/libraryGuide2.jpg)
+  ![检索结果列表](/Res/guide/image/libraryGuide2.jpg)
 
   > 检索结果列表
 
-  ![详细资料信息](/guide/image/libraryGuide3.jpg)
+  ![详细资料信息](/Res/guide/image/libraryGuide3.jpg)
 
   > 详细资料信息
 
@@ -20,10 +20,10 @@
 
 点击图书馆主页上“我的图书馆”链接
 
-  ![登录页面](/guide/image/libraryGuide4.jpg)
+  ![登录页面](/Res/guide/image/libraryGuide4.jpg)
 
   > 登录页面
 
-  ![我的图书馆页面](/guide/image/libraryGuide5.jpg)
+  ![我的图书馆页面](/Res/guide/image/libraryGuide5.jpg)
 
   > 我的图书馆页面

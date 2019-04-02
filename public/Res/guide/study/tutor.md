@@ -14,11 +14,11 @@
 
 ## 附件下载
 
-1. 附件一：[东北师范大学公共教学楼家教教室使用条例](/Res/guide/file/1.docx)
+1. 附件一：[东北师范大学公共教学楼家教教室使用条例](https://nenuyouth.com/Res/guide/file/1.docx)
 
-2. 附件二：[东北师范大学公共教学楼家教教室使用承诺书](/Res/guide/file/2.docx)
+2. 附件二：[东北师范大学公共教学楼家教教室使用承诺书](https://nenuyouth.com/Res/guide/file/2.docx)
   
-3. 附件三：[家教教室使用信息登记表](/Res/guide/file/2.docx)
+3. 附件三：[家教教室使用信息登记表](https://nenuyouth.com/Res/guide/file/2.docx)
 
 ---
 

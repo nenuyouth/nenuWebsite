@@ -104,17 +104,17 @@
         "type": "tool"
       },
       {
-        "key": "/guide/study/washer",
+        "key": "/guide/facility/washer",
         "title": "洗衣机",
         "type": "icon-washer"
       },
       {
-        "key": "/guide/study/terminal",
-        "title": "自助终端及",
+        "key": "/guide/facility/terminal",
+        "title": "自助终端机",
         "type": "laptop"
       },
       {
-        "key": "/guide/study/electricity",
+        "key": "/guide/facility/electricity",
         "title": "供电",
         "type": "thunderbolt"
       }

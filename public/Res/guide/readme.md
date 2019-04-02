@@ -4,8 +4,7 @@
 
 ## 图书馆
 
-
-[查看详情](guide/library)
+- #### [查看详情](guide/library)
 
 ## 学业相关
 
