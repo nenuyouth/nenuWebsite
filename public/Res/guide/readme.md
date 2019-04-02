@@ -4,8 +4,19 @@
 
 ## 图书馆
 
+
 [查看详情](guide/library)
 
-## 计算机等级考试
+## 学业相关
 
-[查看详情](guide/NCRE)
+- #### [计算机等级考试](guide/study/NCRE)
+
+- #### [大学生英语等级考试](guide/study/CET)
+
+- #### [家教](guide/study/tutor)
+
+- #### [网络课程](guide/study/webCourse)
+
+## 生活相关
+
+- #### [校园设施](guide/facility)

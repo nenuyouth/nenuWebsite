@@ -32,7 +32,7 @@
     "@types/highlight.js": "^9.12.3",
     "@types/jquery": "^3.3.29",
     "@types/lodash": "^4.14.123",
-    "@types/marked": "0.6.3",
+    "@types/marked": "0.6.4",
     "@vue/cli-plugin-babel": "^3.5.5",
     "@vue/cli-plugin-eslint": "^3.5.1",
     "@vue/cli-plugin-pwa": "^3.5.1",
@@ -49,7 +49,7 @@
     "less-loader": "^4.1.0",
     "sass": "^1.17.3",
     "sass-loader": "^7.1.0",
-    "tslint": "^5.14.0",
+    "tslint": "^5.15.0",
     "tslint-config-airbnb": "^5.11.1",
     "typescript": "^3.4.1",
     "vue-template-compiler": "^2.6.10"

@@ -3,12 +3,12 @@
  * @LastEditors: Mr.Hope
  * @Description: 主脚本文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-04-01 22:44:18
+ * @LastEditTime: 2019-04-02 13:05:45
  */
 
 // 引入Ant Design
 import {
-  Anchor, Breadcrumb, Button, Carousel, Col, Icon, Input,
+  Anchor, Breadcrumb, Button, Card, Carousel, Col, Icon, Input,
   Layout, Menu, Modal, Row, Select, Skeleton, Spin, Timeline, message
 } from 'ant-design-vue';
 import { Route } from 'vue-router';
@@ -36,6 +36,7 @@ Component.registerHooks([
 Vue.use(Anchor);
 Vue.use(Breadcrumb);
 Vue.use(Button);
+Vue.use(Card);
 Vue.use(Carousel);
 Vue.use(Col);
 Vue.use(Icon);
@@ -65,7 +66,7 @@ Vue.prototype.$success = Modal.success;
 Vue.prototype.$warning = Modal.warning;
 
 // 注册IconFont
-const IconFont = Icon.createFromIconfontCN({ scriptUrl: '//at.alicdn.com/t/font_1091332_r6zjdxapqxn.js' });
+const IconFont = Icon.createFromIconfontCN({ scriptUrl: '//at.alicdn.com/t/font_1091332_clp6mq3id0k.js' });
 
 // 全局注册IconFont
 Vue.component('icon-font', IconFont);

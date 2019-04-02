@@ -7,12 +7,12 @@
   {
     "key": "menu:/guide/library",
     "title": "图书馆",
-    "type": "icon-library",
+    "type": "book",
     "children": [
       {
         "key": "/guide/library",
         "title": "图书馆",
-        "type": "icon-library"
+        "type": "book"
       },
       {
         "key": "/guide/library/intro",
@@ -62,8 +62,62 @@
     ]
   },
   {
-    "key": "/guide/NCRE",
-    "title": "计算机等级考试",
-    "type": "desktop"
+    "key": "menu:/guide/study",
+    "title": "学习",
+    "type": "icon-rumen",
+    "children": [
+      {
+        "key": "/guide/study",
+        "title": "学业相关",
+        "type": "icon-rumen"
+      },
+      {
+        "key": "/guide/study/NCRE",
+        "title": "计算机等级考试",
+        "type": "desktop"
+      },
+      {
+        "key": "/guide/study/CET",
+        "title": "CET",
+        "type": "icon-CET"
+      },
+      {
+        "key": "/guide/study/webCourse",
+        "title": "网络课程",
+        "type": "icon-course"
+      },
+      {
+        "key": "/guide/study/tutor",
+        "title": "家教",
+        "type": "team"
+      }
+    ]
+  },
+  {
+    "key": "menu:/guide/facility",
+    "title": "设施",
+    "type": "tool",
+    "children": [
+      {
+        "key": "/guide/facility",
+        "title": "校园设施",
+        "type": "tool"
+      },
+      {
+        "key": "/guide/study/washer",
+        "title": "洗衣机",
+        "type": "icon-washer"
+      },
+      {
+        "key": "/guide/study/terminal",
+        "title": "自助终端及",
+        "type": "laptop"
+      },
+      {
+        "key": "/guide/study/electricity",
+        "title": "供电",
+        "type": "thunderbolt"
+      }
+    ]
   }
 ]
