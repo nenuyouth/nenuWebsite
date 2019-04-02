@@ -1,9 +1,9 @@
 <!--
  * @Author: Mr.Hope
  * @LastEditors: Mr.Hope
- * @Description: 走马灯组件
+ * @Description: Base Carousel
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-03-29 12:36:48
+ * @LastEditTime: 2019-04-02 14:11:30
 -->
 <template>
   <a-carousel
@@ -14,17 +14,21 @@
     :speed="speed"
     :vertical="vertical"
   >
+    <!-- prevArrow -->
     <template v-slot:prevArrow>
       <div class="arrow" style="left:10px;z-index:1;" v-if="!single&&arrowDisplay">
         <a-icon type="vertical-right"/>
       </div>
     </template>
+
+    <!-- nextArrow -->
     <template v-slot:nextArrow>
       <div class="arrow" style="right:10px;" v-if="!single&&arrowDisplay">
         <a-icon type="vertical-left"/>
       </div>
     </template>
 
+    <!-- carousel item -->
     <div :key="item.caption" @click="navigate(item.url)" class="carouselItem" v-for="item in list">
       <img :alt="item.alt" :src="item.src" class="img">
       <div :class="item.color" class="caption">
@@ -45,77 +49,75 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
 interface Carousel {
-  // 必填项
   caption: string; // 主标题
   subCaption: string; // 副标题
   src: string; // 图片地址
 
-  // 选填项
   enSubhead?: string; // 英文小标题
   desc?: string; // 轮播图说明
   alt?: string; // 轮播图片替代文字
   url?: string; // 轮播图跳转地址
   black?: boolean; // 轮播图文字是否为黑色（默认为白色）
 
-  // 内部属性
+  // Private property
   activeStatus?: string;
   color?: string;
 }
 
 @Component
 export default class BaseCarousel extends Vue {
-  // 组件id
+  // Component id
   @Prop([Number, String]) private myId!: number | string;
 
-  // 组件内容
+  // CarouselItems config
   @Prop({ type: Array, required: true }) private content!: Carousel[];
 
-  // 是否竖直显示
+  // Whether to display vertically
   @Prop({ type: Boolean, default: false }) private vertical!: boolean;
 
-  // 是否支持自动播放
+  // Whether to start autoplay
   @Prop({ type: Boolean, default: true }) private autoplay!: boolean;
 
-  // 自动播放时间间隔
+  // Autoplay time
   @Prop({ type: Number, default: 3000 }) private autoplaySpeed!: boolean;
 
-  // 切换速度
+  // Slide's switching time
   @Prop({ type: Number, default: 500 }) private speed!: number;
 
-  // 是否显示指示点
+  // whether to display indicators
   @Prop({ type: Boolean, default: true }) private dotDisplay!: boolean;
 
-  // 是否显示切换箭头
+  // Whether to display swtich arrows
   @Prop({ type: Boolean, default: true }) private arrowDisplay!: boolean;
 
-  // 切换动画
+  // Switching animation
   @Prop({ type: String, default: 'easeInOutQuart' }) private easing!: string;
 
-  // 是否显示指示点判断
+  // Display indicators or not
   private get dots() {
     return this.single ? false : this.dotDisplay;
   }
 
-  // 是否是单个轮播图
+  // Whether it has only one children
   private single = false;
 
-  // 轮播图列表
+  // Carousel item list
   private list: Carousel[] = [];
 
-  // 点击跳转
+  // Navigation handler
   private navigate(url: string | undefined) {
     const router = this.$router;
     const route = this.$route;
 
     if (url)
       if (url && url[0] === '/')
-        // 内部绝对路径
+        // Inner absolute path
         router.push(url);
       else if (url.indexOf('http://') !== -1 || url.indexOf('https://') !== -1)
-        // 外部链接
+        // Outter url
         window.open(url);
       else {
-        // 内部相对路径
+        // Inner relative path
         const base = route.path.slice(0, route.path.lastIndexOf('/'));
 
         router.push(`${base}/${url}`);
@@ -123,25 +125,24 @@ export default class BaseCarousel extends Vue {
   }
 
   private mounted() {
-    // 复制content内容到data中
+    // Make a copy of carouselItems config
     this.list = JSON.parse(JSON.stringify(this.content));
 
-    // 对list进行处理
     this.list.forEach((element: Carousel, index: number) => {
-      // 初始化第一张轮播图激活信息
+      // init active status for the first carousel item
       if (index === 0) element.activeStatus = 'active';
 
-      // 使黑文字配置生效
+      // mark 'black' config works
       if (element.black === true) {
         element.color = 'textBlack';
         delete element.black;
       }
 
-      // 确保轮播图有替代文字
+      // make sure carouselItem has an 'alt' option
       if (!element.alt) element.alt = '轮播图背景';
     });
 
-    // 只有一张轮播图时设置为single
+    // set single when containing only one item
     if (this.list.length === 1) this.single = true;
   }
 }

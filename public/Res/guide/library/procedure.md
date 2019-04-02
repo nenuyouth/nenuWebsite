@@ -10,11 +10,11 @@
 
 2. 工作人员操作过程中请关注显示器上的信息，包括读者信息、图书资料信息、图书册数、应还日期等。
 
-    ![图片示意](/guide/image/lend1.jpg)
+    ![图片示意](/Res/guide/image/lend1.jpg)
 
 3. 操作完成后请取走身份识别卡，并监督工作人员关闭会话窗口。
 
-    ![图片示意](/guide/image/lend2.jpg)
+    ![图片示意](/Res/guide/image/lend2.jpg)
 
 ## 远程借阅介绍
 

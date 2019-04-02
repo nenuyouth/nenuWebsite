@@ -82,6 +82,11 @@
         "type": "icon-CET"
       },
       {
+        "key": "/guide/study/CET",
+        "title": "DET",
+        "type": "icon-rumen"
+      },
+      {
         "key": "/guide/study/webCourse",
         "title": "网络课程",
         "type": "icon-course"

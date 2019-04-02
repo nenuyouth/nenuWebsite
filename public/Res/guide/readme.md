@@ -12,6 +12,8 @@
 
 - #### [大学生英语等级考试](guide/study/CET)
 
+- #### [东北师范大学英语水平测试](guide/study/DET)
+
 - #### [家教](guide/study/tutor)
 
 - #### [网络课程](guide/study/webCourse)

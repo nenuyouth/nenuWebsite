@@ -1,9 +1,9 @@
 <!--
  * @Author: Mr.Hope
  * @LastEditors: Mr.Hope
- * @Description: 返回顶部按钮
+ * @Description: BackTop Button
  * @Date: 2019-03-22 19:30:08
- * @LastEditTime: 2019-03-25 17:05:56
+ * @LastEditTime: 2019-04-02 14:08:34
 -->
 <template>
   <div @click="scrollTop" class="scrollTop" style="display:none">
@@ -15,13 +15,13 @@ import { Component, Vue } from 'vue-property-decorator';
 
 @Component
 export default class BackTop extends Vue {
-  // 返回顶部函数
+  // Make the website scroll to the top
   private scrollTop() {
     $('body,html').animate({ scrollTop: 0 }, 800);
   }
 
+  // Register event for the "backtop" button
   private mounted() {
-    // 注册“返回顶部”按钮动作
     $(window).on('scroll', () => {
       if (($(window).scrollTop() || window.pageYOffset) > 300) $('.scrollTop').fadeIn(500);
       else $('.scrollTop').fadeOut(500);

@@ -1,7 +1,7 @@
 /**
  * @Author: Mr.Hope
  * @LastEditors: Mr.Hope
- * @Description: Vuex Screen管理模块
+ * @Description: Vuex Screen Module
  * @Date: 2019-03-24 23:50:48
  * @LastEditTime: 2019-03-25 10:10:26
  */
@@ -31,46 +31,42 @@ const screenState: ScreenState = {
   xxl: false
 };
 
-// const screenModule = {
 const screenModule: Module<ScreenState, BaseState> = {
   state: screenState,
   mutations: {
     changeScreen(state: ScreenState, width: number) {
       let status;
 
-      // 判断status状态
+      // judge scrren status
       if (width > 1200) status = width < 1600 ? 'xl' : 'xxl';
       else if (width < 768) status = width < 576 ? 'xs' : 'sm';
       else status = width < 992 ? 'md' : 'lg';
 
-      // 如果status不同，则对status赋值
+      // if new status, then handle state detail
       if (state.status !== status) {
         const hash = ['sm', 'md', 'lg', 'xl', 'xxl'];
 
         state.status = status;
 
-        // 如果是xs
-        if (status === 'xs') {
-          // 将xs设置为真
+        if (status === 'xs') {// make xs 'true' and the rest 'false'
           if (!state.xs) state.xs = true;
-          // 其他设置为假
           hash.forEach(x => {
             if (state[x]) state[x] = false;
           });
-        } else {
-          // 将xs设置为假
+        } else {// mark xs false
+
           if (state.xs) state.xs = false;
 
           let index = hash.indexOf(status);
           let index2 = hash.length - 1;
 
-          // 对status后边的hash元素循环判断，都变为false
+          // change the elments after 'status' false
           while (index2 > index) {
             if (state[hash[index2]]) state[hash[index2]] = false;
             index2 -= 1;
 
           }
-          // 对status及前边的hash元素循环判断，都变为true
+          // change the elments before 'status' true
           while (index + 1) {
             if (!state[hash[index]]) state[hash[index]] = true;
             index -= 1;
