@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-04-01 17:42:55
+ * @LastEditTime: 2019-04-03 22:59:51
 -->
 <template>
   <!-- 标题设置 -->
@@ -102,7 +102,7 @@ export default class MyDoc extends Vue {
       // 如果该路径markdown未被缓存则获取之
       if (!this.$store.state.compiledDoc[this.path])
         await getCompiledMarkdown(
-          this.path || 'readme',
+          this.path,
           this,
           'compiledDoc',
           `/server/doc.php?password=${this.$store.state.internalPassword}&path=`

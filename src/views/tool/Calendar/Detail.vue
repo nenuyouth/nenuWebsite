@@ -2,8 +2,8 @@
   <div class="container">
     <h1>东北师大2019年春季学期校历</h1>
     <div @click="$router.push('/tool/calendar')" class="backButton">
-      返 回
-      <br>主 页
+      校历
+      <br>主页
     </div>
     <hr>
     <base-time-line :time-list="timeList"/>
@@ -47,12 +47,14 @@ export default class Calendar extends Vue {
 <style scoped>
 .backButton {
   position: fixed;
-  top: 80px;
+  z-index: 2;
+  top: 100px;
   right: 0;
   background-color: #fff;
-  padding: 6px 8px;
+  padding: 8px;
   font-size: 14px;
-  line-height: 1.5;
+  line-height: 1.4;
+  letter-spacing: 1px;
   font-weight: 600;
   color: #1c2c3a;
   border-top-left-radius: 4px;

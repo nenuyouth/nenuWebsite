@@ -47,7 +47,7 @@
     "fibers": "^3.1.1",
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
-    "sass": "^1.17.3",
+    "sass": "^1.17.4",
     "sass-loader": "^7.1.0",
     "tslint": "^5.15.0",
     "tslint-config-airbnb": "^5.11.1",
