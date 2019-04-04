@@ -7,7 +7,7 @@
 -->
 <template functional>
   <a-sub-menu :key="props.menuInfo.key">
-    <template v-slot:title>
+    <template #title>
       <span>
         <template v-if="props.menuInfo.type">
           <icon-font :type="props.menuInfo.type" v-if="props.menuInfo.type.slice(0,5)==='icon-'"/>

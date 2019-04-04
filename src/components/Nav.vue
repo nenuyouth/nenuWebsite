@@ -22,7 +22,7 @@
       </router-link>
     </a-menu-item>
     <a-sub-menu>
-      <template v-slot:title>
+      <template #title>
         <span class="submenu-title-wrapper">
           <a-icon type="camera"/>东师风貌
         </span>
