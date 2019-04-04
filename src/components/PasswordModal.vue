@@ -21,7 +21,7 @@
         <p>用户名：</p>
         <a-input :autocomplete="userNameKey" placeholder="请输入用户名" type="text" v-model="userName">
           <!-- 用户名图标 -->
-          <template v-slot:prefix>
+          <template #prefix>
             <icon-font type="icon-user"/>
           </template>
         </a-input>
@@ -36,12 +36,12 @@
         v-model="password"
       >
         <!-- 密码图标 -->
-        <template v-slot:prefix>
+        <template #prefix>
           <icon-font type="icon-password"/>
         </template>
 
         <!-- 控制密码显隐图标 -->
-        <template v-slot:suffix>
+        <template #suffix>
           <div @click="passwordDisplay=!passwordDisplay" class="togglePassword">
             <icon-font type="icon-eye" v-if="passwordDisplay"/>
             <icon-font type="icon-eyeClose" v-else/>
@@ -50,7 +50,7 @@
       </a-input>
     </form>
     <!-- 自定义对话框按钮 -->
-    <template v-slot:footer>
+    <template #footer>
       <a-button :loading="validating" @click="validatePassword" key="submit" type="primary">确定</a-button>
     </template>
   </a-modal>

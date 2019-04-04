@@ -8,7 +8,7 @@
 <template>
   <a-timeline :mode="mode">
     <a-timeline-item :color="item.color" :key="item.text" v-for="(item,index) in timeList">
-      <template v-if="item.type" v-slot:dot>
+      <template v-if="item.type" #dot>
         <icon-font
           :style="`color:${item.color}`"
           :type="type"

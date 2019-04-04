@@ -12,7 +12,7 @@
       <a-col :lg="18" :xs="24">
         <!-- 加载状态 -->
         <a-spin :spinning="$store.state.docLoading">
-          <template v-slot:indicator>
+          <template #indicator>
             <img alt="加载中" class="loadingIcon" src="/img/icon/logo.png">
             <!-- <a-icon
               style="font-size:80px;position:absolute;top:calc(50% - 40px);left:calc(50% - 40px);"

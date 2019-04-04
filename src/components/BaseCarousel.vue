@@ -15,14 +15,14 @@
     :vertical="vertical"
   >
     <!-- prevArrow -->
-    <template v-slot:prevArrow>
+    <template #prevArrow>
       <div class="arrow" style="left:10px;z-index:1;" v-if="!single&&arrowDisplay">
         <a-icon type="vertical-right"/>
       </div>
     </template>
 
     <!-- nextArrow -->
-    <template v-slot:nextArrow>
+    <template #nextArrow>
       <div class="arrow" style="right:10px;" v-if="!single&&arrowDisplay">
         <a-icon type="vertical-left"/>
       </div>
