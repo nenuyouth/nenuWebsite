@@ -3,8 +3,8 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-03-25 12:11:37
- -->
+ * @LastEditTime: 2019-03-29 12:41:23
+-->
 <template>
   <div class="container mt-3 pb-3">
     <a-row>
@@ -12,7 +12,7 @@
       <a-col :lg="18" :xs="24">
         <!-- 加载状态 -->
         <a-spin :spinning="$store.state.docLoading">
-          <template v-slot:indicator>
+          <template #indicator>
             <img alt="加载中" class="loadingIcon" src="/img/icon/logo.png">
             <!-- <a-icon
               style="font-size:80px;position:absolute;top:calc(50% - 40px);left:calc(50% - 40px);"
@@ -95,10 +95,6 @@
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { Route } from 'vue-router';
-
-// 导入css样式
-import 'highlight.js/styles/default.css';
-import 'github-markdown-css/github-markdown.css';
 
 interface Aside {
   text: string;
@@ -403,7 +399,7 @@ export default class DocView extends Vue {
 #asideSlide {
   position: fixed;
   height: 100%;
-  top: 0;
+  top: 40px;
   text-align: right;
   z-index: 5;
 }
@@ -419,7 +415,7 @@ export default class DocView extends Vue {
   position: fixed;
   width: 100%;
   height: 100%;
-  top: 0;
+  top: 40px;
   left: 0;
   background-color: rgba(127, 127, 127, 0.15);
   z-index: 4;

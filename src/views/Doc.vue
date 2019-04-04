@@ -1,51 +1,59 @@
+<!--
+ * @Author: Mr.Hope
+ * @LastEditors: Mr.Hope
+ * @Description: Internal Doc Display
+ * @Date: 2019-04-01 23:35:43
+ * @LastEditTime: 2019-04-01 23:50:17
+-->
 <template>
-  <MyDoc :baselength="baselength" :loading="$store.state.docLoading" :path="path"></MyDoc>
+  <MyDoc :baselength="baselength" :loading="$store.state.docLoading" :path="path"/>
 </template>
 
 <script lang="ts">
-import MyDoc from '@/components/MyDoc.vue';
 import { Component, Vue } from 'vue-property-decorator';
 import { MenuList } from '@/components/BaseSubMenu.vue';
 import { Route } from 'vue-router';
+import MyDoc from '@/components/MyDoc.vue';
 import getCompiledMarkdown from '@/lib/getMarkdown';
 
 @Component({ components: { MyDoc } })
 export default class Doc extends Vue {
-  // 文档基础路径长度
-  private baselength = 5;
+  // the length of url base part
+  private readonly baselength = 5;
 
-  // 文档路径
+  // doc path
   private get path() {
     return this.$route.path.slice(this.baselength) || 'readme';
   }
 
   private activated() {
-    // 写入菜单
+    // display menu
     this.$store.commit('menuList', require('@/assets/docMenuList.json'));
   }
   private deactivated() {
-    // 取消菜单
+    // hide menu
     this.$store.commit('menuList', []);
   }
 
-  // 文档路径改变
+  // change docPath
   private async beforeRouteUpdate(to: Route, from: Route, next: (navigate?: boolean) => void) {
     const path = to.path.slice(this.baselength) || 'readme';
     let navigate = true;
 
-    // 显示加载状态
+    // show loading status
     this.$store.commit('docLoading', true);
 
-    // 如果将转入的页面markdown未缓存
-    if (!this.$store.state.compiledMarkdown[path])
-      // 通过获取markdown文件情况决定是否导航
+    // if markdown of this page hasn't been cached
+    if (!this.$store.state.compiledDoc[path])
+      // decide whether nagivate or not based on the result of getting markdown files
       navigate = await getCompiledMarkdown(
         path,
         this,
+        'compiledDoc',
         `/server/doc.php?password=${this.$store.state.internalPassword}&path=`
       );
 
-    // 调用Hook，结束函数
+    // invoke Hook
     next(navigate);
   }
 }

@@ -1,11 +1,17 @@
 /*
  * @Author: Mr.Hope
  * @LastEditors: Mr.Hope
- * @Description: webpack配置文件
+ * @Description: webpack config file
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-03-21 16:37:05
+ * @LastEditTime: 2019-04-01 21:50:45
  */
+
 module.exports = {
+  performance: {
+    hints: 'warning',
+    maxEntrypointSize: 500000,
+    maxAssetSize: 500000
+  },
   module: {
     rules: [
       {

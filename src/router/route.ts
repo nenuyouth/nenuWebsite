@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 路由配置文件
  * @Date: 2019-03-25 12:27:33
- * @LastEditTime: 2019-03-25 12:31:04
+ * @LastEditTime: 2019-04-01 23:55:46
  */
 import Main from '@/views/Main.vue';
 import Page404 from '@/views/Page404.vue';
@@ -16,39 +16,30 @@ const myRoute = [
     component: Main
   },
   {
-    path: '/guide',
-    name: 'guide',
-    meta: { title: '东师指南' },
-
+    path: '/handbook',
+    name: 'handbook',
+    meta: { title: '东师攻略' },
     // 使用import来进行异步调用实现懒加载，打包时，webpack会识别webpackChunkName注释，将相同的一起打包一同执行懒加载
-    component: () => import(/* webpackChunkName: "guide" */ '@/views/Guide.vue')
-  },
-  {
-    path: '/testpage',
-    name: 'test',
-    component: () => import(/* webpackChunkName: "test" */ '@/views/Test.vue')
+    component: () => import(/* webpackChunkName: "handbook" */ '@/views/Handbook.vue')
   },
   {
     path: '/page/:path',
-    alias: '/guide/:path',
+    alias: '/handbook/:path',
     props: true,
     meta: { title: '东师指南' },
     component: () => import(/* webpackChunkName: "page" */ '@/views/Page.vue')
-  },
-  { path: '/doc/readme', redirect: '/doc' },
-  { path: '/doc/:path1/readme', redirect: '/doc/:path1' },
-  { path: '/doc/:path1/:path2/readme', redirect: '/doc/:path1/:path2' },
-  { path: '/doc/:path1/:path2/:path3/readme', redirect: '/doc/:path1/:path2/:path3' },
-  {
-    path: '/doc/:path1?/:path2?/:path3?/:path4?',
-    meta: { title: '内部文档' },
-    component: () => import(/* webpackChunkName: "doc" */ '@/views/Doc.vue')
   },
   {
     path: '/tool/calendar',
     name: 'calendar',
     meta: { title: '东师校历' },
-    component: () => import(/* webpackChunkName: "tool" */ '@/views/tool/Calendar.vue')
+    component: () => import(/* webpackChunkName: "calendar" */ '@/views/tool/Calendar/Calendar.vue')
+  },
+  {
+    path: '/tool/calendar/:time',
+    name: 'calendarDetail',
+    meta: { title: '2019年春季学期校历' },
+    component: () => import(/* webpackChunkName: "calendar" */ '@/views/tool/Calendar/Detail.vue')
   },
   {
     path: '/tool/schoolGzh',
@@ -121,6 +112,24 @@ const myRoute = [
     path: '/about/question',
     name: 'question',
     component: () => import(/* webpackChunkName: "about" */ '@/views/about/Question.vue')
+  },
+  { path: '/guide/readme', redirect: '/guide' },
+  { path: '/guide/:path1/readme', redirect: '/guide/:path1' },
+  { path: '/guide/:path1/:path2/readme', redirect: '/guide/:path1/:path2' },
+  { path: '/guide/:path1/:path2/:path3/readme', redirect: '/guide/:path1/:path2/:path3' },
+  {
+    path: '/guide/:path1?/:path2?/:path3?/:path4?',
+    meta: { title: '东师指南' },
+    component: () => import(/* webpackChunkName: "guide" */ '@/views/Guide.vue')
+  },
+  { path: '/doc/readme', redirect: '/doc' },
+  { path: '/doc/:path1/readme', redirect: '/doc/:path1' },
+  { path: '/doc/:path1/:path2/readme', redirect: '/doc/:path1/:path2' },
+  { path: '/doc/:path1/:path2/:path3/readme', redirect: '/doc/:path1/:path2/:path3' },
+  {
+    path: '/doc/:path1?/:path2?/:path3?/:path4?',
+    meta: { title: '内部文档' },
+    component: () => import(/* webpackChunkName: "doc" */ '@/views/Doc.vue')
   },
   {
     path: '*',

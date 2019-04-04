@@ -5,6 +5,7 @@
  * @Date: 2019-03-17 16:48:38
  * @LastEditTime: 2019-03-18 16:48:20
  */
+
 import Vue from 'vue';
 import axios from 'axios';
 import hljs from 'highlight.js';
@@ -33,14 +34,15 @@ myRenderMD.link = (href, title, text) =>
 
 // 设置marked插件
 marked.setOptions({
-  renderer: myRenderMD, // 控制输出渲染
+  breaks: true, // 使用GitHub Flavored Markdown控制换行输出<br>
   gfm: true, // 是否使用GitHub改进标准的Markdown
-  tables: true, // 是否使用gtm table
-  breaks: false, // 使用GitHub Flavored Markdown控制换行输出<br>
+  langPrefix: 'hljs ',
   pedantic: false, // 是否尽量接近原生markdown.pl
+  renderer: myRenderMD, // 控制输出渲染
   sanitize: true, // 是否清理内部html内容
   smartLists: true, // 是否使用更先进列表样式
   smartypants: false, // 是否对部分内容添加额外符号
+  tables: true, // 是否使用gtm table
   xhtml: true, // 是否闭合空标签
   // Highlight代码块
   highlight: (code, lang) =>
@@ -74,12 +76,13 @@ const myAlert = (ctx: Vue, netError?: boolean, err?: string) => {
  *
  * @param path Markdown路径
  * @param ctx Vue组件对象指针
+ * @param stateName 存储对象在state中的名称
  * @param [url] 服务器请求路经
  * @returns 是否继续导航
  */
-const getCompiledMarkdown = async (path: string, ctx: Vue, url?: string) => {
+const getCompiledMarkdown = async (path: string, ctx: Vue, stateName: string, url?: string) => {
   const store = ctx.$store;
-  const docContent = store.state.compiledMarkdown.path;
+  const docContent = store.state[stateName].path;
   let navigate = true;
 
   if (!docContent)
@@ -88,7 +91,7 @@ const getCompiledMarkdown = async (path: string, ctx: Vue, url?: string) => {
       if (response.data === 'file not found') {
         navigate = false;
         myAlert(ctx);
-      } else store.commit('compiledMarkdown', [path, marked(response.data)]);
+      } else store.commit(stateName, [path, marked(response.data)]);
     }).catch(err => {
       navigate = false;
       myAlert(ctx, true, err);

@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主页
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-03-25 12:32:48
+ * @LastEditTime: 2019-04-01 22:42:55
 -->
 <template>
   <div class="container">
@@ -31,9 +31,9 @@
             class="guideListButton"
             v-for="item in guidelist"
           >
-            <router-link :to="`/guide/${item[1]}`">
+            <router-link :to="`/handbook/${item[1]}`">
               <div>
-                <img :src="require(`@/icon/guide/${item[1]}.svg`)" class="guideIcon px-2 py-1">
+                <img :src="`/img/icon/guide/${item[1]}.svg`" class="guideIcon px-2 py-1">
                 <div class="guideButtonDesc">{{ item[0] }}</div>
               </div>
             </router-link>
@@ -53,6 +53,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import axios from 'axios';
 import BaseCarousel from '@/components/BaseCarousel.vue';
 import BaseTimeLine from '@/components/BaseTimeLine.vue';
 
@@ -107,7 +108,32 @@ export default class Main extends Vue {
     ['交通', 'traffic']
   ];
 
-  private readonly timeList = require('@/assets/calendar/calendar');
+  private timeList = [];
+
+  private created() {
+    axios
+      .get('/Res/calendar/calendar.json')
+      .then(response => {
+        this.timeList = response.data;
+      })
+      .catch(err => {
+        this.$confirm({
+          title: '校历获取错误',
+          content: `链接地址有误，错误信息为${err}\n请汇报给Mr.Hope!`,
+          autoFocusButton: 'cancel',
+          cancelText: '确定',
+          okText: '汇报',
+          okType: 'danger',
+          onOk: () => {
+            this.$router.back();
+            window.open('http://wpa.qq.com/msgrd?v=3&uin=1178522294&site=qq&menu=yes');
+          },
+          onCancel: () => {
+            this.$router.back();
+          }
+        });
+      });
+  }
 }
 </script>
 <style scoped>

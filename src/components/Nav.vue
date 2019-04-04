@@ -16,13 +16,13 @@
         <a-icon type="home"/>主页
       </router-link>
     </a-menu-item>
-    <a-menu-item key="/guide">
-      <router-link to="/guide">
+    <a-menu-item key="/handbook">
+      <router-link to="/handbook">
         <a-icon type="bulb"/>东师指南
       </router-link>
     </a-menu-item>
     <a-sub-menu>
-      <template v-slot:title>
+      <template #title>
         <span class="submenu-title-wrapper">
           <a-icon type="camera"/>东师风貌
         </span>
@@ -60,17 +60,28 @@ export default class Nav extends Vue {
 }
 </script>
 <style scoped>
+#nav {
+  position: fixed;
+  top: 0px;
+  z-index: 100;
+  width: 100vw;
+}
 @media (max-width: 992px) {
-  .ant-menu-horizontal {
+  #nav {
     line-height: 38.6px;
   }
 }
+</style>
+<style>
+/* lg以上屏幕nav固定 */
 @media (min-width: 992px) {
-  .ant-menu-horizontal {
-    position: fixed;
-    width: 100vw;
-    top: 0px;
-    z-index: 1000;
+  #body {
+    padding-top: 48px;
+  }
+}
+@media (max-width: 992px) {
+  #body {
+    padding-top: 40px;
   }
 }
 </style>

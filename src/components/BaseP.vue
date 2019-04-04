@@ -3,8 +3,8 @@
  * @LastEditors: Mr.Hope
  * @Description: Base Paragraph
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-03-25 12:05:25
- -->
+ * @LastEditTime: 2019-03-29 12:42:21
+-->
 <template>
   <div :id="myId" class="Ctn">
     <div :style="headStyle" class="iOShead" v-if="head">{{ head }}</div>

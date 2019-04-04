@@ -1,0 +1,128 @@
+[
+  {
+    "key": "/guide",
+    "title": "主页",
+    "type": "home"
+  },
+  {
+    "key": "menu:/guide/library",
+    "title": "图书馆",
+    "type": "book",
+    "children": [
+      {
+        "key": "/guide/library",
+        "title": "图书馆",
+        "type": "book"
+      },
+      {
+        "key": "/guide/library/intro",
+        "title": "图书馆简介",
+        "type": "info-circle"
+      },
+      {
+        "key": "/guide/library/guide",
+        "title": "图书检索教程",
+        "type": "bulb"
+      },
+      {
+        "key": "/guide/library/authority",
+        "title": "图书借阅权限",
+        "type": "lock"
+      },
+      {
+        "key": "/guide/library/procedure",
+        "title": "图书借阅流程",
+        "type": "ordered-list"
+      },
+      {
+        "key": "/guide/library/ichnography",
+        "title": "图书馆楼层平面图",
+        "type": "block"
+      },
+      {
+        "key": "/guide/library/authorization",
+        "title": "校外访问授权系统",
+        "type": "api"
+      },
+      {
+        "key": "/guide/library/openTime",
+        "title": "图书馆开闭馆时间",
+        "type": "clock-circle"
+      },
+      {
+        "key": "/guide/library/facility",
+        "title": "图书馆服务设施",
+        "type": "hdd"
+      },
+      {
+        "key": "/guide/library/location",
+        "title": "图书馆位置",
+        "type": "environment"
+      }
+    ]
+  },
+  {
+    "key": "menu:/guide/study",
+    "title": "学习",
+    "type": "icon-rumen",
+    "children": [
+      {
+        "key": "/guide/study",
+        "title": "学业相关",
+        "type": "icon-rumen"
+      },
+      {
+        "key": "/guide/study/NCRE",
+        "title": "计算机等级考试",
+        "type": "desktop"
+      },
+      {
+        "key": "/guide/study/CET",
+        "title": "CET",
+        "type": "icon-CET"
+      },
+      {
+        "key": "/guide/study/CET",
+        "title": "DET",
+        "type": "icon-rumen"
+      },
+      {
+        "key": "/guide/study/webCourse",
+        "title": "网络课程",
+        "type": "icon-course"
+      },
+      {
+        "key": "/guide/study/tutor",
+        "title": "家教",
+        "type": "team"
+      }
+    ]
+  },
+  {
+    "key": "menu:/guide/facility",
+    "title": "设施",
+    "type": "tool",
+    "children": [
+      {
+        "key": "/guide/facility",
+        "title": "校园设施",
+        "type": "tool"
+      },
+      {
+        "key": "/guide/facility/washer",
+        "title": "洗衣机",
+        "type": "icon-washer"
+      },
+      {
+        "key": "/guide/facility/terminal",
+        "title": "自助终端机",
+        "type": "laptop"
+      },
+      {
+        "key": "/guide/facility/electricity",
+        "title": "供电",
+        "type": "thunderbolt"
+      }
+    ]
+  }
+]

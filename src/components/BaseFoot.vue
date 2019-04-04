@@ -1,9 +1,9 @@
 <!--
  * @Author: Mr.Hope
  * @LastEditors: Mr.Hope
- * @Description: 基础页脚
+ * @Description: Base Foot
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-03-16 19:27:08
+ * @LastEditTime: 2019-04-02 14:07:49
  -->
 <template>
   <div :id="myId" class="Footer">
@@ -18,7 +18,7 @@
     <span v-if="time">最后编辑于{{ time }}</span>
     <span v-if="time || author">
       <br>
-    </span>Copyright © 2017-2018 HopeStudio
+    </span>Copyright © 2017-2019 HopeStudio
   </div>
 </template>
 <script lang="ts">
@@ -26,12 +26,16 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
 export default class BaseFoot extends Vue {
+  // Component ID
   @Prop(Number) private myId!: number;
 
+  // Foot description text
   @Prop(String) private desc!: string;
 
+  // Author information
   @Prop({ type: String, default: 'Mr.Hope' }) private author!: string;
 
+  // Last edit time
   @Prop(String) private time!: string;
 }
 </script>

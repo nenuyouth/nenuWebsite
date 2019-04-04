@@ -1,3 +1,10 @@
+<!--
+ * @Author: Mr.Hope
+ * @LastEditors: Mr.Hope
+ * @Description: Base Vertical Menu
+ * @Date: 2019-03-25 12:39:59
+ * @LastEditTime: 2019-03-31 21:04:10
+-->
 <template>
   <a-menu
     :defaultOpenKeys="['2']"
@@ -37,23 +44,28 @@ interface SelectEvent {
 
 @Component({ components: { SubMenu } })
 export default class BaseMenu extends Vue {
-  // 是否展开
+  // Menu collapse status
   private collapsed = false;
 
-  // 菜单列表
+  // A list of menuItems to display
   @Prop(Array) private list!: MenuList[];
 
-  // 当前被选中的菜单列表
+  // Current selected menu => to show thie right active status in the menulist
   private get active() {
     return [this.$store.state.path];
   }
 
-  // 主题选择
+  // v-model must has a setter, or an error will be triggered by vue
+  private set active(active) {
+    // nothing to do, path has been handled in the main.ts
+  }
+
+  // Change the theme according to the "nightmode" status
   private get theme() {
     return this.$store.state.nightmode ? 'dark' : 'light';
   }
 
-  // 点击菜单时进行跳转
+  // navigate to the menuitem page when clicking it
   private select(e: SelectEvent) {
     this.$router.push(e.key);
   }

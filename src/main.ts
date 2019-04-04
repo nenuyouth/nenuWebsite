@@ -3,12 +3,12 @@
  * @LastEditors: Mr.Hope
  * @Description: 主脚本文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-03-25 12:29:57
+ * @LastEditTime: 2019-04-02 13:46:55
  */
 
 // 引入Ant Design
 import {
-  Anchor, Breadcrumb, Button, Carousel, Col, Icon, Input,
+  Anchor, Breadcrumb, Button, Card, Carousel, Col, Icon, Input,
   Layout, Menu, Modal, Row, Select, Skeleton, Spin, Timeline, message
 } from 'ant-design-vue';
 import { Route } from 'vue-router';
@@ -36,6 +36,7 @@ Component.registerHooks([
 Vue.use(Anchor);
 Vue.use(Breadcrumb);
 Vue.use(Button);
+Vue.use(Card);
 Vue.use(Carousel);
 Vue.use(Col);
 Vue.use(Icon);
@@ -65,7 +66,7 @@ Vue.prototype.$success = Modal.success;
 Vue.prototype.$warning = Modal.warning;
 
 // 注册IconFont
-const IconFont = Icon.createFromIconfontCN({ scriptUrl: '//at.alicdn.com/t/font_1091332_4ofyaslv7tf.js' });
+const IconFont = Icon.createFromIconfontCN({ scriptUrl: '//at.alicdn.com/t/font_1091332_er3sqjgr21h.js' });
 
 // 全局注册IconFont
 Vue.component('icon-font', IconFont);
@@ -78,6 +79,23 @@ getOS(store);
 
 // 阻止 vue 在启动时生成生产提示。
 Vue.config.productionTip = false;
+
+// 注册页面跳转时页脚先隐藏，防止页脚干扰显示
+/*
+ *router.beforeEach((to, from, next) => {
+ *   $('#footer').css({ visibility: 'hidden', opacity: 0.01 });
+ *   setTimeout(
+ *     () => {
+ *       $('#footer').css('visibility', '');
+ *       Vue.nextTick().then(() => {
+ *         $('#footer').fadeIn(500);
+ *       });
+ *     },
+ *     1000
+ *   );
+ *   next();
+ * });
+ */
 
 // 在导航确认后立即更新path值
 router.afterEach((to: Route) => {
@@ -96,20 +114,3 @@ new Vue({
   store,
   render: h => h(App) // render函数创建了一个元素
 }).$mount('#app'); // 创建元素被挂载到id='app'元素上，挂载时会销毁被挂载元素实例
-
-/*
- * FIXME:注册页面跳转时页脚显示效果;
- * router.beforeEach((to, from, next) => {
- *   const windowWidth = $(window).width() || document.documentElement.clientWidth*
- *   $('#footer').css({ visibility: 'hidden', opacity: 0.01 });
- *   setTimeout(
- *     () => {
- *       $('#footer').css('visibility', '');
- *       Vue.nextTick().then(() => {
- *         $('#footer').css('opacity', 1);
- *       });
- *     },
- *     1000
- *   );
- * });
- */

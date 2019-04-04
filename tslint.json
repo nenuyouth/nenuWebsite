@@ -51,11 +51,7 @@
     "no-var-requires": true,
     "only-arrow-functions": true,
     "prefer-for-of": true,
-    "promise-function-async": [
-      true,
-      "check-function-declaration",
-      "check-method-declaration"
-    ],
+    "promise-function-async": true,
     "typedef": false,
     "unified-signatures": true,
     "await-promise": [
@@ -181,6 +177,7 @@
       false
     ],
     "no-mergeable-namespace": true,
+    // 需要require json以及没有ts支持的模块
     "no-require-imports": false,
     "object-literal-sort-keys": false,
     "prefer-const": [

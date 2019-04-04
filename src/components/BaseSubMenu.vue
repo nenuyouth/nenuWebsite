@@ -1,6 +1,13 @@
+<!--
+ * @Author: Mr.Hope
+ * @LastEditors: Mr.Hope
+ * @Description: Base Menu子组件
+ * @Date: 2019-03-25 12:39:59
+ * @LastEditTime: 2019-03-29 12:40:19
+-->
 <template functional>
   <a-sub-menu :key="props.menuInfo.key">
-    <template v-slot:title>
+    <template #title>
       <span>
         <template v-if="props.menuInfo.type">
           <icon-font :type="props.menuInfo.type" v-if="props.menuInfo.type.slice(0,5)==='icon-'"/>

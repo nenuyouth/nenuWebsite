@@ -3,8 +3,8 @@
  * @LastEditors: Mr.Hope
  * @Description: 基础图片
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-03-16 19:43:16
- -->
+ * @LastEditTime: 2019-03-29 12:37:11
+-->
 <template>
   <div :id="myId" class="ImgCtn">
     <div class="imgCtn" v-if="!loaded">
