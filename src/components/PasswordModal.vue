@@ -3,8 +3,8 @@
  * @LastEditors: Mr.Hope
  * @Description: 密码验证
  * @Date: 2019-03-16 13:44:32
- * @LastEditTime: 2019-03-23 11:29:09
- -->
+ * @LastEditTime: 2019-04-09 19:31:47
+-->
 <template>
   <!-- 密码输入框 -->
   <a-modal
@@ -87,14 +87,13 @@ export default class PasswordModal extends Vue {
 
   // 验证密码
   private async validatePassword() {
-    const query = this.userNameKey ? `&userName=${this.userName}` : '';
+    // const query = this.userNameKey ? `&userName=${this.userName}` : '';
 
     if (this.password) {
       // 显示登录状态
       this.$message.loading('登陆中..', 0);
       this.validating = true;
-      await axios.get(`${this.url}.php?password=${this.password}${query}`).then(response => {
-        // await axios.get(`/server/passwordValidate.php?password=${this.password}`).then(response => {
+      await axios.post(`${this.url}.php`, { password: this.password, userName: this.userName }).then(response => {
         this.$message.destroy();
         if (response.data === 'correct') {
           // 验证成狗

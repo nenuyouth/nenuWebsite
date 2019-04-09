@@ -17,7 +17,7 @@ export default class Calendar extends Vue {
 
   private created() {
     axios
-      .get('/Res/calendar/calendar.json')
+      .post('/server/calendar.php', { time: 'main' })
       .then(response => {
         this.timeList = response.data;
       })

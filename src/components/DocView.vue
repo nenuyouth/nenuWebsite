@@ -316,7 +316,7 @@ export default class DocView extends Vue {
     // 设置网页标题
     if (title) this.$emit('title', title);
     // 取消显示loading
-    if (this.docContent) this.$store.commit('docLoading', false);
+    if (this.docContent) this.$store.commit('loadDoc', false);
   }
 
   @Watch('docContent')
@@ -325,7 +325,7 @@ export default class DocView extends Vue {
       this.catalogGernarate();
       this.actionRegister();
       // 通知父组件加载完成
-      this.$store.commit('docLoading', false);
+      this.$store.commit('loadDoc', false);
     });
   }
 }

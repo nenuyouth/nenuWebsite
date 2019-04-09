@@ -3,33 +3,36 @@
  * @LastEditors: Mr.Hope
  * @Description: 主视图文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-04-01 12:50:01
+ * @LastEditTime: 2019-04-09 18:49:44
 -->
 <template>
   <a-layout hasSider="true" id="app">
     <!-- <transition :name="transitionName"> -->
-      <my-slide id="aside" v-if="$store.state.menuList.length"></my-slide>
-      <a-layout id="body">
-        <my-nav id="nav"/>
-        <a-layout-content id="content">
-          <keep-alive :max="10">
-            <router-view v-wechat-title="$route.meta.title"/>
-          </keep-alive>
-        </a-layout-content>
-        <back-top/>
-        <my-footer id="footer"/>
-      </a-layout>
+    <my-slide id="aside" v-if="$store.state.menuList.length"></my-slide>
+    <a-layout id="body">
+      <my-nav id="nav"/>
+      <a-layout-content id="content">
+        <keep-alive :max="10">
+          <router-view v-wechat-title="$route.meta.title"/>
+        </keep-alive>
+      </a-layout-content>
+      <back-top/>
+      <my-footer id="footer"/>
+    </a-layout>
     <!-- </transition> -->
+    <!-- <image-viewer/> -->
   </a-layout>
 </template>
 <script lang='ts'>
 import { Component, Vue, Watch } from 'vue-property-decorator';
 import { Route } from 'vue-router';
 import BackTop from '@/components/BackTop.vue';
+// import ImageViewer from '@/components/ImageViewer.vue';
 import MyNav from '@/components/Nav.vue';
 import MySlide from '@/components/Slide.vue';
 import MyFooter from '@/components/Footer.vue';
 
+// @Component({ components: { BackTop, ImageViewer, MyNav, MyFooter, MySlide } })
 @Component({ components: { BackTop, MyNav, MyFooter, MySlide } })
 export default class App extends Vue {
   // 动画名称

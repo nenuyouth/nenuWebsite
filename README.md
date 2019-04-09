@@ -2,6 +2,8 @@
 
 > 本项目并没有附加任何开源协议，请避免使用、改编、移植任何源码
 
+[![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
+
 该项目使用Node.js，基于Vue框架制作
 
 ## 组件介绍与使用手册
@@ -27,7 +29,6 @@
 
 - ant-design-vue(Ant-design样式库)
 - axios(基于promise的html访问功能)
-- bootstrap4(提供简介的class样式)
 - highlight.js(提供md代码高亮)
 - marked(提供md转html)
 - github-markdown-css(提供github md样式)

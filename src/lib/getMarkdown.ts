@@ -57,7 +57,7 @@ marked.setOptions({
  * @param [err] 额外的错误信息
  */
 const myAlert = (ctx: Vue, netError?: boolean, err?: string) => {
-  ctx.$store.commit('docLoading', false);
+  ctx.$store.commit('loadDoc', false);
   ctx.$confirm({
     title: netError ? '网络请求错误' : '地址错误',
     content: netError ? `请求文档出错，错误码为：\n${err}\n您可以汇报给Mr.Hope!` : '链接地址有误。请汇报给Mr.Hope!',
@@ -74,24 +74,25 @@ const myAlert = (ctx: Vue, netError?: boolean, err?: string) => {
 /**
  * 获取编译后的markdown
  *
- * @param path Markdown路径
+ * @param url 服务器请求路经
+ * @param query 请求参数
  * @param ctx Vue组件对象指针
  * @param stateName 存储对象在state中的名称
- * @param [url] 服务器请求路经
  * @returns 是否继续导航
  */
-const getCompiledMarkdown = async (path: string, ctx: Vue, stateName: string, url?: string) => {
+const getCompiledMarkdown = async (url: string, query: any, ctx: Vue, stateName: string) => {
   const store = ctx.$store;
   const docContent = store.state[stateName].path;
   let navigate = true;
 
   if (!docContent)
     // 如果未下载并处理过markdown文件，立即下载并缓存
-    await axios.get(`${url}${path}`).then(response => {
+    await axios.post(`${url}.php`, query).then(response => {
+      // await axios.get(`${url}${path}`).then(response => {
       if (response.data === 'file not found') {
         navigate = false;
         myAlert(ctx);
-      } else store.commit(stateName, [path, marked(response.data)]);
+      } else store.commit(stateName, [query.path, marked(response.data)]);
     }).catch(err => {
       navigate = false;
       myAlert(ctx, true, err);

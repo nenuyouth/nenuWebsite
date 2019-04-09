@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Guide Doc display
  * @Date: 2019-04-01 16:10:20
- * @LastEditTime: 2019-04-01 23:55:59
+ * @LastEditTime: 2019-04-09 20:10:31
 -->
 <template>
   <MyGuide :baselength="baselength" :loading="$store.state.docLoading" :path="path"/>
@@ -41,12 +41,12 @@ export default class Guide extends Vue {
     let navigate = true;
 
     // show loading status
-    this.$store.commit('docLoading', true);
+    this.$store.commit('loadDoc', true);
 
     // if markdown of this page hasn't been cached
     if (!this.$store.state.compiledGuide[path])
       // decide whether nagivate or not based on the result of getting markdown files
-      navigate = await getCompiledMarkdown(path, this, 'compiledGuide', '/server/guide.php?path=');
+      navigate = await getCompiledMarkdown('/server/guide', { path }, this, 'compiledGuide');
 
     // invoke Hook
     next(navigate);

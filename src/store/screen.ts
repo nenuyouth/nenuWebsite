@@ -48,12 +48,12 @@ const screenModule: Module<ScreenState, BaseState> = {
 
         state.status = status;
 
-        if (status === 'xs') {// make xs 'true' and the rest 'false'
+        if (status === 'xs') { // make xs 'true' and the rest 'false'
           if (!state.xs) state.xs = true;
           hash.forEach(x => {
             if (state[x]) state[x] = false;
           });
-        } else {// mark xs false
+        } else { // mark xs false
 
           if (state.xs) state.xs = false;
 

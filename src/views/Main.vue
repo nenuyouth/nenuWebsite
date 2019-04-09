@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主页
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-04-01 22:42:55
+ * @LastEditTime: 2019-04-09 18:39:48
 -->
 <template>
   <div class="container">
@@ -112,7 +112,7 @@ export default class Main extends Vue {
 
   private created() {
     axios
-      .get('/Res/calendar/calendar.json')
+      .post('/server/calendar.php', { time: 'main' })
       .then(response => {
         this.timeList = response.data;
       })

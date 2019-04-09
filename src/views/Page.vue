@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 自动生成界面
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-03-29 12:44:40
+ * @LastEditTime: 2019-04-09 18:47:47
 -->
 <template>
   <base-page :key="url" :pagedata="pageData" v-if="pageData"></base-page>
@@ -23,9 +23,7 @@ export default class Page extends Vue {
   // 加载页面
   private async loadPage(path: string) {
     let finalPath = '';
-
-    // 确定文件夹名称
-    let pathLength = path.length;
+    let pathLength = path.length; // 确定文件夹名称
 
     while (!Number.isNaN(Number(path.charAt(pathLength)))) pathLength -= 1;
     const folder = path.substring(0, pathLength + 1);
@@ -33,7 +31,7 @@ export default class Page extends Vue {
     if (Number.isNaN(Number(path.charAt(path.length - 1)))) finalPath = `${path}0`;
 
     // 获得json文件
-    await axios.get(`/Res/page/${folder}/${finalPath || path}.json`).then(response => {
+    await axios.post('/server/page.php', { path: `${folder}/${finalPath || path}` }).then(response => {
       try {
         // 设置页面数据
         if (typeof response.data === 'object') this.pageData = JSON.stringify(response.data);

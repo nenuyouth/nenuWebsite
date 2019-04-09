@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-04-03 22:59:51
+ * @LastEditTime: 2019-04-09 20:14:00
 -->
 <template>
   <!-- 标题设置 -->
@@ -86,10 +86,13 @@ export default class MyDoc extends Vue {
     // 如果该路径markdown未被缓存则获取之
     if (!this.$store.state.compiledDoc[this.path])
       await getCompiledMarkdown(
-        this.path,
+        '/server/doc',
+        {
+          path: this.path,
+          password: this.$store.state.internalPassword
+        },
         this,
-        'compiledDoc',
-        `/server/doc.php?password=${this.$store.state.internalPassword}&path=`
+        'compiledDoc'
       );
 
     // 当路径改变时写入编译后的html
@@ -102,10 +105,13 @@ export default class MyDoc extends Vue {
       // 如果该路径markdown未被缓存则获取之
       if (!this.$store.state.compiledDoc[this.path])
         await getCompiledMarkdown(
-          this.path,
+          '/server/doc',
+          {
+            path: this.path,
+            password: this.$store.state.internalPassword
+          },
           this,
-          'compiledDoc',
-          `/server/doc.php?password=${this.$store.state.internalPassword}&path=`
+          'compiledDoc'
         );
 
       // 写入编译后的html

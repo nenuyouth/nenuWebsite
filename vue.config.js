@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: vue config file
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-04-01 21:50:58
+ * @LastEditTime: 2019-04-05 22:27:23
  */
 
 /**
@@ -32,7 +32,18 @@ module.exports = {
       warnings: false,
       errors: true
     },
-    proxy: 'http://nenu.com'
+    proxy: {
+      '/Res': {
+        target: 'http://nenu.com',
+        secure: false,
+        changeOrigin: true
+      },
+      '/server': {
+        target: 'http://nenu.com',
+        secure: false,
+        changeOrigin: true
+      }
+    }
   },
   css: {
     loaderOptions: {// 向 CSS 相关的 loader 传递选项

@@ -23,6 +23,7 @@ export interface BaseState {
   compiledDoc: DocList;
   compiledGuide: DocList;
   docLoading: boolean;
+  imageList: string[];
   internalLogin: boolean;
   internalPassword: string;
   menuList: MenuList[];
@@ -37,6 +38,7 @@ const myState: BaseState = {
   compiledDoc: {},
   compiledGuide: {},
   docLoading: true,
+  imageList: [],
   internalLogin: false,
   internalPassword: '',
   menuList: [],

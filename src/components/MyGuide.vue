@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-04-01 22:55:45
+ * @LastEditTime: 2019-04-09 20:13:26
 -->
 <template>
   <!-- 标题设置 -->
@@ -76,7 +76,7 @@ export default class MyGuide extends Vue {
   private async mounted() {
     // 如果该路径markdown未被缓存则获取之
     if (!this.$store.state.compiledGuide[this.path])
-      await getCompiledMarkdown(this.path || 'readme', this, 'compiledGuide', '/server/guide.php?path=');
+      await getCompiledMarkdown('/server/guide', { path: this.path || 'readme' }, this, 'compiledGuide');
 
     // 写入编译后的html
     this.compiledMarkdown = this.$store.state.compiledGuide[this.path];

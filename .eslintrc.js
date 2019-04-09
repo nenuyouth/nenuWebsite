@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: eslint配置文件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-03-16 19:43:08
+ * @LastEditTime: 2019-04-09 19:01:33
  */
 module.exports = {
   // 阻止eslint读取父目录或总配置文件的规则
@@ -215,8 +215,8 @@ module.exports = {
     'object-curly-spacing': 'off',
     'object-property-newline': 'off',
     'object-shorthand': 'error',
-    'one-var': 'error',
-    'one-var-declaration-per-line': 'error',
+    'one-var': ['error', 'never'],
+    'one-var-declaration-per-line': ['error', 'initializations'],
     'operator-assignment': 'error',
     'operator-linebreak': ['error', 'after', { overrides: { '?': 'before', ':': 'before' } }],
     'padded-blocks': 'off',
@@ -230,7 +230,7 @@ module.exports = {
     ],
     'prefer-arrow-callback': 'error',
     'prefer-const': 'error',
-    'prefer-destructuring': 'error',
+    'prefer-destructuring': ['error', { object: true, array: false }],
     'prefer-numeric-literals': 'error',
     'prefer-object-spread': 'error',
     'prefer-promise-reject-errors': 'error',

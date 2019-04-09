@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Internal Doc Display
  * @Date: 2019-04-01 23:35:43
- * @LastEditTime: 2019-04-01 23:50:17
+ * @LastEditTime: 2019-04-09 20:14:15
 -->
 <template>
   <MyDoc :baselength="baselength" :loading="$store.state.docLoading" :path="path"/>
@@ -41,16 +41,19 @@ export default class Doc extends Vue {
     let navigate = true;
 
     // show loading status
-    this.$store.commit('docLoading', true);
+    this.$store.commit('loadDoc', true);
 
     // if markdown of this page hasn't been cached
     if (!this.$store.state.compiledDoc[path])
       // decide whether nagivate or not based on the result of getting markdown files
       navigate = await getCompiledMarkdown(
-        path,
+        '/server/doc',
+        {
+          path,
+          password: this.$store.state.internalPassword
+        },
         this,
-        'compiledDoc',
-        `/server/doc.php?password=${this.$store.state.internalPassword}&path=`
+        'compiledDoc'
       );
 
     // invoke Hook
