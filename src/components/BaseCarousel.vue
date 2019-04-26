@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Base Carousel
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-04-02 14:11:30
+ * @LastEditTime: 2019-04-22 21:51:20
 -->
 <template>
   <a-carousel
@@ -35,7 +35,7 @@
         <h1 class="display-4 d-none d-sm-block">{{ item.caption }}</h1>
         <h1 class="font-weight-light d-block d-sm-none">{{ item.caption }}</h1>
         <h1 class="lead">{{ item.subCaption }}</h1>
-        <p class="lead d-none d-sm-block" v-if="item.enSubhead">{{ item.enSubhead }}</p>
+        <p class="lead d-none d-sm-block" v-if="item.enSubCaption">{{ item.enSubCaption }}</p>
         <p
           class="d-none d-lg-block text-right font-weight-light"
           style="line-height: 1;"
@@ -53,7 +53,7 @@ interface Carousel {
   subCaption: string; // 副标题
   src: string; // 图片地址
 
-  enSubhead?: string; // 英文小标题
+  enSubCaption?: string; // 英文小标题
   desc?: string; // 轮播图说明
   alt?: string; // 轮播图片替代文字
   url?: string; // 轮播图跳转地址

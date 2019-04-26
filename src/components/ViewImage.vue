@@ -4,7 +4,7 @@
       <slot></slot>
     </template>
     <template v-else>
-      <div :key="index" class="vue_viewer_item" v-for="(item, index) in list">
+      <div :key="index" class="vue_viewer_item" v-for="(item, index) in list" v-show="false">
         <img :alt="item.title" :src="item.url" v-if="(item instanceof Object)">
         <img :src="item" v-else>
       </div>
@@ -40,24 +40,6 @@ enum Visibility {
   VisibleOnExtraLargeOrWiderScreen = 4
 }
 
-// 设置默认Viewer选项
-// Viewer.setDefaults({
-//   inline: false,
-//   button: true,
-//   navbar: true,
-//   title: true,
-//   toolbar: 2,
-//   tooltip: true,
-//   movable: true,
-//   zoomable: true,
-//   rotatable: true,
-//   scalable: true,
-//   transition: true,
-//   fullscreen: true,
-//   keyboard: true,
-//   url: 'src'
-// });
-
 let viewer: Viewer;
 
 @Component
@@ -68,72 +50,6 @@ export default class ImageViewer extends Vue {
   // 控制图片是否可见
   @Prop({ type: Boolean, default: false }) private visible!: boolean;
 
-  // 是否启用内联模式
-  @Prop({ type: Boolean, default: false }) private inline!: boolean;
-
-  // 显示右上角的按钮
-  @Prop({ type: Boolean, default: true }) private button!: boolean;
-
-  // 导航栏的可见性 0/false：隐藏，1/true：显示，2：屏幕宽度大于768像素时显示，3：屏幕宽度大于992像素时显示，4：屏幕宽度大于1200像素时显示
-  @Prop({ type: [Boolean, Number], default: 1 }) private navbar!: boolean | number;
-
-  // 标题的可见性 0/false：隐藏，1/true：显示，2：屏幕宽度大于768像素时显示，3：屏幕宽度大于992像素时显示，4：屏幕宽度大于1200像素时显示, Function: 自定义标题内容，[Number, Function]： Function(image, imageData)
-  @Prop({ type: [Boolean, Number, Function, Array], default: 1 }) private title!:
-    | boolean
-    | number
-    | [Visibility, Function]
-    | Visibility;
-
-  // 工具栏的可见性 0/false：隐藏，1/true：显示，2：屏幕宽度大于768像素时显示，3：屏幕宽度大于992像素时显示，4：屏幕宽度大于1200像素时显示
-  @Prop({ type: [Boolean, Number], default: 1 }) private toolbarType!: boolean | number | object;
-  // 工具栏按钮的可见性和布局
-  @Prop(Object) private toolbarOptions!: object;
-  // 放大或缩小时图像比率（百分比）提示
-  @Prop({ type: Boolean, default: true }) private tooltipShow!: boolean;
-  // 是否可以移动图像
-  @Prop({ type: Boolean, default: true }) private movable!: boolean;
-  // 是否可以放大缩小图像
-  @Prop({ type: Boolean, default: true }) private zoomable!: boolean;
-  // 是否可以旋转图像
-  @Prop({ type: Boolean, default: true }) private rotatable!: boolean;
-  // 是否可以翻转图像
-  @Prop({ type: Boolean, default: true }) private scalable!: boolean;
-  // 是否启用transition
-  @Prop({ type: Boolean, default: true }) private transition!: boolean;
-  // 是否可以查看原始图片大小
-  @Prop({ type: Boolean, default: true }) private fullscreen!: boolean;
-  // 是否启用键盘
-  @Prop({ type: Boolean, default: true }) private keyboard!: boolean;
-  // 是否启用遮罩，static不可点击遮罩关闭
-  @Prop({ type: [Boolean, String], default: true }) private backdrop!: boolean;
-  // 加载图像时是否显示加载动画
-  @Prop({ type: Boolean, default: true }) private loading!: boolean;
-  // 是否启用循环
-  @Prop({ type: Boolean, default: true }) private loop!: boolean;
-  // 自动循环播放时间间隔
-  @Prop({ type: Number, default: 5000 }) private interval!: number;
-  // 最小宽度
-  @Prop({ type: Number, default: 5000 }) private minWidth!: number;
-  // 最小高度
-  @Prop({ type: Number, default: 5000 }) private minHeight!: number;
-  // 鼠标缩放图像时的比率
-  @Prop({ type: Number, default: 0.1 }) private zoomRatio!: number;
-  // 最小缩放图像比率
-  @Prop({ type: Number, default: 0.01 }) private minZoomRatio!: number;
-  // 最大缩放图像比率
-  @Prop({ type: Number, default: 100 }) private maxZoomRatio!: number;
-  // z-index值
-  @Prop({ type: Number, default: 9999 }) private zIndex!: number;
-  // 内联模式z-index值
-  @Prop({ type: Number, default: 100 }) private zIndexInline!: number;
-  // 占位图片
-  @Prop({ type: [String, Function], default: 'src' }) private url!: string | Function;
-  // 插入位置
-  @Prop({ type: [Element, String], default: 'body' }) private container!: any;
-  // 过滤器
-  @Prop({ type: Function, default: undefined }) private filter!: any;
-  // 双击功能
-  @Prop({ type: Boolean, default: true }) private toggleOnDblclick!: any;
   @Prop(Number) private value!: number;
 
   // 图片列表
@@ -156,42 +72,26 @@ export default class ImageViewer extends Vue {
     this.list = typeof this.images === 'string' ? [this.images] : this.images;
 
     this.index = this.value;
-    this.toolbar = this.toolbarOptions ? { ...toolbarDefaultOption, ...this.toolbarOptions } : this.toolbarType;
 
     this.closed = this.visible;
   }
 
   private viewerInit() {
     Viewer.setDefaults({
-      initialViewIndex: this.index,
-      inline: this.inline,
-      button: this.button,
-      navbar: this.navbar,
-      title: this.title,
-      toolbar: this.toolbar,
-      tooltip: this.tooltipShow,
-      movable: this.movable,
-      zoomable: this.zoomable,
-      rotatable: this.rotatable,
-      scalable: this.scalable,
-      transition: this.transition,
-      fullscreen: this.fullscreen,
-      keyboard: this.keyboard,
-      backdrop: this.backdrop,
-      loading: this.loading,
-      loop: this.loop,
-      interval: this.interval,
-      minWidth: this.minWidth,
-      minHeight: this.minHeight,
-      zoomRatio: this.zoomRatio,
-      minZoomRatio: this.minZoomRatio,
-      maxZoomRatio: this.maxZoomRatio,
-      zIndex: this.zIndex,
-      zIndexInline: this.zIndexInline,
-      url: this.url,
-      container: this.container,
-      filter: this.filter,
-      toggleOnDblclick: this.toggleOnDblclick,
+      initialViewIndex: 0,
+      navbar: 1,
+      title: 1,
+      toolbar: {
+        reset: { show: false },
+        rotateLeft: { show: false },
+        rotateRight: { show: false },
+        flipHorizontal: { show: false },
+        flipVertical: { show: false }
+      },
+      movable: true,
+      rotatable: true,
+      interval: 3000,
+      zIndex: 200,
       ready: event => {
         // 初始化ready事件
         this.$emit('ready', event);

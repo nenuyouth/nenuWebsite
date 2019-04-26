@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 基础页面显示
  * @Date: 2019-02-24 22:21:25
- * @LastEditTime: 2019-03-20 01:03:16
+ * @LastEditTime: 2019-04-18 16:02:00
  -->
 <template>
   <div class="container">
@@ -42,11 +42,15 @@ export default class BasePage extends Vue {
 
   private get myData() {
     const myData = JSON.parse(this.pagedata);
+    const imageList: string[] = [];
 
     myData.forEach((element: any, index: number) => {
       element.myId = index;
       element.tag = `base-${element.tag}`;
+      if ('src' in element) imageList.push(element.src);
     });
+
+    this.$store.commit('setList' , imageList);
 
     return myData;
   }

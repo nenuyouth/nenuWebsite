@@ -27,14 +27,14 @@ const getVersion = (store: Store<any>) => {
     const reg = /os [\d._]+/ugi;
     const vInfo = ua.match(reg);
 
-    if (vInfo) version = vInfo[0].replace(/[^0-9|_.]/uig, '').replace(/_/uig, '.'); // 得到版本号9.3.2或者9.0
+    if (vInfo) version = vInfo[0].replace(/[^0-9|_.]/uig, '').replace(/_/uig, '.');
     store.commit('iOS');
 
   } else if (ua.indexOf('android') > 0) {
     const reg = /android [\d._]+/ugi;
     const vInfo = ua.match(reg);
 
-    if (vInfo) version = vInfo[0].replace(/[^0-9|_.]/uig, '').replace(/_/uig, '.'); // 得到版本号4.2.2
+    if (vInfo) version = vInfo[0].replace(/[^0-9|_.]/uig, '').replace(/_/uig, '.');
     store.commit('android');
 
   }

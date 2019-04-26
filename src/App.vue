@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主视图文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-04-09 18:49:44
+ * @LastEditTime: 2019-04-18 15:26:54
 -->
 <template>
   <a-layout hasSider="true" id="app">
@@ -20,20 +20,20 @@
       <my-footer id="footer"/>
     </a-layout>
     <!-- </transition> -->
-    <!-- <image-viewer/> -->
+    <view-image :images="$store.state.image.imageList" :value="$store.state.image.index"/>
   </a-layout>
 </template>
 <script lang='ts'>
 import { Component, Vue, Watch } from 'vue-property-decorator';
 import { Route } from 'vue-router';
 import BackTop from '@/components/BackTop.vue';
-// import ImageViewer from '@/components/ImageViewer.vue';
+import ViewImage from '@/components/ViewImage.vue';
 import MyNav from '@/components/Nav.vue';
 import MySlide from '@/components/Slide.vue';
 import MyFooter from '@/components/Footer.vue';
 
-// @Component({ components: { BackTop, ImageViewer, MyNav, MyFooter, MySlide } })
-@Component({ components: { BackTop, MyNav, MyFooter, MySlide } })
+@Component({ components: { BackTop, ViewImage, MyNav, MyFooter, MySlide } })
+// @Component({ components: { BackTop, MyNav, MyFooter, MySlide } })
 export default class App extends Vue {
   // 动画名称
   private transitionName = 'slide-right';
