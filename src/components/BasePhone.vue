@@ -1,6 +1,6 @@
 <template>
   <div :id="myId" class="phoneCtn">
-    <img class="phoneIcon" src="@/icon/phone.svg">
+    <img class="phoneIcon" src="@/assets/icon/phone.svg">
     <div class="phoneNum">{{ num }}</div>
   </div>
 </template>

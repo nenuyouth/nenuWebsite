@@ -3,12 +3,12 @@
  * @LastEditors: Mr.Hope
  * @Description: 基础页面显示
  * @Date: 2019-02-24 22:21:25
- * @LastEditTime: 2019-04-18 16:02:00
- -->
+ * @LastEditTime: 2019-04-26 12:09:41
+-->
 <template>
   <div class="container">
     <template v-for="item in myData">
-      <component :is="item.tag" :key="item.id" v-bind="item"></component>
+      <component :is="item.tag" :key="item.id" v-bind="item"/>
     </template>
   </div>
 </template>
@@ -50,7 +50,7 @@ export default class BasePage extends Vue {
       if ('src' in element) imageList.push(element.src);
     });
 
-    this.$store.commit('setList' , imageList);
+    this.$store.commit('setList', imageList);
 
     return myData;
   }

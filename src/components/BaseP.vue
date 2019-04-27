@@ -12,7 +12,7 @@
       <p :style="myStyle" v-html="pText"></p>
       <div class="ImgCtn" v-if="src">
         <div class="imgCtn" v-if="!loaded">
-          <img :src="require(`@/icon/${error ? 'error' : 'loading'}.svg`)" class="imgIcon">
+          <img :src="require(`@/assets/icon/${error ? 'error' : 'loading'}.svg`)" class="imgIcon">
           <span>{{ error ? "图片加载失败" : "加载中..." }}</span>
         </div>
         <img :src="src" @click="showImg = true" class="img" v-else>
