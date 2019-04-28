@@ -686,11 +686,19 @@
 }
 
 /* markdown自定义 */
-.markdown-body code {
+.markdown-body code.hljs {
   font-size: 14px;
   border-radius: 5px;
   margin: 0;
-  padding: .5em 1em;
+  padding: .5em;
+}
+
+.markdown-body code:not(.hljs) {
+  background-color: rgba(27, 31, 35, .05);
+  border-radius: 3px;
+  font-size: 85%;
+  margin: 0;
+  padding: .2em .4em;
 }
 
 .markdown-body pre {
