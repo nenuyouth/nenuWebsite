@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主脚本文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-04-02 13:46:55
+ * @LastEditTime: 2019-04-28 15:24:19
  */
 
 // 引入Ant Design
@@ -16,7 +16,6 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import _ from 'lodash';
 import App from './App.vue';
-import getOS from './lib/getOS';
 import registerServiceWorker from './registerServiceWorker';
 import router from './router/router';
 import store from './store/store';
@@ -74,9 +73,6 @@ Vue.component('icon-font', IconFont);
 // 注册service worker
 registerServiceWorker();
 
-// 获得当前环境
-getOS(store);
-
 // 阻止 vue 在启动时生成生产提示。
 Vue.config.productionTip = false;
 
@@ -101,6 +97,9 @@ Vue.config.productionTip = false;
 router.afterEach((to: Route) => {
   store.commit('path', to.path);
 });
+
+// 获得当前环境
+store.dispatch('systemInfo');
 
 // 获取屏幕状态，并进行brakpoint状态监听
 store.dispatch('screen', $(window).width() || document.documentElement.clientWidth);

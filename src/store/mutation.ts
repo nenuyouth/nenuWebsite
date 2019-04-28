@@ -3,20 +3,12 @@
  * @LastEditors: Mr.Hope
  * @Description: Mutation文件
  * @Date: 2019-03-25 10:37:09
- * @LastEditTime: 2019-04-26 12:02:04
+ * @LastEditTime: 2019-04-28 15:19:00
  */
 import Vue from 'vue';
 import { BaseState, MenuList } from './state';
 
 const myMutation = {
-  /**
-   * @description: 设置终端为安卓
-   *
-   * @param state state
-   */
-  android(state: BaseState) {
-    state.Android = true;
-  },
 
   /**
    * @description: 储存编译好的指南页面
@@ -38,14 +30,6 @@ const myMutation = {
     Vue.set(state.compiledDoc, compiledDoc[0], compiledDoc[1]);
   },
 
-  /**
-   * @description: 设置终端为iOS
-   *
-   * @param state state
-   */
-  iOS(state: BaseState) {
-    state.iOS = true;
-  },
 
   /**
    * @description: 设置内部文档登陆成功状态
@@ -75,15 +59,32 @@ const myMutation = {
   loadDoc(state: BaseState, docLoading: boolean) {
     state.docLoading = docLoading;
   },
+
+  /**
+   * @description: 设置Slide菜单内容
+   *
+   * @param state state
+   * @param menuContent Slide菜单内容
+   */
   menuList(state: BaseState, menuContent: MenuList[]) {
     state.menuList = menuContent;
   },
-  version(state: BaseState, version: string) {
-    state.OSVersion = version;
-  },
+
+  /**
+   * @description: 夜间模式开关
+   *
+   * @param state state
+   */
   nightmode(state: BaseState) {
     state.nightmode = !state.nightmode;
   },
+
+  /**
+   * @description: 设置当前路径
+   *
+   * @param state state
+   * @param path 当前的路径
+   */
   path(state: BaseState, path: string) {
     state.path = path;
   }

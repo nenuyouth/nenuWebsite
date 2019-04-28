@@ -11,40 +11,40 @@ import axios from 'axios';
 import hljs from 'highlight.js';
 import marked from 'marked';
 
-// 初始化Markdown渲染实例
+// init Markdown Render Instance
 const myRenderMD = new marked.Renderer();
 
 
-// 覆写heading转码
+// rewrite heading parse
 myRenderMD.heading = (text, level) => {
   let id = '';
 
-  // 如果heading中存在链接，则将id设置成该链接的文字
+  // if link in heading, set id as link text
   if (text.indexOf('a href') !== -1) id = text.slice(text.indexOf('>') + 1, text.indexOf('</a>'));
 
   return `<h${level} id="${id ||
     text}" class="mdHeading"><img class="mdIcon" src="/img/icon/link.svg" />${text}</h${level}>`;
 };
 
-// 覆写链接转码，如果包含#，意味着是该网页内部跳转
+// rewrite link parse: if link url contains '#', means it's an inside navigation
 myRenderMD.link = (href, title, text) =>
   href[0] === '#'
     ? `<a class='md-a' href='${href}' title='${title || text}'>${text}</a>`
     : `<a class='md-link' href='${href}' title='${text}'>${text}</a>`;
 
-// 设置marked插件
+// set marked pakage
 marked.setOptions({
-  breaks: true, // 使用GitHub Flavored Markdown控制换行输出<br>
-  gfm: true, // 是否使用GitHub改进标准的Markdown
-  langPrefix: 'hljs ',
-  pedantic: false, // 是否尽量接近原生markdown.pl
+  breaks: true, // whether use GitHub Flavored Markdown controls linebreaks output `<br>`
+  gfm: true, // whether use Github-improved Markdown
+  langPrefix: 'hljs ', // code block class prefix
+  pedantic: false, // whether render as native markdown.pl
   renderer: myRenderMD, // 控制输出渲染
-  sanitize: true, // 是否清理内部html内容
-  smartLists: true, // 是否使用更先进列表样式
-  smartypants: false, // 是否对部分内容添加额外符号
-  tables: true, // 是否使用gtm table
+  sanitize: true, // whether clean the html content inside before parsed
+  smartLists: true, // whether use advanced list style
+  smartypants: false, // whether add additional symbols for specific content
+  tables: true, // whether use gtm table
   xhtml: true, // 是否闭合空标签
-  // Highlight代码块
+  // Highlight Code Block
   highlight: (code, lang) =>
     lang && hljs.getLanguage(lang) ? hljs.highlight(lang, code, true).value : hljs.highlightAuto(code).value
 });
@@ -86,18 +86,21 @@ const getCompiledMarkdown = async (url: string, query: any, ctx: Vue, stateName:
   let navigate = true;
 
   if (!docContent)
-    // 如果未下载并处理过markdown文件，立即下载并缓存
+    // if the markdown file hasn't been download yet, download now and cache it
     await axios.post(`${url}.php`, query).then(response => {
-      // await axios.get(`${url}${path}`).then(response => {
-      if (response.data === 'file not found') {
+      if (response.data === 'file not found') { // markdown file unexist
+        // cancel navigate and show alert
         navigate = false;
         myAlert(ctx);
-      } else store.commit(stateName, [query.path, marked(response.data)]);
-    }).catch(err => {
+      } else // store the parsed markdown file to Vuex
+        store.commit(stateName, [query.path, marked(response.data)]);
+    }).catch(err => { // nomally caused by network
+      // cancel navigate and show alert with error msg
       navigate = false;
       myAlert(ctx, true, err);
     });
 
+  // return navigate condition
   return navigate;
 };
 

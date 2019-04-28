@@ -34,6 +34,13 @@ const screenState: ScreenState = {
 const screenModule: Module<ScreenState, BaseState> = {
   state: screenState,
   mutations: {
+
+    /**
+     * @description: 设置屏幕状态
+     *
+     * @param state state
+     * @param width 屏幕宽度
+     */
     changeScreen(state: ScreenState, width: number) {
       let status;
 
@@ -74,11 +81,25 @@ const screenModule: Module<ScreenState, BaseState> = {
         }
       }
     },
+
+    /**
+     * @description: 设置屏幕宽度
+     *
+     * @param state state
+     * @param width 屏幕宽度
+     */
     screenWidth(state: ScreenState, width: number) {
       state.width = width;
     }
   },
   actions: {
+
+    /**
+     * @description: 获取屏幕状态
+     *
+     * @param context state
+     * @param width 屏幕宽度
+     */
     screen(context: (ActionContext<ScreenState, BaseState>), width: number) {
       context.commit('screenWidth', width);
       context.commit('changeScreen', width);

@@ -12,11 +12,12 @@ import myMutation from './mutation';
 import myState from './state';
 import image from './image';
 import screen from './screen';
+import systeminfo from './systeminfo';
 
 Vue.use(Vuex);// 使用Vuex
 
 export default new Vuex.Store({
   state: myState,
-  modules: { image, screen },
+  modules: { image, screen, systeminfo },
   mutations: myMutation
 });

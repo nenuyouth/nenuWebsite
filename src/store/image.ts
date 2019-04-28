@@ -9,9 +9,8 @@ import { ActionContext, Module } from 'vuex';
 import { BaseState } from './state';
 
 export interface ImageState {
-  [propName: string]: string | string[] | number;
-  imageList: string[];
-  index: number;
+  imageList: string[]; // 图片列表
+  index: number; // 当前展示图片的索引
 }
 
 const imageState: ImageState = {
@@ -42,8 +41,6 @@ const imageModule: Module<ImageState, BaseState> = {
     index(state: ImageState, index: number) {
       state.index = index;
     }
-  },
-  actions: {
   }
 };
 
