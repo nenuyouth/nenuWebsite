@@ -10,14 +10,15 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import myMutation from './mutation';
 import myState from './state';
-import image from './image';
-import screen from './screen';
-import systemInfo from './systeminfo';
+import image from './module/image';
+import screen from './module/screen';
+import slide from './module/slide';
+import systemInfo from './module/systeminfo';
 
 Vue.use(Vuex);// 使用Vuex
 
 export default new Vuex.Store({
   state: myState,
-  modules: { image, screen, systemInfo },
+  modules: { image, screen, slide, systemInfo },
   mutations: myMutation
 });

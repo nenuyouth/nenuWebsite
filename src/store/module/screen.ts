@@ -6,7 +6,7 @@
  * @LastEditTime: 2019-03-25 10:10:26
  */
 import { ActionContext, Module } from 'vuex';
-import { BaseState } from './state';
+import { BaseState } from '../state';
 
 export interface ScreenState {
   [propName: string]: string | number | boolean;

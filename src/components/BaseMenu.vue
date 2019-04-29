@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Base Vertical Menu
  * @Date: 2019-03-25 12:39:59
- * @LastEditTime: 2019-03-31 21:04:10
+ * @LastEditTime: 2019-04-29 23:06:54
 -->
 <template>
   <a-menu
@@ -31,7 +31,8 @@
 
 <script lang='ts'>
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import SubMenu, { MenuList } from '@/components/BaseSubMenu.vue';
+import SubMenu from '@/components/BaseSubMenu.vue';
+import { MenuList } from '@/store/module/slide';
 import { Route } from 'vue-router';
 
 interface SelectEvent {

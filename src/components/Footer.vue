@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 网页页脚
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-03-29 12:22:41
+ * @LastEditTime: 2019-04-29 22:57:44
  -->
 <template>
   <a-layout-footer :class="slide?'withSlide':''">
@@ -57,7 +57,7 @@ export default class Footer extends Vue {
 
   // 动态改变页脚样式
   private get slide() {
-    return this.$store.state.menuList.length;
+    return this.$store.state.slide.list.length;
   }
 }
 </script>

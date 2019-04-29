@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Internal Doc Display
  * @Date: 2019-04-01 23:35:43
- * @LastEditTime: 2019-04-09 20:14:15
+ * @LastEditTime: 2019-04-29 23:13:23
 -->
 <template>
   <MyDoc :baselength="baselength" :loading="$store.state.docLoading" :path="path"/>
@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { MenuList } from '@/components/BaseSubMenu.vue';
+import { MenuList } from '@/store/module/slide';
 import { Route } from 'vue-router';
 import MyDoc from '@/components/MyDoc.vue';
 import getCompiledMarkdown from '@/lib/getMarkdown';
@@ -29,6 +29,7 @@ export default class Doc extends Vue {
   private activated() {
     // display menu
     this.$store.commit('menuList', require('@/assets/docMenuList.json'));
+    this.$store.commit('menuTitle', '内部文档');
   }
   private deactivated() {
     // hide menu

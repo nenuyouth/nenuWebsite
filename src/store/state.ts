@@ -10,19 +10,12 @@ interface DocList {
   [propName: string]: string;
 }
 
-export interface MenuList {
-  key: string;
-  title: string;
-  children?: MenuList;
-}
-
 export interface BaseState {
   compiledDoc: DocList;
   compiledGuide: DocList;
   docLoading: boolean;
   internalLogin: boolean;
   internalPassword: string;
-  menuList: MenuList[];
   nightmode: boolean;
   path: string;
 }
@@ -33,7 +26,6 @@ const myState: BaseState = {
   docLoading: true,
   internalLogin: false,
   internalPassword: '',
-  menuList: [],
   nightmode: false,
   path: ''
 };

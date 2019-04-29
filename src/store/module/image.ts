@@ -5,8 +5,8 @@
  * @Date: 2019-03-24 23:50:48
  * @LastEditTime: 2019-03-25 10:10:26
  */
-import { ActionContext, Module } from 'vuex';
-import { BaseState } from './state';
+import { Module } from 'vuex';
+import { BaseState } from '../state';
 
 export interface ImageState {
   imageList: string[]; // 图片列表

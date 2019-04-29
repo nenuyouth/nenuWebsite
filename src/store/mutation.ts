@@ -3,10 +3,10 @@
  * @LastEditors: Mr.Hope
  * @Description: Mutation文件
  * @Date: 2019-03-25 10:37:09
- * @LastEditTime: 2019-04-28 15:19:00
+ * @LastEditTime: 2019-04-29 22:59:20
  */
 import Vue from 'vue';
-import { BaseState, MenuList } from './state';
+import { BaseState } from './state';
 
 const myMutation = {
 
@@ -58,16 +58,6 @@ const myMutation = {
    */
   loadDoc(state: BaseState, docLoading: boolean) {
     state.docLoading = docLoading;
-  },
-
-  /**
-   * @description: 设置Slide菜单内容
-   *
-   * @param state state
-   * @param menuContent Slide菜单内容
-   */
-  menuList(state: BaseState, menuContent: MenuList[]) {
-    state.menuList = menuContent;
   },
 
   /**

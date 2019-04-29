@@ -15,10 +15,14 @@
       v-model="collapse"
     >
       <div class="asideLogo" v-if="!collapse">
-        <img alt="东北师范大学校学生会" class="icon mr-1" src="/img/icon/nenuyouth.png">
-        东师青年
+        <img
+          :src="$store.state.slide.icon||'/img/icon/nenuyouth.png'"
+          alt="东北师范大学校学生会"
+          class="asideIcon mr-1"
+        >
+        {{$store.state.slide.title||'东师青年'}}
       </div>
-      <base-menu :list="$store.state.menuList"></base-menu>
+      <base-menu :list="$store.state.slide.list"></base-menu>
     </a-layout-sider>
   </aside>
 </template>
@@ -51,9 +55,20 @@ export default class Slide extends Vue {
 <style>
 .asideLogo {
   position: relative;
+  color: #000;
+  font-weight: 500;
+  font-size: 16px;
   margin: 0 16px 0 24px;
   padding: 4px 0 8px 0;
   line-height: 40px;
+}
+
+.asideIcon {
+  width: 18px;
+  height: 18px;
+  vertical-align: -0.22em;
+  fill: currentColor;
+  overflow: hidden;
 }
 
 #aside {

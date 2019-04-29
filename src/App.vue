@@ -3,12 +3,12 @@
  * @LastEditors: Mr.Hope
  * @Description: 主视图文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-04-18 15:26:54
+ * @LastEditTime: 2019-04-29 22:57:39
 -->
 <template>
   <a-layout hasSider="true" id="app">
     <!-- <transition :name="transitionName"> -->
-    <my-slide id="aside" v-if="$store.state.menuList.length"></my-slide>
+    <my-slide id="aside" v-if="$store.state.slide.list.length"></my-slide>
     <a-layout id="body">
       <my-nav id="nav"/>
       <a-layout-content id="content">
