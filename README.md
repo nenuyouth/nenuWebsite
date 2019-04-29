@@ -1,14 +1,16 @@
 # NENU StudentUnion Website
 
-> 本项目并没有附加任何开源协议，请避免使用、改编、移植任何源码
-
+[![996.icu](https://img.shields.io/badge/作者-Mr.Hope-blue.svg)](https://996.icu)
+[![996.icu](https://img.shields.io/badge/link-东师校会官网-success.svg)](https://996.icu)
 [![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
+
+> 本项目并没有附加任何开源协议，请避免使用、改编、移植任何源码
 
 该项目使用Node.js，基于Vue框架制作
 
 ## 组件介绍与使用手册
 
-查看[自定义组件文档](/tree/master/public/Res/doc/website/vue/component.md)
+查看[自定义组件文档](https://nenuyouth.com/doc/website/vue/component)
 
 ## Node.js库使用
 
@@ -101,12 +103,6 @@ npm install
 npm run serve
 ```
 
-或
-
-```shell
-npm run dev
-```
-
 > 运行开发环境，可在浏览器通过[http://localhost:8080](http://localhost:8080)直接访问。
 > 使用`ctrl + c`组合键并输入`y`再回车来终止开发环境
 
@@ -117,6 +113,14 @@ npm run build
 ```
 
 > 执行构建，将构建成功的网页输出至/dist目录
+
+### 部署网站
+
+```shell
+start deploy.bat
+```
+
+> 执行构建，将构建成功的网站推送到Github Pages与Gitee Pages
 
 #### 执行文件提示和文件修复
 
