@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-03-29 12:41:23
+ * @LastEditTime: 2019-04-28 15:43:00
 -->
 <template>
   <div class="container mt-3 pb-3">
@@ -167,7 +167,7 @@ export default class DocView extends Vue {
       event.preventDefault();
     });
 
-    if (!this.$store.state.iOS) {
+    if (!this.$store.state.systemInfo.iOS) {
       // 注册页面标题悬停时的动画效果
       $('.markdown-body :header').on('mouseover', event => {
         $(event.currentTarget)

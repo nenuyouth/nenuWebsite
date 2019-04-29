@@ -17,9 +17,6 @@ export interface MenuList {
 }
 
 export interface BaseState {
-  Android: boolean;
-  iOS: boolean;
-  OSVersion: string;
   compiledDoc: DocList;
   compiledGuide: DocList;
   docLoading: boolean;
@@ -31,9 +28,6 @@ export interface BaseState {
 }
 
 const myState: BaseState = {
-  Android: false,
-  iOS: false,
-  OSVersion: '',
   compiledDoc: {},
   compiledGuide: {},
   docLoading: true,
