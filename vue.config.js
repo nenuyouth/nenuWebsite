@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: vue config file
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-04-05 22:27:23
+ * @LastEditTime: 2019-04-29 19:46:27
  */
 
 /**
@@ -27,6 +27,7 @@ module.exports = {
   productionSourceMap: false, // 生产环境是否生产SourceMap
   // crossorigin: undefined,
   configureWebpack: { devtool: 'source-map' },
+  // 开发服务器配置
   devServer: {
     overlay: {
       warnings: false,
@@ -56,5 +57,28 @@ module.exports = {
         javascriptEnabled: true
       }
     }
+  },
+  // Progressive App Surpport
+  pwa: {
+    name: '东师校会官网', // SW注册后的应用名称
+    themeColor: '#3cba63', // 主题色
+    msTileColor: '#3cba63',
+    appleMobileWebAppCapable: 'yes', // iOS启用SW
+    appleMobileWebAppStatusBarStyle: 'black', // iOS状态栏样式,可选"black-translucent","black","default"
+    iconPaths: { // 图标路径
+      favicon32: 'img/icons/favicon32.png',
+      favicon16: 'img/icons/favicon16.png',
+      appleTouchIcon: 'img/icons/appleIcon152.png',
+      maskIcon: 'img/icons/safari-pinned-tab.svg',
+      msTileImage: 'img/icons/msIcon144.png'
+    },
+    // 配置 workbox 插件
+    workboxPluginMode: 'GenerateSW',
+    workboxOptions: {
+      swDest: 'service-worker/service-worker.js', // serviceworker存放地点
+      importWorkboxFrom: 'local', // service worker引入方式
+      importsDirectory: 'service-worker' // service-worker文件存放路径
+    },
+    manifestPath: 'service-worker/manifest.json'
   }
 };
