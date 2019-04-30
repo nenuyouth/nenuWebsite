@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 路由配置文件
  * @Date: 2019-03-25 12:27:33
- * @LastEditTime: 2019-04-01 23:55:46
+ * @LastEditTime: 2019-04-30 11:30:56
  */
 import Main from '@/views/Main.vue';
 import Page404 from '@/views/Page404.vue';
@@ -12,7 +12,6 @@ const myRoute = [
   {
     path: '/',
     name: 'main',
-    meta: { title: '东北师范大学学生会' },
     component: Main
   },
   {
@@ -38,7 +37,7 @@ const myRoute = [
   {
     path: '/tool/calendar/:time',
     name: 'calendarDetail',
-    meta: { title: '2019年春季学期校历' },
+    meta: { title: '校历详情' },
     component: () => import(/* webpackChunkName: "calendar" */ '@/views/tool/Calendar/Detail.vue')
   },
   {

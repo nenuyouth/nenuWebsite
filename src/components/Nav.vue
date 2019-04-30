@@ -1,15 +1,11 @@
 <template>
   <a-menu :theme="theme" mode="horizontal" v-model="active">
-    <a-menu-item disabled key="logo" style="padding:0 0 0 20px;">
-      <router-link to="/">
-        <img
-          alt="东师青年"
-          class="d-inline-block mr-2"
-          src="/img/icon/nenuyouth.png"
-          style="width:18.4px;height:18.4px;"
-        >
-        <span class="d-none d-lg-inline text-black">东北师范大学学生会&ensp;&ensp;</span>
-      </router-link>
+    <a-menu-item @click="$router.go(-1)" key="logo" style="padding:0 10px 0 20px;">
+      <icon-font id="backButton" style="display:none;" type="icon-navigateBack"/>
+      <img alt="东师青年" id="logo" src="/img/icon/nenuyouth.png">
+    </a-menu-item>
+    <a-menu-item class="d-none d-lg-inline" disabled key="logoName" style="padding:0 10px 0 0;">
+      <span class="text-black">东北师范大学学生会</span>
     </a-menu-item>
     <a-menu-item key="/">
       <router-link to="/">
@@ -43,19 +39,37 @@
   </a-menu>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
+import { Component, Vue, Watch } from 'vue-property-decorator';
 import { Route } from 'vue-router';
 
 @Component
 export default class Nav extends Vue {
+  private firstNavigate = true;
+
   // 获得主题
   private get theme() {
     return this.$store.state.nightmode ? 'dark' : 'light';
   }
 
+  private set active(key: string[]) {
+    // do nothing here
+  }
+
   // 激活对应menu项
   private get active() {
     return [this.$store.state.path];
+  }
+
+  @Watch('$route')
+  private onRouteChange(to: Route, from: Route) {
+    if (this.firstNavigate) {
+      this.firstNavigate = false;
+      setTimeout(() => {
+        $('#logo').fadeOut(500, () => {
+          $('#backButton').fadeIn(500);
+        });
+      }, 3000);
+    }
   }
 }
 </script>
@@ -70,6 +84,16 @@ export default class Nav extends Vue {
   #nav {
     line-height: 38.6px;
   }
+}
+
+#backButton {
+  margin-right: 0;
+}
+
+#logo {
+  width: 18.4px;
+  height: 18.4px;
+  margin: 0 -2.2px;
 }
 </style>
 <style>

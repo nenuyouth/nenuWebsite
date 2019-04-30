@@ -131,7 +131,7 @@ export default class ImageViewer extends Vue {
   // 插入位置
   @Prop({ type: [Element, String], default: 'body' }) private container!: any;
   // 过滤器
-  @Prop({ type: Function, default: undefined }) private filter!: any;
+  @Prop({ type: Function, default: () => true }) private filter!: any;
   // 双击功能
   @Prop({ type: Boolean, default: true }) private toggleOnDblclick!: any;
   @Prop(Number) private value!: number;

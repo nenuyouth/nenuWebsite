@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主页
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-04-09 18:39:48
+ * @LastEditTime: 2019-04-30 11:24:25
 -->
 <template>
   <div class="container">
@@ -17,7 +17,7 @@
         <a class="btn btn-primary btn-lg" href="#" role="button">了解校学生会</a>
       </p>
     </div>
-    <base-carousel v-bind="carouselData"></base-carousel>
+    <base-carousel v-bind="carouselData"/>
     <a-row>
       <a-col :xs="24">
         <h2 class="px-3 pt-3">东师指南</h2>

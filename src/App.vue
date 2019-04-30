@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主视图文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-04-29 22:57:39
+ * @LastEditTime: 2019-04-30 11:29:24
 -->
 <template>
   <a-layout hasSider="true" id="app">
@@ -13,7 +13,7 @@
       <my-nav id="nav"/>
       <a-layout-content id="content">
         <keep-alive :max="10">
-          <router-view v-wechat-title="$route.meta.title"/>
+          <router-view v-wechat-title="$route.meta.title||'东北师范大学学生会'"/>
         </keep-alive>
       </a-layout-content>
       <back-top/>
