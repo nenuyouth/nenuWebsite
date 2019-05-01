@@ -14,11 +14,12 @@ import image from './module/image';
 import screen from './module/screen';
 import slide from './module/slide';
 import systemInfo from './module/systeminfo';
+import serviceWorker from './module/service-worker';
 
 Vue.use(Vuex);// 使用Vuex
 
 export default new Vuex.Store({
   state: myState,
-  modules: { image, screen, slide, systemInfo },
+  modules: { image, screen, slide, systemInfo, serviceWorker },
   mutations: myMutation
 });

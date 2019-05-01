@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 路由配置文件
  * @Date: 2019-03-25 12:27:33
- * @LastEditTime: 2019-04-30 11:30:56
+ * @LastEditTime: 2019-05-01 14:55:36
  */
 import Main from '@/views/Main.vue';
 import Page404 from '@/views/Page404.vue';
@@ -11,6 +11,7 @@ import Page404 from '@/views/Page404.vue';
 const myRoute = [
   {
     path: '/',
+    alias: '/index.html',
     name: 'main',
     component: Main
   },

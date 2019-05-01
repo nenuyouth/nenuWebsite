@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: vue config file
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-04-29 19:46:27
+ * @LastEditTime: 2019-05-01 15:01:33
  */
 
 /**
@@ -26,6 +26,13 @@ module.exports = {
   runtimeCompiler: false,
   productionSourceMap: false, // 生产环境是否生产SourceMap
   // crossorigin: undefined,
+  chainWebpack: config => { // 处理SVG模块
+    const svgRule = config.module.rule('svg');
+
+    svgRule.uses.clear();
+
+    svgRule.use('vue-svg-loader').loader('vue-svg-loader');
+  },
   configureWebpack: { devtool: 'source-map' },
   // 开发服务器配置
   devServer: {

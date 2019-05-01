@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: webpack config file
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-04-01 21:50:45
+ * @LastEditTime: 2019-05-01 15:04:52
  */
 
 module.exports = {
@@ -26,7 +26,6 @@ module.exports = {
   }
 };
 
-// configureWebpack: { devtool: 'source-map' }
 /*
  * plugins: [
  *   new webpack.ProvidePlugin({

@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主脚本文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-04-29 23:45:53
+ * @LastEditTime: 2019-04-30 12:08:37
  */
 
 // 引入Ant Design
@@ -71,7 +71,7 @@ const IconFont = Icon.createFromIconfontCN({ scriptUrl: '//at.alicdn.com/t/font_
 Vue.component('icon-font', IconFont);
 
 // 注册service worker
-registerServiceWorker();
+registerServiceWorker(store);
 
 // 阻止 vue 在启动时生成生产提示。
 Vue.config.productionTip = false;
