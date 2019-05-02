@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 时间轴插件
  * @Date: 2019-03-23 18:29:52
- * @LastEditTime: 2019-05-02 13:49:25
+ * @LastEditTime: 2019-05-02 21:14:51
 -->
 <template>
   <a-timeline :mode="mode">
@@ -18,11 +18,11 @@
         <a-icon :style="`color:${item.color}`" :type="item.type" style="font-size:16px;"/>
       </template>
       <router-link :to="item.url" class="timeLineButton" v-if="item.url">
-        <h3 :style="item.headingStyle" v-if="item.title">{{ item.title }}</h3>
+        <h3 :style="item.headingStyle" v-if="item.title" v-text="item.title"/>
         <p v-html="list[index]"/>
       </router-link>
       <template v-else>
-        <h3 :style="item.headingStyle" v-if="item.title">{{ item.title }}</h3>
+        <h3 :style="item.headingStyle" v-if="item.title" v-text="item.title"/>
         <p v-html="list[index]"/>
       </template>
     </a-timeline-item>
@@ -31,7 +31,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
-export interface TimeList {
+export interface TimeListItem {
   title?: string;
   style?: string | object;
   text: string;
@@ -46,7 +46,7 @@ export default class BaseTimeLine extends Vue {
 
   // timelist to display
   @Prop({ required: true, type: Array })
-  private timeList!: TimeList[];
+  private timeList!: TimeListItem[];
 
   // handle list text
   private get list() {

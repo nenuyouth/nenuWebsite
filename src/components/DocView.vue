@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-04-28 15:43:00
+ * @LastEditTime: 2019-05-02 21:12:51
 -->
 <template>
   <div class="container mt-3 pb-3">
@@ -14,10 +14,6 @@
         <a-spin :spinning="$store.state.docLoading">
           <template #indicator>
             <img alt="加载中" class="loadingIcon" src="/img/icon/logo.png">
-            <!-- <a-icon
-              style="font-size:80px;position:absolute;top:calc(50% - 40px);left:calc(50% - 40px);"
-              type="loading"
-            />-->
           </template>
           <div class="markdown-body" v-html="docContent"/>
         </a-spin>
@@ -71,7 +67,7 @@
         <template v-else>目录</template>
       </div>
       <aside class="shadow" id="aside">
-        <div @click="scrollTop" class="asideH1 asideHeading">{{docTitle}}</div>
+        <div @click="scrollTop" class="asideH1 asideHeading" v-text="docTitle"/>
         <a-anchor
           :affix="false"
           :offsetTop="42"
@@ -104,7 +100,7 @@ interface Aside {
 @Component
 export default class DocView extends Vue {
   // 文档标题
-  private docTitle = '内部文档';
+  private docTitle = '文档';
   // 侧边栏内容
   private aside: Aside[] = [];
 

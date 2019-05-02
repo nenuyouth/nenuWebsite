@@ -12,11 +12,11 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import axios from 'axios';
-import BaseTimeLine, { TimeList } from '@/components/BaseTimeLine.vue';
+import BaseTimeLine, { TimeListItem } from '@/components/BaseTimeLine.vue';
 
 @Component({ components: { BaseTimeLine } })
 export default class Calendar extends Vue {
-  private timeList: TimeList[] = [];
+  private timeList: TimeListItem[] = [];
 
   private created() {
     axios

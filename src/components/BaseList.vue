@@ -3,13 +3,13 @@
  * @LastEditors: Mr.Hope
  * @Description: 基础列表
  * @Date: 2019-03-25 12:39:59
- * @LastEditTime: 2019-04-01 16:59:54
+ * @LastEditTime: 2019-05-02 21:22:21
 -->
 <template>
   <div :id="myId" class="Ctn">
     <template v-if="head !== false">
-      <div class="d-block d-lg-none commonhead">{{ head }}</div>
-      <div class="d-none d-lg-block myH3">{{ head }}</div>
+      <div class="d-block d-lg-none commonhead" v-text="head"/>
+      <div class="d-none d-lg-block myH3" v-text="head"/>
     </template>
     <div class="Lctn">
       <template v-for="List in listItem">
@@ -22,18 +22,18 @@
         >
           <div @click="navigate(List.aim)" class="list-Container" v-if="List.aim">
             <img :src="`/img${List.icon}`" class="listIcon" v-if="List.icon">
-            <div class="LinkText">{{ List.text }}</div>
-            <div class="linkDesciption access">{{ List.desc }}</div>
+            <div class="LinkText" v-text="List.text"/>
+            <div class="linkDesciption access" v-text="List.desc"/>
           </div>
           <router-link :to="List.url" class="list-Container" v-else-if="List.url">
             <img :src="List.icon" class="listIcon" v-if="List.icon">
-            <div class="LinkText">{{ List.text }}</div>
-            <div class="linkDesciption access">{{ List.desc }}</div>
+            <div class="LinkText" v-text="List.text"/>
+            <div class="linkDesciption access" v-text="List.desc"/>
           </router-link>
           <div class="list-Container" v-else>
             <img :src="`/img${List.icon}`" class="listIcon" v-if="List.icon">
-            <div class="LinkText">{{ List.text }}</div>
-            <div class="linkDesciption">{{ List.desc }}</div>
+            <div class="LinkText" v-text="List.text"/>
+            <div class="linkDesciption" v-text="List.desc"/>
           </div>
         </div>
         <div
@@ -41,10 +41,10 @@
           :key="List.textKey"
           class="link-divline"
           v-if="List.display !== false"
-        ></div>
+        />
       </template>
     </div>
-    <div class="commonfoot" v-if="foot">{{ foot }}</div>
+    <div class="commonfoot" v-if="foot" v-text="foot"/>
   </div>
 </template>
 
@@ -57,23 +57,23 @@ interface List {
 
 @Component
 export default class BaseList extends Vue {
-  // id
+  // Component ID
   @Prop(Number) private myId!: number;
 
-  // list content
+  // List content
   @Prop({ type: Array, required: true }) private content!: List[];
 
-  // list head text
+  // List head text
   @Prop([String, Boolean]) private head!: string | boolean;
 
-  // list footer text
+  // List footer text
   @Prop([String, Boolean]) private foot!: string | boolean;
 
   private get listItem() {
     // create a copy of @Prop('content)
     const listItem = JSON.parse(JSON.stringify(this.content));
 
-    // add key and item for the listitem in the copy
+    // Add key and item for the listitem in the copy
     listItem.forEach((element: List, index: number) => {
       if (this.myId) element.id = `list${this.myId}-${index}`;
       element.textKey = `${element.text}Key`;
@@ -82,7 +82,7 @@ export default class BaseList extends Vue {
     return listItem;
   }
 
-  // navigate to the right page when clicking on a listitem with link
+  // Navigate when clicking on a link
   private navigate(aim: string) {
     this.$router.push(`/handbook/${aim}`);
   }

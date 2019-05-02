@@ -3,8 +3,8 @@
  * @LastEditors: Mr.Hope
  * @Description: Base Foot
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-04-02 14:07:49
- -->
+ * @LastEditTime: 2019-05-02 21:57:16
+-->
 <template>
   <div :id="myId" class="Footer">
     <div class="footerCtn">
@@ -41,7 +41,7 @@ export default class BaseFoot extends Vue {
 </script>
 <style scoped>
 .Footer {
-  margin-top: 27px;
+  margin-top: 20px;
   padding: 8px 5%;
   font-size: 12px;
   color: #888;

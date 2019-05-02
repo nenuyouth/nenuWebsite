@@ -1,7 +1,14 @@
+<!--
+ * @Author: Mr.Hope
+ * @LastEditors: Mr.Hope
+ * @Description: 图片浏览器
+ * @Date: 2019-04-26 12:05:30
+ * @LastEditTime: 2019-05-02 20:31:29
+-->
 <template>
   <div class="vue_viewer" ref="viewer">
     <template v-if="$slots.default">
-      <slot></slot>
+      <slot/>
     </template>
     <template v-else>
       <div :key="index" class="vue_viewer_item" v-for="(item, index) in list">

@@ -3,20 +3,21 @@
  * @LastEditors: Mr.Hope
  * @Description: Base Paragraph
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-03-29 12:42:21
+ * @LastEditTime: 2019-05-02 21:58:38
 -->
 <template>
   <div :id="myId" class="Ctn">
-    <div :style="headStyle" class="iOShead" v-if="head">{{ head }}</div>
+    <div :style="headStyle" class="iOShead" v-if="head" v-text="head"/>
     <div :style="{ textAlign: align }" class="iOSP">
-      <p :style="myStyle" v-html="pText"></p>
+      <p :style="myStyle" v-html="pText"/>
       <div class="ImgCtn" v-if="src">
         <div class="imgCtn" v-if="!loaded">
-          <img :src="require(`@/assets/icon/${error ? 'error' : 'loading'}.svg`)" class="imgIcon">
-          <span>{{ error ? "图片加载失败" : "加载中..." }}</span>
+          <Error class="imgIcon" v-if="error"/>
+          <Loading class="imgIcon" v-else/>
+          <span v-text="error ? '图片加载失败' : '加载中...'"/>
         </div>
         <img :src="src" @click="showImg = true" class="img" v-else>
-        <div class="imgDesc">{{desc ? '▲' + desc : ''}}</div>
+        <div class="imgDesc" v-if="desc" v-text="`▲${desc}`"/>
         <div @click="showImg = false" class="preview" v-if="showImg">
           <img :src="src" class="previewImg">
         </div>
@@ -26,6 +27,8 @@
 </template>
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
+import Loading from '@/assets/icon/loading.svg';
+import Error from '@/assets/icon/error.svg';
 
 interface Style {
   [propName: string]: string;
@@ -38,63 +41,67 @@ enum Align {
   'justify'
 }
 
-@Component
+@Component({ components: { Loading, Error } })
 export default class BaseP extends Vue {
-  // 图片加载状态
-  public loaded = false;
-  public error = false;
-
-  // 图片展示
-  private showImg = false;
-
+  // Component ID
   @Prop(Number) private myId!: number;
 
+  // Paragragh Text
   @Prop({ type: String, required: true }) private text!: string;
 
+  // Paragragh Heading
   @Prop([String, Boolean]) private head!: string | boolean;
 
+  // Paragragh Image Link
   @Prop(String) private src!: string;
 
+  // Paragragh Image Description
   @Prop(String) private desc!: string;
 
+  // Paragragh Text style
   @Prop([String, Object]) private myStyle!: string | Style;
 
+  // Paragragh Heading Style
   @Prop([String, Object]) private headStyle!: string | Style;
 
+  // Text Align
   @Prop({ default: 'left' }) private align!: Align;
 
-  // 对text进行处理以在网页上正常显示空格与换行
+  // Image load status
+  private loaded = false;
+  private error = false;
+
+  // Whether to display image or not
+  private showImg = false;
+
+  // Handle text data in order to display correctly with spaces and line breaks on website
   private get pText() {
     return this.text.replace(/\n/gu, '<br/>').replace(/\s/gu, '&ensp;');
   }
 
   private mounted() {
-    // 图片处理
-    if (this.src) {
-      // 加载图片
-      const img = new Image(); // 创建新Image实例
+    const img = new Image(); // Create new Image instance
 
-      img.src = this.src;
+    img.src = this.src;
 
-      // 如果图片已经被缓存立即结束函数
-      if (img.complete) {
-        this.loaded = true;
+    // Image has been cached
+    if (img.complete) {
+      this.loaded = true;
 
-        return;
-      }
-
-      // 图片加载出错
-      img.onerror = () => {
-        this.error = true;
-      };
-
-      // 图片加载成功
-      img.onload = () => {
-        this.loaded = true;
-
-        delete img.onload;
-      };
+      return;
     }
+
+    // Error when loading Image, show error message
+    img.onerror = () => {
+      this.error = true;
+    };
+
+    // Sucess loading Image, display this Image now
+    img.onload = () => {
+      this.loaded = true;
+
+      delete img.onload;
+    };
   }
 }
 </script>

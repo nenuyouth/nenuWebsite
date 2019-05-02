@@ -3,10 +3,10 @@
  * @LastEditors: Mr.Hope
  * @Description: 基础页面显示
  * @Date: 2019-02-24 22:21:25
- * @LastEditTime: 2019-04-26 12:09:41
+ * @LastEditTime: 2019-05-02 21:53:51
 -->
 <template>
-  <div class="container">
+  <div class="container page">
     <template v-for="item in myData">
       <component :is="item.tag" :key="item.id" v-bind="item"/>
     </template>
@@ -14,7 +14,7 @@
 </template>
 <script lang="ts">
 import BaseHead from '@/components/BaseHead.vue';
-import BaseH3 from '@/components/BaseH3.vue';
+import BaseTitle from '@/components/BaseTitle.vue';
 import BaseP from '@/components/BaseP.vue';
 import BaseImg from '@/components/BaseImg.vue';
 import BaseList from '@/components/BaseList.vue';
@@ -27,7 +27,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 @Component({
   components: {
     BaseHead,
-    BaseH3,
+    BaseTitle,
     BaseP,
     BaseImg,
     BaseList,
@@ -37,9 +37,11 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
   }
 })
 export default class BasePage extends Vue {
+  // Page data
   @Prop({ type: String, required: true, default: '[{"tag":"error"}]' })
   private readonly pagedata!: string;
 
+  // Handle Data to change tags
   private get myData() {
     const myData = JSON.parse(this.pagedata);
     const imageList: string[] = [];
@@ -50,9 +52,14 @@ export default class BasePage extends Vue {
       if ('src' in element) imageList.push(element.src);
     });
 
-    this.$store.commit('setList', imageList);
+    this.$store.commit('imageList', imageList);
 
     return myData;
   }
 }
 </script>
+<style scoped>
+.page {
+  color: #000;
+}
+</style>

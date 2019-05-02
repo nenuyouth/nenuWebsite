@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Base Carousel
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-04-22 21:51:20
+ * @LastEditTime: 2019-05-02 19:55:42
 -->
 <template>
   <a-carousel
@@ -32,9 +32,9 @@
     <div :key="item.caption" @click="navigate(item.url)" class="carouselItem" v-for="item in list">
       <img :alt="item.alt" :src="item.src" class="img">
       <div :class="item.color" class="caption">
-        <h1 class="display-4 d-none d-sm-block">{{ item.caption }}</h1>
-        <h1 class="font-weight-light d-block d-sm-none">{{ item.caption }}</h1>
-        <h1 class="lead">{{ item.subCaption }}</h1>
+        <h1 class="display-4 d-none d-sm-block" v-text="item.caption"/>
+        <h1 class="font-weight-light d-block d-sm-none" v-text="item.caption"/>
+        <h1 class="lead" v-text="item.subCaption"/>
         <p class="lead d-none d-sm-block" v-if="item.enSubCaption">{{ item.enSubCaption }}</p>
         <p
           class="d-none d-lg-block text-right font-weight-light"

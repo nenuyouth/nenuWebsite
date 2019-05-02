@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Base Vertical Menu
  * @Date: 2019-03-25 12:39:59
- * @LastEditTime: 2019-04-29 23:06:54
+ * @LastEditTime: 2019-05-02 21:22:44
 -->
 <template>
   <a-menu
@@ -22,7 +22,7 @@
           <a-icon :type="item.type" v-else/>
         </template>
         <span class="icon" v-else-if="item.icon"/>
-        <span>{{item.title}}</span>
+        <span v-text="item.title"/>
       </a-menu-item>
       <SubMenu :key="item.key" :menu-info="item" v-else/>
     </template>
@@ -45,18 +45,18 @@ interface SelectEvent {
 
 @Component({ components: { SubMenu } })
 export default class BaseMenu extends Vue {
-  // Menu collapse status
-  private collapsed = false;
-
   // A list of menuItems to display
   @Prop(Array) private list!: MenuList[];
+
+  // Menu collapse status
+  private collapsed = false;
 
   // Current selected menu => to show thie right active status in the menulist
   private get active() {
     return [this.$store.state.path];
   }
 
-  // v-model must has a setter, or an error will be triggered by vue
+  // V-model must has a setter, or an error will be triggered by vue
   private set active(active) {
     // nothing to do, path has been handled in the main.ts
   }

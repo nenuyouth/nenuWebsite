@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 网页页脚
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-04-29 22:57:44
+ * @LastEditTime: 2019-05-02 20:30:54
  -->
 <template>
   <a-layout-footer :class="slide?'withSlide':''">
@@ -18,7 +18,7 @@
         <h3 class="text-white">关于我们</h3>
         <div class="text-small">
           <div :key="item[2]" class="mb-1" v-for="item in about">
-            <router-link :to="item[0]" class="text-muted">{{item[1]}}</router-link>
+            <router-link :to="item[0]" class="text-muted" v-text="item[1]"/>
           </div>
         </div>
       </a-col>
@@ -26,7 +26,7 @@
         <h3 class="text-white">其他媒体</h3>
         <div class="text-small">
           <div :key="item[1]" class="mb-1" v-for="item in media">
-            <a :href="item[0]" class="text-muted">{{item[1]}}</a>
+            <a :href="item[0]" class="text-muted" v-text="item[1]"/>
           </div>
         </div>
       </a-col>

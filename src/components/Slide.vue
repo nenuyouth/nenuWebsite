@@ -22,7 +22,7 @@
         >
         {{$store.state.slide.title||'东师青年'}}
       </div>
-      <base-menu :list="$store.state.slide.list"></base-menu>
+      <base-menu :list="$store.state.slide.list"/>
     </a-layout-sider>
   </aside>
 </template>

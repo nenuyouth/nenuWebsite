@@ -1,7 +1,7 @@
 <template>
   <div :id="myId" class="phoneCtn">
     <img class="phoneIcon" src="@/assets/icon/phone.svg">
-    <div class="phoneNum">{{ num }}</div>
+    <div class="phoneNum" v-text="num"/>
   </div>
 </template>
 <script lang="ts">

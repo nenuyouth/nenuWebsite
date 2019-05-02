@@ -1,7 +1,7 @@
 <template>
   <div class="vue_viewer" ref="viewer">
     <template v-if="$slots.default">
-      <slot></slot>
+      <slot/>
     </template>
     <template v-else>
       <div :key="index" class="vue_viewer_item" v-for="(item, index) in list" v-show="false">

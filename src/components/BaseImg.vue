@@ -3,16 +3,17 @@
  * @LastEditors: Mr.Hope
  * @Description: 基础图片
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-03-29 12:37:11
+ * @LastEditTime: 2019-05-02 21:58:41
 -->
 <template>
   <div :id="myId" class="ImgCtn">
     <div class="imgCtn" v-if="!loaded">
-      <img :src="require(`@/assets/icon/${error ? 'error' : 'loading'}.svg`)" class="imgIcon">
-      <span>{{ error ? "图片加载失败" : "加载中..." }}</span>
+      <Error class="imgIcon" v-if="error"/>
+      <Loading class="imgIcon" v-else/>
+      <span v-text="error ? '图片加载失败' : '加载中...'"/>
     </div>
     <img :src="src" @click="showImg = true" class="img" v-else>
-    <div class="imgDesc">{{desc ? '▲' + desc : ''}}</div>
+    <div class="imgDesc" v-if="desc" v-text="`▲${desc}`"/>
     <div @click="showImg = false" class="preview" v-if="showImg">
       <img :src="src" class="previewImg">
     </div>
@@ -20,41 +21,45 @@
 </template>
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
+import Loading from '@/assets/icon/loading.svg';
+import Error from '@/assets/icon/error.svg';
 
-@Component
+@Component({ components: { Loading, Error } })
 export default class BaseImg extends Vue {
+  // Component ID
   @Prop(Number) private myId!: number;
 
+  // Image link address
   @Prop({ type: String, required: true }) private src!: string;
 
+  // Image description
   @Prop(String) private desc!: string;
 
-  // 图片载入状态
+  // Image load status
   private loaded = false;
   private error = false;
 
-  // 图片展示
+  // Whether to display image or not
   private showImg = false;
 
   private mounted() {
-    // 加载图片
-    const img = new Image(); // 创建新Image实例
+    const img = new Image(); // Create new Image instance
 
     img.src = this.src;
 
-    // 如果图片已经被缓存立即结束函数
+    // Image has been cached
     if (img.complete) {
       this.loaded = true;
 
       return;
     }
 
-    // 图片加载出错
+    // Error when loading Image, show error message
     img.onerror = () => {
       this.error = true;
     };
 
-    // 图片加载成功
+    // Sucess loading Image, display this Image now
     img.onload = () => {
       this.loaded = true;
 
@@ -69,20 +74,22 @@ export default class BaseImg extends Vue {
   flex-direction: column;
   align-items: center;
 }
+.ImgCtn + .ImgCtn {
+  margin-top: 8px;
+}
 .imgIcon {
-  width: 30px;
-  height: 30px;
-  margin-right: 20px;
+  width: 36px;
+  height: 36px;
 }
 
 .imgCtn {
-  width: 90%;
-  height: 50px;
+  width: 96%;
+  height: 60px;
   display: -webkit-flex;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 4px 5%;
+  margin: 4px 2%;
   border-radius: 8px;
   background-color: #efeef4;
   color: #888;
@@ -90,8 +97,8 @@ export default class BaseImg extends Vue {
 }
 
 .img {
-  width: 90% !important;
-  margin: 4px 5%;
+  width: 96% !important;
+  margin: 4px 2%;
   border-radius: 8px;
   max-width: 560px !important;
 }

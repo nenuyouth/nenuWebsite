@@ -28,7 +28,7 @@ const imageModule: Module<ImageState, BaseState> = {
      * @param urls 图片地址
      * @param index 所展示图片的索引
      */
-    setList(state: ImageState, urls?: string | string[], index?: number) {
+    imageList(state: ImageState, urls?: string | string[], index?: number) {
       state.imageList = urls ? typeof urls === 'string' ? [urls] : urls : [''];
       if (index) state.index = index;
     },

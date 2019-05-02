@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主页
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-02 19:30:48
+ * @LastEditTime: 2019-05-02 21:01:29
 -->
 <template>
   <div class="container">
@@ -18,36 +18,12 @@
       </p>
     </div>
     <base-carousel v-bind="carouselData"/>
-    <a-row>
-      <a-col :xs="24">
-        <h2 class="px-3 pt-3">东师指南</h2>
-        <hr>
-        <a-row>
-          <a-col
-            :key="item[1]"
-            :lg="2"
-            :md="4"
-            :xs="6"
-            class="guideListButton"
-            v-for="item in guidelist"
-          >
-            <router-link :to="`/handbook/${item[1]}`">
-              <div>
-                <img :src="`/img/icon/guide/${item[1]}.svg`" class="guideIcon px-2 py-1">
-                <div class="guideButtonDesc">{{ item[0] }}</div>
-              </div>
-            </router-link>
-          </a-col>
-        </a-row>
-      </a-col>
-      <a-col :xs="24">
-        <h2 class="px-3 pt-3">东师校历</h2>
-        <hr>
-        <div class="calendarHolder">
-          <base-time-line :time-list="timeList"/>
-        </div>
-      </a-col>
-    </a-row>
+    <h2 class="px-5 pt-3">东师指南</h2>
+    <BaseGrid :content="guidelist"/>
+    <h2 class="px-5 pt-3">东师校历</h2>
+    <div class="calendarHolder">
+      <base-time-line :time-list="timeList"/>
+    </div>
   </div>
 </template>
 
@@ -55,9 +31,10 @@
 import { Component, Vue } from 'vue-property-decorator';
 import axios from 'axios';
 import BaseCarousel from '@/components/BaseCarousel.vue';
+import BaseGrid from '@/components/BaseGrid.vue';
 import BaseTimeLine from '@/components/BaseTimeLine.vue';
 
-@Component({ components: { BaseCarousel, BaseTimeLine } })
+@Component({ components: { BaseCarousel, BaseGrid, BaseTimeLine } })
 export default class Main extends Vue {
   private carouselData = {
     myId: 'Main',
@@ -94,25 +71,24 @@ export default class Main extends Vue {
   };
 
   private guidelist = [
-    ['报到', 'check'],
-    ['寝室', 'dorm'],
-    ['生活', 'life'],
-    ['食堂', 'dining'],
-    ['校园卡', 'card'],
-    ['校园网', 'network'],
-    ['学习', 'study'],
-    ['附近', 'nearby'],
-    ['学生组织', 'studentOrg'],
-    ['社团', 'corporation'],
-    ['资助', 'subsidize'],
-    ['交通', 'traffic']
+    { text: '学习', icon: '/img/icon/tabpage/study.svg', url: '/handbook/study' },
+    { text: '食堂', icon: '/img/icon/tabpage/dining.svg', url: '/handbook/dining' },
+    { text: '生活', icon: '/img/icon/tabpage/life.svg', url: '/handbook/life' },
+    { text: '寝室', icon: '/img/icon/tabpage/dorm.svg', url: '/handbook/dorm' },
+    { text: '校园网', icon: '/img/icon/tabpage/network.svg', url: '/handbook/network' },
+    { text: '校园卡', icon: '/img/icon/tabpage/card.svg', url: '/handbook/card' },
+    { text: '吃喝玩乐', icon: '/img/icon/tabpage/nearby.svg', url: '/handbook/nearby' },
+    { text: '交通', icon: '/img/icon/tabpage/traffic.svg', url: '/handbook/traffic' },
+    { text: '学生组织', icon: '/img/icon/tabpage/studentOrg.svg', url: '/handbook/studentOrg' },
+    { text: '社团', icon: '/img/icon/tabpage/corporation.svg', url: '/handbook/corporation' },
+    { text: '资助', icon: '/img/icon/tabpage/subsidize.svg', url: '/handbook/subsidize' }
   ];
 
   private timeList = [];
 
   private created() {
     axios
-      .post('/server/calendar.php', { time: 'main' })
+      .get('/config/calendar/2019spring.json')
       .then(response => {
         this.timeList = response.data;
       })
@@ -137,29 +113,6 @@ export default class Main extends Vue {
 }
 </script>
 <style scoped>
-.guideListButton {
-  padding: 0.375rem 0.75rem;
-  border: 1px solid #dee2e6;
-  vertical-align: middle;
-  background-color: #fff;
-  text-align: center;
-  font-weight: 400;
-  font-size: 1rem;
-  line-height: 1.5;
-}
-
-.guideListButton:hover {
-  background-color: #f8f8f8;
-}
-
-.guideIcon {
-  max-width: 100%;
-}
-.guideButtonDesc {
-  text-align: center;
-  color: #212529;
-  padding: 0.25em 0;
-}
 .calendarHolder {
   padding: 0 15px;
   max-height: 300px;
