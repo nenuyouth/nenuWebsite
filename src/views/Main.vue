@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主页
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-04-30 11:24:25
+ * @LastEditTime: 2019-05-02 19:30:48
 -->
 <template>
   <div class="container">
@@ -161,6 +161,7 @@ export default class Main extends Vue {
   padding: 0.25em 0;
 }
 .calendarHolder {
+  padding: 0 15px;
   max-height: 300px;
   overflow-y: auto;
 }

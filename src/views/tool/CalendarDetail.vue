@@ -12,15 +12,15 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import axios from 'axios';
-import BaseTimeLine from '@/components/BaseTimeLine.vue';
+import BaseTimeLine, { TimeList } from '@/components/BaseTimeLine.vue';
 
 @Component({ components: { BaseTimeLine } })
 export default class Calendar extends Vue {
-  private timeList = [];
+  private timeList: TimeList[] = [];
 
   private created() {
     axios
-      .post('/server/calendar.php', { time: this.$route.params.time })
+      .get(`/config/calendar/${this.$route.params.time}.json`)
       .then(response => {
         this.timeList = response.data;
       })

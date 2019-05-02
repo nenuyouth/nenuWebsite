@@ -3,14 +3,14 @@
  * @LastEditors: Mr.Hope
  * @Description: webpack config file
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-01 15:04:52
+ * @LastEditTime: 2019-05-02 14:23:29
  */
 
 module.exports = {
   performance: {
     hints: 'warning',
-    maxEntrypointSize: 500000,
-    maxAssetSize: 500000
+    maxEntrypointSize: 524288,
+    maxAssetSize: 1048576
   },
   module: {
     rules: [

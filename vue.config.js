@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: vue config file
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-02 13:14:43
+ * @LastEditTime: 2019-05-02 14:32:07
  */
 
 /**
@@ -80,11 +80,13 @@ module.exports = {
       msTileImage: 'img/icons/msIcon144.png'
     },
     // 配置 workbox 插件
-    workboxPluginMode: 'GenerateSW',
+    workboxPluginMode: 'InjectManifest',
     workboxOptions: {
+      swSrc: 'src/service-worker/serviceWorker.js',
       swDest: 'service-worker/service-worker.js', // serviceworker存放地点
       importWorkboxFrom: 'local', // service worker引入方式
-      importsDirectory: 'service-worker' // service-worker文件存放路径
+      importsDirectory: 'service-worker', // service-worker文件存放路径
+      maximumFileSizeToCacheInBytes: '10485760'
     }
     // manifestPath: 'manifest.json'
   }

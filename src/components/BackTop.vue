@@ -3,11 +3,11 @@
  * @LastEditors: Mr.Hope
  * @Description: BackTop Button
  * @Date: 2019-03-22 19:30:08
- * @LastEditTime: 2019-05-01 15:00:43
+ * @LastEditTime: 2019-05-02 19:27:42
 -->
 <template>
   <div @click="scrollTop" class="scrollTop" style="display:none">
-    <a-icon :component="BackTopSvg" style="font-size:36px;"/>
+    <a-icon :component="BackTopSvg" style="font-size:38px;margin:-1px;"/>
   </div>
 </template>
 <script lang="ts">
@@ -36,7 +36,7 @@ export default class BackTop extends Vue {
 .scrollTop {
   position: fixed;
   right: 20px;
-  bottom: 60px;
+  bottom: 80px;
   z-index: 3;
   width: 36px;
   height: 36px;

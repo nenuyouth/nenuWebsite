@@ -3,12 +3,12 @@
  * @LastEditors: Mr.Hope
  * @Description: 时间轴插件
  * @Date: 2019-03-23 18:29:52
- * @LastEditTime: 2019-04-01 12:48:25
+ * @LastEditTime: 2019-05-02 13:49:25
 -->
 <template>
   <a-timeline :mode="mode">
     <a-timeline-item :color="item.color" :key="item.text" v-for="(item,index) in timeList">
-      <template v-if="item.type" #dot>
+      <template #dot v-if="item.type">
         <icon-font
           :style="`color:${item.color}`"
           :type="type"
@@ -31,7 +31,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
-interface TimeList {
+export interface TimeList {
   title?: string;
   style?: string | object;
   text: string;
