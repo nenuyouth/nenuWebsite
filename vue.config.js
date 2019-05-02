@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: vue config file
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-01 15:01:33
+ * @LastEditTime: 2019-05-02 13:14:43
  */
 
 /**
@@ -71,7 +71,7 @@ module.exports = {
     themeColor: '#3cba63', // 主题色
     msTileColor: '#3cba63',
     appleMobileWebAppCapable: 'yes', // iOS启用SW
-    appleMobileWebAppStatusBarStyle: 'black', // iOS状态栏样式,可选"black-translucent","black","default"
+    appleMobileWebAppStatusBarStyle: 'default', // iOS状态栏样式,可选"black-translucent","black","default"
     iconPaths: { // 图标路径
       favicon32: 'img/icons/favicon32.png',
       favicon16: 'img/icons/favicon16.png',
@@ -85,7 +85,7 @@ module.exports = {
       swDest: 'service-worker/service-worker.js', // serviceworker存放地点
       importWorkboxFrom: 'local', // service worker引入方式
       importsDirectory: 'service-worker' // service-worker文件存放路径
-    },
-    manifestPath: 'service-worker/manifest.json'
+    }
+    // manifestPath: 'manifest.json'
   }
 };
