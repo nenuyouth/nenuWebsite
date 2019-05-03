@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Base Grid
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-02 21:02:16
+ * @LastEditTime: 2019-05-03 20:03:49
 -->
 <template>
   <div>
@@ -137,12 +137,16 @@ export default class BaseGrid extends Vue {
   -webkit-transform: scaleY(0.5);
   transform: scaleY(0.5);
 }
+
+.grid:active {
+  background-color: #ececec;
+}
 .gridIcon {
   width: 28px;
   height: 28px;
   margin: 0 auto;
 }
-@media (min-width: 992px) {
+@media (min-width: 576px) {
   .gridIcon {
     width: 36px;
     height: 36px;

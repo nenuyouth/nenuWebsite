@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 基础主标题
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-02 21:18:54
+ * @LastEditTime: 2019-05-03 19:43:54
 -->
 <template>
   <div>
@@ -32,7 +32,7 @@ export default class BaseHead extends Vue {
   overflow: hidden;
   padding: 10px 0;
   max-width: 600px;
-  margin: 0 auto;
+  margin: 0 auto 16px auto;
   border-bottom: 1px solid #000;
 }
 </style>

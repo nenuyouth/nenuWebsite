@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主页
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-02 22:08:05
+ * @LastEditTime: 2019-05-03 19:42:07
 -->
 <template>
   <div class="container">
@@ -18,12 +18,19 @@
       </p>
     </div>
     <base-carousel v-bind="carouselData"/>
-    <h2 class="px-5 pt-3">东师指南</h2>
+    <h2 class="px-3 pt-3">东师指南</h2>
     <BaseGrid :content="guidelist"/>
-    <h2 class="px-5 pt-3">东师校历</h2>
+    <h2 class="px-3 pt-3">东师手册</h2>
+    <a-button block class="mb-3" type="primary">
+      <router-link to="/guide">点击进入</router-link>
+    </a-button>
+    <h2 class="px-3 pt-3">东师校历</h2>
     <div class="calendarHolder">
       <base-time-line :time-list="timeList"/>
     </div>
+    <a-button block class="mb-3" type="primary">
+      <router-link to="/tool/calendar">查看详情</router-link>
+    </a-button>
   </div>
 </template>
 

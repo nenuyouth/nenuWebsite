@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 基础列表
  * @Date: 2019-03-25 12:39:59
- * @LastEditTime: 2019-05-02 21:22:21
+ * @LastEditTime: 2019-05-03 20:03:19
 -->
 <template>
   <div :id="myId" class="Ctn">
@@ -44,7 +44,7 @@
         />
       </template>
     </div>
-    <div class="commonfoot" v-if="foot" v-text="foot"/>
+    <div class="commonfoot" v-text="foot"/>
   </div>
 </template>
 
@@ -64,10 +64,10 @@ export default class BaseList extends Vue {
   @Prop({ type: Array, required: true }) private content!: List[];
 
   // List head text
-  @Prop([String, Boolean]) private head!: string | boolean;
+  @Prop({ type: [String, Boolean], default: '' }) private head!: string | boolean;
 
   // List footer text
-  @Prop([String, Boolean]) private foot!: string | boolean;
+  @Prop({ type: [String, Boolean], default: '' }) private foot!: string | boolean;
 
   private get listItem() {
     // create a copy of @Prop('content)
@@ -99,18 +99,14 @@ export default class BaseList extends Vue {
   max-width: 600px;
   text-align: left;
   font-weight: 500;
-  padding: 12px 5% 4px 5%;
-  min-height: 24px;
-  font-size: 22px;
+  padding: 12px 18px 6px 18px;
+  min-height: 18px;
+  font-size: 18px;
   max-width: 600px;
   margin: 0 auto;
 }
 
 @media (min-width: 768px) {
-  .myH3 {
-    min-height: 26px;
-    font-size: 24px;
-  }
   .Ctn {
     margin: 0 auto;
   }
@@ -124,8 +120,16 @@ export default class BaseList extends Vue {
 .commonhead {
   font-size: 13px;
   color: #666;
-  padding: 5px 15px 0 15px;
   margin: 0 auto;
+}
+
+.commonhead {
+  min-height: 9px;
+  padding: 23px 15px 5px 15px;
+}
+
+.commonfoot {
+  padding: 5px 15px 0 15px;
 }
 
 @media (min-width: 992px) {
@@ -181,9 +185,21 @@ export default class BaseList extends Vue {
 }
 
 @media (min-width: 600px) {
-  .Lctn {
-    border-left: 1px #cac9ce solid;
-    border-right: 1px #cac9ce solid;
+  .Lctn:before {
+    top: 0;
+    right: auto;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    border: 1px solid #cac9ce;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+  }
+
+  .Lctn:after {
+    display: none;
   }
 }
 
@@ -200,12 +216,11 @@ export default class BaseList extends Vue {
   border-radius: 0;
   border: none;
   color: #000;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-.listCtn:hover {
-  background-clip: border-box;
-  background-color: rgba(0, 0, 0, 0.1) !important;
-  opacity: 0.7 !important;
+.listCtn:active {
+  background-color: #ececec;
 }
 
 .listCtn:empty {

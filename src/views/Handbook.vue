@@ -3,12 +3,16 @@
  * @LastEditors: Mr.Hope
  * @Description: 东师指南页面
  * @Date: 2019-03-24 11:14:13
- * @LastEditTime: 2019-05-02 22:08:04
+ * @LastEditTime: 2019-05-03 19:40:41
 -->
 <template>
   <div class="container">
-    <h2 class="px-5 pt-3">东师指南</h2>
+    <h2 class="px-3 pt-3">东师指南</h2>
     <BaseGrid :content="guidelist"/>
+    <h2 class="px-3 pt-3">东师手册</h2>
+    <a-button block class="my-3" type="primary">
+      <router-link to="/guide">点击进入</router-link>
+    </a-button>
   </div>
 </template>
 

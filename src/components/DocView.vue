@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-05-03 18:58:42
+ * @LastEditTime: 2019-05-03 19:09:02
 -->
 <template>
   <div class="container mt-3 pb-3">
@@ -572,19 +572,19 @@ h2 .mdIcon {
 }
 
 h3 .mdIcon {
-  margin-left: -20px;
-  margin-right: 2px;
+  margin-left: -22.5px;
+  margin-right: 4.5px;
   width: 18px;
   height: 18px;
   top: -1px;
-  left: -2.5px;
 }
 
 h4 .mdIcon {
-  margin-left: -17px;
-  margin-right: 2px;
+  margin-left: -21px;
+  margin-right: 6px;
   width: 15px;
   height: 15px;
+  top: -1.5px;
 }
 
 .outbound {
