@@ -253,13 +253,37 @@
 }
 
 .markdown-body a {
-  color: #0366d6;
+  font-weight: 500;
+  color: #3eaf7c;
   text-decoration: none;
 }
 
+/* 
+.markdown-body a {
+  color: #0366d6;
+  text-decoration: none;
+} */
+
+/* new */
+.markdown-body h1>a,
+.markdown-body h2>a,
+.markdown-body h3>a,
+.markdown-body h4>a,
+.markdown-body h5>a,
+.markdown-body h6>a {
+  font-weight: 600;
+}
+
+
 .markdown-body a:hover {
+  cursor: pointer;
   text-decoration: underline;
 }
+
+/* 
+.markdown-body a:hover {
+  text-decoration: underline;
+} */
 
 .markdown-body strong {
   font-weight: 600;
@@ -305,17 +329,13 @@
 .markdown-body h4,
 .markdown-body h5,
 .markdown-body h6 {
+  font-weight: 600;
   margin-bottom: 0;
   margin-top: 0;
 }
 
 .markdown-body h1 {
   font-size: 32px;
-}
-
-.markdown-body h1,
-.markdown-body h2 {
-  font-weight: 600;
 }
 
 .markdown-body h2 {
@@ -326,22 +346,12 @@
   font-size: 20px;
 }
 
-.markdown-body h3,
-.markdown-body h4 {
-  font-weight: 600;
-}
-
 .markdown-body h4 {
   font-size: 16px;
 }
 
 .markdown-body h5 {
   font-size: 14px;
-}
-
-.markdown-body h5,
-.markdown-body h6 {
-  font-weight: 600;
 }
 
 .markdown-body h6 {

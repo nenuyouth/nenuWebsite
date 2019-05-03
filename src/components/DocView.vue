@@ -3,10 +3,43 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-05-02 21:12:51
+ * @LastEditTime: 2019-05-03 18:58:42
 -->
 <template>
   <div class="container mt-3 pb-3">
+    <!-- svg载入 -->
+    <svg style="display:none;">
+      <symbol id="link">
+        <path
+          d="M361.173333 481.834667c48.341333-48.341333 132.650667-48.341333 180.992 0l30.165334 30.165333
+          60.330666-60.330667-30.165333-30.165333c-40.234667-40.277333-93.824-62.506667-150.826667-62.506667s-110.592
+          22.229333-150.826666 62.506667L210.304 512a213.674667 213.674667 0 0 0 0 301.696 212.608 212.608 0
+          0 0 150.826667 62.378667A212.565333 212.565333 0 0 0 512
+          813.696l30.165333-30.165333-60.330666-60.330667-30.165334 30.165333a128.298667 128.298667
+          0 0 1-181.034666 0 128.213333 128.213333 0 0 1 0-181.034666l90.538666-90.496z"
+        ></path>
+        <path
+          d="M723.157333 602.496L813.696 512a213.674667 213.674667 0 0 0 0-301.696 213.589333 213.589333 0 0
+          0-301.696 0l-30.165333 30.165333 60.330666 60.330667 30.165334-30.165333a128.298667 128.298667 0 0 1
+          181.034666 0 128.213333 128.213333 0 0 1 0 181.034666l-90.538666 90.496c-48.341333 48.341333-132.650667
+          48.341333-180.992 0L451.669333 512l-60.330666 60.330667 30.165333 30.165333c40.234667 40.277333
+          93.824 62.506667 150.826667 62.506667s110.592-22.229333 150.826666-62.506667z"
+        ></path>
+      </symbol>
+      <!-- 外部链接 -->
+      <symbol id="outbound">
+        <path
+          d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,
+          0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"
+          fill="#3cba63"
+        ></path>
+        <polygon
+          fill="#3cba63"
+          points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"
+        ></polygon>
+      </symbol>
+    </svg>
+
     <a-row>
       <!-- markdown渲染主体 -->
       <a-col :lg="18" :xs="24">
@@ -167,12 +200,12 @@ export default class DocView extends Vue {
       // 注册页面标题悬停时的动画效果
       $('.markdown-body :header').on('mouseover', event => {
         $(event.currentTarget)
-          .children('img')
+          .children('svg')
           .css({ display: 'inline-block' });
       });
       $('.markdown-body :header').on('mouseout', event => {
         $(event.currentTarget)
-          .children('img')
+          .children('svg')
           .css({ display: 'none' });
       });
     }
@@ -189,11 +222,11 @@ export default class DocView extends Vue {
 
           // 链接图标的动画效果
           $(event.currentTarget)
-            .children('img')
+            .children('svg')
             .css({ display: 'inline-block' });
           setTimeout(() => {
             $(event.currentTarget)
-              .children('img')
+              .children('svg')
               .css({ display: 'none' });
           }, 1500);
         }
@@ -390,6 +423,7 @@ export default class DocView extends Vue {
 /* markdown主容器class */
 .markdown-body {
   min-height: 200px;
+  color: #34495e;
 }
 
 #asideSlide {
@@ -516,32 +550,48 @@ export default class DocView extends Vue {
 .mdHeading {
   cursor: pointer;
 }
+
 .mdIcon {
   display: none;
+  vertical-align: middle;
+  position: relative;
 }
+
 h1 .mdIcon {
-  margin-left: -35px;
+  margin-left: -33px;
   margin-right: 3px;
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
 }
 
 h2 .mdIcon {
-  margin-left: -26px;
+  margin-left: -24px;
   margin-right: 2px;
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
 }
 
 h3 .mdIcon {
-  margin-left: -22px;
+  margin-left: -20px;
   margin-right: 2px;
+  width: 18px;
+  height: 18px;
+  top: -1px;
+  left: -2.5px;
 }
 
 h4 .mdIcon {
-  margin-left: -18px;
+  margin-left: -17px;
   margin-right: 2px;
-  width: 16px;
-  height: 16px;
+  width: 15px;
+  height: 15px;
+}
+
+.outbound {
+  color: #aaa;
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
 }
 </style>

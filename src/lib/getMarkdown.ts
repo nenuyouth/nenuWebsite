@@ -20,17 +20,26 @@ myRenderMD.heading = (text, level) => {
   let id = '';
 
   // if link in heading, set id as link text
-  if (text.indexOf('a href') !== -1) id = text.slice(text.indexOf('>') + 1, text.indexOf('</a>'));
+  if (text.indexOf('a href') !== -1)
+    id = text.slice(
+      text.indexOf('>') + 1,
+      text.lastIndexOf('<svg') === -1 ? text.indexOf('</a>') : text.lastIndexOf('<svg')
+    );
 
   return `<h${level} id="${id ||
-    text}" class="mdHeading"><img class="mdIcon" src="/img/icon/link.svg" />${text}</h${level}>`;
+    text}" class="mdHeading"><svg viewBox='0 0 1024 1024' class='mdIcon'>
+<use x="0" y="0" xlink:href="#link" /></svg>${text}</h${level}>`;
 };
 
 // rewrite link parse: if link url contains '#', means it's an inside navigation
-myRenderMD.link = (href, title, text) =>
-  href[0] === '#'
-    ? `<a class='md-a' href='${href}' title='${title || text}'>${text}</a>`
-    : `<a class='md-link' href='${href}' title='${text}'>${text}</a>`;
+myRenderMD.link = (url, title, text) =>
+  url[0] === '#'
+    ? `<a class='md-a' href='${url}' title='${title || text}'>${text}</a>`
+    : url.indexOf('http://') !== -1 || url.indexOf('https://') !== -1
+      ? `<a href='${url}' class='md-link' title='${text}'>${
+      text}<svg width='15' height='15' viewBox="0 0 100 100" class='outbound'>
+<use x="0" y="0" xlink:href="#outbound" /></svg></a>`
+      : `<a href='${url}' class='md-link' title='${text}'>${text}</a>`;
 
 // set marked pakage
 marked.setOptions({

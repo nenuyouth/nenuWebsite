@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主页
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-02 21:01:29
+ * @LastEditTime: 2019-05-02 22:08:05
 -->
 <template>
   <div class="container">
@@ -71,17 +71,17 @@ export default class Main extends Vue {
   };
 
   private guidelist = [
-    { text: '学习', icon: '/img/icon/tabpage/study.svg', url: '/handbook/study' },
-    { text: '食堂', icon: '/img/icon/tabpage/dining.svg', url: '/handbook/dining' },
-    { text: '生活', icon: '/img/icon/tabpage/life.svg', url: '/handbook/life' },
-    { text: '寝室', icon: '/img/icon/tabpage/dorm.svg', url: '/handbook/dorm' },
-    { text: '校园网', icon: '/img/icon/tabpage/network.svg', url: '/handbook/network' },
-    { text: '校园卡', icon: '/img/icon/tabpage/card.svg', url: '/handbook/card' },
-    { text: '吃喝玩乐', icon: '/img/icon/tabpage/nearby.svg', url: '/handbook/nearby' },
-    { text: '交通', icon: '/img/icon/tabpage/traffic.svg', url: '/handbook/traffic' },
-    { text: '学生组织', icon: '/img/icon/tabpage/studentOrg.svg', url: '/handbook/studentOrg' },
-    { text: '社团', icon: '/img/icon/tabpage/corporation.svg', url: '/handbook/corporation' },
-    { text: '资助', icon: '/img/icon/tabpage/subsidize.svg', url: '/handbook/subsidize' }
+    { text: '学习', icon: '/img/icon/tabPage/study.svg', url: '/handbook/study' },
+    { text: '食堂', icon: '/img/icon/tabPage/dining.svg', url: '/handbook/dining' },
+    { text: '生活', icon: '/img/icon/tabPage/life.svg', url: '/handbook/life' },
+    { text: '寝室', icon: '/img/icon/tabPage/dorm.svg', url: '/handbook/dorm' },
+    { text: '校园网', icon: '/img/icon/tabPage/network.svg', url: '/handbook/network' },
+    { text: '校园卡', icon: '/img/icon/tabPage/card.svg', url: '/handbook/card' },
+    { text: '吃喝玩乐', icon: '/img/icon/tabPage/nearby.svg', url: '/handbook/nearby' },
+    { text: '交通', icon: '/img/icon/tabPage/traffic.svg', url: '/handbook/traffic' },
+    { text: '学生组织', icon: '/img/icon/tabPage/studentOrg.svg', url: '/handbook/studentOrg' },
+    { text: '社团', icon: '/img/icon/tabPage/corporation.svg', url: '/handbook/corporation' },
+    { text: '资助', icon: '/img/icon/tabPage/subsidize.svg', url: '/handbook/subsidize' }
   ];
 
   private timeList = [];
