@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-05-03 19:09:02
+ * @LastEditTime: 2019-05-04 11:49:31
 -->
 <template>
   <div class="container mt-3 pb-3">
@@ -58,7 +58,7 @@
           <aside class="shadow" id="aside">
             <a-anchor
               :affix="false"
-              :offsetTop="42"
+              :offsetTop="$store.state.screen.lg?48:42"
               :showInkInFixed="true"
               @click="handleClick"
               wrapperClass="asideList"
@@ -161,11 +161,11 @@ export default class DocView extends Vue {
 
     // 设置目录
     document.querySelectorAll('h2,h3,h4').forEach(domEle => {
-      if (domEle.children[0] && domEle.children[0].tagName === 'IMG') {
+      if (domEle.children[0] && domEle.children[0].tagName.toLowerCase() === 'svg') {
         const { id } = domEle;
 
-        if (id && id.indexOf('href') === -1) {
-          const text = domEle.textContent;
+        if (id && id.indexOf('href') === -1 && domEle.textContent) {
+          const text = domEle.textContent.trim();
           const level = domEle.tagName[1];
 
           if (text) aside.push({ text, level });
