@@ -2,50 +2,50 @@
 <html lang="zh">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>jQuery数字滚动累加动画插件|DEMO_jQuery之家-自由分享jQuery、html5、css3的插件库</title>
-    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
-    <!--CSS RESET-->
-    <link rel="stylesheet" type="text/css" href="css/htmleaf-demo.css">
-    <!--演示页面样式，使用时可以不引用-->
-    <style type="text/css">
-        .htmleaf-content {
-            width: 300px;
-            margin: 30px auto;
-        }
-        
-        .num {
-            font-size: 60px;
-            font-family: Microsoft JhengHei;
-        }
-        
-        .num2 {
-            font-size: 30px;
-            font-family: Microsoft JhengHei;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jQuery数字滚动累加动画插件|DEMO_jQuery之家-自由分享jQuery、html5、css3的插件库</title>
+  <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+  <!--CSS RESET-->
+  <link rel="stylesheet" type="text/css" href="css/htmleaf-demo.css">
+  <!--演示页面样式，使用时可以不引用-->
+  <style type="text/css">
+    .htmleaf-content {
+      width: 300px;
+      margin: 30px auto;
+    }
+
+    .num {
+      font-size: 60px;
+      font-family: Microsoft JhengHei;
+    }
+
+    .num2 {
+      font-size: 30px;
+      font-family: Microsoft JhengHei;
+    }
+  </style>
 </head>
 
 <body>
-    <div class="htmleaf-container">
-        <div class="htmleaf-content">
-            <!--默认写法-->
-            <span class="num">888888</span>
-            <!--推荐写法-->
-            <span class="num2" data-num="888888"></span>
-        </div>
+  <div class="htmleaf-container">
+    <div class="htmleaf-content">
+      <!--默认写法-->
+      <span class="num">888888</span>
+      <!--推荐写法-->
+      <span class="num2" data-num="888888"></span>
     </div>
+  </div>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="jquery.numscroll.js" type="text/javascript" charset="utf-8"></script>
-    <script type="text/javascript">
-        $(".num").numScroll();
-        $(".num2").numScroll({
-            time: 5000
-        });
-    </script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="jquery.numscroll.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript">
+    $(".num").numScroll();
+    $(".num2").numScroll({
+      time: 5000
+    });
+  </script>
 </body>
 
 </html>

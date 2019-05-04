@@ -5,10 +5,11 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "rebuild": "vue-cli-service build --no-clean",
-    "deploy": "vue-cli-service build --mode deploy",
     "lint": "vue-cli-service lint",
-    "eslint": "eslint --ext .js,.ts,.vue src/"
+    "deploy": "vue-cli-service build --mode deploy",
+    "eslint": "eslint --ext .js,.ts,.vue src/",
+    "rebuild": "vue-cli-service build --no-clean",
+    "test:e2e": "vue-cli-service test:e2e"
   },
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^12.1.0",
@@ -37,6 +38,7 @@
     "@types/lodash": "^4.14.123",
     "@types/marked": "0.6.5",
     "@vue/cli-plugin-babel": "^3.7.0",
+    "@vue/cli-plugin-e2e-cypress": "^3.7.0",
     "@vue/cli-plugin-eslint": "^3.7.0",
     "@vue/cli-plugin-pwa": "^3.7.0",
     "@vue/cli-plugin-typescript": "^3.7.0",
@@ -50,7 +52,7 @@
     "fibers": "^4.0.1",
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
-    "sass": "^1.19.0",
+    "sass": "^1.20.1",
     "sass-loader": "^7.1.0",
     "tslint": "^5.16.0",
     "tslint-config-airbnb": "^5.11.1",

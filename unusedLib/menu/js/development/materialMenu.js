@@ -11,7 +11,7 @@
  * http://callmenick.com
  */
 
-(function(window) {
+(function (window) {
   "use strict";
 
   //////////////////////////////////////////////////////////////////////////////
@@ -143,7 +143,7 @@
    * all that funky jazz. Then get ready for events.
    */
 
-  Menu.prototype._init = function() {
+  Menu.prototype._init = function () {
     this._initToggleEvents();
     this._initItemTransitions();
     this._initTouchEffect();
@@ -157,9 +157,9 @@
    * toggle button.
    */
 
-  Menu.prototype._initToggleEvents = function() {
+  Menu.prototype._initToggleEvents = function () {
     var scope = this;
-    this.toggle.addEventListener("click", function() {
+    this.toggle.addEventListener("click", function () {
       scope.menuPosition == "off"
         ? scope._toggleMenuOn()
         : scope._toggleMenuOff();
@@ -172,7 +172,7 @@
    * Toggles the menu into "on" position.
    */
 
-  Menu.prototype._toggleMenuOn = function() {
+  Menu.prototype._toggleMenuOn = function () {
     var scope = this;
 
     this.body.classList.add("mm-menu-open");
@@ -182,7 +182,7 @@
 
     for (var i = 0; i < scope.menuItems.length; i++) {
       var item = scope.menuItems[i];
-      (function(item) {
+      (function (item) {
         item.classList.add("in-view");
       })(item);
     }
@@ -197,7 +197,7 @@
    * Toggles the menu into "off" position.
    */
 
-  Menu.prototype._toggleMenuOff = function() {
+  Menu.prototype._toggleMenuOff = function () {
     var scope = this;
 
     this.body.classList.remove("mm-menu-open");
@@ -207,7 +207,7 @@
 
     for (var i = 0; i < scope.menuItems.length; i++) {
       var item = scope.menuItems[i];
-      (function(item) {
+      (function (item) {
         item.classList.remove("in-view");
       })(item);
     }
@@ -225,7 +225,7 @@
    * named sequentially, and more can be added in the CSS.
    */
 
-  Menu.prototype._initItemTransitions = function() {
+  Menu.prototype._initItemTransitions = function () {
     var scope = this;
     var len = this.menuItems.length;
     for (var i = 0; i < len; i++) {
@@ -246,7 +246,7 @@
    * @param {Number} num The number to append to the class name
    */
 
-  Menu.prototype._itemTransitionHandler = function(menuItem, num) {
+  Menu.prototype._itemTransitionHandler = function (menuItem, num) {
     menuItem.classList.add("item-" + num);
   };
 
@@ -259,7 +259,7 @@
    * touch point go outward.
    */
 
-  Menu.prototype._initTouchEffect = function() {
+  Menu.prototype._initTouchEffect = function () {
     var num = this.menuItemLinks.length;
     for (var i = 0; i < num; i++) {
       var menuItemLink = this.menuItemLinks[i];
@@ -277,7 +277,7 @@
    * @param {HTMLElement} menuItemLink The menu item link in question
    */
 
-  Menu.prototype._touchEffectHandler = function(menuItemLink) {
+  Menu.prototype._touchEffectHandler = function (menuItemLink) {
     var elWidth = menuItemLink.offsetWidth,
       elHeight = menuItemLink.offsetHeight,
       touchEffectSize = Math.max(elWidth, elHeight) * 2;
@@ -288,7 +288,7 @@
     touchEffectElement.style.height = touchEffectSize + "px";
     menuItemLink.insertBefore(touchEffectElement, menuItemLink.firstChild);
 
-    menuItemLink.addEventListener("click", function(e) {
+    menuItemLink.addEventListener("click", function (e) {
       var relX = getPosition(e).x - getOffsetRect(this).x,
         relY = getPosition(e).y - getOffsetRect(this).y;
 
@@ -299,7 +299,7 @@
       touchEffectElement.classList.add("animating");
     });
 
-    touchEffectElement.addEventListener(transitionEvent, function() {
+    touchEffectElement.addEventListener(transitionEvent, function () {
       this.classList.remove("animating");
     });
   };
@@ -308,9 +308,9 @@
    *
    */
 
-  Menu.prototype._initMaskEvents = function() {
+  Menu.prototype._initMaskEvents = function () {
     var scope = this;
-    this.mask.addEventListener("click", function(e) {
+    this.mask.addEventListener("click", function (e) {
       e.preventDefault();
       scope.menuPosition == "on" ? scope._toggleMenuOff() : false;
     });

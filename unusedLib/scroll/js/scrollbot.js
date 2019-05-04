@@ -1,11 +1,11 @@
-scrollbot = function(e, w) {
+scrollbot = function (e, w) {
   // e - Element
   // w - scrollbar width
   var _this = this;
   this.orgPar = document.querySelector(e);
 
   // init function, if not ie 8 and below this will run
-  this.init = function() {
+  this.init = function () {
     if (w == undefined) {
       this.sbw = 5;
     } else {
@@ -45,7 +45,7 @@ scrollbot = function(e, w) {
     this.mdown = false;
     this.customHeight = false;
     this.scrollElement = this.inP;
-    this.onScroll = function(f) {
+    this.onScroll = function (f) {
       _this.onScrollF = f;
     };
     this.sB = {
@@ -75,18 +75,18 @@ scrollbot = function(e, w) {
       this.scrollBarHolder.style[p] = this.sBH[p];
     }
 
-    this.inP.addEventListener("scroll", function() {
+    this.inP.addEventListener("scroll", function () {
       _this.scrollBar.style.top =
         (_this.inP.scrollTop * 100) / _this.inP.scrollHeight +
         ((_this.sbHeight - parseFloat(_this.sB.height)) * _this.inP.scrollTop) /
-          (_this.inP.scrollHeight - _this.inP.clientHeight) +
+        (_this.inP.scrollHeight - _this.inP.clientHeight) +
         "%";
       if ("onScrollF" in _this) {
         _this.onScrollF();
       }
     });
 
-    this.setScroll = function(p, d) {
+    this.setScroll = function (p, d) {
       if (d == undefined || d <= 0) d = 500;
       if (p >= _this.inP.scrollHeight - _this.inP.clientHeight) {
         p = _this.inP.scrollHeight - _this.inP.clientHeight;
@@ -95,14 +95,14 @@ scrollbot = function(e, w) {
       var difference = p - _this.inP.scrollTop;
       var perTick = (difference / d) * 10;
 
-      setTimeout(function() {
+      setTimeout(function () {
         _this.inP.scrollTop += perTick;
         if (Math.abs(p - _this.inP.scrollTop) < 5) return;
         _this.setScroll(p, d - 10);
       }, 10);
     };
 
-    this.scrollBarHolder.onmousedown = function(e) {
+    this.scrollBarHolder.onmousedown = function (e) {
       if (e.target != this) return;
       var relPos =
         ((e.pageY - _this.scrollBarHolder.getBoundingClientRect().top) * 100) /
@@ -113,7 +113,7 @@ scrollbot = function(e, w) {
       );
     };
 
-    this.scrollBar.onmousedown = function(e) {
+    this.scrollBar.onmousedown = function (e) {
       _this.mdown = true;
       _this.posCorrection =
         e.pageY - _this.scrollBar.getBoundingClientRect().top;
@@ -121,10 +121,10 @@ scrollbot = function(e, w) {
         (_this.scrollBar.clientHeight * 100) / _this.newPar.clientHeight;
       return false;
     };
-    this.orgPar.onmouseup = function() {
+    this.orgPar.onmouseup = function () {
       _this.mdown = false;
     };
-    this.orgPar.onmousemove = function(e) {
+    this.orgPar.onmousemove = function (e) {
       if (_this.mdown) {
         if (document.selection) {
           document.selection.empty();
@@ -141,7 +141,7 @@ scrollbot = function(e, w) {
             ((parseFloat(_this.scrollBar.style.top) -
               ((_this.sbHeight - parseFloat(_this.sB.height)) *
                 _this.inP.scrollTop) /
-                (_this.inP.scrollHeight - _this.inP.clientHeight)) *
+              (_this.inP.scrollHeight - _this.inP.clientHeight)) *
               _this.inP.scrollHeight) /
             100;
         } else {
@@ -158,7 +158,7 @@ scrollbot = function(e, w) {
       }
     };
 
-    this.refresh = function() {
+    this.refresh = function () {
       _this.sbHeight = (_this.inP.clientHeight * 100) / _this.inP.scrollHeight;
       if (_this.sbHeight >= 100) {
         _this.scrollBarHolder.style.display = "none";
@@ -174,7 +174,7 @@ scrollbot = function(e, w) {
       }
     };
     this.refresh();
-    this.setStyle = function(sb, sbh) {
+    this.setStyle = function (sb, sbh) {
       if (sb != undefined) {
         sb["width"] = _this.sbw;
         if ("height" in sb) {
@@ -198,7 +198,7 @@ scrollbot = function(e, w) {
     };
   };
 
-  this.destroy = function() {
+  this.destroy = function () {
     _this.orgPar.innerHTML = _this.parContent;
     _this.orgPar.style.overflow = "auto";
     _this.init = null;
