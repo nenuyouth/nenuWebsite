@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-05-04 11:49:31
+ * @LastEditTime: 2019-05-04 11:52:12
 -->
 <template>
   <div class="container mt-3 pb-3">
@@ -164,8 +164,8 @@ export default class DocView extends Vue {
       if (domEle.children[0] && domEle.children[0].tagName.toLowerCase() === 'svg') {
         const { id } = domEle;
 
-        if (id && id.indexOf('href') === -1 && domEle.textContent) {
-          const text = domEle.textContent.trim();
+        if (id && id.indexOf('href') === -1) {
+          const text = domEle.textContent;
           const level = domEle.tagName[1];
 
           if (text) aside.push({ text, level });

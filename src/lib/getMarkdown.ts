@@ -36,12 +36,12 @@ myRenderMD.link = (url, title, text) =>
   url[0] === '#'
     ? `<a class='md-a' href='${url}' title='${title || text}'>${text}</a>`
     : url.indexOf('http://') !== -1 || url.indexOf('https://') !== -1
-      ? `<a href='${url}' class='md-link' title='${text}'>${
-      text}<svg width='15' height='15' viewBox="0 0 100 100" class='outbound'>
+      ? `<a href='${url}' class='md-link'
+title='${text}'>${text}<svg width='15' height='15' viewBox="0 0 100 100" class='outbound'>
 <use x="0" y="0" xlink:href="#outbound" /></svg></a>`
       : `<a href='${url}' class='md-link' title='${text}'>${text}</a>`;
 
-// set marked pakage
+// set marked package options
 marked.setOptions({
   breaks: true, // whether use GitHub Flavored Markdown controls linebreaks output `<br>`
   gfm: true, // whether use Github-improved Markdown
