@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: vue config file
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-04 19:47:59
+ * @LastEditTime: 2019-05-05 16:02:45
  */
 
 /**
@@ -14,15 +14,20 @@
  * @property {string} assetsDir @default '' 放置生成的静态资源相对于outputDir的目录
  * @property {string} indexPath @default 'index.html' 指定生成的主页文件相对于outputDir的输出路径，也可以是一个绝对路径。
  * @property {string} filenameHashing @default true 文件名hash处理
- * @property {boolean | 'error'} lintOnSave @default true 是否在开发环境下通过eslint-loader在每次保存时lint代码
+ * @property {boolean|'error'} lintOnSave @default true 是否在开发环境下通过eslint-loader在每次保存时lint代码
  * @property {boolean} runtimeCompiler @default false 是否使用包含运行时编译器的 Vue 构建版本
  * @property {boolean} productionSourceMap @default true 生产环境是否生产SourceMap
+ * @property {string} crossorigin CORS设置
+ * @property {function} chainWebpack 链式处理Webpack
+ * @property {function|object} configureWebpack Webpack配置
+ * @property {object} devServer 开发服务器配置
+ * @property {object} pwa Progressive App支持
  */
 module.exports = {
   // pages: undefined, // type is Object
-  productionSourceMap: false, // 生产环境是否生产SourceMap
-  crossorigin: 'anonymous', // CORS设置
-  chainWebpack: config => { // 链式处理Webpack
+  productionSourceMap: false,
+  crossorigin: 'anonymous',
+  chainWebpack: config => {
     // 处理SVG模块
     const svgRule = config.module.rule('svg');
 
@@ -40,7 +45,7 @@ module.exports = {
         }
       }
       : { devtool: 'inline-source-map' },
-  devServer: { // 开发服务器配置
+  devServer: {
     https: true, // 启用Https
     compress: true, // 启用gzip压缩
     overlay: { // 浮层
@@ -73,7 +78,6 @@ module.exports = {
       }
     }
   },
-  // Progressive App Surpport
   pwa: {
     name: '东师校会官网', // SW注册后的应用名称
     themeColor: '#3cba63', // 主题色
