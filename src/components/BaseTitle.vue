@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 基础标题
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-02 21:29:01
+ * @LastEditTime: 2019-05-05 15:08:45
 -->
 <template>
   <div :id="myId" :style="myStyle" class="myH3" v-text="text"/>
@@ -18,13 +18,13 @@ interface Style {
 @Component
 export default class BaseTitle extends Vue {
   // Component id
-  @Prop(Number) private myId!: number;
+  @Prop(Number) private readonly myId!: number;
 
   // Heading text
-  @Prop({ type: String, required: true }) private text!: string;
+  @Prop({ type: String, required: true }) private readonly text!: string;
 
   // Heading Style
-  @Prop([String, Object]) private myStyle!: string | Style;
+  @Prop([String, Object]) private readonly myStyle!: string | Style;
 }
 </script>
 <style scoped>

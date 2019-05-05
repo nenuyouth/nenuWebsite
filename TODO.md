@@ -3,8 +3,8 @@
 ## Doc
 
 - doc添加anchor支持
+
 - doc添加本地缓存
-- doc样式升级
 
 - 密码缓存
 

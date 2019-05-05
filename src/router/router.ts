@@ -3,12 +3,12 @@
  * @LastEditors: Mr.Hope
  * @Description: router配置文件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-03-25 12:33:38
+ * @LastEditTime: 2019-05-05 14:35:43
  */
 
 import Vue from 'vue';
 import Router from 'vue-router';
-import myRoute from './route';
+import routes from './route';
 
 Vue.use(Router); // 使用官方Router
 
@@ -21,14 +21,14 @@ Vue.use(require('vue-wechat-title')); // 启用wechat客户端内对title属性�
  * @return: router对象
  */
 export default new Router({
+  // 设置路由配置
+  routes,
+
   // 使用html5的history API
   mode: 'history',
 
   // 设置根目录为环境变量BASE_URL
   base: process.env.BASE_URL,
-
-  // 设置路由配置
-  routes: myRoute,
 
   /**
    * 保存滚动位置
@@ -38,8 +38,5 @@ export default new Router({
    * @param savedPosition 上次保存的滚动位置
    * @returns 返回网页滚动位置
    */
-  scrollBehavior(to, from, savedPosition) {
-
-    return savedPosition || { x: 0, y: 0 };
-  }
+  scrollBehavior: (to, from, savedPosition) => savedPosition || { x: 0, y: 0 }
 });

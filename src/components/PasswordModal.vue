@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 密码验证
  * @Date: 2019-03-16 13:44:32
- * @LastEditTime: 2019-04-09 19:31:47
+ * @LastEditTime: 2019-05-05 15:10:00
 -->
 <template>
   <!-- 密码输入框 -->
@@ -62,13 +62,13 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 @Component
 export default class PasswordModal extends Vue {
   // 验证地址
-  @Prop({ type: String, required: true }) private url!: string;
+  @Prop({ type: String, required: true }) private readonly url!: string;
 
   // 用户的autocomplete Key值
-  @Prop({ type: String, default: '' }) private userNameKey!: string;
+  @Prop({ type: String, default: '' }) private readonly userNameKey!: string;
 
   // 密码的autocomplete Key值
-  @Prop({ type: String, default: 'password' }) private passwordKey!: string;
+  @Prop({ type: String, default: 'password' }) private readonly passwordKey!: string;
 
   // 对话框显隐
   private modalDisplay = true;

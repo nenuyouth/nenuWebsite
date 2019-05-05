@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Base Vertical Menu
  * @Date: 2019-03-25 12:39:59
- * @LastEditTime: 2019-05-02 21:22:44
+ * @LastEditTime: 2019-05-05 15:42:46
 -->
 <template>
   <a-menu
@@ -17,11 +17,13 @@
   >
     <template v-for="item in list">
       <a-menu-item :key="item.key" v-if="!item.children">
-        <template v-if="item.type">
-          <icon-font :type="item.type" v-if="item.type.slice(0,5)==='icon-'"/>
-          <a-icon :type="item.type" v-else/>
+        <template v-if="item.icon">
+          <span class="icon" v-if="item.icon===true"/>
+          <template v-else>
+            <icon-font :type="item.icon" v-if="item.icon.slice(0,5)==='icon-'"/>
+            <a-icon :type="item.icon" v-else/>
+          </template>
         </template>
-        <span class="icon" v-else-if="item.icon"/>
         <span v-text="item.title"/>
       </a-menu-item>
       <SubMenu :key="item.key" :menu-info="item" v-else/>
@@ -32,7 +34,7 @@
 <script lang='ts'>
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import SubMenu from '@/components/BaseSubMenu.vue';
-import { MenuList } from '@/store/module/slide';
+import { MenuItem } from '@/store/module/slide';
 import { Route } from 'vue-router';
 
 interface SelectEvent {
@@ -46,7 +48,7 @@ interface SelectEvent {
 @Component({ components: { SubMenu } })
 export default class BaseMenu extends Vue {
   // A list of menuItems to display
-  @Prop(Array) private list!: MenuList[];
+  @Prop(Array) private readonly list!: MenuItem[];
 
   // Menu collapse status
   private collapsed = false;

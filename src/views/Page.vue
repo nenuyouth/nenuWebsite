@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 自动生成界面
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-04-09 18:47:47
+ * @LastEditTime: 2019-05-05 15:10:11
 -->
 <template>
   <base-page :key="url" :pagedata="pageData" v-if="pageData"></base-page>
@@ -18,7 +18,7 @@ import BasePage from '@/components/BasePage.vue';
 export default class Page extends Vue {
   private pageData = '';
 
-  @Prop(String) private path!: string;
+  @Prop(String) private readonly path!: string;
 
   // 加载页面
   private async loadPage(path: string) {

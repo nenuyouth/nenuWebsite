@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-04-09 20:13:26
+ * @LastEditTime: 2019-05-05 15:09:47
 -->
 <template>
   <!-- 标题设置 -->
@@ -59,7 +59,7 @@ export default class MyGuide extends Vue {
   private transitionName = 'slide-left';
 
   // MarkDown基准路径字符数
-  @Prop(Number) private baselength!: number;
+  @Prop(Number) private readonly baselength!: number;
 
   private get basepath() {
     return this.$route.path.slice(0, this.baselength - 1);

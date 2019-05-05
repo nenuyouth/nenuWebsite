@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 时间轴插件
  * @Date: 2019-03-23 18:29:52
- * @LastEditTime: 2019-05-02 21:14:51
+ * @LastEditTime: 2019-05-05 15:08:38
 -->
 <template>
   <a-timeline :mode="mode">
@@ -42,11 +42,11 @@ export interface TimeListItem {
 
 @Component
 export default class BaseTimeLine extends Vue {
-  @Prop(Number) private myId!: number;
+  @Prop(Number) private readonly myId!: number;
 
   // timelist to display
   @Prop({ required: true, type: Array })
-  private timeList!: TimeListItem[];
+  private readonly timeList!: TimeListItem[];
 
   // handle list text
   private get list() {

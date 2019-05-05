@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 基础图片
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-02 21:58:41
+ * @LastEditTime: 2019-05-05 15:07:44
 -->
 <template>
   <div :id="myId" class="ImgCtn">
@@ -27,13 +27,13 @@ import Error from '@/assets/icon/error.svg';
 @Component({ components: { Loading, Error } })
 export default class BaseImg extends Vue {
   // Component ID
-  @Prop(Number) private myId!: number;
+  @Prop(Number) private readonly myId!: number;
 
   // Image link address
-  @Prop({ type: String, required: true }) private src!: string;
+  @Prop({ type: String, required: true }) private readonly src!: string;
 
   // Image description
-  @Prop(String) private desc!: string;
+  @Prop(String) private readonly desc!: string;
 
   // Image load status
   private loaded = false;

@@ -8,18 +8,17 @@
 import { Module } from 'vuex';
 import { BaseState } from '../state';
 
-export interface MenuList {
+export interface MenuItem {
   key: string;
   title: string;
-  type?: string;
-  icon?: boolean;
-  children?: MenuList;
+  icon?: boolean | string;
+  children?: MenuItem;
 }
 
 export interface SlideState {
   icon: string;
   title: string;
-  list: MenuList[];
+  list: MenuItem[];
 }
 
 const slideState: SlideState = {
@@ -38,7 +37,7 @@ const slideModule: Module<SlideState, BaseState> = {
      * @param state state
      * @param menuContent Slide菜单内容
      */
-    menuList(state: SlideState, menuContent: MenuList[]) {
+    menuList(state: SlideState, menuContent: MenuItem[]) {
       state.list = menuContent;
       if (menuContent.length === 0) {
         state.title = '';

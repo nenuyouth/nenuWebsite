@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Base Foot
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-02 21:57:16
+ * @LastEditTime: 2019-05-05 15:07:14
 -->
 <template>
   <div :id="myId" class="Footer">
@@ -27,16 +27,16 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 @Component
 export default class BaseFoot extends Vue {
   // Component ID
-  @Prop(Number) private myId!: number;
+  @Prop(Number) private readonly myId!: number;
 
   // Foot description text
-  @Prop(String) private desc!: string;
+  @Prop(String) private readonly desc!: string;
 
   // Author information
-  @Prop({ type: String, default: 'Mr.Hope' }) private author!: string;
+  @Prop({ type: String, default: 'Mr.Hope' }) private readonly author!: string;
 
   // Last edit time
-  @Prop(String) private time!: string;
+  @Prop(String) private readonly time!: string;
 }
 </script>
 <style scoped>

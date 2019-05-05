@@ -2,277 +2,277 @@
   {
     "key": "/doc",
     "title": "主页",
-    "type": "home"
+    "icon": "home"
   },
   {
     "key": "menu:/doc/wechat",
     "title": "微信",
-    "type": "icon-wechat",
+    "icon": "icon-wechat",
     "children": [
       {
         "key": "/doc/wechat",
         "title": "微信图文编辑",
-        "type": "icon-wechat"
+        "icon": "icon-wechat"
       },
       {
         "key": "/doc/wechat/backStage",
         "title": "微信后台运营",
-        "type": "icon-backstage"
+        "icon": "icon-backstage"
       }
     ]
   },
   {
     "key": "menu:/doc/dev",
     "title": "开发指南",
-    "type": "icon-debug",
+    "icon": "icon-debug",
     "children": [
       {
         "key": "/doc/dev",
         "title": "开发指南",
-        "type": "bulb"
+        "icon": "bulb"
       },
       {
         "key": "/doc/dev/debugInstruction",
         "title": "什么是开发",
-        "type": "question"
+        "icon": "question"
       }
     ]
   },
   {
     "key": "menu:/doc/language",
     "title": "代码语言",
-    "type": "code",
+    "icon": "code",
     "children": [
       {
         "key": "menu:/doc/language/js",
         "title": "JS",
-        "type": "icon-js",
+        "icon": "icon-js",
         "children": [
           {
             "key": "/doc/language/js",
             "title": "JS指南",
-            "type": "bulb"
+            "icon": "bulb"
           },
           {
             "key": "/doc/language/js/intro",
             "title": "JS介绍",
-            "type": "info-circle"
+            "icon": "info-circle"
           },
           {
             "key": "/doc/language/js/error",
             "title": "错误处理",
-            "type": "warning"
+            "icon": "warning"
           },
           {
             "key": "/doc/language/js/accidence",
             "title": "快速入门",
-            "type": "icon-rumen"
+            "icon": "icon-rumen"
           },
           {
             "key": "/doc/language/js/es6",
             "title": "ES6教程",
-            "type": "icon-es6"
+            "icon": "icon-es6"
           },
           {
             "key": "/doc/language/js/function",
             "title": "函数",
-            "type": "icon-function"
+            "icon": "icon-function"
           },
           {
             "key": "/doc/language/js/object",
             "title": "对象",
-            "type": "icon-object"
+            "icon": "icon-object"
           },
           {
             "key": "/doc/language/js/underscore",
             "title": "underscore",
-            "type": "icon-underscore"
+            "icon": "icon-underscore"
           },
           {
             "key": "/doc/language/js/browser",
             "title": "浏览器",
-            "type": "chrome"
+            "icon": "chrome"
           }
         ]
       },
       {
-        "key": "/doc/language/typescript",
-        "title": "Typescript",
+        "key": "/doc/language/iconscript",
+        "title": "iconscript",
         "icon": true,
-        "type": "icon-typescript"
+        "icon": "icon-iconscript"
       }
     ]
   },
   {
     "key": "menu:/doc/miniProgram",
     "title": "小程序",
-    "type": "icon-miniProgram",
+    "icon": "icon-miniProgram",
     "children": [
       {
         "key": "/doc/miniProgram",
         "title": "小程序介绍",
-        "type": "bulb"
+        "icon": "bulb"
       },
       {
         "key": "/doc/miniProgram/corporationDebug",
         "title": "社团提交资料说明",
-        "type": "info-circle"
+        "icon": "info-circle"
       },
       {
         "key": "/doc/miniProgram/frameDescription",
         "title": "小程序框架说明",
-        "type": "info-circle"
+        "icon": "info-circle"
       },
       {
         "key": "/doc/miniProgram/tagList",
         "title": "小程序参数表",
-        "type": "tags"
+        "icon": "tags"
       },
       {
         "key": "/doc/miniProgram/setPage",
         "title": "setPage JS库说明",
-        "type": "tags"
+        "icon": "tags"
       }
     ]
   },
   {
     "key": "menu:/doc/software",
     "title": "软件",
-    "type": "icon-software",
+    "icon": "icon-software",
     "children": [
       {
         "key": "/doc/software",
         "title": "软件",
-        "type": "icon-software"
+        "icon": "icon-software"
       },
       {
         "key": "/doc/software/Apache",
         "title": "Apache介绍",
-        "type": "icon-Apache"
+        "icon": "icon-Apache"
       },
       {
         "key": "/doc/software/Chrome",
         "title": "Chrome",
-        "type": "chrome"
+        "icon": "chrome"
       },
       {
         "key": "menu:/doc/software/nodeJS",
         "title": "nodeJS介绍",
-        "type": "icon-nodeJS",
+        "icon": "icon-nodeJS",
         "children": [
           {
             "key": "/doc/software/nodeJS/intro",
             "title": "NodeJs简介",
-            "type": "info-circle"
+            "icon": "info-circle"
           },
           {
             "key": "/doc/software/nodeJS/install",
             "title": "安装Node",
-            "type": "icon-install"
+            "icon": "icon-install"
           },
           {
             "key": "/doc/software/nodeJS/environment",
             "title": "搭建Node环境",
-            "type": "icon-environment"
+            "icon": "icon-environment"
           },
           {
             "key": "/doc/software/nodeJS/program",
             "title": "第一个Node程序",
-            "type": "sliders"
+            "icon": "sliders"
           },
           {
             "key": "/doc/software/nodeJS/module",
             "title": "NodeJS模块说明",
-            "type": "icon-module"
+            "icon": "icon-module"
           }
         ]
       },
       {
         "key": "menu:/doc/software/vscode",
         "title": "VS Code介绍",
-        "type": "icon-vscode",
+        "icon": "icon-vscode",
         "children": [
           {
             "key": "/doc/software/vscode",
             "title": "VS Code",
-            "type": "icon-vscode"
+            "icon": "icon-vscode"
           },
           {
             "key": "/doc/software/vscode/vscodeSettings",
             "title": "VSCode设置",
-            "type": "setting"
+            "icon": "setting"
           },
           {
             "key": "/doc/software/vscode/vscodeExtension",
             "title": "VSCode扩展",
-            "type": "icon-extension"
+            "icon": "icon-extension"
           },
           {
             "key": "/doc/software/vscode/vscodeSimple",
             "title": "VScode简单介绍",
-            "type": "info-circle"
+            "icon": "info-circle"
           }
         ]
       },
       {
         "key": "menu:/doc/software/git",
         "title": "Git介绍",
-        "type": "icon-git",
+        "icon": "icon-git",
         "children": [
           {
             "key": "/doc/software/git",
             "title": "Git",
-            "type": "icon-git"
+            "icon": "icon-git"
           },
           {
             "key": "/doc/software/git/whatIsGit",
             "title": "Git简介",
-            "type": "info-circle"
+            "icon": "info-circle"
           },
           {
             "key": "/doc/software/git/createRepository",
             "title": "创建版本库",
-            "type": "icon-repo"
+            "icon": "icon-repo"
           },
           {
             "key": "/doc/software/git/statusView",
             "title": "纵向查看",
-            "type": "ordered-list"
+            "icon": "ordered-list"
           },
           {
             "key": "/doc/software/git/backRoll",
             "title": "版本回退",
-            "type": "reload"
+            "icon": "reload"
           },
           {
             "key": "/doc/software/git/workingDirectory",
             "title": "工作区和暂存区",
-            "type": "icon-workingDirectory"
+            "icon": "icon-workingDirectory"
           },
           {
             "key": "/doc/software/git/change",
             "title": "修改管理",
-            "type": "tool"
+            "icon": "tool"
           },
           {
             "key": "/doc/software/git/remote",
             "title": "远程仓库",
-            "type": "cloud-upload"
+            "icon": "cloud-upload"
           },
           {
             "key": "/doc/software/git/branch",
             "title": "分支管理",
-            "type": "branches"
+            "icon": "branches"
           },
           {
             "key": "/doc/software/git/tag",
             "title": "标签管理",
-            "type": "tags"
+            "icon": "tags"
           },
           {
             "key": "/doc/software/git/customGit",
             "title": "自定义Git",
-            "type": "experiment"
+            "icon": "experiment"
           }
         ]
       }
@@ -281,116 +281,116 @@
   {
     "key": "menu:/doc/website",
     "title": "网页开发",
-    "type": "icon-website",
+    "icon": "icon-website",
     "children": [
       {
         "key": "menu:/doc/website/html",
         "title": "HTML介绍",
-        "type": "html5",
+        "icon": "html5",
         "children": [
           {
             "key": "/doc/website/html",
             "title": "HTML",
-            "type": "html5"
+            "icon": "html5"
           },
           {
             "key": "/doc/website/html/emmet",
             "title": "Emmet用法",
-            "type": "info-circle"
+            "icon": "info-circle"
           }
         ]
       },
       {
         "key": "/doc/website/css",
         "title": "CSS介绍",
-        "type": "icon-css"
+        "icon": "icon-css"
       },
       {
         "key": "menu:/doc/website/jQuery",
         "title": "jQuery介绍",
-        "type": "icon-jquery",
+        "icon": "icon-jquery",
         "children": [
           {
             "key": "/doc/website/jQuery/intro",
             "title": "jQuery简介",
-            "type": "info-circle"
+            "icon": "info-circle"
           },
           {
             "key": "/doc/website/jQuery/selector",
             "title": "选择器",
-            "type": "select"
+            "icon": "select"
           },
           {
             "key": "/doc/website/jQuery/operateDOM",
             "title": "操作DOM",
-            "type": "tool"
+            "icon": "tool"
           },
           {
             "key": "/doc/website/jQuery/modifyDOM",
             "title": "修改DOM结构",
-            "type": "edit"
+            "icon": "edit"
           },
           {
             "key": "/doc/website/jQuery/event",
             "title": "事件",
-            "type": "icon-event"
+            "icon": "icon-event"
           },
           {
             "key": "/doc/website/jQuery/animation",
             "title": "动画",
-            "type": "icon-animation"
+            "icon": "icon-animation"
           },
           {
             "key": "/doc/website/jQuery/AJAX",
             "title": "AJAX",
-            "type": "icon-ajax"
+            "icon": "icon-ajax"
           },
           {
             "key": "/doc/website/jQuery/extend",
             "title": "扩展",
-            "type": "icon-extension"
+            "icon": "icon-extension"
           }
         ]
       },
       {
         "key": "menu:/doc/website/vue",
         "title": "Vue介绍",
-        "type": "icon-vue",
+        "icon": "icon-vue",
         "children": [
           {
             "key": "/doc/website/vue",
             "title": "Vue介绍",
-            "type": "info-circle"
+            "icon": "info-circle"
           },
           {
             "key": "/doc/website/vue/install",
             "title": "环境安装",
-            "type": "icon-install"
+            "icon": "icon-install"
           },
           {
             "key": "/doc/website/vue/debug",
             "title": "Vue介绍",
-            "type": "icon-debug"
+            "icon": "icon-debug"
           },
           {
             "key": "/doc/website/vue/vue",
             "title": "Vue单文件组件",
-            "type": "icon-vue"
+            "icon": "icon-vue"
           },
           {
             "key": "/doc/website/vue/router",
             "title": "Vue Router",
-            "type": "icon-router"
+            "icon": "icon-router"
           },
           {
             "key": "/doc/website/vue/component",
             "title": "Vue组件文档",
-            "type": "snippets"
+            "icon": "snippets"
           },
           {
             "key": "/doc/website/vue/compare",
             "title": "与小程序对比",
-            "type": "icon-compare"
+            "icon": "icon-compare"
           }
         ]
       }
@@ -399,22 +399,22 @@
   {
     "key": "menu:/doc/windows",
     "title": "Windows系统",
-    "type": "windows",
+    "icon": "windows",
     "children": [
       {
         "key": "/doc/windows",
         "title": "Windows",
-        "type": "windows"
+        "icon": "windows"
       },
       {
         "key": "/doc/windows/addPath",
         "title": "添加到Path",
-        "type": "icon-addPath"
+        "icon": "icon-addPath"
       },
       {
         "key": "/doc/windows/shortCutKey",
         "title": "Windows快捷键",
-        "type": "icon-shortcutKey"
+        "icon": "icon-shortcutKey"
       }
     ]
   }

@@ -3,12 +3,12 @@
  * @LastEditors: Mr.Hope
  * @Description: 路由配置文件
  * @Date: 2019-03-25 12:27:33
- * @LastEditTime: 2019-05-02 19:23:07
+ * @LastEditTime: 2019-05-05 15:55:21
  */
 import Main from '@/views/Main.vue';
 import Page404 from '@/views/Page404.vue';
 
-const myRoute = [
+const route = [
   {
     path: '/',
     alias: '/index.html',
@@ -56,61 +56,73 @@ const myRoute = [
   {
     path: '/scence',
     name: 'scence',
+    meta: { title: '东师风貌' },
     component: () => import(/* webpackChunkName: "scence" */ '@/views/scence/Scence.vue')
   },
   {
     path: '/scence/benbu',
     name: 'benbuScence',
+    meta: { title: '本部风貌' },
     component: () => import(/* webpackChunkName: "scence" */ '@/views/scence/Benbu.vue')
   },
   {
     path: '/scence/jingyue',
     name: 'jingyueScence',
+    meta: { title: '净月风貌' },
     component: () => import(/* webpackChunkName: "scence" */ '@/views/scence/Jingyue.vue')
   },
   {
     path: '/about',
     name: 'about',
+    meta: { title: '关于我们' },
     component: () => import(/* webpackChunkName: "about" */ '@/views/about/About.vue')
   },
   {
     path: '/about/intro',
     name: 'intro',
+    meta: { title: '校学生会简介' },
     component: () => import(/* webpackChunkName: "about" */ '@/views/about/Intro.vue')
   },
   {
     path: '/about/mrhope',
     name: 'mrhope',
+    meta: { title: 'Mr.Hope简介' },
     component: () => import(/* webpackChunkName: "about" */ '@/views/about/MrHope.vue')
   },
   {
     path: '/about/coperation',
     name: 'coperation',
+    meta: { title: '项目合作' },
     component: () => import(/* webpackChunkName: "about" */ '@/views/about/Coperation.vue')
   },
   {
     path: '/about/media',
     name: 'media',
+    meta: { title: '其他媒体' },
     component: () => import(/* webpackChunkName: "about" */ '@/views/about/Media.vue')
   },
   {
     path: '/about/qq',
     name: 'qq',
+    meta: { title: 'QQ' },
     component: () => import(/* webpackChunkName: "about" */ '@/views/about/QQ.vue')
   },
   {
     path: '/about/douyin',
     name: 'douyin',
+    meta: { title: '抖音' },
     component: () => import(/* webpackChunkName: "about" */ '@/views/about/Douyin.vue')
   },
   {
     path: '/about/wechat',
     name: 'wechat',
+    meta: { title: '微信' },
     component: () => import(/* webpackChunkName: "about" */ '@/views/about/Wechat.vue')
   },
   {
     path: '/about/question',
     name: 'question',
+    meta: { title: '其他问题' },
     component: () => import(/* webpackChunkName: "about" */ '@/views/about/Question.vue')
   },
   { path: '/guide/readme', redirect: '/guide' },
@@ -119,7 +131,7 @@ const myRoute = [
   { path: '/guide/:path1/:path2/:path3/readme', redirect: '/guide/:path1/:path2/:path3' },
   {
     path: '/guide/:path1?/:path2?/:path3?/:path4?',
-    meta: { title: '东师指南' },
+    meta: { title: false },
     component: () => import(/* webpackChunkName: "guide" */ '@/views/Guide.vue')
   },
   { path: '/doc/readme', redirect: '/doc' },
@@ -128,7 +140,7 @@ const myRoute = [
   { path: '/doc/:path1/:path2/:path3/readme', redirect: '/doc/:path1/:path2/:path3' },
   {
     path: '/doc/:path1?/:path2?/:path3?/:path4?',
-    meta: { title: '内部文档' },
+    meta: { title: false },
     component: () => import(/* webpackChunkName: "doc" */ '@/views/Doc.vue')
   },
   {
@@ -139,4 +151,4 @@ const myRoute = [
   }
 ];
 
-export default myRoute;
+export default route;

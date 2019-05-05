@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-05-04 11:52:12
+ * @LastEditTime: 2019-05-05 15:08:49
 -->
 <template>
   <div class="container mt-3 pb-3">
@@ -148,7 +148,7 @@ export default class DocView extends Vue {
 
   // Markdown内容
   @Prop({ type: String, default: '<h1>加载中</h1><h2>加载中</h2><p>内容正在加载...</p>' })
-  private docContent!: string;
+  private readonly docContent!: string;
 
   // 初始化目录
   private catalogGernarate() {

@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Guide Doc display
  * @Date: 2019-04-01 16:10:20
- * @LastEditTime: 2019-04-29 23:12:04
+ * @LastEditTime: 2019-05-05 15:37:08
 -->
 <template>
   <MyGuide :baselength="baselength" :loading="$store.state.docLoading" :path="path"/>
@@ -11,7 +11,6 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { MenuList } from '@/store/module/slide';
 import { Route } from 'vue-router';
 import MyGuide from '@/components/MyGuide.vue';
 import getCompiledMarkdown from '@/lib/getMarkdown';

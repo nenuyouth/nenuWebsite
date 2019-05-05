@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 基础主标题
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-03 19:43:54
+ * @LastEditTime: 2019-05-05 15:07:36
 -->
 <template>
   <div>
@@ -17,10 +17,10 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 @Component
 export default class BaseHead extends Vue {
   // Component ID
-  @Prop(Number) private myId!: number;
+  @Prop(Number) private readonly myId!: number;
 
   // Title of displayed page
-  @Prop({ type: String, required: true }) private title!: string;
+  @Prop({ type: String, required: true }) private readonly title!: string;
 }
 </script>
 <style scoped>

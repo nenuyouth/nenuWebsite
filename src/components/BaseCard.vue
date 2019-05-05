@@ -64,9 +64,9 @@ interface Card {
 
 @Component
 export default class BaseCard extends Vue {
-  @Prop(Number) private myId!: number;
+  @Prop(Number) private readonly myId!: number;
 
-  @Prop({ required: true, type: Array }) private list!: Card[];
+  @Prop({ required: true, type: Array }) private readonly list!: Card[];
 
   private cardList: Card[] = [];
 

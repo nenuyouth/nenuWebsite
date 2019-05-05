@@ -3,15 +3,14 @@
  * @LastEditors: Mr.Hope
  * @Description: Base Grid
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-03 20:03:49
+ * @LastEditTime: 2019-05-05 15:32:16
 -->
 <template>
   <div>
-    <template v-if="head">
+    <template v-if="head!==false">
       <div class="d-block d-lg-none commonhead" v-text="head"/>
       <div class="d-none d-lg-block myH3" v-text="head"/>
     </template>
-
     <a-row class="gridList">
       <a-col
         :key="item[1]"
@@ -42,16 +41,16 @@ export interface GridItem {
 @Component
 export default class BaseGrid extends Vue {
   // Component ID
-  @Prop(Number) private myId!: number;
+  @Prop(Number) private readonly myId!: number;
 
   // Grid items
-  @Prop(Array) private content!: GridItem[];
+  @Prop(Array) private readonly content!: GridItem[];
 
   // Grid head text
-  @Prop([String, Boolean]) private head!: string | boolean;
+  @Prop({ type: [String, Boolean], default: '' }) private readonly head!: string | boolean;
 
   // Grid footer text
-  @Prop([String, Boolean]) private foot!: string | boolean;
+  @Prop(String) private readonly foot!: string;
 
   // Link Handler
   private navigate(url: string) {
@@ -74,6 +73,49 @@ export default class BaseGrid extends Vue {
 }
 </script>
 <style scoped>
+.myH3 {
+  width: 100%;
+  max-width: 600px;
+  text-align: left;
+  font-weight: 500;
+  padding: 12px 18px 6px 18px;
+  min-height: 18px;
+  font-size: 18px;
+  margin: 0 auto;
+}
+
+.commonfoot,
+.commonhead {
+  font-size: 13px;
+  color: #666;
+  margin: 0 auto;
+}
+
+.commonhead {
+  min-height: 9px;
+  padding: 23px 15px 5px 15px;
+}
+
+.commonfoot {
+  padding: 5px 15px 0 15px;
+}
+
+@media (min-width: 992px) {
+  .commonfoot {
+    font-size: 14px;
+    padding: 12px 5% 4px 5%;
+  }
+}
+
+.nm .commonhead {
+  color: #fff;
+}
+
+.commonhead,
+.commonfoot {
+  text-align: left;
+}
+
 .gridList {
   overflow: hidden;
 }

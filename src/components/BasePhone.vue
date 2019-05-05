@@ -9,10 +9,10 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
 export default class BasePhone extends Vue {
-  @Prop(Number) private myId!: number;
+  @Prop(Number) private readonly myId!: number;
 
   @Prop({ type: [String, Number], required: true })
-  private num!: string | number;
+  private readonly num!: string | number;
 }
 </script>
 <style scoped>

@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 基础列表
  * @Date: 2019-03-25 12:39:59
- * @LastEditTime: 2019-05-03 20:03:19
+ * @LastEditTime: 2019-05-05 15:30:19
 -->
 <template>
   <div :id="myId" class="Ctn">
@@ -44,7 +44,7 @@
         />
       </template>
     </div>
-    <div class="commonfoot" v-text="foot"/>
+    <div class="commonfoot" v-if="foot" v-text="foot"/>
   </div>
 </template>
 
@@ -58,16 +58,16 @@ interface List {
 @Component
 export default class BaseList extends Vue {
   // Component ID
-  @Prop(Number) private myId!: number;
+  @Prop(Number) private readonly myId!: number;
 
   // List content
-  @Prop({ type: Array, required: true }) private content!: List[];
+  @Prop({ type: Array, required: true }) private readonly content!: List[];
 
   // List head text
-  @Prop({ type: [String, Boolean], default: '' }) private head!: string | boolean;
+  @Prop({ type: [String, Boolean], default: '' }) private readonly head!: string | boolean;
 
   // List footer text
-  @Prop({ type: [String, Boolean], default: '' }) private foot!: string | boolean;
+  @Prop({ type: [String, Boolean], default: '' }) private readonly foot!: string | boolean;
 
   private get listItem() {
     // create a copy of @Prop('content)
@@ -110,10 +110,6 @@ export default class BaseList extends Vue {
   .Ctn {
     margin: 0 auto;
   }
-}
-
-.myH3 + .myH3 {
-  padding-top: 2px;
 }
 
 .commonfoot,

@@ -45,12 +45,12 @@ let viewer: Viewer;
 @Component
 export default class ImageViewer extends Vue {
   // 图片列表
-  @Prop({ type: [String, Array] }) private images!: string | string[];
+  @Prop({ type: [String, Array] }) private readonly images!: string | string[];
 
   // 控制图片是否可见
-  @Prop({ type: Boolean, default: false }) private visible!: boolean;
+  @Prop({ type: Boolean, default: false }) private readonly visible!: boolean;
 
-  @Prop(Number) private value!: number;
+  @Prop(Number) private readonly value!: number;
 
   // 图片列表
   private list: string[] = [];

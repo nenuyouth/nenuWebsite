@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Base Carousel
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-02 19:55:42
+ * @LastEditTime: 2019-05-05 15:07:07
 -->
 <template>
   <a-carousel
@@ -67,31 +67,31 @@ interface Carousel {
 @Component
 export default class BaseCarousel extends Vue {
   // Component id
-  @Prop([Number, String]) private myId!: number | string;
+  @Prop([Number, String]) private readonly myId!: number | string;
 
   // CarouselItems config
-  @Prop({ type: Array, required: true }) private content!: Carousel[];
+  @Prop({ type: Array, required: true }) private readonly content!: Carousel[];
 
   // Whether to display vertically
-  @Prop({ type: Boolean, default: false }) private vertical!: boolean;
+  @Prop({ type: Boolean, default: false }) private readonly vertical!: boolean;
 
   // Whether to start autoplay
-  @Prop({ type: Boolean, default: true }) private autoplay!: boolean;
+  @Prop({ type: Boolean, default: true }) private readonly autoplay!: boolean;
 
   // Autoplay time
-  @Prop({ type: Number, default: 3000 }) private autoplaySpeed!: boolean;
+  @Prop({ type: Number, default: 3000 }) private readonly autoplaySpeed!: boolean;
 
   // Slide's switching time
-  @Prop({ type: Number, default: 500 }) private speed!: number;
+  @Prop({ type: Number, default: 500 }) private readonly speed!: number;
 
   // whether to display indicators
-  @Prop({ type: Boolean, default: true }) private dotDisplay!: boolean;
+  @Prop({ type: Boolean, default: true }) private readonly dotDisplay!: boolean;
 
   // Whether to display swtich arrows
-  @Prop({ type: Boolean, default: true }) private arrowDisplay!: boolean;
+  @Prop({ type: Boolean, default: true }) private readonly arrowDisplay!: boolean;
 
   // Switching animation
-  @Prop({ type: String, default: 'easeInOutQuart' }) private easing!: string;
+  @Prop({ type: String, default: 'easeInOutQuart' }) private readonly easing!: string;
 
   // Display indicators or not
   private get dots() {

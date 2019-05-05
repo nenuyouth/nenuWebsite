@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 图片浏览器
  * @Date: 2019-04-26 12:05:30
- * @LastEditTime: 2019-05-02 20:31:29
+ * @LastEditTime: 2019-05-05 15:09:37
 -->
 <template>
   <div class="vue_viewer" ref="viewer">
@@ -70,77 +70,77 @@ let viewer: Viewer;
 @Component
 export default class ImageViewer extends Vue {
   // 图片列表
-  @Prop({ type: [String, Array] }) private images!: string | string[];
+  @Prop({ type: [String, Array] }) private readonly images!: string | string[];
 
   // 控制图片是否可见
-  @Prop({ type: Boolean, default: false }) private visible!: boolean;
+  @Prop({ type: Boolean, default: false }) private readonly visible!: boolean;
 
   // 是否启用内联模式
-  @Prop({ type: Boolean, default: false }) private inline!: boolean;
+  @Prop({ type: Boolean, default: false }) private readonly inline!: boolean;
 
   // 显示右上角的按钮
-  @Prop({ type: Boolean, default: true }) private button!: boolean;
+  @Prop({ type: Boolean, default: true }) private readonly button!: boolean;
 
   // 导航栏的可见性 0/false：隐藏，1/true：显示，2：屏幕宽度大于768像素时显示，3：屏幕宽度大于992像素时显示，4：屏幕宽度大于1200像素时显示
-  @Prop({ type: [Boolean, Number], default: 1 }) private navbar!: boolean | number;
+  @Prop({ type: [Boolean, Number], default: 1 }) private readonly navbar!: boolean | number;
 
   // 标题的可见性 0/false：隐藏，1/true：显示，2：屏幕宽度大于768像素时显示，3：屏幕宽度大于992像素时显示，4：屏幕宽度大于1200像素时显示, Function: 自定义标题内容，[Number, Function]： Function(image, imageData)
-  @Prop({ type: [Boolean, Number, Function, Array], default: 1 }) private title!:
+  @Prop({ type: [Boolean, Number, Function, Array], default: 1 }) private readonly title!:
     | boolean
     | number
     | [Visibility, Function]
     | Visibility;
 
   // 工具栏的可见性 0/false：隐藏，1/true：显示，2：屏幕宽度大于768像素时显示，3：屏幕宽度大于992像素时显示，4：屏幕宽度大于1200像素时显示
-  @Prop({ type: [Boolean, Number], default: 1 }) private toolbarType!: boolean | number | object;
+  @Prop({ type: [Boolean, Number], default: 1 }) private readonly toolbarType!: boolean | number | object;
   // 工具栏按钮的可见性和布局
-  @Prop(Object) private toolbarOptions!: object;
+  @Prop(Object) private readonly toolbarOptions!: object;
   // 放大或缩小时图像比率（百分比）提示
-  @Prop({ type: Boolean, default: true }) private tooltipShow!: boolean;
+  @Prop({ type: Boolean, default: true }) private readonly tooltipShow!: boolean;
   // 是否可以移动图像
-  @Prop({ type: Boolean, default: true }) private movable!: boolean;
+  @Prop({ type: Boolean, default: true }) private readonly movable!: boolean;
   // 是否可以放大缩小图像
-  @Prop({ type: Boolean, default: true }) private zoomable!: boolean;
+  @Prop({ type: Boolean, default: true }) private readonly zoomable!: boolean;
   // 是否可以旋转图像
-  @Prop({ type: Boolean, default: true }) private rotatable!: boolean;
+  @Prop({ type: Boolean, default: true }) private readonly rotatable!: boolean;
   // 是否可以翻转图像
-  @Prop({ type: Boolean, default: true }) private scalable!: boolean;
+  @Prop({ type: Boolean, default: true }) private readonly scalable!: boolean;
   // 是否启用transition
-  @Prop({ type: Boolean, default: true }) private transition!: boolean;
+  @Prop({ type: Boolean, default: true }) private readonly transition!: boolean;
   // 是否可以查看原始图片大小
-  @Prop({ type: Boolean, default: true }) private fullscreen!: boolean;
+  @Prop({ type: Boolean, default: true }) private readonly fullscreen!: boolean;
   // 是否启用键盘
-  @Prop({ type: Boolean, default: true }) private keyboard!: boolean;
+  @Prop({ type: Boolean, default: true }) private readonly keyboard!: boolean;
   // 是否启用遮罩，static不可点击遮罩关闭
-  @Prop({ type: [Boolean, String], default: true }) private backdrop!: boolean;
+  @Prop({ type: [Boolean, String], default: true }) private readonly backdrop!: boolean;
   // 加载图像时是否显示加载动画
-  @Prop({ type: Boolean, default: true }) private loading!: boolean;
+  @Prop({ type: Boolean, default: true }) private readonly loading!: boolean;
   // 是否启用循环
-  @Prop({ type: Boolean, default: true }) private loop!: boolean;
+  @Prop({ type: Boolean, default: true }) private readonly loop!: boolean;
   // 自动循环播放时间间隔
-  @Prop({ type: Number, default: 5000 }) private interval!: number;
+  @Prop({ type: Number, default: 5000 }) private readonly interval!: number;
   // 最小宽度
-  @Prop({ type: Number, default: 5000 }) private minWidth!: number;
+  @Prop({ type: Number, default: 5000 }) private readonly minWidth!: number;
   // 最小高度
-  @Prop({ type: Number, default: 5000 }) private minHeight!: number;
+  @Prop({ type: Number, default: 5000 }) private readonly minHeight!: number;
   // 鼠标缩放图像时的比率
-  @Prop({ type: Number, default: 0.1 }) private zoomRatio!: number;
+  @Prop({ type: Number, default: 0.1 }) private readonly zoomRatio!: number;
   // 最小缩放图像比率
-  @Prop({ type: Number, default: 0.01 }) private minZoomRatio!: number;
+  @Prop({ type: Number, default: 0.01 }) private readonly minZoomRatio!: number;
   // 最大缩放图像比率
-  @Prop({ type: Number, default: 100 }) private maxZoomRatio!: number;
+  @Prop({ type: Number, default: 100 }) private readonly maxZoomRatio!: number;
   // z-index值
-  @Prop({ type: Number, default: 9999 }) private zIndex!: number;
+  @Prop({ type: Number, default: 9999 }) private readonly zIndex!: number;
   // 内联模式z-index值
-  @Prop({ type: Number, default: 100 }) private zIndexInline!: number;
+  @Prop({ type: Number, default: 100 }) private readonly zIndexInline!: number;
   // 占位图片
-  @Prop({ type: [String, Function], default: 'src' }) private url!: string | Function;
+  @Prop({ type: [String, Function], default: 'src' }) private readonly url!: string | Function;
   // 插入位置
-  @Prop({ type: [Element, String], default: 'body' }) private container!: any;
+  @Prop({ type: [Element, String], default: 'body' }) private readonly container!: any;
   // 过滤器
-  @Prop({ type: Function, default: () => true }) private filter!: any;
+  @Prop({ type: Function, default: () => true }) private readonly filter!: any;
   // 双击功能
-  @Prop({ type: Boolean, default: true }) private toggleOnDblclick!: any;
+  @Prop({ type: Boolean, default: true }) private readonly toggleOnDblclick!: any;
   @Prop(Number) private value!: number;
 
   // 图片列表

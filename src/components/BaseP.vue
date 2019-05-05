@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Base Paragraph
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-02 21:58:38
+ * @LastEditTime: 2019-05-05 15:08:15
 -->
 <template>
   <div :id="myId" class="Ctn">
@@ -44,28 +44,28 @@ enum Align {
 @Component({ components: { Loading, Error } })
 export default class BaseP extends Vue {
   // Component ID
-  @Prop(Number) private myId!: number;
+  @Prop(Number) private readonly myId!: number;
 
   // Paragragh Text
-  @Prop({ type: String, required: true }) private text!: string;
+  @Prop({ type: String, required: true }) private readonly text!: string;
 
   // Paragragh Heading
-  @Prop([String, Boolean]) private head!: string | boolean;
+  @Prop([String, Boolean]) private readonly head!: string | boolean;
 
   // Paragragh Image Link
-  @Prop(String) private src!: string;
+  @Prop(String) private readonly src!: string;
 
   // Paragragh Image Description
-  @Prop(String) private desc!: string;
+  @Prop(String) private readonly desc!: string;
 
   // Paragragh Text style
-  @Prop([String, Object]) private myStyle!: string | Style;
+  @Prop([String, Object]) private readonly myStyle!: string | Style;
 
   // Paragragh Heading Style
-  @Prop([String, Object]) private headStyle!: string | Style;
+  @Prop([String, Object]) private readonly headStyle!: string | Style;
 
   // Text Align
-  @Prop({ default: 'left' }) private align!: Align;
+  @Prop({ default: 'left' }) private readonly align!: Align;
 
   // Image load status
   private loaded = false;
