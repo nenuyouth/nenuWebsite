@@ -96,10 +96,9 @@
         ]
       },
       {
-        "key": "/doc/language/iconscript",
-        "title": "iconscript",
-        "icon": true,
-        "icon": "icon-iconscript"
+        "key": "/doc/language/typescript",
+        "title": "Typescript",
+        "icon": "icon-typescript"
       }
     ]
   },

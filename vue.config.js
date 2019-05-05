@@ -3,8 +3,13 @@
  * @LastEditors: Mr.Hope
  * @Description: vue config file
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-05 16:02:45
+ * @LastEditTime: 2019-05-06 01:51:07
  */
+
+// 判断环境
+const isProduction = process.env.NODE_ENV === 'production';
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const path = require('path');
 
 /**
  * @description: vue输出配置
@@ -34,19 +39,35 @@ module.exports = {
     svgRule.uses.clear();
     svgRule.use('vue-svg-loader').loader('vue-svg-loader');
   },
-  configureWebpack: config =>
-    process.env.NODE_ENV === 'production'
-      ? { // 开发环境配置
-        devtool: 'source-map',
-        performance: {
-          hints: 'warning',
-          maxEntrypointSize: 524288,
-          maxAssetSize: 1048576
-        }
-      }
-      : { devtool: 'inline-source-map' },
+  configureWebpack: config => {
+
+    // reduce the size of antdIcon
+    const alias = config.resolve.alias || {};
+
+    alias['@ant-design/icons/lib/dist$'] = path.resolve(__dirname, './src/lib/icon');
+    config.resolve.alias = alias;
+
+    if (isProduction) { // 生产环境配置
+      config.devtool = 'source-map';
+      // 使用CDN外部引入组件
+      config.externals = {
+        vue: 'Vue',
+        'vue-router': 'VueRouter',
+        vuex: 'Vuex',
+        jquery: '$'
+      };
+      config.performance = {
+        hints: 'warning',
+        maxEntrypointSize: 524288,
+        maxAssetSize: 1048576
+      };
+    }
+
+    // 分析打包后代码
+    if (process.env.ANALYZE) config.plugins.push(new BundleAnalyzerPlugin());
+  },
   devServer: {
-    https: true, // 启用Https
+    // https: true, // 启用Https，目前由于本地服务器未能支持https而暂时关闭
     compress: true, // 启用gzip压缩
     overlay: { // 浮层
       warnings: false,

@@ -41,6 +41,7 @@
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator';
 import { Route } from 'vue-router';
+import $ from 'jquery';
 
 @Component
 export default class Nav extends Vue {

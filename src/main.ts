@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主脚本文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-02 14:22:47
+ * @LastEditTime: 2019-05-06 00:17:34
  */
 
 // 引入Ant Design
@@ -14,11 +14,21 @@ import {
 import { Route } from 'vue-router';
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import _ from 'lodash';
-import App from './App.vue';
-import registerServiceWorker from './service-worker/registerServiceWorker';
+
+// 引入第三方库
+import $ from 'jquery';
+import debounce from 'lodash/debounce';
+
+// 引入配置好的VueRouter与Vuex
 import router from './router/router';
 import store from './store/store';
+
+// 引入Service-Worker
+import registerSW from './service-worker/registerSW';
+
+// 引入Vue根元素
+import App from './App.vue';
+
 
 // 自定义css样式
 import './lib/customBootstrap.scss';
@@ -71,7 +81,7 @@ const IconFont = Icon.createFromIconfontCN({ scriptUrl: '//at.alicdn.com/t/font_
 Vue.component('icon-font', IconFont);
 
 // 注册service worker
-registerServiceWorker(store);
+registerSW(store);
 
 // 阻止 vue 在启动时生成生产提示。
 Vue.config.productionTip = false;
@@ -103,7 +113,7 @@ store.dispatch('systemInfo');
 
 // 获取屏幕状态，并进行brakpoint状态监听
 store.dispatch('screen', $(window).width() || document.documentElement.clientWidth);
-$(window).on('resize', _.debounce(() => {
+$(window).on('resize', debounce(() => {
   store.dispatch('screen', $(window).width() || document.documentElement.clientWidth);
 }, 300));
 

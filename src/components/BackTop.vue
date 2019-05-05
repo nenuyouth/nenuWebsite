@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: BackTop Button
  * @Date: 2019-03-22 19:30:08
- * @LastEditTime: 2019-05-02 19:27:42
+ * @LastEditTime: 2019-05-06 01:09:20
 -->
 <template>
   <div @click="scrollTop" class="scrollTop" style="display:none">
@@ -13,6 +13,7 @@
 <script lang="ts">
 import BackTopSvg from '@/assets/icon/backTop.svg';
 import { Component, Vue } from 'vue-property-decorator';
+import $ from 'jquery';
 
 @Component
 export default class BackTop extends Vue {

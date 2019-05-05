@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-05-05 15:08:49
+ * @LastEditTime: 2019-05-06 01:09:07
 -->
 <template>
   <div class="container mt-3 pb-3">
@@ -124,6 +124,7 @@
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { Route } from 'vue-router';
+import $ from 'jquery';
 
 interface Aside {
   text: string;

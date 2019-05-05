@@ -24,7 +24,7 @@ export default class Calendar extends Vue {
       .catch(err => {
         this.$confirm({
           title: '校历获取错误',
-          content: `链接地址有误，错误信息为${err}\n请汇报给Mr.Hope!`,
+          content: `校历获取失败，错误信息为${err}\n请汇报给Mr.Hope!`,
           autoFocusButton: 'cancel',
           cancelText: '确定',
           okText: '汇报',

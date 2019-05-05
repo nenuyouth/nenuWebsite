@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主页
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-03 19:42:07
+ * @LastEditTime: 2019-05-05 23:12:05
 -->
 <template>
   <div class="container">
@@ -102,7 +102,7 @@ export default class Main extends Vue {
       .catch(err => {
         this.$confirm({
           title: '校历获取错误',
-          content: `链接地址有误，错误信息为${err}\n请汇报给Mr.Hope!`,
+          content: `校历获取失败，错误信息为${err}\n请汇报给Mr.Hope!`,
           autoFocusButton: 'cancel',
           cancelText: '确定',
           okText: '汇报',

@@ -29,6 +29,7 @@
 <script lang='ts'>
 import { Component, Vue, Watch } from 'vue-property-decorator';
 import BaseMenu from '@/components/BaseMenu.vue';
+import $ from 'jquery';
 
 @Component({ components: { BaseMenu } })
 export default class Slide extends Vue {
