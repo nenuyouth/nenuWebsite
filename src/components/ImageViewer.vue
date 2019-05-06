@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 图片浏览器
  * @Date: 2019-04-26 12:05:30
- * @LastEditTime: 2019-05-05 15:09:37
+ * @LastEditTime: 2019-05-06 10:58:27
 -->
 <template>
   <div class="vue_viewer" ref="viewer">
@@ -46,24 +46,6 @@ enum Visibility {
   VisibleOnLargeOrWiderScreen = 3,
   VisibleOnExtraLargeOrWiderScreen = 4
 }
-
-// 设置默认Viewer选项
-// Viewer.setDefaults({
-//   inline: false,
-//   button: true,
-//   navbar: true,
-//   title: true,
-//   toolbar: 2,
-//   tooltip: true,
-//   movable: true,
-//   zoomable: true,
-//   rotatable: true,
-//   scalable: true,
-//   transition: true,
-//   fullscreen: true,
-//   keyboard: true,
-//   url: 'src'
-// });
 
 let viewer: Viewer;
 

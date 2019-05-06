@@ -8,8 +8,9 @@
 
 import Vue from 'vue';
 import axios from 'axios';
-import hljs from 'highlight.js';
 import marked from 'marked';
+import hljs from './hljs';
+// import hljs from 'highlight.js';
 
 // init Markdown Render Instance
 const myRenderMD = new marked.Renderer();
