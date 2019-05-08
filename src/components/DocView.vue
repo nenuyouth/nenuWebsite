@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-05-06 01:09:07
+ * @LastEditTime: 2019-05-08 12:53:36
 -->
 <template>
   <div class="container mt-3 pb-3">
@@ -31,10 +31,10 @@
         <path
           d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,
           0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"
-          fill="#3cba63"
+          fill="#2ecc71"
         ></path>
         <polygon
-          fill="#3cba63"
+          fill="#2ecc71"
           points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"
         ></polygon>
       </symbol>
@@ -169,7 +169,7 @@ export default class DocView extends Vue {
           const text = domEle.textContent;
           const level = domEle.tagName[1];
 
-          if (text) aside.push({ text, level });
+          if (text) aside.push({ level, text });
         }
       }
     });

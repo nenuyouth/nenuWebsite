@@ -27,9 +27,7 @@ myRenderMD.heading = (text, level) => {
       text.lastIndexOf('<svg') === -1 ? text.indexOf('</a>') : text.lastIndexOf('<svg')
     );
 
-  return `<h${level} id="${id ||
-    text}" class="mdHeading"><svg viewBox='0 0 1024 1024' class='mdIcon'>
-<use x="0" y="0" xlink:href="#link" /></svg>${text}</h${level}>`;
+  return `<h${level} id="${id || text}" class="mdHeading"><svg viewBox='0 0 1024 1024' class='mdIcon'><use x="0" y="0" xlink:href="#link" /></svg>${text}</h${level}>`;
 };
 
 // rewrite link parse: if link url contains '#', means it's an inside navigation
@@ -37,10 +35,12 @@ myRenderMD.link = (url, title, text) =>
   url[0] === '#'
     ? `<a class='md-a' href='${url}' title='${title || text}'>${text}</a>`
     : url.indexOf('http://') !== -1 || url.indexOf('https://') !== -1
-      ? `<a href='${url}' class='md-link'
-title='${text}'>${text}<svg width='15' height='15' viewBox="0 0 100 100" class='outbound'>
-<use x="0" y="0" xlink:href="#outbound" /></svg></a>`
+      ? `<a href='${url}' class='md-link' title='${text}'>${text}<svg width='15' height='15' viewBox="0 0 100 100" class='outbound'><use x="0" y="0" xlink:href="#outbound" /></svg></a>`
       : `<a href='${url}' class='md-link' title='${text}'>${text}</a>`;
+
+// rewrite list parse to prevent seeing link icon on list items
+myRenderMD.listitem = text =>
+  `<li>${text.indexOf('#link') === -1 ? text : text.replace(/<svg viewBox='0 0 1024 1024' class='mdIcon'><use x="0" y="0" xlink:href="#link" \/><\/svg>/u, '')}</li>`;
 
 // set marked package options
 marked.setOptions({

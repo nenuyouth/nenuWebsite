@@ -158,7 +158,7 @@ export default class MyDoc extends Vue {
 }
 
 .backIcon:hover {
-  color: #3cba63;
+  color: #2ecc71;
 }
 
 .homeIcon {

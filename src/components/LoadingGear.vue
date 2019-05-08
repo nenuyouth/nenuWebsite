@@ -35,7 +35,7 @@ export default class LoadingGear extends Vue {}
 .loader2 {
   display: block;
   position: absolute;
-  color: #3cba63;
+  color: #2ecc71;
   height: 50px;
   width: 50px;
   right: -12px;

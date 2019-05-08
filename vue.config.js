@@ -3,13 +3,14 @@
  * @LastEditors: Mr.Hope
  * @Description: vue config file
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-06 01:51:07
+ * @LastEditTime: 2019-05-08 12:49:51
  */
+
+const path = require('path');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 // 判断环境
 const isProduction = process.env.NODE_ENV === 'production';
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const path = require('path');
 
 /**
  * @description: vue输出配置
@@ -29,7 +30,20 @@ const path = require('path');
  * @property {object} pwa Progressive App支持
  */
 module.exports = {
-  // pages: undefined, // type is Object
+  /*
+   * pages: {// type is Object
+   *   index: {
+   *     // page 的入口
+   *     entry: './src/main.ts',
+   *     // 模板来源
+   *     template: './public/index.html',
+   *     // 在 dist/index.html 的输出
+   *     filename: 'index.html',
+   *     // 在这个页面中包含的块，默认情况下会包含提取出来的通用 chunk 和 vendor chunk。
+   *     chunks: ['chunk-vendors', 'chunk-common', 'app']
+   *   }
+   * },
+   */
   productionSourceMap: false,
   crossorigin: 'anonymous',
   chainWebpack: config => {
@@ -41,27 +55,88 @@ module.exports = {
   },
   configureWebpack: config => {
 
-    // reduce the size of antdIcon
+    /*
+     * config.resolve = {
+     *   extensions: ['.ts', '.vue', '.json', '.svg'],
+     *   modules: [path.resolve(__dirname, 'src'), 'node_modules']
+     * };
+     */
+
+    // 减小 antdIcon 体积
     const alias = config.resolve.alias || {};
 
     alias['@ant-design/icons/lib/dist$'] = path.resolve(__dirname, './src/lib/icon');
     config.resolve.alias = alias;
 
-    if (isProduction) { // 生产环境配置
-      config.devtool = 'source-map';
+    // 生产环境配置
+    if (isProduction) {
       // 使用CDN外部引入组件
       config.externals = {
+        axios: 'axios',
+        jquery: '$',
+        viewerjs: 'Viewer',
         vue: 'Vue',
         'vue-router': 'VueRouter',
-        vuex: 'Vuex',
-        jquery: '$'
+        vuex: 'Vuex'
       };
+
       config.performance = {
         hints: 'warning',
         maxEntrypointSize: 524288,
         maxAssetSize: 1048576
       };
-    }
+
+      config.optimization = {
+        /*
+         * minimize: true, // 压缩JS代码
+         * minimizer:
+         *   isProduction
+         *     ? [
+         *       new UglifyJsPlugin({ cache: true, parallel: true, sourceMap: false }),
+         *       new OptimizeCSSAssetsPlugin()
+         *     ]
+         *     : [],
+         */
+
+        // 为 webpack 运行时代码创建单独的chunk
+        runtimeChunk: { name: 'manifest' },
+        splitChunks: {
+          chunks: 'async',
+          minSize: 30000,
+          maxSize: 0,
+          minChunks: 1,
+          maxAsyncRequests: 10,
+          maxInitialRequests: 5,
+          automaticNameDelimiter: '-',
+          name: true,
+          cacheGroups: {
+            vendors: {
+              test: /[\\/]node_modules[\\/]/u,
+              priority: -10
+            },
+            common: { // 分离其他
+              test: /[\\/]node_modules[\\/](axios|lodash|jquery|tinycolor2|viewerjs|vue(-class-component|-router|x)?)[\\/]/u,
+              // test: /[\\/]node_modules[\\/](axios|lodash|jquery|viewerjs|vue(-router|x)?)[\\/]/u,
+              name: 'common',
+              chunks: 'all', // valid values are all, async, and initial
+              priority: -9
+            },
+            antd: { // 分离antd
+              test: /[\\/]node_modules[\\/]ant-design-vue[\\/]/u,
+              name: 'antd',
+              chunks: 'all', // valid values are all, async, and initial
+              priority: -8
+            },
+            combine: { // 默认块，最小重用两次，优先级最低，不包含已有的chunk内容
+              minChunks: 2,
+              priority: -20,
+              reuseExistingChunk: true // if the chunk contains modules already split out , will be reused
+            }
+          }
+        }
+      };
+
+    } else config.devtool = 'source-map';
 
     // 分析打包后代码
     if (process.env.ANALYZE) config.plugins.push(new BundleAnalyzerPlugin());
@@ -92,8 +167,8 @@ module.exports = {
       less: {
         // 自定义antd主题
         modifyVars: {
-          'primary-color': '#3cba63',
-          'link-color': '#3cba63'
+          'primary-color': '#2ecc71',
+          'link-color': '#2ecc71'
         },
         javascriptEnabled: true
       }
@@ -101,8 +176,8 @@ module.exports = {
   },
   pwa: {
     name: '东师校会官网', // SW注册后的应用名称
-    themeColor: '#3cba63', // 主题色
-    msTileColor: '#3cba63',
+    themeColor: '#2ecc71', // 主题色
+    msTileColor: '#2ecc71',
     appleMobileWebAppCapable: 'yes', // iOS启用SW
     appleMobileWebAppStatusBarStyle: 'default', // iOS状态栏样式,可选"black-translucent","black","default"
     iconPaths: { // 图标路径
