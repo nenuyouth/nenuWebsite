@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: vue config file
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-08 12:49:51
+ * @LastEditTime: 2019-05-08 18:14:07
  */
 
 const path = require('path');
@@ -52,21 +52,24 @@ module.exports = {
 
     svgRule.uses.clear();
     svgRule.use('vue-svg-loader').loader('vue-svg-loader');
+
+    config.module.rule('eslint');
+    config.module.rule('eslint').use('eslint-loader');
   },
   configureWebpack: config => {
+    const myaliasconfig = {
+      assets: path.resolve(__dirname, 'src/assets/'),
+      lib: path.resolve(__dirname, 'src/lib/'),
+      '#': path.resolve(__dirname, 'src/components/'),
+      '@ant-design/icons/lib/dist$': path.resolve(__dirname, './src/lib/icon')// 减小 antdIcon 体积
+    };
 
-    /*
-     * config.resolve = {
-     *   extensions: ['.ts', '.vue', '.json', '.svg'],
-     *   modules: [path.resolve(__dirname, 'src'), 'node_modules']
-     * };
-     */
-
-    // 减小 antdIcon 体积
-    const alias = config.resolve.alias || {};
-
-    alias['@ant-design/icons/lib/dist$'] = path.resolve(__dirname, './src/lib/icon');
-    config.resolve.alias = alias;
+    config.resolve.alias = { ...config.resolve.alias || {}, ...myaliasconfig };
+    config.resolve.extensions = [
+      ...config.resolve.extensions || {},
+      ...['.wasm', '.mjs', '.js', '.json', 'ts', '.vue', 'svg']
+    ];
+    config.resolve.modules = [...config.resolve.modules || {}, ...['node_modules']];
 
     // 生产环境配置
     if (isProduction) {
@@ -110,9 +113,11 @@ module.exports = {
           automaticNameDelimiter: '-',
           name: true,
           cacheGroups: {
-            vendors: {
-              test: /[\\/]node_modules[\\/]/u,
-              priority: -10
+            antd: { // 分离antd
+              test: /[\\/]node_modules[\\/]ant-design-vue[\\/]/u,
+              name: 'antd',
+              chunks: 'all',
+              priority: -8
             },
             common: { // 分离其他
               test: /[\\/]node_modules[\\/](axios|lodash|jquery|tinycolor2|viewerjs|vue(-class-component|-router|x)?)[\\/]/u,
@@ -121,11 +126,9 @@ module.exports = {
               chunks: 'all', // valid values are all, async, and initial
               priority: -9
             },
-            antd: { // 分离antd
-              test: /[\\/]node_modules[\\/]ant-design-vue[\\/]/u,
-              name: 'antd',
-              chunks: 'all', // valid values are all, async, and initial
-              priority: -8
+            vendors: {
+              test: /[\\/]node_modules[\\/]/u,
+              priority: -10
             },
             combine: { // 默认块，最小重用两次，优先级最低，不包含已有的chunk内容
               minChunks: 2,

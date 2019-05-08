@@ -12,7 +12,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { Route } from 'vue-router';
-import MyDoc from '@/components/MyDoc.vue';
+import MyDoc from '#/MyDoc.vue';
 import getCompiledMarkdown from '@/lib/getMarkdown';
 
 @Component({ components: { MyDoc } })
@@ -27,7 +27,7 @@ export default class Doc extends Vue {
 
   private activated() {
     // display menu
-    this.$store.commit('menuList', require('@/assets/docMenuList.json'));
+    this.$store.commit('menuList', require('assets/docMenuList.json'));
     this.$store.commit('menuTitle', '内部文档');
   }
   private deactivated() {

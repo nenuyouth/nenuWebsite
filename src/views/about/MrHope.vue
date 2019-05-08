@@ -4,7 +4,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import axios from 'axios';
-import BasePage from '@/components/BasePage.vue';
+import BasePage from '#/BasePage.vue';
 
 @Component({ components: { BasePage } })
 export default class Department extends Vue {

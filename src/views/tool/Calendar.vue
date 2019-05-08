@@ -9,7 +9,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import axios from 'axios';
-import BaseTimeLine, { TimeListItem } from '@/components/BaseTimeLine.vue';
+import BaseTimeLine, { TimeListItem } from '#/BaseTimeLine.vue';
 
 @Component({ components: { BaseTimeLine } })
 export default class Calendar extends Vue {

@@ -47,8 +47,8 @@
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { Route } from 'vue-router';
-import DocView from '@/components/DocView.vue';
-import PasswordModal from '@/components/PasswordModal.vue';
+import DocView from '#/DocView.vue';
+import PasswordModal from '#/PasswordModal.vue';
 import getCompiledMarkdown from '@/lib/getMarkdown';
 
 // 导入css样式

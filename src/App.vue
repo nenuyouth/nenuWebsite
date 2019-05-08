@@ -27,11 +27,11 @@
 <script lang='ts'>
 import { Component, Vue, Watch } from 'vue-property-decorator';
 import { Route } from 'vue-router';
-import BackTop from '@/components/BackTop.vue';
-import ViewImage from '@/components/ViewImage.vue';
-import MyNav from '@/components/Nav.vue';
-import MySlide from '@/components/Slide.vue';
-import MyFooter from '@/components/Footer.vue';
+import BackTop from '#/BackTop.vue';
+import ViewImage from '#/ViewImage.vue';
+import MyNav from '#/Nav.vue';
+import MySlide from '#/Slide.vue';
+import MyFooter from '#/Footer.vue';
 
 @Component({ components: { BackTop, ViewImage, MyNav, MyFooter, MySlide } })
 // @Component({ components: { BackTop, MyNav, MyFooter, MySlide } })

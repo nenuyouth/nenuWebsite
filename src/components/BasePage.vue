@@ -13,14 +13,14 @@
   </div>
 </template>
 <script lang="ts">
-import BaseHead from '@/components/BaseHead.vue';
-import BaseTitle from '@/components/BaseTitle.vue';
-import BaseP from '@/components/BaseP.vue';
-import BaseImg from '@/components/BaseImg.vue';
-import BaseList from '@/components/BaseList.vue';
-import BaseCarousel from '@/components/BaseCarousel.vue';
-import BasePhone from '@/components/BasePhone.vue';
-import BaseFoot from '@/components/BaseFoot.vue';
+import BaseHead from '#/BaseHead.vue';
+import BaseTitle from '#/BaseTitle.vue';
+import BaseP from '#/BaseP.vue';
+import BaseImg from '#/BaseImg.vue';
+import BaseList from '#/BaseList.vue';
+import BaseCarousel from '#/BaseCarousel.vue';
+import BasePhone from '#/BasePhone.vue';
+import BaseFoot from '#/BaseFoot.vue';
 
 import { Component, Prop, Vue } from 'vue-property-decorator';
 

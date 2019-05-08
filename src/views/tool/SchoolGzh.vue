@@ -10,7 +10,7 @@
         v-for="item in gzh"
       >
         <img
-          :src="require(`@/assets/schoolGzh/${item.src}.jpg`)"
+          :src="require(`assets/schoolGzh/${item.src}.jpg`)"
           class="img-thumbnail mt-1 img-fix"
           style="border-radius:50%;"
         >
@@ -21,7 +21,7 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import BaseCarousel from '@/components/BaseCarousel.vue';
+import BaseCarousel from '#/BaseCarousel.vue';
 
 @Component
 export default class SchoolGzh extends Vue {

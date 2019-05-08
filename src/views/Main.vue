@@ -39,9 +39,9 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import axios from 'axios';
-import BaseCarousel from '@/components/BaseCarousel.vue';
-import BaseGrid from '@/components/BaseGrid.vue';
-import BaseTimeLine from '@/components/BaseTimeLine.vue';
+import BaseCarousel from '#/BaseCarousel.vue';
+import BaseGrid from '#/BaseGrid.vue';
+import BaseTimeLine from '#/BaseTimeLine.vue';
 
 @Component({ components: { BaseCarousel, BaseGrid, BaseTimeLine } })
 export default class Main extends Vue {
@@ -79,7 +79,7 @@ export default class Main extends Vue {
     ]
   };
 
-  private guidelist = require('@/assets/handbook.json');
+  private guidelist = require('assets/handbook.json');
 
   private timeList = [];
 

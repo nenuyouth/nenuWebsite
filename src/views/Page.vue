@@ -12,7 +12,7 @@
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { Route } from 'vue-router';
 import axios from 'axios';
-import BasePage from '@/components/BasePage.vue';
+import BasePage from '#/BasePage.vue';
 
 @Component({ components: { BasePage } })
 export default class Page extends Vue {

@@ -28,7 +28,7 @@
 </template>
 <script lang='ts'>
 import { Component, Vue, Watch } from 'vue-property-decorator';
-import BaseMenu from '@/components/BaseMenu.vue';
+import BaseMenu from '#/BaseMenu.vue';
 import $ from 'jquery';
 
 @Component({ components: { BaseMenu } })

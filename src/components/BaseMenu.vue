@@ -33,7 +33,7 @@
 
 <script lang='ts'>
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import SubMenu from '@/components/BaseSubMenu.vue';
+import SubMenu from '#/BaseSubMenu.vue';
 import { MenuItem } from '@/store/module/slide';
 import { Route } from 'vue-router';
 

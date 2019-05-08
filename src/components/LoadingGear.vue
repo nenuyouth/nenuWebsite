@@ -7,8 +7,8 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import Gear from '@/assets/icon/gear.svg';
-import GearGreen from '@/assets/icon/gearGreen.svg';
+import Gear from 'assets/icon/gear.svg';
+import GearGreen from 'assets/icon/gearGreen.svg';
 
 @Component({ components: { Gear, GearGreen } })
 export default class LoadingGear extends Vue {}

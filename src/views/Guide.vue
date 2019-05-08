@@ -12,7 +12,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { Route } from 'vue-router';
-import MyGuide from '@/components/MyGuide.vue';
+import MyGuide from '#/MyGuide.vue';
 import getCompiledMarkdown from '@/lib/getMarkdown';
 
 @Component({ components: { MyGuide } })
@@ -27,7 +27,7 @@ export default class Guide extends Vue {
 
   private activated() {
     // display menu
-    this.$store.commit('menuList', require('@/assets/guideMenuList.json'));
+    this.$store.commit('menuList', require('assets/guideMenuList.json'));
     this.$store.commit('menuTitle', '东师指南');
   }
   private deactivated() {

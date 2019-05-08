@@ -18,11 +18,11 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import BaseGrid from '@/components/BaseGrid.vue';
+import BaseGrid from '#/BaseGrid.vue';
 
 @Component({ components: { BaseGrid } })
 export default class Guide extends Vue {
-  private readonly guidelist = require('@/assets/handbookList.json');
+  private readonly guidelist = require('assets/handbookList.json');
 }
 </script>
 <style scoped>
