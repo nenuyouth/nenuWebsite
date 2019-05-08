@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Base Grid
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-05 15:32:16
+ * @LastEditTime: 2019-05-08 14:10:48
 -->
 <template>
   <div>
@@ -75,7 +75,6 @@ export default class BaseGrid extends Vue {
 <style scoped>
 .myH3 {
   width: 100%;
-  max-width: 600px;
   text-align: left;
   font-weight: 500;
   padding: 12px 18px 6px 18px;

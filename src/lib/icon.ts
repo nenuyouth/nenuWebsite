@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Ant Design Icon 部分加载文件
  * @Date: 2019-05-06 00:44:51
- * @LastEditTime: 2019-05-06 02:10:46
+ * @LastEditTime: 2019-05-08 13:30:48
  */
 
 // Nav Icons
@@ -47,6 +47,10 @@ export { default as DesktopOutline } from '@ant-design/icons/lib/outline/Desktop
 export { default as TeamOutline } from '@ant-design/icons/lib/outline/TeamOutline';
 export { default as LaptopOutline } from '@ant-design/icons/lib/outline/LaptopOutline';
 export { default as ThunderboltOutline } from '@ant-design/icons/lib/outline/ThunderboltOutline';
+
+// TimeLine Icons
+export { default as ScheduleOutline } from '@ant-design/icons/lib/outline/ScheduleOutline';
+export { default as CoffeeOutline } from '@ant-design/icons/lib/outline/CoffeeOutline';
 
 // export what antd other components need
 export { default as CloseOutline } from '@ant-design/icons/lib/outline/CloseOutline';

@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 路由配置文件
  * @Date: 2019-03-25 12:27:33
- * @LastEditTime: 2019-05-05 15:55:21
+ * @LastEditTime: 2019-05-08 14:08:42
  */
 import Main from '@/views/Main.vue';
 import Page404 from '@/views/Page404.vue';
@@ -72,52 +72,28 @@ const route = [
     component: () => import(/* webpackChunkName: "scence" */ '@/views/scence/Jingyue.vue')
   },
   {
+    path: '/intro/studentUnion',
+    name: 'su',
+    meta: { title: '校学生会简介' },
+    component: () => import(/* webpackChunkName: "about" */ '@/views/about/SU.vue')
+  },
+  {
+    path: '/intro/department',
+    name: 'department',
+    meta: { title: '校学生会部门简介' },
+    component: () => import(/* webpackChunkName: "about" */ '@/views/about/Department.vue')
+  },
+  {
     path: '/about',
     name: 'about',
     meta: { title: '关于我们' },
     component: () => import(/* webpackChunkName: "about" */ '@/views/about/About.vue')
   },
   {
-    path: '/about/intro',
-    name: 'intro',
-    meta: { title: '校学生会简介' },
-    component: () => import(/* webpackChunkName: "about" */ '@/views/about/Intro.vue')
-  },
-  {
-    path: '/about/mrhope',
+    path: '/about/Mr-Hope',
     name: 'mrhope',
     meta: { title: 'Mr.Hope简介' },
     component: () => import(/* webpackChunkName: "about" */ '@/views/about/MrHope.vue')
-  },
-  {
-    path: '/about/coperation',
-    name: 'coperation',
-    meta: { title: '项目合作' },
-    component: () => import(/* webpackChunkName: "about" */ '@/views/about/Coperation.vue')
-  },
-  {
-    path: '/about/media',
-    name: 'media',
-    meta: { title: '其他媒体' },
-    component: () => import(/* webpackChunkName: "about" */ '@/views/about/Media.vue')
-  },
-  {
-    path: '/about/qq',
-    name: 'qq',
-    meta: { title: 'QQ' },
-    component: () => import(/* webpackChunkName: "about" */ '@/views/about/QQ.vue')
-  },
-  {
-    path: '/about/douyin',
-    name: 'douyin',
-    meta: { title: '抖音' },
-    component: () => import(/* webpackChunkName: "about" */ '@/views/about/Douyin.vue')
-  },
-  {
-    path: '/about/wechat',
-    name: 'wechat',
-    meta: { title: '微信' },
-    component: () => import(/* webpackChunkName: "about" */ '@/views/about/Wechat.vue')
   },
   {
     path: '/about/question',

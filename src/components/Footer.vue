@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 网页页脚
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-05-02 20:30:54
+ * @LastEditTime: 2019-05-08 14:01:32
  -->
 <template>
   <a-layout-footer :class="slide?'withSlide':''">
@@ -39,10 +39,10 @@ import { Component, Vue, Watch } from 'vue-property-decorator';
 @Component
 export default class Footer extends Vue {
   private readonly about = [
-    ['/intro', '校学生会介绍'],
-    ['/intro', '部门分工'],
-    ['/intro', '项目合作'],
-    ['/intro', '关于Mr.Hope']
+    ['/about/studentUnion', '校学生会介绍'],
+    ['/about/department', '部门分工'],
+    ['https://mp.weixin.qq.com/s/vurH2nhrATCt9pfLAM2fpA', '项目合作'],
+    ['/about/Mr-Hope', '关于Mr.Hope']
   ];
 
   private readonly media = [

@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主页
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-05 23:12:05
+ * @LastEditTime: 2019-05-08 14:18:25
 -->
 <template>
   <div class="container">
@@ -14,23 +14,25 @@
       <hr class="my-4">
       <p>人格的典范，学习的楷模</p>
       <p class="lead">
-        <a class="btn btn-primary btn-lg" href="#" role="button">了解校学生会</a>
+        <a-button @click="$router.push('/intro/studentUnion')" size="large" type="primary">了解校学生会</a-button>
       </p>
     </div>
     <base-carousel v-bind="carouselData"/>
     <h2 class="px-3 pt-3">东师指南</h2>
     <BaseGrid :content="guidelist"/>
     <h2 class="px-3 pt-3">东师手册</h2>
-    <a-button block class="mb-3" type="primary">
+    <a-button block class="mb-3 blockButton" type="primary">
       <router-link to="/guide">点击进入</router-link>
     </a-button>
     <h2 class="px-3 pt-3">东师校历</h2>
     <div class="calendarHolder">
       <base-time-line :time-list="timeList"/>
     </div>
-    <a-button block class="mb-3" type="primary">
-      <router-link to="/tool/calendar">查看详情</router-link>
-    </a-button>
+    <div class="text-center">
+      <a-button block class="mb-3 blockButton" type="primary">
+        <router-link to="/tool/calendar">查看详情</router-link>
+      </a-button>
+    </div>
   </div>
 </template>
 
@@ -77,19 +79,7 @@ export default class Main extends Vue {
     ]
   };
 
-  private guidelist = [
-    { text: '学习', icon: '/img/icon/tabPage/study.svg', url: '/handbook/study' },
-    { text: '食堂', icon: '/img/icon/tabPage/dining.svg', url: '/handbook/dining' },
-    { text: '生活', icon: '/img/icon/tabPage/life.svg', url: '/handbook/life' },
-    { text: '寝室', icon: '/img/icon/tabPage/dorm.svg', url: '/handbook/dorm' },
-    { text: '校园网', icon: '/img/icon/tabPage/network.svg', url: '/handbook/network' },
-    { text: '校园卡', icon: '/img/icon/tabPage/card.svg', url: '/handbook/card' },
-    { text: '吃喝玩乐', icon: '/img/icon/tabPage/nearby.svg', url: '/handbook/nearby' },
-    { text: '交通', icon: '/img/icon/tabPage/traffic.svg', url: '/handbook/traffic' },
-    { text: '学生组织', icon: '/img/icon/tabPage/studentOrg.svg', url: '/handbook/studentOrg' },
-    { text: '社团', icon: '/img/icon/tabPage/corporation.svg', url: '/handbook/corporation' },
-    { text: '资助', icon: '/img/icon/tabPage/subsidize.svg', url: '/handbook/subsidize' }
-  ];
+  private guidelist = require('@/assets/handbook.json');
 
   private timeList = [];
 
@@ -120,6 +110,12 @@ export default class Main extends Vue {
 }
 </script>
 <style scoped>
+.blockButton {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 15px;
+}
 .calendarHolder {
   padding: 0 15px;
   max-height: 300px;
