@@ -11,7 +11,7 @@
   </div>
 </template>
 <script lang="ts">
-import BackTopSvg from 'assets/icon/backTop.svg';
+import BackTopSvg from '~/icon/backTop.svg';
 import { Component, Vue } from 'vue-property-decorator';
 import $ from 'jquery';
 

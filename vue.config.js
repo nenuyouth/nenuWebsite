@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: vue config file
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-08 18:14:07
+ * @LastEditTime: 2019-05-09 10:34:27
  */
 
 const path = require('path');
@@ -53,23 +53,24 @@ module.exports = {
     svgRule.uses.clear();
     svgRule.use('vue-svg-loader').loader('vue-svg-loader');
 
+    // eslint
     config.module.rule('eslint');
     config.module.rule('eslint').use('eslint-loader');
   },
   configureWebpack: config => {
     const myaliasconfig = {
-      assets: path.resolve(__dirname, 'src/assets/'),
-      lib: path.resolve(__dirname, 'src/lib/'),
+      '~': path.resolve(__dirname, 'src/assets/'),
       '#': path.resolve(__dirname, 'src/components/'),
-      '@ant-design/icons/lib/dist$': path.resolve(__dirname, './src/lib/icon')// 减小 antdIcon 体积
+      lib: path.resolve(__dirname, 'src/lib/'),
+      '@ant-design/icons/lib/dist$': path.resolve(__dirname, './src/lib/icon') // 减小 antdIcon 体积
     };
 
-    config.resolve.alias = { ...config.resolve.alias || {}, ...myaliasconfig };
-    config.resolve.extensions = [
+    config.resolve.alias = { ...config.resolve.alias || {}, ...myaliasconfig }; // 配置解析别名，可以简写
+    config.resolve.extensions = [ // 配置解析扩展
       ...config.resolve.extensions || {},
       ...['.wasm', '.mjs', '.js', '.json', 'ts', '.vue', 'svg']
     ];
-    config.resolve.modules = [...config.resolve.modules || {}, ...['node_modules']];
+    config.resolve.modules = [path.resolve(__dirname, 'src'), 'node_modules']; // 配置模块解析方式，可加快解析速度
 
     // 生产环境配置
     if (isProduction) {
@@ -77,15 +78,17 @@ module.exports = {
       config.externals = {
         axios: 'axios',
         jquery: '$',
+        tinycolor2: 'tinycolor',
         viewerjs: 'Viewer',
         vue: 'Vue',
         'vue-router': 'VueRouter',
         vuex: 'Vuex'
       };
 
+      // 提出性能要求
       config.performance = {
         hints: 'warning',
-        maxEntrypointSize: 524288,
+        maxEntrypointSize: 1048576,
         maxAssetSize: 1048576
       };
 
@@ -103,6 +106,7 @@ module.exports = {
 
         // 为 webpack 运行时代码创建单独的chunk
         runtimeChunk: { name: 'manifest' },
+        // chunk分离设置
         splitChunks: {
           chunks: 'async',
           minSize: 30000,
@@ -120,8 +124,8 @@ module.exports = {
               priority: -8
             },
             common: { // 分离其他
-              test: /[\\/]node_modules[\\/](axios|lodash|jquery|tinycolor2|viewerjs|vue(-class-component|-router|x)?)[\\/]/u,
-              // test: /[\\/]node_modules[\\/](axios|lodash|jquery|viewerjs|vue(-router|x)?)[\\/]/u,
+              test: /[\\/]node_modules[\\/](lodash|vue-class-component)[\\/]/u,
+              // test: /[\\/]node_modules[\\/](axios|lodash|jquery|tinycolor2|viewerjs|vue(-class-component|-router|x)?)[\\/]/u,
               name: 'common',
               chunks: 'all', // valid values are all, async, and initial
               priority: -9

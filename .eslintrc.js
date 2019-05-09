@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: eslint配置文件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-05-08 20:29:03
+ * @LastEditTime: 2019-05-09 10:19:52
  */
 module.exports = {
   // 阻止eslint读取父目录或总配置文件的规则
@@ -14,8 +14,8 @@ module.exports = {
       alias: {
         map: [
           ['@', './src/'],
+          ['~', './src/assets/'],
           ['#', './src/components/'],
-          ['assets', './src/assets/'],
           ['lib', './src/lib/']
         ]
       }

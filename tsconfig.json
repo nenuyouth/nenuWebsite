@@ -20,11 +20,11 @@
       "@/*": [
         "src/*"
       ],
+      "~/*": [
+        "src/assets/*"
+      ],
       "#/*": [
         "src/components/*"
-      ],
-      "assets/*": [
-        "src/assets/*"
       ],
       "lib/*": [
         "src/lib/*"

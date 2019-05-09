@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主页
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-08 14:18:25
+ * @LastEditTime: 2019-05-09 10:37:27
 -->
 <template>
   <div class="container">
@@ -79,7 +79,7 @@ export default class Main extends Vue {
     ]
   };
 
-  private guidelist = require('assets/handbook.json');
+  private guidelist = require('~/handbook');
 
   private timeList = [];
 

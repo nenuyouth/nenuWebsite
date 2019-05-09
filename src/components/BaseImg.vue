@@ -21,8 +21,8 @@
 </template>
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import Loading from 'assets/icon/loading.svg';
-import Error from 'assets/icon/error.svg';
+import Loading from '~/icon/loading.svg';
+import Error from '~/icon/error.svg';
 
 @Component({ components: { Loading, Error } })
 export default class BaseImg extends Vue {

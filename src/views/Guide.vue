@@ -27,7 +27,7 @@ export default class Guide extends Vue {
 
   private activated() {
     // display menu
-    this.$store.commit('menuList', require('assets/guideMenuList.json'));
+    this.$store.commit('menuList', require('~/guideMenuList'));
     this.$store.commit('menuTitle', '东师指南');
   }
   private deactivated() {

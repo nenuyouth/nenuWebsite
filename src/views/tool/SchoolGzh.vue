@@ -10,7 +10,7 @@
         v-for="item in gzh"
       >
         <img
-          :src="require(`assets/schoolGzh/${item.src}.jpg`)"
+          :src="require(`~/schoolGzh/${item.src}.jpg`)"
           class="img-thumbnail mt-1 img-fix"
           style="border-radius:50%;"
         >

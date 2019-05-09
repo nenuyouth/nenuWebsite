@@ -12,6 +12,19 @@
 
 查看[自定义组件文档](https://nenuyouth.com/doc/website/vue/component)
 
+## 别名设置
+
+- @：`src/`
+- \#：`src/components`
+- ~：`src/assets`
+- lib：`src/lib`
+
+## Linter配置
+
+启动项目之后，请安装eslint与tslint并严格按照Linter提示格式化代码。
+
+项目不应包含任何无法通过Linter配置检查的代码。
+
 ## Node.js库使用
 
 ### 项目使用库
@@ -32,6 +45,7 @@
 - ant-design-vue(Ant-design样式库)
 - axios(基于promise的html访问功能)
 - highlight.js(提供md代码高亮)
+- jQuery(提供快速的DOM操作)
 - marked(提供md转html)
 - github-markdown-css(提供github md样式)
 - mavon-editor(markdown网页编辑器)
@@ -40,7 +54,13 @@
 
 #### CDN引入
 
-- jquery3.3.1
+- Vue
+- Vuex
+- Vue-Router
+- Viewerjs
+- Tinycolor2
+- Axios
+- jQuery
 
 ### 开发依赖
 
@@ -81,25 +101,25 @@
 
 ## 初始化项目
 
-```shell
+```bash
 npm install
 ```
 
 ## 更新项目依赖
 
-```shell
+```bash
 npm update
 ```
 
 或
 
-```shell
+```bash
 npm install
 ```
 
 ### 启动开发环境
 
-```shell
+```bash
 npm run serve
 ```
 
@@ -108,15 +128,21 @@ npm run serve
 
 ### 构建生产环境
 
-```shell
+```bash
 npm run build
 ```
 
 > 执行构建，将构建成功的网页输出至/dist目录
 
+```bash
+npm run rebuild
+```
+
+> 重新构建，不清空输出目录原内容
+
 ### 部署网站
 
-```shell
+```bash
 start deploy.bat
 ```
 
@@ -124,14 +150,34 @@ start deploy.bat
 
 #### 执行文件提示和文件修复
 
-```shell
+```bash
 npm run lint
 ```
 
-与
+#### 分析打包文件
 
-```shell
-npm run eslint
+```bash
+npm run analyze
+```
+
+#### 查看浏览器支持
+
+```bash
+npm run browser
+```
+
+#### 执行测试
+
+端对端测试
+
+```bash
+npm run e2e
+```
+
+单元测试
+
+```bash
+npm run unit
 ```
 
 ### 自定义配置

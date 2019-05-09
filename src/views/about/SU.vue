@@ -7,6 +7,6 @@ import BasePage from '#/BasePage.vue';
 
 @Component({ components: { BasePage } })
 export default class SU extends Vue {
-  private readonly pageData = JSON.stringify(require('assets/page/SU.json'));
+  private readonly pageData = JSON.stringify(require('~/page/SU'));
 }
 </script>

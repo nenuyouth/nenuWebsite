@@ -1,3 +1,11 @@
+/*
+ * @Author: Mr.Hope
+ * @LastEditors: Mr.Hope
+ * @Description: Jest配置文件
+ * @Date: 2019-05-05 16:03:08
+ * @LastEditTime: 2019-05-09 10:21:07
+ */
+
 module.exports = {
   moduleFileExtensions: [
     'js',
