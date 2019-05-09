@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主脚本文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-06 00:17:34
+ * @LastEditTime: 2019-05-09 21:42:02
  */
 
 // 引入Ant Design
@@ -31,8 +31,8 @@ import App from './App.vue';
 
 
 // 自定义css样式
-import './lib/customBootstrap.scss';
-import './lib/public.css';
+import '%/customBootstrap.scss';
+import '%/public.css';
 
 // 在组件实例中Hook route方法
 Component.registerHooks([

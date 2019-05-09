@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-05-05 15:09:42
+ * @LastEditTime: 2019-05-09 21:41:13
 -->
 <template>
   <!-- 标题设置 -->
@@ -49,10 +49,10 @@ import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { Route } from 'vue-router';
 import DocView from '#/DocView.vue';
 import PasswordModal from '#/PasswordModal.vue';
-import getCompiledMarkdown from '@/lib/getMarkdown';
+import getCompiledMarkdown from '%/getMarkdown';
 
 // 导入css样式
-import '@/lib/github-markdown.css';
+import '%/github-markdown.css';
 import 'highlight.js/styles/atom-one-dark.css';
 
 @Component({ components: { DocView, PasswordModal } })

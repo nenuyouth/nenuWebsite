@@ -13,7 +13,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { Route } from 'vue-router';
 import MyGuide from '#/MyGuide.vue';
-import getCompiledMarkdown from '@/lib/getMarkdown';
+import getCompiledMarkdown from '%/getMarkdown';
 
 @Component({ components: { MyGuide } })
 export default class Guide extends Vue {

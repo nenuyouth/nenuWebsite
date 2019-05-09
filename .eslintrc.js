@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: eslint配置文件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-05-09 12:41:07
+ * @LastEditTime: 2019-05-09 21:40:52
  */
 module.exports = {
   // 阻止eslint读取父目录或总配置文件的规则
@@ -18,7 +18,7 @@ module.exports = {
           ['@', './src/'],
           ['~', './src/assets/'],
           ['#', './src/components/'],
-          ['lib', './src/lib/']
+          ['%', './src/lib/']
         ]
       }
     }

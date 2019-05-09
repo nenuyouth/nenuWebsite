@@ -41,10 +41,10 @@
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { Route } from 'vue-router';
 import DocView from '#/DocView.vue';
-import getCompiledMarkdown from '@/lib/getMarkdown';
+import getCompiledMarkdown from '%/getMarkdown';
 
 // 导入css样式
-import '@/lib/github-markdown.css';
+import '%/github-markdown.css';
 import 'highlight.js/styles/atom-one-dark.css';
 
 @Component({ components: { DocView } })
