@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: eslint配置文件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-05-09 10:19:52
+ * @LastEditTime: 2019-05-09 12:41:07
  */
 module.exports = {
   // 阻止eslint读取父目录或总配置文件的规则
@@ -13,6 +13,8 @@ module.exports = {
     'import/resolver': {
       alias: {
         map: [
+          ['icon', './node_modules/@ant-design/icons/lib/'],
+          ['ol', './node_modules/@ant-design/icons/lib/outline/'],
           ['@', './src/'],
           ['~', './src/assets/'],
           ['#', './src/components/'],
