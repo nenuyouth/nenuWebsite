@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Internal Doc Display
  * @Date: 2019-04-01 23:35:43
- * @LastEditTime: 2019-05-09 10:16:29
+ * @LastEditTime: 2019-05-10 13:32:18
 -->
 <template>
   <MyDoc :baselength="baselength" :loading="$store.state.docLoading" :path="path"/>
@@ -13,7 +13,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { Route } from 'vue-router';
 import MyDoc from '#/MyDoc.vue';
-import getCompiledMarkdown from 'lib/getMarkdown';
+import getCompiledMarkdown from '%/getMarkdown';
 
 @Component({ components: { MyDoc } })
 export default class Doc extends Vue {

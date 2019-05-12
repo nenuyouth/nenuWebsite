@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主视图文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-05 15:55:08
+ * @LastEditTime: 2019-05-12 20:42:58
 -->
 <template>
   <a-layout hasSider="true" id="app">
@@ -34,7 +34,6 @@ import MySlide from '#/Slide.vue';
 import MyFooter from '#/Footer.vue';
 
 @Component({ components: { BackTop, ViewImage, MyNav, MyFooter, MySlide } })
-// @Component({ components: { BackTop, MyNav, MyFooter, MySlide } })
 export default class App extends Vue {
   // 动画名称
   private transitionName = 'slide-right';

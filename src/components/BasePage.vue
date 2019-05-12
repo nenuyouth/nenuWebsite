@@ -3,13 +3,11 @@
  * @LastEditors: Mr.Hope
  * @Description: 基础页面显示
  * @Date: 2019-02-24 22:21:25
- * @LastEditTime: 2019-05-02 21:53:51
+ * @LastEditTime: 2019-05-12 21:24:14
 -->
 <template>
   <div class="container page">
-    <template v-for="item in myData">
-      <component :is="item.tag" :key="item.id" v-bind="item"/>
-    </template>
+    <component :is="item.tag" :key="item.id" v-bind="item" v-for="item in myData"/>
   </div>
 </template>
 <script lang="ts">

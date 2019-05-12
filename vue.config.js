@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: vue config file
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-09 21:40:34
+ * @LastEditTime: 2019-05-12 16:49:49
  */
 
 const path = require('path');
@@ -11,6 +11,124 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 // 判断环境
 const isProduction = process.env.NODE_ENV === 'production';
+
+/**
+ * @description: Webpack链式处理
+ * @param {object} config Webpack配置
+ * @returns {void}
+ */
+const chainWebpack = config => {
+  // 添加打包时的eslint提示
+  config.module.rule('eslint');
+  config.module.rule('eslint').use('eslint-loader');
+
+  // 处理SVG模块
+  const svgRule = config.module.rule('svg');
+
+  svgRule.uses.clear();
+  svgRule
+    .use('babel-loader').loader('babel-loader').end()// 预先对vue-svg-loader进行处理使其遵守es5标准
+    .use('vue-svg-loader')
+    .loader('vue-svg-loader'); // 调用vue-svg-loader
+};
+
+/**
+ * @description: Webpack配置
+ * @param {object} config Webpack配置
+ * @returns {void}
+ */
+const configureWebpack = config => {
+  const myaliasconfig = {
+    '~': path.resolve(__dirname, 'src/assets/'),
+    '#': path.resolve(__dirname, 'src/components/'),
+    '%': path.resolve(__dirname, 'src/lib/'),
+    icon: path.resolve(__dirname, 'node_modules/@ant-design/icons/lib/'), // 减小Icon.ts体积
+    ol: path.resolve(__dirname, 'node_modules/@ant-design/icons/lib/outline'), // 减小Icon.ts体积
+    '@ant-design/icons/lib/dist$': path.resolve(__dirname, './src/lib/icon') // 减小 antdIcon 体积
+  };
+
+  config.resolve.alias = { ...config.resolve.alias || {}, ...myaliasconfig }; // 配置解析别名，可以简写
+  config.resolve.extensions = [ // 配置解析扩展
+    ...config.resolve.extensions || [], '.svg'
+  ];
+  config.resolve.modules = [path.resolve(__dirname, 'src'), 'node_modules']; // 配置模块解析方式，可加快解析速度
+
+  // 生产环境配置
+  if (isProduction) {
+    // 使用CDN外部引入组件
+    config.externals = {
+      axios: 'axios',
+      jquery: '$',
+      tinycolor2: 'tinycolor',
+      viewerjs: 'Viewer',
+      vue: 'Vue',
+      'vue-router': 'VueRouter',
+      vuex: 'Vuex'
+    };
+
+    // 提出性能要求
+    config.performance = {
+      hints: 'warning',
+      maxEntrypointSize: 1048576,
+      maxAssetSize: 1048576
+    };
+
+    config.optimization = {
+      /*
+       * minimize: true, // 压缩JS代码
+       * minimizer:
+       *   isProduction
+       *     ? [
+       *       new UglifyJsPlugin({ cache: true, parallel: true, sourceMap: false }),
+       *       new OptimizeCSSAssetsPlugin()
+       *     ]
+       *     : [],
+       */
+
+      // 为 webpack 运行时代码创建单独的chunk
+      runtimeChunk: { name: 'manifest' },
+      // chunk分离设置
+      splitChunks: {
+        chunks: 'async',
+        minSize: 30000,
+        maxSize: 0,
+        minChunks: 1,
+        maxAsyncRequests: 10,
+        maxInitialRequests: 5,
+        automaticNameDelimiter: '-',
+        name: true,
+        cacheGroups: {
+          antd: { // 分离ant-design模块
+            test: /[\\/]node_modules[\\/]ant-design-vue[\\/]/u,
+            name: 'antd',
+            chunks: 'all',
+            priority: -8
+          },
+          common: { // 分离其他
+            test: /[\\/]node_modules[\\/](lodash|vue-class-component)[\\/]/u,
+            // test: /[\\/]node_modules[\\/](axios|lodash|jquery|tinycolor2|viewerjs|vue(-class-component|-router|x)?)[\\/]/u,
+            name: 'common',
+            chunks: 'all', // valid values are all, async, and initial
+            priority: -9
+          },
+          vendors: {
+            test: /[\\/]node_modules[\\/]/u,
+            priority: -10
+          },
+          combine: { // 默认块，最小重用两次，优先级最低，不包含已有的chunk内容
+            minChunks: 2,
+            priority: -20,
+            reuseExistingChunk: true // if the chunk contains modules already split out , will be reused
+          }
+        }
+      }
+    };
+
+  } else config.devtool = 'source-map';
+
+  // 分析打包后代码
+  if (process.env.ANALYZE) config.plugins.push(new BundleAnalyzerPlugin());
+};
 
 /**
  * @description: vue输出配置
@@ -46,113 +164,12 @@ module.exports = {
    */
   productionSourceMap: false,
   crossorigin: 'anonymous',
-  chainWebpack: config => {
-    // 处理SVG模块
-    const svgRule = config.module.rule('svg');
-
-    svgRule.uses.clear();
-    svgRule.use('vue-svg-loader').loader('vue-svg-loader');
-
-    // eslint
-    config.module.rule('eslint');
-    config.module.rule('eslint').use('eslint-loader');
-  },
-  configureWebpack: config => {
-    const myaliasconfig = {
-      '~': path.resolve(__dirname, 'src/assets/'),
-      '#': path.resolve(__dirname, 'src/components/'),
-      '%': path.resolve(__dirname, 'src/lib/'),
-      icon: path.resolve(__dirname, 'node_modules/@ant-design/icons/lib/'), // 减小Icon.ts体积
-      ol: path.resolve(__dirname, 'node_modules/@ant-design/icons/lib/outline'), // 减小Icon.ts体积
-      '@ant-design/icons/lib/dist$': path.resolve(__dirname, './src/lib/icon') // 减小 antdIcon 体积
-    };
-
-    config.resolve.alias = { ...config.resolve.alias || {}, ...myaliasconfig }; // 配置解析别名，可以简写
-    config.resolve.extensions = [ // 配置解析扩展
-      ...config.resolve.extensions || {},
-      ...['.wasm', '.mjs', '.js', '.json', 'ts', '.vue', 'svg']
-    ];
-    config.resolve.modules = [path.resolve(__dirname, 'src'), 'node_modules']; // 配置模块解析方式，可加快解析速度
-
-    // 生产环境配置
-    if (isProduction) {
-      // 使用CDN外部引入组件
-      config.externals = {
-        axios: 'axios',
-        jquery: '$',
-        tinycolor2: 'tinycolor',
-        viewerjs: 'Viewer',
-        vue: 'Vue',
-        'vue-router': 'VueRouter',
-        vuex: 'Vuex'
-      };
-
-      // 提出性能要求
-      config.performance = {
-        hints: 'warning',
-        maxEntrypointSize: 1048576,
-        maxAssetSize: 1048576
-      };
-
-      config.optimization = {
-        /*
-         * minimize: true, // 压缩JS代码
-         * minimizer:
-         *   isProduction
-         *     ? [
-         *       new UglifyJsPlugin({ cache: true, parallel: true, sourceMap: false }),
-         *       new OptimizeCSSAssetsPlugin()
-         *     ]
-         *     : [],
-         */
-
-        // 为 webpack 运行时代码创建单独的chunk
-        runtimeChunk: { name: 'manifest' },
-        // chunk分离设置
-        splitChunks: {
-          chunks: 'async',
-          minSize: 30000,
-          maxSize: 0,
-          minChunks: 1,
-          maxAsyncRequests: 10,
-          maxInitialRequests: 5,
-          automaticNameDelimiter: '-',
-          name: true,
-          cacheGroups: {
-            antd: { // 分离antd
-              test: /[\\/]node_modules[\\/]ant-design-vue[\\/]/u,
-              name: 'antd',
-              chunks: 'all',
-              priority: -8
-            },
-            common: { // 分离其他
-              test: /[\\/]node_modules[\\/](lodash|vue-class-component)[\\/]/u,
-              // test: /[\\/]node_modules[\\/](axios|lodash|jquery|tinycolor2|viewerjs|vue(-class-component|-router|x)?)[\\/]/u,
-              name: 'common',
-              chunks: 'all', // valid values are all, async, and initial
-              priority: -9
-            },
-            vendors: {
-              test: /[\\/]node_modules[\\/]/u,
-              priority: -10
-            },
-            combine: { // 默认块，最小重用两次，优先级最低，不包含已有的chunk内容
-              minChunks: 2,
-              priority: -20,
-              reuseExistingChunk: true // if the chunk contains modules already split out , will be reused
-            }
-          }
-        }
-      };
-
-    } else config.devtool = 'source-map';
-
-    // 分析打包后代码
-    if (process.env.ANALYZE) config.plugins.push(new BundleAnalyzerPlugin());
-  },
+  chainWebpack,
+  configureWebpack,
+  transpileDependencies: ['ant-design-vue'], // 需要babel-pollyfill处理的模块
   devServer: {
-    // https: true, // 启用Https，目前由于本地服务器未能支持https而暂时关闭
     compress: true, // 启用gzip压缩
+    // https: true, // 启用Https，目前由于本地服务器未能支持https而暂时关闭
     overlay: { // 浮层
       warnings: false,
       errors: true

@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 密码验证
  * @Date: 2019-03-16 13:44:32
- * @LastEditTime: 2019-05-05 15:10:00
+ * @LastEditTime: 2019-05-11 12:20:07
 -->
 <template>
   <!-- 密码输入框 -->
@@ -31,7 +31,7 @@
       <a-input
         :autocomplete="passwordKey"
         :type="passwordDisplay?'text':'password'"
-        @pressEnter="validatePassword"
+        @pressEnter="validate"
         placeholder="请输入密码"
         v-model="password"
       >
@@ -85,10 +85,13 @@ export default class PasswordModal extends Vue {
   // 按钮加载状态控制
   private validating = false;
 
+  private validate(e: Event) {
+    e.preventDefault(); // z阻止原生事件刷新浏览器
+    this.validatePassword();
+  }
+
   // 验证密码
   private async validatePassword() {
-    // const query = this.userNameKey ? `&userName=${this.userName}` : '';
-
     if (this.password) {
       // 显示登录状态
       this.$message.loading('登陆中..', 0);

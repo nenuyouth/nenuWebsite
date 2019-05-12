@@ -3,13 +3,13 @@
  * @LastEditors: Mr.Hope
  * @Description: 主脚本文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-09 21:42:02
+ * @LastEditTime: 2019-05-12 16:50:21
  */
 
 // 引入Ant Design
 import {
-  Anchor, Breadcrumb, Button, Card, Carousel, Col, Icon, Input,
-  Layout, Menu, Modal, Row, Select, Skeleton, Spin, Timeline, message
+  Anchor, Breadcrumb, Button, Carousel, Col, Divider, Dropdown, Form, Icon, Input,
+  Layout, Menu, Modal, Radio, Row, Skeleton, Spin, Timeline, message
 } from 'ant-design-vue';
 import { Route } from 'vue-router';
 import Vue from 'vue';
@@ -29,7 +29,6 @@ import registerSW from './service-worker/registerSW';
 // 引入Vue根元素
 import App from './App.vue';
 
-
 // 自定义css样式
 import '%/customBootstrap.scss';
 import '%/public.css';
@@ -45,16 +44,18 @@ Component.registerHooks([
 Vue.use(Anchor);
 Vue.use(Breadcrumb);
 Vue.use(Button);
-Vue.use(Card);
 Vue.use(Carousel);
 Vue.use(Col);
+Vue.use(Divider);
+Vue.use(Dropdown);
+Vue.use(Form);
 Vue.use(Icon);
 Vue.use(Input);
 Vue.use(Layout);
 Vue.use(Menu);
 Vue.use(Modal);
+Vue.use(Radio);
 Vue.use(Row);
-Vue.use(Select);
 Vue.use(Skeleton);
 Vue.use(Spin);
 Vue.use(Timeline);

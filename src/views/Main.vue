@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主页
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-09 10:37:27
+ * @LastEditTime: 2019-05-12 20:41:53
 -->
 <template>
   <div class="container">
@@ -21,17 +21,18 @@
     <h2 class="px-3 pt-3">东师指南</h2>
     <BaseGrid :content="guidelist"/>
     <h2 class="px-3 pt-3">东师手册</h2>
-    <a-button block class="mb-3 blockButton" type="primary">
-      <router-link to="/guide">点击进入</router-link>
-    </a-button>
+    <a-button @click="$router.push('/guide')" block class="mb-3 blockButton" type="primary">点击进入</a-button>
     <h2 class="px-3 pt-3">东师校历</h2>
     <div class="calendarHolder">
       <base-time-line :time-list="timeList"/>
     </div>
     <div class="text-center">
-      <a-button block class="mb-3 blockButton" type="primary">
-        <router-link to="/tool/calendar">查看详情</router-link>
-      </a-button>
+      <a-button
+        @click="$router.push('/tool/calendar')"
+        block
+        class="mb-3 blockButton"
+        type="primary"
+      >查看详情</a-button>
     </div>
   </div>
 </template>

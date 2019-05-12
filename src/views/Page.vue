@@ -3,10 +3,12 @@
  * @LastEditors: Mr.Hope
  * @Description: 自动生成界面
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-05 15:10:11
+ * @LastEditTime: 2019-05-12 21:21:55
 -->
 <template>
-  <base-page :key="url" :pagedata="pageData" v-if="pageData"></base-page>
+  <keep-alive :max="5">
+    <base-page :key="url" :pagedata="pageData" v-if="pageData"></base-page>
+  </keep-alive>
 </template>
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
@@ -21,9 +23,10 @@ export default class Page extends Vue {
   @Prop(String) private readonly path!: string;
 
   // 加载页面
-  private async loadPage(path: string) {
+  private async loadPage(path: string, back = false) {
     let finalPath = '';
     let pathLength = path.length; // 确定文件夹名称
+    let navigate = true;
 
     while (!Number.isNaN(Number(path.charAt(pathLength)))) pathLength -= 1;
     const folder = path.substring(0, pathLength + 1);
@@ -47,32 +50,42 @@ export default class Page extends Vue {
           okText: '汇报',
           okType: 'danger',
           onOk: () => {
-            router.back();
+            if (back) router.back();
+            else navigate = false;
             window.open('http://wpa.qq.com/msgrd?v=3&uin=1178522294&site=qq&menu=yes');
           },
           onCancel: () => {
-            router.back();
+            if (back) router.back();
+            else navigate = false;
           }
         });
       }
     });
+
+    return navigate;
   }
 
   private get url() {
     return this.$route.path;
   }
 
-  private mounted() {
+  private activated() {
     const paths = this.$route.path.split('/');
 
-    if (paths.length > 2) this.loadPage(paths[paths.length - 1]);
+    if (paths.length === 3 && (paths[1] === 'handbook' || paths[1] === 'page'))
+      this.loadPage(paths[paths.length - 1], true);
   }
 
-  @Watch('$route')
-  private onRouteChange(to: Route, from: Route) {
-    const paths = this.$route.path.split('/');
+  // change docPath
+  private async beforeRouteUpdate(to: Route, from: Route, next: (navigate?: boolean) => void) {
+    const paths = to.path.split('/');
+    const navigate =
+      paths.length === 3 && (paths[1] === 'handbook' || paths[1] === 'page')
+        ? await this.loadPage(paths[paths.length - 1])
+        : false;
 
-    if (paths.length > 2) this.loadPage(paths[paths.length - 1]);
+    // invoke Hook
+    next(navigate);
   }
 }
 </script>

@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-05-08 12:53:36
+ * @LastEditTime: 2019-05-12 19:27:26
 -->
 <template>
   <div class="container mt-3 pb-3">
@@ -156,18 +156,26 @@ export default class DocView extends Vue {
     const aside: Aside[] = [];
     const title = $('h1').text();
 
+    // 设置目录
+    const headings = document.querySelectorAll('h2,h3,h4');
+
     // 设置网页标题
     this.$emit('title', title);
     this.docTitle = title;
 
-    // 设置目录
-    document.querySelectorAll('h2,h3,h4').forEach(domEle => {
-      if (domEle.children[0] && domEle.children[0].tagName.toLowerCase() === 'svg') {
-        const { id } = domEle;
+    Object.keys(headings).forEach(key => {
+      const index = Number(key);
+
+      if (
+        !Number.isNaN(index) &&
+        headings[index].children[0] &&
+        headings[index].children[0].tagName.toLowerCase() === 'svg'
+      ) {
+        const { id } = headings[index];
 
         if (id && id.indexOf('href') === -1) {
-          const text = domEle.textContent;
-          const level = domEle.tagName[1];
+          const text = headings[index].textContent;
+          const level = headings[index].tagName[1];
 
           if (text) aside.push({ level, text });
         }
