@@ -50,7 +50,6 @@
   ],
   "exclude": [
     "dist",
-    "node_modules",
-    "unusedLib"
+    "node_modules"
   ]
 }

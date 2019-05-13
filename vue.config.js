@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: vue config file
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-12 16:49:49
+ * @LastEditTime: 2019-05-13 12:02:07
  */
 
 const path = require('path');
@@ -203,7 +203,7 @@ module.exports = {
   pwa: {
     name: '东师校会官网', // SW注册后的应用名称
     themeColor: '#2ecc71', // 主题色
-    msTileColor: '#2ecc71',
+    msTileColor: '#2ecc71', // 微软磁贴颜色
     appleMobileWebAppCapable: 'yes', // iOS启用SW
     appleMobileWebAppStatusBarStyle: 'default', // iOS状态栏样式,可选"black-translucent","black","default"
     iconPaths: { // 图标路径
