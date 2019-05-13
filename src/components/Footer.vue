@@ -3,8 +3,8 @@
  * @LastEditors: Mr.Hope
  * @Description: 网页页脚
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-05-08 14:01:32
- -->
+ * @LastEditTime: 2019-05-13 18:06:24
+-->
 <template>
   <a-layout-footer :class="slide?'withSlide':''">
     <a-row align="middle" class="text-center" justify="space-around" type="flex">
