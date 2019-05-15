@@ -1,14 +1,9 @@
 <template>
   <div class="vue_viewer" ref="viewer">
-    <template v-if="$slots.default">
-      <slot/>
-    </template>
-    <template v-else>
-      <div :key="index" class="vue_viewer_item" v-for="(item, index) in list" v-show="false">
-        <img :alt="item.title" :src="item.url" v-if="(item instanceof Object)">
-        <img :src="item" v-else>
-      </div>
-    </template>
+    <div :key="index" class="vue_viewer_item" v-for="(item, index) in list" v-show="false">
+      <img :alt="item.title" :src="item.url" v-if="(item instanceof Object)">
+      <img :src="item" v-else>
+    </div>
   </div>
 </template>
 <script lang="ts">
@@ -17,20 +12,6 @@ import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 
 // 引入ViewJS样式
 import 'viewerjs/dist/viewer.css';
-
-const toolbarDefaultOption: Viewer.ToolbarOptions = {
-  zoomIn: 1,
-  zoomOut: 1,
-  oneToOne: 1,
-  reset: 1,
-  prev: 1,
-  play: 1,
-  next: 1,
-  rotateLeft: 1,
-  rotateRight: 1,
-  flipHorizontal: 1,
-  flipVertical: 1
-};
 
 enum Visibility {
   Hidden = 0,
@@ -45,35 +26,18 @@ let viewer: Viewer;
 @Component
 export default class ImageViewer extends Vue {
   // 图片列表
-  @Prop({ type: [String, Array] }) private readonly images!: string | string[];
+  private get list() {
+    return this.$store.state.image.list;
+  }
 
-  // 控制图片是否可见
-  @Prop({ type: Boolean, default: false }) private readonly visible!: boolean;
+  // 图片索引值
+  private get index() {
+    return this.$store.state.image.index;
+  }
 
-  @Prop(Number) private readonly value!: number;
-
-  // 图片列表
-  private list: string[] = [];
-  // 图片的索引值
-  private index = 0;
-  private toolbar: number | boolean | object = toolbarDefaultOption;
-  private closed = false;
-
-  private photo = [
-    { url: 'https://dummyimage.com/100x100', title: '哈哈哈' },
-    'https://dummyimage.com/110x110',
-    'https://dummyimage.com/120x120'
-  ];
-  private viewerVal = 0;
-  private isShow = false;
-
-  // 初始化选项
-  private optionsInit() {
-    this.list = typeof this.images === 'string' ? [this.images] : this.images;
-
-    this.index = this.value;
-
-    this.closed = this.visible;
+  // 展示状态
+  private get display() {
+    return this.$store.state.image.display;
   }
 
   private viewerInit() {
@@ -82,6 +46,12 @@ export default class ImageViewer extends Vue {
       navbar: 1,
       title: 1,
       toolbar: {
+        zoomIn: 1,
+        zoomOut: 1,
+        oneToOne: 1,
+        prev: 1,
+        play: 1,
+        next: 1,
         reset: { show: false },
         rotateLeft: { show: false },
         rotateRight: { show: false },
@@ -102,7 +72,7 @@ export default class ImageViewer extends Vue {
       },
       shown: event => {
         // 显示事件-结束
-        this.closed = true;
+        this.$store.commit('displayImage', true);
         this.$emit('shown', event);
         this.$emit('update:visible', true);
       },
@@ -112,7 +82,7 @@ export default class ImageViewer extends Vue {
       },
       hidden: event => {
         // 隐藏事件-结束
-        this.closed = false;
+        this.$store.commit('displayImage', false);
         this.$emit('hidden', event);
         this.$emit('update:visible', false);
       },
@@ -122,7 +92,7 @@ export default class ImageViewer extends Vue {
       },
       viewed: event => {
         // 切换事件-结束
-        this.index = event.detail.index;
+        this.$store.commit('imageIndex', event.detail.index);
         this.$emit('viewed', event);
       },
       zoom: event => {
@@ -136,44 +106,38 @@ export default class ImageViewer extends Vue {
     });
 
     viewer = new Viewer(this.$refs.viewer as Element);
-    if (this.visible) this.show();
+    if (this.display) this.show();
   }
 
   private created() {
-    this.optionsInit();
     this.$nextTick(() => {
       this.viewerInit();
     });
   }
 
-  @Watch('images')
-  private onImagesChange() {
+  @Watch('list')
+  private onListChange() {
     this.$nextTick(() => {
       this.update();
+      console.log('update');
     });
   }
 
-  @Watch('visible')
-  private onVisibleChange(newVal: boolean) {
-    if (this.closed === newVal) return;
-    this.closed = newVal;
-    if (newVal) this.show();
+  @Watch('display')
+  private onDisplayChange(newVal: boolean) {
+    if (newVal) this.view(this.index);
+    // if (newVal) this.show();
     else this.hide();
   }
 
   @Watch('index')
   private onIndexChange() {
-    this.$emit('input', this.index);
+    if (this.display) this.view(this.index);
   }
 
-  @Watch('value')
-  private onValueChange() {
-    if (!this.value && this.value !== 0) return;
-    this.view(this.value);
-  }
-
+  // 销毁Viewerjs 实例
   private beforeDestroy() {
-    this.destroy();
+    viewer.destroy();
   }
 
   // 显示 immediate = 是否立即显示
@@ -196,13 +160,15 @@ export default class ImageViewer extends Vue {
   }
   // 上一张，如果未显示灯箱，将首先显示灯箱。 loop = 是否循环
   private prev(loop = false) {
-    viewer.prev(loop);
+    // viewer.prev(loop);
+    this.$store.commit('imageIndex', this.index ? this.index - 1 : this.list.length - 1);
 
     return this;
   }
   // 下一张，如果未显示灯箱，将首先显示灯箱。 loop = 是否循环
   private next(loop = false) {
-    viewer.next(loop);
+    // viewer.next(loop);
+    this.$store.commit('imageIndex', this.index === this.list.length - 1 ? 0 : this.index + 1);
 
     return this;
   }
@@ -307,10 +273,6 @@ export default class ImageViewer extends Vue {
     viewer.update();
 
     return this;
-  }
-  // 销毁
-  private destroy() {
-    viewer.destroy();
   }
 }
 </script>

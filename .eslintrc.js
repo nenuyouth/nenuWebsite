@@ -3,13 +3,13 @@
  * @LastEditors: Mr.Hope
  * @Description: eslint配置文件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-05-13 12:10:32
+ * @LastEditTime: 2019-05-13 19:17:43
  */
 module.exports = {
   // 阻止eslint读取父目录或总配置文件的规则
   root: true,
 
-  // Esloader配置
+  // es-loader配置
   settings: {
     'import/resolver': {
       alias: {

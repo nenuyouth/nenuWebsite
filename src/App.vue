@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主视图文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-12 20:42:58
+ * @LastEditTime: 2019-05-14 23:41:58
 -->
 <template>
   <a-layout hasSider="true" id="app">
@@ -21,7 +21,7 @@
       <my-footer id="footer"/>
     </a-layout>
     <!-- </transition> -->
-    <view-image :images="$store.state.image.imageList" :value="$store.state.image.index"/>
+    <view-image/>
   </a-layout>
 </template>
 <script lang='ts'>

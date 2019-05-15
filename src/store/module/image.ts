@@ -9,12 +9,14 @@ import { Module } from 'vuex';
 import { BaseState } from '../state';
 
 export interface ImageState {
-  imageList: string[]; // 图片列表
+  display: boolean; // 图片的展示状态
+  list: string[]; // 图片列表
   index: number; // 当前展示图片的索引
 }
 
 const imageState: ImageState = {
-  imageList: [],
+  display: false,
+  list: [],
   index: 0
 };
 
@@ -29,7 +31,7 @@ const imageModule: Module<ImageState, BaseState> = {
      * @param index 所展示图片的索引
      */
     imageList(state: ImageState, urls?: string | string[], index?: number) {
-      state.imageList = urls ? typeof urls === 'string' ? [urls] : urls : [''];
+      state.list = urls ? typeof urls === 'string' ? [urls] : urls : [''];
       if (index) state.index = index;
     },
     /**
@@ -38,8 +40,13 @@ const imageModule: Module<ImageState, BaseState> = {
      * @param state imagestate
      * @param index 所展示图片的索引
      */
-    index(state: ImageState, index: number) {
+    imageIndex(state: ImageState, index: number) {
       state.index = index;
+    },
+
+    displayImage(state: ImageState, status?: boolean) {
+      if (!status) state.display = !state.display;
+      else if (status !== state.display) state.display = status;
     }
   }
 };

@@ -128,8 +128,16 @@ npm run serve
 
 ### 构建生产环境
 
+- 构建现代输出（ES5标准支持，有fallback）
+
 ```bash
 npm run build
+```
+
+- 构建常规输出（ES5标准支持，有fallback）
+
+```bash
+npm run normBuild
 ```
 
 > 执行构建，将构建成功的网页输出至/dist目录
@@ -138,7 +146,11 @@ npm run build
 npm run rebuild
 ```
 
-> 重新构建，不清空输出目录原内容
+```bash
+npm run normRebuild
+```
+
+> 重新构建（现代 | 常规），不清空输出目录原内容
 
 ### 部署网站
 
@@ -156,14 +168,36 @@ npm run lint
 
 #### 分析打包文件
 
+- 分析现代构建打包
+
 ```bash
 npm run analyze
+```
+
+- 分析普通构建打包
+
+```bash
+npm run normAnal
 ```
 
 #### 查看浏览器支持
 
 ```bash
 npm run browser
+```
+
+#### 输出Webpack模式打包配置
+
+- 输出现代构建打包配置至当前目录的moderm.js
+
+```bash
+npm run inspect
+```
+
+- 输出普通构建打包配置至当前目录的normal.js
+
+```bash
+npm run normInspect
 ```
 
 #### 执行测试
