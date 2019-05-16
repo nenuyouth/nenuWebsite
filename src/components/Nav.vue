@@ -1,6 +1,6 @@
 <template>
   <a-menu :theme="theme" mode="horizontal" v-model="active">
-    <a-menu-item @click="$router.go(-1)" key="logo" style="padding:0 10px 0 20px;">
+    <a-menu-item key="logo" style="padding:0 10px 0 20px;">
       <icon-font id="backButton" style="display:none;" type="icon-navigateBack"/>
       <img alt="东师青年" id="logo" src="/img/icon/nenuyouth.png">
     </a-menu-item>
@@ -39,7 +39,7 @@
   </a-menu>
 </template>
 <script lang="ts">
-import { Component, Vue, Watch } from 'vue-property-decorator';
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { Route } from 'vue-router';
 import $ from 'jquery';
 
@@ -52,8 +52,9 @@ export default class Nav extends Vue {
     return this.$store.state.nightmode ? 'dark' : 'light';
   }
 
-  private set active(key: string[]) {
-    // do nothing here
+  private set active(active: any) {
+    if (active[0] === 'logo') this.$router.back();
+    // do nothing
   }
 
   // 激活对应menu项
