@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主页
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-12 20:41:53
+ * @LastEditTime: 2019-05-16 12:07:27
 -->
 <template>
   <div class="container">
@@ -12,7 +12,7 @@
       <h1>&nbsp;&nbsp;而我刚好在场</h1>
       <p class="lead">东北师范大学校学生会</p>
       <hr class="my-4">
-      <p>人格的典范，学习的楷模</p>
+      <p>人格的魅力，学习的楷模，工作的典范</p>
       <p class="lead">
         <a-button @click="$router.push('/intro/studentUnion')" size="large" type="primary">了解校学生会</a-button>
       </p>
