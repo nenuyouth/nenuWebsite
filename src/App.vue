@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主视图文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-14 23:41:58
+ * @LastEditTime: 2019-05-15 20:58:55
 -->
 <template>
   <a-layout hasSider="true" id="app">
@@ -21,19 +21,19 @@
       <my-footer id="footer"/>
     </a-layout>
     <!-- </transition> -->
-    <view-image/>
+    <base-viewer/>
   </a-layout>
 </template>
 <script lang='ts'>
 import { Component, Vue, Watch } from 'vue-property-decorator';
 import { Route } from 'vue-router';
 import BackTop from '#/BackTop.vue';
-import ViewImage from '#/ViewImage.vue';
+import BaseViewer from '#/BaseViewer.vue';
 import MyNav from '#/Nav.vue';
 import MySlide from '#/Slide.vue';
 import MyFooter from '#/Footer.vue';
 
-@Component({ components: { BackTop, ViewImage, MyNav, MyFooter, MySlide } })
+@Component({ components: { BackTop, BaseViewer, MyNav, MyFooter, MySlide } })
 export default class App extends Vue {
   // 动画名称
   private transitionName = 'slide-right';

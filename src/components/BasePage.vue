@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 基础页面显示
  * @Date: 2019-02-24 22:21:25
- * @LastEditTime: 2019-05-12 21:24:14
+ * @LastEditTime: 2019-05-15 13:11:00
 -->
 <template>
   <div class="container page">
@@ -41,10 +41,10 @@ export default class BasePage extends Vue {
 
   // Handle Data to change tags
   private get myData() {
-    const myData = JSON.parse(this.pagedata);
+    const pageData = JSON.parse(this.pagedata);
     const imageList: string[] = [];
 
-    myData.forEach((element: any, index: number) => {
+    pageData.forEach((element: any, index: number) => {
       element.myId = index;
       element.tag = `base-${element.tag}`;
       if ('src' in element) imageList.push(element.src);
@@ -52,7 +52,7 @@ export default class BasePage extends Vue {
 
     this.$store.commit('imageList', imageList);
 
-    return myData;
+    return pageData;
   }
 }
 </script>

@@ -1,9 +1,15 @@
 <template>
-  <div class="vue_viewer" ref="viewer">
-    <div :key="index" class="vue_viewer_item" v-for="(item, index) in list" v-show="false">
-      <img :alt="item.title" :src="item.url" v-if="(item instanceof Object)">
-      <img :src="item" v-else>
-    </div>
+  <div ref="viewer">
+    <template v-for="(item, index) in list">
+      <img
+        :alt="item.title"
+        :key="index"
+        :src="item.url"
+        v-if="(item instanceof Object)"
+        v-show="false"
+      >
+      <img :key="index" :src="item" v-else v-show="false">
+    </template>
   </div>
 </template>
 <script lang="ts">
@@ -12,14 +18,6 @@ import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 
 // 引入ViewJS样式
 import 'viewerjs/dist/viewer.css';
-
-enum Visibility {
-  Hidden = 0,
-  Visible = 1,
-  VisibleOnMediumOrWiderScreen = 2,
-  VisibleOnLargeOrWiderScreen = 3,
-  VisibleOnExtraLargeOrWiderScreen = 4
-}
 
 let viewer: Viewer;
 
@@ -160,15 +158,15 @@ export default class ImageViewer extends Vue {
   }
   // 上一张，如果未显示灯箱，将首先显示灯箱。 loop = 是否循环
   private prev(loop = false) {
-    // viewer.prev(loop);
-    this.$store.commit('imageIndex', this.index ? this.index - 1 : this.list.length - 1);
+    viewer.prev(loop);
+    // this.$store.commit('imageIndex', this.index ? this.index - 1 : this.list.length - 1);
 
     return this;
   }
   // 下一张，如果未显示灯箱，将首先显示灯箱。 loop = 是否循环
   private next(loop = false) {
-    // viewer.next(loop);
-    this.$store.commit('imageIndex', this.index === this.list.length - 1 ? 0 : this.index + 1);
+    viewer.next(loop);
+    // this.$store.commit('imageIndex', this.index === this.list.length - 1 ? 0 : this.index + 1);
 
     return this;
   }

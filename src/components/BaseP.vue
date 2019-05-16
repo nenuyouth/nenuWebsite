@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Base Paragraph
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-05 15:08:15
+ * @LastEditTime: 2019-05-15 20:57:30
 -->
 <template>
   <div :id="myId" class="Ctn">
@@ -16,11 +16,8 @@
           <Loading class="imgIcon" v-else/>
           <span v-text="error ? '图片加载失败' : '加载中...'"/>
         </div>
-        <img :src="src" @click="showImg = true" class="img" v-else>
+        <img :src="src" @click="imgDisplay" class="img" v-else>
         <div class="imgDesc" v-if="desc" v-text="`▲${desc}`"/>
-        <div @click="showImg = false" class="preview" v-if="showImg">
-          <img :src="src" class="previewImg">
-        </div>
       </div>
     </div>
   </div>
@@ -71,9 +68,6 @@ export default class BaseP extends Vue {
   private loaded = false;
   private error = false;
 
-  // Whether to display image or not
-  private showImg = false;
-
   // Handle text data in order to display correctly with spaces and line breaks on website
   private get pText() {
     return this.text.replace(/\n/gu, '<br/>').replace(/\s/gu, '&ensp;');
@@ -102,6 +96,10 @@ export default class BaseP extends Vue {
 
       delete img.onload;
     };
+  }
+
+  private imgDisplay() {
+    this.$store.commit('imageUrl', this.src);
   }
 }
 </script>
