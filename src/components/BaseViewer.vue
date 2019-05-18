@@ -1,3 +1,10 @@
+<!--
+ * @Author: Mr.Hope
+ * @Date: 2019-05-16 15:35:49
+ * @LastEditors: Mr.Hope
+ * @LastEditTime: 2019-05-18 19:02:46
+ * @Description: Image Viewer
+-->
 <template>
   <div ref="viewer">
     <template v-for="(item, index) in list">
