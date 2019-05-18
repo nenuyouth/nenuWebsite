@@ -22,6 +22,7 @@ export default class LoadingGear extends Vue {}
   top: calc(50vh - 30px);
   left: calc(50% - 30px);
 }
+
 .loader1 {
   display: block;
   position: absolute;

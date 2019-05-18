@@ -274,12 +274,3 @@ export default class ImageViewer extends Vue {
   }
 }
 </script>
-<style lang="scss">
-.vue_viewer_item {
-  display: inline-block;
-  margin: 5px;
-  img {
-    width: 100px;
-  }
-}
-</style>

@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主页
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-16 12:07:27
+ * @LastEditTime: 2019-05-17 22:45:15
 -->
 <template>
   <div class="container">
@@ -110,7 +110,7 @@ export default class Main extends Vue {
   }
 }
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .blockButton {
   max-width: 600px;
   margin-left: auto;
@@ -121,8 +121,8 @@ export default class Main extends Vue {
   padding: 0 15px;
   max-height: 300px;
   overflow-y: auto;
-}
-.calendarHolder::-webkit-scrollbar {
-  display: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 </style>

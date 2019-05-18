@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Base Image
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-15 20:57:49
+ * @LastEditTime: 2019-05-18 16:30:15
 -->
 <template>
   <div :id="myId" class="ImgCtn">
@@ -66,15 +66,17 @@ export default class BaseImg extends Vue {
   }
 }
 </script>
-<style scoped>
+<style lang='scss' scoped>
 .ImgCtn {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 .ImgCtn + .ImgCtn {
   margin-top: 8px;
 }
+
 .imgIcon {
   width: 36px;
   height: 36px;
@@ -99,18 +101,15 @@ export default class BaseImg extends Vue {
   margin: 4px 2%;
   border-radius: 8px;
   max-width: 560px !important;
+  @media (min-width: 768px) {
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
 }
 
 .P .img {
   width: 100%;
   margin: 4px 0;
-}
-
-@media (min-width: 768px) {
-  .img {
-    margin-top: 12px;
-    margin-bottom: 12px;
-  }
 }
 
 .imgDesc {
@@ -121,10 +120,7 @@ export default class BaseImg extends Vue {
   text-align: center;
   color: #222;
   letter-spacing: 1px;
-}
-
-@media (min-width: 768px) {
-  .imgDesc {
+  @media (min-width: 768px) {
     font-size: 14px;
   }
 }
@@ -132,23 +128,4 @@ export default class BaseImg extends Vue {
 .nm .imgDesc {
   color: #ddd;
 }
-
-/*
-.preview {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #00000026;
-}
-
-.previewImg {
-  max-width: 90%;
-  max-height: 100%;
-  border-radius: 5px;
-} */
 </style>

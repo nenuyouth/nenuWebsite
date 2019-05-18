@@ -13,8 +13,7 @@
     "baseUrl": ".",
     "types": [
       "webpack-env",
-      "jquery",
-      "jest"
+      "jquery"
     ],
     "paths": {
       "icon/*": [

@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-05-12 19:27:26
+ * @LastEditTime: 2019-05-18 17:39:20
 -->
 <template>
   <div class="container mt-3 pb-3">
@@ -368,7 +368,7 @@ export default class DocView extends Vue {
   }
 }
 </script>
-<style>
+<style lang='scss'>
 /* 设置loadingicon样式 */
 .ant-spin-spinning {
   min-height: calc(100vh - 370px);
@@ -429,6 +429,7 @@ export default class DocView extends Vue {
     transform: rotate(360deg);
   }
 }
+
 /* markdown主容器class */
 .markdown-body {
   min-height: 200px;
@@ -441,12 +442,11 @@ export default class DocView extends Vue {
   top: 40px;
   text-align: right;
   z-index: 5;
-}
-
-#asideSlide #aside {
-  margin-left: auto;
-  max-width: 80vw;
-  height: 100%;
+  #aside {
+    margin-left: auto;
+    max-width: 80vw;
+    height: 100%;
+  }
 }
 
 /* 侧边栏Mask*/
@@ -459,6 +459,7 @@ export default class DocView extends Vue {
   background-color: rgba(127, 127, 127, 0.15);
   z-index: 4;
 }
+
 /* 侧边栏按钮 */
 .asideSlideBtn {
   position: absolute;
@@ -482,11 +483,13 @@ export default class DocView extends Vue {
   position: fixed;
   top: 4rem;
   width: 225px;
-}
-
-#asideCtn #aside {
-  border-radius: 5px;
-  max-height: calc(100vh - 255px);
+  #aside {
+    border-radius: 5px;
+    max-height: calc(100vh - 255px);
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
 }
 
 /* 目录 */
@@ -501,29 +504,26 @@ export default class DocView extends Vue {
 .asideList {
   padding: 15px 0 0 15px;
   max-height: 100%;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 /* 滚动条去除 */
-#asideCtn #aside::-webkit-scrollbar,
-.asideList::-webkit-scrollbar {
-  display: none;
-}
 
 .asideHeading {
   display: block;
   color: rgb(44, 62, 80);
   word-wrap: break-word;
-}
-
-.asideHeading:visited {
-  text-decoration: none;
-}
-
-.asideHeading:hover {
-  text-decoration: none;
-  color: #000;
-  background-color: rgba(127, 127, 127, 0.15);
-  cursor: pointer;
+  &:visited {
+    text-decoration: none;
+  }
+  &:hover {
+    text-decoration: none;
+    color: #000;
+    background-color: rgba(127, 127, 127, 0.15);
+    cursor: pointer;
+  }
 }
 
 .asideH1 {

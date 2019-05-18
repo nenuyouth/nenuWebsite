@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: vue config file
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-15 12:49:01
+ * @LastEditTime: 2019-05-18 16:43:16
  */
 
 const path = require('path');
@@ -126,14 +126,11 @@ const configureWebpack = config => {
 
   } else config.devtool = 'source-map';
 
-  if (process.env.ANALYZE) { // 分析打包后代码
-    const option = {
+  if (process.env.ANALYZE)  // 分析打包后代码
+    config.plugins.push(new BundleAnalyzerPlugin({ // 使用webpack分析插件
       analyzerPort: 0, // 让node使用随机端口
       defaultSizes: 'gzip' // 默认展示gzip大小
-    };
-
-    config.plugins.push(new BundleAnalyzerPlugin(option));
-  }
+    }));
 };
 
 /**

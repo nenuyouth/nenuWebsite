@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Base Foot
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-05 15:07:14
+ * @LastEditTime: 2019-05-18 16:20:21
 -->
 <template>
   <div :id="myId" class="Footer">
@@ -39,7 +39,7 @@ export default class BaseFoot extends Vue {
   @Prop(String) private readonly time!: string;
 }
 </script>
-<style scoped>
+<style lang='scss' scoped>
 .Footer {
   margin-top: 20px;
   padding: 8px 5%;
@@ -49,16 +49,21 @@ export default class BaseFoot extends Vue {
 }
 
 .footerCtn {
-  font-size: 10px;
+  font: {
+    size: 10px;
+    weight: 300;
+  }
   letter-spacing: 1px;
   line-height: 1.6;
-  font-weight: 300;
   text-align: center;
   color: #888;
   display: -webkit-flex;
   display: flex;
   justify-content: center;
   align-items: center;
+  @media (min-width: 600px) {
+    font-size: 12px;
+  }
 }
 
 .nm .footerCtn {
@@ -68,11 +73,6 @@ export default class BaseFoot extends Vue {
   width: 20px;
   height: 20px;
   margin: 0;
-}
-@media (min-width: 600px) {
-  .footerCtn {
-    font-size: 12px;
-  }
 }
 
 @keyframes rotate {

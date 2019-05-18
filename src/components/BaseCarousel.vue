@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Base Carousel
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-05 15:07:07
+ * @LastEditTime: 2019-05-17 23:14:35
 -->
 <template>
   <a-carousel
@@ -147,7 +147,7 @@ export default class BaseCarousel extends Vue {
   }
 }
 </script>
-<style scoped>
+<style lang='scss' scoped>
 .ant-carousel {
   max-width: 100%;
 }
@@ -188,19 +188,23 @@ export default class BaseCarousel extends Vue {
   color: rgba(255, 255, 255, 1) !important;
   text-align: center;
   vertical-align: center;
+  h1 {
+    color: #fff;
+  }
+  h2 {
+    color: #fff;
+  }
 }
-.caption h1 {
-  color: #fff;
+
+.textBlack {
+  h1 {
+    color: #000;
+  }
+  h2 {
+    color: #000;
+  }
 }
-.caption h2 {
-  color: #fff;
-}
-.textBlack h1 {
-  color: #000;
-}
-.textBlack h2 {
-  color: #000;
-}
+
 .img {
   display: block;
   width: 100%;

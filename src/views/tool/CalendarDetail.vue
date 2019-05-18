@@ -44,7 +44,7 @@ export default class Calendar extends Vue {
   }
 }
 </script>
-<style scoped>
+<style lang='scss' scoped>
 .backButton {
   position: fixed;
   z-index: 2;
@@ -61,8 +61,8 @@ export default class Calendar extends Vue {
   border-bottom-left-radius: 4px;
   -webkit-box-shadow: -2px 0 5px rgba(0, 0, 0, 0.15);
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.15);
-}
-.backButton:hover {
-  background-color: rgba(0, 0, 0, 0.15);
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.15);
+  }
 }
 </style>

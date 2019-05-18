@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-05-05 15:09:47
+ * @LastEditTime: 2019-05-18 17:48:51
 -->
 <template>
   <!-- 标题设置 -->
@@ -108,7 +108,7 @@ export default class MyGuide extends Vue {
   }
 }
 </script>
-<style scoped>
+<style lang='scss' scoped>
 .loadingCtn {
   min-height: 200px;
   display: flex;
@@ -118,10 +118,9 @@ export default class MyGuide extends Vue {
 
 .backIcon {
   cursor: pointer;
-}
-
-.backIcon:hover {
-  color: #2ecc71;
+  &:hover {
+    color: #2ecc71;
+  }
 }
 
 .homeIcon {

@@ -75,15 +75,13 @@ export default class Nav extends Vue {
   }
 }
 </script>
-<style scoped>
+<style lang='scss' scoped>
 #nav {
   position: fixed;
   top: 0px;
   z-index: 100;
   width: 100vw;
-}
-@media (max-width: 992px) {
-  #nav {
+  @media (max-width: 992px) {
     line-height: 38.6px;
   }
 }
@@ -96,18 +94,5 @@ export default class Nav extends Vue {
   width: 18.4px;
   height: 18.4px;
   margin: 0 -2.2px;
-}
-</style>
-<style>
-/* lg以上屏幕nav固定 */
-@media (min-width: 992px) {
-  #body {
-    padding-top: 48px;
-  }
-}
-@media (max-width: 992px) {
-  #body {
-    padding-top: 40px;
-  }
 }
 </style>

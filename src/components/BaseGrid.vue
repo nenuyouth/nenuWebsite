@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Base Grid
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-08 14:10:48
+ * @LastEditTime: 2019-05-18 16:28:58
 -->
 <template>
   <div>
@@ -72,7 +72,7 @@ export default class BaseGrid extends Vue {
   }
 }
 </script>
-<style scoped>
+<style lang='scss' scoped>
 .myH3 {
   width: 100%;
   text-align: left;
@@ -88,6 +88,7 @@ export default class BaseGrid extends Vue {
   font-size: 13px;
   color: #666;
   margin: 0 auto;
+  text-align: left;
 }
 
 .commonhead {
@@ -97,27 +98,21 @@ export default class BaseGrid extends Vue {
 
 .commonfoot {
   padding: 5px 15px 0 15px;
-}
-
-@media (min-width: 992px) {
-  .commonfoot {
+  @media (min-width: 992px) {
     font-size: 14px;
     padding: 12px 5% 4px 5%;
   }
 }
 
-.nm .commonhead {
+.nm .commonhead,
+.nm .commonfoot {
   color: #fff;
-}
-
-.commonhead,
-.commonfoot {
-  text-align: left;
 }
 
 .gridList {
   overflow: hidden;
 }
+
 .gridList:before,
 .gridList:after {
   display: block !important;
@@ -182,21 +177,22 @@ export default class BaseGrid extends Vue {
 .grid:active {
   background-color: #ececec;
 }
+
 .gridIcon {
   width: 28px;
   height: 28px;
   margin: 0 auto;
-}
-@media (min-width: 576px) {
-  .gridIcon {
+  @media (min-width: 576px) {
     width: 36px;
     height: 36px;
     margin: 0 auto;
   }
 }
+
 .gridIcon + .gridLabel {
   margin-top: 4px;
 }
+
 .gridLabel {
   display: block;
   text-align: center;

@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Base Paragraph
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-15 20:57:30
+ * @LastEditTime: 2019-05-18 16:32:01
 -->
 <template>
   <div :id="myId" class="Ctn">
@@ -111,6 +111,7 @@ export default class BaseP extends Vue {
   min-height: 20px;
   font-size: 19px;
 }
+
 .iOSP {
   font-size: 16px;
   line-height: 1.6;

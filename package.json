@@ -37,8 +37,7 @@
     "vue-property-decorator": "^8.1.1",
     "vue-router": "^3.0.6",
     "vue-wechat-title": "^2.0.5",
-    "vuex": "^3.1.1",
-    "weui": "^2.0.0"
+    "vuex": "^3.1.1"
   },
   "devDependencies": {
     "@types/chai": "^4.1.7",
@@ -58,7 +57,7 @@
     "@vue/eslint-config-typescript": "^4.0.0",
     "@vue/test-utils": "1.0.0-beta.29",
     "babel-eslint": "^10.0.1",
-    "babel-plugin-import": "^1.11.0",
+    "babel-plugin-import": "^1.11.2",
     "chai": "^4.2.0",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.2.2",

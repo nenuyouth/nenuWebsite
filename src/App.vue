@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主视图文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-15 20:58:55
+ * @LastEditTime: 2019-05-18 17:48:39
 -->
 <template>
   <a-layout hasSider="true" id="app">
@@ -57,11 +57,26 @@ export default class App extends Vue {
   }
 }
 </script>
-<style>
+<style lang='scss'>
 /* App.vue主布局 */
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  // 保证lg以上屏幕footer的固定效果
+  @media (min-width: 992px) {
+    background-color: #fff;
+    margin-bottom: 192px;
+  }
+}
+
+// lg以上屏幕nav固定
+#body {
+  @media (min-width: 992px) {
+    padding-top: 48px;
+  }
+  @media (max-width: 992px) {
+    padding-top: 40px;
+  }
 }
 
 /* 内容主布局 */
@@ -70,28 +85,24 @@ export default class App extends Vue {
   background-color: #fff;
   /* 防止内部元素无法撑开content */
   min-height: auto;
-}
-
-/* 侧边栏展开显示配合 */
-@media (max-width: 992px) {
-  #content {
+  /* 侧边栏展开显示配合 */
+  @media (max-width: 992px) {
     width: 100vw;
   }
 }
 
-.slide-right-enter-active,
-.slide-right-leave-active,
-.slide-left-enter-active,
-.slide-left-leave-active {
+@mixin slide {
   transition: all 0.5s;
   background-color: #fff;
 }
 .slide-left-leave-active,
 .slide-right-leave-active {
+  @include slide;
   position: relative;
 }
 .slide-left-enter-active,
 .slide-right-enter-active {
+  @include slide;
   position: absolute;
   top: 3rem;
 }

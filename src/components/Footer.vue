@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 网页页脚
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-05-13 18:06:24
+ * @LastEditTime: 2019-05-18 17:47:57
 -->
 <template>
   <a-layout-footer :class="slide?'withSlide':''">
@@ -94,14 +94,5 @@ export default class Footer extends Vue {
 .footerLogo {
   width: 50px;
   height: 50px;
-}
-</style>
-<style>
-/* 保证lg以上屏幕footer的固定效果 */
-@media (min-width: 992px) {
-  #app {
-    background-color: #fff;
-    margin-bottom: 192px;
-  }
 }
 </style>

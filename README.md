@@ -99,6 +99,13 @@
 - tslint-config-airbnb
 - @vue/cli-plugin-typescript
 
+#### 其他在package.json移除但在lib中改进并使用的库
+
+> 需要定期注意更新
+
+- bootstrap@4.1.3
+- weui@2.0.0
+
 ## 初始化项目
 
 ```bash

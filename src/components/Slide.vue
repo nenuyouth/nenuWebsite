@@ -53,7 +53,7 @@ export default class Slide extends Vue {
   }
 }
 </script>
-<style>
+<style lang='scss'>
 .asideLogo {
   position: relative;
   color: #000;
@@ -91,10 +91,11 @@ export default class Slide extends Vue {
   height: 100vh;
   overflow-x: visible;
   overflow-y: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
-.ant-layout-sider-children::-webkit-scrollbar {
-  display: none;
-}
+
 .slideBtn {
   position: fixed;
   z-index: 99;

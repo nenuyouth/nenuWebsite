@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主脚本文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-12 16:50:21
+ * @LastEditTime: 2019-05-17 17:26:55
  */
 
 // 引入Ant Design
@@ -88,21 +88,17 @@ registerSW(store);
 Vue.config.productionTip = false;
 
 // 注册页面跳转时页脚先隐藏，防止页脚干扰显示
-/*
- *router.beforeEach((to, from, next) => {
- *   $('#footer').css({ visibility: 'hidden', opacity: 0.01 });
- *   setTimeout(
- *     () => {
- *       $('#footer').css('visibility', '');
- *       Vue.nextTick().then(() => {
- *         $('#footer').fadeIn(500);
- *       });
- *     },
- *     1000
- *   );
- *   next();
- * });
- */
+// router.beforeEach((to, from, next) => {
+//   $('#footer').css({ visibility: 'hidden', opacity: 0.01 });
+//   setTimeout(
+//     next(() => {
+//       $('#footer').css('visibility', '');
+//       Vue.nextTick().then(() => {
+//         $('#footer').fadeIn(500);
+//       });
+//     });
+// });
+
 
 // 在导航确认后立即更新path值
 router.afterEach((to: Route) => {

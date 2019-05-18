@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 基础列表
  * @Date: 2019-03-25 12:39:59
- * @LastEditTime: 2019-05-05 15:30:19
+ * @LastEditTime: 2019-05-18 16:31:39
 -->
 <template>
   <div :id="myId" class="Ctn">
@@ -88,28 +88,26 @@ export default class BaseList extends Vue {
   }
 }
 </script>
-<style scope>
+<style lang='scss' scope>
 .Ctn {
   margin: 0 -15px;
   width: auto;
+  @media (min-width: 768px) {
+    margin: 0 auto;
+  }
 }
 
 .myH3 {
   width: 100%;
   max-width: 600px;
-  text-align: left;
-  font-weight: 500;
-  padding: 12px 18px 6px 18px;
   min-height: 18px;
-  font-size: 18px;
-  max-width: 600px;
+  padding: 12px 18px 6px 18px;
   margin: 0 auto;
-}
-
-@media (min-width: 768px) {
-  .Ctn {
-    margin: 0 auto;
+  font: {
+    size: 18px;
+    weight: 500;
   }
+  text-align: left;
 }
 
 .commonfoot,
@@ -126,10 +124,7 @@ export default class BaseList extends Vue {
 
 .commonfoot {
   padding: 5px 15px 0 15px;
-}
-
-@media (min-width: 992px) {
-  .commonfoot {
+  @media (min-width: 992px) {
     font-size: 14px;
     padding: 12px 5% 4px 5%;
     max-width: 600px;

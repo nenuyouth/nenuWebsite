@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 基础标题
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-05 15:08:45
+ * @LastEditTime: 2019-05-18 17:36:27
 -->
 <template>
   <div :id="myId" :style="myStyle" class="myH3" v-text="text"/>
@@ -27,7 +27,7 @@ export default class BaseTitle extends Vue {
   @Prop([String, Object]) private readonly myStyle!: string | Style;
 }
 </script>
-<style scoped>
+<style lang='scss' scoped>
 .myH3 {
   width: 100%;
   max-width: 600px;
@@ -38,10 +38,7 @@ export default class BaseTitle extends Vue {
   font-size: 22px;
   max-width: 600px;
   margin: 0 auto;
-}
-
-@media (min-width: 768px) {
-  .myH3 {
+  @media (min-width: 768px) {
     min-height: 26px;
     font-size: 24px;
   }

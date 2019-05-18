@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: JSON文件编辑器
  * @Date: 2019-03-19 19:09:58
- * @LastEditTime: 2019-05-02 20:31:17
+ * @LastEditTime: 2019-05-18 17:47:39
 -->
 <template>
   <div>
@@ -38,5 +38,3 @@ export default class JsonEditor extends Vue {
   }
 }
 </script>
-<style>
-</style>
