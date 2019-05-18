@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主脚本文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-17 17:26:55
+ * @LastEditTime: 2019-05-18 23:14:05
  */
 
 // 引入Ant Design
@@ -31,7 +31,7 @@ import App from './App.vue';
 
 // 自定义css样式
 import '%/customBootstrap.scss';
-import '%/public.css';
+import '%/public.scss';
 
 // 在组件实例中Hook route方法
 Component.registerHooks([
@@ -110,7 +110,7 @@ store.dispatch('systemInfo');
 
 // 获取屏幕状态，并进行brakpoint状态监听
 store.dispatch('screen', $(window).width() || document.documentElement.clientWidth);
-$(window).on('resize', debounce(() => {
+window.addEventListener('resize', debounce(() => {
   store.dispatch('screen', $(window).width() || document.documentElement.clientWidth);
 }, 300));
 

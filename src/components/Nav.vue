@@ -1,8 +1,12 @@
 <template>
   <a-menu :theme="theme" mode="horizontal" v-model="active">
     <a-menu-item key="logo" style="padding:0 10px 0 20px;">
-      <icon-font id="backButton" style="display:none;" type="icon-navigateBack"/>
-      <img alt="东师青年" id="logo" src="/img/icon/nenuyouth.png">
+      <transition name="myfade">
+        <icon-font id="backButton" type="icon-navigateBack" v-if="backButtonDisplay"/>
+      </transition>
+      <transition name="myfade">
+        <img alt="东师青年" id="logo" src="/img/icon/nenuyouth.png" v-if="logoDisplay">
+      </transition>
     </a-menu-item>
     <a-menu-item class="d-none d-lg-inline" disabled key="logoName" style="padding:0 10px 0 0;">
       <span class="text-black">东北师范大学学生会</span>
@@ -41,10 +45,12 @@
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { Route } from 'vue-router';
-import $ from 'jquery';
 
 @Component
 export default class Nav extends Vue {
+  private logoDisplay = true;
+  private backButtonDisplay = false;
+
   private firstNavigate = true;
 
   // 获得主题
@@ -67,9 +73,10 @@ export default class Nav extends Vue {
     if (this.firstNavigate) {
       this.firstNavigate = false;
       setTimeout(() => {
-        $('#logo').fadeOut(500, () => {
-          $('#backButton').fadeIn(500);
-        });
+        this.logoDisplay = false;
+        setTimeout(() => {
+          this.backButtonDisplay = true;
+        }, 500);
       }, 3000);
     }
   }
