@@ -24,8 +24,8 @@
 </template>
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import Loading from '~/icon/loading.svg';
-import Error from '~/icon/error.svg';
+import Loading from '|/icon/loading.svg';
+import Error from '|/icon/error.svg';
 
 interface Style {
   [propName: string]: string;

@@ -13,7 +13,7 @@
     "inspect": "vue-cli-service inspect --modern > modern.js",
     "normInspect": "vue-cli-service inspect > normal.js",
     "lint": "vue-cli-service lint",
-    "deploy": "vue-cli-service build --mode deploy",
+    "deploy": "vue-cli-service build --mode deploy --modern",
     "browser": "npx browserslist",
     "e2e": "vue-cli-service test:e2e",
     "unit": "vue-cli-service test:unit"

@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Base Grid
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-18 16:28:58
+ * @LastEditTime: 2019-05-18 18:32:41
 -->
 <template>
   <div>
@@ -73,6 +73,8 @@ export default class BaseGrid extends Vue {
 }
 </script>
 <style lang='scss' scoped>
+@import '~%/Weui/scss/border';
+
 .myH3 {
   width: 100%;
   text-align: left;
@@ -111,32 +113,14 @@ export default class BaseGrid extends Vue {
 
 .gridList {
   overflow: hidden;
-}
-
-.gridList:before,
-.gridList:after {
-  display: block !important;
-  content: ' ';
-  position: absolute;
-  left: 0;
-  top: 0;
-  color: #cac9ce;
-  -webkit-transform-origin: 0 0;
-  transform-origin: 0 0;
-}
-.gridList:before {
-  right: 0;
-  height: 1px;
-  border-top: 1px solid #cac9ce;
-  -webkit-transform: scaleY(0.5);
-  transform: scaleY(0.5);
-}
-.gridList:after {
-  width: 1px;
-  bottom: 0;
-  border-left: 1px solid #cac9ce;
-  -webkit-transform: scaleX(0.5);
-  transform: scaleX(0.5);
+  &:before {
+    display: block !important;
+    @include topBorder(#cac9ce);
+  }
+  &:after {
+    display: block !important;
+    @include leftBorder(#cac9ce);
+  }
 }
 
 .grid {
@@ -144,38 +128,15 @@ export default class BaseGrid extends Vue {
   padding: 20px 10px;
   box-sizing: border-box;
   text-align: center;
-}
-.grid:before,
-.grid:after {
-  content: ' ';
-  position: absolute;
-  color: #cac9ce;
-}
-.grid:before {
-  right: 0;
-  top: 0;
-  width: 1px;
-  bottom: 0;
-  border-right: 1px solid #cac9ce;
-  -webkit-transform-origin: 100% 0;
-  transform-origin: 100% 0;
-  -webkit-transform: scaleX(0.5);
-  transform: scaleX(0.5);
-}
-.grid:after {
-  left: 0;
-  bottom: 0;
-  right: 0;
-  height: 1px;
-  border-bottom: 1px solid #cac9ce;
-  -webkit-transform-origin: 0 100%;
-  transform-origin: 0 100%;
-  -webkit-transform: scaleY(0.5);
-  transform: scaleY(0.5);
-}
-
-.grid:active {
-  background-color: #ececec;
+  &:before {
+    @include rightBorder(#cac9ce);
+  }
+  &:after {
+    @include bottomBorder(#cac9ce);
+  }
+  &:active {
+    background-color: #ececec;
+  }
 }
 
 .gridIcon {

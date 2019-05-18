@@ -80,7 +80,7 @@ export default class Main extends Vue {
     ]
   };
 
-  private guidelist = require('~/handbook');
+  private guidelist = require('|/handbook');
 
   private timeList = [];
 

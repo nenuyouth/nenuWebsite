@@ -9,7 +9,7 @@
   <button></button>
 </template>
 <script lang="ts">
-import BackTopSvg from '~/icon/backTop.svg';
+import BackTopSvg from '|/icon/backTop.svg';
 import { Component, Vue } from 'vue-property-decorator';
 import $ from 'jquery';
 

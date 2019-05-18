@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: vue config file
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-18 16:43:16
+ * @LastEditTime: 2019-05-18 18:22:30
  */
 
 const path = require('path');
@@ -39,7 +39,7 @@ const chainWebpack = config => {
  */
 const configureWebpack = config => {
   const myaliasconfig = {
-    '~': path.resolve(__dirname, 'src/assets/'),
+    '|': path.resolve(__dirname, 'src/assets/'),
     '#': path.resolve(__dirname, 'src/components/'),
     '%': path.resolve(__dirname, 'src/lib/'),
     icon: path.resolve(__dirname, 'node_modules/@ant-design/icons/lib/'), // 减小Icon.ts体积

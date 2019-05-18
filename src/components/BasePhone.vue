@@ -1,6 +1,6 @@
 <template>
   <div :id="myId" class="phoneCtn">
-    <img :src="require('~/icon/phone.svg')" class="phoneIcon">
+    <img :src="require('|/icon/phone.svg')" class="phoneIcon">
     <div class="phoneNum" v-text="num"/>
   </div>
 </template>

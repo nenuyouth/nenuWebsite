@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 基础列表
  * @Date: 2019-03-25 12:39:59
- * @LastEditTime: 2019-05-18 16:31:39
+ * @LastEditTime: 2019-05-18 18:40:13
 -->
 <template>
   <div :id="myId" class="Ctn">
@@ -37,7 +37,7 @@
           </div>
         </div>
         <div
-          :class="List.icon ? 'listIconDivline' : ''"
+          :class="List.icon ? 'listIcon' : ''"
           :key="List.textKey"
           class="link-divline"
           v-if="List.display !== false"
@@ -89,6 +89,8 @@ export default class BaseList extends Vue {
 }
 </script>
 <style lang='scss' scope>
+@import '~%/Weui/scss/border';
+
 .Ctn {
   margin: 0 -15px;
   width: auto;
@@ -145,52 +147,18 @@ export default class BaseList extends Vue {
   background-color: #fefefe;
   width: 100%;
   position: relative;
-}
-
-.Lctn:after,
-.Lctn:before {
-  content: ' ';
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 1px;
-  color: #cac9ce;
-}
-
-.Lctn:after {
-  bottom: 0;
-  border-bottom: 1px solid #cac9ce;
-  -webkit-transform-origin: 0 100%;
-  transform-origin: 0 100%;
-  -webkit-transform: scaleY(0.4);
-  transform: scaleY(0.4);
-}
-
-.Lctn:before {
-  top: 0;
-  border-top: 1px solid #cac9ce;
-  -webkit-transform-origin: 0 0;
-  transform-origin: 0 0;
-  -webkit-transform: scaleY(0.4);
-  transform: scaleY(0.4);
-}
-
-@media (min-width: 600px) {
-  .Lctn:before {
-    top: 0;
-    right: auto;
-    left: 0;
-    width: 200%;
-    height: 200%;
-    border: 1px solid #cac9ce;
-    -webkit-transform-origin: 0 0;
-    transform-origin: 0 0;
-    -webkit-transform: scale(0.5);
-    transform: scale(0.5);
+  @media (max-width: 600px) {
+    &:before {
+      @include topBorder(#cac9ce);
+    }
+    &:after {
+      @include bottomBorder(#cac9ce);
+    }
   }
-
-  .Lctn:after {
-    display: none;
+  @media (min-width: 600px) {
+    &:before {
+      @include allBorder(#cac9ce);
+    }
   }
 }
 
@@ -208,14 +176,12 @@ export default class BaseList extends Vue {
   border: none;
   color: #000;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
-
-.listCtn:active {
-  background-color: #ececec;
-}
-
-.listCtn:empty {
-  padding: 0;
+  &:active {
+    background-color: #ececec;
+  }
+  &:empty {
+    padding: 0;
+  }
 }
 
 .nm .listCtn {
@@ -256,22 +222,21 @@ export default class BaseList extends Vue {
 .access {
   padding-right: 15px;
   position: relative;
-}
-
-.access:after {
-  content: ' ';
-  display: inline-block;
-  width: 7px;
-  height: 7px;
-  border-width: 2px 2px 0 0;
-  border-style: solid;
-  -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
-  transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
-  position: absolute;
-  top: 50%;
-  margin-top: -5px;
-  right: 2px;
-  border-color: #c7c7cc;
+  &:after {
+    content: ' ';
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-width: 2px 2px 0 0;
+    border-style: solid;
+    -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+    transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+    position: absolute;
+    top: 50%;
+    margin-top: -5px;
+    right: 2px;
+    border-color: #c7c7cc;
+  }
 }
 
 .nm .access:after {
@@ -280,30 +245,18 @@ export default class BaseList extends Vue {
 
 .link-divline {
   position: relative;
-}
-
-.link-divline:after {
-  content: ' ';
-  position: absolute;
-  left: 15px;
-  bottom: 0;
-  right: 0;
-  height: 1px;
-  color: #cac9ce;
-  border-bottom: 1px solid #cac9ce;
-  -webkit-transform-origin: 0 100%;
-  transform-origin: 0 100%;
-  -webkit-transform: scaleY(0.4);
-  transform: scaleY(0.4);
+  &:after {
+    @include bottomBorder(#cac9ce);
+    left: 15px;
+  }
 }
 
 .listIcon.link-divline {
   width: 100%;
   height: 0;
-}
-
-.listIcon.link-divline:after {
-  left: 50px;
+  &:after {
+    left: 50px;
+  }
 }
 
 .nm .link-divline:after {

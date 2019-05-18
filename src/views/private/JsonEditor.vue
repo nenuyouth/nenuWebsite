@@ -120,7 +120,7 @@ export default class JsonEditor extends Vue {
 
   private pageJson: any[] = [{ tag: '请选择' }];
 
-  // private configuration= require('~/jsonConfig');
+  // private configuration= require('|/jsonConfig');
   private configuration = {
     head: {
       title: {

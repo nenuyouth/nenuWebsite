@@ -10,7 +10,7 @@
         v-for="item in gzh"
       >
         <img
-          :src="require(`~/schoolGzh/${item.src}.jpg`)"
+          :src="require(`|/schoolGzh/${item.src}.jpg`)"
           class="img-thumbnail mt-1 img-fix"
           style="border-radius:50%;"
         >
@@ -25,7 +25,7 @@ import BaseCarousel from '#/BaseCarousel.vue';
 
 @Component
 export default class SchoolGzh extends Vue {
-  private readonly gzh = require('~/schoolGzh/schoolGzh');
+  private readonly gzh = require('|/schoolGzh/schoolGzh');
 }
 </script>
 <style scoped>
