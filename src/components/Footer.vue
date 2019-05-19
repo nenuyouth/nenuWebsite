@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 网页页脚
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-05-18 17:47:57
+ * @LastEditTime: 2019-05-19 09:47:02
 -->
 <template>
   <a-layout-footer :class="slide?'withSlide':''">
@@ -61,31 +61,25 @@ export default class Footer extends Vue {
   }
 }
 </script>
-<style scoped>
+<style lang='scss' scoped>
 /* 改变footer底色 */
 #footer {
   background-color: #343a40;
-}
-
-/* 保证侧边栏展开时显示正常 */
-@media (max-width: 992px) {
-  #footer {
-    width: 100vw;
-  }
-}
-
-/* 保证lg以上屏幕footer的固定效果 */
-@media (min-width: 992px) {
-  #footer {
+  // 保证侧边栏展开时显示正常
+  width: 100vw;
+  // 保证lg以上屏幕footer的固定效果
+  @media (min-width: 992px) {
     position: fixed;
     width: 100%;
     left: 0;
     bottom: 0;
     z-index: -1;
   }
+}
 
-  /* 保证有侧边栏的屏幕的显示效果 */
-  #footer.withSlide {
+// 保证有侧边栏的屏幕的显示效果
+#footer.withSlide {
+  @media (min-width: 992px) {
     width: calc(100vw - 200px);
     left: 200px;
   }

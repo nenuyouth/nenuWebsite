@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Base Paragraph
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-18 16:32:01
+ * @LastEditTime: 2019-05-19 10:03:15
 -->
 <template>
   <div :id="myId" class="Ctn">
@@ -103,13 +103,16 @@ export default class BaseP extends Vue {
   }
 }
 </script>
-<style scoped>
+<style lang='scss' scoped>
+@import '~%/Weui/scss/border';
+
 .iOShead {
   text-align: left;
   font-weight: 500;
   padding: 12px 5% 4px 5%;
   min-height: 20px;
   font-size: 19px;
+  max-width: 600px;
 }
 
 .iOSP {
@@ -122,17 +125,6 @@ export default class BaseP extends Vue {
   margin: 0 auto;
 }
 
-@media (min-width: 768px) {
-  .iOShead {
-    min-height: 22px;
-    font-size: 21px;
-    max-width: 600px;
-  }
-  .iOSP {
-    font-size: 18px;
-  }
-}
-
 .grey .iOSP {
   font-size: 17px;
   padding: 10px 15px;
@@ -142,34 +134,12 @@ export default class BaseP extends Vue {
   max-width: 487px;
   margin: 0 auto;
   position: relative;
-}
-
-.grey .iOSP:after,
-.grey .iOSP:before {
-  content: ' ';
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 1px;
-  color: #cac9ce;
-}
-
-.grey .iOSP:after {
-  bottom: 0;
-  border-bottom: 1px solid #cac9ce;
-  -webkit-transform-origin: 0 100%;
-  transform-origin: 0 100%;
-  -webkit-transform: scaleY(0.4);
-  transform: scaleY(0.4);
-}
-
-.grey .iOSP:before {
-  top: 0;
-  border-top: 1px solid #cac9ce;
-  -webkit-transform-origin: 0 0;
-  transform-origin: 0 0;
-  -webkit-transform: scaleY(0.4);
-  transform: scaleY(0.4);
+  &:before {
+    @include topBorder(#cac9ce);
+  }
+  &:after {
+    @include bottomBorder(#cac9ce);
+  }
 }
 
 .grey.nm .iOSP:before,
@@ -212,6 +182,10 @@ export default class BaseP extends Vue {
   margin: 4px 5%;
   border-radius: 8px;
   max-width: 560px !important;
+  @media (min-width: 768px) {
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
 }
 
 .P .img {
@@ -219,25 +193,17 @@ export default class BaseP extends Vue {
   margin: 4px 0;
 }
 
-@media (min-width: 768px) {
-  .img {
-    margin-top: 12px;
-    margin-bottom: 12px;
-  }
-}
-
 .imgDesc {
   margin-top: -2px;
   margin-bottom: 4px;
-  font-size: 12px;
-  font-weight: 300;
+  font: {
+    size: 12px;
+    weight: 300;
+  }
   text-align: center;
   color: #222;
   letter-spacing: 1px;
-}
-
-@media (min-width: 768px) {
-  .imgDesc {
+  @media (min-width: 768px) {
     font-size: 14px;
   }
 }

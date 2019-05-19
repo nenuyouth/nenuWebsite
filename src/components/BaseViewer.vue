@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-16 15:35:49
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-05-18 19:02:46
+ * @LastEditTime: 2019-05-19 10:35:48
  * @Description: Image Viewer
 -->
 <template>
@@ -47,43 +47,20 @@ export default class ImageViewer extends Vue {
 
   private viewerInit() {
     Viewer.setDefaults({
-      initialViewIndex: 0,
       navbar: 1,
-      title: 1,
       toolbar: {
-        zoomIn: 1,
-        zoomOut: 1,
-        oneToOne: 1,
         prev: 1,
         play: 1,
         next: 1,
-        reset: { show: false },
-        rotateLeft: { show: false },
-        rotateRight: { show: false },
-        flipHorizontal: { show: false },
-        flipVertical: { show: false }
+        reset: 1
       },
-      movable: true,
-      rotatable: true,
       interval: 3000,
       zIndex: 200,
-      ready: event => {
-        // 初始化ready事件
-        this.$emit('ready', event);
-      },
-      show: event => {
-        // 显示事件-开始
-        this.$emit('show', event);
-      },
       shown: event => {
         // 显示事件-结束
         this.$store.commit('displayImage', true);
         this.$emit('shown', event);
         this.$emit('update:visible', true);
-      },
-      hide: event => {
-        // 隐藏事件-开始
-        this.$emit('hide', event);
       },
       hidden: event => {
         // 隐藏事件-结束
@@ -91,22 +68,10 @@ export default class ImageViewer extends Vue {
         this.$emit('hidden', event);
         this.$emit('update:visible', false);
       },
-      view: event => {
-        // 切换事件-开始
-        this.$emit('view', event);
-      },
       viewed: event => {
         // 切换事件-结束
         this.$store.commit('imageIndex', event.detail.index);
         this.$emit('viewed', event);
-      },
-      zoom: event => {
-        // 缩放事件-开始
-        this.$emit('zoom', event);
-      },
-      zoomed: event => {
-        // 缩放事件-结束
-        this.$emit('zoomed', event);
       }
     });
 
@@ -123,7 +88,7 @@ export default class ImageViewer extends Vue {
   @Watch('list')
   private onListChange() {
     this.$nextTick(() => {
-      this.update();
+      viewer.update();
       console.log('update');
     });
   }
@@ -131,7 +96,6 @@ export default class ImageViewer extends Vue {
   @Watch('display')
   private onDisplayChange(newVal: boolean) {
     if (newVal) this.view(this.index);
-    // if (newVal) this.show();
     else this.hide();
   }
 
@@ -151,6 +115,7 @@ export default class ImageViewer extends Vue {
 
     return this;
   }
+
   // 隐藏 immediate = 是否立即隐藏
   private hide(immediate?: boolean) {
     viewer.hide(immediate);
@@ -174,108 +139,6 @@ export default class ImageViewer extends Vue {
   private next(loop = false) {
     viewer.next(loop);
     // this.$store.commit('imageIndex', this.index === this.list.length - 1 ? 0 : this.index + 1);
-
-    return this;
-  }
-  // 移动 offsetX = '在水平方向上移动尺寸（px）', offsetX = '在垂直方向移动尺寸（px）， 不填默认与offsetX相同'
-  private move(offsetX: number, offsetY?: number) {
-    viewer.move(offsetX, offsetY);
-
-    return this;
-  }
-  // 移动到 x = '在水平方向移动到（px）', y = '在垂直方向移动到（px）， 不填默认与x相同'
-  private moveTo(x: number, y?: number) {
-    viewer.moveTo(x, x);
-
-    return this;
-  }
-  // 缩放 ratio = '缩放比例，正数放大，负数缩小'， hasTooltip = '是否显示提示'
-  private zoom(ratio: number, hasTooltip = false) {
-    viewer.zoom(ratio, hasTooltip);
-
-    return this;
-  }
-  // 缩放到 ratio = '缩放到大小'， hasTooltip = '是否显示提示'
-  private zoomTo(ratio: number, hasTooltip = false) {
-    viewer.zoomTo(ratio, hasTooltip);
-
-    return this;
-  }
-  // 旋转 ratio = '旋转角度，正数顺时针，负数逆时针'
-  private rotate(degree: number) {
-    viewer.rotate(degree);
-
-    return this;
-  }
-  // 旋转到 ratio = '旋转到角度'
-  private rotateTo(degree: number) {
-    viewer.rotateTo(degree);
-
-    return this;
-  }
-  // 拉伸 scaleX = '在水平方向上拉伸比例', scaleY = '在垂直方向拉伸比例， 不填默认与scaleX相同'
-  private scale(scaleX: number, scaleY?: number) {
-    viewer.scale(scaleX, scaleY);
-
-    return this;
-  }
-  // 水平方向上拉伸 scaleX = '在水平方向上拉伸比例'
-  private scaleX(scaleX: number) {
-    viewer.scaleX(scaleX);
-
-    return this;
-  }
-  // 垂直方向上拉伸 scaleY = '在垂直方向上拉伸比例'
-  private scaleY(scaleY: number) {
-    viewer.scaleY(scaleY);
-
-    return this;
-  }
-  // 播放 fullscreen = '是否全屏'
-  private play(fullscreen = false) {
-    viewer.play(fullscreen);
-
-    return this;
-  }
-  // 停止播放
-  private stop() {
-    viewer.stop();
-
-    return this;
-  }
-  // 进入模态模式
-  private full() {
-    viewer.full();
-
-    return this;
-  }
-  // 退出模态模式
-  private exit() {
-    viewer.exit();
-
-    return this;
-  }
-  // 显示当前比例
-  private tooltip() {
-    viewer.tooltip();
-
-    return this;
-  }
-  // 切换到在自然大小
-  private toggle() {
-    viewer.toggle();
-
-    return this;
-  }
-  // 初始化
-  private reset() {
-    viewer.reset();
-
-    return this;
-  }
-  // 更新
-  private update() {
-    viewer.update();
 
     return this;
   }

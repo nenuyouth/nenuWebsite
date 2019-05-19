@@ -72,7 +72,7 @@ export default class BaseCard extends Vue {
 
   private created() {
     this.cardList = JSON.parse(JSON.stringify(this.list));
-    this.cardList.forEach((element: Card, index) => {
+    this.cardList.forEach((element, index) => {
       element.id = `${this.myId}card-collapse-${index}`;
     });
   }

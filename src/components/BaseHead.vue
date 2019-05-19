@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 基础主标题
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-05 15:07:36
+ * @LastEditTime: 2019-05-19 09:30:56
 -->
 <template>
   <div>
@@ -26,8 +26,8 @@ export default class BaseHead extends Vue {
 <style scoped>
 .title {
   color: #333;
-  font-size: 30px;
-  line-height: 35px;
+  font-size: 24px;
+  line-height: 30px;
   font-weight: bold;
   overflow: hidden;
   padding: 10px 0;
