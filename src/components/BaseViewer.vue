@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-16 15:35:49
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-05-19 10:35:48
+ * @LastEditTime: 2019-05-19 17:12:50
  * @Description: Image Viewer
 -->
 <template>
@@ -89,7 +89,6 @@ export default class ImageViewer extends Vue {
   private onListChange() {
     this.$nextTick(() => {
       viewer.update();
-      console.log('update');
     });
   }
 

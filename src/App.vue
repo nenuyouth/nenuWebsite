@@ -3,24 +3,24 @@
  * @LastEditors: Mr.Hope
  * @Description: 主视图文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-18 17:48:39
+ * @LastEditTime: 2019-05-19 18:32:36
 -->
 <template>
   <a-layout hasSider="true" id="app">
-    <!-- <transition :name="transitionName"> -->
     <my-slide id="aside" v-if="$store.state.slide.list.length"></my-slide>
     <a-layout id="body">
       <my-nav id="nav"/>
+      <!-- <transition :name="transitionName"> -->
       <a-layout-content id="content">
         <keep-alive :max="10">
           <router-view v-if="$route.meta.title!==false"/>
           <router-view v-else v-wechat-title="$route.meta.title||'东北师范大学学生会'"/>
         </keep-alive>
       </a-layout-content>
+      <!-- </transition> -->
       <back-top/>
       <my-footer id="footer"/>
     </a-layout>
-    <!-- </transition> -->
     <base-viewer/>
   </a-layout>
 </template>

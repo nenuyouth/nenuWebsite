@@ -2,8 +2,8 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-19 17:25:48
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-05-21 00:19:45
- * @Description: Json Editor
+ * @LastEditTime: 2019-05-21 00:28:46
+ * @Description: 测试
 -->
 <template>
   <div class="container">
@@ -217,11 +217,17 @@ export default class FormTest extends Vue {
     this.form.validateFields((err: any, values: any) => {
       if (!err) console.log('Received values of form: ', values);
     });
+
+    const json = [];
+    // this.form.getFieldsValue()
+
+
   }
   private handleSelectChange(value: any) {
-    console.log(value);
     this.form.setFieldsValue({ note: `Hi, ${value === 'male' ? 'man' : 'lady'}!` });
   }
+
+  private pageJson: any[] = [];
 
   private tagList = require('|/JsonEditor/tagList');
 
@@ -229,7 +235,107 @@ export default class FormTest extends Vue {
 
   private unionTypeSelect: UnionTypeItem[] = [{}];
 
-  private configuration = require('|/JsonEditor/jsonConfig');
+  // private configuration= require('|/JsonEditor/jsonConfig');
+  private configuration = {
+    head: {
+      title: {
+        title: '导航栏标题',
+        desc: '一般不超过八个字，六字以下为佳',
+        type: 'string',
+        required: true
+      },
+      desc: {
+        title: '标题描述文字',
+        desc: '该描述文字仅在特定主题下展示，所以仅供补充界面主题，不可放置重要信息',
+        type: 'mutiline',
+        required: false
+      },
+      action: {
+        title: '按钮函数名',
+        desc: '填入左上角按钮点击时所触发的函数名称，不填时默认执行返回，设置为true来隐藏默认的返回按钮',
+        type: ['string', 'boolean'],
+        required: false
+      },
+      leftText: {
+        title: '按钮文字',
+        desc: '设置左上角文字，一般不用填写，可自动生成',
+        type: 'string',
+        required: false
+      },
+      grey: {
+        title: '灰色背景',
+        desc: '默认为白色背景',
+        type: 'boolean',
+        required: false,
+        default: false
+      },
+      hidden: {
+        title: '隐藏导航栏',
+        desc: '设置后不显示导航栏',
+        type: 'boolean',
+        required: false,
+        default: false
+      },
+      shareable: {
+        title: '可被分享',
+        desc: '设置该界面是否可以使用小程序的界面分享',
+        type: 'boolean',
+        required: false,
+        default: false
+      },
+      contact: {
+        title: '联系开发者',
+        desc: '是否在分享弹出菜单中显示“联系开发者”按钮',
+        type: 'boolean',
+        required: false,
+        default: false
+      },
+      feedback: {
+        title: '意见反馈',
+        desc: '是否在分享弹出菜单中显示“意见反馈”按钮',
+        type: 'boolean',
+        required: false,
+        default: false
+      }
+    },
+    title: {
+      text: {
+        title: '大标题文字',
+        type: 'mutiline',
+        required: true
+      },
+      style: {
+        title: '标题css样式',
+        type: 'string',
+        required: false
+      }
+    },
+    p: {
+      text: {
+        title: '段落的文字',
+        type: 'mutiline',
+        required: true
+      },
+      head: {
+        title: '段落标题',
+        desc: '填入true会在留空占位',
+        type: ['string', 'boolean'],
+        required: false
+      },
+      align: {
+        title: '段落对齐方式',
+        type: 'string',
+        enum: [
+          { label: '左对齐', value: 'left' },
+          { label: '居中', value: 'center' },
+          { label: '右对齐', value: 'right' },
+          { label: '两端对齐', value: 'justify' }
+        ],
+        required: false,
+        default: 'left'
+      }
+    }
+  };
 
   // Add a new component in the end
   private addComponent() {
