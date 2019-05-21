@@ -3,13 +3,13 @@
  * @LastEditors: Mr.Hope
  * @Description: 主脚本文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-19 17:31:39
+ * @LastEditTime: 2019-05-21 16:57:43
  */
 
 // 引入Ant Design
 import {
   Anchor, Breadcrumb, Button, Carousel, Col, Divider, Dropdown, Form, Icon, Input,
-  Layout, Menu, Modal, Radio, Row, Select, Skeleton, Spin, Timeline, message
+  InputNumber, Layout, Menu, Modal, Radio, Row, Select, Skeleton, Spin, Timeline, Tooltip, message
 } from 'ant-design-vue';
 import { Route } from 'vue-router';
 import Vue from 'vue';
@@ -51,6 +51,7 @@ Vue.use(Dropdown);
 Vue.use(Form);
 Vue.use(Icon);
 Vue.use(Input);
+Vue.use(InputNumber);
 Vue.use(Layout);
 Vue.use(Menu);
 Vue.use(Modal);
@@ -60,6 +61,7 @@ Vue.use(Select);
 Vue.use(Skeleton);
 Vue.use(Spin);
 Vue.use(Timeline);
+Vue.use(Tooltip);
 
 // 配置message
 message.config({

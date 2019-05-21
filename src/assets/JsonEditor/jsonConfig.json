@@ -119,7 +119,8 @@
       "title": "图片地址",
       "desc": "设置后会在段落文字底部展示所选图片",
       "type": "string",
-      "required": false
+      "required": false,
+      "url": true
     },
     "desc": {
       "title": "图片描述",
@@ -131,7 +132,8 @@
       "title": "高清图片地址",
       "desc": "需要高清图片时设置，会在预览图片是使用",
       "type": "string",
-      "required": false
+      "required": false,
+      "url": true
     },
     "imgmode": {
       "title": "图片显示模式",
@@ -222,7 +224,8 @@
       "title": "图片地址",
       "desc": "设置后会在段落文字底部展示所选图片",
       "type": "string",
-      "required": true
+      "required": true,
+      "url": true
     },
     "desc": {
       "title": "图片描述",
@@ -234,7 +237,8 @@
       "title": "高清图片地址",
       "desc": "需要高清图片时设置，会在预览图片时使用",
       "type": "string",
-      "required": false
+      "required": false,
+      "url": true
     },
     "lazy": {
       "title": "图片懒加载",
@@ -315,16 +319,14 @@
     "url": {
       "title": "文档在线路径",
       "type": "string",
-      "required": true
+      "required": true,
+      "url": true
     }
   },
   "phone": {
     "num": {
       "title": "电话号码",
-      "type": [
-        "string",
-        "number"
-      ],
+      "type": "string",
       "required": true
     },
     "fName": {
@@ -354,10 +356,7 @@
     "workNum": {
       "title": "工作电话",
       "desc": "小程序专用设置",
-      "type": [
-        "string",
-        "number"
-      ],
+      "type": "string",
       "required": false
     },
     "nickName": {
@@ -411,17 +410,15 @@
     "hostNum": {
       "title": "公司电话",
       "desc": "小程序专用设置",
-      "type": [
-        "string",
-        "number"
-      ],
+      "type": "string",
       "required": false
     },
     "website": {
       "title": "网站",
       "desc": "小程序专用设置",
       "type": "string",
-      "required": false
+      "required": false,
+      "url": true
     },
     "email": {
       "title": "电子邮件",
@@ -432,10 +429,7 @@
     "homeNum": {
       "title": "住宅电话",
       "desc": "小程序专用设置",
-      "type": [
-        "string",
-        "number"
-      ],
+      "type": "string",
       "required": false
     }
   },
@@ -504,14 +498,16 @@
       "desc": "单位为毫秒，默认为5000",
       "type": "number",
       "required": false,
-      "default": 5000
+      "default": 5000,
+      "step": 100
     },
     "duration": {
       "title": "滑动动画时长",
       "desc": "单位为毫秒，默认为500",
       "type": "number",
       "required": false,
-      "default": 500
+      "default": 500,
+      "step": 100
     },
     "circular": {
       "title": "衔接滑动",
@@ -626,7 +622,8 @@
       "title": "音频地址",
       "desc": "填入音频文件的在线网址或本地路径",
       "type": "string",
-      "required": true
+      "required": true,
+      "url": true
     },
     "loop": {
       "title": "循环播放",
@@ -643,13 +640,13 @@
       "default": true
     },
     "name": {
-      "title": "循环播放",
+      "title": "歌曲名称",
       "desc": "controls为false时无效",
       "type": "string",
       "required": false
     },
     "author": {
-      "title": "循环播放",
+      "title": "歌手名字",
       "desc": "controls为false时无效",
       "type": "string",
       "required": false
@@ -660,7 +657,8 @@
       "title": "视频地址",
       "desc": "填入要播放视频的资源地址",
       "type": "string",
-      "required": true
+      "required": true,
+      "url": true
     },
     "loop": {
       "title": "循环播放",
@@ -694,12 +692,14 @@
     "url": {
       "title": "图文链接",
       "type": "string",
-      "required": true
+      "required": true,
+      "url": true
     },
     "src": {
       "title": "封面图片地址",
       "type": "string",
-      "required": true
+      "required": true,
+      "url": true
     },
     "title": {
       "title": "图文标题",
@@ -715,7 +715,8 @@
       "title": "公众号头像地址",
       "desc": "默认使用“东师青年”图标",
       "type": "string",
-      "required": false
+      "required": false,
+      "url": true
     },
     "gzhName": {
       "title": "公众号名称",
@@ -733,7 +734,8 @@
     "src": {
       "title": "头像图标地址",
       "type": "string",
-      "required": true
+      "required": true,
+      "url": true
     },
     "desc": {
       "title": "主体描述",

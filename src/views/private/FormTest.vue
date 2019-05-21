@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-19 17:25:48
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-05-21 14:46:11
+ * @LastEditTime: 2019-05-21 16:54:40
  * @Description: 测试
 -->
 <template>
@@ -21,10 +21,21 @@
 
             <a-form-item
               :key="`${partIndex}-${config}`"
-              :label="configuration[part][config].title"
-              :label-col="{span:5}"
-              :wrapper-col="{span:19}"
+              :label-col="{ span: 6 }"
+              :wrapper-col="{ span: 18 }"
             >
+              <template #label>
+                <!-- 表单项名称 -->
+                {{configuration[part][config].title}}
+                <!-- 描述文字 -->
+                <a-tooltip
+                  :title="configuration[part][config].desc"
+                  v-if="configuration[part][config].desc"
+                >
+                  <a-icon style="vertical-align:-0.125em;" type="question-circle"/>
+                </a-tooltip>
+              </template>
+
               <!-- 复合类型 -->
               <template v-if="typeof configuration[part][config].type==='object'">
                 <!-- 选择需要的值类型 -->
@@ -79,6 +90,22 @@
                     }
                   ]"
                   v-else-if="unionTypeSelect[partIndex][config]==='string'"
+                />
+
+                <!-- 数字输入 -->
+                <a-input-number
+                  :step="configuration[part][config].step"
+                  v-decorator="[
+                    `${partIndex}-${config}`,
+                    {
+                      initialValue: configuration[part][config].default,
+                      rules: [{
+                        required: configuration[part][config].required,
+                        type: 'number'
+                      }]
+                    }
+                  ]"
+                  v-else-if="unionTypeSelect[partIndex][config]==='number'"
                 />
               </template>
 
@@ -148,6 +175,39 @@
                     }
                   ]"
                   v-else-if="configuration[part][config].type==='string'"
+                >
+                  <!-- 网址输入 -->
+                  <a-select
+                    :options="[
+                        { label:'https://', value: 'https://'},
+                        { label:'http://', value: 'http://'},
+                        { label:'无前缀', value: ''}
+                    ]"
+                    slot="addonBefore"
+                    style="width: 90px"
+                    v-decorator="[
+                        `${partIndex}-${config}-prefix`,
+                        { initialValue: 'https://' }
+                      ]"
+                    v-if="configuration[part][config].url"
+                  />
+                </a-input>
+
+                <!-- 数字输入 -->
+                <a-input-number
+                  :step="configuration[part][config].step"
+                  style="width:150px;"
+                  v-decorator="[
+                    `${partIndex}-${config}`,
+                    {
+                      initialValue: configuration[part][config].default,
+                      rules: [{
+                        required: configuration[part][config].required,
+                        type: 'number'
+                      }]
+                    }
+                  ]"
+                  v-else-if="configuration[part][config].type==='number'"
                 />
 
                 <!-- 对象输入 -->
@@ -164,13 +224,8 @@
                   ]"
                   v-else-if="configuration[part][config].type==='object'"
                 />
+                <!-- 完善中... -->
               </template>
-              <!-- 描述文字 -->
-              <div
-                class="desc"
-                v-if="configuration[part][config].desc"
-                v-text="configuration[part][config].desc"
-              />
             </a-form-item>
           </template>
         </template>
@@ -205,6 +260,7 @@ interface Configuration {
       default?: any;
       enum?: any[];
       element?: string[] | string;
+      step?: number;
     };
   };
 }
@@ -237,12 +293,25 @@ export default class FormTest extends Vue {
     });
 
     Object.keys(formValue).forEach(x => {
-      const [indexString, key] = x.split('-');
+      const [indexString, key, additional] = x.split('-');
       const index = Number(indexString);
       const value = formValue[x];
 
-      // console.log(index);
-      if (value !== this.configuration[json[index].tag][key].default && (value || value === false || value === '' || value === 0))
+      // 对additional类型做处理
+      if (additional) {
+        const originKeyValue = json[index][key];
+        const originKey = `${indexString}-${key}`;
+
+        if (additional === 'prefix')
+          if (originKeyValue) json[index][key] = value + originKeyValue;
+          else formValue[originKey] = value + formValue[originKey];
+        else if (additional === 'suffix')
+          if (originKeyValue) json[index][key] += value;
+          else formValue[originKey] += value;
+      }
+
+      // 保证value有定义且不为默认值
+      if (typeof value !== 'undefined' && value !== this.configuration[json[index].tag][key].default)
         json[index][key] = value;
     });
 
@@ -257,623 +326,11 @@ export default class FormTest extends Vue {
 
   private tagList = require('|/JsonEditor/tagList');
 
-  private tags: string[] = ['请选择'];
+  private tags: string[] = ['head'];
 
   private unionTypeSelect: UnionTypeItem[] = [{}];
 
-  // private configuration= require('|/JsonEditor/jsonConfig');
-  private configuration: Configuration = {
-    head: {
-      title: {
-        title: '导航栏标题',
-        desc: '一般不超过八个字，六字以下为佳',
-        type: 'string',
-        required: true
-      },
-      desc: {
-        title: '标题描述文字',
-        desc: '该描述文字仅在特定主题下展示，所以仅供补充界面主题，不可放置重要信息',
-        type: 'mutiline',
-        required: false
-      },
-      action: {
-        title: '按钮函数名',
-        desc: '填入左上角按钮点击时所触发的函数名称，不填时默认执行返回，设置为true来隐藏默认的返回按钮',
-        type: ['string', 'boolean'],
-        required: false
-      },
-      leftText: {
-        title: '按钮文字',
-        desc: '设置左上角文字，默认为上一级页面标题，一般不用填写',
-        type: 'string',
-        required: false
-      },
-      grey: {
-        title: '灰色背景',
-        desc: '默认为白色背景',
-        type: 'boolean',
-        required: false,
-        default: false
-      },
-      hidden: {
-        title: '隐藏导航栏',
-        desc: '设置后不显示导航栏',
-        type: 'boolean',
-        required: false,
-        default: false
-      },
-      shareable: {
-        title: '可被分享',
-        desc: '设置该界面是否可以使用小程序的界面分享',
-        type: 'boolean',
-        required: false,
-        default: false
-      },
-      contact: {
-        title: '联系开发者',
-        desc: '是否在分享弹出菜单中显示“联系开发者”按钮',
-        type: 'boolean',
-        required: false,
-        default: false
-      },
-      feedback: {
-        title: '意见反馈',
-        desc: '是否在分享弹出菜单中显示“意见反馈”按钮',
-        type: 'boolean',
-        required: false,
-        default: false
-      }
-    },
-    title: {
-      text: {
-        title: '文字',
-        type: 'mutiline',
-        required: true
-      },
-      style: {
-        title: '样式',
-        desc: '填入样式后，会对标题的默认样式进行覆盖',
-        type: 'string',
-        required: false
-      }
-    },
-    p: {
-      text: {
-        title: '文字',
-        type: 'mutiline',
-        required: true
-      },
-      head: {
-        title: '标题',
-        desc: '填入true会在留空占位',
-        type: ['string', 'boolean'],
-        required: false
-      },
-      align: {
-        title: '段落对齐方式',
-        type: 'string',
-        enum: [
-          { label: '左对齐', value: 'left' },
-          { label: '居中', value: 'center' },
-          { label: '右对齐', value: 'right' },
-          { label: '两端对齐', value: 'justify' }
-        ],
-        required: false,
-        default: 'left'
-      },
-      src: {
-        title: '图片地址',
-        desc: '设置后会在段落文字底部展示所选图片',
-        type: 'string',
-        required: false
-      },
-      desc: {
-        title: '图片描述',
-        desc: '填入后会自动最前加入一个三角号，不填则没有描述文字',
-        type: 'string',
-        required: false
-      },
-      res: {
-        title: '高清图片地址',
-        desc: '需要高清图片时设置，会在预览图片是使用',
-        type: 'string',
-        required: false
-      },
-      imgmode: {
-        title: '图片显示模式',
-        desc: '小程序专用设置，默认为widthFix',
-        type: 'string',
-        enum: [
-          { label: 'widthFix', value: 'widthFix' },
-          { label: 'scaleToFill', value: 'scaleToFill' },
-          { label: 'aspectFit', value: 'aspectFit' },
-          { label: 'aspectFill', value: 'aspectFill' },
-          { label: 'top', value: 'top' },
-          { label: 'bottom', value: 'bottom' },
-          { label: 'left', value: 'left' },
-          { label: 'right', value: 'right' },
-          { label: 'center', value: 'center' },
-          { label: 'top left', value: 'top left' },
-          { label: 'top right', value: 'top right' },
-          { label: 'bottom left', value: 'bottom left' },
-          { label: 'bottom right', value: 'bottom right' }
-        ],
-        required: false,
-        default: 'widthFix'
-      },
-      style: {
-        title: '段落文字样式',
-        desc: '填入css样式，会对段落的默认样式进行覆盖',
-        type: 'string',
-        required: false
-      }
-    },
-    list: {
-      foot: {
-        title: '尾部标题',
-        type: 'string',
-        required: false
-      },
-      head: {
-        title: '头部标题',
-        desc: '不填会在标题所在处留空占位，设置为false来取消留空占位',
-        type: ['string', 'boolean'],
-        required: false
-      }
-    },
-    img: {
-      src: {
-        title: '图片地址',
-        desc: '设置后会在段落文字底部展示所选图片',
-        type: 'string',
-        required: true
-      },
-      desc: {
-        title: '图片描述',
-        desc: '填入后会自动最前加入一个三角号，不填则没有描述文字',
-        type: 'string',
-        required: false
-      },
-      res: {
-        title: '高清图片地址',
-        desc: '需要高清图片时设置，会在预览图片时使用',
-        type: 'string',
-        required: false
-      },
-      lazy: {
-        title: '图片懒加载',
-        desc: '小程序专用设置：默认执行lazyload，设置false取消',
-        type: 'boolean',
-        required: false,
-        default: true
-      },
-      imgmode: {
-        title: '图片显示模式',
-        desc: '默认为widthFix',
-        type: 'string',
-        enum: [
-          { label: 'widthFix', value: 'widthFix' },
-          { label: 'scaleToFill', value: 'scaleToFill' },
-          { label: 'aspectFit', value: 'aspectFit' },
-          { label: 'aspectFill', value: 'aspectFill' },
-          { label: 'top', value: 'top' },
-          { label: 'bottom', value: 'bottom' },
-          { label: 'left', value: 'left' },
-          { label: 'right', value: 'right' },
-          { label: 'center', value: 'center' },
-          { label: 'top left', value: 'top left' },
-          { label: 'top right', value: 'top right' },
-          { label: 'bottom left', value: 'bottom left' },
-          { label: 'bottom right', value: 'bottom right' }
-        ],
-        required: false,
-        default: 'widthFix'
-      }
-    },
-    doc: {
-      docName: {
-        title: '文档名称',
-        desc: '文档名称，需要使用“文件名.后缀”的格式，文件名不得包含“.”，后缀只支持doc、docx、ppt、pptx、xls、xlsx、pdf、jpg、jpeg、png、gif',
-        type: 'string',
-        required: true
-      },
-      url: {
-        title: '文档在线路径',
-        type: 'string',
-        required: true
-      }
-    },
-    phone: {
-      num: {
-        title: '电话号码',
-        type: ['string', 'number'],
-        required: true
-      },
-      fName: {
-        title: '名字',
-        desc: '小程序专用设置',
-        type: 'string',
-        required: true
-      },
-      lName: {
-        title: '名字',
-        desc: '小程序专用设置',
-        type: 'string',
-        required: false
-      },
-      org: {
-        title: '所在公司',
-        desc: '小程序专用设置',
-        type: 'string',
-        required: false
-      },
-      remark: {
-        title: '备注',
-        desc: '小程序专用设置',
-        type: 'string',
-        required: false
-      },
-      workNum: {
-        title: '工作电话',
-        desc: '小程序专用设置',
-        type: ['string', 'number'],
-        required: false
-      },
-      nickName: {
-        title: '昵称',
-        desc: '小程序专用设置',
-        type: 'string',
-        required: false
-      },
-      head: {
-        title: '头像图片路径',
-        desc: '小程序专用设置，仅限本地路径',
-        type: 'string',
-        required: false
-      },
-      wechat: {
-        title: '微信号',
-        desc: '小程序专用设置',
-        type: 'string',
-        required: false
-      },
-      province: {
-        title: '省份',
-        desc: '小程序专用设置',
-        type: 'string',
-        required: false
-      },
-      city: {
-        title: '城市',
-        desc: '小程序专用设置',
-        type: 'string',
-        required: false
-      },
-      street: {
-        title: '街道',
-        desc: '小程序专用设置',
-        type: 'string',
-        required: false
-      },
-      postCode: {
-        title: '邮政编码',
-        desc: '小程序专用设置',
-        type: 'string',
-        required: false
-      },
-      title: {
-        title: '职位',
-        desc: '小程序专用设置',
-        type: 'string',
-        required: false
-      },
-      hostNum: {
-        title: '公司电话',
-        desc: '小程序专用设置',
-        type: ['string', 'number'],
-        required: false
-      },
-      website: {
-        title: '网站',
-        desc: '小程序专用设置',
-        type: 'string',
-        required: false
-      },
-      email: {
-        title: '电子邮件',
-        desc: '小程序专用设置',
-        type: 'string',
-        required: false
-      },
-      homeNum: {
-        title: '住宅电话',
-        desc: '小程序专用设置',
-        type: ['string', 'number'],
-        required: false
-      }
-    },
-    grid: {
-      head: {
-        title: '标题',
-        desc: '设置后会在段落文字底部展示所选图片',
-        type: 'string',
-        required: false
-      },
-      foot: {
-        title: '尾部文字',
-        desc: '填入后会自动最前加入一个三角号，不填则没有描述文字',
-        type: 'string',
-        required: false
-      }
-    },
-    swiper: {
-      url: {
-        title: '标题',
-        desc: '设置后会在段落文字底部展示所选图片',
-        type: 'arrray',
-        element: 'string',
-        required: true
-      },
-      Class: {
-        title: '轮播图容器class',
-        desc: '默认样式为“width:100%; height:400rpx”',
-        type: 'string',
-        required: false
-      },
-      style: {
-        title: '轮播图容器样式',
-        desc: '填入css样式',
-        type: 'string',
-        required: false
-      },
-      indicatorDots: {
-        title: '面板指示点',
-        desc: '默认显示，设置false取消',
-        type: 'boolean',
-        required: false,
-        default: true
-      },
-      dotColor: {
-        title: '指示点颜色',
-        desc: '默认为#ffffff88',
-        type: 'string',
-        required: false
-      },
-      dotActiveColor: {
-        title: '选中点颜色',
-        desc: '默认为#fff',
-        type: 'string',
-        required: false
-      },
-      autoplay: {
-        title: '自动切换',
-        desc: '默认开启，设置为false取消',
-        type: 'boolean',
-        required: false,
-        default: true
-      },
-      interval: {
-        title: '自动切换间隔',
-        desc: '单位为毫秒，默认为5000',
-        type: 'number',
-        required: false,
-        default: 5000
-      },
-      duration: {
-        title: '滑动动画时长',
-        desc: '单位为毫秒，默认为500',
-        type: 'number',
-        required: false,
-        default: 500
-      },
-      circular: {
-        title: '衔接滑动',
-        desc: '默认开启，设置为false取消',
-        type: 'boolean',
-        required: false,
-        default: true
-      },
-      vertical: {
-        title: '纵向滑动',
-        desc: '默认为横向滑动',
-        type: 'boolean',
-        required: false,
-        default: false
-      },
-      preMargin: {
-        title: '前一项露出边距',
-        desc: '默认为0px，接受 px 和 rpx 值',
-        type: 'string',
-        required: false,
-        default: '0px'
-      },
-      nextMargin: {
-        title: '后一项露出边距',
-        desc: '默认为0px，接受 px 和 rpx 值',
-        type: 'string',
-        required: false,
-        default: '0px'
-      },
-      change: {
-        title: '改变时函数名',
-        desc: '填入轮播图刚开始改变时触发的函数名称，默认不触发函数',
-        type: 'string',
-        required: false
-      },
-      animation: {
-        title: '结束时函数名',
-        desc: '填入轮播图动画结束时触发的函数名称，默认不触发函数',
-        type: 'string',
-        required: false
-      },
-      imgClass: {
-        title: '图片class名',
-        desc: '默认样式为“ width:100%!important; height:100%!important; ”',
-        type: 'string',
-        required: false
-      },
-      imgMode: {
-        title: '图片显示模式',
-        desc: '小程序默认为widthFix',
-        type: 'string',
-        enum: [
-          { label: 'widthFix', value: 'widthFix' },
-          { label: 'scaleToFill', value: 'scaleToFill' },
-          { label: 'aspectFit', value: 'aspectFit' },
-          { label: 'aspectFill', value: 'aspectFill' },
-          { label: 'top', value: 'top' },
-          { label: 'bottom', value: 'bottom' },
-          { label: 'left', value: 'left' },
-          { label: 'right', value: 'right' },
-          { label: 'center', value: 'center' },
-          { label: 'top left', value: 'top left' },
-          { label: 'top right', value: 'top right' },
-          { label: 'bottom left', value: 'bottom left' },
-          { label: 'bottom right', value: 'bottom right' }
-        ],
-        required: false,
-        default: 'aspectFill'
-      }
-    },
-    audio: {
-      res: {
-        title: '音频地址',
-        desc: '填入音频文件的在线网址或本地路径',
-        type: 'string',
-        required: true
-      },
-      loop: {
-        title: '循环播放',
-        desc: '默认关闭',
-        type: 'boolean',
-        required: false,
-        default: false
-      },
-      controls: {
-        title: '显示默认控件',
-        desc: '默认显示，设置false取消',
-        type: 'boolean',
-        required: false,
-        default: true
-      },
-      name: {
-        title: '循环播放',
-        desc: 'controls为false时无效',
-        type: 'string',
-        required: false
-      },
-      author: {
-        title: '循环播放',
-        desc: 'controls为false时无效',
-        type: 'string',
-        required: false
-      }
-    },
-    video: {
-      res: {
-        title: '视频地址',
-        desc: '填入要播放视频的资源地址',
-        type: 'string',
-        required: true
-      },
-      loop: {
-        title: '循环播放',
-        desc: '默认关闭',
-        type: 'boolean',
-        required: false,
-        default: false
-      },
-      controls: {
-        title: '显示默认控件',
-        desc: '默认显示，设置false取消',
-        type: 'boolean',
-        required: false,
-        default: true
-      },
-      autoplay: {
-        title: '自动播放',
-        desc: '默认不自动播放',
-        type: 'boolean',
-        required: false,
-        default: false
-      },
-      startTime: {
-        title: '初始播放位置',
-        type: 'number',
-        required: false,
-        default: 0
-      }
-    },
-    gzh: {
-      url: {
-        title: '图文链接',
-        type: 'string',
-        required: true
-      },
-      src: {
-        title: '封面图片地址',
-        type: 'string',
-        required: true
-      },
-      title: {
-        title: '图文标题',
-        type: 'string',
-        required: true
-      },
-      desc: {
-        title: '图文描述',
-        type: 'string',
-        required: true
-      },
-      icon: {
-        title: '公众号头像地址',
-        desc: '默认使用“东师青年”图标',
-        type: 'string',
-        required: false
-      },
-      gzhName: {
-        title: '公众号名称',
-        desc: '默认使用“东师青年”',
-        type: 'string',
-        required: false
-      }
-    },
-    intro: {
-      name: {
-        title: '主体名称',
-        type: 'string',
-        required: true
-      },
-      src: {
-        title: '头像图标地址',
-        type: 'string',
-        required: true
-      },
-
-      desc: {
-        title: '主体描述',
-        type: 'string',
-        required: true
-      }
-    },
-    foot: {
-      desc: {
-        title: '额外描述',
-        type: 'string',
-        required: false
-      },
-      author: {
-        title: '编辑人',
-        type: 'string',
-        required: false
-      },
-      time: {
-        title: '编辑时间',
-        type: 'string',
-        required: false
-      }
-    }
-  };
+  private configuration = require('|/JsonEditor/jsonConfig');
 
   // Add a new component in the end
   private addComponent() {
@@ -888,11 +345,6 @@ export default class FormTest extends Vue {
 }
 </script>
 <style scoped>
-.desc {
-  line-height: 18px;
-  font-size: 13px;
-  color: #888;
-}
 .addNewBtn {
   border-radius: 16px;
 }

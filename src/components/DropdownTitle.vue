@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-15 20:56:30
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-05-20 22:09:26
+ * @LastEditTime: 2019-05-21 16:46:59
  * @Description: Dropdown Title
 -->
 <template>
@@ -44,6 +44,13 @@ export default class DropdownTitle extends Vue {
     this.selectedText = this.menu[index][0];
     this.$emit('change', this.menu[index][1]);
     this.$emit('onChange', this.menu[index][0]);
+  }
+
+  private mounted() {
+    if (this.selected !== '请选择')
+      this.menu.forEach(element => {
+        if (this.selected === element[1]) this.selectedText = element[0];
+      });
   }
 }
 </script>

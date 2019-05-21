@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-19 17:25:48
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-05-21 00:29:25
+ * @LastEditTime: 2019-05-21 16:56:28
  * @Description: Json Editor
 -->
 <template>
@@ -21,10 +21,21 @@
 
             <a-form-item
               :key="`${partIndex}-${config}`"
-              :label="configuration[part][config].title"
-              :label-col="{span:5}"
-              :wrapper-col="{span:19}"
+              :label-col="{ span: 6 }"
+              :wrapper-col="{ span: 18 }"
             >
+              <template #label>
+                <!-- 表单项名称 -->
+                {{configuration[part][config].title}}
+                <!-- 描述文字 -->
+                <a-tooltip
+                  :title="configuration[part][config].desc"
+                  v-if="configuration[part][config].desc"
+                >
+                  <a-icon style="vertical-align:-0.125em;" type="question-circle"/>
+                </a-tooltip>
+              </template>
+
               <!-- 复合类型 -->
               <template v-if="typeof configuration[part][config].type==='object'">
                 <!-- 选择需要的值类型 -->
@@ -79,6 +90,22 @@
                     }
                   ]"
                   v-else-if="unionTypeSelect[partIndex][config]==='string'"
+                />
+
+                <!-- 数字输入 -->
+                <a-input-number
+                  :step="configuration[part][config].step"
+                  v-decorator="[
+                    `${partIndex}-${config}`,
+                    {
+                      initialValue: configuration[part][config].default,
+                      rules: [{
+                        required: configuration[part][config].required,
+                        type: 'number'
+                      }]
+                    }
+                  ]"
+                  v-else-if="unionTypeSelect[partIndex][config]==='number'"
                 />
               </template>
 
@@ -148,36 +175,61 @@
                     }
                   ]"
                   v-else-if="configuration[part][config].type==='string'"
+                >
+                  <!-- 网址输入 -->
+                  <a-select
+                    :options="[
+                        { label:'https://', value: 'https://'},
+                        { label:'http://', value: 'http://'},
+                        { label:'无前缀', value: ''}
+                    ]"
+                    slot="addonBefore"
+                    style="width: 90px"
+                    v-decorator="[
+                        `${partIndex}-${config}-prefix`,
+                        { initialValue: 'https://' }
+                      ]"
+                    v-if="configuration[part][config].url"
+                  />
+                </a-input>
+
+                <!-- 数字输入 -->
+                <a-input-number
+                  :step="configuration[part][config].step"
+                  style="width:150px;"
+                  v-decorator="[
+                    `${partIndex}-${config}`,
+                    {
+                      initialValue: configuration[part][config].default,
+                      rules: [{
+                        required: configuration[part][config].required,
+                        type: 'number'
+                      }]
+                    }
+                  ]"
+                  v-else-if="configuration[part][config].type==='number'"
                 />
+
+                <!-- 对象输入 -->
+                <a-input
+                  v-decorator="[
+                    `${partIndex}-${config}`,
+                    {
+                      initialValue: configuration[part][config].default,
+                      rules: [{
+                        required: configuration[part][config].required,
+                        type: 'string'
+                      }]
+                    }
+                  ]"
+                  v-else-if="configuration[part][config].type==='object'"
+                />
+                <!-- 完善中... -->
               </template>
-              <!-- 描述文字 -->
-              <div
-                class="desc"
-                v-if="configuration[part][config].desc"
-                v-text="configuration[part][config].desc"
-              />
             </a-form-item>
           </template>
         </template>
       </template>
-      <a-form-item :label-col="{ span: 5 }" :wrapper-col="{ span: 12 }" label="Note">
-        <a-input
-          v-decorator="['username', {rules: [{ required: true, message: 'Please input your name' }] }]"
-        />
-      </a-form-item>
-      <a-form-item :label-col="{ span: 5 }" :wrapper-col="{ span: 12 }" label="Gender">
-        <a-select
-          @change="handleSelectChange"
-          placeholder="Select a option and change input text above"
-          v-decorator="[
-          'gender',
-          {rules: [{ required: true, message: 'Please select your gender!' }]}
-        ]"
-        >
-          <a-select-option value="male">male</a-select-option>
-          <a-select-option value="female">female</a-select-option>
-        </a-select>
-      </a-form-item>
       <a-form-item :wrapper-col="{ span: 12, offset: 5 }">
         <a-button html-type="submit" type="primary">Submit</a-button>
       </a-form-item>
@@ -198,6 +250,25 @@ interface UnionTypeItem {
   [props: string]: string;
 }
 
+interface Configuration {
+  readonly [propName: string]: {
+    [propName: string]: {
+      title: string;
+      desc?: string;
+      type: string | string[];
+      required: boolean;
+      default?: any;
+      enum?: any[];
+      element?: string[] | string;
+      step?: number;
+    };
+  };
+}
+
+interface NormalObject {
+  [propName: string]: any;
+}
+
 @Component({ components: { DropdownTitle, TypeSelect } })
 export default class FormTest extends Vue {
   private formLayout = 'horizontal';
@@ -213,15 +284,49 @@ export default class FormTest extends Vue {
     this.form.validateFields((err: any, values: any) => {
       if (!err) console.log('Received values of form: ', values);
     });
+
+    const json: NormalObject[] = [];
+    const formValue = this.form.getFieldsValue();
+
+    this.tags.forEach(tag => {
+      json.push({ tag });
+    });
+
+    Object.keys(formValue).forEach(x => {
+      const [indexString, key, additional] = x.split('-');
+      const index = Number(indexString);
+      const value = formValue[x];
+
+      // 对additional类型做处理
+      if (additional) {
+        const originKeyValue = json[index][key];
+        const originKey = `${indexString}-${key}`;
+
+        if (additional === 'prefix')
+          if (originKeyValue) json[index][key] = value + originKeyValue;
+          else formValue[originKey] = value + formValue[originKey];
+        else if (additional === 'suffix')
+          if (originKeyValue) json[index][key] += value;
+          else formValue[originKey] += value;
+      }
+
+      // 保证value有定义且不为默认值
+      if (typeof value !== 'undefined' && value !== this.configuration[json[index].tag][key].default)
+        json[index][key] = value;
+    });
+
+    console.log(json);
   }
+
   private handleSelectChange(value: any) {
-    console.log(value);
     this.form.setFieldsValue({ note: `Hi, ${value === 'male' ? 'man' : 'lady'}!` });
   }
 
+  private pageJson: any[] = [];
+
   private tagList = require('|/JsonEditor/tagList');
 
-  private tags: string[] = ['请选择'];
+  private tags: string[] = ['head'];
 
   private unionTypeSelect: UnionTypeItem[] = [{}];
 
@@ -240,11 +345,6 @@ export default class FormTest extends Vue {
 }
 </script>
 <style scoped>
-.desc {
-  line-height: 18px;
-  font-size: 13px;
-  color: #888;
-}
 .addNewBtn {
   border-radius: 16px;
 }

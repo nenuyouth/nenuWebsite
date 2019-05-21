@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Ant Design Icon 部分加载文件
  * @Date: 2019-05-06 00:44:51
- * @LastEditTime: 2019-05-09 12:41:50
+ * @LastEditTime: 2019-05-21 15:33:09
  */
 
 // Nav Icons
@@ -51,6 +51,9 @@ export { default as ThunderboltOutline } from 'ol/ThunderboltOutline';
 // TimeLine Icons
 export { default as ScheduleOutline } from 'ol/ScheduleOutline';
 export { default as CoffeeOutline } from 'ol/CoffeeOutline';
+
+// Json Editor Icons
+export { default as QuestionCircleOutline } from 'ol/QuestionCircleOutline';
 
 // export what antd other components need
 export { default as CloseOutline } from 'ol/CloseOutline';
