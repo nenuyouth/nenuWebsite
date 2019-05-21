@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-19 17:25:48
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-05-21 13:16:00
+ * @LastEditTime: 2019-05-21 14:46:11
  * @Description: 测试
 -->
 <template>
@@ -204,6 +204,7 @@ interface Configuration {
       required: boolean;
       default?: any;
       enum?: any[];
+      element?: string[] | string;
     };
   };
 }
@@ -325,12 +326,12 @@ export default class FormTest extends Vue {
     },
     title: {
       text: {
-        title: '大标题文字',
+        title: '文字',
         type: 'mutiline',
         required: true
       },
       style: {
-        title: '标题css样式',
+        title: '样式',
         desc: '填入样式后，会对标题的默认样式进行覆盖',
         type: 'string',
         required: false
@@ -338,12 +339,12 @@ export default class FormTest extends Vue {
     },
     p: {
       text: {
-        title: '段落的文字',
+        title: '文字',
         type: 'mutiline',
         required: true
       },
       head: {
-        title: '段落标题',
+        title: '标题',
         desc: '填入true会在留空占位',
         type: ['string', 'boolean'],
         required: false
@@ -367,7 +368,7 @@ export default class FormTest extends Vue {
         required: false
       },
       desc: {
-        title: '图片描述文字',
+        title: '图片描述',
         desc: '填入后会自动最前加入一个三角号，不填则没有描述文字',
         type: 'string',
         required: false
@@ -379,8 +380,8 @@ export default class FormTest extends Vue {
         required: false
       },
       imgmode: {
-        title: '图片的显示模式',
-        desc: '默认为widthFix',
+        title: '图片显示模式',
+        desc: '小程序专用设置，默认为widthFix',
         type: 'string',
         enum: [
           { label: 'widthFix', value: 'widthFix' },
@@ -401,7 +402,7 @@ export default class FormTest extends Vue {
         default: 'widthFix'
       },
       style: {
-        title: '设置段落文字风格',
+        title: '段落文字样式',
         desc: '填入css样式，会对段落的默认样式进行覆盖',
         type: 'string',
         required: false
@@ -409,13 +410,13 @@ export default class FormTest extends Vue {
     },
     list: {
       foot: {
-        title: '列表的结尾小标题',
+        title: '尾部标题',
         type: 'string',
         required: false
       },
       head: {
-        title: '列表的的标题，不填会在标题所在处留空占位',
-        desc: '设置为false来取消留空占位',
+        title: '头部标题',
+        desc: '不填会在标题所在处留空占位，设置为false来取消留空占位',
         type: ['string', 'boolean'],
         required: false
       }
@@ -428,26 +429,26 @@ export default class FormTest extends Vue {
         required: true
       },
       desc: {
-        title: '图片描述文字',
+        title: '图片描述',
         desc: '填入后会自动最前加入一个三角号，不填则没有描述文字',
         type: 'string',
         required: false
       },
       res: {
         title: '高清图片地址',
-        desc: '需要高清图片时设置，会在预览图片是使用',
+        desc: '需要高清图片时设置，会在预览图片时使用',
         type: 'string',
         required: false
       },
       lazy: {
         title: '图片懒加载',
-        desc: '默认执行lazyload，设置false取消',
+        desc: '小程序专用设置：默认执行lazyload，设置false取消',
         type: 'boolean',
         required: false,
         default: true
       },
       imgmode: {
-        title: '图片的显示模式',
+        title: '图片显示模式',
         desc: '默认为widthFix',
         type: 'string',
         enum: [
@@ -588,6 +589,287 @@ export default class FormTest extends Vue {
         title: '住宅电话',
         desc: '小程序专用设置',
         type: ['string', 'number'],
+        required: false
+      }
+    },
+    grid: {
+      head: {
+        title: '标题',
+        desc: '设置后会在段落文字底部展示所选图片',
+        type: 'string',
+        required: false
+      },
+      foot: {
+        title: '尾部文字',
+        desc: '填入后会自动最前加入一个三角号，不填则没有描述文字',
+        type: 'string',
+        required: false
+      }
+    },
+    swiper: {
+      url: {
+        title: '标题',
+        desc: '设置后会在段落文字底部展示所选图片',
+        type: 'arrray',
+        element: 'string',
+        required: true
+      },
+      Class: {
+        title: '轮播图容器class',
+        desc: '默认样式为“width:100%; height:400rpx”',
+        type: 'string',
+        required: false
+      },
+      style: {
+        title: '轮播图容器样式',
+        desc: '填入css样式',
+        type: 'string',
+        required: false
+      },
+      indicatorDots: {
+        title: '面板指示点',
+        desc: '默认显示，设置false取消',
+        type: 'boolean',
+        required: false,
+        default: true
+      },
+      dotColor: {
+        title: '指示点颜色',
+        desc: '默认为#ffffff88',
+        type: 'string',
+        required: false
+      },
+      dotActiveColor: {
+        title: '选中点颜色',
+        desc: '默认为#fff',
+        type: 'string',
+        required: false
+      },
+      autoplay: {
+        title: '自动切换',
+        desc: '默认开启，设置为false取消',
+        type: 'boolean',
+        required: false,
+        default: true
+      },
+      interval: {
+        title: '自动切换间隔',
+        desc: '单位为毫秒，默认为5000',
+        type: 'number',
+        required: false,
+        default: 5000
+      },
+      duration: {
+        title: '滑动动画时长',
+        desc: '单位为毫秒，默认为500',
+        type: 'number',
+        required: false,
+        default: 500
+      },
+      circular: {
+        title: '衔接滑动',
+        desc: '默认开启，设置为false取消',
+        type: 'boolean',
+        required: false,
+        default: true
+      },
+      vertical: {
+        title: '纵向滑动',
+        desc: '默认为横向滑动',
+        type: 'boolean',
+        required: false,
+        default: false
+      },
+      preMargin: {
+        title: '前一项露出边距',
+        desc: '默认为0px，接受 px 和 rpx 值',
+        type: 'string',
+        required: false,
+        default: '0px'
+      },
+      nextMargin: {
+        title: '后一项露出边距',
+        desc: '默认为0px，接受 px 和 rpx 值',
+        type: 'string',
+        required: false,
+        default: '0px'
+      },
+      change: {
+        title: '改变时函数名',
+        desc: '填入轮播图刚开始改变时触发的函数名称，默认不触发函数',
+        type: 'string',
+        required: false
+      },
+      animation: {
+        title: '结束时函数名',
+        desc: '填入轮播图动画结束时触发的函数名称，默认不触发函数',
+        type: 'string',
+        required: false
+      },
+      imgClass: {
+        title: '图片class名',
+        desc: '默认样式为“ width:100%!important; height:100%!important; ”',
+        type: 'string',
+        required: false
+      },
+      imgMode: {
+        title: '图片显示模式',
+        desc: '小程序默认为widthFix',
+        type: 'string',
+        enum: [
+          { label: 'widthFix', value: 'widthFix' },
+          { label: 'scaleToFill', value: 'scaleToFill' },
+          { label: 'aspectFit', value: 'aspectFit' },
+          { label: 'aspectFill', value: 'aspectFill' },
+          { label: 'top', value: 'top' },
+          { label: 'bottom', value: 'bottom' },
+          { label: 'left', value: 'left' },
+          { label: 'right', value: 'right' },
+          { label: 'center', value: 'center' },
+          { label: 'top left', value: 'top left' },
+          { label: 'top right', value: 'top right' },
+          { label: 'bottom left', value: 'bottom left' },
+          { label: 'bottom right', value: 'bottom right' }
+        ],
+        required: false,
+        default: 'aspectFill'
+      }
+    },
+    audio: {
+      res: {
+        title: '音频地址',
+        desc: '填入音频文件的在线网址或本地路径',
+        type: 'string',
+        required: true
+      },
+      loop: {
+        title: '循环播放',
+        desc: '默认关闭',
+        type: 'boolean',
+        required: false,
+        default: false
+      },
+      controls: {
+        title: '显示默认控件',
+        desc: '默认显示，设置false取消',
+        type: 'boolean',
+        required: false,
+        default: true
+      },
+      name: {
+        title: '循环播放',
+        desc: 'controls为false时无效',
+        type: 'string',
+        required: false
+      },
+      author: {
+        title: '循环播放',
+        desc: 'controls为false时无效',
+        type: 'string',
+        required: false
+      }
+    },
+    video: {
+      res: {
+        title: '视频地址',
+        desc: '填入要播放视频的资源地址',
+        type: 'string',
+        required: true
+      },
+      loop: {
+        title: '循环播放',
+        desc: '默认关闭',
+        type: 'boolean',
+        required: false,
+        default: false
+      },
+      controls: {
+        title: '显示默认控件',
+        desc: '默认显示，设置false取消',
+        type: 'boolean',
+        required: false,
+        default: true
+      },
+      autoplay: {
+        title: '自动播放',
+        desc: '默认不自动播放',
+        type: 'boolean',
+        required: false,
+        default: false
+      },
+      startTime: {
+        title: '初始播放位置',
+        type: 'number',
+        required: false,
+        default: 0
+      }
+    },
+    gzh: {
+      url: {
+        title: '图文链接',
+        type: 'string',
+        required: true
+      },
+      src: {
+        title: '封面图片地址',
+        type: 'string',
+        required: true
+      },
+      title: {
+        title: '图文标题',
+        type: 'string',
+        required: true
+      },
+      desc: {
+        title: '图文描述',
+        type: 'string',
+        required: true
+      },
+      icon: {
+        title: '公众号头像地址',
+        desc: '默认使用“东师青年”图标',
+        type: 'string',
+        required: false
+      },
+      gzhName: {
+        title: '公众号名称',
+        desc: '默认使用“东师青年”',
+        type: 'string',
+        required: false
+      }
+    },
+    intro: {
+      name: {
+        title: '主体名称',
+        type: 'string',
+        required: true
+      },
+      src: {
+        title: '头像图标地址',
+        type: 'string',
+        required: true
+      },
+
+      desc: {
+        title: '主体描述',
+        type: 'string',
+        required: true
+      }
+    },
+    foot: {
+      desc: {
+        title: '额外描述',
+        type: 'string',
+        required: false
+      },
+      author: {
+        title: '编辑人',
+        type: 'string',
+        required: false
+      },
+      time: {
+        title: '编辑时间',
+        type: 'string',
         required: false
       }
     }
