@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-19 17:25:48
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-05-21 00:28:46
+ * @LastEditTime: 2019-05-21 13:16:00
  * @Description: 测试
 -->
 <template>
@@ -149,6 +149,21 @@
                   ]"
                   v-else-if="configuration[part][config].type==='string'"
                 />
+
+                <!-- 对象输入 -->
+                <a-input
+                  v-decorator="[
+                    `${partIndex}-${config}`,
+                    {
+                      initialValue: configuration[part][config].default,
+                      rules: [{
+                        required: configuration[part][config].required,
+                        type: 'string'
+                      }]
+                    }
+                  ]"
+                  v-else-if="configuration[part][config].type==='object'"
+                />
               </template>
               <!-- 描述文字 -->
               <div
@@ -160,24 +175,6 @@
           </template>
         </template>
       </template>
-      <a-form-item :label-col="{ span: 5 }" :wrapper-col="{ span: 12 }" label="Note">
-        <a-input
-          v-decorator="['username', {rules: [{ required: true, message: 'Please input your name' }] }]"
-        />
-      </a-form-item>
-      <a-form-item :label-col="{ span: 5 }" :wrapper-col="{ span: 12 }" label="Gender">
-        <a-select
-          @change="handleSelectChange"
-          placeholder="Select a option and change input text above"
-          v-decorator="[
-          'gender',
-          {rules: [{ required: true, message: 'Please select your gender!' }]}
-        ]"
-        >
-          <a-select-option value="male">male</a-select-option>
-          <a-select-option value="female">female</a-select-option>
-        </a-select>
-      </a-form-item>
       <a-form-item :wrapper-col="{ span: 12, offset: 5 }">
         <a-button html-type="submit" type="primary">Submit</a-button>
       </a-form-item>
@@ -198,12 +195,25 @@ interface UnionTypeItem {
   [props: string]: string;
 }
 
+interface Configuration {
+  readonly [propName: string]: {
+    [propName: string]: {
+      title: string;
+      desc?: string;
+      type: string | string[];
+      required: boolean;
+      default?: any;
+      enum?: any[];
+    };
+  };
+}
+
+interface NormalObject {
+  [propName: string]: any;
+}
+
 @Component({ components: { DropdownTitle, TypeSelect } })
 export default class FormTest extends Vue {
-  private a(e: any) {
-    console.log(e);
-  }
-
   private formLayout = 'horizontal';
 
   private form: any;
@@ -218,11 +228,26 @@ export default class FormTest extends Vue {
       if (!err) console.log('Received values of form: ', values);
     });
 
-    const json = [];
-    // this.form.getFieldsValue()
+    const json: NormalObject[] = [];
+    const formValue = this.form.getFieldsValue();
 
+    this.tags.forEach(tag => {
+      json.push({ tag });
+    });
 
+    Object.keys(formValue).forEach(x => {
+      const [indexString, key] = x.split('-');
+      const index = Number(indexString);
+      const value = formValue[x];
+
+      // console.log(index);
+      if (value !== this.configuration[json[index].tag][key].default && (value || value === false || value === '' || value === 0))
+        json[index][key] = value;
+    });
+
+    console.log(json);
   }
+
   private handleSelectChange(value: any) {
     this.form.setFieldsValue({ note: `Hi, ${value === 'male' ? 'man' : 'lady'}!` });
   }
@@ -236,7 +261,7 @@ export default class FormTest extends Vue {
   private unionTypeSelect: UnionTypeItem[] = [{}];
 
   // private configuration= require('|/JsonEditor/jsonConfig');
-  private configuration = {
+  private configuration: Configuration = {
     head: {
       title: {
         title: '导航栏标题',
@@ -258,7 +283,7 @@ export default class FormTest extends Vue {
       },
       leftText: {
         title: '按钮文字',
-        desc: '设置左上角文字，一般不用填写，可自动生成',
+        desc: '设置左上角文字，默认为上一级页面标题，一般不用填写',
         type: 'string',
         required: false
       },
@@ -306,6 +331,7 @@ export default class FormTest extends Vue {
       },
       style: {
         title: '标题css样式',
+        desc: '填入样式后，会对标题的默认样式进行覆盖',
         type: 'string',
         required: false
       }
@@ -333,6 +359,236 @@ export default class FormTest extends Vue {
         ],
         required: false,
         default: 'left'
+      },
+      src: {
+        title: '图片地址',
+        desc: '设置后会在段落文字底部展示所选图片',
+        type: 'string',
+        required: false
+      },
+      desc: {
+        title: '图片描述文字',
+        desc: '填入后会自动最前加入一个三角号，不填则没有描述文字',
+        type: 'string',
+        required: false
+      },
+      res: {
+        title: '高清图片地址',
+        desc: '需要高清图片时设置，会在预览图片是使用',
+        type: 'string',
+        required: false
+      },
+      imgmode: {
+        title: '图片的显示模式',
+        desc: '默认为widthFix',
+        type: 'string',
+        enum: [
+          { label: 'widthFix', value: 'widthFix' },
+          { label: 'scaleToFill', value: 'scaleToFill' },
+          { label: 'aspectFit', value: 'aspectFit' },
+          { label: 'aspectFill', value: 'aspectFill' },
+          { label: 'top', value: 'top' },
+          { label: 'bottom', value: 'bottom' },
+          { label: 'left', value: 'left' },
+          { label: 'right', value: 'right' },
+          { label: 'center', value: 'center' },
+          { label: 'top left', value: 'top left' },
+          { label: 'top right', value: 'top right' },
+          { label: 'bottom left', value: 'bottom left' },
+          { label: 'bottom right', value: 'bottom right' }
+        ],
+        required: false,
+        default: 'widthFix'
+      },
+      style: {
+        title: '设置段落文字风格',
+        desc: '填入css样式，会对段落的默认样式进行覆盖',
+        type: 'string',
+        required: false
+      }
+    },
+    list: {
+      foot: {
+        title: '列表的结尾小标题',
+        type: 'string',
+        required: false
+      },
+      head: {
+        title: '列表的的标题，不填会在标题所在处留空占位',
+        desc: '设置为false来取消留空占位',
+        type: ['string', 'boolean'],
+        required: false
+      }
+    },
+    img: {
+      src: {
+        title: '图片地址',
+        desc: '设置后会在段落文字底部展示所选图片',
+        type: 'string',
+        required: true
+      },
+      desc: {
+        title: '图片描述文字',
+        desc: '填入后会自动最前加入一个三角号，不填则没有描述文字',
+        type: 'string',
+        required: false
+      },
+      res: {
+        title: '高清图片地址',
+        desc: '需要高清图片时设置，会在预览图片是使用',
+        type: 'string',
+        required: false
+      },
+      lazy: {
+        title: '图片懒加载',
+        desc: '默认执行lazyload，设置false取消',
+        type: 'boolean',
+        required: false,
+        default: true
+      },
+      imgmode: {
+        title: '图片的显示模式',
+        desc: '默认为widthFix',
+        type: 'string',
+        enum: [
+          { label: 'widthFix', value: 'widthFix' },
+          { label: 'scaleToFill', value: 'scaleToFill' },
+          { label: 'aspectFit', value: 'aspectFit' },
+          { label: 'aspectFill', value: 'aspectFill' },
+          { label: 'top', value: 'top' },
+          { label: 'bottom', value: 'bottom' },
+          { label: 'left', value: 'left' },
+          { label: 'right', value: 'right' },
+          { label: 'center', value: 'center' },
+          { label: 'top left', value: 'top left' },
+          { label: 'top right', value: 'top right' },
+          { label: 'bottom left', value: 'bottom left' },
+          { label: 'bottom right', value: 'bottom right' }
+        ],
+        required: false,
+        default: 'widthFix'
+      }
+    },
+    doc: {
+      docName: {
+        title: '文档名称',
+        desc: '文档名称，需要使用“文件名.后缀”的格式，文件名不得包含“.”，后缀只支持doc、docx、ppt、pptx、xls、xlsx、pdf、jpg、jpeg、png、gif',
+        type: 'string',
+        required: true
+      },
+      url: {
+        title: '文档在线路径',
+        type: 'string',
+        required: true
+      }
+    },
+    phone: {
+      num: {
+        title: '电话号码',
+        type: ['string', 'number'],
+        required: true
+      },
+      fName: {
+        title: '名字',
+        desc: '小程序专用设置',
+        type: 'string',
+        required: true
+      },
+      lName: {
+        title: '名字',
+        desc: '小程序专用设置',
+        type: 'string',
+        required: false
+      },
+      org: {
+        title: '所在公司',
+        desc: '小程序专用设置',
+        type: 'string',
+        required: false
+      },
+      remark: {
+        title: '备注',
+        desc: '小程序专用设置',
+        type: 'string',
+        required: false
+      },
+      workNum: {
+        title: '工作电话',
+        desc: '小程序专用设置',
+        type: ['string', 'number'],
+        required: false
+      },
+      nickName: {
+        title: '昵称',
+        desc: '小程序专用设置',
+        type: 'string',
+        required: false
+      },
+      head: {
+        title: '头像图片路径',
+        desc: '小程序专用设置，仅限本地路径',
+        type: 'string',
+        required: false
+      },
+      wechat: {
+        title: '微信号',
+        desc: '小程序专用设置',
+        type: 'string',
+        required: false
+      },
+      province: {
+        title: '省份',
+        desc: '小程序专用设置',
+        type: 'string',
+        required: false
+      },
+      city: {
+        title: '城市',
+        desc: '小程序专用设置',
+        type: 'string',
+        required: false
+      },
+      street: {
+        title: '街道',
+        desc: '小程序专用设置',
+        type: 'string',
+        required: false
+      },
+      postCode: {
+        title: '邮政编码',
+        desc: '小程序专用设置',
+        type: 'string',
+        required: false
+      },
+      title: {
+        title: '职位',
+        desc: '小程序专用设置',
+        type: 'string',
+        required: false
+      },
+      hostNum: {
+        title: '公司电话',
+        desc: '小程序专用设置',
+        type: ['string', 'number'],
+        required: false
+      },
+      website: {
+        title: '网站',
+        desc: '小程序专用设置',
+        type: 'string',
+        required: false
+      },
+      email: {
+        title: '电子邮件',
+        desc: '小程序专用设置',
+        type: 'string',
+        required: false
+      },
+      homeNum: {
+        title: '住宅电话',
+        desc: '小程序专用设置',
+        type: ['string', 'number'],
+        required: false
       }
     }
   };

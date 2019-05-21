@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-19 17:25:48
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-05-21 00:19:45
+ * @LastEditTime: 2019-05-21 00:29:25
  * @Description: Json Editor
 -->
 <template>
@@ -200,10 +200,6 @@ interface UnionTypeItem {
 
 @Component({ components: { DropdownTitle, TypeSelect } })
 export default class FormTest extends Vue {
-  private a(e: any) {
-    console.log(e);
-  }
-
   private formLayout = 'horizontal';
 
   private form: any;

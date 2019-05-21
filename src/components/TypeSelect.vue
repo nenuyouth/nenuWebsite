@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-15 20:56:30
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-05-21 00:17:50
+ * @LastEditTime: 2019-05-21 13:01:16
  * @Description: Type Select
 -->
 <template>
@@ -12,7 +12,6 @@
       :value="selected"
       @change="$emit('change',$event.target.value)"
       buttonStyle="solid"
-      size="small"
     >
       <a-radio-button :key="item" :value="item" v-for="item in option">{{item}}</a-radio-button>
     </a-radio-group>
