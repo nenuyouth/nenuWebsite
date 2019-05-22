@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 路由配置文件
  * @Date: 2019-03-25 12:27:33
- * @LastEditTime: 2019-05-21 15:22:23
+ * @LastEditTime: 2019-05-21 22:59:45
  */
 import Main from '@/views/Main.vue';
 import Page404 from '@/views/Page404.vue';
@@ -127,12 +127,12 @@ const route = [
   {
     path: '/private/test',
     meta: { title: 'JSON编辑器' },
-    component: () => import(/* webpackChunkName: "private" */ '@/views/private/FormTest.vue')
+    component: () => import(/* webpackChunkName: "test" */ '@/views/private/FormTest.vue')
   },
   {
     path: '/private/test2',
     meta: { title: 'JSON编辑器' },
-    component: () => import(/* webpackChunkName: "private" */ '@/views/private/Test.vue')
+    component: () => import(/* webpackChunkName: "test" */ '@/views/private/Test.vue')
   },
   {
     path: '*',

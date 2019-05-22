@@ -451,7 +451,7 @@
     "url": {
       "title": "标题",
       "desc": "设置后会在段落文字底部展示所选图片",
-      "type": "arrray",
+      "type": "array",
       "element": "string",
       "required": true
     },
@@ -744,11 +744,6 @@
     }
   },
   "foot": {
-    "desc": {
-      "title": "额外描述",
-      "type": "string",
-      "required": false
-    },
     "author": {
       "title": "编辑人",
       "type": "string",
@@ -756,6 +751,11 @@
     },
     "time": {
       "title": "编辑时间",
+      "type": "string",
+      "required": false
+    },
+    "desc": {
+      "title": "额外描述",
       "type": "string",
       "required": false
     }
