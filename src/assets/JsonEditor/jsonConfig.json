@@ -118,9 +118,8 @@
     "src": {
       "title": "图片地址",
       "desc": "设置后会在段落文字底部展示所选图片",
-      "type": "string",
-      "required": false,
-      "url": true
+      "type": "url",
+      "required": false
     },
     "desc": {
       "title": "图片描述",
@@ -131,9 +130,8 @@
     "res": {
       "title": "高清图片地址",
       "desc": "需要高清图片时设置，会在预览图片是使用",
-      "type": "string",
-      "required": false,
-      "url": true
+      "type": "url",
+      "required": false
     },
     "imgmode": {
       "title": "图片显示模式",
@@ -223,9 +221,8 @@
     "src": {
       "title": "图片地址",
       "desc": "设置后会在段落文字底部展示所选图片",
-      "type": "string",
-      "required": true,
-      "url": true
+      "type": "url",
+      "required": true
     },
     "desc": {
       "title": "图片描述",
@@ -236,9 +233,8 @@
     "res": {
       "title": "高清图片地址",
       "desc": "需要高清图片时设置，会在预览图片时使用",
-      "type": "string",
-      "required": false,
-      "url": true
+      "type": "url",
+      "required": false
     },
     "lazy": {
       "title": "图片懒加载",
@@ -318,9 +314,8 @@
     },
     "url": {
       "title": "文档在线路径",
-      "type": "string",
-      "required": true,
-      "url": true
+      "type": "url",
+      "required": true
     }
   },
   "phone": {
@@ -416,9 +411,8 @@
     "website": {
       "title": "网站",
       "desc": "小程序专用设置",
-      "type": "string",
-      "required": false,
-      "url": true
+      "type": "url",
+      "required": false
     },
     "email": {
       "title": "电子邮件",
@@ -621,9 +615,8 @@
     "res": {
       "title": "音频地址",
       "desc": "填入音频文件的在线网址或本地路径",
-      "type": "string",
-      "required": true,
-      "url": true
+      "type": "url",
+      "required": true
     },
     "loop": {
       "title": "循环播放",
@@ -656,9 +649,8 @@
     "res": {
       "title": "视频地址",
       "desc": "填入要播放视频的资源地址",
-      "type": "string",
-      "required": true,
-      "url": true
+      "type": "url",
+      "required": true
     },
     "loop": {
       "title": "循环播放",
@@ -691,15 +683,13 @@
   "gzh": {
     "url": {
       "title": "图文链接",
-      "type": "string",
-      "required": true,
-      "url": true
+      "type": "url",
+      "required": true
     },
     "src": {
       "title": "封面图片地址",
-      "type": "string",
-      "required": true,
-      "url": true
+      "type": "url",
+      "required": true
     },
     "title": {
       "title": "图文标题",
@@ -714,9 +704,8 @@
     "icon": {
       "title": "公众号头像地址",
       "desc": "默认使用“东师青年”图标",
-      "type": "string",
-      "required": false,
-      "url": true
+      "type": "url",
+      "required": false
     },
     "gzhName": {
       "title": "公众号名称",
@@ -733,9 +722,8 @@
     },
     "src": {
       "title": "头像图标地址",
-      "type": "string",
-      "required": true,
-      "url": true
+      "type": "url",
+      "required": true
     },
     "desc": {
       "title": "主体描述",

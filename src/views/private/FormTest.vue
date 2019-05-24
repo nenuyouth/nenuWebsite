@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-19 17:25:48
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-05-22 19:44:36
+ * @LastEditTime: 2019-05-24 14:59:48
  * @Description: 测试
 -->
 <template>
@@ -24,8 +24,53 @@
           <template v-for="config in Object.keys(configuration[part])">
             <!-- 每个选项设置 -->
 
-            <!-- 多个列表 -->
-            <template v-if="configuration[part][config].type==='array'">
+            <!-- 布尔值输入 -->
+            <form-boolean-input
+              :config="config"
+              :configuration="configuration[part][config]"
+              :index="partIndex"
+              :key="`${partIndex}-${config}`"
+              v-if="configuration[part][config].type==='boolean'"
+            />
+
+            <!-- 数字输入 -->
+            <form-number-input
+              :config="config"
+              :configuration="configuration[part][config]"
+              :index="partIndex"
+              :key="`${partIndex}-${config}`"
+              v-else-if="configuration[part][config].type==='number'"
+            />
+
+            <!-- 单行输入 -->
+            <form-string-input
+              :config="config"
+              :configuration="configuration[part][config]"
+              :index="partIndex"
+              :key="`${partIndex}-${config}`"
+              v-else-if="configuration[part][config].type==='string'"
+            />
+
+            <!-- 单行输入 -->
+            <form-url-input
+              :config="config"
+              :configuration="configuration[part][config]"
+              :index="partIndex"
+              :key="`${partIndex}-${config}`"
+              v-else-if="configuration[part][config].type==='url'"
+            />
+
+            <!-- 多行输入 -->
+            <form-textarea-input
+              :config="config"
+              :configuration="configuration[part][config]"
+              :index="partIndex"
+              :key="`${partIndex}-${config}`"
+              v-else-if="configuration[part][config].type==='mutiline'"
+            />
+
+            <!-- 列表 -->
+            <template v-else-if="configuration[part][config].type==='array'">
               <a-form-item
                 :key="`${partIndex}-${config}-${index}`"
                 :required="index === 0"
@@ -68,51 +113,11 @@
                 />
               </a-form-item>
               <a-form-item :key="`${partIndex}-${config}-add`" v-bind="noLabelLayout">
-                <a-button
-                  @click="add(`${partIndex}-${config}-key`)"
-                  style="width: 60%"
-                  type="dashed"
-                >
+                <a-button @click="add(`${partIndex}-${config}-key`)">
                   <a-icon type="plus"/>新增项
                 </a-button>
               </a-form-item>
             </template>
-
-            <!-- 布尔值输入 -->
-            <form-boolean-input
-              :config="config"
-              :configuration="configuration[part][config]"
-              :index="partIndex"
-              :key="`${partIndex}-${config}`"
-              v-else-if="configuration[part][config].type==='boolean'"
-            />
-
-            <!-- 数字输入 -->
-            <form-number-input
-              :config="config"
-              :configuration="configuration[part][config]"
-              :index="partIndex"
-              :key="`${partIndex}-${config}`"
-              v-else-if="configuration[part][config].type==='number'"
-            />
-
-            <!-- 单行输入 -->
-            <form-string-input
-              :config="config"
-              :configuration="configuration[part][config]"
-              :index="partIndex"
-              :key="`${partIndex}-${config}`"
-              v-else-if="configuration[part][config].type==='string'"
-            />
-
-            <!-- 多行输入 -->
-            <form-textarea-input
-              :config="config"
-              :configuration="configuration[part][config]"
-              :index="partIndex"
-              :key="`${partIndex}-${config}`"
-              v-else-if="configuration[part][config].type==='mutiline'"
-            />
 
             <!-- 单个列表 -->
             <a-form-item :key="`${partIndex}-${config}`" v-bind="LabelLayout" v-else>
@@ -253,13 +258,16 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
+import {
+  Component, Prop, Provide, Vue, Watch
+} from 'vue-property-decorator';
 import DropdownTitle from '#/DropdownTitle.vue';
 import TypeSelect from '#/TypeSelect.vue';
 import FormBooleanInput from '#/FormBooleanInput.vue';
 import FormNumberInput from '#/FormNumberInput.vue';
 import FormStringInput from '#/FormStringInput.vue';
 import FormTextareaInput from '#/FormTextareaInput.vue';
+import FormUrlInput from '#/FormUrlInput.vue';
 
 interface UnionTypeItem {
   [props: string]: string;
@@ -295,11 +303,12 @@ let id = 0;
     FormNumberInput,
     FormStringInput,
     FormTextareaInput,
+    FormUrlInput,
     TypeSelect
   }
 })
 export default class FormTest extends Vue {
-  private form: any;
+  @Provide() private form: any;
 
   // Form Layout
   private LabelLayout = { labelCol: { span: 6 }, wrapperCol: { span: 18 } };
@@ -322,6 +331,8 @@ export default class FormTest extends Vue {
 
     return tagList;
   }
+
+  // @Provide() public form = this.form;
 
   private beforeCreate() {
     this.form = this.$form.createForm(this);
@@ -401,12 +412,16 @@ export default class FormTest extends Vue {
   // check if the tag config has any array-type option
   private tagChange(partIndex: number) {
     const currentTag = this.tags[partIndex];
-    const currentTagConfig = this.configuration[currentTag];
 
-    Object.keys(currentTagConfig).forEach(config => {
-      if (currentTagConfig[config].type === 'array')
-        this.form.getFieldDecorator(`${partIndex}-${config}-key`, { initialValue: [], preserve: true, rules: { type: 'array' } });
-    });
+    if (currentTag !== '请选择') {
+      const currentTagConfig = this.configuration[currentTag];
+
+      Object.keys(currentTagConfig).forEach(config => {
+        if (currentTagConfig[config].type === 'array')
+          this.form.getFieldDecorator(`${partIndex}-${config}-key`, { initialValue: [], preserve: true, rules: { type: 'array' } });
+      });
+    }
+
   }
 }
 </script>
