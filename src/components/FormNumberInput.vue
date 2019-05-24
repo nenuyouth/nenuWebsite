@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-22 18:45:04
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-05-22 19:38:11
+ * @LastEditTime: 2019-05-24 17:40:46
  * @Description: Form Number Input
 -->
 <template>
@@ -19,7 +19,7 @@
       :step="configuration.step"
       style="width:150px;"
       v-decorator="[
-        `${index}-${config}`,
+        identifier,
         {
           initialValue: configuration.default,
           rules: [{
@@ -39,8 +39,6 @@ import { Config } from '@/views/private/JsonEditor.vue';
 export default class FormNumberInput extends Vue {
   @Prop(Object) private configuration!: Config;
 
-  @Prop(Number) private index!: number;
-
-  @Prop(String) private config!: string;
+  @Prop(String) private identifier!: string;
 }
 </script>

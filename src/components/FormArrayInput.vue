@@ -2,17 +2,17 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-22 18:45:04
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-05-23 18:04:09
+ * @LastEditTime: 2019-05-24 18:32:02
  * @Description: Form Array Input
 -->
 <template>
   <div>
     <!-- 列表 -->
     <a-form-item
-      :key="`${index}-${config}-${index}`"
+      :key="`${identifier}-${index}`"
       :required="index === 0"
       v-bind="index === 0 ? LabelLayout : noLabelLayout"
-      v-for="(item, index) in form.getFieldValue(`${index}-${config}-key`)"
+      v-for="(item, index) in length"
     >
       <template #label v-if="index === 0">
         <!-- 表单项名称 -->
@@ -22,10 +22,11 @@
           <a-icon style="vertical-align:-0.125em;" type="question-circle"/>
         </a-tooltip>
       </template>
+
       <a-input
-        style="width: 60%; margin-right: 8px"
+        style="width:calc(100% - 40px);margin-right: 8px"
         v-decorator="[
-          `${index}-${config}[${index}]`,
+          `${identifier}[${index}]`,
           {
             validateTrigger: ['change', 'blur'],
             preserve: true,
@@ -33,21 +34,15 @@
                 required: true,
                 type: configuration.element,
                 whitespace: true,
-                message: 'Please fill this item some value or delete this field.',
+                message: '请补充此项或将此项删除'
             }]
           }
         ]"
       />
-      <a-icon
-        :disabled="form.getFieldValue(`${index}-${config}-key`).length === 1"
-        @click="() => remove(index,`${index}-${config}-key`)"
-        class="dynamic-delete-button"
-        type="minus-circle-o"
-        v-if="form.getFieldValue(`${index}-${config}-key`).length > 1"
-      />
+      <a-button @click="remove(index)" icon="minus" shape="circle" size="small" v-if="length > 1"/>
     </a-form-item>
-    <a-form-item :key="`${index}-${config}-add`" v-bind="noLabelLayout">
-      <a-button @click="add(`${index}-${config}-key`)" style="width: 60%" type="dashed">
+    <a-form-item :key="`${identifier}-add`" v-bind="noLabelLayout">
+      <a-button @click="add" style="border-radius: 16px;">
         <a-icon type="plus"/>新增项
       </a-button>
     </a-form-item>
@@ -57,46 +52,35 @@
 import { Component, Inject, Prop, Vue } from 'vue-property-decorator';
 import { Config } from '@/views/private/JsonEditor.vue';
 
-let id = 0;
-
 @Component
 export default class FormArrayInput extends Vue {
   @Prop(Object) private configuration!: Config;
 
-  @Prop(Number) private index!: number;
-
-  @Prop(String) private config!: string;
+  @Prop(String) private identifier!: string;
 
   @Inject() private form!: any;
 
-  private beforeCreate() {
-    // check if the tag config has any array-type option
-    if (this.configuration.type === 'array')
-      this.form.getFieldDecorator(`${this.index}-${this.config}-key`, { initialValue: [], preserve: true, rules: { type: 'array' } });
+  private length = 1;
+
+  // Form Layout
+  private LabelLayout = { labelCol: { span: 6 }, wrapperCol: { span: 18 } };
+  private noLabelLayout = { wrapperCol: { span: 18, offset: 6 } };
+
+  private remove(index: number) {
+    // Should have at least one item
+    if (this.length === 1) return;
+
+    // Reorganize formvalue
+    const formValue: any[] = this.form.getFieldValue(this.identifier);
+
+    // Update form value
+    formValue.splice(index, 1);
+    this.form.setFieldsValue({ [`${this.identifier}`]: formValue });
+    this.length -= 1;
   }
 
-
-  private remove(index: number, formKey: string) {
-    // can use data-binding to get
-    const keys = this.form.getFieldValue(formKey);
-
-    // We need at least one item
-    if (keys.length === 1) return;
-
-    // can use data-binding to set
-    this.form.setFieldsValue({ [formKey]: keys.filter((key: number) => key !== index) });
-  }
-
-  private add(formKey: string) {
-    // can use data-binding to get
-    const keys = this.form.getFieldValue(formKey);
-
-    id += 1;
-    const nextKeys = keys.concat(id);
-    // can use data-binding to set
-
-    // important! notify form to detect changes
-    this.form.setFieldsValue({ [formKey]: nextKeys });
+  private add() {
+    this.length += 1;
   }
 }
 </script>

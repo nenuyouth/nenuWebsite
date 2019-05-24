@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-19 17:25:48
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-05-24 14:59:48
+ * @LastEditTime: 2019-05-24 15:01:13
  * @Description: 测试
 -->
 <template>
@@ -396,8 +396,7 @@ export default class FormTest extends Vue {
             json[index][key] = value;
         });
 
-        console.log(json);
-        console.log(JSON.stringify(json));
+        console.log(json, JSON.stringify(json));
       }
     });
   }

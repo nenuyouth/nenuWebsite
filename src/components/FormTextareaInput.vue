@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-22 18:45:04
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-05-22 19:37:52
+ * @LastEditTime: 2019-05-24 17:42:22
  * @Description: Form Text Area Input
 -->
 <template>
@@ -18,7 +18,7 @@
     <a-textarea
       :autosize="{ minRows: 2 }"
       v-decorator="[
-        `${index}-${config}`,
+        identifier,
         {
           initialValue: configuration.default,
           rules: [{
@@ -38,8 +38,6 @@ import { Config } from '@/views/private/JsonEditor.vue';
 export default class FormTextareaInput extends Vue {
   @Prop(Object) private configuration!: Config;
 
-  @Prop(Number) private index!: number;
-
-  @Prop(String) private config!: string;
+  @Prop(String) private identifier!: string;
 }
 </script>

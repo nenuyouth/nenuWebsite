@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-22 18:45:04
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-05-24 14:54:10
+ * @LastEditTime: 2019-05-24 20:37:30
  * @Description: Form Url Input
 -->
 <template>
@@ -18,12 +18,11 @@
     <!-- 真实的表单项 -->
     <a-input
       v-decorator="[
-        `${index}-${config}`,
+        identifier,
         {
-          initialValue: 'https://',
           rules: [{
             required: configuration.required,
-            type: prefix===''? 'string' :'url'
+            type: path ? prefix==='' ? 'string' :'url' :'string'
           }]
         }
       ]"
@@ -56,9 +55,7 @@ import { Config } from '@/views/private/JsonEditor.vue';
 export default class FormUrlInput extends Vue {
   @Prop(Object) private configuration!: Config;
 
-  @Prop(Number) private index!: number;
-
-  @Prop(String) private config!: string;
+  @Prop(String) private identifier!: string;
 
   @Inject() private form!: any;
 
@@ -68,13 +65,13 @@ export default class FormUrlInput extends Vue {
 
   // 获得正确的url
   private get url() {
-    return this.prefix + this.path;
+    return this.path ? this.prefix + this.path : '';
   }
 
   // 当url改变时更新表单项
   @Watch('url')
   private onUrlChange(newValue: string) {
-    this.form.setFieldsValue({ [`${this.index}-${this.config}`]: newValue });
+    this.form.setFieldsValue({ [this.identifier]: newValue });
   }
 
 }

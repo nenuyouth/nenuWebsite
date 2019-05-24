@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-22 18:45:04
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-05-22 19:23:30
+ * @LastEditTime: 2019-05-24 17:39:52
  * @Description: Form Boolean Input
 -->
 <template>
@@ -16,17 +16,17 @@
       </a-tooltip>
     </template>
     <a-radio-group
-      :name="`${index}-${config}`"
+      :name="identifier"
       :options=" [{ label: 'True', value: true }, { label: 'False', value: false }]"
       v-decorator="[
-      `${index}-${config}`,
-      {
-        initialValue: configuration.default,
-        rules: [{
-          required: configuration.required,
-          type: 'boolean'
-        }]
-      }
+        identifier,
+        {
+          initialValue: configuration.default,
+          rules: [{
+            required: configuration.required,
+            type: 'boolean'
+          }]
+        }
     ]"
     />
   </a-form-item>
@@ -39,8 +39,6 @@ import { Config } from '@/views/private/JsonEditor.vue';
 export default class FormBooleanInput extends Vue {
   @Prop(Object) private configuration!: Config;
 
-  @Prop(Number) private index!: number;
-
-  @Prop(String) private config!: string;
+  @Prop(String) private identifier!: string;
 }
 </script>

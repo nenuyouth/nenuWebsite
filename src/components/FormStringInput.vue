@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-22 18:45:04
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-05-22 19:38:02
+ * @LastEditTime: 2019-05-24 17:41:50
  * @Description: Form String Input
 -->
 <template>
@@ -17,7 +17,7 @@
     </template>
     <a-input
       v-decorator="[
-        `${index}-${config}`,
+        identifier,
         {
           initialValue: configuration.default,
           rules: [{
@@ -26,23 +26,7 @@
           }]
         }
       ]"
-    >
-      <!-- 网址输入 -->
-      <a-select
-        :options="[
-            { label:'https://', value: 'https://'},
-            { label:'http://', value: 'http://'},
-            { label:'无前缀', value: ''}
-        ]"
-        slot="addonBefore"
-        style="width: 90px"
-        v-decorator="[
-          `${index}-${config}-prefix`,
-          { initialValue: 'https://' }
-        ]"
-        v-if="configuration.url"
-      />
-    </a-input>
+    />
   </a-form-item>
 </template>
 <script lang="ts">
@@ -53,8 +37,6 @@ import { Config } from '@/views/private/JsonEditor.vue';
 export default class FormStringInput extends Vue {
   @Prop(Object) private configuration!: Config;
 
-  @Prop(Number) private index!: number;
-
-  @Prop(String) private config!: string;
+  @Prop(String) private identifier!: string;
 }
 </script>
