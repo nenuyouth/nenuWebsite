@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-19 17:25:48
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-05-24 20:56:37
+ * @LastEditTime: 2019-05-24 21:53:04
  * @Description: 测试
 -->
 <template>
@@ -25,6 +25,14 @@
               :identifier="`${partIndex}-${config}`"
               :key="`${partIndex}-${config}`"
               v-if="typeof configuration[part][config].type==='object'"
+            />
+
+            <!-- 可遍历值输入 -->
+            <form-enum-input
+              :configuration="configuration[part][config]"
+              :identifier="`${partIndex}-${config}`"
+              :key="`${partIndex}-${config}`"
+              v-else-if="configuration[part][config].enum"
             />
 
             <!-- 布尔值输入 -->
@@ -74,112 +82,6 @@
               :key="`${partIndex}-${config}`"
               v-else-if="configuration[part][config].type==='array'"
             />
-
-            <!-- 单个列表 -->
-            <a-form-item :key="`${partIndex}-${config}`" v-bind="LabelLayout" v-else>
-              <template #label>
-                <!-- 表单项名称 -->
-                {{configuration[part][config].title}}
-                <!-- 描述文字 -->
-                <a-tooltip
-                  :title="configuration[part][config].desc"
-                  v-if="configuration[part][config].desc"
-                >
-                  <a-icon style="vertical-align:-0.125em;" type="question-circle"/>
-                </a-tooltip>
-              </template>
-
-              <!-- 复合类型 -->
-              <!-- <template v-if="typeof configuration[part][config].type==='object'"> -->
-              <!-- 选择需要的值类型 -->
-              <!-- <TypeSelect
-                  :option="configuration[part][config].type"
-                  v-model="unionTypeSelect[partIndex][config]"
-              />-->
-
-              <!-- 布尔值输入 -->
-              <!-- <a-radio-group
-                  :name="`${partIndex}-${config}`"
-                  :options=" [{ label: 'True', value: true }, { label: 'False', value: false }]"
-                  v-decorator="[
-                    `${partIndex}-${config}`,
-                    {
-                      initialValue: configuration[part][config].default,
-                      rules: [{
-                        required: configuration[part][config].required,
-                        type: 'boolean'
-                      }]
-                    }
-                  ]"
-                  v-if="unionTypeSelect[partIndex][config]==='boolean'"
-              />-->
-
-              <!-- 多行输入 -->
-              <!-- <a-textarea
-                  :autosize="{ minRows: 2 }"
-                  v-decorator="[
-                    `${partIndex}-${config}`,
-                    {
-                      initialValue: configuration[part][config].default,
-                      rules: [{
-                        required: configuration[part][config].required,
-                        type: 'string'
-                      }]
-                    }
-                  ]"
-                  v-else-if="unionTypeSelect[partIndex][config]==='mutiline'"
-              />-->
-
-              <!-- 单行输入 -->
-              <!-- <a-input
-                  v-decorator="[
-                    `${partIndex}-${config}`,
-                    {
-                      initialValue: configuration[part][config].default,
-                      rules: [{
-                        required: configuration[part][config].required,
-                        type: 'string'
-                      }]
-                    }
-                  ]"
-                  v-else-if="unionTypeSelect[partIndex][config]==='string'"
-              />-->
-
-              <!-- 数字输入 -->
-              <!-- <a-input-number
-                  :step="configuration[part][config].step"
-                  v-decorator="[
-                    `${partIndex}-${config}`,
-                    {
-                      initialValue: configuration[part][config].default,
-                      rules: [{
-                        required: configuration[part][config].required,
-                        type: 'number'
-                      }]
-                    }
-                  ]"
-                  v-else-if="unionTypeSelect[partIndex][config]==='number'"
-                />
-              </template>-->
-
-              <!-- 可遍历值输入 -->
-              <a-radio-group
-                :name="`${partIndex}-${config}`"
-                :options="configuration[part][config].enum"
-                v-decorator="[
-                    `${partIndex}-${config}`,
-                    {
-                      initialValue: configuration[part][config].default,
-                      rules: [{
-                        required: configuration[part][config].required,
-                        type: configuration[part][config].type,
-                        enum: configuration[part][config].enum
-                      }]
-                    }
-                  ]"
-                v-if="configuration[part][config].enum"
-              />
-            </a-form-item>
           </template>
         </template>
       </template>
@@ -200,6 +102,7 @@ import DropdownTitle from '#/DropdownTitle.vue';
 import TypeSelect from '#/TypeSelect.vue';
 import FormArrayInput from '#/FormArrayInput.vue';
 import FormBooleanInput from '#/FormBooleanInput.vue';
+import FormEnumInput from '#/FormEnumInput.vue';
 import FormNumberInput from '#/FormNumberInput.vue';
 import FormStringInput from '#/FormStringInput.vue';
 import FormTextareaInput from '#/FormTextareaInput.vue';
@@ -231,13 +134,12 @@ interface NormalObject {
   [propName: string]: any;
 }
 
-let id = 0;
-
 @Component({
   components: {
     DropdownTitle,
     FormArrayInput,
     FormBooleanInput,
+    FormEnumInput,
     FormNumberInput,
     FormStringInput,
     FormTextareaInput,
