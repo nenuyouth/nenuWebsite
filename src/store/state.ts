@@ -10,12 +10,20 @@ interface DocList {
   [propName: string]: string;
 }
 
+interface LoginStatus{
+  [propName: string]: boolean;
+}
+
+interface Password {
+  [propName: string]: string;
+}
+
 export interface BaseState {
   compiledDoc: DocList;
   compiledGuide: DocList;
   docLoading: boolean;
-  internalLogin: boolean;
-  internalPassword: string;
+  loginStatus: LoginStatus;
+  password: Password;
   nightmode: boolean;
   path: string;
 }
@@ -24,8 +32,8 @@ const myState: BaseState = {
   compiledDoc: {},
   compiledGuide: {},
   docLoading: true,
-  internalLogin: false,
-  internalPassword: '',
+  loginStatus: {},
+  password: {},
   nightmode: false,
   path: ''
 };

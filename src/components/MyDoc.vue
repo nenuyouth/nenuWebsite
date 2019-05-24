@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-05-09 21:41:13
+ * @LastEditTime: 2019-05-24 21:40:44
 -->
 <template>
   <!-- 标题设置 -->
@@ -31,9 +31,9 @@
     <!-- 密码弹窗 -->
     <PasswordModal
       @login="login"
-      passwordKey="internalPassword"
+      passwordKey="internal"
       url="/server/passwordValidate"
-      v-if="!$store.state.internalLogin"
+      v-if="!$store.state.loginStatus.internal"
     />
     <!-- <transition :name="transitionName" mode="in-out"> -->
     <keep-alive>
@@ -89,7 +89,7 @@ export default class MyDoc extends Vue {
         '/server/doc',
         {
           path: this.path,
-          password: this.$store.state.internalPassword
+          password: this.$store.state.password.internal
         },
         this,
         'compiledDoc'
@@ -101,14 +101,14 @@ export default class MyDoc extends Vue {
 
   private async mounted() {
     // 如果已经登陆,直接加载，否则等待login函数触发
-    if (this.$store.state.internalLogin) {
+    if (this.$store.state.loginStatus.internal) {
       // 如果该路径markdown未被缓存则获取之
       if (!this.$store.state.compiledDoc[this.path])
         await getCompiledMarkdown(
           '/server/doc',
           {
             path: this.path,
-            password: this.$store.state.internalPassword
+            password: this.$store.state.password.internal
           },
           this,
           'compiledDoc'

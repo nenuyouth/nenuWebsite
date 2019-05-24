@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Mutation文件
  * @Date: 2019-03-25 10:37:09
- * @LastEditTime: 2019-04-29 22:59:20
+ * @LastEditTime: 2019-05-24 21:32:26
  */
 import Vue from 'vue';
 import { BaseState } from './state';
@@ -32,22 +32,23 @@ const myMutation = {
 
 
   /**
-   * @description: 设置内部文档登陆成功状态
+   * @description: 设置登陆状态
    *
    * @param state state
+   * @param key login标识符
    */
-  internalLogin(state: BaseState) {
-    state.internalLogin = true;
+  login(state: BaseState, key: string) {
+    state.loginStatus[key] = true;
   },
 
   /**
-   * @description: 设置内部文档登陆成功状态
+   * @description: 设置密码
    *
    * @param state state
-   * @param password 设置内部文档密码
+   * @param msg 密码详情
    */
-  internalPassword(state: BaseState, password: string) {
-    state.internalPassword = password;
+  password(state: BaseState, msg: string[]) {
+    state.password[msg[0]] = msg[1];
   },
 
   /**

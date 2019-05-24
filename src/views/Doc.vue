@@ -50,7 +50,7 @@ export default class Doc extends Vue {
         '/server/doc',
         {
           path,
-          password: this.$store.state.internalPassword
+          password: this.$store.state.password.internal
         },
         this,
         'compiledDoc'
