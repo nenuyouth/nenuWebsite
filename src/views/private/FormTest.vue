@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-19 17:25:48
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-05-24 21:53:04
+ * @LastEditTime: 2019-05-25 16:18:16
  * @Description: 测试
 -->
 <template>
@@ -59,7 +59,7 @@
               v-else-if="configuration[part][config].type==='string'"
             />
 
-            <!-- 单行输入 -->
+            <!-- 网址输入 -->
             <form-url-input
               :configuration="configuration[part][config]"
               :identifier="`${partIndex}-${config}`"
@@ -99,14 +99,13 @@
 <script lang="ts">
 import { Component, Prop, Provide, Vue } from 'vue-property-decorator';
 import DropdownTitle from '#/DropdownTitle.vue';
-import TypeSelect from '#/TypeSelect.vue';
 import FormArrayInput from '#/FormArrayInput.vue';
 import FormBooleanInput from '#/FormBooleanInput.vue';
 import FormEnumInput from '#/FormEnumInput.vue';
 import FormNumberInput from '#/FormNumberInput.vue';
 import FormStringInput from '#/FormStringInput.vue';
 import FormTextareaInput from '#/FormTextareaInput.vue';
-import FormUnionInput from '#/FormUnionInput.vue';
+import FormUnionInput from '#/FormUnionInput.1.vue';
 import FormUrlInput from '#/FormUrlInput.vue';
 
 interface UnionTypeItem {
@@ -144,8 +143,7 @@ interface NormalObject {
     FormStringInput,
     FormTextareaInput,
     FormUnionInput,
-    FormUrlInput,
-    TypeSelect
+    FormUrlInput
   }
 })
 export default class FormTest extends Vue {

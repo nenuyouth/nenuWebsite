@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-24 18:39:40
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-05-24 20:38:56
+ * @LastEditTime: 2019-05-25 16:10:33
  * @Description: Form Union Input
 -->
 <template>
@@ -16,6 +16,7 @@
         <a-icon style="vertical-align:-0.125em;" type="question-circle"/>
       </a-tooltip>
     </template>
+
     <!-- 选择需要的值类型 -->
     <TypeSelect :option="configuration.type" v-model="typeSelect"/>
 
