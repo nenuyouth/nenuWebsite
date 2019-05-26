@@ -202,11 +202,6 @@
     }
   },
   "list": {
-    "foot": {
-      "title": "尾部标题",
-      "type": "string",
-      "required": false
-    },
     "head": {
       "title": "头部标题",
       "desc": "不填会在标题所在处留空占位，设置为false来取消留空占位",
@@ -214,6 +209,159 @@
         "string",
         "boolean"
       ],
+      "required": false
+    },
+    "content": {
+      "title": "列表内容",
+      "desc": "依次填入每个列表项",
+      "type": "array",
+      "element": "object",
+      "objectDetail": {
+        "text": {
+          "title": "列表文字",
+          "desc": "列表主要的描述文字",
+          "type": "string",
+          "required": true
+        },
+        "icon": {
+          "title": "图标路径",
+          "desc": "填入列表图标地址，请注意在同一个列表中，要么统一添加要么都不添加",
+          "type": "url",
+          "required": false
+        },
+        "display": {
+          "title": "隐藏该列表项",
+          "desc": "一般供内部逻辑使用",
+          "type": "boolean",
+          "required": false,
+          "default": true
+        },
+        "desc": {
+          "title": "补充描述",
+          "desc": "设置列表右侧的补充描述文字",
+          "type": "string",
+          "required": false
+        },
+        "aim": {
+          "title": "链接文件名",
+          "desc": "指向的json文件名",
+          "type": "string",
+          "required": false
+        },
+        "url": {
+          "title": "页面路径",
+          "desc": "小程序专用设置：指向的小程序页面路径",
+          "type": "string",
+          "required": false
+        },
+        "swiKey": {
+          "title": "开关Key值",
+          "desc": "小程序专用设置：开关所改变的变量在本地存储中的名称",
+          "type": "string",
+          "required": false
+        },
+        "Switch": {
+          "title": "开关函数名",
+          "desc": "小程序专用设置：点击开关后触发的函数，不填仅改变storage中swiKey的值",
+          "type": "string",
+          "required": false
+        },
+        "color": {
+          "title": "开关颜色",
+          "desc": "填入css颜色代码",
+          "type": "string",
+          "required": false
+        },
+        "pickerValue": {
+          "title": "选择器值",
+          "desc": "小程序专用设置：选择器中包含的值使用变量表示时不支持简单界面",
+          "type": "array",
+          "element": [
+            "array",
+            "string",
+            "number"
+          ],
+          "required": false
+        },
+        "key": {
+          "title": "选择器Key",
+          "desc": "小程序专用设置：选择器所改变的变量在本地存储中的名称",
+          "type": "string",
+          "required": false
+        },
+        "single": {
+          "title": "单列选择器",
+          "desc": "小程序专用设置：默认为多列选择器",
+          "type": "boolean",
+          "required": false,
+          "default": false
+        },
+        "inlay": {
+          "title": "嵌入式选择器",
+          "desc": "小程序专用设置：默认为弹出式选择器",
+          "type": "boolean",
+          "required": false,
+          "default": false
+        },
+        "picker": {
+          "title": "选择器函数名",
+          "desc": "小程序专用设置：不填仅改变界面显示值与storage中key的值",
+          "type": "string",
+          "required": false
+        },
+        "button": {
+          "title": "按钮函数名",
+          "desc": "小程序专用设置：填入按钮点击后触发的函数名",
+          "type": "string",
+          "required": false
+        },
+        "disabled": {
+          "title": "禁用按钮",
+          "desc": "小程序专用设置：按钮禁用后不可点击，一般仅供开发界面时使用",
+          "type": "boolean",
+          "required": false,
+          "default": true
+        },
+        "slider": {
+          "title": "滑块函数名",
+          "desc": "小程序专用设置：填入滑块滑动时出发的函数名称",
+          "type": "string",
+          "required": false
+        },
+        "sliKey": {
+          "title": "滑块Key值",
+          "desc": "滑块所改变的变量在本地存储中的名称",
+          "type": "string",
+          "required": false
+        },
+        "min": {
+          "title": "滑块最小值",
+          "desc": "小程序专用设置",
+          "type": "number",
+          "required": false,
+          "default": 0
+        },
+        "max": {
+          "title": "滑块最大值",
+          "desc": "小程序专用设置",
+          "type": "number",
+          "required": false,
+          "default": 100
+        },
+        "step": {
+          "title": "滑块步长",
+          "desc": "小程序专用设置",
+          "type": "number",
+          "required": false,
+          "default": 1
+        }
+      },
+      "required": true
+    },
+    "foot": {
+      "title": "尾部标题",
+      "desc": "不填即不会显示，可以敲入一个空格来展现空白页脚",
+      "type": "string",
       "required": false
     }
   },
@@ -433,6 +581,39 @@
       "desc": "设置后会在段落文字底部展示所选图片",
       "type": "string",
       "required": false
+    },
+    "content": {
+      "title": "标题",
+      "desc": "设置后会在段落文字底部展示所选图片",
+      "type": "array",
+      "element": "object",
+      "objectDetail": {
+        "text": {
+          "title": "网格文字",
+          "desc": "九宫格文字",
+          "type": "string",
+          "required": true
+        },
+        "icon": {
+          "title": "图标路径",
+          "desc": "填入列表图标地址，请注意在同一个列表中，要么统一添加要么都不添加",
+          "type": "url",
+          "required": true
+        },
+        "aim": {
+          "title": "链接文件名",
+          "desc": "指向的json文件名",
+          "type": "string",
+          "required": false
+        },
+        "url": {
+          "title": "页面路径",
+          "desc": "小程序专用设置：指向的小程序页面路径",
+          "type": "string",
+          "required": false
+        }
+      },
+      "required": true
     },
     "foot": {
       "title": "尾部文字",

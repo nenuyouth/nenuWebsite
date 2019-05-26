@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-19 17:25:48
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-05-25 16:18:16
+ * @LastEditTime: 2019-05-26 21:14:53
  * @Description: 测试
 -->
 <template>
@@ -17,70 +17,10 @@
         <!-- 选项列表 -->
         <template v-if="part!=='请选择'">
           <template v-for="config in Object.keys(configuration[part])">
-            <!-- 每个选项设置 -->
-
-            <!-- 联合类型输入 -->
-            <form-union-input
+            <form-input
               :configuration="configuration[part][config]"
               :identifier="`${partIndex}-${config}`"
               :key="`${partIndex}-${config}`"
-              v-if="typeof configuration[part][config].type==='object'"
-            />
-
-            <!-- 可遍历值输入 -->
-            <form-enum-input
-              :configuration="configuration[part][config]"
-              :identifier="`${partIndex}-${config}`"
-              :key="`${partIndex}-${config}`"
-              v-else-if="configuration[part][config].enum"
-            />
-
-            <!-- 布尔值输入 -->
-            <form-boolean-input
-              :configuration="configuration[part][config]"
-              :identifier="`${partIndex}-${config}`"
-              :key="`${partIndex}-${config}`"
-              v-else-if="configuration[part][config].type==='boolean'"
-            />
-
-            <!-- 数字输入 -->
-            <form-number-input
-              :configuration="configuration[part][config]"
-              :identifier="`${partIndex}-${config}`"
-              :key="`${partIndex}-${config}`"
-              v-else-if="configuration[part][config].type==='number'"
-            />
-
-            <!-- 单行输入 -->
-            <form-string-input
-              :configuration="configuration[part][config]"
-              :identifier="`${partIndex}-${config}`"
-              :key="`${partIndex}-${config}`"
-              v-else-if="configuration[part][config].type==='string'"
-            />
-
-            <!-- 网址输入 -->
-            <form-url-input
-              :configuration="configuration[part][config]"
-              :identifier="`${partIndex}-${config}`"
-              :key="`${partIndex}-${config}`"
-              v-else-if="configuration[part][config].type==='url'"
-            />
-
-            <!-- 多行输入 -->
-            <form-textarea-input
-              :configuration="configuration[part][config]"
-              :identifier="`${partIndex}-${config}`"
-              :key="`${partIndex}-${config}`"
-              v-else-if="configuration[part][config].type==='mutiline'"
-            />
-
-            <!-- 数组输入 -->
-            <form-array-input
-              :configuration="configuration[part][config]"
-              :identifier="`${partIndex}-${config}`"
-              :key="`${partIndex}-${config}`"
-              v-else-if="configuration[part][config].type==='array'"
             />
           </template>
         </template>
@@ -99,17 +39,15 @@
 <script lang="ts">
 import { Component, Prop, Provide, Vue } from 'vue-property-decorator';
 import DropdownTitle from '#/DropdownTitle.vue';
-import FormArrayInput from '#/FormArrayInput.vue';
-import FormBooleanInput from '#/FormBooleanInput.vue';
-import FormEnumInput from '#/FormEnumInput.vue';
-import FormNumberInput from '#/FormNumberInput.vue';
-import FormStringInput from '#/FormStringInput.vue';
-import FormTextareaInput from '#/FormTextareaInput.vue';
-import FormUnionInput from '#/FormUnionInput.1.vue';
-import FormUrlInput from '#/FormUrlInput.vue';
+import FormInput from '#/FormInput.vue';
 
 interface UnionTypeItem {
   [props: string]: string;
+}
+
+interface EnumConfig {
+  value: any;
+  label: string;
 }
 
 export interface Config {
@@ -118,7 +56,7 @@ export interface Config {
   type: string | string[];
   required: boolean;
   default?: any;
-  enum?: any[];
+  enum?: EnumConfig[];
   element?: string[] | string;
   step?: number;
 }
@@ -136,22 +74,11 @@ interface NormalObject {
 @Component({
   components: {
     DropdownTitle,
-    FormArrayInput,
-    FormBooleanInput,
-    FormEnumInput,
-    FormNumberInput,
-    FormStringInput,
-    FormTextareaInput,
-    FormUnionInput,
-    FormUrlInput
+    FormInput
   }
 })
 export default class FormTest extends Vue {
   @Provide() private form: any;
-
-  // Form Layout
-  private LabelLayout = { labelCol: { span: 6 }, wrapperCol: { span: 18 } };
-  private noLabelLayout = { wrapperCol: { span: 18, offset: 6 } };
 
   private pageJson: any[] = [];
 

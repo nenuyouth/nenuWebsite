@@ -2,121 +2,91 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-24 18:39:40
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-05-25 16:10:33
+ * @LastEditTime: 2019-05-26 21:15:11
  * @Description: Form Union Input
 -->
 <template>
-  <!-- 复合类型 -->
-  <a-form-item :labelCol="{ span: 6 }" :wrapperCol="{ span: 18 }">
-    <template #label>
-      <!-- 表单项名称 -->
-      {{configuration.title}}
-      <!-- 描述文字 -->
-      <a-tooltip :title="configuration.desc" v-if="configuration.desc">
-        <a-icon style="vertical-align:-0.125em;" type="question-circle"/>
-      </a-tooltip>
-    </template>
-
-    <!-- 选择需要的值类型 -->
-    <TypeSelect :option="configuration.type" v-model="typeSelect"/>
+  <div>
+    <!-- 可遍历值输入 -->
+    <form-enum-input
+      :configuration="configuration"
+      :identifier="identifier"
+      :key="`${identifier}-enum`"
+      v-if="typeSelect === 'enum'"
+    >
+      <template #type-select>
+        <TypeSelect :identifier="identifier" :option="configuration.type" v-model="typeSelect"/>
+      </template>
+    </form-enum-input>
 
     <!-- 布尔值输入 -->
-    <a-radio-group
-      :name="identifier"
-      :options=" [{ label: 'True', value: true }, { label: 'False', value: false }]"
-      v-decorator="[
-        identifier,
-        {
-          initialValue: configuration.default,
-          rules: [{
-            required: configuration.required,
-            type: 'boolean'
-          }]
-        }
-    ]"
-      v-if="typeSelect==='boolean'"
-    />
+    <form-boolean-input
+      :configuration="configuration"
+      :identifier="identifier"
+      :key="`${identifier}-boolean`"
+      v-else-if="typeSelect === 'boolean'"
+    >
+      <template #type-select>
+        <TypeSelect :identifier="identifier" :option="configuration.type" v-model="typeSelect"/>
+      </template>
+    </form-boolean-input>
 
     <!-- 数字输入 -->
-    <a-input-number
-      :step="configuration.step"
-      style="width:150px;"
-      v-decorator="[
-        identifier,
-        {
-          initialValue: configuration.default,
-          rules: [{
-            required: configuration.required,
-            type: 'number'
-          }]
-        }
-      ]"
-      v-else-if="typeSelect==='number'"
-    />
+    <form-number-input
+      :configuration="configuration"
+      :identifier="identifier"
+      :key="`${identifier}-number`"
+      v-else-if="typeSelect === 'number'"
+    >
+      <template #type-select>
+        <TypeSelect :identifier="identifier" :option="configuration.type" v-model="typeSelect"/>
+      </template>
+    </form-number-input>
 
     <!-- 单行输入 -->
-    <a-input
-      v-decorator="[
-        identifier,
-        {
-          initialValue: configuration.default,
-          rules: [{
-            required: configuration.required,
-            type: 'string'
-          }]
-        }
-      ]"
-      v-else-if="typeSelect==='string'"
-    />
-
-    <!-- 多行输入 -->
-    <a-textarea
-      :autosize="{ minRows: 2 }"
-      v-decorator="[
-        identifier,
-        {
-          initialValue: configuration.default,
-          rules: [{
-            required: configuration.required,
-            type: 'string'
-          }]
-        }
-      ]"
-      v-else-if="typeSelect==='mutiline'"
-    />
+    <form-string-input
+      :configuration="configuration"
+      :identifier="identifier"
+      :key="`${identifier}-string`"
+      v-else-if="typeSelect ==='string'"
+    >
+      <template #type-select>
+        <TypeSelect :identifier="identifier" :option="configuration.type" v-model="typeSelect"/>
+      </template>
+    </form-string-input>
 
     <!-- 网址输入 -->
-    <template v-else-if="typeSelect==='url'">
-      <!-- 真实的表单项 -->
-      <a-input
-        v-decorator="[
-          identifier,
-          {
-            rules: [{
-              required: configuration.required,
-              type: path ? prefix==='' ? 'string' :'url' :'string'
-            }]
-          }
-        ]"
-        v-show="false"
-      />
-      <!-- 渲染的表单项 -->
-      <a-input v-model="path">
-        <!-- 网址输入 -->
-        <a-select
-          :options="[
-            { label:'https://', value: 'https://'},
-            { label:'http://', value: 'http://'},
-            { label:'无前缀', value: ''}
-          ]"
-          defaultValue="https://"
-          slot="addonBefore"
-          style="width: 90px"
-          v-model="prefix"
-        />
-      </a-input>
-    </template>
-  </a-form-item>
+    <form-url-input
+      :configuration="configuration"
+      :identifier="identifier"
+      :key="`${identifier}-url`"
+      v-else-if="typeSelect ==='url'"
+    >
+      <template #type-select>
+        <TypeSelect :identifier="identifier" :option="configuration.type" v-model="typeSelect"/>
+      </template>
+    </form-url-input>
+
+    <!-- 多行输入 -->
+    <form-textarea-input
+      :configuration="configuration"
+      :identifier="identifier"
+      :key="`${identifier}-mutiline`"
+      v-else-if="typeSelect ==='mutiline'"
+    />
+
+    <!-- 数组输入 -->
+    <form-array-input
+      :configuration="configuration"
+      :identifier="identifier"
+      :key="`${identifier}-array`"
+      v-else-if="typeSelect ==='array'"
+    >
+      <template #type-select>
+        <TypeSelect :identifier="identifier" :option="configuration.type" v-model="typeSelect"/>
+      </template>
+    </form-array-input>
+  </div>
 </template>
 <script lang="ts">
 import {
@@ -124,30 +94,42 @@ import {
 } from 'vue-property-decorator';
 import { Config } from '@/views/private/JsonEditor.vue';
 import TypeSelect from '#/TypeSelect.vue';
+import FormArrayInput from '#/FormArrayInput.vue';
+import FormBooleanInput from '#/FormBooleanInput.vue';
+import FormEnumInput from '#/FormEnumInput.vue';
+import FormNumberInput from '#/FormNumberInput.vue';
+import FormStringInput from '#/FormStringInput.vue';
+import FormTextareaInput from '#/FormTextareaInput.vue';
+import FormUrlInput from '#/FormUrlInput.vue';
 
-@Component({ components: { TypeSelect } })
+@Component({
+  components: {
+    FormArrayInput,
+    FormBooleanInput,
+    FormEnumInput,
+    FormNumberInput,
+    FormStringInput,
+    FormTextareaInput,
+    FormUrlInput,
+    TypeSelect
+  }
+})
 export default class FormUnionInput extends Vue {
   @Prop(Object) private configuration!: Config;
 
   @Prop(String) private identifier!: string;
 
+  private typeSelect = '';
+
+  private created() {
+    this.typeSelect = this.configuration.type[0];
+  }
+
   @Inject() private form!: any;
 
-  private prefix = 'https://';
-
-  private path = '';
-
-  // 获得正确的url
-  private get url() {
-    return this.path ? this.prefix + this.path : '';
+  @Watch('typeSelect')
+  private onTypeChange() {
+    this.form.resetFields([`${this.identifier}`]);
   }
-
-  // 当url改变时更新表单项
-  @Watch('url')
-  private onUrlChange(newValue: string) {
-    this.form.setFieldsValue({ [this.identifier]: newValue });
-  }
-
-  private typeSelect = '';
 }
 </script>

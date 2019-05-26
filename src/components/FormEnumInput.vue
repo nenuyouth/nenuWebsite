@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-22 18:45:04
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-05-24 21:48:23
+ * @LastEditTime: 2019-05-26 21:14:03
  * @Description: Form Enumerable Value Input
 -->
 <template>
@@ -15,6 +15,10 @@
         <a-icon style="vertical-align:-0.125em;" type="question-circle"/>
       </a-tooltip>
     </template>
+
+    <!-- 类型选择插槽 -->
+    <slot name="type-select"/>
+
     <a-radio-group
       :name="identifier"
       :options="configuration.enum"
@@ -24,8 +28,8 @@
           initialValue: configuration.default,
           rules: [{
             required: configuration.required,
-            type: configuration.type,
-            enum: configuration.enum
+            type: 'enum',
+            enum: enumValue
           }]
         }
       ]"
@@ -42,5 +46,34 @@ export default class FormArrayInput extends Vue {
   @Prop(Object) private configuration!: Config;
 
   @Prop(String) private identifier!: string;
+
+  @Inject() private form!: any;
+
+  private enumValue: any[] = [];
+
+  // Generate the correct enum config for type check
+  private created() {
+    const enumValue: any[] = [];
+    const enumConfig = this.configuration.enum as any[];
+
+    enumConfig.forEach(element => {
+      enumValue.push(element.value);
+    });
+
+    this.enumValue = enumValue;
+  }
+
+  private mounted() {
+    this.form.getFieldDecorator(this.identifier, {
+      initialValue: this.configuration.default,
+      rules: [
+        {
+          required: this.configuration.required,
+          type: 'enum',
+          enum: this.enumValue
+        }
+      ]
+    });
+  }
 }
 </script>

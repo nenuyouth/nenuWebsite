@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-22 18:45:04
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-05-24 18:32:02
+ * @LastEditTime: 2019-05-26 14:29:18
  * @Description: Form Array Input
 -->
 <template>
@@ -33,7 +33,6 @@
             rules: [{
                 required: true,
                 type: configuration.element,
-                whitespace: true,
                 message: '请补充此项或将此项删除'
             }]
           }

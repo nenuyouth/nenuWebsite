@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-15 20:56:30
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-05-26 14:29:37
+ * @LastEditTime: 2019-05-26 20:21:06
  * @Description: Type Select
 -->
 <template>
@@ -32,7 +32,7 @@ export default class TypeSelect extends Vue {
   @Inject() private form!: any;
 
   private mounted() {
-    // Select the first option by default
+    // If the select value is not seted, select the first option by default
     if (this.selected === '')
       this.$emit('change', this.option[0]);
   }

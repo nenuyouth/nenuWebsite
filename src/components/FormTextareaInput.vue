@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-22 18:45:04
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-05-24 17:42:22
+ * @LastEditTime: 2019-05-26 20:39:57
  * @Description: Form Text Area Input
 -->
 <template>
@@ -15,6 +15,10 @@
         <a-icon style="vertical-align:-0.125em;" type="question-circle"/>
       </a-tooltip>
     </template>
+
+    <!-- 类型选择插槽 -->
+    <slot name="type-select"/>
+
     <a-textarea
       :autosize="{ minRows: 2 }"
       v-decorator="[
@@ -31,7 +35,7 @@
   </a-form-item>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Inject, Prop, Vue } from 'vue-property-decorator';
 import { Config } from '@/views/private/JsonEditor.vue';
 
 @Component
@@ -39,5 +43,19 @@ export default class FormTextareaInput extends Vue {
   @Prop(Object) private configuration!: Config;
 
   @Prop(String) private identifier!: string;
+
+  @Inject() private form!: any;
+
+  private mounted() {
+    this.form.getFieldDecorator(this.identifier, {
+      initialValue: this.configuration.default,
+      rules: [
+        {
+          required: this.configuration.required,
+          type: 'string'
+        }
+      ]
+    });
+  }
 }
 </script>
