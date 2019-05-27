@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 密码验证
  * @Date: 2019-03-16 13:44:32
- * @LastEditTime: 2019-05-24 21:38:23
+ * @LastEditTime: 2019-05-27 12:15:14
 -->
 <template>
   <!-- 密码输入框 -->
@@ -71,7 +71,13 @@
     </a-form>
     <!-- 自定义对话框按钮 -->
     <template #footer>
-      <a-button :loading="validating" @click="validatePassword" key="submit" type="primary">确定</a-button>
+      <a-button
+        :loading="validating"
+        @click="validatePassword"
+        key="submit"
+        type="primary"
+        v-text="'确定'"
+      />
     </template>
   </a-modal>
 </template>

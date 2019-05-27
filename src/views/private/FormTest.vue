@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-19 17:25:48
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-05-26 21:14:53
+ * @LastEditTime: 2019-05-27 12:22:37
  * @Description: 测试
 -->
 <template>
@@ -80,7 +80,7 @@ interface NormalObject {
 export default class FormTest extends Vue {
   @Provide() private form: any;
 
-  private pageJson: any[] = [];
+  private pageJson = '';
 
   private tags: string[] = ['head'];
 
@@ -126,6 +126,8 @@ export default class FormTest extends Vue {
         });
 
         console.log(json, JSON.stringify(json));
+
+        this.pageJson = JSON.stringify(json);
       }
     });
   }

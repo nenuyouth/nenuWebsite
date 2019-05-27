@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-22 18:45:04
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-05-26 14:29:18
+ * @LastEditTime: 2019-05-27 12:35:28
  * @Description: Form Array Input
 -->
 <template>
@@ -65,6 +65,12 @@ export default class FormArrayInput extends Vue {
   private LabelLayout = { labelCol: { span: 6 }, wrapperCol: { span: 18 } };
   private noLabelLayout = { wrapperCol: { span: 18, offset: 6 } };
 
+  // add a new item to the array
+  private add() {
+    this.length += 1;
+  }
+
+  // remove certain index from the array
   private remove(index: number) {
     // Should have at least one item
     if (this.length === 1) return;
@@ -78,8 +84,5 @@ export default class FormArrayInput extends Vue {
     this.length -= 1;
   }
 
-  private add() {
-    this.length += 1;
-  }
 }
 </script>
