@@ -14,6 +14,13 @@
       v-else-if="configuration.enum"
     />
 
+    <!-- 对象输入 -->
+    <form-object-input
+      :configuration="configuration"
+      :identifier="identifier"
+      v-else-if="configuration.type==='object'"
+    />
+
     <!-- 布尔值输入 -->
     <form-boolean-input
       :configuration="configuration"
@@ -64,6 +71,7 @@ import FormArrayInput from '#/FormArrayInput.vue';
 import FormBooleanInput from '#/FormBooleanInput.vue';
 import FormEnumInput from '#/FormEnumInput.vue';
 import FormNumberInput from '#/FormNumberInput.vue';
+import FormObjectInput from '#/FormObjectInput.vue';
 import FormStringInput from '#/FormStringInput.vue';
 import FormTextareaInput from '#/FormTextareaInput.vue';
 import FormUnionInput from '#/FormUnionInput.vue';
@@ -75,6 +83,7 @@ import FormUrlInput from '#/FormUrlInput.vue';
     FormBooleanInput,
     FormEnumInput,
     FormNumberInput,
+    FormObjectInput,
     FormStringInput,
     FormTextareaInput,
     FormUnionInput,

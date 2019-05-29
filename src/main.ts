@@ -90,17 +90,19 @@ registerSW(store);
 // 阻止 vue 在启动时生成生产提示。
 Vue.config.productionTip = false;
 
-// 注册页面跳转时页脚先隐藏，防止页脚干扰显示
-// router.beforeEach((to, from, next) => {
-//   $('#footer').css({ visibility: 'hidden', opacity: 0.01 });
-//   setTimeout(
-//     next(() => {
-//       $('#footer').css('visibility', '');
-//       Vue.nextTick().then(() => {
-//         $('#footer').fadeIn(500);
-//       });
-//     });
-// });
+/*
+ * 注册页面跳转时页脚先隐藏，防止页脚干扰显示
+ * router.beforeEach((to, from, next) => {
+ *   $('#footer').css({ visibility: 'hidden', opacity: 0.01 });
+ *   setTimeout(
+ *     next(() => {
+ *       $('#footer').css('visibility', '');
+ *       Vue.nextTick().then(() => {
+ *         $('#footer').fadeIn(500);
+ *       });
+ *     });
+ * });
+ */
 
 
 // 在导航确认后立即更新path值
