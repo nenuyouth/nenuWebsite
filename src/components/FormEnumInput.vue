@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-22 18:45:04
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-05-26 21:14:03
+ * @LastEditTime: 2019-05-29 23:15:25
  * @Description: Form Enumerable Value Input
 -->
 <template>
@@ -43,9 +43,9 @@ import { Config } from '@/views/private/JsonEditor.vue';
 
 @Component
 export default class FormArrayInput extends Vue {
-  @Prop(Object) private configuration!: Config;
+  @Prop(Object) private readonly configuration!: Config;
 
-  @Prop(String) private identifier!: string;
+  @Prop(String) private readonly identifier!: string;
 
   @Inject() private form!: any;
 

@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-24 18:39:40
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-05-26 21:15:11
+ * @LastEditTime: 2019-05-29 23:14:53
  * @Description: Form Union Input
 -->
 <template>
@@ -115,9 +115,9 @@ import FormUrlInput from '#/FormUrlInput.vue';
   }
 })
 export default class FormUnionInput extends Vue {
-  @Prop(Object) private configuration!: Config;
+  @Prop(Object) private readonly configuration!: Config;
 
-  @Prop(String) private identifier!: string;
+  @Prop(String) private readonly identifier!: string;
 
   private typeSelect = '';
 

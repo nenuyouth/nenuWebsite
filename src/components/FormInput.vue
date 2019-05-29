@@ -91,8 +91,8 @@ import FormUrlInput from '#/FormUrlInput.vue';
   }
 })
 export default class FormInput extends Vue {
-  @Prop(Object) private configuration!: Config;
+  @Prop(Object) private readonly configuration!: Config;
 
-  @Prop(String) private identifier!: string;
+  @Prop(String) private readonly identifier!: string;
 }
 </script>

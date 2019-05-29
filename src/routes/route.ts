@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 路由配置文件
  * @Date: 2019-03-25 12:27:33
- * @LastEditTime: 2019-05-29 13:02:02
+ * @LastEditTime: 2019-05-29 21:36:57
  */
 import Main from '@/views/Main.vue';
 import Page404 from '@/views/Page404.vue';
@@ -30,28 +30,40 @@ const route = [
     component: () => import(/* webpackChunkName: "page" */ '@/views/Page.vue')
   },
   {
+    path: '/lecture',
+    name: 'lecture',
+    meta: { title: '讲座信息' },
+    component: () => import(/* webpackChunkName: "handbook" */ '@/views/Lecture.vue')
+  },
+  {
+    path: '/lecture/:school',
+    name: 'lectureDetail',
+    meta: { title: '讲座信息' },
+    component: () => import(/* webpackChunkName: "handbook" */ '@/views/Lecture.vue')
+  },
+  {
     path: '/tool/calendar',
     name: 'calendar',
     meta: { title: '东师校历' },
-    component: () => import(/* webpackChunkName: "calendar" */ '@/views/tool/Calendar.vue')
+    component: () => import(/* webpackChunkName: "calendar" */ '@/views/tools/Calendar.vue')
   },
   {
     path: '/tool/calendar/:time',
     name: 'calendarDetail',
     meta: { title: '校历详情' },
-    component: () => import(/* webpackChunkName: "calendar" */ '@/views/tool/CalendarDetail.vue')
+    component: () => import(/* webpackChunkName: "calendar" */ '@/views/tools/CalendarDetail.vue')
   },
   {
     path: '/tool/schoolGzh',
     name: 'schoolGzh',
     meta: { title: '学院矩阵' },
-    component: () => import(/* webpackChunkName: "tool" */ '@/views/tool/SchoolGzh.vue')
+    component: () => import(/* webpackChunkName: "tool" */ '@/views/tools/SchoolGzh.vue')
   },
   {
     path: '/tool/NetCharge',
     name: 'NetCharge',
     meta: { title: '网费充值' },
-    component: () => import(/* webpackChunkName: "tool" */ '@/views/tool/NetCharge.vue')
+    component: () => import(/* webpackChunkName: "tool" */ '@/views/tools/NetCharge.vue')
   },
   {
     path: '/scence',

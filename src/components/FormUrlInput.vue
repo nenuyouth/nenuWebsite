@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-22 18:45:04
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-05-24 20:37:30
+ * @LastEditTime: 2019-05-29 23:14:47
  * @Description: Form Url Input
 -->
 <template>
@@ -53,9 +53,9 @@ import { Config } from '@/views/private/JsonEditor.vue';
 
 @Component
 export default class FormUrlInput extends Vue {
-  @Prop(Object) private configuration!: Config;
+  @Prop(Object) private readonly configuration!: Config;
 
-  @Prop(String) private identifier!: string;
+  @Prop(String) private readonly identifier!: string;
 
   @Inject() private form!: any;
 

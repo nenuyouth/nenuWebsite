@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-22 18:45:04
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-05-26 20:35:06
+ * @LastEditTime: 2019-05-29 23:15:33
  * @Description: Form Boolean Input
 -->
 <template>
@@ -41,9 +41,9 @@ import { Config } from '@/views/private/JsonEditor.vue';
 
 @Component
 export default class FormBooleanInput extends Vue {
-  @Prop(Object) private configuration!: Config;
+  @Prop(Object) private readonly configuration!: Config;
 
-  @Prop(String) private identifier!: string;
+  @Prop(String) private readonly identifier!: string;
 
   @Inject() private form!: any;
 

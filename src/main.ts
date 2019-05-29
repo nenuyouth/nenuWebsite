@@ -3,13 +3,13 @@
  * @LastEditors: Mr.Hope
  * @Description: 主脚本文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-21 16:57:43
+ * @LastEditTime: 2019-05-29 21:01:12
  */
 
 // 引入Ant Design
 import {
-  Anchor, Breadcrumb, Button, Carousel, Col, Divider, Dropdown, Form, Icon, Input,
-  InputNumber, Layout, Menu, Modal, Radio, Row, Select, Skeleton, Spin, Timeline, Tooltip, message
+  Anchor, Breadcrumb, Button, Carousel, Col, Divider, Dropdown, Form, Icon, Input, InputNumber,
+  Layout, Menu, Modal, Radio, Row, Select, Skeleton, Spin, Timeline, Tooltip, message
 } from 'ant-design-vue';
 import { Route } from 'vue-router';
 import Vue from 'vue';
@@ -20,7 +20,7 @@ import $ from 'jquery';
 import debounce from 'lodash/debounce';
 
 // 引入配置好的VueRouter与Vuex
-import router from './router/router';
+import router from './routes/router';
 import store from './store/store';
 
 // 引入Service-Worker

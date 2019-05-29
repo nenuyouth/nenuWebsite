@@ -52,16 +52,8 @@ const systemModule: Module<SystemState, BaseState> = {
       const isEdge = userAgent.indexOf('Edge') > -1 && !isIE; // 判断是否IE的Edge浏览器
       const isIE11 = userAgent.indexOf('Trident') > -1 && userAgent.indexOf('rv:11.0') > -1;
 
-      if (isIE) {
-        const reIE = new RegExp('MSIE (\\d+\\.\\d+);');
-
-        state.IE = true;
-        reIE.test(userAgent);
-        const IEVersion = parseFloat(RegExp.$1);
-
-        state.IEVersion = IEVersion || 6;
-      }
-
+      // tslint:disable-next-line: ban
+      if (isIE) alert('您的浏览器版本为IE11以下，不被本网站支持，请您更换浏览器！');
       if (isEdge) state.Edge = true;// edge
       if (isIE11) state.IEVersion = 11; // IE11
     },
