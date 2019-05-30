@@ -17,7 +17,7 @@
 - @：`src/`
 - \#：`src/components`
 - |：`src/assets`
-- %：`src/lib`
+- %：`src/utils`
 
 ## Linter配置
 

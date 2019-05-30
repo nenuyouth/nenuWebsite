@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: vue config file
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-18 18:22:30
+ * @LastEditTime: 2019-05-29 23:21:50
  */
 
 const path = require('path');
@@ -41,10 +41,10 @@ const configureWebpack = config => {
   const myaliasconfig = {
     '|': path.resolve(__dirname, 'src/assets/'),
     '#': path.resolve(__dirname, 'src/components/'),
-    '%': path.resolve(__dirname, 'src/lib/'),
+    '%': path.resolve(__dirname, 'src/utils/'),
     icon: path.resolve(__dirname, 'node_modules/@ant-design/icons/lib/'), // 减小Icon.ts体积
     ol: path.resolve(__dirname, 'node_modules/@ant-design/icons/lib/outline'), // 减小Icon.ts体积
-    '@ant-design/icons/lib/dist$': path.resolve(__dirname, './src/lib/icon') // 减小 antdIcon 体积
+    '@ant-design/icons/lib/dist$': path.resolve(__dirname, './src/utils/icon') // 减小 antdIcon 体积
   };
 
   config.resolve.alias = { ...config.resolve.alias || {}, ...myaliasconfig }; // 配置解析别名，可以简写
