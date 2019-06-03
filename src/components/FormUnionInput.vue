@@ -92,7 +92,7 @@
 import {
   Component, Inject, Prop, Vue, Watch
 } from 'vue-property-decorator';
-import { Config } from '@/views/private/JsonEditor.vue';
+import { Config } from '%/pageConfig';
 import TypeSelect from '#/TypeSelect.vue';
 import FormArrayInput from '#/FormArrayInput.vue';
 import FormBooleanInput from '#/FormBooleanInput.vue';

@@ -36,7 +36,7 @@
 </template>
 <script lang="ts">
 import { Component, Inject, Prop, Vue } from 'vue-property-decorator';
-import { Config } from '@/views/private/JsonEditor.vue';
+import { Config } from '%/pageConfig';
 
 @Component
 export default class FormTextareaInput extends Vue {

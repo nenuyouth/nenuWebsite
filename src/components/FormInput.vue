@@ -66,7 +66,7 @@
 </template>
 <script lang="ts">
 import { Component, Prop, Provide, Vue } from 'vue-property-decorator';
-import { Config } from '@/views/private/JsonEditor.vue';
+import { Config } from '%/pageConfig';
 import FormArrayInput from '#/FormArrayInput.vue';
 import FormBooleanInput from '#/FormBooleanInput.vue';
 import FormEnumInput from '#/FormEnumInput.vue';

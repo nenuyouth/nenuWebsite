@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-22 18:45:04
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-05-29 23:15:43
+ * @LastEditTime: 2019-06-03 12:38:18
  * @Description: Form Array Input
 -->
 <template>
@@ -49,7 +49,7 @@
 </template>
 <script lang="ts">
 import { Component, Inject, Prop, Vue } from 'vue-property-decorator';
-import { Config } from '@/views/private/JsonEditor.vue';
+import { Config } from '%/pageConfig';
 
 @Component
 export default class FormArrayInput extends Vue {

@@ -49,7 +49,7 @@
 import {
   Component, Inject, Prop, Vue, Watch
 } from 'vue-property-decorator';
-import { Config } from '@/views/private/JsonEditor.vue';
+import { Config } from '%/pageConfig';
 
 @Component
 export default class FormUrlInput extends Vue {
