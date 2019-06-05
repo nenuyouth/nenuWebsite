@@ -3,31 +3,26 @@
  * @LastEditors: Mr.Hope
  * @Description: 主脚本文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-06-05 15:42:17
+ * @LastEditTime: 2019-06-05 16:10:41
  */
 
 // 引入Ant Design
 import {
-  Anchor, Breadcrumb, Button, Carousel, Col, Divider, Dropdown, Form, Icon, Input, InputNumber,
-  Layout, Menu, Modal, Radio, Row, Select, Skeleton, Spin, Timeline, Tooltip, message
+  Button, Col, Divider, Dropdown, Form, Icon, Input, InputNumber,
+  Layout, Menu, Modal, Radio, Row, Select, Tooltip, message
 } from 'ant-design-vue';
-import { Route } from 'vue-router';
 import Vue from 'vue';
 import Component from 'vue-class-component';
 
-// 引入第三方库
-import $ from 'jquery';
-import debounce from 'lodash/debounce';
-
 // 引入配置好的VueRouter与Vuex
 import router from './routes/router';
-import store from './store/store';
+import store from '@/store/store';
 
 // 引入Service-Worker
-import registerSW from './service-worker/registerSW';
+import registerSW from '@/service-worker/registerSW';
 
 // 引入Vue根元素
-import App from './App.vue';
+import App from '@/App.vue';
 
 // 自定义css样式
 import '%/customBootstrap.scss';
@@ -41,10 +36,7 @@ Component.registerHooks([
 ]);
 
 // 使用ant-design
-Vue.use(Anchor);
-Vue.use(Breadcrumb);
 Vue.use(Button);
-Vue.use(Carousel);
 Vue.use(Col);
 Vue.use(Divider);
 Vue.use(Dropdown);
@@ -58,9 +50,6 @@ Vue.use(Modal);
 Vue.use(Radio);
 Vue.use(Row);
 Vue.use(Select);
-Vue.use(Skeleton);
-Vue.use(Spin);
-Vue.use(Timeline);
 Vue.use(Tooltip);
 
 // 配置message
@@ -89,36 +78,6 @@ registerSW(store);
 
 // 阻止 vue 在启动时生成生产提示。
 Vue.config.productionTip = false;
-
-/*
- * 注册页面跳转时页脚先隐藏，防止页脚干扰显示
- * router.beforeEach((to, from, next) => {
- *   $('#footer').css({ visibility: 'hidden', opacity: 0.01 });
- *   setTimeout(
- *     next(() => {
- *       $('#footer').css('visibility', '');
- *       Vue.nextTick().then(() => {
- *         $('#footer').fadeIn(500);
- *       });
- *     });
- * });
- */
-
-
-// 在导航确认后立即更新path值
-router.afterEach((to: Route) => {
-  store.commit('path', to.path);
-});
-
-// 获得当前环境
-store.dispatch('systemInfo');
-
-// 获取屏幕状态，并进行brakpoint状态监听
-store.dispatch('screen', $(window).width() || document.documentElement.clientWidth);
-window.addEventListener('resize', debounce(() => {
-  store.dispatch('screen', $(window).width() || document.documentElement.clientWidth);
-}, 300));
-
 // 声明Vue实例
 new Vue({
   router,

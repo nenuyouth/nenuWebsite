@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: vue config file
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-29 23:21:50
+ * @LastEditTime: 2019-06-03 13:04:45
  */
 
 const path = require('path');
@@ -151,20 +151,28 @@ const configureWebpack = config => {
  * @property {object} pwa Progressive App支持
  */
 module.exports = {
-  /*
-   * pages: {// type is Object
-   *   index: {
-   *     // page 的入口
-   *     entry: './src/main.ts',
-   *     // 模板来源
-   *     template: './public/index.html',
-   *     // 在 dist/index.html 的输出
-   *     filename: 'index.html',
-   *     // 在这个页面中包含的块，默认情况下会包含提取出来的通用 chunk 和 vendor chunk。
-   *     chunks: ['chunk-vendors', 'chunk-common', 'app']
-   *   }
-   * },
-   */
+
+  pages: {// 在 multi-page 模式下构建应用
+    index: './src/main.ts',
+    // index: {
+    // // page 的入口
+    // entry: './src/main.ts',
+    // // 模板来源
+    // template: './public/index.html',
+    // // 在 dist/index.html 的输出
+    // filename: 'index.html',
+    // 在这个页面中包含的块，默认情况下会包含提取出来的通用 chunk 和 vendor chunk。
+    // chunks: ['chunk-vendors', 'chunk-common', 'app']
+    // }
+    // private: {
+    //   entry: './src/pages/private/main.ts',
+    //   template: './public/index.html',
+    //   filename: 'private.html',
+    //   chunks: ['chunk-vendors', 'chunk-common', 'private-app']
+    // }
+    private: './src/pages/private/main.ts'
+  },
+
   productionSourceMap: false,
   crossorigin: 'anonymous',
   chainWebpack,
