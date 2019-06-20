@@ -1,24 +1,24 @@
 <!--
  * @Author: Mr.Hope
  * @LastEditors: Mr.Hope
- * @Description: Internal Doc Display
- * @Date: 2019-04-01 23:35:43
- * @LastEditTime: 2019-05-10 13:32:18
+ * @Description: Guide Doc display
+ * @Date: 2019-04-01 16:10:20
+ * @LastEditTime: 2019-06-20 18:33:59
 -->
 <template>
-  <MyDoc :baselength="baselength" :loading="$store.state.docLoading" :path="path"/>
+  <MyGuide :baselength="baselength" :loading="$store.state.docLoading" :path="path"/>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { Route } from 'vue-router';
-import MyDoc from '#/MyDoc.vue';
-import getCompiledMarkdown from '%/getMarkdown';
+import MyGuide from '../components/MyGuide.vue';
+import getCompiledMarkdown from '../utils/getMarkdown';
 
-@Component({ components: { MyDoc } })
-export default class Doc extends Vue {
+@Component({ components: { MyGuide } })
+export default class Guide extends Vue {
   // the length of url base part
-  private readonly baselength = 5;
+  private baselength = 7;
 
   // doc path
   private get path() {
@@ -27,8 +27,8 @@ export default class Doc extends Vue {
 
   private activated() {
     // display menu
-    this.$store.commit('menuList', require('assets/docMenuList'));
-    this.$store.commit('menuTitle', '内部文档');
+    this.$store.commit('menuList', require('|/guideMenuList'));
+    this.$store.commit('menuTitle', '东师指南');
   }
   private deactivated() {
     // hide menu
@@ -44,17 +44,9 @@ export default class Doc extends Vue {
     this.$store.commit('loadDoc', true);
 
     // if markdown of this page hasn't been cached
-    if (!this.$store.state.compiledDoc[path])
+    if (!this.$store.state.compiledGuide[path])
       // decide whether nagivate or not based on the result of getting markdown files
-      navigate = await getCompiledMarkdown(
-        '/server/doc',
-        {
-          path,
-          password: this.$store.state.password.internal
-        },
-        this,
-        'compiledDoc'
-      );
+      navigate = await getCompiledMarkdown('/server/guide', { path }, this, 'compiledGuide');
 
     // invoke Hook
     next(navigate);

@@ -2,7 +2,7 @@
   <div class="listCtn">
     <div
       :key="item.text"
-      @click="navigate(item.url)"
+      @click="$navigate(item.url,$router,$route)"
       class="listItemCtn"
       is="div"
       v-for="item in list"
@@ -24,24 +24,6 @@ interface LectureListItem {
 @Component
 export default class LectureList extends Vue {
   @Prop(Array) private readonly list!: LectureListItem;
-
-  private navigate(url: string) {
-    const router = this.$router;
-    const route = this.$route;
-
-    if (url[0] === '/')
-      // 内部绝对路径
-      router.push(url);
-    else if (url.indexOf('http://') !== -1 || url.indexOf('https://') !== -1)
-      // 外部链接
-      window.open(url);
-    else {
-      // 内部相对路径
-      const base = route.path.slice(0, route.path.lastIndexOf('/'));
-
-      router.push(`${base}/${url}`);
-    }
-  }
 }
 </script>
 <style scoped>

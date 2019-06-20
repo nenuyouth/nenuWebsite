@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: vue config file
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-06-14 15:36:01
+ * @LastEditTime: 2019-06-20 18:25:40
  */
 
 const path = require('path');
@@ -173,7 +173,8 @@ module.exports = {
      * }
      */
     private: './src/pages/private/main.ts',
-    doc: './src/pages/doc/main.ts'
+    doc: './src/pages/doc/main.ts',
+    guide: './src/pages/doc/main.ts'
   },
   publicPath: process.env.DEPLOY ? process.env.deployAddress : '/',
   productionSourceMap: false,

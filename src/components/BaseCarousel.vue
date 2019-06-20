@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Base Carousel
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-17 23:14:35
+ * @LastEditTime: 2019-06-20 18:55:47
 -->
 <template>
   <a-carousel
@@ -29,7 +29,12 @@
     </template>
 
     <!-- carousel item -->
-    <div :key="item.caption" @click="navigate(item.url)" class="carouselItem" v-for="item in list">
+    <div
+      :key="item.caption"
+      @click="$navigate(item.url,$router,$route)"
+      class="carouselItem"
+      v-for="item in list"
+    >
       <img :alt="item.alt" :src="item.src" class="img">
       <div :class="item.color" class="caption">
         <h1 class="display-4 d-none d-sm-block" v-text="item.caption"/>
@@ -47,6 +52,7 @@
 </template>
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
+// import navigate from '%/navigate';
 
 interface Carousel {
   caption: string; // 主标题
@@ -105,24 +111,9 @@ export default class BaseCarousel extends Vue {
   private list: Carousel[] = [];
 
   // Navigation handler
-  private navigate(url: string | undefined) {
-    const router = this.$router;
-    const route = this.$route;
-
-    if (url)
-      if (url && url[0] === '/')
-        // Inner absolute path
-        router.push(url);
-      else if (url.indexOf('http://') !== -1 || url.indexOf('https://') !== -1)
-        // Outter url
-        window.open(url);
-      else {
-        // Inner relative path
-        const base = route.path.slice(0, route.path.lastIndexOf('/'));
-
-        router.push(`${base}/${url}`);
-      }
-  }
+  // private navigate(url: string | undefined) {
+  //   navigate(url, this);
+  // }
 
   private mounted() {
     // Make a copy of carouselItems config

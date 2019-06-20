@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主页入口文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-06-14 15:22:47
+ * @LastEditTime: 2019-06-20 18:50:30
  */
 
 // 引入Ant Design
@@ -28,6 +28,9 @@ import registerSW from './service-worker/registerSW';
 
 // 引入Vue根元素
 import App from './App.vue';
+
+// 自定义方法
+import navigate from '%/navigate';
 
 // 自定义css样式
 import '%/customBootstrap.scss';
@@ -83,6 +86,9 @@ const IconFont = Icon.createFromIconfontCN({ scriptUrl: '//at.alicdn.com/t/font_
 
 // 全局注册IconFont
 Vue.component('icon-font', IconFont);
+
+// 注册自定义方法
+Vue.use(navigate);
 
 // 注册service worker
 registerSW(store);

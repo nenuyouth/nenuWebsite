@@ -1,13 +1,14 @@
 <template>
   <div :id="myId" class="phoneCtn">
-    <img :src="require('|/icon/phone.svg')" class="phoneIcon">
+    <Phone class="phoneIcon"/>
     <div class="phoneNum" v-text="num"/>
   </div>
 </template>
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
+import Phone from '|/icon/phone.svg';
 
-@Component
+@Component({ components: { Phone } })
 export default class BasePhone extends Vue {
   @Prop(Number) private readonly myId!: number;
 

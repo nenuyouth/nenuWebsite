@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Base Grid
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-18 18:32:41
+ * @LastEditTime: 2019-06-20 18:56:53
 -->
 <template>
   <div>
@@ -18,7 +18,7 @@
         :md="4"
         :xl="2"
         :xs="6"
-        @click="navigate(item.url)"
+        @click="$navigate(item.url,$router,$route)"
         class="grid"
         v-for="item in content"
       >
@@ -51,25 +51,6 @@ export default class BaseGrid extends Vue {
 
   // Grid footer text
   @Prop(String) private readonly foot!: string;
-
-  // Link Handler
-  private navigate(url: string) {
-    const route = this.$route;
-    const router = this.$router;
-
-    if (url && url[0] === '/')
-      // 内部绝对路径
-      router.push(url);
-    else if (url.indexOf('http://') !== -1 || url.indexOf('https://') !== -1)
-      // 外部链接
-      window.open(url);
-    else {
-      // 内部相对路径
-      const base = route.path.slice(0, route.path.lastIndexOf('/'));
-
-      router.push(`${base}/${url}`);
-    }
-  }
 }
 </script>
 <style lang='scss' scoped>

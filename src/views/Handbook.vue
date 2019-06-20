@@ -3,16 +3,20 @@
  * @LastEditors: Mr.Hope
  * @Description: 东师指南页面
  * @Date: 2019-03-24 11:14:13
- * @LastEditTime: 2019-05-09 10:15:52
+ * @LastEditTime: 2019-06-20 19:00:58
 -->
 <template>
   <div class="container">
     <h2 class="px-3 pt-3">东师指南</h2>
     <BaseGrid :key="item.head" v-bind="item" v-for="item in guidelist"/>
     <h2 class="px-3 pt-3">东师手册</h2>
-    <a-button block class="my-3 blockButton" type="primary">
-      <router-link to="/guide">点击进入</router-link>
-    </a-button>
+    <a-button
+      @click="$navigate('https://nenuyouth.com/guide',$router,$route)"
+      block
+      class="my-3 blockButton"
+      type="primary"
+      v-text="'点击进入'"
+    />
   </div>
 </template>
 

@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-05-18 17:48:51
+ * @LastEditTime: 2019-06-20 18:34:55
 -->
 <template>
   <!-- 标题设置 -->
@@ -28,6 +28,13 @@
         </a-breadcrumb-item>
       </a-breadcrumb>
     </div>
+    <!-- 密码弹窗 -->
+    <PasswordModal
+      @login="login"
+      passwordKey="internal"
+      url="/server/passwordValidate"
+      v-if="!$store.state.loginStatus.internal"
+    />
     <!-- <transition :name="transitionName" mode="in-out"> -->
     <keep-alive>
       <!-- 文档显示 -->
@@ -40,17 +47,18 @@
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { Route } from 'vue-router';
-import DocView from '#/DocView.vue';
-import getCompiledMarkdown from '%/getMarkdown';
+import DocView from './DocView.vue';
+import PasswordModal from '#/PasswordModal.vue';
+import getCompiledMarkdown from '../utils/getMarkdown';
 
 // 导入css样式
-import '%/github-markdown.css';
+import '../utils/github-markdown.css';
 import 'highlight.js/styles/atom-one-dark.css';
 
-@Component({ components: { DocView } })
-export default class MyGuide extends Vue {
+@Component({ components: { DocView, PasswordModal } })
+export default class MyDoc extends Vue {
   // 文档标题
-  private docTitle = '东师指南';
+  private docTitle = '内部文档';
 
   // Markdown编译内容
   private compiledMarkdown = '';
@@ -73,19 +81,48 @@ export default class MyGuide extends Vue {
     return this.$route.path.slice(this.baselength).split('/');
   }
 
-  private async mounted() {
+  // 登陆成功，开始获取markdown文件
+  private async login() {
     // 如果该路径markdown未被缓存则获取之
-    if (!this.$store.state.compiledGuide[this.path])
-      await getCompiledMarkdown('/server/guide', { path: this.path || 'readme' }, this, 'compiledGuide');
+    if (!this.$store.state.compiledDoc[this.path])
+      await getCompiledMarkdown(
+        '/server/doc',
+        {
+          path: this.path,
+          password: this.$store.state.password.internal
+        },
+        this,
+        'compiledDoc'
+      );
 
-    // 写入编译后的html
-    this.compiledMarkdown = this.$store.state.compiledGuide[this.path];
+    // 当路径改变时写入编译后的html
+    this.compiledMarkdown = this.$store.state.compiledDoc[this.path];
+  }
+
+  private async mounted() {
+    // 如果已经登陆,直接加载，否则等待login函数触发
+    if (this.$store.state.loginStatus.internal) {
+      // 如果该路径markdown未被缓存则获取之
+      if (!this.$store.state.compiledDoc[this.path])
+        await getCompiledMarkdown(
+          '/server/doc',
+          {
+            path: this.path,
+            password: this.$store.state.password.internal
+          },
+          this,
+          'compiledDoc'
+        );
+
+      // 写入编译后的html
+      this.compiledMarkdown = this.$store.state.compiledDoc[this.path];
+    }
   }
 
   @Watch('path')
   private onPathChange(to: string, from: string) {
     // 当路径改变时写入编译后的html
-    this.compiledMarkdown = this.$store.state.compiledGuide[this.path];
+    this.compiledMarkdown = this.$store.state.compiledDoc[this.path];
   }
 
   @Watch('$route')
@@ -108,7 +145,7 @@ export default class MyGuide extends Vue {
   }
 }
 </script>
-<style lang='scss' scoped>
+<style scoped>
 .loadingCtn {
   min-height: 200px;
   display: flex;
@@ -118,9 +155,10 @@ export default class MyGuide extends Vue {
 
 .backIcon {
   cursor: pointer;
-  &:hover {
-    color: #2ecc71;
-  }
+}
+
+.backIcon:hover {
+  color: #2ecc71;
 }
 
 .homeIcon {
