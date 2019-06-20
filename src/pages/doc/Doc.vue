@@ -1,15 +1,14 @@
 <!--
  * @Author: Mr.Hope
  * @LastEditors: Mr.Hope
- * @Description: 主视图文件
+ * @Description: 文档视图文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-06-20 18:22:25
+ * @LastEditTime: 2019-06-20 18:20:29
 -->
 <template>
   <a-layout hasSider="true" id="app">
     <my-slide id="aside" v-if="$store.state.slide.list.length"></my-slide>
     <a-layout id="body">
-      <my-nav id="nav"/>
       <!-- <transition :name="transitionName"> -->
       <a-layout-content id="content">
         <keep-alive :max="10">
@@ -29,11 +28,10 @@ import { Component, Vue, Watch } from 'vue-property-decorator';
 import { Route } from 'vue-router';
 import BackTop from '#/BackTop.vue';
 import BaseViewer from '#/BaseViewer.vue';
-import MyNav from '#/Nav.vue';
 import MySlide from '#/Slide.vue';
 import MyFooter from '#/Footer.vue';
 
-@Component({ components: { BackTop, BaseViewer, MyNav, MyFooter, MySlide } })
+@Component({ components: { BackTop, BaseViewer, MyFooter, MySlide } })
 export default class App extends Vue {
   // 动画名称
   private transitionName = 'slide-right';
@@ -66,16 +64,6 @@ export default class App extends Vue {
   @media (min-width: 992px) {
     background-color: #fff;
     margin-bottom: 192px;
-  }
-}
-
-// lg以上屏幕nav固定
-#body {
-  @media (min-width: 992px) {
-    padding-top: 48px;
-  }
-  @media (max-width: 992px) {
-    padding-top: 40px;
   }
 }
 

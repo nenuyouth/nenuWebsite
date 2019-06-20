@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 路由配置文件
  * @Date: 2019-03-25 12:27:33
- * @LastEditTime: 2019-06-03 12:27:29
+ * @LastEditTime: 2019-06-14 15:32:13
  */
 import Main from '@/views/Main.vue';
 import Page404 from '@/views/Page404.vue';
@@ -122,29 +122,14 @@ const route = [
     meta: { title: false },
     component: () => import(/* webpackChunkName: "guide" */ '@/views/Guide.vue')
   },
-  { path: '/doc/readme', redirect: '/doc' },
-  { path: '/doc/:path1/readme', redirect: '/doc/:path1' },
-  { path: '/doc/:path1/:path2/readme', redirect: '/doc/:path1/:path2' },
-  { path: '/doc/:path1/:path2/:path3/readme', redirect: '/doc/:path1/:path2/:path3' },
-  {
-    path: '/doc/:path1?/:path2?/:path3?/:path4?',
-    meta: { title: false },
-    component: () => import(/* webpackChunkName: "doc" */ '@/views/Doc.vue')
-  },
+  // { path: '/doc/readme', redirect: '/doc' },
+  // { path: '/doc/:path1/readme', redirect: '/doc/:path1' },
+  // { path: '/doc/:path1/:path2/readme', redirect: '/doc/:path1/:path2' },
+  // { path: '/doc/:path1/:path2/:path3/readme', redirect: '/doc/:path1/:path2/:path3' },
   // {
-  //   path: '/private/jsonEditor',
-  //   meta: { title: 'JSON编辑器' },
-  //   component: () => import(/* webpackChunkName: "private" */ '@/views/private/JsonEditor.vue')
-  // },
-  // {
-  //   path: '/private/test',
-  //   meta: { title: 'JSON编辑器测试' },
-  //   component: () => import(/* webpackChunkName: "test" */ '@/views/private/FormTest.vue')
-  // },
-  // {
-  //   path: '/private/mdEditor',
-  //   meta: { title: 'Markdown编辑器' },
-  //   component: () => import(/* webpackChunkName: "test" */ '@/views/private/MarkdownEditor.vue')
+  //   path: '/doc/:path1?/:path2?/:path3?/:path4?',
+  //   meta: { title: false },
+  //   component: () => import(/* webpackChunkName: "doc" */ '@/views/Doc.vue')
   // },
   {
     path: '*',

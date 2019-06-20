@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: vue config file
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-06-13 23:21:45
+ * @LastEditTime: 2019-06-14 15:36:01
  */
 
 const path = require('path');
@@ -172,7 +172,8 @@ module.exports = {
      *   chunks: ['chunk-vendors', 'chunk-common', 'private-app']
      * }
      */
-    private: './src/pages/private/main.ts'
+    private: './src/pages/private/main.ts',
+    doc: './src/pages/doc/main.ts'
   },
   publicPath: process.env.DEPLOY ? process.env.deployAddress : '/',
   productionSourceMap: false,
