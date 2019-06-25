@@ -1,275 +1,275 @@
 [
   {
-    "key": "/doc",
+    "key": "/doc/private",
     "title": "主页",
     "icon": "home"
   },
   {
-    "key": "menu:/doc/wechat",
+    "key": "menu:/doc/private/wechat",
     "title": "微信",
     "icon": "icon-wechat",
     "children": [
       {
-        "key": "/doc/wechat",
+        "key": "/doc/private/wechat",
         "title": "微信图文编辑",
         "icon": "icon-wechat"
       },
       {
-        "key": "/doc/wechat/backStage",
+        "key": "/doc/private/wechat/backStage",
         "title": "微信后台运营",
         "icon": "icon-backstage"
       }
     ]
   },
   {
-    "key": "menu:/doc/dev",
+    "key": "menu:/doc/private/dev",
     "title": "开发指南",
     "icon": "icon-debug",
     "children": [
       {
-        "key": "/doc/dev",
+        "key": "/doc/private/dev",
         "title": "开发指南",
         "icon": "bulb"
       },
       {
-        "key": "/doc/dev/debugInstruction",
+        "key": "/doc/private/dev/debugInstruction",
         "title": "什么是开发",
         "icon": "question"
       }
     ]
   },
   {
-    "key": "menu:/doc/language",
+    "key": "menu:/doc/private/language",
     "title": "代码语言",
     "icon": "code",
     "children": [
       {
-        "key": "menu:/doc/language/js",
+        "key": "menu:/doc/private/language/js",
         "title": "JS",
         "icon": "icon-js",
         "children": [
           {
-            "key": "/doc/language/js",
+            "key": "/doc/private/language/js",
             "title": "JS指南",
             "icon": "bulb"
           },
           {
-            "key": "/doc/language/js/intro",
+            "key": "/doc/private/language/js/intro",
             "title": "JS介绍",
             "icon": "info-circle"
           },
           {
-            "key": "/doc/language/js/accidence",
+            "key": "/doc/private/language/js/accidence",
             "title": "快速入门",
             "icon": "icon-rumen"
           },
           {
-            "key": "/doc/language/js/function",
+            "key": "/doc/private/language/js/function",
             "title": "函数",
             "icon": "icon-function"
           },
           {
-            "key": "/doc/language/js/object",
+            "key": "/doc/private/language/js/object",
             "title": "对象",
             "icon": "icon-object"
           },
           {
-            "key": "/doc/language/js/browser",
+            "key": "/doc/private/language/js/browser",
             "title": "浏览器",
             "icon": "chrome"
           },
           {
-            "key": "/doc/language/js/es6",
+            "key": "/doc/private/language/js/es6",
             "title": "ES6教程",
             "icon": "icon-es6"
           },
           {
-            "key": "/doc/language/js/error",
+            "key": "/doc/private/language/js/error",
             "title": "错误处理",
             "icon": "warning"
           },
           {
-            "key": "/doc/language/js/underscore",
+            "key": "/doc/private/language/js/underscore",
             "title": "underscore",
             "icon": "icon-underscore"
           }
         ]
       },
       {
-        "key": "/doc/language/typescript",
+        "key": "/doc/private/language/typescript",
         "title": "Typescript",
         "icon": "icon-typescript"
       }
     ]
   },
   {
-    "key": "menu:/doc/miniProgram",
+    "key": "menu:/doc/private/miniProgram",
     "title": "小程序",
     "icon": "icon-miniProgram",
     "children": [
       {
-        "key": "/doc/miniProgram",
+        "key": "/doc/private/miniProgram",
         "title": "小程序介绍",
         "icon": "bulb"
       },
       {
-        "key": "/doc/miniProgram/corporationDebug",
+        "key": "/doc/private/miniProgram/corporationDebug",
         "title": "社团提交资料说明",
         "icon": "info-circle"
       },
       {
-        "key": "/doc/miniProgram/frameDescription",
+        "key": "/doc/private/miniProgram/frameDescription",
         "title": "小程序框架说明",
         "icon": "info-circle"
       },
       {
-        "key": "/doc/miniProgram/tagList",
+        "key": "/doc/private/miniProgram/tagList",
         "title": "小程序参数表",
         "icon": "tags"
       },
       {
-        "key": "/doc/miniProgram/setPage",
+        "key": "/doc/private/miniProgram/setPage",
         "title": "setPage JS库说明",
         "icon": "tags"
       }
     ]
   },
   {
-    "key": "menu:/doc/software",
+    "key": "menu:/doc/private/software",
     "title": "软件",
     "icon": "icon-software",
     "children": [
       {
-        "key": "/doc/software",
+        "key": "/doc/private/software",
         "title": "软件",
         "icon": "icon-software"
       },
       {
-        "key": "/doc/software/Apache",
+        "key": "/doc/private/software/Apache",
         "title": "Apache介绍",
         "icon": "icon-Apache"
       },
       {
-        "key": "/doc/software/Chrome",
+        "key": "/doc/private/software/Chrome",
         "title": "Chrome",
         "icon": "chrome"
       },
       {
-        "key": "menu:/doc/software/nodeJS",
+        "key": "menu:/doc/private/software/nodeJS",
         "title": "nodeJS介绍",
         "icon": "icon-nodeJS",
         "children": [
           {
-            "key": "/doc/software/nodeJS/intro",
+            "key": "/doc/private/software/nodeJS/intro",
             "title": "NodeJs简介",
             "icon": "info-circle"
           },
           {
-            "key": "/doc/software/nodeJS/install",
+            "key": "/doc/private/software/nodeJS/install",
             "title": "安装Node",
             "icon": "icon-install"
           },
           {
-            "key": "/doc/software/nodeJS/environment",
+            "key": "/doc/private/software/nodeJS/environment",
             "title": "搭建Node环境",
             "icon": "icon-environment"
           },
           {
-            "key": "/doc/software/nodeJS/program",
+            "key": "/doc/private/software/nodeJS/program",
             "title": "第一个Node程序",
             "icon": "sliders"
           },
           {
-            "key": "/doc/software/nodeJS/module",
+            "key": "/doc/private/software/nodeJS/module",
             "title": "NodeJS模块说明",
             "icon": "icon-module"
           }
         ]
       },
       {
-        "key": "menu:/doc/software/vscode",
+        "key": "menu:/doc/private/software/vscode",
         "title": "VS Code介绍",
         "icon": "icon-vscode",
         "children": [
           {
-            "key": "/doc/software/vscode",
+            "key": "/doc/private/software/vscode",
             "title": "VS Code",
             "icon": "icon-vscode"
           },
           {
-            "key": "/doc/software/vscode/vscodeSettings",
+            "key": "/doc/private/software/vscode/vscodeSettings",
             "title": "VSCode设置",
             "icon": "setting"
           },
           {
-            "key": "/doc/software/vscode/vscodeExtension",
+            "key": "/doc/private/software/vscode/vscodeExtension",
             "title": "VSCode扩展",
             "icon": "icon-extension"
           },
           {
-            "key": "/doc/software/vscode/vscodeSimple",
+            "key": "/doc/private/software/vscode/vscodeSimple",
             "title": "VScode简单介绍",
             "icon": "info-circle"
           }
         ]
       },
       {
-        "key": "menu:/doc/software/git",
+        "key": "menu:/doc/private/software/git",
         "title": "Git介绍",
         "icon": "icon-git",
         "children": [
           {
-            "key": "/doc/software/git",
+            "key": "/doc/private/software/git",
             "title": "Git",
             "icon": "icon-git"
           },
           {
-            "key": "/doc/software/git/whatIsGit",
+            "key": "/doc/private/software/git/whatIsGit",
             "title": "Git简介",
             "icon": "info-circle"
           },
           {
-            "key": "/doc/software/git/createRepository",
+            "key": "/doc/private/software/git/createRepository",
             "title": "创建版本库",
             "icon": "icon-repo"
           },
           {
-            "key": "/doc/software/git/statusView",
+            "key": "/doc/private/software/git/statusView",
             "title": "纵向查看",
             "icon": "ordered-list"
           },
           {
-            "key": "/doc/software/git/backRoll",
+            "key": "/doc/private/software/git/backRoll",
             "title": "版本回退",
             "icon": "reload"
           },
           {
-            "key": "/doc/software/git/workingDirectory",
+            "key": "/doc/private/software/git/workingDirectory",
             "title": "工作区和暂存区",
             "icon": "icon-workingDirectory"
           },
           {
-            "key": "/doc/software/git/change",
+            "key": "/doc/private/software/git/change",
             "title": "修改管理",
             "icon": "tool"
           },
           {
-            "key": "/doc/software/git/remote",
+            "key": "/doc/private/software/git/remote",
             "title": "远程仓库",
             "icon": "cloud-upload"
           },
           {
-            "key": "/doc/software/git/branch",
+            "key": "/doc/private/software/git/branch",
             "title": "分支管理",
             "icon": "branches"
           },
           {
-            "key": "/doc/software/git/tag",
+            "key": "/doc/private/software/git/tag",
             "title": "标签管理",
             "icon": "tags"
           },
           {
-            "key": "/doc/software/git/customGit",
+            "key": "/doc/private/software/git/customGit",
             "title": "自定义Git",
             "icon": "experiment"
           }
@@ -278,116 +278,116 @@
     ]
   },
   {
-    "key": "menu:/doc/website",
+    "key": "menu:/doc/private/website",
     "title": "网页开发",
     "icon": "icon-website",
     "children": [
       {
-        "key": "menu:/doc/website/html",
+        "key": "menu:/doc/private/website/html",
         "title": "HTML介绍",
         "icon": "html5",
         "children": [
           {
-            "key": "/doc/website/html",
+            "key": "/doc/private/website/html",
             "title": "HTML",
             "icon": "html5"
           },
           {
-            "key": "/doc/website/html/emmet",
+            "key": "/doc/private/website/html/emmet",
             "title": "Emmet用法",
             "icon": "info-circle"
           }
         ]
       },
       {
-        "key": "/doc/website/css",
+        "key": "/doc/private/website/css",
         "title": "CSS介绍",
         "icon": "icon-css"
       },
       {
-        "key": "menu:/doc/website/jQuery",
+        "key": "menu:/doc/private/website/jQuery",
         "title": "jQuery介绍",
         "icon": "icon-jquery",
         "children": [
           {
-            "key": "/doc/website/jQuery/intro",
+            "key": "/doc/private/website/jQuery/intro",
             "title": "jQuery简介",
             "icon": "info-circle"
           },
           {
-            "key": "/doc/website/jQuery/selector",
+            "key": "/doc/private/website/jQuery/selector",
             "title": "选择器",
             "icon": "select"
           },
           {
-            "key": "/doc/website/jQuery/operateDOM",
+            "key": "/doc/private/website/jQuery/operateDOM",
             "title": "操作DOM",
             "icon": "tool"
           },
           {
-            "key": "/doc/website/jQuery/modifyDOM",
+            "key": "/doc/private/website/jQuery/modifyDOM",
             "title": "修改DOM结构",
             "icon": "edit"
           },
           {
-            "key": "/doc/website/jQuery/event",
+            "key": "/doc/private/website/jQuery/event",
             "title": "事件",
             "icon": "icon-event"
           },
           {
-            "key": "/doc/website/jQuery/animation",
+            "key": "/doc/private/website/jQuery/animation",
             "title": "动画",
             "icon": "icon-animation"
           },
           {
-            "key": "/doc/website/jQuery/AJAX",
+            "key": "/doc/private/website/jQuery/AJAX",
             "title": "AJAX",
             "icon": "icon-ajax"
           },
           {
-            "key": "/doc/website/jQuery/extend",
+            "key": "/doc/private/website/jQuery/extend",
             "title": "扩展",
             "icon": "icon-extension"
           }
         ]
       },
       {
-        "key": "menu:/doc/website/vue",
+        "key": "menu:/doc/private/website/vue",
         "title": "Vue介绍",
         "icon": "icon-vue",
         "children": [
           {
-            "key": "/doc/website/vue",
+            "key": "/doc/private/website/vue",
             "title": "Vue介绍",
             "icon": "info-circle"
           },
           {
-            "key": "/doc/website/vue/install",
+            "key": "/doc/private/website/vue/install",
             "title": "环境安装",
             "icon": "icon-install"
           },
           {
-            "key": "/doc/website/vue/debug",
+            "key": "/doc/private/website/vue/debug",
             "title": "Vue介绍",
             "icon": "icon-debug"
           },
           {
-            "key": "/doc/website/vue/vue",
+            "key": "/doc/private/website/vue/vue",
             "title": "Vue单文件组件",
             "icon": "icon-vue"
           },
           {
-            "key": "/doc/website/vue/router",
+            "key": "/doc/private/website/vue/router",
             "title": "Vue Router",
             "icon": "icon-router"
           },
           {
-            "key": "/doc/website/vue/component",
+            "key": "/doc/private/website/vue/component",
             "title": "Vue组件文档",
             "icon": "snippets"
           },
           {
-            "key": "/doc/website/vue/compare",
+            "key": "/doc/private/website/vue/compare",
             "title": "与小程序对比",
             "icon": "icon-compare"
           }
@@ -396,22 +396,22 @@
     ]
   },
   {
-    "key": "menu:/doc/windows",
+    "key": "menu:/doc/private/windows",
     "title": "Windows系统",
     "icon": "windows",
     "children": [
       {
-        "key": "/doc/windows",
+        "key": "/doc/private/windows",
         "title": "Windows",
         "icon": "windows"
       },
       {
-        "key": "/doc/windows/addPath",
+        "key": "/doc/private/windows/addPath",
         "title": "添加到Path",
         "icon": "icon-addPath"
       },
       {
-        "key": "/doc/windows/shortCutKey",
+        "key": "/doc/private/windows/shortCutKey",
         "title": "Windows快捷键",
         "icon": "icon-shortcutKey"
       }

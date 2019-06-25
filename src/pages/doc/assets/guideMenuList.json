@@ -1,125 +1,125 @@
 [
   {
-    "key": "/guide",
+    "key": "/doc",
     "title": "主页",
     "icon": "home"
   },
   {
-    "key": "menu:/guide/library",
+    "key": "menu:/doc/library",
     "title": "图书馆",
     "icon": "book",
     "children": [
       {
-        "key": "/guide/library",
+        "key": "/doc/library",
         "title": "图书馆",
         "icon": "book"
       },
       {
-        "key": "/guide/library/intro",
+        "key": "/doc/library/intro",
         "title": "图书馆简介",
         "icon": "info-circle"
       },
       {
-        "key": "/guide/library/guide",
+        "key": "/doc/library/guide",
         "title": "图书检索教程",
         "icon": "bulb"
       },
       {
-        "key": "/guide/library/authority",
+        "key": "/doc/library/authority",
         "title": "图书借阅权限",
         "icon": "lock"
       },
       {
-        "key": "/guide/library/procedure",
+        "key": "/doc/library/procedure",
         "title": "图书借阅流程",
         "icon": "ordered-list"
       },
       {
-        "key": "/guide/library/ichnography",
+        "key": "/doc/library/ichnography",
         "title": "图书馆楼层平面图",
         "icon": "block"
       },
       {
-        "key": "/guide/library/authorization",
+        "key": "/doc/library/authorization",
         "title": "校外访问授权系统",
         "icon": "api"
       },
       {
-        "key": "/guide/library/openTime",
+        "key": "/doc/library/openTime",
         "title": "图书馆开闭馆时间",
         "icon": "clock-circle"
       },
       {
-        "key": "/guide/library/facility",
+        "key": "/doc/library/facility",
         "title": "图书馆服务设施",
         "icon": "hdd"
       },
       {
-        "key": "/guide/library/location",
+        "key": "/doc/library/location",
         "title": "图书馆位置",
         "icon": "environment"
       }
     ]
   },
   {
-    "key": "menu:/guide/study",
+    "key": "menu:/doc/study",
     "title": "学习",
     "icon": "icon-rumen",
     "children": [
       {
-        "key": "/guide/study",
+        "key": "/doc/study",
         "title": "学业相关",
         "icon": "icon-rumen"
       },
       {
-        "key": "/guide/study/NCRE",
+        "key": "/doc/study/NCRE",
         "title": "计算机等级考试",
         "icon": "desktop"
       },
       {
-        "key": "/guide/study/CET",
+        "key": "/doc/study/CET",
         "title": "CET",
         "icon": "icon-CET"
       },
       {
-        "key": "/guide/study/DET",
+        "key": "/doc/study/DET",
         "title": "DET",
         "icon": "icon-rumen"
       },
       {
-        "key": "/guide/study/webCourse",
+        "key": "/doc/study/webCourse",
         "title": "网络课程",
         "icon": "icon-course"
       },
       {
-        "key": "/guide/study/tutor",
+        "key": "/doc/study/tutor",
         "title": "家教",
         "icon": "team"
       }
     ]
   },
   {
-    "key": "menu:/guide/facility",
+    "key": "menu:/doc/facility",
     "title": "设施",
     "icon": "tool",
     "children": [
       {
-        "key": "/guide/facility",
+        "key": "/doc/facility",
         "title": "校园设施",
         "icon": "tool"
       },
       {
-        "key": "/guide/facility/washer",
+        "key": "/doc/facility/washer",
         "title": "洗衣机",
         "icon": "icon-washer"
       },
       {
-        "key": "/guide/facility/terminal",
+        "key": "/doc/facility/terminal",
         "title": "自助终端机",
         "icon": "laptop"
       },
       {
-        "key": "/guide/facility/electricity",
+        "key": "/doc/facility/electricity",
         "title": "供电",
         "icon": "thunderbolt"
       }

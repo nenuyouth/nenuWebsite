@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: vue config file
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-06-21 23:35:59
+ * @LastEditTime: 2019-06-21 23:35:28
  */
 const path = require('path');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
@@ -70,6 +70,46 @@ const configureWebpack = config => {
       hints: 'warning',
       maxEntrypointSize: 1048576,
       maxAssetSize: 1048576
+    };
+
+    config.optimization = {
+      // 为 webpack 运行时代码创建单独的chunk
+      runtimeChunk: { name: 'manifest' },
+      // chunk分离设置
+      splitChunks: {
+        chunks: 'async',
+        minSize: 30000,
+        maxSize: 0,
+        minChunks: 1,
+        maxAsyncRequests: 10,
+        maxInitialRequests: 5,
+        automaticNameDelimiter: '-',
+        name: true,
+        cacheGroups: {
+          antd: { // 分离ant-design模块
+            test: /[\\/]node_modules[\\/]ant-design-vue[\\/]/u,
+            name: 'antd',
+            chunks: 'all',
+            priority: -8
+          },
+          common: { // 分离其他
+            test: /[\\/]node_modules[\\/](lodash|vue-class-component)[\\/]/u,
+            // test: /[\\/]node_modules[\\/](axios|lodash|jquery|tinycolor2|viewerjs|vue(-class-component|-router|x)?)[\\/]/u,
+            name: 'common',
+            chunks: 'all', // valid values are all, async, and initial
+            priority: -9
+          },
+          vendors: {
+            test: /[\\/]node_modules[\\/]/u,
+            priority: -10
+          },
+          combine: { // 默认块，最小重用两次，优先级最低，不包含已有的chunk内容
+            minChunks: 2,
+            priority: -20,
+            reuseExistingChunk: true // if the chunk contains modules already split out , will be reused
+          }
+        }
+      }
     };
 
   } else config.devtool = 'source-map';

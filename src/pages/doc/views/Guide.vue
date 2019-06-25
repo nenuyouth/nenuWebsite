@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Guide Doc display
  * @Date: 2019-04-01 16:10:20
- * @LastEditTime: 2019-06-20 18:33:59
+ * @LastEditTime: 2019-06-25 10:18:36
 -->
 <template>
   <MyGuide :baselength="baselength" :loading="$store.state.docLoading" :path="path"/>
@@ -18,7 +18,7 @@ import getCompiledMarkdown from '../utils/getMarkdown';
 @Component({ components: { MyGuide } })
 export default class Guide extends Vue {
   // the length of url base part
-  private baselength = 7;
+  private baselength = 5;
 
   // doc path
   private get path() {
@@ -27,7 +27,7 @@ export default class Guide extends Vue {
 
   private activated() {
     // display menu
-    this.$store.commit('menuList', require('|/guideMenuList'));
+    this.$store.commit('menuList', require('../assets/guideMenuList'));
     this.$store.commit('menuTitle', '东师指南');
   }
   private deactivated() {

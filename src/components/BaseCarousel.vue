@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Base Carousel
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-06-20 18:55:47
+ * @LastEditTime: 2019-06-21 23:38:11
 -->
 <template>
   <a-carousel
@@ -109,11 +109,6 @@ export default class BaseCarousel extends Vue {
 
   // Carousel item list
   private list: Carousel[] = [];
-
-  // Navigation handler
-  // private navigate(url: string | undefined) {
-  //   navigate(url, this);
-  // }
 
   private mounted() {
     // Make a copy of carouselItems config

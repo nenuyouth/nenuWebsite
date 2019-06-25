@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: router配置文件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-06-03 12:18:49
+ * @LastEditTime: 2019-06-21 21:08:13
  */
 
 import Vue from 'vue';
@@ -28,7 +28,7 @@ export default new Router({
   mode: 'history',
 
   // 设置根目录为环境变量BASE_URL
-  base: process.env.BASE_URL,
+  base: `${process.env.BASE_URL}private/`,
 
   /**
    * 保存滚动位置

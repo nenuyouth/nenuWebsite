@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Internal Doc Display
  * @Date: 2019-04-01 23:35:43
- * @LastEditTime: 2019-06-20 18:34:15
+ * @LastEditTime: 2019-06-25 10:15:50
 -->
 <template>
   <MyDoc :baselength="baselength" :loading="$store.state.docLoading" :path="path"/>
@@ -18,7 +18,7 @@ import getCompiledMarkdown from '../utils/getMarkdown';
 @Component({ components: { MyDoc } })
 export default class InternalDoc extends Vue {
   // the length of url base part
-  private readonly baselength = 5;
+  private readonly baselength = 13;
 
   // doc path
   private get path() {
@@ -27,7 +27,7 @@ export default class InternalDoc extends Vue {
 
   private activated() {
     // display menu
-    this.$store.commit('menuList', require('assets/docMenuList'));
+    this.$store.commit('menuList', require('../assets/docMenuList'));
     this.$store.commit('menuTitle', '内部文档');
   }
   private deactivated() {
