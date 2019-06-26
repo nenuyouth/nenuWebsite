@@ -16,12 +16,12 @@
         <a-icon type="home"/>主页
       </router-link>
     </a-menu-item>
-    <a-menu-item key="/handbook">
-      <router-link to="/handbook">
-        <a-icon type="bulb"/>东师指南
+    <a-menu-item key="/guide">
+      <router-link to="/guide">
+        <a-icon type="bulb"/>新生攻略
       </router-link>
     </a-menu-item>
-    <a-sub-menu>
+    <!-- <a-sub-menu>
       <template #title>
         <span class="submenu-title-wrapper">
           <a-icon type="camera"/>东师风貌
@@ -39,7 +39,7 @@
       <router-link to="/about/question">
         <a-icon type="question"/>疑难解答
       </router-link>
-    </a-menu-item>
+    </a-menu-item> -->
   </a-menu>
 </template>
 <script lang="ts">

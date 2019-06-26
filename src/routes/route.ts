@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 路由配置文件
  * @Date: 2019-03-25 12:27:33
- * @LastEditTime: 2019-06-20 18:28:03
+ * @LastEditTime: 2019-06-25 10:43:13
  */
 import Main from '@/views/Main.vue';
 import Page404 from '@/views/Page404.vue';
@@ -16,15 +16,15 @@ const route = [
     component: Main
   },
   {
-    path: '/handbook',
-    name: 'handbook',
-    meta: { title: '东师攻略' },
+    path: '/guide',
+    name: 'guide',
+    meta: { title: '新生攻略' },
     // 使用import来进行异步调用实现懒加载，打包时，webpack会识别webpackChunkName注释，将相同的一起打包一同执行懒加载
-    component: () => import(/* webpackChunkName: "handbook" */ '@/views/Handbook.vue')
+    component: () => import(/* webpackChunkName: "guide" */ '@/views/Guide.vue')
   },
   {
     path: '/page/:path',
-    alias: '/handbook/:path',
+    alias: '/guide/:path',
     props: true,
     meta: { title: '东师指南' },
     component: () => import(/* webpackChunkName: "page" */ '@/views/Page.vue')

@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 东师指南页面
  * @Date: 2019-03-24 11:14:13
- * @LastEditTime: 2019-06-20 19:00:58
+ * @LastEditTime: 2019-06-25 10:45:11
 -->
 <template>
   <div class="container">
@@ -26,7 +26,7 @@ import BaseGrid from '#/BaseGrid.vue';
 
 @Component({ components: { BaseGrid } })
 export default class Guide extends Vue {
-  private readonly guidelist = require('|/handbookList');
+  private readonly guidelist = require('|/guideList');
 }
 </script>
 <style scoped>

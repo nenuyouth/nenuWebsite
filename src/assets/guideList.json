@@ -1,26 +1,51 @@
 [
   {
+    "head": "新生你好",
+    "content": [
+      {
+        "text": "新生报到",
+        "icon": "/img/icon/tabPage/check.svg",
+        "url": "/guide/check"
+      },
+      {
+        "text": "需带物品",
+        "icon": "/img/module/icon/good.svg",
+        "url": "/guide/check7"
+      },
+      {
+        "text": "缴费相关",
+        "icon": "/img/module/icon/pay.svg",
+        "url": "/guide/check10"
+      },
+      {
+        "text": "防盗防骗",
+        "icon": "/img/module/icon/safe.svg",
+        "url": "/guide/check14"
+      }
+    ]
+  },
+  {
     "head": "学在东师",
     "content": [
       {
         "text": "学习",
         "icon": "/img/icon/tabPage/study.svg",
-        "url": "/handbook/study"
+        "url": "/guide/study"
       },
       {
         "text": "课程",
         "icon": "/img/icon/tabPage/course.svg",
-        "url": "/handbook/course"
+        "url": "/guide/course"
       },
       {
         "text": "图书馆",
         "icon": "/img/icon/tabPage/library.svg",
-        "url": "/handbook/library"
+        "url": "/guide/library"
       },
       {
         "text": "考试",
         "icon": "/img/icon/tabPage/test.svg",
-        "url": "/handbook/test"
+        "url": "/guide/test"
       }
     ]
   },
@@ -31,32 +56,32 @@
       {
         "text": "食堂",
         "icon": "/img/icon/tabPage/dining.svg",
-        "url": "/handbook/dining"
+        "url": "/guide/dining"
       },
       {
         "text": "校园卡",
         "icon": "/img/icon/tabPage/card.svg",
-        "url": "/handbook/card"
+        "url": "/guide/card"
       },
       {
         "text": "生活",
         "icon": "/img/icon/tabPage/life.svg",
-        "url": "/handbook/life"
+        "url": "/guide/life"
       },
       {
         "text": "寝室",
         "icon": "/img/icon/tabPage/dorm.svg",
-        "url": "/handbook/dorm"
+        "url": "/guide/dorm"
       },
       {
         "text": "校园网",
         "icon": "/img/icon/tabPage/network.svg",
-        "url": "/handbook/network"
+        "url": "/guide/network"
       },
       {
         "text": "资助",
         "icon": "/img/icon/tabPage/subsidize.svg",
-        "url": "/handbook/subsidize"
+        "url": "/guide/subsidize"
       }
     ]
   },
@@ -67,22 +92,22 @@
       {
         "text": "学生组织",
         "icon": "/img/icon/tabPage/studentOrg.svg",
-        "url": "/handbook/studentOrg"
+        "url": "/guide/studentOrg"
       },
       {
         "text": "社团",
         "icon": "/img/icon/tabPage/corporation.svg",
-        "url": "/handbook/corporation"
+        "url": "/guide/corporation"
       },
       {
         "text": "交通",
         "icon": "/img/icon/tabPage/traffic.svg",
-        "url": "/handbook/traffic"
+        "url": "/guide/traffic"
       },
       {
         "text": "吃喝玩乐",
         "icon": "/img/icon/tabPage/nearby.svg",
-        "url": "/handbook/nearby"
+        "url": "/guide/nearby"
       }
     ]
   }

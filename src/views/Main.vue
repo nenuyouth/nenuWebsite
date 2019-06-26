@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主页
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-06-20 19:00:01
+ * @LastEditTime: 2019-06-25 10:45:46
 -->
 <template>
   <div class="container">
@@ -22,7 +22,7 @@
     <BaseGrid :content="guidelist"/>
     <h2 class="px-3 pt-3">东师手册</h2>
     <a-button
-      @click="$navigate('https://nenuyouth.com/guide',$router,$route)"
+      @click="$navigate('https://nenuyouth.com/doc',$router,$route)"
       block
       class="mb-3 blockButton"
       type="primary"
@@ -87,7 +87,7 @@ export default class Main extends Vue {
     ]
   };
 
-  private guidelist = require('|/handbook');
+  private guidelist = require('|/guide');
 
   private timeList = [];
 

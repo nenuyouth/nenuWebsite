@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-05-18 17:39:20
+ * @LastEditTime: 2019-06-26 20:19:31
 -->
 <template>
   <div class="container mt-3 pb-3">
@@ -94,8 +94,8 @@
     >
       <div @click="asideToggle" class="asideSlideBtn">
         <template v-if="asideExpand">
-          <div class="w-100" style="height:21px;"/>
-          <a-icon style="position:absolute;top:10px;left:9.5px;" type="close"/>
+          <div class="w-100" style="height:49.6px;"/>
+          <a-icon style="position:absolute;top:24.3px;left:9.5px;" type="close"/>
         </template>
         <template v-else>目录</template>
       </div>
@@ -221,8 +221,8 @@ export default class DocView extends Vue {
 
     // 注册页面标题点击时的滚动置顶动画效果
     $('.markdown-body :header').on('click', event => {
-      // 如果当前标题只有一个childNode，即标题内不存在链接仅有图片node，进行滚动动画
-      if ($(event.currentTarget).children().length === 1) {
+      // 如果当前标题只有一个childNode，且node的标签不是a，进行滚动动画
+      if ($(event.currentTarget).children()[0].tagName !== 'A') {
         const offset = $(event.currentTarget).offset();
 
         if (offset) {
@@ -439,7 +439,7 @@ export default class DocView extends Vue {
 #asideSlide {
   position: fixed;
   height: 100%;
-  top: 40px;
+  top: 0;
   text-align: right;
   z-index: 5;
   #aside {
@@ -454,7 +454,7 @@ export default class DocView extends Vue {
   position: fixed;
   width: 100%;
   height: 100%;
-  top: 40px;
+  top: 0;
   left: 0;
   background-color: rgba(127, 127, 127, 0.15);
   z-index: 4;

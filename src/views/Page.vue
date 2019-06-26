@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 自动生成界面
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-16 13:01:20
+ * @LastEditTime: 2019-06-26 16:50:22
 -->
 <template>
   <keep-alive :max="5">
@@ -72,7 +72,7 @@ export default class Page extends Vue {
   private activated() {
     const paths = this.$route.path.split('/');
 
-    if (paths.length === 3 && (paths[1] === 'handbook' || paths[1] === 'page'))
+    if (paths.length === 3 && (paths[1] === 'guide' || paths[1] === 'page'))
       this.loadPage(paths[paths.length - 1], true);
   }
 
@@ -80,7 +80,7 @@ export default class Page extends Vue {
   private async beforeRouteUpdate(to: Route, from: Route, next: (navigate?: boolean) => void) {
     const paths = to.path.split('/');
     const navigate =
-      paths.length === 3 && (paths[1] === 'handbook' || paths[1] === 'page')
+      paths.length === 3 && (paths[1] === 'guide' || paths[1] === 'page')
         ? await this.loadPage(paths[paths.length - 1])
         : false;
 
