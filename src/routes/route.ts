@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 路由配置文件
  * @Date: 2019-03-25 12:27:33
- * @LastEditTime: 2019-06-25 10:43:13
+ * @LastEditTime: 2019-06-29 20:07:19
  */
 import Main from '@/views/Main.vue';
 import Page404 from '@/views/Page404.vue';
@@ -27,31 +27,31 @@ const route = [
     alias: '/guide/:path',
     props: true,
     meta: { title: '东师指南' },
-    component: () => import(/* webpackChunkName: "page" */ '@/views/Page.vue')
+    component: () => import(/* webpackChunkName: "guide" */ '@/views/Page.vue')
   },
   {
     path: '/lecture',
     name: 'lecture',
     meta: { title: '讲座信息' },
-    component: () => import(/* webpackChunkName: "handbook" */ '@/views/Lecture.vue')
+    component: () => import(/* webpackChunkName: "tool" */ '@/views/Lecture.vue')
   },
   {
     path: '/lecture/:school',
     name: 'lectureDetail',
     meta: { title: '讲座信息' },
-    component: () => import(/* webpackChunkName: "handbook" */ '@/views/Lecture.vue')
+    component: () => import(/* webpackChunkName: "tool" */ '@/views/Lecture.vue')
   },
   {
     path: '/tool/calendar',
     name: 'calendar',
     meta: { title: '东师校历' },
-    component: () => import(/* webpackChunkName: "calendar" */ '@/views/tools/Calendar.vue')
+    component: () => import(/* webpackChunkName: "tool" */ '@/views/tools/Calendar.vue')
   },
   {
     path: '/tool/calendar/:time',
     name: 'calendarDetail',
     meta: { title: '校历详情' },
-    component: () => import(/* webpackChunkName: "calendar" */ '@/views/tools/CalendarDetail.vue')
+    component: () => import(/* webpackChunkName: "tool" */ '@/views/tools/CalendarDetail.vue')
   },
   {
     path: '/tool/schoolGzh',

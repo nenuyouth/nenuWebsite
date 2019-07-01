@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 基础列表
  * @Date: 2019-03-25 12:39:59
- * @LastEditTime: 2019-05-18 18:40:13
+ * @LastEditTime: 2019-06-29 20:06:50
 -->
 <template>
   <div :id="myId" class="Ctn">
@@ -84,7 +84,7 @@ export default class BaseList extends Vue {
 
   // Navigate when clicking on a link
   private navigate(aim: string) {
-    this.$router.push(`/handbook/${aim}`);
+    this.$router.push(`/guide/${aim}`);
   }
 }
 </script>
