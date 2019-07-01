@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-24 18:39:40
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-05-29 23:14:53
+ * @LastEditTime: 2019-07-01 23:00:04
  * @Description: Form Union Input
 -->
 <template>
@@ -15,7 +15,7 @@
       v-if="typeSelect === 'enum'"
     >
       <template #type-select>
-        <TypeSelect :identifier="identifier" :option="configuration.type" v-model="typeSelect"/>
+        <TypeSelect :identifier="identifier" :option="configuration.type" v-model="typeSelect" />
       </template>
     </form-enum-input>
 
@@ -27,7 +27,7 @@
       v-else-if="typeSelect === 'boolean'"
     >
       <template #type-select>
-        <TypeSelect :identifier="identifier" :option="configuration.type" v-model="typeSelect"/>
+        <TypeSelect :identifier="identifier" :option="configuration.type" v-model="typeSelect" />
       </template>
     </form-boolean-input>
 
@@ -39,7 +39,7 @@
       v-else-if="typeSelect === 'number'"
     >
       <template #type-select>
-        <TypeSelect :identifier="identifier" :option="configuration.type" v-model="typeSelect"/>
+        <TypeSelect :identifier="identifier" :option="configuration.type" v-model="typeSelect" />
       </template>
     </form-number-input>
 
@@ -51,7 +51,7 @@
       v-else-if="typeSelect ==='string'"
     >
       <template #type-select>
-        <TypeSelect :identifier="identifier" :option="configuration.type" v-model="typeSelect"/>
+        <TypeSelect :identifier="identifier" :option="configuration.type" v-model="typeSelect" />
       </template>
     </form-string-input>
 
@@ -63,7 +63,7 @@
       v-else-if="typeSelect ==='url'"
     >
       <template #type-select>
-        <TypeSelect :identifier="identifier" :option="configuration.type" v-model="typeSelect"/>
+        <TypeSelect :identifier="identifier" :option="configuration.type" v-model="typeSelect" />
       </template>
     </form-url-input>
 
@@ -83,7 +83,7 @@
       v-else-if="typeSelect ==='array'"
     >
       <template #type-select>
-        <TypeSelect :identifier="identifier" :option="configuration.type" v-model="typeSelect"/>
+        <TypeSelect :identifier="identifier" :option="configuration.type" v-model="typeSelect" />
       </template>
     </form-array-input>
   </div>

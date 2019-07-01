@@ -56,21 +56,27 @@
       v-else-if="configuration.type==='mutiline'"
     />
 
-    <!-- 数组输入 -->
-    <form-array-input
-      :configuration="configuration"
-      :identifier="identifier"
-      v-else-if="configuration.type==='array'"
-    />
+    <template v-else-if="configuration.type==='array'">
+      <!-- 对象数组输入 -->
+      <form-object-array-input
+        :configuration="configuration"
+        :identifier="identifier"
+        v-if="configuration.element==='object'"
+      />
+
+      <!-- 数组输入 -->
+      <form-array-input :configuration="configuration" :identifier="identifier" v-else />
+    </template>
   </div>
 </template>
 <script lang="ts">
-import { Component, Prop, Provide, Vue } from 'vue-property-decorator';
+import { Component, Inject, Prop, Vue } from 'vue-property-decorator';
 import { Config } from '%/pageConfig';
 import FormArrayInput from '#/FormArrayInput.vue';
 import FormBooleanInput from '#/FormBooleanInput.vue';
 import FormEnumInput from '#/FormEnumInput.vue';
 import FormNumberInput from '#/FormNumberInput.vue';
+import FormObjectArrayInput from '#/FormObjectArrayInput.vue';
 import FormObjectInput from '#/FormObjectInput.vue';
 import FormStringInput from '#/FormStringInput.vue';
 import FormTextareaInput from '#/FormTextareaInput.vue';
@@ -83,6 +89,7 @@ import FormUrlInput from '#/FormUrlInput.vue';
     FormBooleanInput,
     FormEnumInput,
     FormNumberInput,
+    FormObjectArrayInput,
     FormObjectInput,
     FormStringInput,
     FormTextareaInput,
@@ -94,5 +101,7 @@ export default class FormInput extends Vue {
   @Prop(Object) private readonly configuration!: Config;
 
   @Prop(String) private readonly identifier!: string;
+
+  @Inject() private form!: any;
 }
 </script>

@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-22 18:45:04
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-07-01 22:59:36
+ * @LastEditTime: 2019-07-01 23:22:11
  * @Description: Form Url Input
 -->
 <template>
@@ -17,6 +17,7 @@
     </template>
     <!-- 真实的表单项 -->
     <a-input
+      type="hidden"
       v-decorator="[
         identifier,
         {
@@ -26,7 +27,6 @@
           }]
         }
       ]"
-      v-show="false"
     />
     <!-- 渲染的表单项 -->
     <a-input v-model="path">

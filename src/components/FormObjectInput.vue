@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-22 18:45:04
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-05-27 15:46:47
+ * @LastEditTime: 2019-07-02 00:12:50
  * @Description: Form Object Input
 -->
 <template>
@@ -12,36 +12,32 @@
       {{configuration.title}}
       <!-- 描述文字 -->
       <a-tooltip :title="configuration.desc" v-if="configuration.desc">
-        <a-icon style="vertical-align:-0.125em;" type="question-circle"/>
+        <a-icon style="vertical-align:-0.125em;" type="question-circle" />
       </a-tooltip>
     </template>
 
     <!-- 类型选择插槽 -->
-    <slot name="type-select"/>
+    <slot name="type-select" />
+
+    <div>
+      <span style="margin-right:8px;" v-text="objectValue||'对象为空'" />
+      <a-button @click="modelDisplay=true" icon="edit" shape="circle" size="small" type="primary" />
+    </div>
 
     <!-- 真实的表单项 -->
     <a-input
+      type="hidden"
       v-decorator="[
-        identifier,
+        `${identifier}-object`,
         {
           rules: [{
             required: configuration.required
           }]
         }
       ]"
-      v-show="false"
     />
 
-    <p v-text="objectValue||'对象为空'"/>
-
-    <a-button
-      @click="modelDisplay=true"
-      style="border-raduis:16px;"
-      type="primary"
-      v-text="'点击编辑'"
-    />
-
-    <!-- 密码输入框 -->
+    <!-- 对象输入框 -->
     <a-modal
       :closable="false"
       :destroyOnClose="false"
@@ -50,7 +46,7 @@
       :title="identifier.split('-')[1]"
       :visible="modelDisplay"
     >
-      <a-form :form="objectForm" @submit="validate">
+      <a-form :form="form" @submit="validate">
         <template v-for="config in Object.keys(configuration.objectDetail)">
           <!-- 每个选项设置 -->
 
@@ -121,14 +117,16 @@
       </a-form>
       <!-- 自定义对话框按钮 -->
       <template #footer>
-        <a-button @click="validate" key="submit" type="primary" v-text="'确定'"/>
-        <a-button @click="modelDisplay=false" type="primary" v-text="'取消'"/>
+        <a-button @click="validate" key="submit" type="primary" v-text="'确定'" />
+        <a-button @click="modelDisplay=false" type="primary" v-text="'取消'" />
       </template>
     </a-modal>
   </a-form-item>
 </template>
 <script lang="ts">
-import { Component, Inject, Prop, Vue } from 'vue-property-decorator';
+import {
+  Component, Inject, Prop, Provide, Vue
+} from 'vue-property-decorator';
 import { Config } from '%/pageConfig';
 import FormArrayInput from '#/FormArrayInput.vue';
 import FormBooleanInput from '#/FormBooleanInput.vue';
@@ -164,40 +162,43 @@ export default class FormObjectInput extends Vue {
 
   @Prop(String) private identifier!: string;
 
-  @Inject() private form!: any;
+  @Inject({ from: 'form' }) private parrentForm!: any;
+
+  @Provide() form: any;
 
   private modelDisplay = false;
-
-  private objectForm: any;
 
   private objectValue = '';
 
   private beforeCreate() {
-    this.objectForm = this.$form.createForm(this);
+    this.form = this.$form.createForm(this);
   }
 
   private validate(e: Event) {
     e.preventDefault();
-    this.objectForm.validateFields((err: any, values: any) => {
+    this.form.validateFields((err: any, values: any) => {
       if (!err) {
         console.log('Received values of form: ', values);
 
         const formValue = this.form.getFieldsValue();
         const objectValue: NormalObject = {};
 
+        console.log(formValue);
         Object.keys(formValue).forEach(x => {
           const [key, additional] = x.split('-');
           const value = formValue[x];
 
+          console.log(key, additional, value);
           // 保证value有定义且不为默认值
-          if (!additional && typeof value !== 'undefined' && value !== this.configuration[key].default)
+          if (!additional && typeof value !== 'undefined' && value !== this.configuration.objectDetail[key].default)
             objectValue[x] = value;
         });
 
         console.log(objectValue);
 
         this.objectValue = JSON.stringify(objectValue);
-        this.form.setFieldsValue({ [`${this.identifier}`]: objectValue });
+        this.parrentForm.setFieldsValue({ [`${this.identifier}-object`]: this.objectValue });
+        this.modelDisplay = false;
       }
     });
   }

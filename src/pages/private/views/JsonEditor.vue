@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-19 17:25:48
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-07-01 22:53:53
+ * @LastEditTime: 2019-07-01 23:15:15
  * @Description: 测试
 -->
 <template>
@@ -87,13 +87,13 @@ export default class FormTest extends Vue {
   private unionTypeSelect: UnionTypeItem[] = [{}];
 
   private get configuration() {
-    const configuration: Configuration = require('|/JsonEditor/jsonConfig');
+    const configuration: Configuration = require('../assets/jsonConfig');
 
     return configuration;
   }
 
   private get tagList() {
-    const tagList: string[][] = require('|/JsonEditor/tagList');
+    const tagList: string[][] = require('../assets/tagList');
 
     return tagList;
   }
@@ -124,6 +124,7 @@ export default class FormTest extends Vue {
           // 保证value有定义且不为默认值
           if (!additional && typeof value !== 'undefined' && value !== this.configuration[json[index].tag][key].default)
             json[index][key] = value;
+          else if (additional === 'object') json[index][key] = JSON.parse(value);
         });
 
         console.log(json, JSON.stringify(json));
