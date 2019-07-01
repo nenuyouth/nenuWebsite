@@ -3,13 +3,13 @@
  * @LastEditors: Mr.Hope
  * @Description: Base Grid
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-06-20 18:56:53
+ * @LastEditTime: 2019-07-01 22:54:48
 -->
 <template>
   <div>
     <template v-if="head!==false">
-      <div class="d-block d-lg-none commonhead" v-text="head"/>
-      <div class="d-none d-lg-block myH3" v-text="head"/>
+      <div class="d-block d-lg-none commonhead" v-text="head" />
+      <div class="d-none d-lg-block myH3" v-text="head" />
     </template>
     <a-row class="gridList">
       <a-col
@@ -22,10 +22,10 @@
         class="grid"
         v-for="item in content"
       >
-        <img :alt="item.text" :src="item.icon" class="gridIcon">
-        <div class="gridLabel" v-text="item.text"/>
+        <img :alt="item.text" :src="item.icon" class="gridIcon" />
+        <div class="gridLabel" v-text="item.text" />
       </a-col>
-      <div class="commonfoot" v-if="foot" v-text="foot"/>
+      <div class="commonfoot" v-if="foot" v-text="foot" />
     </a-row>
   </div>
 </template>

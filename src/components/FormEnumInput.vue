@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-22 18:45:04
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-05-29 23:15:25
+ * @LastEditTime: 2019-07-01 22:57:06
  * @Description: Form Enumerable Value Input
 -->
 <template>
@@ -12,12 +12,12 @@
       {{configuration.title}}
       <!-- 描述文字 -->
       <a-tooltip :title="configuration.desc" v-if="configuration.desc">
-        <a-icon style="vertical-align:-0.125em;" type="question-circle"/>
+        <a-icon style="vertical-align:-0.125em;" type="question-circle" />
       </a-tooltip>
     </template>
 
     <!-- 类型选择插槽 -->
-    <slot name="type-select"/>
+    <slot name="type-select" />
 
     <a-radio-group
       :name="identifier"

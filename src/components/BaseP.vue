@@ -3,21 +3,21 @@
  * @LastEditors: Mr.Hope
  * @Description: Base Paragraph
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-19 10:03:15
+ * @LastEditTime: 2019-07-01 22:55:19
 -->
 <template>
   <div :id="myId" class="Ctn">
-    <div :style="headStyle" class="iOShead" v-if="head" v-text="head"/>
+    <div :style="headStyle" class="iOShead" v-if="head" v-text="head" />
     <div :style="{ textAlign: align }" class="iOSP">
-      <p :style="myStyle" v-html="pText"/>
+      <p :style="myStyle" v-html="pText" />
       <div class="ImgCtn" v-if="src">
         <div class="imgCtn" v-if="!loaded">
-          <Error class="imgIcon" v-if="error"/>
-          <Loading class="imgIcon" v-else/>
-          <span v-text="error ? '图片加载失败' : '加载中...'"/>
+          <Error class="imgIcon" v-if="error" />
+          <Loading class="imgIcon" v-else />
+          <span v-text="error ? '图片加载失败' : '加载中...'" />
         </div>
-        <img :src="src" @click="imgDisplay" class="img" v-else>
-        <div class="imgDesc" v-if="desc" v-text="`▲${desc}`"/>
+        <img :src="src" @click="imgDisplay" class="img" v-else />
+        <div class="imgDesc" v-if="desc" v-text="`▲${desc}`" />
       </div>
     </div>
   </div>

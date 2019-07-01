@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 密码验证
  * @Date: 2019-03-16 13:44:32
- * @LastEditTime: 2019-05-27 12:15:14
+ * @LastEditTime: 2019-07-01 22:58:35
 -->
 <template>
   <!-- 密码输入框 -->
@@ -35,7 +35,7 @@
         >
           <!-- 用户名图标 -->
           <template #prefix>
-            <icon-font type="icon-user"/>
+            <icon-font type="icon-user" />
           </template>
         </a-input>
       </a-form-item>
@@ -56,14 +56,14 @@
         >
           <!-- 密码图标 -->
           <template #prefix>
-            <icon-font type="icon-password"/>
+            <icon-font type="icon-password" />
           </template>
 
           <!-- 控制密码显隐图标 -->
           <template #suffix>
             <div @click="passwordDisplay=!passwordDisplay" class="togglePassword">
-              <icon-font type="icon-eye" v-if="passwordDisplay"/>
-              <icon-font type="icon-eyeClose" v-else/>
+              <icon-font type="icon-eye" v-if="passwordDisplay" />
+              <icon-font type="icon-eyeClose" v-else />
             </div>
           </template>
         </a-input>

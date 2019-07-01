@@ -1,10 +1,10 @@
 <template>
   <aside>
     <div :style="collapse?'':'left: 200px;'" @click="trigger" class="d-block d-lg-none slideBtn">
-      <a-icon type="bars" v-if="collapse"/>
-      <a-icon type="close" v-else/>
+      <a-icon type="bars" v-if="collapse" />
+      <a-icon type="close" v-else />
     </div>
-    <div @click="trigger" class="slideMask" style="display:none;"/>
+    <div @click="trigger" class="slideMask" style="display:none;" />
     <a-layout-sider
       :theme="theme"
       :trigger="null"
@@ -19,10 +19,10 @@
           :src="$store.state.slide.icon||'/img/icon/nenuyouth.png'"
           alt="东北师范大学校学生会"
           class="asideIcon mr-1"
-        >
+        />
         {{$store.state.slide.title||'东师青年'}}
       </div>
-      <base-menu :list="$store.state.slide.list"/>
+      <base-menu :list="$store.state.slide.list" />
     </a-layout-sider>
   </aside>
 </template>

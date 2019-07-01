@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-16 15:35:49
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-05-19 17:12:50
+ * @LastEditTime: 2019-07-01 22:55:54
  * @Description: Image Viewer
 -->
 <template>
@@ -14,8 +14,8 @@
         :src="item.url"
         v-if="(item instanceof Object)"
         v-show="false"
-      >
-      <img :key="index" :src="item" v-else v-show="false">
+      />
+      <img :key="index" :src="item" v-else v-show="false" />
     </template>
   </div>
 </template>

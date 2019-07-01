@@ -3,13 +3,13 @@
  * @LastEditors: Mr.Hope
  * @Description: 网页页脚
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-05-27 20:39:11
+ * @LastEditTime: 2019-07-01 22:56:10
 -->
 <template>
   <a-layout-footer :class="slide?'withSlide':''">
     <a-row align="middle" class="text-center" justify="space-around" type="flex">
       <a-col :lg="12" :xs="24" class="text-center">
-        <img alt="Nenuyouth" class="mb-2 footerLogo" src="/img/icon/nenuyouth.png">
+        <img alt="Nenuyouth" class="mb-2 footerLogo" src="/img/icon/nenuyouth.png" />
         <small class="d-block my-1 text-muted">东北师范大学校学生会</small>
         <small class="d-block my-1 text-muted">辽ICP备18007023号</small>
         <small class="d-block mt-1 mb-2 text-muted">维护者：Mr.Hope</small>
@@ -18,7 +18,7 @@
         <h3 class="text-white">关于我们</h3>
         <div class="text-small">
           <div :key="item[2]" class="mb-1" v-for="item in about">
-            <router-link :to="item[0]" class="text-muted" v-text="item[1]"/>
+            <router-link :to="item[0]" class="text-muted" v-text="item[1]" />
           </div>
         </div>
       </a-col>
@@ -26,7 +26,7 @@
         <h3 class="text-white">其他媒体</h3>
         <div class="text-small">
           <div :key="item[1]" class="mb-1" v-for="item in media">
-            <a :href="item[0]" class="text-muted" v-text="item[1]"/>
+            <a :href="item[0]" class="text-muted" v-text="item[1]" />
           </div>
         </div>
       </a-col>

@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-22 18:45:04
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-06-03 12:38:18
+ * @LastEditTime: 2019-07-01 22:56:33
  * @Description: Form Array Input
 -->
 <template>
@@ -19,7 +19,7 @@
         {{configuration.title}}
         <!-- 描述文字 -->
         <a-tooltip :title="configuration.desc" v-if="configuration.desc">
-          <a-icon style="vertical-align:-0.125em;" type="question-circle"/>
+          <a-icon style="vertical-align:-0.125em;" type="question-circle" />
         </a-tooltip>
       </template>
 
@@ -38,11 +38,11 @@
           }
         ]"
       />
-      <a-button @click="remove(index)" icon="minus" shape="circle" size="small" v-if="length > 1"/>
+      <a-button @click="remove(index)" icon="minus" shape="circle" size="small" v-if="length > 1" />
     </a-form-item>
     <a-form-item :key="`${identifier}-add`" v-bind="noLabelLayout">
       <a-button @click="add" style="border-radius: 16px;">
-        <a-icon type="plus"/>新增项
+        <a-icon type="plus" />新增项
       </a-button>
     </a-form-item>
   </div>

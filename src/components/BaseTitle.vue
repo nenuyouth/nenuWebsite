@@ -3,10 +3,10 @@
  * @LastEditors: Mr.Hope
  * @Description: 基础标题
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-18 17:36:27
+ * @LastEditTime: 2019-07-01 22:55:49
 -->
 <template>
-  <div :id="myId" :style="myStyle" class="myH3" v-text="text"/>
+  <div :id="myId" :style="myStyle" class="myH3" v-text="text" />
 </template>
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';

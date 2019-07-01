@@ -3,13 +3,13 @@
  * @LastEditors: Mr.Hope
  * @Description: 基础列表
  * @Date: 2019-03-25 12:39:59
- * @LastEditTime: 2019-06-29 20:06:50
+ * @LastEditTime: 2019-07-01 22:55:06
 -->
 <template>
   <div :id="myId" class="Ctn">
     <template v-if="head !== false">
-      <div class="d-block d-lg-none commonhead" v-text="head"/>
-      <div class="d-none d-lg-block myH3" v-text="head"/>
+      <div class="d-block d-lg-none commonhead" v-text="head" />
+      <div class="d-none d-lg-block myH3" v-text="head" />
     </template>
     <div class="Lctn">
       <template v-for="List in listItem">
@@ -21,19 +21,19 @@
           v-if="List.display !== false && (List.url || List.aim)"
         >
           <div @click="navigate(List.aim)" class="list-Container" v-if="List.aim">
-            <img :src="`/img${List.icon}`" class="listIcon" v-if="List.icon">
-            <div class="LinkText" v-text="List.text"/>
-            <div class="linkDesciption access" v-text="List.desc"/>
+            <img :src="`/img${List.icon}`" class="listIcon" v-if="List.icon" />
+            <div class="LinkText" v-text="List.text" />
+            <div class="linkDesciption access" v-text="List.desc" />
           </div>
           <router-link :to="List.url" class="list-Container" v-else-if="List.url">
-            <img :src="List.icon" class="listIcon" v-if="List.icon">
-            <div class="LinkText" v-text="List.text"/>
-            <div class="linkDesciption access" v-text="List.desc"/>
+            <img :src="List.icon" class="listIcon" v-if="List.icon" />
+            <div class="LinkText" v-text="List.text" />
+            <div class="linkDesciption access" v-text="List.desc" />
           </router-link>
           <div class="list-Container" v-else>
-            <img :src="`/img${List.icon}`" class="listIcon" v-if="List.icon">
-            <div class="LinkText" v-text="List.text"/>
-            <div class="linkDesciption" v-text="List.desc"/>
+            <img :src="`/img${List.icon}`" class="listIcon" v-if="List.icon" />
+            <div class="LinkText" v-text="List.text" />
+            <div class="linkDesciption" v-text="List.desc" />
           </div>
         </div>
         <div
@@ -44,7 +44,7 @@
         />
       </template>
     </div>
-    <div class="commonfoot" v-if="foot" v-text="foot"/>
+    <div class="commonfoot" v-if="foot" v-text="foot" />
   </div>
 </template>
 

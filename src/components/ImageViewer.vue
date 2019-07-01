@@ -3,17 +3,17 @@
  * @LastEditors: Mr.Hope
  * @Description: 图片浏览器
  * @Date: 2019-04-26 12:05:30
- * @LastEditTime: 2019-05-06 10:58:27
+ * @LastEditTime: 2019-07-01 22:59:24
 -->
 <template>
   <div class="vue_viewer" ref="viewer">
     <template v-if="$slots.default">
-      <slot/>
+      <slot />
     </template>
     <template v-else>
       <div :key="index" class="vue_viewer_item" v-for="(item, index) in list">
-        <img :alt="item.title" :src="item.url" v-if="(item instanceof Object)">
-        <img :src="item" v-else>
+        <img :alt="item.title" :src="item.url" v-if="(item instanceof Object)" />
+        <img :src="item" v-else />
       </div>
     </template>
   </div>

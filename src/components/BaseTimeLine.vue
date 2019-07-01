@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 时间轴插件
  * @Date: 2019-03-23 18:29:52
- * @LastEditTime: 2019-05-05 15:08:38
+ * @LastEditTime: 2019-07-01 22:55:43
 -->
 <template>
   <a-timeline :mode="mode">
@@ -15,15 +15,15 @@
           style="font-size:16px;"
           v-if="item.type.slice(0,5)==='icon-'"
         />
-        <a-icon :style="`color:${item.color}`" :type="item.type" style="font-size:16px;"/>
+        <a-icon :style="`color:${item.color}`" :type="item.type" style="font-size:16px;" />
       </template>
       <router-link :to="item.url" class="timeLineButton" v-if="item.url">
-        <h3 :style="item.headingStyle" v-if="item.title" v-text="item.title"/>
-        <p v-html="list[index]"/>
+        <h3 :style="item.headingStyle" v-if="item.title" v-text="item.title" />
+        <p v-html="list[index]" />
       </router-link>
       <template v-else>
-        <h3 :style="item.headingStyle" v-if="item.title" v-text="item.title"/>
-        <p v-html="list[index]"/>
+        <h3 :style="item.headingStyle" v-if="item.title" v-text="item.title" />
+        <p v-html="list[index]" />
       </template>
     </a-timeline-item>
   </a-timeline>

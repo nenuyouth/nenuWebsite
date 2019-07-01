@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Base Carousel
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-06-21 23:38:11
+ * @LastEditTime: 2019-07-01 22:54:28
 -->
 <template>
   <a-carousel
@@ -17,14 +17,14 @@
     <!-- prevArrow -->
     <template #prevArrow>
       <div class="arrow" style="left:10px;z-index:1;" v-if="!single&&arrowDisplay">
-        <a-icon type="vertical-right"/>
+        <a-icon type="vertical-right" />
       </div>
     </template>
 
     <!-- nextArrow -->
     <template #nextArrow>
       <div class="arrow" style="right:10px;" v-if="!single&&arrowDisplay">
-        <a-icon type="vertical-left"/>
+        <a-icon type="vertical-left" />
       </div>
     </template>
 
@@ -35,11 +35,11 @@
       class="carouselItem"
       v-for="item in list"
     >
-      <img :alt="item.alt" :src="item.src" class="img">
+      <img :alt="item.alt" :src="item.src" class="img" />
       <div :class="item.color" class="caption">
-        <h1 class="display-4 d-none d-sm-block" v-text="item.caption"/>
-        <h1 class="font-weight-light d-block d-sm-none" v-text="item.caption"/>
-        <h1 class="lead" v-text="item.subCaption"/>
+        <h1 class="display-4 d-none d-sm-block" v-text="item.caption" />
+        <h1 class="font-weight-light d-block d-sm-none" v-text="item.caption" />
+        <h1 class="lead" v-text="item.subCaption" />
         <p class="lead d-none d-sm-block" v-if="item.enSubCaption">{{ item.enSubCaption }}</p>
         <p
           class="d-none d-lg-block text-right font-weight-light"

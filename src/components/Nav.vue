@@ -2,10 +2,10 @@
   <a-menu :theme="theme" mode="horizontal" v-model="active">
     <a-menu-item key="logo" style="padding:0 10px 0 20px;">
       <transition name="myfade">
-        <icon-font id="backButton" type="icon-navigateBack" v-if="backButtonDisplay"/>
+        <icon-font id="backButton" type="icon-navigateBack" v-if="backButtonDisplay" />
       </transition>
       <transition name="myfade">
-        <img alt="东师青年" id="logo" src="/img/icon/nenuyouth.png" v-if="logoDisplay">
+        <img alt="东师青年" id="logo" src="/img/icon/nenuyouth.png" v-if="logoDisplay" />
       </transition>
     </a-menu-item>
     <a-menu-item class="d-none d-lg-inline" disabled key="logoName" style="padding:0 10px 0 0;">
@@ -13,12 +13,12 @@
     </a-menu-item>
     <a-menu-item key="/">
       <router-link to="/">
-        <a-icon type="home"/>主页
+        <a-icon type="home" />主页
       </router-link>
     </a-menu-item>
     <a-menu-item key="/guide">
       <router-link to="/guide">
-        <a-icon type="bulb"/>新生攻略
+        <a-icon type="bulb" />新生攻略
       </router-link>
     </a-menu-item>
     <!-- <a-sub-menu>
@@ -39,7 +39,7 @@
       <router-link to="/about/question">
         <a-icon type="question"/>疑难解答
       </router-link>
-    </a-menu-item> -->
+    </a-menu-item>-->
   </a-menu>
 </template>
 <script lang="ts">

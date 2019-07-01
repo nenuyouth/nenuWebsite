@@ -11,7 +11,7 @@
           role="button"
         >
           <h4 class="mx-1 my-0 font-weight-normal">
-            <img :src="item.icon" alt height="24" style="margin-right: 0.8rem;" width="24">
+            <img :src="item.icon" alt height="24" style="margin-right: 0.8rem;" width="24" />
             {{ item.title }}
           </h4>
         </div>

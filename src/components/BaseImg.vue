@@ -3,17 +3,17 @@
  * @LastEditors: Mr.Hope
  * @Description: Base Image
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-18 16:30:15
+ * @LastEditTime: 2019-07-01 22:55:00
 -->
 <template>
   <div :id="myId" class="ImgCtn">
     <div class="imgCtn" v-if="!loaded">
-      <Error class="imgIcon" v-if="error"/>
-      <Loading class="imgIcon" v-else/>
-      <span v-text="error ? '图片加载失败' : '加载中...'"/>
+      <Error class="imgIcon" v-if="error" />
+      <Loading class="imgIcon" v-else />
+      <span v-text="error ? '图片加载失败' : '加载中...'" />
     </div>
-    <img :src="src" @click="imgDisplay" class="img" v-else>
-    <div class="imgDesc" v-if="desc" v-text="`▲${desc}`"/>
+    <img :src="src" @click="imgDisplay" class="img" v-else />
+    <div class="imgDesc" v-if="desc" v-text="`▲${desc}`" />
   </div>
 </template>
 <script lang="ts">

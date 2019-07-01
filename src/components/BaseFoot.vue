@@ -3,21 +3,21 @@
  * @LastEditors: Mr.Hope
  * @Description: Base Foot
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-18 16:20:21
+ * @LastEditTime: 2019-07-01 22:54:41
 -->
 <template>
   <div :id="myId" class="Footer">
     <div class="footerCtn">
       <div>行遍千山万水，归来仍是东师青年——</div>
       <div class="footLogo rotate">
-        <img src="/img/icon/logo.png" style="width:100%;height:100%;">
+        <img src="/img/icon/logo.png" style="width:100%;height:100%;" />
       </div>
     </div>
     <span v-if="desc">{{ desc }}\n</span>
     <span v-if="author">编辑人：{{ author }}</span>
     <span v-if="time">最后编辑于{{ time }}</span>
     <span v-if="time || author">
-      <br>
+      <br />
     </span>Copyright © 2017-2019 HopeStudio
   </div>
 </template>

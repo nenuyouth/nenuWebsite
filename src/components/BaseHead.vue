@@ -3,12 +3,12 @@
  * @LastEditors: Mr.Hope
  * @Description: 基础主标题
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-19 09:30:56
+ * @LastEditTime: 2019-07-01 22:54:55
 -->
 <template>
   <div>
     <!-- 设置网页title -->
-    <div :id="myId" class="title" v-text="title" v-wechat-title="title"/>
+    <div :id="myId" class="title" v-text="title" v-wechat-title="title" />
   </div>
 </template>
 <script lang="ts">

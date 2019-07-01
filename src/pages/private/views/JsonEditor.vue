@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-19 17:25:48
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-05-27 12:36:08
+ * @LastEditTime: 2019-07-01 22:53:53
  * @Description: 测试
 -->
 <template>
@@ -12,7 +12,7 @@
         <!-- 循环pageJson -->
 
         <!-- 带有分割线、下拉列表的标题 -->
-        <DropdownTitle :key="partIndex" :menu="tagList" v-model="tags[partIndex]"/>
+        <DropdownTitle :key="partIndex" :menu="tagList" v-model="tags[partIndex]" />
 
         <!-- 选项列表 -->
         <template v-if="part!=='请选择'">
@@ -27,7 +27,7 @@
       </template>
       <a-form-item :wrapper-col="{ span: 12, offset: 5 }">
         <a-button @click="addComponent" class="addNewBtn" type="primary">
-          <a-icon type="plus"/>新增
+          <a-icon type="plus" />新增
         </a-button>
       </a-form-item>
       <a-form-item :wrapper-col="{ span: 12, offset: 5 }">
@@ -105,8 +105,9 @@ export default class FormTest extends Vue {
   private handleSubmit(e: Event) {
     e.preventDefault();
     this.form.validateFields((err: any, values: any) => {
+      console.log('Received values of form: ', values);
       if (!err) {
-        console.log('Received values of form: ', values);
+        console.log('No error');
 
         const json: NormalObject[] = [];
         const formValue = this.form.getFieldsValue();

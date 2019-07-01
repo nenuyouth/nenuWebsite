@@ -1,8 +1,8 @@
 <template>
   <div class="loadingGear">
-    <Gear class="loader1"/>
-    <GearGreen class="loader2"/>
-    <Gear class="loader3"/>
+    <Gear class="loader1" />
+    <GearGreen class="loader2" />
+    <Gear class="loader3" />
   </div>
 </template>
 <script lang="ts">
@@ -11,7 +11,7 @@ import Gear from '|/icon/gear.svg';
 import GearGreen from '|/icon/gearGreen.svg';
 
 @Component({ components: { Gear, GearGreen } })
-export default class LoadingGear extends Vue {}
+export default class LoadingGear extends Vue { }
 </script>
 
 <style scoped>

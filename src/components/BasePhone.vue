@@ -1,7 +1,7 @@
 <template>
   <div :id="myId" class="phoneCtn">
-    <Phone class="phoneIcon"/>
-    <div class="phoneNum" v-text="num"/>
+    <Phone class="phoneIcon" />
+    <div class="phoneNum" v-text="num" />
   </div>
 </template>
 <script lang="ts">
