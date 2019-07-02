@@ -4,35 +4,43 @@
     "content": [
       {
         "text": "页面标题",
-        "id": "head"
+        "id": "head",
+        "icon": "icon-nav"
       },
       {
         "text": "标题",
-        "id": "title"
+        "id": "title",
+        "icon": "icon-title"
       },
       {
         "text": "段落",
-        "id": "p"
+        "id": "p",
+        "icon": "icon-paragraph"
       },
       {
         "text": "图片",
-        "id": "img"
+        "id": "img",
+        "icon": "icon-image"
       },
       {
         "text": "列表",
-        "id": "list"
+        "id": "list",
+        "icon": "icon-list"
       },
       {
         "text": "页脚",
-        "id": "foot"
+        "id": "foot",
+        "icon": "icon-foot"
       },
       {
         "text": "网格",
-        "id": "grid"
+        "id": "grid",
+        "icon": "icon-grid"
       },
       {
         "text": "电话",
-        "id": "phone"
+        "id": "phone",
+        "icon": "icon-phone"
       }
     ]
   },
@@ -41,27 +49,33 @@
     "content": [
       {
         "text": "文档",
-        "id": "doc"
+        "id": "doc",
+        "icon": "icon-doc"
       },
       {
         "text": "公众号",
-        "id": "gzh"
+        "id": "gzh",
+        "icon": "icon-gzh"
       },
       {
         "text": "介绍",
-        "id": "intro"
+        "id": "intro",
+        "icon": "icon-avatar"
       },
       {
         "text": "音频",
-        "id": "audio"
+        "id": "audio",
+        "icon": "icon-audio"
       },
       {
         "text": "视频",
-        "id": "video"
+        "id": "video",
+        "icon": "icon-video"
       },
       {
         "text": "轮播图",
-        "id": "swiper"
+        "id": "swiper",
+        "icon": "icon-carousel"
       }
     ]
   }

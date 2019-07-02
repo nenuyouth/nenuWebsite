@@ -2,12 +2,12 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-15 20:56:30
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-07-02 21:34:04
+ * @LastEditTime: 2019-07-03 01:00:12
  * @Description: Dropdown Grid
 -->
 <template>
   <a-divider orientation="left">
-    <a-dropdown>
+    <a-dropdown @click="visible=true" v-model="visible">
       <a class="ant-dropdown-link">
         {{selectedText}}
         <a-icon type="down" />
@@ -17,20 +17,21 @@
           <template v-for="(menulist, menuIndex) in list">
             <a-menu-item :key="menulist.title" disabled v-text="menulist.title" />
             <!-- <a-menu-divider v-if="index!==0" /> -->
-            <a-row :key="`${menulist.title}-content`">
+            <a-row :key="`${menulist.title}-content`" class="menuCtn">
               <a-col :key="item.text" span="6" v-for="(item,index) in menulist.content">
-                <a-menu-item @click="itemChange(menuIndex,index)">
+                <a-menu-item @click="itemChange(menuIndex,index)" class="menuItem">
                   <icon-font
                     :type="item.icon"
                     class="popMenuIcon"
-                    v-if="item.icon.slice(0,5)==='icon-'"
+                    v-if="item.icon&&item.icon.slice(0,5)==='icon-'"
                   />
-                  <a-icon :type="item.icon" class="popMenuIcon" v-else />
+                  <a-icon :type="item.icon||item.id" class="popMenuIcon" v-else />
                   <div v-text="item.text" />
                 </a-menu-item>
               </a-col>
             </a-row>
           </template>
+          <a-menu-item disabled />
         </a-menu>
       </template>
     </a-dropdown>
@@ -61,10 +62,13 @@ export default class DropdownGrid extends Vue {
   // Displayed selected Data
   private selectedText = '请选择';
 
+  private visible = false;
+
   private itemChange(menuIndex: number, index: number) {
     this.selectedText = this.list[menuIndex].content[index].text;
     this.$emit('change', this.list[menuIndex].content[index].id);
     this.$emit('onChange', this.list[menuIndex].content[index].text);
+    this.visible = false;
   }
 
   private mounted() {
@@ -77,11 +81,44 @@ export default class DropdownGrid extends Vue {
   }
 }
 </script>
-<style scoped>
+<style lang='scss' scoped>
+@import '~%/Weui/scss/border';
 .popMenu {
   width: 500px;
   max-width: 90%;
+  background-color: #fff;
 }
+.menuCtn {
+  background-color: #fefefe;
+  width: 100%;
+  position: relative;
+  &:before {
+    display: block !important;
+    @include topBorder(#cac9ce);
+  }
+  &:after {
+    display: block !important;
+    @include leftBorder(#cac9ce);
+  }
+}
+
+.menuItem {
+  position: relative;
+  text-align: center;
+  padding: 16px 8px;
+  box-sizing: border-box;
+  text-align: center;
+  &:before {
+    @include rightBorder(#cac9ce);
+  }
+  &:after {
+    @include bottomBorder(#cac9ce);
+  }
+  &:active {
+    background-color: #ececec;
+  }
+}
+
 .popMenuIcon {
   margin: 4px auto;
   font-size: 24px;
