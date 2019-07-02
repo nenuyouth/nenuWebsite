@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 路由配置文件
  * @Date: 2019-03-25 12:27:33
- * @LastEditTime: 2019-07-01 23:19:35
+ * @LastEditTime: 2019-07-02 13:02:28
  */
 import Main from '@/pages/private/views/Main.vue';
 import Page404 from '@/views/Page404.vue';
@@ -15,14 +15,19 @@ const route = [
     component: Main
   },
   {
+    path: '/json',
+    meta: { title: '小程序页面修改' },
+    component: () => import(/* webpackChunkName: "json" */ '../views/JsonRevise.vue')
+  },
+  {
     path: '/jsonEditor',
     meta: { title: 'JSON编辑器' },
-    component: () => import(/* webpackChunkName: "jsonEditor" */ '../views/JsonEditor.vue')
+    component: () => import(/* webpackChunkName: "json" */ '../views/JsonEditor.vue')
   },
   {
     path: '/mdEditor',
     meta: { title: 'Markdown编辑器' },
-    component: () => import(/* webpackChunkName: "jsonEditor" */ '../views/MarkdownEditor.vue')
+    component: () => import('../views/MarkdownEditor.vue')
   },
   {
     path: '*',

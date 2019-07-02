@@ -2,91 +2,15 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-24 18:39:40
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-07-02 11:56:19
+ * @LastEditTime: 2019-07-02 13:28:59
  * @Description: Form Union Input
 -->
 <template>
-  <div>
-    <!-- 可遍历值输入 -->
-    <form-enum-input
-      :configuration="configuration"
-      :identifier="identifier"
-      :key="`${identifier}-enum`"
-      v-if="typeSelect === 'enum'"
-    >
-      <template #type-select>
-        <TypeSelect :identifier="identifier" :option="configuration.type" v-model="typeSelect" />
-      </template>
-    </form-enum-input>
-
-    <!-- 布尔值输入 -->
-    <form-boolean-input
-      :configuration="configuration"
-      :identifier="identifier"
-      :key="`${identifier}-boolean`"
-      v-else-if="typeSelect === 'boolean'"
-    >
-      <template #type-select>
-        <TypeSelect :identifier="identifier" :option="configuration.type" v-model="typeSelect" />
-      </template>
-    </form-boolean-input>
-
-    <!-- 数字输入 -->
-    <form-number-input
-      :configuration="configuration"
-      :identifier="identifier"
-      :key="`${identifier}-number`"
-      v-else-if="typeSelect === 'number'"
-    >
-      <template #type-select>
-        <TypeSelect :identifier="identifier" :option="configuration.type" v-model="typeSelect" />
-      </template>
-    </form-number-input>
-
-    <!-- 单行输入 -->
-    <form-string-input
-      :configuration="configuration"
-      :identifier="identifier"
-      :key="`${identifier}-string`"
-      v-else-if="typeSelect ==='string'"
-    >
-      <template #type-select>
-        <TypeSelect :identifier="identifier" :option="configuration.type" v-model="typeSelect" />
-      </template>
-    </form-string-input>
-
-    <!-- 网址输入 -->
-    <form-url-input
-      :configuration="configuration"
-      :identifier="identifier"
-      :key="`${identifier}-url`"
-      v-else-if="typeSelect ==='url'"
-    >
-      <template #type-select>
-        <TypeSelect :identifier="identifier" :option="configuration.type" v-model="typeSelect" />
-      </template>
-    </form-url-input>
-
-    <!-- 多行输入 -->
-    <form-textarea-input
-      :configuration="configuration"
-      :identifier="identifier"
-      :key="`${identifier}-mutiline`"
-      v-else-if="typeSelect ==='mutiline'"
-    />
-
-    <!-- 数组输入 -->
-    <form-array-input
-      :configuration="configuration"
-      :identifier="identifier"
-      :key="`${identifier}-array`"
-      v-else-if="typeSelect ==='array'"
-    >
-      <template #type-select>
-        <TypeSelect :identifier="identifier" :option="configuration.type" v-model="typeSelect" />
-      </template>
-    </form-array-input>
-  </div>
+  <component :configuration="configuration" :identifier="identifier" :is="tag">
+    <template #type-select>
+      <TypeSelect :identifier="identifier" :option="configuration.type" v-model="typeSelect" />
+    </template>
+  </component>
 </template>
 <script lang="ts">
 import {
@@ -104,14 +28,14 @@ import FormUrlInput from '#/FormUrlInput.vue';
 
 @Component({
   components: {
-    FormArrayInput,
     FormBooleanInput,
     FormEnumInput,
     FormNumberInput,
     FormStringInput,
     FormTextareaInput,
     FormUrlInput,
-    TypeSelect
+    TypeSelect,
+    FormArrayInput: () => import('#/FormArrayInput.vue')
   }
 })
 export default class FormUnionInput extends Vue {
@@ -122,6 +46,10 @@ export default class FormUnionInput extends Vue {
   @Inject() private form!: any;
 
   private typeSelect = '';
+
+  private get tag() {
+    return `form-${this.typeSelect}-input`;
+  }
 
   private created() {
     this.typeSelect = this.configuration.type[0];

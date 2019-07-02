@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 东师指南页面
  * @Date: 2019-03-24 11:14:13
- * @LastEditTime: 2019-05-29 13:41:01
+ * @LastEditTime: 2019-07-02 12:19:06
 -->
 <template>
   <div class="container">
@@ -66,7 +66,6 @@ export default class Lecture extends Vue {
   private onRouteChange(route: Route) {
     const paths = route.fullPath.split('/');
 
-    console.log(paths);
     if (paths[1] === 'lecture') {
       this.current = [paths[2]];
       axios.get(`/server/lecture/${paths[2]}.php`).then(res => {

@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-19 17:25:48
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-07-01 23:15:15
+ * @LastEditTime: 2019-07-02 12:20:46
  * @Description: 测试
 -->
 <template>
@@ -107,8 +107,6 @@ export default class FormTest extends Vue {
     this.form.validateFields((err: any, values: any) => {
       console.log('Received values of form: ', values);
       if (!err) {
-        console.log('No error');
-
         const json: NormalObject[] = [];
         const formValue = this.form.getFieldsValue();
 
@@ -124,7 +122,6 @@ export default class FormTest extends Vue {
           // 保证value有定义且不为默认值
           if (!additional && typeof value !== 'undefined' && value !== this.configuration[json[index].tag][key].default)
             json[index][key] = value;
-          else if (additional === 'object') json[index][key] = JSON.parse(value);
         });
 
         console.log(json, JSON.stringify(json));

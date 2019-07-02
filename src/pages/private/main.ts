@@ -3,13 +3,13 @@
  * @LastEditors: Mr.Hope
  * @Description: 内部页面入口文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-06-29 23:11:04
+ * @LastEditTime: 2019-07-02 12:59:54
  */
 
 // 引入Ant Design
 import {
   Button, Col, Divider, Dropdown, Form, Icon, Input, InputNumber,
-  Layout, Menu, Modal, Radio, Row, Select, Tooltip, message
+  Layout, Menu, Modal, Radio, Row, Select, Steps, Tooltip, Upload, message
 } from 'ant-design-vue';
 import Vue from 'vue';
 
@@ -42,7 +42,9 @@ Vue.use(Modal);
 Vue.use(Radio);
 Vue.use(Row);
 Vue.use(Select);
+Vue.use(Steps);
 Vue.use(Tooltip);
+Vue.use(Upload);
 
 // 配置message
 message.config({
