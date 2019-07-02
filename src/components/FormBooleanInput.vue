@@ -2,12 +2,12 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-22 18:45:04
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-07-01 22:57:02
+ * @LastEditTime: 2019-07-02 11:52:32
  * @Description: Form Boolean Input
 -->
 <template>
-  <a-form-item :labelCol="{ span: 6 }" :wrapperCol="{ span: 18 }">
-    <template #label>
+  <a-form-item v-bind="configuration.title? labelCol: noLabelCol">
+    <template #label v-if="configuration.title">
       <!-- 表单项名称 -->
       {{configuration.title}}
       <!-- 描述文字 -->
@@ -46,6 +46,9 @@ export default class FormBooleanInput extends Vue {
   @Prop(String) private readonly identifier!: string;
 
   @Inject() private form!: any;
+
+  private labelCol = { labelCol: { span: 6 }, wrapperCol: { span: 18 } };
+  private noLabelCol = { wrapperCol: { span: 24 } };
 
   private mounted() {
     this.form.getFieldDecorator(this.identifier, {
