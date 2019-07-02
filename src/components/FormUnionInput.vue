@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-24 18:39:40
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-07-01 23:00:04
+ * @LastEditTime: 2019-07-02 11:56:19
  * @Description: Form Union Input
 -->
 <template>
@@ -119,13 +119,13 @@ export default class FormUnionInput extends Vue {
 
   @Prop(String) private readonly identifier!: string;
 
+  @Inject() private form!: any;
+
   private typeSelect = '';
 
   private created() {
     this.typeSelect = this.configuration.type[0];
   }
-
-  @Inject() private form!: any;
 
   @Watch('typeSelect')
   private onTypeChange() {

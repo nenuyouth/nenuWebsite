@@ -2,11 +2,11 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-22 18:45:04
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-07-02 00:40:47
+ * @LastEditTime: 2019-07-02 11:55:37
  * @Description: Form Number Input
 -->
 <template>
-  <a-form-item :labelCol="{ span: 6 }" :wrapperCol="{ span: 18 }">
+  <a-form-item v-bind="configuration.title? labelCol: noLabelCol">
     <template #label v-if="configuration.title">
       <!-- 表单项名称 -->
       {{configuration.title}}
@@ -46,6 +46,9 @@ export default class FormNumberInput extends Vue {
   @Prop(String) private readonly identifier!: string;
 
   @Inject() private form!: any;
+
+  private labelCol = { labelCol: { span: 6 }, wrapperCol: { span: 18 } };
+  private noLabelCol = { wrapperCol: { span: 24 } };
 
   private mounted() {
     this.form.getFieldDecorator(this.identifier, {

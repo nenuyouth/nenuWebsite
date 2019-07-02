@@ -13,15 +13,15 @@ import FormUrlInput from '#/FormUrlInput.vue';
 
 @Component({
   components: {
-    FormArrayInput: () => import('#/FormArrayInput.vue'),
     FormBooleanInput,
     FormEnumInput,
     FormNumberInput,
-    FormObjectInput: () => import('#/FormObjectInput.vue'),
     FormStringInput,
     FormTextareaInput,
-    FormUnionInput: () => import('#/FormUnionInput.vue'),
-    FormUrlInput
+    FormUrlInput,
+    FormArrayInput: () => import('#/FormArrayInput.vue'),
+    FormObjectInput: () => import('#/FormObjectInput.vue'),
+    FormUnionInput: () => import('#/FormUnionInput.vue')
   }
 })
 export default class FormInput extends Vue {

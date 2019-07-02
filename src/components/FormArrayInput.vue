@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-22 18:45:04
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-07-02 11:02:02
+ * @LastEditTime: 2019-07-02 12:10:41
  * @Description: Form Array Input
 -->
 <template>
@@ -23,27 +23,11 @@
         </a-tooltip>
       </template>
 
-      <a-input
-        type="hidden"
-        v-decorator="[
-          `${identifier}[${index}]`,
-          {
-            validateTrigger: ['change', 'blur'],
-            preserve: true,
-            rules: [{
-                required: true,
-                type: configuration.element,
-                message: '请补充此项或将此项删除'
-            }]
-          }
-        ]"
-      />
-
       <div style="display:flex;align-items:center;">
         <form-input
           :configuration="itemConfiguration"
-          :identifier="`${identifier}-${index}`"
-          :key="`${identifier}-${index}`"
+          :identifier="`${identifier}[${index}]`"
+          :key="`${identifier}[${index}]`"
           class="formArrayInput"
         />
 
@@ -65,26 +49,24 @@
   </div>
 </template>
 <script lang="ts">
-import {
-  Component, Inject, Prop, Provide, Vue
-} from 'vue-property-decorator';
+import { Component, Inject, Prop, Vue } from 'vue-property-decorator';
+import FormInput from '#/FormInput.vue';
 import { Config } from '%/pageConfig';
 
+// @Component({ components: { FormInput } })
 @Component({ components: { FormInput: () => import('#/FormInput.vue') } })
 export default class FormArrayInput extends Vue {
   @Prop(Object) private readonly configuration!: Config;
 
   @Prop(String) private readonly identifier!: string;
 
-  @Inject({ from: 'form' }) private parrentForm!: any;
-
-  @Provide() form!: any;
-
-  private length = 1;
+  @Inject() private form!: any;
 
   // Form Layout
   private LabelLayout = { labelCol: { span: 6 }, wrapperCol: { span: 18 } };
   private noLabelLayout = { wrapperCol: { span: 18, offset: 6 } };
+
+  private length = 1;
 
   private get itemConfiguration() {
     const configuration = JSON.parse(JSON.stringify(this.configuration));
@@ -108,18 +90,20 @@ export default class FormArrayInput extends Vue {
     if (this.length === 1) return;
 
     // Reorganize formvalue
-    const formValue: any[] = this.parrentForm.getFieldValue(this.identifier);
+    const formValue: any[] = this.form.getFieldValue(this.identifier);
 
+    console.log(formValue);
     // Update form value
     formValue.splice(index, 1);
-    this.parrentForm.setFieldsValue({ [`${this.identifier}`]: formValue });
+    console.log(formValue);
+    this.form.setFieldsValue({ [`${this.identifier}`]: formValue });
     this.length -= 1;
   }
 
 }
 </script>
 <style>
-.formArrayInput > .ant-row .ant-form-item {
+.formArrayInput {
   width: calc(100% - 40px);
   margin-right: 8px;
 }
