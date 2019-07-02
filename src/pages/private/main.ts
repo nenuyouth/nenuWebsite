@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 内部页面入口文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-07-02 12:59:54
+ * @LastEditTime: 2019-07-03 00:31:33
  */
 
 // 引入Ant Design
@@ -62,7 +62,7 @@ Vue.prototype.$success = Modal.success;
 Vue.prototype.$warning = Modal.warning;
 
 // 注册IconFont
-const IconFont = Icon.createFromIconfontCN({ scriptUrl: '//at.alicdn.com/t/font_1091332_oo8p0ei73l.js' });
+const IconFont = Icon.createFromIconfontCN({ scriptUrl: '//at.alicdn.com/t/font_1273082_70g3700yqm.js' });
 
 // 全局注册IconFont
 Vue.component('icon-font', IconFont);

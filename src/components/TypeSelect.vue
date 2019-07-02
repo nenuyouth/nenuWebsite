@@ -6,12 +6,10 @@
  * @Description: Type Select
 -->
 <template>
-  <div>
-    <!-- 选择需要的值类型 -->
-    <a-radio-group :value="selected" @change="onChange($event.target.value)" buttonStyle="solid">
-      <a-radio-button :key="item" :value="item" v-for="item in option">{{item}}</a-radio-button>
-    </a-radio-group>
-  </div>
+  <!-- 选择需要的值类型 -->
+  <a-radio-group :value="selected" @change="onChange($event.target.value)" buttonStyle="solid">
+    <a-radio-button :key="item" :value="item" v-for="item in option">{{item}}</a-radio-button>
+  </a-radio-group>
 </template>
 <script lang="ts">
 import {

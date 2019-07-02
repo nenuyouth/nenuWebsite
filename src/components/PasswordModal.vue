@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 密码验证
  * @Date: 2019-03-16 13:44:32
- * @LastEditTime: 2019-07-01 22:58:35
+ * @LastEditTime: 2019-07-03 00:27:05
 -->
 <template>
   <!-- 密码输入框 -->
@@ -35,7 +35,7 @@
         >
           <!-- 用户名图标 -->
           <template #prefix>
-            <icon-font type="icon-user" />
+            <user />
           </template>
         </a-input>
       </a-form-item>
@@ -56,14 +56,14 @@
         >
           <!-- 密码图标 -->
           <template #prefix>
-            <icon-font type="icon-password" />
+            <password />
           </template>
 
           <!-- 控制密码显隐图标 -->
           <template #suffix>
             <div @click="passwordDisplay=!passwordDisplay" class="togglePassword">
-              <icon-font type="icon-eye" v-if="passwordDisplay" />
-              <icon-font type="icon-eyeClose" v-else />
+              <eye v-if="passwordDisplay" />
+              <eyeClose v-else />
             </div>
           </template>
         </a-input>
@@ -83,9 +83,13 @@
 </template>
 <script lang="ts">
 import axios from 'axios';
+import User from '|/icon/user.svg';
+import Password from '|/icon/password.svg';
+import Eye from '|/icon/eye.svg';
+import EyeClose from '|/icon/eyeClose.svg';
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
-@Component
+@Component({ components: { User, Password, Eye, EyeClose } })
 export default class PasswordModal extends Vue {
   // 验证地址
   @Prop({ type: String, required: true }) private readonly url!: string;

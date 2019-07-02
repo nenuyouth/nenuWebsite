@@ -2,7 +2,7 @@
   <a-menu :theme="theme" mode="horizontal" v-model="active">
     <a-menu-item key="logo" style="padding:0 10px 0 20px;">
       <transition name="myfade">
-        <icon-font id="backButton" type="icon-navigateBack" v-if="backButtonDisplay" />
+        <Back id="backButton" v-if="backButtonDisplay" />
       </transition>
       <transition name="myfade">
         <img alt="东师青年" id="logo" src="/img/icon/nenuyouth.png" v-if="logoDisplay" />
@@ -44,9 +44,10 @@
 </template>
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
+import Back from '|/icon/back.svg';
 import { Route } from 'vue-router';
 
-@Component
+@Component({ components: { Back } })
 export default class Nav extends Vue {
   private logoDisplay = true;
   private backButtonDisplay = false;

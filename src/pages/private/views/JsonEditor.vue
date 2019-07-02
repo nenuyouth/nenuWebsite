@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-19 17:25:48
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-07-02 12:20:46
+ * @LastEditTime: 2019-07-02 21:34:18
  * @Description: 测试
 -->
 <template>
@@ -12,7 +12,8 @@
         <!-- 循环pageJson -->
 
         <!-- 带有分割线、下拉列表的标题 -->
-        <DropdownTitle :key="partIndex" :menu="tagList" v-model="tags[partIndex]" />
+        <!-- <DropdownTitle :key="partIndex" :menu="tagList" v-model="tags[partIndex]" /> -->
+        <DropdownGrid :key="partIndex" :list="tagList" v-model="tags[partIndex]" />
 
         <!-- 选项列表 -->
         <template v-if="part!=='请选择'">
@@ -38,6 +39,7 @@
 </template>
 <script lang="ts">
 import { Component, Prop, Provide, Vue } from 'vue-property-decorator';
+import DropdownGrid, { GridMenuList } from '#/DropdownGrid.vue';
 import DropdownTitle from '#/DropdownTitle.vue';
 import FormInput from '#/FormInput.vue';
 
@@ -73,6 +75,7 @@ interface NormalObject {
 
 @Component({
   components: {
+    DropdownGrid,
     DropdownTitle,
     FormInput
   }
@@ -93,7 +96,8 @@ export default class FormTest extends Vue {
   }
 
   private get tagList() {
-    const tagList: string[][] = require('../assets/tagList');
+    const tagList: GridMenuList[] = require('../assets/tagList');
+    // const tagList: string[][] = require('../assets/tagList');
 
     return tagList;
   }
