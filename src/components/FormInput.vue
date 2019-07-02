@@ -1,73 +1,5 @@
 <template>
-  <div>
-    <!-- 联合类型输入 -->
-    <form-union-input
-      :configuration="configuration"
-      :identifier="identifier"
-      v-if="typeof configuration.type==='object'"
-    />
-
-    <!-- 可遍历值输入 -->
-    <form-enum-input
-      :configuration="configuration"
-      :identifier="identifier"
-      v-else-if="configuration.enum"
-    />
-
-    <!-- 对象输入 -->
-    <form-object-input
-      :configuration="configuration"
-      :identifier="identifier"
-      v-else-if="configuration.type==='object'"
-    />
-
-    <!-- 布尔值输入 -->
-    <form-boolean-input
-      :configuration="configuration"
-      :identifier="identifier"
-      v-else-if="configuration.type==='boolean'"
-    />
-
-    <!-- 数字输入 -->
-    <form-number-input
-      :configuration="configuration"
-      :identifier="identifier"
-      v-else-if="configuration.type==='number'"
-    />
-
-    <!-- 单行输入 -->
-    <form-string-input
-      :configuration="configuration"
-      :identifier="identifier"
-      v-else-if="configuration.type==='string'"
-    />
-
-    <!-- 网址输入 -->
-    <form-url-input
-      :configuration="configuration"
-      :identifier="identifier"
-      v-else-if="configuration.type==='url'"
-    />
-
-    <!-- 多行输入 -->
-    <form-textarea-input
-      :configuration="configuration"
-      :identifier="identifier"
-      v-else-if="configuration.type==='mutiline'"
-    />
-
-    <template v-else-if="configuration.type==='array'">
-      <!-- 对象数组输入 -->
-      <form-object-array-input
-        :configuration="configuration"
-        :identifier="identifier"
-        v-if="configuration.element==='object'"
-      />
-
-      <!-- 数组输入 -->
-      <form-array-input :configuration="configuration" :identifier="identifier" v-else />
-    </template>
-  </div>
+  <component :configuration="configuration" :identifier="identifier" :is="tag" />
 </template>
 <script lang="ts">
 import { Component, Inject, Prop, Vue } from 'vue-property-decorator';
@@ -103,5 +35,13 @@ export default class FormInput extends Vue {
   @Prop(String) private readonly identifier!: string;
 
   @Inject() private form!: any;
+
+  private get tag() {
+    return typeof this.configuration.type === 'object'
+      ? 'form-union-input'
+      : this.configuration.enum
+        ? 'form-enum-input'
+        : `form-${this.configuration.type}-input`;
+  }
 }
 </script>

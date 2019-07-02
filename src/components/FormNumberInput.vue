@@ -2,22 +2,22 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-22 18:45:04
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-05-29 23:15:12
+ * @LastEditTime: 2019-07-02 00:40:47
  * @Description: Form Number Input
 -->
 <template>
   <a-form-item :labelCol="{ span: 6 }" :wrapperCol="{ span: 18 }">
-    <template #label>
+    <template #label v-if="configuration.title">
       <!-- 表单项名称 -->
       {{configuration.title}}
       <!-- 描述文字 -->
       <a-tooltip :title="configuration.desc" v-if="configuration.desc">
-        <a-icon style="vertical-align:-0.125em;" type="question-circle"/>
+        <a-icon style="vertical-align:-0.125em;" type="question-circle" />
       </a-tooltip>
     </template>
 
     <!-- 类型选择插槽 -->
-    <slot name="type-select"/>
+    <slot name="type-select" />
 
     <a-input-number
       :step="configuration.step"

@@ -9,7 +9,7 @@
     "desc": {
       "title": "标题描述文字",
       "desc": "该描述文字仅在特定主题下展示，所以仅供补充界面主题，不可放置重要信息",
-      "type": "mutiline",
+      "type": "textarea",
       "required": false
     },
     "action": {
@@ -139,7 +139,7 @@
   "title": {
     "text": {
       "title": "文字",
-      "type": "mutiline",
+      "type": "textarea",
       "required": true
     },
     "style": {
@@ -152,7 +152,7 @@
   "p": {
     "text": {
       "title": "文字",
-      "type": "mutiline",
+      "type": "textarea",
       "required": true
     },
     "head": {
