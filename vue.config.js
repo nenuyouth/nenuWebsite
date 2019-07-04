@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: vue config file
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-06-21 23:35:59
+ * @LastEditTime: 2019-07-04 21:37:20
  */
 const path = require('path');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
@@ -28,7 +28,16 @@ const chainWebpack = config => {
   svgRule
     .use('babel-loader').loader('babel-loader').end()// 预先对vue-svg-loader进行处理使其遵守es5标准
     .use('vue-svg-loader')
-    .loader('vue-svg-loader'); // 调用vue-svg-loader
+    .loader('vue-svg-loader')
+    .options({ // 对svg进行处理
+      plugins: [
+        { removeDoctype: true },
+        { removeComments: true },
+        { removeViewBox: false }
+      ],
+      removeViewBox: false
+    }); // 调用vue-svg-loader
+
 };
 
 /**
@@ -72,6 +81,48 @@ const configureWebpack = config => {
       maxAssetSize: 1048576
     };
 
+    /*
+     * config.optimization = {
+     *   // 为 webpack 运行时代码创建单独的chunk
+     *   runtimeChunk: { name: 'manifest' },
+     *   // chunk分离设置
+     *   splitChunks: {
+     *     chunks: 'async',
+     *     minSize: 30000,
+     *     maxSize: 0,
+     *     minChunks: 1,
+     *     maxAsyncRequests: 10,
+     *     maxInitialRequests: 5,
+     *     automaticNameDelimiter: '-',
+     *     name: true,
+     *     cacheGroups: {
+     *       antd: { // 分离ant-design模块
+     *         test: /[\\/]node_modules[\\/]ant-design-vue[\\/]/u,
+     *         name: 'antd',
+     *         chunks: 'all',
+     *         priority: -8
+     *       },
+     *       common: { // 分离其他
+     *         test: /[\\/]node_modules[\\/](lodash|vue-class-component)[\\/]/u,
+     *         // test: /[\\/]node_modules[\\/](axios|lodash|jquery|tinycolor2|viewerjs|vue(-class-component|-router|x)?)[\\/]/u,
+     *         name: 'common',
+     *         chunks: 'all', // valid values are all, async, and initial
+     *         priority: -9
+     *       },
+     *       vendors: {
+     *         test: /[\\/]node_modules[\\/]/u,
+     *         priority: -10
+     *       },
+     *       combine: { // 默认块，最小重用两次，优先级最低，不包含已有的chunk内容
+     *         minChunks: 2,
+     *         priority: -20,
+     *         reuseExistingChunk: true // if the chunk contains modules already split out , will be reused
+     *       }
+     *     }
+     *   }
+     * };
+     */
+
   } else config.devtool = 'source-map';
 
   if (process.env.ANALYZE)  // 分析打包后代码
@@ -104,32 +155,6 @@ module.exports = {
   // 在 multi-page 模式下构建应用
 
   pages: require('./mutiPage'),
-
-  /*
-   * index: {
-   * // page 的入口
-   * entry: './src/main.ts',
-   * // 模板来源
-   * template: './public/index.html',
-   * // 在 dist/index.html 的输出
-   * filename: 'index.html',
-   * 在这个页面中包含的块，默认情况下会包含提取出来的通用 chunk 和 vendor chunk。
-   * chunks: ['chunk-vendors', 'chunk-common', 'app']
-   * }
-   * private: {
-   *   entry: './src/pages/private/main.ts',
-   *   template: './public/index.html',
-   *   filename: 'private.html',
-   *   chunks: ['chunk-vendors', 'chunk-common', 'private-app']
-   * }
-   */
-  /*
-   *   index: './src/main.ts',
-   *   private: './src/pages/private/main.ts',
-   *   doc: './src/pages/doc/main.ts',
-   *   guide: './src/pages/doc/main.ts'
-   * },
-   */
   publicPath: process.env.DEPLOY ? process.env.deployAddress : '/',
   productionSourceMap: false,
   crossorigin: 'anonymous',
