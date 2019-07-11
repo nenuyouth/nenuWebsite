@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-06-26 20:19:31
+ * @LastEditTime: 2019-07-09 09:23:59
 -->
 <template>
   <div class="container mt-3 pb-3">
@@ -227,7 +227,7 @@ export default class DocView extends Vue {
 
         if (offset) {
           // 滚动动画效果
-          $('html, body').animate({ scrollTop: `${offset.top - 50}px` }, { duration: 500, easing: 'swing' });
+          $('html, body').animate({ scrollTop: `${offset.top - 4}px` }, { duration: 500, easing: 'swing' });
 
           // 链接图标的动画效果
           $(event.currentTarget)

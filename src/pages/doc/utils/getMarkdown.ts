@@ -44,14 +44,13 @@ myRenderMD.listitem = text =>
 // set marked package options
 marked.setOptions({
   breaks: true, // whether use GitHub Flavored Markdown controls linebreaks output `<br>`
-  gfm: true, // whether use Github-improved Markdown
+  gfm: true, // whether use Github-improved Markdown (Is-Default)
   langPrefix: 'hljs ', // code block class prefix
   pedantic: false, // whether render as native markdown.pl
   renderer: myRenderMD, // 控制输出渲染
-  sanitize: true, // whether clean the html content inside before parsed
+  // sanitize: true, // whether clean the html content inside before parsed
   smartLists: true, // whether use advanced list style
   smartypants: false, // whether add additional symbols for specific content
-  tables: true, // whether use gtm table
   xhtml: true, // 是否闭合空标签
   // Highlight Code Block
   highlight: (code, lang) =>
