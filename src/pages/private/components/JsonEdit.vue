@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-19 17:25:48
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-07-02 21:34:18
+ * @LastEditTime: 2019-07-30 00:39:27
  * @Description: 测试
 -->
 <template>
@@ -97,7 +97,6 @@ export default class FormTest extends Vue {
 
   private get tagList() {
     const tagList: GridMenuList[] = require('../assets/tagList');
-    // const tagList: string[][] = require('../assets/tagList');
 
     return tagList;
   }
