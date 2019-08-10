@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 基础列表
  * @Date: 2019-03-25 12:39:59
- * @LastEditTime: 2019-07-01 22:55:06
+ * @LastEditTime: 2019-08-10 14:13:07
 -->
 <template>
   <div :id="myId" class="Ctn">
@@ -49,44 +49,50 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { computed, createComponent, value } from 'vue-function-api';
 
 interface List {
   [propName: string]: string;
 }
 
-@Component
-export default class BaseList extends Vue {
-  // Component ID
-  @Prop(Number) private readonly myId!: number;
+const BaseList = createComponent({
+  props: {
+    // Component ID
+    myId: Number,
+    // List content
+    content: { type: Array, required: true }, // List[]
+    // List head text
+    head: { type: [String, Boolean], default: '' },
+    // List footer text
+    foot: { type: [String, Boolean], default: '' }
+  },
+  setup(props, context) {
+    const listItem = computed(() => {
+      // create a copy of @Prop('content)
+      const listitems = JSON.parse(JSON.stringify(props.content)) as List[];
 
-  // List content
-  @Prop({ type: Array, required: true }) private readonly content!: List[];
+      // Add key and item for the listitem in the copy
+      listitems.forEach((element, index) => {
+        if (props.myId) element.id = `list${props.myId}-${index}`;
+        element.textKey = `${element.text}Key`;
+      });
 
-  // List head text
-  @Prop({ type: [String, Boolean], default: '' }) private readonly head!: string | boolean;
-
-  // List footer text
-  @Prop({ type: [String, Boolean], default: '' }) private readonly foot!: string | boolean;
-
-  private get listItem() {
-    // create a copy of @Prop('content)
-    const listItem = JSON.parse(JSON.stringify(this.content));
-
-    // Add key and item for the listitem in the copy
-    listItem.forEach((element: List, index: number) => {
-      if (this.myId) element.id = `list${this.myId}-${index}`;
-      element.textKey = `${element.text}Key`;
+      return listitems;
     });
 
-    return listItem;
-  }
+    // Navigate when clicking on a link
+    const navigate = (aim: string) => {
+      context.root.$router.push(`/guide/${aim}`);
+    };
 
-  // Navigate when clicking on a link
-  private navigate(aim: string) {
-    this.$router.push(`/guide/${aim}`);
+    return {
+      listItem,
+      navigate
+    };
   }
-}
+});
+
+export default BaseList;
 </script>
 <style lang='scss' scope>
 @import '~%/Weui/scss/border';

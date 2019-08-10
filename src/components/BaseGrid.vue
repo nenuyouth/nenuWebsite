@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Base Grid
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-07-01 22:54:48
+ * @LastEditTime: 2019-08-10 11:31:31
 -->
 <template>
   <div>
@@ -30,7 +30,7 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { createComponent } from 'vue-function-api';
 
 export interface GridItem {
   text: string; // 文字
@@ -38,20 +38,23 @@ export interface GridItem {
   url: string; // 网址链接
 }
 
-@Component
-export default class BaseGrid extends Vue {
-  // Component ID
-  @Prop(Number) private readonly myId!: number;
+const BaseGrid = createComponent({
+  props: {
+    // Component ID
+    myId: Number,
 
-  // Grid items
-  @Prop(Array) private readonly content!: GridItem[];
+    // Grid items
+    content: Array, // GridItem[]
 
-  // Grid head text
-  @Prop({ type: [String, Boolean], default: '' }) private readonly head!: string | boolean;
+    // Grid head text
+    head: { type: [String, Boolean], default: '' },
 
-  // Grid footer text
-  @Prop(String) private readonly foot!: string;
-}
+    // Grid footer text
+    foot: String
+  }
+});
+
+export default BaseGrid;
 </script>
 <style lang='scss' scoped>
 @import '~%/Weui/scss/border';

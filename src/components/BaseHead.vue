@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 基础主标题
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-07-01 22:54:55
+ * @LastEditTime: 2019-08-10 11:34:23
 -->
 <template>
   <div>
@@ -12,16 +12,19 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { createComponent } from 'vue-function-api';
 
-@Component
-export default class BaseHead extends Vue {
-  // Component ID
-  @Prop(Number) private readonly myId!: number;
+const BaseHead = createComponent({
+  props: {
+    // Component ID
+    myId: Number,
 
-  // Title of displayed page
-  @Prop({ type: String, required: true }) private readonly title!: string;
-}
+    // Title of displayed page
+    title: { type: String, required: true }
+  }
+});
+
+export default BaseHead;
 </script>
 <style scoped>
 .title {

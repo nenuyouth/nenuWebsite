@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主页入口文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-06-20 18:50:30
+ * @LastEditTime: 2019-08-10 10:53:22
  */
 
 // 引入Ant Design
@@ -11,6 +11,7 @@ import {
   Anchor, Breadcrumb, Button, Carousel, Col, Divider, Dropdown, Form, Icon, Input, InputNumber,
   Layout, Menu, Modal, Radio, Row, Select, Skeleton, Spin, Timeline, Tooltip, message
 } from 'ant-design-vue';
+import { plugin } from 'vue-function-api';
 import { Route } from 'vue-router';
 import Vue from 'vue';
 import Component from 'vue-class-component';
@@ -89,6 +90,9 @@ Vue.component('icon-font', IconFont);
 
 // 注册自定义方法
 Vue.use(navigate);
+
+// 使用vue-function-api
+Vue.use(plugin);
 
 // 注册service worker
 registerSW(store);

@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Base Carousel
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-07-01 22:54:28
+ * @LastEditTime: 2019-08-10 11:26:04
 -->
 <template>
   <a-carousel
@@ -51,8 +51,8 @@
   </a-carousel>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
-// import navigate from '%/navigate';
+import { computed, createComponent, onMounted, value } from 'vue-function-api';
+
 
 interface Carousel {
   caption: string; // 主标题
@@ -70,68 +70,68 @@ interface Carousel {
   color?: string;
 }
 
-@Component
-export default class BaseCarousel extends Vue {
-  // Component id
-  @Prop([Number, String]) private readonly myId!: number | string;
+const BaseCarousel = createComponent({
+  props: {
+    // Component id
+    myId: [Number, String],
+    // CarouselItems config
+    content: { type: Array, required: true }, // Carousel[]
+    // Whether to display vertically
+    vertical: { type: Boolean, default: false },
+    // Whether to start autoplay
+    autoplay: { type: Boolean, default: true },
+    // Autoplay time
+    autoplaySpeed: { type: Number, default: 3000 },
+    // Slide's switching time
+    speed: { type: Number, default: 500 },
+    // whether to display indicators
+    dotDisplay: { type: Boolean, default: true },
+    // Whether to display swtich arrows
+    arrowDisplay: { type: Boolean, default: true },
+    // Switching animation
+    easing: { type: String, default: 'easeInOutQuart' }
+  },
+  setup(props) {
+    // Whether it has only one children
+    const single = value(false);
 
-  // CarouselItems config
-  @Prop({ type: Array, required: true }) private readonly content!: Carousel[];
+    // Carousel item list
+    const list = value([] as Carousel[]);
 
-  // Whether to display vertically
-  @Prop({ type: Boolean, default: false }) private readonly vertical!: boolean;
+    // Display indicators or not
+    const dots = computed(() => single.value ? false : props.dotDisplay);
 
-  // Whether to start autoplay
-  @Prop({ type: Boolean, default: true }) private readonly autoplay!: boolean;
+    onMounted(() => {
+      // Make a copy of carouselItems config
+      list.value = JSON.parse(JSON.stringify(props.content));
 
-  // Autoplay time
-  @Prop({ type: Number, default: 3000 }) private readonly autoplaySpeed!: boolean;
+      list.value.forEach((element, index) => {
+        // init active status for the first carousel item
+        if (index === 0) element.activeStatus = 'active';
 
-  // Slide's switching time
-  @Prop({ type: Number, default: 500 }) private readonly speed!: number;
+        // mark 'black' config works
+        if (element.black === true) {
+          element.color = 'textBlack';
+          delete element.black;
+        }
 
-  // whether to display indicators
-  @Prop({ type: Boolean, default: true }) private readonly dotDisplay!: boolean;
+        // make sure carouselItem has an 'alt' option
+        if (!element.alt) element.alt = '轮播图背景';
+      });
 
-  // Whether to display swtich arrows
-  @Prop({ type: Boolean, default: true }) private readonly arrowDisplay!: boolean;
-
-  // Switching animation
-  @Prop({ type: String, default: 'easeInOutQuart' }) private readonly easing!: string;
-
-  // Display indicators or not
-  private get dots() {
-    return this.single ? false : this.dotDisplay;
-  }
-
-  // Whether it has only one children
-  private single = false;
-
-  // Carousel item list
-  private list: Carousel[] = [];
-
-  private mounted() {
-    // Make a copy of carouselItems config
-    this.list = JSON.parse(JSON.stringify(this.content));
-
-    this.list.forEach((element: Carousel, index: number) => {
-      // init active status for the first carousel item
-      if (index === 0) element.activeStatus = 'active';
-
-      // mark 'black' config works
-      if (element.black === true) {
-        element.color = 'textBlack';
-        delete element.black;
-      }
-
-      // make sure carouselItem has an 'alt' option
-      if (!element.alt) element.alt = '轮播图背景';
+      // set single when containing only one item
+      if (list.value.length === 1) single.value = true;
     });
 
-    // set single when containing only one item
-    if (this.list.length === 1) this.single = true;
+    return {
+      single,
+      list,
+      dots
+    };
   }
-}
+});
+
+export default BaseCarousel;
 </script>
 <style lang='scss' scoped>
 .ant-carousel {

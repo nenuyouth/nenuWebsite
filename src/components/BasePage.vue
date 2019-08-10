@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 基础页面显示
  * @Date: 2019-02-24 22:21:25
- * @LastEditTime: 2019-07-30 14:38:58
+ * @LastEditTime: 2019-08-10 14:16:57
 -->
 <template>
   <div class="container page">
@@ -11,7 +11,7 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { createComponent, computed } from 'vue-function-api';
 import BaseHead from '#/BaseHead.vue';
 import BaseTitle from '#/BaseTitle.vue';
 import BaseP from '#/BaseP.vue';
@@ -21,7 +21,15 @@ import BaseCarousel from '#/BaseCarousel.vue';
 import BasePhone from '#/BasePhone.vue';
 import BaseFoot from '#/BaseFoot.vue';
 
-@Component({
+const BasePage = createComponent({
+  props: {
+    // Page data
+    pagedata: {
+      type: String,
+      required: true,
+      default: '[{"tag":"error"}]'
+    }
+  },
   components: {
     BaseHead,
     BaseTitle,
@@ -31,29 +39,30 @@ import BaseFoot from '#/BaseFoot.vue';
     BaseCarousel,
     BasePhone,
     BaseFoot
-  }
-})
-export default class BasePage extends Vue {
-  // Page data
-  @Prop({ type: String, required: true, default: '[{"tag":"error"}]' })
-  private readonly pagedata!: string;
+  },
+  setup(props, context) {
 
-  // Handle Data to change tags
-  private get myData() {
-    const pageData = JSON.parse(this.pagedata);
-    const imageList: string[] = [];
+    // Handle Data to change tags
+    const myData = computed(() => {
+      const pageData = JSON.parse(props.pagedata as unknown as string);
+      const imageList: string[] = [];
 
-    pageData.forEach((element: any, index: number) => {
-      element.myId = index;
-      element.tag = `base-${element.tag}`;
-      if ('src' in element) imageList.push(element.src);
+      pageData.forEach((element: any, index: number) => {
+        element.myId = index;
+        element.tag = `base-${element.tag}`;
+        if ('src' in element) imageList.push(element.src);
+      });
+
+      context.root.$store.commit('imageList', imageList);
+
+      return pageData;
     });
 
-    this.$store.commit('imageList', imageList);
-
-    return pageData;
+    return { myData };
   }
-}
+});
+
+export default BasePage;
 </script>
 <style scoped>
 .page {

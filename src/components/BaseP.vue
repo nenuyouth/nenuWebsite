@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Base Paragraph
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-07-01 22:55:19
+ * @LastEditTime: 2019-08-10 14:12:46
 -->
 <template>
   <div :id="myId" class="Ctn">
@@ -23,7 +23,7 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { computed, createComponent, onMounted, value } from 'vue-function-api';
 import Loading from '|/icon/loading.svg';
 import Error from '|/icon/error.svg';
 
@@ -38,70 +38,78 @@ enum Align {
   'justify'
 }
 
-@Component({ components: { Loading, Error } })
-export default class BaseP extends Vue {
-  // Component ID
-  @Prop(Number) private readonly myId!: number;
+const BaseP = createComponent({
+  props: {
+    // Component ID
+    myId: Number,
+    // Paragragh Text
+    text: { type: String, required: true },
+    // Paragragh Heading
+    head: [String, Boolean],
+    // Paragragh Image Link
+    src: String,
+    // Paragragh Image Description
+    desc: String,
+    // Paragragh Text style
+    myStyle: [String, Object], // string | Style
 
-  // Paragragh Text
-  @Prop({ type: String, required: true }) private readonly text!: string;
+    // Paragragh Heading Style
+    headStyle: [String, Object], // string | Style
 
-  // Paragragh Heading
-  @Prop([String, Boolean]) private readonly head!: string | boolean;
+    // Text Align
+    align: { type: String, default: 'left' }
+  },
+  setup(props, context) {
+    // Image load status
+    const loaded = value(false);
+    const error = value(false);
 
-  // Paragragh Image Link
-  @Prop(String) private readonly src!: string;
+    // Handle text data in order to display correctly with spaces and line breaks on website
+    const pText = computed(() =>
+      (props.text as unknown as string)
+        .replace(/\n/gu, '<br/>')
+        .replace(/\s/gu, '&ensp;'));
 
-  // Paragragh Image Description
-  @Prop(String) private readonly desc!: string;
 
-  // Paragragh Text style
-  @Prop([String, Object]) private readonly myStyle!: string | Style;
+    onMounted(() => {
+      const img = new Image(); // Create new Image instance
 
-  // Paragragh Heading Style
-  @Prop([String, Object]) private readonly headStyle!: string | Style;
+      img.src = props.src as unknown as string;
 
-  // Text Align
-  @Prop({ default: 'left' }) private readonly align!: Align;
+      // Image has been cached
+      if (img.complete) {
+        loaded.value = true;
 
-  // Image load status
-  private loaded = false;
-  private error = false;
+        return;
+      }
 
-  // Handle text data in order to display correctly with spaces and line breaks on website
-  private get pText() {
-    return this.text.replace(/\n/gu, '<br/>').replace(/\s/gu, '&ensp;');
-  }
+      // Error when loading Image, show error message
+      img.onerror = () => {
+        error.value = true;
+      };
 
-  private mounted() {
-    const img = new Image(); // Create new Image instance
+      // Sucess loading Image, display this Image now
+      img.onload = () => {
+        loaded.value = true;
 
-    img.src = this.src;
+        delete img.onload;
+      };
+    });
 
-    // Image has been cached
-    if (img.complete) {
-      this.loaded = true;
-
-      return;
-    }
-
-    // Error when loading Image, show error message
-    img.onerror = () => {
-      this.error = true;
+    const imgDisplay = () => {
+      context.root.$store.commit('imageUrl', props.src);
     };
 
-    // Sucess loading Image, display this Image now
-    img.onload = () => {
-      this.loaded = true;
-
-      delete img.onload;
+    return {
+      loaded,
+      error,
+      pText,
+      imgDisplay
     };
   }
+});
 
-  private imgDisplay() {
-    this.$store.commit('imageUrl', this.src);
-  }
-}
+export default BaseP;
 </script>
 <style lang='scss' scoped>
 @import '~%/Weui/scss/border';

@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Base Foot
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-07-01 22:54:41
+ * @LastEditTime: 2019-08-10 11:28:31
 -->
 <template>
   <div :id="myId" class="Footer">
@@ -14,7 +14,7 @@
       </div>
     </div>
     <span v-if="desc">{{ desc }}\n</span>
-    <span v-if="author">编辑人：{{ author }}</span>
+    <span v-if="author">编辑人：{{ author }}&emsp;</span>
     <span v-if="time">最后编辑于{{ time }}</span>
     <span v-if="time || author">
       <br />
@@ -22,22 +22,25 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { createComponent } from 'vue-function-api';
 
-@Component
-export default class BaseFoot extends Vue {
-  // Component ID
-  @Prop(Number) private readonly myId!: number;
+const BaseFoot = createComponent({
+  props: {
+    // Component ID
+    myId: Number,
 
-  // Foot description text
-  @Prop(String) private readonly desc!: string;
+    // Foot description text
+    desc: String,
 
-  // Author information
-  @Prop({ type: String, default: 'Mr.Hope' }) private readonly author!: string;
+    // Author information
+    author: { type: String, default: 'Mr.Hope' },
 
-  // Last edit time
-  @Prop(String) private readonly time!: string;
-}
+    // Last edit time
+    time: String
+  }
+});
+
+export default BaseFoot;
 </script>
 <style lang='scss' scoped>
 .Footer {

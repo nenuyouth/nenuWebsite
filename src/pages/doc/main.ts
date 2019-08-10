@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主脚本文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-07-03 00:32:23
+ * @LastEditTime: 2019-08-10 14:26:49
  */
 
 // 引入Ant Design
@@ -13,6 +13,7 @@ import {
 } from 'ant-design-vue';
 import Vue from 'vue';
 import Component from 'vue-class-component';
+import { plugin } from 'vue-function-api';
 import { Route } from 'vue-router';
 
 // 引入第三方库
@@ -76,6 +77,9 @@ const IconFont = Icon.createFromIconfontCN({ scriptUrl: '//at.alicdn.com/t/font_
 
 // 全局注册IconFont
 Vue.component('icon-font', IconFont);
+
+// 使用function-base-api
+Vue.use(plugin);
 
 // 注册service worker
 registerSW(store);

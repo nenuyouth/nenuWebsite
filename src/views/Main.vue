@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主页
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-06-25 10:45:46
+ * @LastEditTime: 2019-08-10 14:11:34
 -->
 <template>
   <div class="container">
@@ -11,15 +11,15 @@
       <h1>青春遇见梦想</h1>
       <h1>&nbsp;&nbsp;而我刚好在场</h1>
       <p class="lead">东北师范大学校学生会</p>
-      <hr class="my-4">
+      <hr class="my-4" />
       <p>人格的魅力，学习的楷模，工作的典范</p>
       <p class="lead">
         <a-button @click="$router.push('/intro/studentUnion')" size="large" type="primary">了解校学生会</a-button>
       </p>
     </div>
-    <base-carousel v-bind="carouselData"/>
+    <base-carousel v-bind="carouselData" />
     <h2 class="px-3 pt-3">东师指南</h2>
-    <BaseGrid :content="guidelist"/>
+    <BaseGrid :content="guidelist" />
     <h2 class="px-3 pt-3">东师手册</h2>
     <a-button
       @click="$navigate('https://nenuyouth.com/doc',$router,$route)"
@@ -31,7 +31,7 @@
     <a-button @click="$router.push('/lecture')" block class="mb-3 blockButton" type="primary">点击进入</a-button>
     <h2 class="px-3 pt-3">东师校历</h2>
     <div class="calendarHolder">
-      <base-time-line :time-list="timeList"/>
+      <base-time-line :time-list="timeList" />
     </div>
     <div class="text-center">
       <a-button
@@ -45,77 +45,84 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { createComponent, onCreated, value } from 'vue-function-api';
 import axios from 'axios';
 import BaseCarousel from '#/BaseCarousel.vue';
 import BaseGrid from '#/BaseGrid.vue';
-import BaseTimeLine from '#/BaseTimeLine.vue';
+import BaseTimeLine, { TimeListItem } from '#/BaseTimeLine.vue';
 
-@Component({ components: { BaseCarousel, BaseGrid, BaseTimeLine } })
-export default class Main extends Vue {
-  private carouselData = {
-    myId: 'Main',
-    content: [
-      {
-        caption: 'NENUYouth',
-        subCaption: '东师微信小程序已上线',
-        ensubCaption: 'Wechat Miniprogram is released！',
-        alt: '东师微信小程序已上线',
-        src: '/img/main/main0.jpg',
-        url: 'https://mp.weixin.qq.com/s/w_CbkYVuTcByXCxEnlJ63w',
-        desc: '点击查看图文详情',
-        black: true
-      },
-      {
-        caption: '我是东师',
-        subCaption: '未来，请多指教',
-        ensubCaption: 'New Experience, New Us!',
-        alt: '未来，请多指教',
-        src: '/img/main/main1.jpg',
-        url: 'https://mp.weixin.qq.com/s/yv66H-tCPyrHuSEc1cOK5Q',
-        desc: '点击查看图文详情'
-      },
-      {
-        caption: '东师姑娘',
-        subCaption: '这里有一首歌唱给你听',
-        ensubCaption: 'We prepare a song for you, girls.',
-        src: '/img/main/main2.jpg',
-        url: 'https://mp.weixin.qq.com/s/QcPo0a57ZY-aI5PWXbM7tA',
-        alt: '这里有一首歌唱给你听',
-        desc: '点击查看图文详情'
-      }
-    ]
-  };
+const Main = createComponent({
+  components: { BaseCarousel, BaseGrid, BaseTimeLine },
+  setup(props, context) {
+    const carouselData = value({
+      myId: 'Main',
+      content: [
+        {
+          caption: 'NENUYouth',
+          subCaption: '东师微信小程序已上线',
+          ensubCaption: 'Wechat Miniprogram is released！',
+          alt: '东师微信小程序已上线',
+          src: '/img/main/main0.jpg',
+          url: 'https://mp.weixin.qq.com/s/w_CbkYVuTcByXCxEnlJ63w',
+          desc: '点击查看图文详情',
+          black: true
+        },
+        {
+          caption: '我是东师',
+          subCaption: '未来，请多指教',
+          ensubCaption: 'New Experience, New Us!',
+          alt: '未来，请多指教',
+          src: '/img/main/main1.jpg',
+          url: 'https://mp.weixin.qq.com/s/yv66H-tCPyrHuSEc1cOK5Q',
+          desc: '点击查看图文详情'
+        },
+        {
+          caption: '东师姑娘',
+          subCaption: '这里有一首歌唱给你听',
+          ensubCaption: 'We prepare a song for you, girls.',
+          src: '/img/main/main2.jpg',
+          url: 'https://mp.weixin.qq.com/s/QcPo0a57ZY-aI5PWXbM7tA',
+          alt: '这里有一首歌唱给你听',
+          desc: '点击查看图文详情'
+        }
+      ]
+    });
+    const guidelist = value(require('|/guide'));
+    const timeList = value([] as TimeListItem[]);
 
-  private guidelist = require('|/guide');
-
-  private timeList = [];
-
-  private created() {
-    axios
-      .get('/config/calendar/2019spring.json')
-      .then(response => {
-        this.timeList = response.data;
-      })
-      .catch(err => {
-        this.$confirm({
-          title: '校历获取错误',
-          content: `校历获取失败，错误信息为${err}\n请汇报给Mr.Hope!`,
-          autoFocusButton: 'cancel',
-          cancelText: '确定',
-          okText: '汇报',
-          okType: 'danger',
-          onOk: () => {
-            this.$router.back();
-            window.open('http://wpa.qq.com/msgrd?v=3&uin=1178522294&site=qq&menu=yes');
-          },
-          onCancel: () => {
-            this.$router.back();
-          }
+    onCreated(() => {
+      axios.get('/config/calendar/2019spring.json')
+        .then(response => {
+          timeList.value = response.data;
+        })
+        .catch(err => {
+          context.root.$confirm({
+            title: '校历获取错误',
+            content: `校历获取失败，错误信息为${err}\n请汇报给Mr.Hope!`,
+            autoFocusButton: 'cancel',
+            cancelText: '确定',
+            okText: '汇报',
+            okType: 'danger',
+            onOk: () => {
+              context.root.$router.back();
+              window.open('http://wpa.qq.com/msgrd?v=3&uin=1178522294&site=qq&menu=yes');
+            },
+            onCancel: () => {
+              context.root.$router.back();
+            }
+          });
         });
-      });
+    });
+
+    return {
+      carouselData,
+      timeList,
+      guidelist
+    };
   }
-}
+});
+
+export default Main;
 </script>
 <style lang="scss" scoped>
 .blockButton {
