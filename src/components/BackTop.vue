@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: BackTop Button
  * @Date: 2019-03-22 19:30:08
- * @LastEditTime: 2019-07-01 22:54:11
+ * @LastEditTime: 2019-07-30 14:39:28
 -->
 <template>
   <transition name="myfade">
@@ -13,9 +13,9 @@
   </transition>
 </template>
 <script lang="ts">
-import BackTopSvg from '|/icon/backTop.svg';
 import { Component, Vue } from 'vue-property-decorator';
 import $ from 'jquery';
+import BackTopSvg from '|/icon/backTop.svg';
 
 @Component
 export default class BackTop extends Vue {

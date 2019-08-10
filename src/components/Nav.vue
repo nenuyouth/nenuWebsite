@@ -44,8 +44,8 @@
 </template>
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
-import Back from '|/icon/back.svg';
 import { Route } from 'vue-router';
+import Back from '|/icon/back.svg';
 
 @Component({ components: { Back } })
 export default class Nav extends Vue {
