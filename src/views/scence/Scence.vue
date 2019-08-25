@@ -5,5 +5,5 @@
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component
-export default class Scence extends Vue {}
+export default class Scence extends Vue { }
 </script>

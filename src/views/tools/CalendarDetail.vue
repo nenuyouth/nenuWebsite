@@ -3,14 +3,14 @@
     <h1>东北师大2019年春季学期校历</h1>
     <div @click="$router.push('/tool/calendar')" class="backButton">
       校历
-      <br>主页
+      <br />主页
     </div>
-    <hr>
-    <base-time-line :time-list="timeList"/>
+    <hr />
+    <base-time-line :time-list="timeList" />
   </div>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator';
 import axios from 'axios';
 import BaseTimeLine, { TimeListItem } from '#/BaseTimeLine.vue';
 

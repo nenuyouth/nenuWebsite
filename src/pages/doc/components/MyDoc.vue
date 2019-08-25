@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-07-03 00:24:37
+ * @LastEditTime: 2019-08-25 23:37:50
 -->
 <template>
   <!-- 标题设置 -->
@@ -121,7 +121,7 @@ export default class MyDoc extends Vue {
   }
 
   @Watch('path')
-  private onPathChange(to: string, from: string) {
+  private onPathChange() {
     // 当路径改变时写入编译后的html
     this.compiledMarkdown = this.$store.state.compiledDoc[this.path];
   }

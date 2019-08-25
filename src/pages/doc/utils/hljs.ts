@@ -3,12 +3,12 @@
  * @LastEditors: Mr.Hope
  * @Description: Hightlight.js 配置文件
  * @Date: 2019-05-06 01:30:09
- * @LastEditTime: 2019-05-06 12:26:26
+ * @LastEditTime: 2019-08-25 23:37:13
  */
 
+/* eslint-disable @typescript-eslint/no-var-requires */
 import hljs from 'highlight.js/lib/highlight';
 
-// tslint:disable: no-var-requires
 hljs.registerLanguage('apache', require('highlight.js/lib/languages/apache'));
 hljs.registerLanguage('xml', require('highlight.js/lib/languages/xml'));
 hljs.registerLanguage('bash', require('highlight.js/lib/languages/bash'));

@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-07-09 09:23:59
+ * @LastEditTime: 2019-08-25 23:37:40
 -->
 <template>
   <div class="container mt-3 pb-3">
@@ -17,14 +17,14 @@
           0 0 150.826667 62.378667A212.565333 212.565333 0 0 0 512
           813.696l30.165333-30.165333-60.330666-60.330667-30.165334 30.165333a128.298667 128.298667
           0 0 1-181.034666 0 128.213333 128.213333 0 0 1 0-181.034666l90.538666-90.496z"
-        ></path>
+        />
         <path
           d="M723.157333 602.496L813.696 512a213.674667 213.674667 0 0 0 0-301.696 213.589333 213.589333 0 0
           0-301.696 0l-30.165333 30.165333 60.330666 60.330667 30.165334-30.165333a128.298667 128.298667 0 0 1
           181.034666 0 128.213333 128.213333 0 0 1 0 181.034666l-90.538666 90.496c-48.341333 48.341333-132.650667
           48.341333-180.992 0L451.669333 512l-60.330666 60.330667 30.165333 30.165333c40.234667 40.277333
           93.824 62.506667 150.826667 62.506667s110.592-22.229333 150.826666-62.506667z"
-        ></path>
+        />
       </symbol>
       <!-- 外部链接 -->
       <symbol id="outbound">
@@ -32,11 +32,11 @@
           d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,
           0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"
           fill="#2ecc71"
-        ></path>
+        />
         <polygon
           fill="#2ecc71"
           points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"
-        ></polygon>
+        />
       </symbol>
     </svg>
 
@@ -46,9 +46,9 @@
         <!-- 加载状态 -->
         <a-spin :spinning="$store.state.docLoading">
           <template #indicator>
-            <img alt="加载中" class="loadingIcon" src="/img/icon/logo.png">
+            <img alt="加载中" class="loadingIcon" src="/img/icon/logo.png" />
           </template>
-          <div class="markdown-body" v-html="docContent"/>
+          <div class="markdown-body" v-html="docContent" />
         </a-spin>
       </a-col>
 
@@ -84,7 +84,7 @@
 
     <!-- md及以下屏幕的目录侧边栏 -->
     <!-- 屏幕蒙层 -->
-    <div @click="asideToggle" id="asideScreenMask" style="display:none;"/>
+    <div @click="asideToggle" id="asideScreenMask" style="display:none;" />
     <!-- 侧边目录 -->
     <div
       class="d-block d-lg-none"
@@ -94,13 +94,13 @@
     >
       <div @click="asideToggle" class="asideSlideBtn">
         <template v-if="asideExpand">
-          <div class="w-100" style="height:49.6px;"/>
-          <a-icon style="position:absolute;top:24.3px;left:9.5px;" type="close"/>
+          <div class="w-100" style="height:49.6px;" />
+          <a-icon style="position:absolute;top:24.3px;left:9.5px;" type="close" />
         </template>
         <template v-else>目录</template>
       </div>
       <aside class="shadow" id="aside">
-        <div @click="scrollTop" class="asideH1 asideHeading" v-text="docTitle"/>
+        <div @click="scrollTop" class="asideH1 asideHeading" v-text="docTitle" />
         <a-anchor
           :affix="false"
           :offsetTop="42"
@@ -123,7 +123,6 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
-import { Route } from 'vue-router';
 import $ from 'jquery';
 
 interface Aside {

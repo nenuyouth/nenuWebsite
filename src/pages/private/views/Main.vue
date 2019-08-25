@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-06-03 12:19:46
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-07-02 13:06:16
+ * @LastEditTime: 2019-08-25 23:38:38
  * @Description: Private Main page
 -->
 <template>
@@ -12,7 +12,7 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator';
 import BaseSteps from '#/BaseSteps.vue';
 
 @Component({ components: { BaseSteps } })

@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-19 17:25:48
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-07-30 00:39:27
+ * @LastEditTime: 2019-08-25 23:39:19
  * @Description: 测试
 -->
 <template>
@@ -38,7 +38,7 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Prop, Provide, Vue } from 'vue-property-decorator';
+import { Component, Provide, Vue } from 'vue-property-decorator';
 import DropdownGrid, { GridMenuList } from '#/DropdownGrid.vue';
 import DropdownTitle from '#/DropdownTitle.vue';
 import FormInput from '#/FormInput.vue';

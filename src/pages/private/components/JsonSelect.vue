@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-06-03 12:19:46
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-07-03 12:24:13
+ * @LastEditTime: 2019-08-25 23:39:30
  * @Description: JSON选择
 -->
 <template>
@@ -42,7 +42,7 @@
   </a-row>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator';
 
 @Component
 export default class JsonSelect extends Vue {

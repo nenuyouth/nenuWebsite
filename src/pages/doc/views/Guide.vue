@@ -3,10 +3,10 @@
  * @LastEditors: Mr.Hope
  * @Description: Guide Doc display
  * @Date: 2019-04-01 16:10:20
- * @LastEditTime: 2019-06-25 10:18:36
+ * @LastEditTime: 2019-08-25 23:36:36
 -->
 <template>
-  <MyGuide :baselength="baselength" :loading="$store.state.docLoading" :path="path"/>
+  <MyGuide :baselength="baselength" :loading="$store.state.docLoading" :path="path" />
 </template>
 
 <script lang="ts">

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h2 class="px-3 pt-3 text-left">充值入口</h2>
-    <hr class="mx-3">
+    <hr class="mx-3" />
     <a-row justify="center" type="flex">
       <a-col :lg="6" :xs="12">
         <a-button @click="navigate" block type="primary">充值入口</a-button>
@@ -9,7 +9,7 @@
     </a-row>
 
     <h2 class="px-3 pt-3">注意事项</h2>
-    <hr class="mx-3">
+    <hr class="mx-3" />
 
     <p class="px-3">
       <span style="font-size: 20px;font-weight: bold;">1.</span>

@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-06-26 20:26:14
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-08-25 23:56:06
+ * @LastEditTime: 2019-08-25 23:58:14
  * @Description: 侧边栏组件
 -->
 <template>
@@ -34,32 +34,34 @@
   </aside>
 </template>
 <script lang='ts'>
-import { Component, Vue } from 'vue-property-decorator';
+import { computed, createComponent, inject, ref, onMounted } from '@vue/composition-api';
 import $ from 'jquery';
 import BaseMenu from '#/BaseMenu.vue';
 
-@Component({ components: { BaseMenu } })
-export default class Slide extends Vue {
-  // 菜单收起状态
-  private collapse = false;
+export default createComponent({
+  name: 'Slide',
+  components: { BaseMenu },
+  setup(props, context) {
+    // 菜单收起状态
+    const collapse = ref(false);
+    // 当前主题
+    const theme = computed(() => context.root.$store.state.nightmode ? 'dark' : 'light');
 
-  // 当前主题
-  private get theme() {
-    return this.$store.state.nightmode ? 'dark' : 'light';
-  }
+    const trigger = () => {
+      collapse.value = !collapse.value;
+      $('.ant-layout-sider-children').css({ zIndex: collapse.value ? '-1' : '4' });
+      if (collapse.value) $('.slideMask').fadeOut(200);
+      else $('.slideMask').fadeIn(200);
+    };
 
-  private trigger() {
-    this.collapse = !this.collapse;
-    $('.ant-layout-sider-children').css({ zIndex: this.collapse ? '-1' : '4' });
-    if (this.collapse) $('.slideMask').fadeOut(200);
-    else $('.slideMask').fadeIn(200);
-  }
+    const onBreakpoint = (broken: boolean) => {
+      if (!broken) $('.slideMask').css({ display: 'none' });
+      $('.ant-layout-sider-children').css({ zIndex: broken ? '-1' : '4' });
+    };
 
-  private onBreakpoint(broken: boolean) {
-    if (!broken) $('.slideMask').css({ display: 'none' });
-    $('.ant-layout-sider-children').css({ zIndex: broken ? '-1' : '4' });
+    return { collapse, theme, trigger, onBreakpoint };
   }
-}
+});
 </script>
 <style lang='scss'>
 .asideLogo {

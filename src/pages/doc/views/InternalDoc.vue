@@ -3,10 +3,10 @@
  * @LastEditors: Mr.Hope
  * @Description: Internal Doc Display
  * @Date: 2019-04-01 23:35:43
- * @LastEditTime: 2019-06-25 10:15:50
+ * @LastEditTime: 2019-08-25 23:36:29
 -->
 <template>
-  <MyDoc :baselength="baselength" :loading="$store.state.docLoading" :path="path"/>
+  <MyDoc :baselength="baselength" :loading="$store.state.docLoading" :path="path" />
 </template>
 
 <script lang="ts">

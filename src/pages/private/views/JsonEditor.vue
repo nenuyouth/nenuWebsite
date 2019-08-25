@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-06-03 12:19:46
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-07-03 11:42:21
+ * @LastEditTime: 2019-08-25 23:38:32
  * @Description: JSON修改
 -->
 <template>
@@ -17,7 +17,7 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator';
 import BaseSteps from '#/BaseSteps.vue';
 import JsonSelect from '../components/JsonSelect.vue';
 

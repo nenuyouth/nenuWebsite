@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: router配置文件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-06-21 21:08:13
+ * @LastEditTime: 2019-08-25 23:39:09
  */
 
 import Vue from 'vue';
@@ -12,7 +12,7 @@ import routes from './route';
 
 Vue.use(Router); // 使用官方Router
 
-// tslint:disable-next-line: no-var-requires
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 Vue.use(require('vue-wechat-title')); // 启用wechat客户端内对title属性的支持。
 
 /**

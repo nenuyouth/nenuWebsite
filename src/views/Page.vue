@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 自动生成界面
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-06-26 16:50:22
+ * @LastEditTime: 2019-08-25 23:34:34
 -->
 <template>
   <keep-alive :max="5">
@@ -11,7 +11,7 @@
   </keep-alive>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
+import { Component, Prop, Vue } from 'vue-property-decorator';
 import { Route } from 'vue-router';
 import axios from 'axios';
 import BasePage from '#/BasePage.vue';

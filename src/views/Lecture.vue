@@ -3,14 +3,14 @@
  * @LastEditors: Mr.Hope
  * @Description: 东师指南页面
  * @Date: 2019-03-24 11:14:13
- * @LastEditTime: 2019-07-02 12:19:06
+ * @LastEditTime: 2019-08-25 23:34:21
 -->
 <template>
   <div class="container">
     <h2 class="px-3 pt-3">讲座信息</h2>
-    <hr>
+    <hr />
     <a-menu @click="menuHandler" mode="horizontal" v-model="current">
-      <a-menu-item :key="item[0]" v-for="item in schools" v-text="item[1]"/>
+      <a-menu-item :key="item[0]" v-for="item in schools" v-text="item[1]" />
     </a-menu>
     <a-skeleton
       :paragraph="{rows:10,width:['50%','80%','60%','80%','60%','40%','80%','60%','80%','30%']}"
@@ -18,7 +18,7 @@
       title="50%"
       v-if="lectureList.length===0"
     />
-    <LectureList :list="lectureList" v-else/>
+    <LectureList :list="lectureList" v-else />
   </div>
 </template>
 

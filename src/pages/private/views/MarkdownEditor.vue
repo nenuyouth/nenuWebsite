@@ -3,12 +3,12 @@
     <a-button @click="editable=false" type="primary" v-if="editable">编辑</a-button>
     <a-button @click="editable=true" v-else>编辑</a-button>
     <div id="editor">
-      <mavon-editor :editable="editable" style="height: 100%" v-model="value"/>
+      <mavon-editor :editable="editable" style="height: 100%" v-model="value" />
     </div>
   </div>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator';
 import { mavonEditor } from 'mavon-editor';
 
 // @Component

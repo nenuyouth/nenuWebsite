@@ -82,6 +82,11 @@
         "text": "资助",
         "icon": "/img/icon/tabPage/subsidize.svg",
         "url": "/guide/subsidize"
+      },
+      {
+        "text": "学校机构",
+        "icon": "/img/icon/tabPage/studentOrg.svg",
+        "url": "/guide/apartment"
       }
     ]
   },

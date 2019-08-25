@@ -3,18 +3,18 @@
  * @LastEditors: Mr.Hope
  * @Description: BackTop Button
  * @Date: 2019-03-22 19:30:08
- * @LastEditTime: 2019-08-25 15:21:34
+ * @LastEditTime: 2019-08-25 23:01:44
 -->
 <template>
   <transition name="myfade">
     <div @click="scrollTop" class="scrollTop" v-if="display">
-      <a-icon :component="backTopSvg" style="font-size:38px;margin:-1px;" />
+      <a-icon :component="BackTopSvg" style="font-size:38px;margin:-1px;" />
     </div>
   </transition>
 </template>
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
 import $ from 'jquery';
+import { Component, Vue } from 'vue-property-decorator';
 import BackTopSvg from '|/icon/backTop.svg';
 
 @Component

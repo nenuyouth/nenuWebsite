@@ -5,5 +5,5 @@
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component
-export default class Benbu extends Vue {}
+export default class Benbu extends Vue { }
 </script>

@@ -6,15 +6,14 @@
   </div>
 </template>
 <script lang="ts">
-import { createComponent } from '@vue/composition-api';
+import { Component, Vue } from 'vue-property-decorator';
 import Gear from '|/icon/gear.svg';
 import GearGreen from '|/icon/gearGreen.svg';
 
-export default createComponent({
-  name: 'LoadingGear',
-  components: { Gear, GearGreen }
-});
+@Component({ components: { Gear, GearGreen } })
+export default class LoadingGear extends Vue { }
 </script>
+
 <style scoped>
 .loadingGear {
   width: 60px;

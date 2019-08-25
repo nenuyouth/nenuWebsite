@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-15 20:56:30
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-08-25 19:40:07
+ * @LastEditTime: 2019-08-25 23:23:39
  * @Description: Dropdown Title
 -->
 <template>
@@ -36,7 +36,8 @@ interface Props {
   selected: string;
 }
 
-const DropdownTitle = createComponent<Props, {}>({
+export default createComponent<Props, {}>({
+  name: 'DropdownTitle',
   props: {
     menu: Array,
     selected: String
@@ -68,6 +69,4 @@ const DropdownTitle = createComponent<Props, {}>({
     };
   }
 });
-
-export default DropdownTitle;
 </script>

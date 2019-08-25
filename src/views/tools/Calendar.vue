@@ -1,9 +1,9 @@
 <template>
   <div class="container">
     <h1>东北师大校历</h1>
-    <hr>
+    <hr />
     <div class="desc">点击学期查看学期详情</div>
-    <base-time-line :time-list="timeList"/>
+    <base-time-line :time-list="timeList" />
   </div>
 </template>
 <script lang="ts">

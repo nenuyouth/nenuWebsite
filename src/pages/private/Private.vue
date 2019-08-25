@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 内部视图文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-06-14 15:25:50
+ * @LastEditTime: 2019-08-25 23:38:19
 -->
 <template>
   <a-layout id="private">
@@ -11,14 +11,14 @@
       <!-- <transition :name="transitionName"> -->
       <a-layout-content id="content">
         <keep-alive :max="10">
-          <router-view v-if="$route.meta.title!==false"/>
-          <router-view v-else v-wechat-title="$route.meta.title||'东北师范大学学生会'"/>
+          <router-view v-if="$route.meta.title!==false" />
+          <router-view v-else v-wechat-title="$route.meta.title||'东北师范大学学生会'" />
         </keep-alive>
       </a-layout-content>
       <!-- </transition> -->
-      <back-top/>
+      <back-top />
     </a-layout>
-    <base-viewer/>
+    <base-viewer />
   </a-layout>
 </template>
 <script lang='ts'>

@@ -1,11 +1,11 @@
 <template>
   <div class="container">
     <h2 class="px-3 pt-3">学院微信</h2>
-    <hr class="mx-3">
+    <hr class="mx-3" />
     <div class="row px-3">
-      <a
-        :href="item.url"
+      <div
         :key="item.text"
+        @click="$navigate(item.url,$router,$route)"
         class="col-4 col-sm-3 col-md-2 col-lg-1 col-fix"
         v-for="item in gzh"
       >
@@ -13,15 +13,14 @@
           :src="require(`|/schoolGzh/${item.src}.jpg`)"
           class="img-thumbnail mt-1 img-fix"
           style="border-radius:50%;"
-        >
-        <p class="mx-1 my-2 gzhName">{{ item.text }}</p>
-      </a>
+        />
+        <p class="mx-1 my-2 gzhName">{{item.text}}</p>
+      </div>
     </div>
   </div>
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import BaseCarousel from '#/BaseCarousel.vue';
 
 @Component
 export default class SchoolGzh extends Vue {

@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主页
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-08-25 19:50:34
+ * @LastEditTime: 2019-08-25 23:00:19
 -->
 <template>
   <div class="container">
@@ -19,7 +19,7 @@
     </div>
     <base-carousel v-bind="carouselData" />
     <h2 class="px-3 pt-3">东师指南</h2>
-    <BaseGrid :content="guidelist" />
+    <BaseGrid :key="item.head" v-bind="item" v-for="item in guidelist"/>
     <h2 class="px-3 pt-3">东师手册</h2>
     <a-button
       @click="$navigate('https://nenuyouth.com/doc',$router,$route)"
@@ -87,7 +87,7 @@ export default class Main extends Vue {
     ]
   };
 
-  private guidelist = require('|/guide');
+  private readonly guidelist = require('|/guideList');
 
   private timeList = [];
 

@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-15 20:56:30
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-08-25 21:19:39
+ * @LastEditTime: 2019-08-25 21:24:46
  * @Description: Dropdown Grid
 -->
 <template>
@@ -37,7 +37,6 @@
     </a-dropdown>
   </a-divider>
 </template>
-
 <script lang="ts">
 import { createComponent, onMounted, ref } from '@vue/composition-api';
 
@@ -98,7 +97,6 @@ export default createComponent<Props, {}>({
   }
 });
 </script>
-
 <style lang='scss' scoped>
 @import '~%/Weui/scss/border';
 

@@ -3,27 +3,27 @@
  * @LastEditors: Mr.Hope
  * @Description: eslint配置文件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-08-25 20:20:54
+ * @LastEditTime: 2019-08-25 22:30:21
  */
 module.exports = {
   // 阻止eslint读取父目录或总配置文件的规则
   root: true,
 
   // es-loader配置
-  settings: {
-    // 'import/resolver': {
-    //   alias: {
-    //     map: [
-    //       ['icon', './node_modules/@ant-design/icons/lib/'],
-    //       ['ol', './node_modules/@ant-design/icons/lib/outline/'],
-    //       ['@', './src/'],
-    //       ['|', './src/assets/'],
-    //       ['#', './src/components/'],
-    //       ['%', './src/utils/']
-    //     ]
-    //   }
-    // }
-  },
+  // settings: {
+  // 'import/resolver': {
+  //   alias: {
+  //     map: [
+  //       ['icon', './node_modules/@ant-design/icons/lib/'],
+  //       ['ol', './node_modules/@ant-design/icons/lib/outline/'],
+  //       ['@', './src/'],
+  //       ['|', './src/assets/'],
+  //       ['#', './src/components/'],
+  //       ['%', './src/utils/']
+  //     ]
+  //   }
+  // }
+  // },
 
   // 代码所在环境
   env: {
@@ -49,10 +49,10 @@ module.exports = {
 
   // 所使用的规则配置
   extends: [
+    'plugin:vue/essential',
     'eslint:recommended',
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
-    'plugin:vue/essential',
     '@vue/airbnb',
     '@vue/typescript'
   ],

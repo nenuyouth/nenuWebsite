@@ -3,12 +3,12 @@
  * @LastEditors: Mr.Hope
  * @Description: 东师指南页面
  * @Date: 2019-03-24 11:14:13
- * @LastEditTime: 2019-07-30 11:18:39
+ * @LastEditTime: 2019-08-25 23:34:17
 -->
 <template>
   <div class="container">
     <h2 class="px-3 pt-3">东师指南</h2>
-    <BaseGrid :key="item.head" v-bind="item" v-for="item in guidelist"/>
+    <BaseGrid :key="item.head" v-bind="item" v-for="item in guidelist" />
     <h2 class="px-3 pt-3">东师手册</h2>
     <a-button
       @click="$navigate('https://nenuyouth.com/doc',$router,$route)"

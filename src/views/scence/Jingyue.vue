@@ -5,5 +5,5 @@
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component
-export default class Jingyue extends Vue {}
+export default class Jingyue extends Vue { }
 </script>
