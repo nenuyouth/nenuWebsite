@@ -1,20 +1,31 @@
+<!--
+ * @Author: Mr.Hope
+ * @Date: 2019-06-26 20:26:14
+ * @LastEditors: Mr.Hope
+ * @LastEditTime: 2019-08-25 21:14:40
+ * @Description: 电话组件
+-->
 <template>
   <div :id="myId" class="phoneCtn">
-    <Phone class="phoneIcon"/>
-    <div class="phoneNum" v-text="num"/>
+    <Phone class="phoneIcon" />
+    <div class="phoneNum" v-text="num" />
   </div>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { createComponent } from '@vue/composition-api';
 import Phone from '|/icon/phone.svg';
 
-@Component({ components: { Phone } })
-export default class BasePhone extends Vue {
-  @Prop(Number) private readonly myId!: number;
+const BasePhone = createComponent({
+  props: {
+    // Component ID
+    myId: Number,
+    // Telephone Number
+    num: { type: [String, Number], required: true }
+  },
+  components: { Phone }
+});
 
-  @Prop({ type: [String, Number], required: true })
-  private readonly num!: string | number;
-}
+export default BasePhone;
 </script>
 <style scoped>
 .phoneCtn {

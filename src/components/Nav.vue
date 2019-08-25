@@ -43,8 +43,7 @@
   </a-menu>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
-import { Route } from 'vue-router';
+import { Component, Vue, Watch } from 'vue-property-decorator';
 import Back from '|/icon/back.svg';
 
 @Component({ components: { Back } })
@@ -70,7 +69,7 @@ export default class Nav extends Vue {
   }
 
   @Watch('$route')
-  private onRouteChange(to: Route, from: Route) {
+  private onRouteChange() {
     if (this.firstNavigate) {
       this.firstNavigate = false;
       setTimeout(() => {

@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-22 18:45:04
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-07-02 12:10:41
+ * @LastEditTime: 2019-08-25 19:41:03
  * @Description: Form Array Input
 -->
 <template>
@@ -50,10 +50,8 @@
 </template>
 <script lang="ts">
 import { Component, Inject, Prop, Vue } from 'vue-property-decorator';
-import FormInput from '#/FormInput.vue';
 import { Config } from '%/pageConfig';
 
-// @Component({ components: { FormInput } })
 @Component({ components: { FormInput: () => import('#/FormInput.vue') } })
 export default class FormArrayInput extends Vue {
   @Prop(Object) private readonly configuration!: Config;

@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 时间轴插件
  * @Date: 2019-03-23 18:29:52
- * @LastEditTime: 2019-08-25 19:38:16
+ * @LastEditTime: 2019-08-25 21:16:26
 -->
 <template>
   <a-timeline :mode="mode">
@@ -29,7 +29,7 @@
   </a-timeline>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { computed, createComponent } from '@vue/composition-api';
 
 export interface TimeListItem {
   title?: string;
@@ -40,30 +40,31 @@ export interface TimeListItem {
   icon?: boolean;
 }
 
-@Component
-export default class BaseTimeLine extends Vue {
-  @Prop(Number) private readonly myId!: number;
+export default createComponent({
+  name: 'BaseTimeLine',
+  props: {
+    // Component ID
+    myId: Number,
+    // timelist to display
+    timeList: { required: true, type: Array } // TimeListItem[];
+  },
+  setup(props, context) {
+    const list = computed(() => {
+      const text: string[] = [];
 
-  // timelist to display
-  @Prop({ required: true, type: Array })
-  private readonly timeList!: TimeListItem[];
+      (props.timeList as unknown as TimeListItem[]).forEach((element, index) => {
+        text[index] = element.text.replace(/\n/gu, '<br/>').replace(/\s/gu, '&ensp;');
+      });
 
-  // handle list text
-  private get list() {
-    const list: string[] = [];
-
-    this.timeList.forEach((element, index) => {
-      list[index] = element.text.replace(/\n/gu, '<br/>').replace(/\s/gu, '&ensp;');
+      return text;
     });
 
-    return list;
-  }
+    // change display mode according to screen width
+    const mode = computed(() => context.root.$store.state.screen.sm ? 'alternate' : 'left');
 
-  // change display mode according to screen width
-  private get mode() {
-    return this.$store.state.screen.sm ? 'alternate' : 'left';
+    return { list, mode };
   }
-}
+});
 </script>
 <style>
 .timeLineButton {

@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 基础页面显示
  * @Date: 2019-02-24 22:21:25
- * @LastEditTime: 2019-08-10 14:16:57
+ * @LastEditTime: 2019-08-25 19:35:31
 -->
 <template>
   <div class="container page">
@@ -11,7 +11,7 @@
   </div>
 </template>
 <script lang="ts">
-import { createComponent, computed } from 'vue-function-api';
+import { Component, Prop, Vue } from 'vue-property-decorator';
 import BaseHead from '#/BaseHead.vue';
 import BaseTitle from '#/BaseTitle.vue';
 import BaseP from '#/BaseP.vue';
@@ -21,15 +21,7 @@ import BaseCarousel from '#/BaseCarousel.vue';
 import BasePhone from '#/BasePhone.vue';
 import BaseFoot from '#/BaseFoot.vue';
 
-const BasePage = createComponent({
-  props: {
-    // Page data
-    pagedata: {
-      type: String,
-      required: true,
-      default: '[{"tag":"error"}]'
-    }
-  },
+@Component({
   components: {
     BaseHead,
     BaseTitle,
@@ -39,30 +31,29 @@ const BasePage = createComponent({
     BaseCarousel,
     BasePhone,
     BaseFoot
-  },
-  setup(props, context) {
+  }
+})
+export default class BasePage extends Vue {
+  // Page data
+  @Prop({ type: String, required: true, default: '[{"tag":"error"}]' })
+  private readonly pagedata!: string;
 
-    // Handle Data to change tags
-    const myData = computed(() => {
-      const pageData = JSON.parse(props.pagedata as unknown as string);
-      const imageList: string[] = [];
+  // Handle Data to change tags
+  private get myData() {
+    const pageData = JSON.parse(this.pagedata);
+    const imageList: string[] = [];
 
-      pageData.forEach((element: any, index: number) => {
-        element.myId = index;
-        element.tag = `base-${element.tag}`;
-        if ('src' in element) imageList.push(element.src);
-      });
-
-      context.root.$store.commit('imageList', imageList);
-
-      return pageData;
+    pageData.forEach((element: any, index: number) => {
+      element.myId = index;
+      element.tag = `base-${element.tag}`;
+      if ('src' in element) imageList.push(element.src);
     });
 
-    return { myData };
-  }
-});
+    this.$store.commit('imageList', imageList);
 
-export default BasePage;
+    return pageData;
+  }
+}
 </script>
 <style scoped>
 .page {

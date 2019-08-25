@@ -3,11 +3,11 @@
  * @LastEditors: Mr.Hope
  * @Description: Base Grid
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-08-25 19:03:48
+ * @LastEditTime: 2019-08-25 21:10:29
 -->
 <template>
   <div>
-    <template v-if="head!==false">
+    <template v-if="head !== false">
       <div class="d-block d-lg-none commonhead" v-text="head" />
       <div class="d-none d-lg-block myH3" v-text="head" />
     </template>
@@ -30,7 +30,7 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { createComponent } from '@vue/composition-api';
 
 export interface GridItem {
   text: string; // 文字
@@ -38,20 +38,19 @@ export interface GridItem {
   url: string; // 网址链接
 }
 
-@Component
-export default class BaseGrid extends Vue {
-  // Component ID
-  @Prop(Number) private readonly myId!: number;
-
-  // Grid items
-  @Prop(Array) private readonly content!: GridItem[];
-
-  // Grid head text
-  @Prop({ type: [String, Boolean], default: '' }) private readonly head!: string | boolean;
-
-  // Grid footer text
-  @Prop(String) private readonly foot!: string;
-}
+export default createComponent({
+  name: 'BaseGrid',
+  props: {
+    // Component ID
+    myId: Number,
+    // Grid items
+    content: Array, // Type: GridItem[]
+    // Grid head text
+    head: { type: [String, Boolean], default: '' },
+    // Grid footer text
+    foot: String
+  }
+});
 </script>
 <style lang='scss' scoped>
 @import '~%/Weui/scss/border';

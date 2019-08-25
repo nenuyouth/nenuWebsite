@@ -1,6 +1,6 @@
 <template>
   <aside>
-    <div :style="collapse?'':'left: 200px;'" @click="trigger" class="d-block d-lg-none slideBtn">
+    <div :style="collapse? '': 'left: 200px;'" @click="trigger" class="d-block d-lg-none slideBtn">
       <a-icon type="bars" v-if="collapse" />
       <a-icon type="close" v-else />
     </div>
@@ -27,7 +27,7 @@
   </aside>
 </template>
 <script lang='ts'>
-import { Component, Vue, Watch } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator';
 import $ from 'jquery';
 import BaseMenu from '#/BaseMenu.vue';
 

@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-07-02 12:21:47
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-08-25 19:36:41
+ * @LastEditTime: 2019-08-25 21:15:04
  * @Description: 基础步骤条
 -->
 <template>
@@ -15,7 +15,7 @@
   </a-steps>
 </template>
 <script lang="ts">
-import { Component, Model, Prop, Vue } from 'vue-property-decorator';
+import { createComponent } from '@vue/composition-api';
 
 interface StepsConfig {
   title: string;
@@ -23,14 +23,20 @@ interface StepsConfig {
   icon?: string;
 }
 
-@Component
-export default class BaseSteps extends Vue {
-  @Prop({ type: Boolean, default: false }) private readonly smallSize!: boolean;
-  @Prop(Array) private readonly config!: any[];
+const BaseSteps = createComponent({
+  props: {
+    config: Array,
+    // Whether use small size
+    smallSize: { type: Boolean, default: false },
+    current: Number
+  },
+  model: {
+    prop: 'current',
+    event: 'change'
+  }
+});
 
-  // Step progress index
-  @Model('change', { type: Number }) private current!: number;
-}
+export default BaseSteps;
 </script>
 <style scoped>
 .steps {

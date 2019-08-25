@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Base Vertical Menu
  * @Date: 2019-03-25 12:39:59
- * @LastEditTime: 2019-08-10 14:04:44
+ * @LastEditTime: 2019-08-25 19:07:00
 -->
 <template>
   <a-menu
@@ -32,9 +32,7 @@
 </template>
 
 <script lang='ts'>
-import { computed, createComponent, value } from 'vue-function-api';
-import Vue from 'vue';
-import { Route } from 'vue-router';
+import { Component, Prop, Vue } from 'vue-property-decorator';
 import SubMenu from '#/BaseSubMenu.vue';
 import { MenuItem } from '@/store/module/slide';
 
@@ -46,40 +44,32 @@ interface SelectEvent {
   selectedKeys: string[];
 }
 
-const BaseMenu = createComponent({
-  props: {
-    // A list of menuItems to display
-    list: Array // MenuItem[]
-  },
-  components: { SubMenu },
-  setup(props, context) {
+@Component({ components: { SubMenu } })
+export default class BaseMenu extends Vue {
+  // A list of menuItems to display
+  @Prop(Array) private readonly list!: MenuItem[];
 
-    // Menu collapse status
-    const collapsed = value(false);
+  // Menu collapse status
+  private collapsed = false;
 
-    /*
-     * Current selected menu => to show thie right active status in the menulist
-     * V-model must has a setter, or an error will be triggered by vue
-     * nothing to do, path has been handled in the main.ts
-     */
-    const active = computed(() => [context.root.$store.state.path], () => { });
-
-    // Change the theme according to the "nightmode" status
-    const theme = computed(() => context.root.$store.state.nightmode ? 'dark' : 'light');
-
-    // navigate to the menuitem page when clicking it
-    const select = (event: SelectEvent) => {
-      context.root.$router.push(event.key);
-    };
-
-    return {
-      collapsed,
-      active,
-      theme,
-      select
-    };
+  // Current selected menu => to show thie right active status in the menulist
+  private get active() {
+    return [this.$store.state.path];
   }
-});
 
-export default BaseMenu;
+  // V-model must has a setter, or an error will be triggered by vue
+  private set active(active) {
+    // nothing to do, path has been handled in the main.ts
+  }
+
+  // Change the theme according to the "nightmode" status
+  private get theme() {
+    return this.$store.state.nightmode ? 'dark' : 'light';
+  }
+
+  // navigate to the menuitem page when clicking it
+  private select(e: SelectEvent) {
+    this.$router.push(e.key);
+  }
+}
 </script>

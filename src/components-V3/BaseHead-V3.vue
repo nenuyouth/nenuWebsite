@@ -3,23 +3,25 @@
  * @LastEditors: Mr.Hope
  * @Description: 基础主标题
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-08-25 19:04:12
+ * @LastEditTime: 2019-08-25 21:10:50
 -->
 <template>
   <!-- 设置网页title -->
   <div :id="myId" class="title" v-text="title" v-wechat-title="title" />
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { createComponent } from '@vue/composition-api';
 
-@Component
-export default class BaseHead extends Vue {
-  // Component ID
-  @Prop(Number) private readonly myId!: number;
 
-  // Title of displayed page
-  @Prop({ type: String, required: true }) private readonly title!: string;
-}
+export default createComponent({
+  name: 'BaseHead',
+  props: {
+    // Component ID
+    myId: Number,
+    // Title of displayed page
+    title: { type: String, required: true }
+  }
+});
 </script>
 <style scoped>
 .title {

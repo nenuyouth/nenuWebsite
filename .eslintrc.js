@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: eslint配置文件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-05-29 23:20:03
+ * @LastEditTime: 2019-08-25 20:20:54
  */
 module.exports = {
   // 阻止eslint读取父目录或总配置文件的规则
@@ -11,18 +11,18 @@ module.exports = {
 
   // es-loader配置
   settings: {
-    'import/resolver': {
-      alias: {
-        map: [
-          ['icon', './node_modules/@ant-design/icons/lib/'],
-          ['ol', './node_modules/@ant-design/icons/lib/outline/'],
-          ['@', './src/'],
-          ['|', './src/assets/'],
-          ['#', './src/components/'],
-          ['%', './src/utils/']
-        ]
-      }
-    }
+    // 'import/resolver': {
+    //   alias: {
+    //     map: [
+    //       ['icon', './node_modules/@ant-design/icons/lib/'],
+    //       ['ol', './node_modules/@ant-design/icons/lib/outline/'],
+    //       ['@', './src/'],
+    //       ['|', './src/assets/'],
+    //       ['#', './src/components/'],
+    //       ['%', './src/utils/']
+    //     ]
+    //   }
+    // }
   },
 
   // 代码所在环境
@@ -34,9 +34,24 @@ module.exports = {
     node: true
   },
 
+  parser: "vue-eslint-parser",
+
+  // 设置eslint解释器,
+  parserOptions: {
+    parser: '@typescript-eslint/parser',
+    project: './tsconfig.json',
+    extraFileExtensions: ['vue']
+  },
+
+  plugins: [
+    '@typescript-eslint'
+  ],
+
   // 所使用的规则配置
   extends: [
     'eslint:recommended',
+    'plugin:@typescript-eslint/eslint-recommended',
+    'plugin:@typescript-eslint/recommended',
     'plugin:vue/essential',
     '@vue/airbnb',
     '@vue/typescript'
@@ -106,9 +121,13 @@ module.exports = {
     'lines-between-class-members': 'off',
     'max-classes-per-file': 'error',
     'max-depth': 'error',
-    'max-len': ['error', {
-      code: 120, ignoreComments: true, ignoreStrings: true, ignoreUrls: true, tabWidth: 2, ignoreTemplateLiterals: true, ignoreRegExpLiterals: true
-    }],
+    'max-len': [
+      'error',
+      {
+        code: 120, ignoreComments: true, ignoreStrings: true, ignoreUrls: true,
+        tabWidth: 2, ignoreTemplateLiterals: true, ignoreRegExpLiterals: true
+      }
+    ],
     'max-lines': 'off',
     'max-lines-per-function': 'off',
     'max-nested-callbacks': 'error',
@@ -140,7 +159,7 @@ module.exports = {
     'no-extend-native': 'error',
     'no-extra-bind': 'error',
     'no-extra-label': 'error',
-    'no-extra-parens': 'error',
+    'no-extra-parens': 'off',
     'no-floating-decimal': 'error',
     'no-global-assign': 'error',
     'no-implicit-globals': 'error',
@@ -157,18 +176,22 @@ module.exports = {
     'no-misleading-character-class': 'error',
     'no-mixed-operators': [
       'error',
-      { groups: [['&', '|', '^', '~', '<<', '>>', '>>>'], ['&&', '||']] }
+      {
+        groups: [
+          ['&', '|', '^', '~', '<<', '>>', '>>>'],
+          ['&&', '||']
+        ]
+      }
     ],
     'no-mixed-requires': 'error',
     'no-multi-assign': 'off',
     'no-multi-spaces': [
       'error',
-      {
-        ignoreEOLComments: true
-      }
+      { ignoreEOLComments: true }
     ],
     'no-multi-str': 'error',
     'no-multiple-empty-lines': 'error',
+    'no-useless-escape': 'off',
     'no-negated-condition': 'error',
     'no-nested-ternary': 'off',
     'no-new': 'error',
@@ -203,7 +226,7 @@ module.exports = {
     'no-throw-literal': 'error',
     'no-trailing-spaces': 'error',
     'no-undef-init': 'error',
-    'no-undefined': 'error',
+    'no-undefined': 'off',
     'no-underscore-dangle': 'off',
     'no-unmodified-loop-condition': 'error',
     'no-unneeded-ternary': 'error',
@@ -218,16 +241,26 @@ module.exports = {
     'no-useless-return': 'error',
     'no-var': 'error',
     'no-void': 'error',
-    'no-warning-comments': ['warn', { terms: ['todo', 'fixme', 'xxx'], location: 'start' }],
+    'no-warning-comments': [
+      'warn',
+      {
+        terms: ['todo', 'fixme'],
+        location: 'start'
+      }
+    ],
     'no-whitespace-before-property': 'error',
     'no-with': 'error',
-    'nonblock-statement-body-position': ['error', 'any'],
-    'object-curly-newline': ['error', {
-      ExportDeclaration: { multiline: true, minProperties: 3 },
-      ImportDeclaration: { multiline: true, minProperties: 5 },
-      ObjectExpression: { multiline: true },
-      ObjectPattern: { multiline: true }
-    }],
+    'nonblock-statement-body-position': ['error', 'any'
+    ],
+    'object-curly-newline': [
+      'error',
+      {
+        ExportDeclaration: { multiline: true, minProperties: 3 },
+        ImportDeclaration: { multiline: true, minProperties: 5 },
+        ObjectExpression: { multiline: true },
+        ObjectPattern: { multiline: true }
+      }
+    ],
     'object-curly-spacing': 'off',
     'object-property-newline': 'off',
     'object-shorthand': 'error',
@@ -246,7 +279,7 @@ module.exports = {
     ],
     'prefer-arrow-callback': 'error',
     'prefer-const': 'error',
-    'prefer-destructuring': ['error', { object: true, array: false }],
+    'prefer-destructuring': ['off', { object: true, array: false }],
     'prefer-numeric-literals': 'error',
     'prefer-object-spread': 'error',
     'prefer-promise-reject-errors': 'error',
@@ -263,7 +296,6 @@ module.exports = {
     semi: 'error',
     'semi-spacing': 'error',
     'semi-style': 'error',
-
     // 禁止无用排序
     'sort-imports': 'off',
     'sort-keys': 'off',
@@ -290,11 +322,14 @@ module.exports = {
     'vars-on-top': 'error',
     'wrap-regex': 'error',
     'yield-star-spacing': 'error',
-    yoda: ['error', 'never']
-  },
+    yoda: ['error', 'never'],
 
-  // 设置eslint解释器
-  parserOptions: {
-    parser: '@typescript-eslint/parser'
+    // tyepscript规则
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/indent': ['warn', 2],
+    '@typescript-eslint/interface-name-prefix': 'off',
+    '@typescript-eslint/no-empty-interface': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-triple-slash-reference': 'off'
   }
 };

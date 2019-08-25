@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Base Menu子组件
  * @Date: 2019-03-25 12:39:59
- * @LastEditTime: 2019-08-10 14:21:19
+ * @LastEditTime: 2019-08-25 21:16:02
 -->
 <template functional>
   <a-sub-menu :key="props.menuInfo.key">
@@ -33,11 +33,16 @@
   </a-sub-menu>
 </template>
 <script lang='ts'>
-import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
+import { createComponent } from '@vue/composition-api';
 import { MenuItem } from '@/store/module/slide';
 
-@Component
-export default class SubMenu extends Vue {
-  @Prop(Object) private readonly menuInfo!: MenuItem;
+interface Props {
+  menuInfo: MenuItem;
 }
+
+// Object is MenuItem
+export default createComponent<Props, {}>({
+  name: 'SubMenu',
+  props: { menuInfo: Object }
+});
 </script>

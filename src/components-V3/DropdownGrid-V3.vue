@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-15 20:56:30
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-08-25 21:21:55
+ * @LastEditTime: 2019-08-25 21:19:39
  * @Description: Dropdown Grid
 -->
 <template>
@@ -37,8 +37,9 @@
     </a-dropdown>
   </a-divider>
 </template>
+
 <script lang="ts">
-import { Component, Model, Prop, Vue } from 'vue-property-decorator';
+import { createComponent, onMounted, ref } from '@vue/composition-api';
 
 interface GridMenuItem {
   text: string;
@@ -51,36 +52,53 @@ export interface GridMenuList {
   content: GridMenuItem[];
 }
 
-@Component
-export default class DropdownGrid extends Vue {
-  // Menu List
-  @Prop(Array) private readonly list!: GridMenuList[];
-
-  // Internal selected Data
-  @Model('change', { type: String }) private selected!: string;
-
-  // Displayed selected Data
-  private selectedText = '请选择';
-
-  private visible = false;
-
-  private itemChange(menuIndex: number, index: number) {
-    this.selectedText = this.list[menuIndex].content[index].text;
-    this.$emit('change', this.list[menuIndex].content[index].id);
-    this.$emit('onChange', this.list[menuIndex].content[index].text);
-    this.visible = false;
-  }
-
-  private mounted() {
-    if (this.selected !== '请选择')
-      this.list.forEach(menuList => {
-        menuList.content.forEach(element => {
-          if (this.selected === element.id) this.selectedText = element.text;
-        });
-      });
-  }
+interface Props {
+  /** Menu List */
+  list: GridMenuList[];
+  /** Internal selected Data */
+  selected: string;
 }
+
+export default createComponent<Props, {}>({
+  name: 'DropdownGrid',
+  props: {
+    list: Array,
+    selected: String
+  },
+  model: {
+    prop: 'selected',
+    event: 'change'
+  },
+  setup(props, context) {
+    /** Displayed selected Data */
+    const selectedText = ref('请选择');
+    const visible = ref(false);
+
+    const itemChange = (menuIndex: number, index: number) => {
+      selectedText.value = props.list[menuIndex].content[index].text;
+      context.emit('change', props.list[menuIndex].content[index].id);
+      context.emit('onChange', props.list[menuIndex].content[index].text);
+      visible.value = false;
+    };
+
+    onMounted(() => {
+      if (props.selected !== '请选择')
+        props.list.forEach(menuList => {
+          menuList.content.forEach(element => {
+            if (props.selected === element.id) selectedText.value = element.text;
+          });
+        });
+    });
+
+    return {
+      selectedText,
+      visible,
+      itemChange
+    };
+  }
+});
 </script>
+
 <style lang='scss' scoped>
 @import '~%/Weui/scss/border';
 

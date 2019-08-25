@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Base Image
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-08-25 19:04:44
+ * @LastEditTime: 2019-08-25 21:11:18
 -->
 <template>
   <div :id="myId" class="ImgCtn">
@@ -17,54 +17,66 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { createComponent, onMounted, ref } from '@vue/composition-api';
 import Loading from '|/icon/loading.svg';
 import Error from '|/icon/error.svg';
 
-@Component({ components: { Loading, Error } })
-export default class BaseImg extends Vue {
-  // Component ID
-  @Prop(Number) private readonly myId!: number;
+export default createComponent({
+  name: 'BaseImg',
+  props: {
+    // Component ID
+    myId: Number,
+    // Image link address
+    src: { type: String, required: true },
+    // Image description
+    desc: String
+  },
+  components: {
+    Loading,
+    Error
+  },
+  setup(props, context) {
 
-  // Image link address
-  @Prop({ type: String, required: true }) private readonly src!: string;
+    // Image load status
+    const loaded = ref(false);
+    const error = ref(false);
 
-  // Image description
-  @Prop(String) private readonly desc!: string;
-
-  // Image load status
-  private loaded = false;
-  private error = false;
-
-  private mounted() {
-    const img = new Image(); // Create new Image instance
-
-    img.src = this.src;
-
-    // Image has been cached
-    if (img.complete) {
-      this.loaded = true;
-
-      return;
-    }
-
-    // Error when loading Image, show error message
-    img.onerror = () => {
-      this.error = true;
+    const imgDisplay = () => {
+      context.root.$store.commit('imageUrl', props.src);
     };
 
-    // Sucess loading Image, display this Image now
-    img.onload = () => {
-      this.loaded = true;
+    onMounted(() => {
+      const img = new Image(); // Create new Image instance
 
-      delete img.onload;
+      img.src = props.src as unknown as string;
+
+      // Image has been cached
+      if (img.complete) {
+        loaded.value = true;
+
+        return;
+      }
+
+      // Error when loading Image, show error message
+      img.onerror = () => {
+        error.value = true;
+      };
+
+      // Sucess loading Image, display this Image now
+      img.onload = () => {
+        loaded.value = true;
+
+        delete img.onload;
+      };
+    });
+
+    return {
+      loaded,
+      error,
+      imgDisplay
     };
   }
-
-  private imgDisplay() {
-    this.$store.commit('imageUrl', this.src);
-  }
-}
+});
 </script>
 <style lang='scss' scoped>
 .ImgCtn {
