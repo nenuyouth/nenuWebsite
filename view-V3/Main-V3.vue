@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主页
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-08-25 19:53:09
+ * @LastEditTime: 2019-09-02 15:45:48
 -->
 <template>
   <div class="container">
@@ -51,7 +51,7 @@ import BaseCarousel from '#/BaseCarousel.vue';
 import BaseGrid from '#/BaseGrid.vue';
 import BaseTimeLine, { TimeListItem } from '#/BaseTimeLine.vue';
 
-const Main = createComponent({
+const Main = createComponent<{}>({
   components: { BaseCarousel, BaseGrid, BaseTimeLine },
   setup(props, context) {
     const carouselData = ref({
@@ -87,7 +87,7 @@ const Main = createComponent({
         }
       ]
     });
-    const guidelist = ref(require('|/guide'));
+    const guidelist = ref(require('|/guideList.json'));
     const timeList = ref([] as TimeListItem[]);
 
     // 获取校历

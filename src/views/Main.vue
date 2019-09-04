@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主页
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-08-25 23:00:19
+ * @LastEditTime: 2019-09-02 15:32:31
 -->
 <template>
   <div class="container">
@@ -93,9 +93,9 @@ export default class Main extends Vue {
 
   private created() {
     axios
-      .get('/config/calendar/2019spring.json')
+      .get('/config/calendar/2019fall.json')
       .then(response => {
-        this.timeList = response.data;
+        this.timeList = response.data[1];
       })
       .catch(err => {
         this.$confirm({

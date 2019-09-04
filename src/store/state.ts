@@ -28,6 +28,7 @@ export interface BaseState {
   path: string;
 }
 
+/** 初始状态 */
 const myState: BaseState = {
   compiledDoc: {},
   compiledGuide: {},

@@ -21,32 +21,13 @@
         <a-icon type="bulb" />新生攻略
       </router-link>
     </a-menu-item>
-    <!-- <a-sub-menu>
-      <template #title>
-        <span class="submenu-title-wrapper">
-          <a-icon type="camera"/>东师风貌
-        </span>
-      </template>
-      <a-menu-item key="scence:1">本部校区</a-menu-item>
-      <a-menu-item key="scence:2">净月校区</a-menu-item>
-    </a-sub-menu>
-    <a-menu-item key="/about">
-      <router-link to="/about">
-        <a-icon type="fire"/>深入了解
-      </router-link>
-    </a-menu-item>
-    <a-menu-item key="/about/question">
-      <router-link to="/about/question">
-        <a-icon type="question"/>疑难解答
-      </router-link>
-    </a-menu-item>-->
   </a-menu>
 </template>
 <script lang="ts">
 import { computed, createComponent, onMounted, ref, watch } from '@vue/composition-api';
 import Back from '|/icon/back.svg';
 
-export default createComponent({
+export default createComponent<{}>({
   name: 'Nav',
   components: { Back },
   setup(props, context) {
@@ -56,7 +37,7 @@ export default createComponent({
 
 
     // 获得主题
-    const theme = computed(() => this.$store.state.nightmode ? 'dark' : 'light');
+    const theme = computed(() => context.root.$store.state.nightmode ? 'dark' : 'light');
 
     const active = computed({
       // 激活对应menu项

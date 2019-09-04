@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 密码验证
  * @Date: 2019-03-16 13:44:32
- * @LastEditTime: 2019-07-30 14:39:06
+ * @LastEditTime: 2019-09-02 11:03:17
 -->
 <template>
   <!-- 密码输入框 -->
@@ -37,6 +37,8 @@
           <template #prefix>
             <user />
           </template>
+          <!-- 用户名后缀 -->
+          <template #suffix>{{userNameSuffix}}</template>
         </a-input>
       </a-form-item>
 
@@ -68,6 +70,7 @@
           </template>
         </a-input>
       </a-form-item>
+      <slot />
     </a-form>
     <!-- 自定义对话框按钮 -->
     <template #footer>
@@ -99,6 +102,9 @@ export default class PasswordModal extends Vue {
 
   // 密码的autocomplete Key值
   @Prop({ type: String, default: 'password' }) private readonly passwordKey!: string;
+
+  // 密码的autocomplete Key值
+  @Prop({ type: String, default: '' }) private readonly userNameSuffix!: string;
 
   private form: any;
 

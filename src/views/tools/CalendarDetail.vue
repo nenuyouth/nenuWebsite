@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>东北师大2019年春季学期校历</h1>
+    <h1>东北师大{{title}}校历</h1>
     <div @click="$router.push('/tool/calendar')" class="backButton">
       校历
       <br />主页
@@ -16,13 +16,17 @@ import BaseTimeLine, { TimeListItem } from '#/BaseTimeLine.vue';
 
 @Component({ components: { BaseTimeLine } })
 export default class Calendar extends Vue {
+  private title = '';
   private timeList: TimeListItem[] = [];
 
   private created() {
+    const paths = this.$route.fullPath.split('/');
+
     axios
-      .get(`/config/calendar/${this.$route.params.time}.json`)
+      .get(`/config/calendar/${paths[paths.length - 1]}.json`)
       .then(response => {
-        this.timeList = response.data;
+        this.title = response.data[0];
+        this.timeList = response.data[1];
       })
       .catch(err => {
         this.$confirm({

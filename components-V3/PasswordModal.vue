@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 密码验证
  * @Date: 2019-03-16 13:44:32
- * @LastEditTime: 2019-08-26 00:06:32
+ * @LastEditTime: 2019-08-27 12:11:51
 -->
 <template>
   <!-- 密码输入框 -->
@@ -100,7 +100,7 @@ interface Props {
   passwordKey: string;
 }
 
-export default createComponent<Props, {}>({
+export default createComponent<Props>({
   name: 'PasswordModal',
   components: { User, Password, Eye, EyeClose },
   props: {

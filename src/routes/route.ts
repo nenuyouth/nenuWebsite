@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 路由配置文件
  * @Date: 2019-03-25 12:27:33
- * @LastEditTime: 2019-06-29 20:07:19
+ * @LastEditTime: 2019-09-02 15:33:20
  */
 import Main from '@/views/Main.vue';
 import Page404 from '@/views/Page404.vue';
@@ -60,10 +60,16 @@ const route = [
     component: () => import(/* webpackChunkName: "tool" */ '@/views/tools/SchoolGzh.vue')
   },
   {
-    path: '/tool/NetCharge',
+    path: '/tool/netCharge',
     name: 'NetCharge',
     meta: { title: '网费充值' },
     component: () => import(/* webpackChunkName: "tool" */ '@/views/tools/NetCharge.vue')
+  },
+  {
+    path: '/tool/elective',
+    name: 'Elective',
+    meta: { title: '选课系统' },
+    component: () => import(/* webpackChunkName: "tool" */ '@/views/tools/Elective.vue')
   },
   {
     path: '/scence',
@@ -84,13 +90,13 @@ const route = [
     component: () => import(/* webpackChunkName: "scence" */ '@/views/scence/Jingyue.vue')
   },
   {
-    path: '/intro/studentUnion',
+    path: '/about/studentUnion',
     name: 'su',
     meta: { title: '校学生会简介' },
     component: () => import(/* webpackChunkName: "about" */ '@/views/about/SU.vue')
   },
   {
-    path: '/intro/department',
+    path: '/about/department',
     name: 'department',
     meta: { title: '校学生会部门简介' },
     component: () => import(/* webpackChunkName: "about" */ '@/views/about/Department.vue')

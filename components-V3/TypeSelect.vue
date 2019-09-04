@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-15 20:56:30
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-08-26 00:08:06
+ * @LastEditTime: 2019-08-27 12:08:40
  * @Description: Type Select
 -->
 <template>
@@ -25,7 +25,7 @@ interface Props {
   selected?: string;
 }
 
-export default createComponent<Props, {}>({
+export default createComponent<Props>({
   name: 'TypeSelect',
   model: {
     prop: 'selected',

@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-06-26 20:26:14
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-08-25 23:58:14
+ * @LastEditTime: 2019-08-27 12:09:08
  * @Description: 侧边栏组件
 -->
 <template>
@@ -38,7 +38,7 @@ import { computed, createComponent, inject, ref, onMounted } from '@vue/composit
 import $ from 'jquery';
 import BaseMenu from '#/BaseMenu.vue';
 
-export default createComponent({
+export default createComponent<{}, {}>({
   name: 'Slide',
   components: { BaseMenu },
   setup(props, context) {

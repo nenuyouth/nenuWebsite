@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 网页页脚
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-08-25 21:20:06
+ * @LastEditTime: 2019-08-27 12:11:38
 -->
 <template>
   <a-layout-footer :class="slide?'withSlide':''">
@@ -36,7 +36,7 @@
 <script lang="ts">
 import { computed, createComponent, ref } from '@vue/composition-api';
 
-export default createComponent({
+export default createComponent<{}>({
   name: 'Footer',
   setup(props, context) {
     const about = ref([

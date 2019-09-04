@@ -3,14 +3,14 @@
  * @LastEditors: Mr.Hope
  * @Description: register-service-worker配置文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-05-01 12:59:30
+ * @LastEditTime: 2019-08-30 11:23:07
  */
 
 /* eslint-disable no-console */
 // tslint:disable no-console
 import { Store } from 'vuex';
-import { BaseState } from '@/store/state';
 import { register } from 'register-service-worker';
+import { BaseState } from '@/store/state';
 
 const registerServiceWorker = (store: Store<BaseState>) => {
   if (process.env.NODE_ENV === 'production')
