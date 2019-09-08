@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: eslint配置文件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-08-25 22:30:21
+ * @LastEditTime: 2019-09-06 12:45:39
  */
 module.exports = {
   // 阻止eslint读取父目录或总配置文件的规则
@@ -34,7 +34,7 @@ module.exports = {
     node: true
   },
 
-  parser: "vue-eslint-parser",
+  parser: 'vue-eslint-parser',
 
   // 设置eslint解释器,
   parserOptions: {
