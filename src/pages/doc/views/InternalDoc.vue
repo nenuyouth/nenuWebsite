@@ -12,6 +12,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { Route } from 'vue-router';
+import axios from 'axios';
 import MyDoc from '../components/MyDoc.vue';
 import getCompiledMarkdown from '../utils/getMarkdown';
 
@@ -27,7 +28,9 @@ export default class InternalDoc extends Vue {
 
   private activated() {
     // display menu
-    this.$store.commit('menuList', require('../assets/docMenuList'));
+    axios.get('/Res/doc/menu.json').then(response => {
+      this.$store.commit('menuList', response.data);
+    });
     this.$store.commit('menuTitle', '内部文档');
   }
   private deactivated() {

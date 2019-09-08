@@ -34,6 +34,9 @@ export { default as HTML5Outline } from 'ol/Html5Outline';
 export { default as SelectOutline } from 'ol/SelectOutline';
 export { default as EditOutline } from 'ol/EditOutline';
 export { default as SnippetsOutline } from 'ol/SnippetsOutline';
+export { default as MessageOutline } from 'ol/MessageOutline';
+export { default as HighlightOutline } from 'ol/HighlightOutline';
+export { default as ShareAltOutline } from 'ol/ShareAltOutline';
 
 // Guide Page Icons
 export { default as BookOutline } from 'ol/BookOutline';

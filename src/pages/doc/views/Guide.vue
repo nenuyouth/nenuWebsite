@@ -12,6 +12,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { Route } from 'vue-router';
+import axios from 'axios';
 import MyGuide from '../components/MyGuide.vue';
 import getCompiledMarkdown from '../utils/getMarkdown';
 
@@ -27,7 +28,9 @@ export default class Guide extends Vue {
 
   private activated() {
     // display menu
-    this.$store.commit('menuList', require('../assets/guideMenuList'));
+    axios.get('/Res/guide/menu.json').then(response => {
+      this.$store.commit('menuList', response.data);
+    });
     this.$store.commit('menuTitle', '东师指南');
   }
   private deactivated() {

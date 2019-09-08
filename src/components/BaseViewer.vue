@@ -21,7 +21,7 @@
 </template>
 <script lang="ts">
 import Viewer from 'viewerjs';
-import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
+import { Component, Vue, Watch } from 'vue-property-decorator';
 
 // 引入ViewJS样式
 import 'viewerjs/dist/viewer.css';

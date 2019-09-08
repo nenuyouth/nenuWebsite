@@ -18,7 +18,6 @@ import {
 } from 'vue-property-decorator';
 import { Config } from '%/pageConfig';
 import TypeSelect from '#/TypeSelect.vue';
-import FormArrayInput from '#/FormArrayInput.vue';
 import FormBooleanInput from '#/FormBooleanInput.vue';
 import FormEnumInput from '#/FormEnumInput.vue';
 import FormNumberInput from '#/FormNumberInput.vue';
