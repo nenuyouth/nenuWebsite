@@ -3,14 +3,18 @@
  * @LastEditors: Mr.Hope
  * @Description: 网页页脚
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-07-01 22:56:10
+ * @LastEditTime: 2019-09-15 18:00:02
 -->
 <template>
   <a-layout-footer :class="slide?'withSlide':''">
     <a-row align="middle" class="text-center" justify="space-around" type="flex">
       <a-col :lg="12" :xs="24" class="text-center">
-        <img alt="Nenuyouth" class="mb-2 footerLogo" src="/img/icon/nenuyouth.png" />
-        <small class="d-block my-1 text-muted">东北师范大学校学生会</small>
+        <img
+          :src="`/img/icon/${$store.state.env.personal?'inNENU':'nenuyouth'}.png`"
+          alt="Nenuyouth"
+          class="mb-2 footerLogo"
+        />
+        <small class="d-block my-1 text-muted">{{$store.state.env.personal?'in东师':'东北师范大学校学生会'}}</small>
         <small class="d-block my-1 text-muted">辽ICP备18007023号</small>
         <small class="d-block mt-1 mb-2 text-muted">维护者：Mr.Hope</small>
       </a-col>
@@ -42,7 +46,7 @@ export default class Footer extends Vue {
     ['/about/studentUnion', '校学生会介绍'],
     ['/about/department', '部门分工'],
     ['/about/cooperation', '项目合作'],
-    ['/about/Mr-Hope', '关于Mr.Hope']
+    ['/page/MrHope1', '关于Mr.Hope']
   ];
 
   private readonly media = [

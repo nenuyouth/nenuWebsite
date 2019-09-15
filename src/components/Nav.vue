@@ -6,7 +6,7 @@
       </transition>
       <transition name="myfade">
         <img
-          :src="`/img/icon/${$store.state.env.personal?'inNENU.jpg':'nenuyouth.png'}`"
+          :src="`/img/icon/${$store.state.env.personal?'inNENU':'nenuyouth'}.png`"
           alt="东师青年"
           id="logo"
           v-if="logoDisplay"
