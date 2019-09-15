@@ -47,7 +47,7 @@ const screenModule: Module<ScreenState, BaseState> = {
   mutations: {
 
     /**
-     * @description: 设置屏幕状态
+     * 设置屏幕状态
      *
      * @param state state
      * @param width 屏幕宽度
@@ -94,7 +94,7 @@ const screenModule: Module<ScreenState, BaseState> = {
     },
 
     /**
-     * @description: 设置屏幕宽度
+     * 设置屏幕宽度
      *
      * @param state state
      * @param width 屏幕宽度
@@ -106,7 +106,7 @@ const screenModule: Module<ScreenState, BaseState> = {
   actions: {
 
     /**
-     * @description: 获取屏幕状态
+     * 获取屏幕状态
      *
      * @param context state
      * @param width 屏幕宽度

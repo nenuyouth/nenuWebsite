@@ -5,11 +5,16 @@
         <Back id="backButton" v-if="backButtonDisplay" />
       </transition>
       <transition name="myfade">
-        <img alt="东师青年" id="logo" src="/img/icon/nenuyouth.png" v-if="logoDisplay" />
+        <img
+          :src="`/img/icon/${$store.state.env.personal?'inNENU.jpg':'nenuyouth.png'}`"
+          alt="东师青年"
+          id="logo"
+          v-if="logoDisplay"
+        />
       </transition>
     </a-menu-item>
     <a-menu-item class="d-none d-lg-inline" disabled key="logoName" style="padding:0 10px 0 0;">
-      <span class="text-black">东北师范大学学生会</span>
+      <span class="text-black">{{$store.state.env.personal?'in东师':'东北师范大学学生会'}}</span>
     </a-menu-item>
     <a-menu-item key="/">
       <router-link to="/">

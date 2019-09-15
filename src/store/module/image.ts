@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-06-26 20:26:14
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-09-15 15:43:58
+ * @LastEditTime: 2019-09-15 15:58:26
  * @Description: Vuex ImagePreview Module
  */
 
@@ -29,7 +29,7 @@ const imageModule: Module<ImageState, BaseState> = {
   state: imageState,
   mutations: {
     /**
-     * @description: 设置是否展示
+     * 设置是否展示
      *
      * @param state imagestate
      * @param status 展示状态
@@ -40,7 +40,7 @@ const imageModule: Module<ImageState, BaseState> = {
     },
 
     /**
-     * @description: 设置所展示图片的索引值
+     * 设置所展示图片的索引值
      *
      * @param state imagestate
      * @param index 所展示图片的索引
@@ -50,7 +50,7 @@ const imageModule: Module<ImageState, BaseState> = {
     },
 
     /**
-     * @description: 设置图片列表
+     * 设置图片列表
      *
      * @param state imagestate
      * @param urls 图片地址
@@ -63,7 +63,7 @@ const imageModule: Module<ImageState, BaseState> = {
 
 
     /**
-     * @description: 通过图片地址设置所展示图片的索引值
+     * 通过图片地址设置所展示图片的索引值
      *
      * @param state imagestate
      * @param url 所展示图片的地址

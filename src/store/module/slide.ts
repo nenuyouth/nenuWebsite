@@ -35,7 +35,7 @@ const slideModule: Module<SlideState, BaseState> = {
   mutations: {
 
     /**
-     * @description: 设置Slide菜单内容
+     * 设置Slide菜单内容
      *
      * @param state state
      * @param menuContent Slide菜单内容
@@ -49,7 +49,7 @@ const slideModule: Module<SlideState, BaseState> = {
     },
 
     /**
-     * @description: 设置Slide菜单标题
+     * 设置Slide菜单标题
      *
      * @param state state
      * @param title Slide标题内容
@@ -59,7 +59,7 @@ const slideModule: Module<SlideState, BaseState> = {
     },
 
     /**
-     * @description: 设置Slide菜单图标
+     * 设置Slide菜单图标
      *
      * @param state state
      * @param icon Slide图标内容

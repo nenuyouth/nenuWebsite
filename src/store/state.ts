@@ -14,6 +14,8 @@ export interface BaseState {
   compiledGuide: Record<string, string>;
   /** 文档加载状态 */
   docLoading: boolean;
+  /** 环境变量 */
+  env: Record<string, any>;
   /** 登录状态 */
   loginStatus: Record<string, boolean>;
   /** 密码存储 */
@@ -29,6 +31,7 @@ const myState: BaseState = {
   compiledDoc: {},
   compiledGuide: {},
   docLoading: true,
+  env: {},
   loginStatus: {},
   password: {},
   nightmode: false,

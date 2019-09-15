@@ -23,7 +23,7 @@ const swModule: Module<SWState, BaseState> = {
   state: swState,
   mutations: {
     /**
-     * @description: 设置ServiceWorker状态
+     * 设置ServiceWorker状态
      *
      * @param state swState
      * @param status ServiceWorker状态
@@ -33,7 +33,7 @@ const swModule: Module<SWState, BaseState> = {
     },
 
     /**
-     * @description: 设置ServiceWorker错误
+     * 设置ServiceWorker错误
      *
      * @param state imagestate
      * @param error 遇到的错误

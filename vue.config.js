@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: vue config file
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-07-04 21:37:20
+ * @LastEditTime: 2019-09-15 16:00:01
  */
 const path = require('path');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
@@ -12,7 +12,8 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const isProduction = process.env.NODE_ENV === 'production';
 
 /**
- * @description: Webpack链式处理
+ * Webpack链式处理
+ *
  * @param {object} config Webpack配置
  * @returns {void}
  */
@@ -41,7 +42,8 @@ const chainWebpack = config => {
 };
 
 /**
- * @description: Webpack配置
+ * Webpack配置
+ *
  * @param {object} config Webpack配置
  * @returns {void}
  */
@@ -133,7 +135,7 @@ const configureWebpack = config => {
 };
 
 /**
- * @description: vue输出配置
+ * vue输出配置
  *
  * @property {string} publicPath @default '/' 网站在服务器上的部署位置
  * @property {string} outputDir @default 'dist' 编译输出目录

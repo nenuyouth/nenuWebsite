@@ -119,7 +119,7 @@
 
 使用Git clone操作。
 
-- [Git克隆相关说明](https://nenuyouth.com/doc/private/software/git/remote))
+- [Git克隆相关说明](https://nenuyouth.com/doc/private/software/git/remote)
 
 具体步骤：
 
@@ -173,27 +173,27 @@ npm run serve
 
 - 构建现代输出（ES5标准支持，有fallback）
 
-```bash
-npm run build
-```
+  ```bash
+  npm run build
+  ```
 
 - 构建常规输出（ES5标准支持，有fallback）
 
-```bash
-npm run normBuild
-```
+  ```bash
+  npm run normBuild
+  ```
 
 > 执行构建，将构建成功的网页输出至/dist目录
 
-```bash
-npm run rebuild
-```
+- 重新构建（现代 | 常规），不清空输出目录原内容
 
-```bash
-npm run normRebuild
-```
+  ```bash
+  npm run rebuild
+  ```
 
-> 重新构建（现代 | 常规），不清空输出目录原内容
+  ```bash
+  npm run normRebuild
+  ```
 
 ### 部署网站
 
@@ -203,59 +203,59 @@ start deploy.bat
 
 > 执行构建，将构建成功的网站推送到Github Pages与Gitee Pages
 
-#### 执行文件提示和文件修复
+### 执行文件提示和文件修复
 
 ```bash
 npm run lint
 ```
 
-#### 分析打包文件
+### 分析打包文件
 
 - 分析现代构建打包
 
-```bash
-npm run analyze
-```
+  ```bash
+  npm run analyze
+  ```
 
 - 分析普通构建打包
 
-```bash
-npm run normAnal
-```
+  ```bash
+  npm run normAnal
+  ```
 
-#### 查看浏览器支持
+### 查看浏览器支持
 
 ```bash
 npm run browser
 ```
 
-#### 输出Webpack模式打包配置
+### 输出Webpack模式打包配置
 
 - 输出现代构建打包配置至当前目录的moderm.js
 
-```bash
-npm run inspect
-```
+  ```bash
+  npm run inspect
+  ```
 
 - 输出普通构建打包配置至当前目录的normal.js
 
-```bash
-npm run normInspect
-```
+  ```bash
+  npm run normInspect
+  ```
 
 #### 执行测试
 
-端对端测试
+- e2e(端对端)测试
 
-```bash
-npm run e2e
-```
+  ```bash
+  npm run e2e
+  ```
 
-单元测试
+- 单元测试(unit test)
 
-```bash
-npm run unit
-```
+  ```bash
+  npm run unit
+  ```
 
 ## 相关文档
 

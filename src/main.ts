@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主页入口文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-08-25 19:33:40
+ * @LastEditTime: 2019-09-15 16:40:37
  */
 
 // 引入Ant Design
@@ -103,6 +103,9 @@ router.afterEach((to: Route) => {
 
 // 获得当前环境
 store.dispatch('systemInfo');
+
+// 写入环境变量
+store.commit('env', process.env);
 
 // 获取屏幕状态，并进行brakpoint状态监听
 store.dispatch('screen', $(window).width() || document.documentElement.clientWidth);

@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Mutation文件
  * @Date: 2019-03-25 10:37:09
- * @LastEditTime: 2019-05-24 21:32:26
+ * @LastEditTime: 2019-09-15 17:11:34
  */
 import Vue from 'vue';
 import { BaseState } from './state';
@@ -11,7 +11,7 @@ import { BaseState } from './state';
 const myMutation = {
 
   /**
-   * @description: 储存编译好的指南页面
+   * 储存编译好的指南页面
    *
    * @param state state
    * @param compiledGuide [指南页面路径, 指南页面html string]
@@ -21,7 +21,7 @@ const myMutation = {
   },
 
   /**
-   * @description: 储存编译好的文档页面
+   * 储存编译好的文档页面
    *
    * @param state state
    * @param compiledDoc [文档页面路径, 文档页面html string]
@@ -30,9 +30,25 @@ const myMutation = {
     Vue.set(state.compiledDoc, compiledDoc[0], compiledDoc[1]);
   },
 
+  /**
+   * 设置环境变量
+   *
+   * @param state state
+   * @param envOption 环境变量选项
+   */
+  env(state: BaseState, envOption: Record<string, any>) {
+    console.log(envOption);
+    Object.keys(envOption).forEach(prop => {
+      if (prop.indexOf('VUE_APP_') !== -1) {
+        envOption[prop.slice(8)] = envOption[prop];
+        delete envOption[prop];
+      }
+    });
+    state.env = envOption;
+  },
 
   /**
-   * @description: 设置登陆状态
+   * 设置登陆状态
    *
    * @param state state
    * @param key login标识符
@@ -42,7 +58,7 @@ const myMutation = {
   },
 
   /**
-   * @description: 设置密码
+   * 设置密码
    *
    * @param state state
    * @param msg 密码详情
@@ -52,7 +68,7 @@ const myMutation = {
   },
 
   /**
-   * @description: 设置加载文档状态
+   * 设置加载文档状态
    *
    * @param state state
    * @param docLoading 文档加载状态
@@ -62,7 +78,7 @@ const myMutation = {
   },
 
   /**
-   * @description: 夜间模式开关
+   * 夜间模式开关
    *
    * @param state state
    */
@@ -71,7 +87,7 @@ const myMutation = {
   },
 
   /**
-   * @description: 设置当前路径
+   * 设置当前路径
    *
    * @param state state
    * @param path 当前的路径

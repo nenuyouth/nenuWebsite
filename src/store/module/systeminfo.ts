@@ -37,7 +37,7 @@ const systemModule: Module<SystemState, BaseState> = {
   state: systemState,
   mutations: {
     /**
-     * @description: 设置终端为安卓
+     * 设置终端为安卓
      *
      * @param state state
      */
@@ -46,7 +46,7 @@ const systemModule: Module<SystemState, BaseState> = {
     },
 
     /**
-     * @description: 设置终端为iOS
+     * 设置终端为iOS
      *
      * @param state state
      */
@@ -66,7 +66,7 @@ const systemModule: Module<SystemState, BaseState> = {
     },
 
     /**
-     * @description: 设置系统OS版本
+     * 设置系统OS版本
      *
      * @param state state
      * @param version 系统OS版本
