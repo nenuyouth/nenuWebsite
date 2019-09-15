@@ -1,19 +1,24 @@
-/**
+/*
  * @Author: Mr.Hope
+ * @Date: 2019-06-26 20:26:14
  * @LastEditors: Mr.Hope
+ * @LastEditTime: 2019-09-15 15:43:58
  * @Description: Vuex ImagePreview Module
- * @Date: 2019-03-24 23:50:48
- * @LastEditTime: 2019-03-25 10:10:26
  */
+
 import { Module } from 'vuex';
 import { BaseState } from '../state';
 
 export interface ImageState {
-  display: boolean; // 图片的展示状态
-  list: string[]; // 图片列表
-  index: number; // 当前展示图片的索引
+  /** 图片的展示状态 */
+  display: boolean;
+  /** 图片列表 */
+  list: string[];
+  /** 当前展示图片的索引 */
+  index: number;
 }
 
+/** 图片基础状态 */
 const imageState: ImageState = {
   display: false,
   list: [],

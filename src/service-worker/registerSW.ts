@@ -1,13 +1,12 @@
 /*
  * @Author: Mr.Hope
+ * @Date: 2019-09-08 10:06:29
  * @LastEditors: Mr.Hope
+ * @LastEditTime: 2019-09-15 15:47:47
  * @Description: register-service-worker配置文件
- * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-08-30 11:23:07
  */
 
 /* eslint-disable no-console */
-// tslint:disable no-console
 import { Store } from 'vuex';
 import { register } from 'register-service-worker';
 import { BaseState } from '@/store/state';
@@ -15,7 +14,6 @@ import { BaseState } from '@/store/state';
 const registerServiceWorker = (store: Store<BaseState>) => {
   if (process.env.NODE_ENV === 'production')
     register(`${process.env.BASE_URL}service-worker/service-worker.js`, {
-      // registrationOptions: { scope: './' },
       ready() {
         store.commit('swState', 'ready');
         console.log('APP已被service worker接管缓存');

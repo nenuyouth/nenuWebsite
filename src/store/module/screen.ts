@@ -1,25 +1,36 @@
-/**
+/*
  * @Author: Mr.Hope
+ * @Date: 2019-05-16 15:35:49
  * @LastEditors: Mr.Hope
+ * @LastEditTime: 2019-09-15 15:48:04
  * @Description: Vuex Screen Module
- * @Date: 2019-03-24 23:50:48
- * @LastEditTime: 2019-03-25 10:10:26
  */
+
 import { ActionContext, Module } from 'vuex';
 import { BaseState } from '../state';
 
+/** 屏幕状态 */
 export interface ScreenState {
   [propName: string]: string | number | boolean;
+  /** 屏幕宽度 */
   width: number;
+  /** 屏幕当前尺寸状态 */
   status: string;
+  /** 屏幕是否符合xs状态 */
   xs: boolean;
+  /** 屏幕是否符合sm状态 */
   sm: boolean;
+  /** 屏幕是否符合md状态 */
   md: boolean;
+  /** 屏幕是否符合lg状态 */
   lg: boolean;
+  /** 屏幕是否符合xl状态 */
   xl: boolean;
+  /** 屏幕是否符合xxl状态 */
   xxl: boolean;
 }
 
+/** 屏幕基础状态 */
 const screenState: ScreenState = {
   width: 0,
   status: '',
@@ -49,7 +60,7 @@ const screenModule: Module<ScreenState, BaseState> = {
       else if (width < 768) status = width < 576 ? 'xs' : 'sm';
       else status = width < 992 ? 'md' : 'lg';
 
-      // if new status, then handle state detail
+      // if there is a new status, then handle state detail
       if (state.status !== status) {
         const hash = ['sm', 'md', 'lg', 'xl', 'xxl'];
 

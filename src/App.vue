@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主视图文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-08-10 17:25:06
+ * @LastEditTime: 2019-09-15 14:09:42
 -->
 <template>
   <a-layout hasSider="true" id="app">
@@ -35,9 +35,10 @@ import MyFooter from '#/Footer.vue';
 
 @Component({ components: { BackTop, BaseViewer, MyNav, MyFooter, MySlide } })
 export default class App extends Vue {
-  // 动画名称
+  /** 动画名称 */
   private transitionName = 'slide-right';
 
+  /** 改变动画效果 */
   @Watch('$route')
   private onRouteChange(to: Route, from: Route) {
     const remove = (array: string[], value: string) => {

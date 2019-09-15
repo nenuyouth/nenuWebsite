@@ -1,19 +1,26 @@
-/**
+/*
  * @Author: Mr.Hope
+ * @Date: 2019-06-26 20:26:14
  * @LastEditors: Mr.Hope
- * @Description: Vuex ImagePreview Module
- * @Date: 2019-03-24 23:50:48
- * @LastEditTime: 2019-03-25 10:10:26
+ * @LastEditTime: 2019-09-15 15:50:45
+ * @Description: Vuex SystemInfo Module
  */
+
 import { ActionContext, Module } from 'vuex';
 import { BaseState } from '../state';
 
 export interface SystemState {
+  /** 是否是iOS系统 */
   iOS: boolean;
+  /** 是否是安装系统 */
   Android: boolean;
+  /** 是否是Microsoft Edge */
   Edge: boolean;
+  /** 是否是Internet Explorer */
   IE: boolean;
+  /** Internet Explorer版本号  */
   IEVersion: number;
+  /** 操作系统版本号 */
   OSVersion: string;
 }
 
@@ -52,7 +59,7 @@ const systemModule: Module<SystemState, BaseState> = {
       const isEdge = userAgent.indexOf('Edge') > -1 && !isIE; // 判断是否IE的Edge浏览器
       const isIE11 = userAgent.indexOf('Trident') > -1 && userAgent.indexOf('rv:11.0') > -1;
 
-      // tslint:disable-next-line: ban
+      // eslint-disable-next-line no-alert
       if (isIE) alert('您的浏览器版本为IE11以下，不被本网站支持，请您更换浏览器！');
       if (isEdge) state.Edge = true;// edge
       if (isIE11) state.IEVersion = 11; // IE11

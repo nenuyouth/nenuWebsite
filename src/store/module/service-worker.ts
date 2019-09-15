@@ -1,15 +1,19 @@
-/**
+/*
  * @Author: Mr.Hope
+ * @Date: 2019-05-16 15:35:49
  * @LastEditors: Mr.Hope
+ * @LastEditTime: 2019-09-15 15:48:18
  * @Description: Vuex ServiceWorker Module
- * @Date: 2019-03-24 23:50:48
- * @LastEditTime: 2019-03-25 10:10:26
  */
+
 import { Module } from 'vuex';
 import { BaseState } from '../state';
 
+/** ServiceWorker状态 */
 export interface SWState {
-  status: string; // service-worker 状态
+  /** ServiceWorker 当前状态 */
+  status: string;
+  /** ServiceWorker错误 */
   error?: any;
 }
 
