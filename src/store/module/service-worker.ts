@@ -2,12 +2,9 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-16 15:35:49
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-09-15 15:48:18
+ * @LastEditTime: 2019-09-15 17:26:54
  * @Description: Vuex ServiceWorker Module
  */
-
-import { Module } from 'vuex';
-import { BaseState } from '../state';
 
 /** ServiceWorker状态 */
 export interface SWState {
@@ -19,7 +16,7 @@ export interface SWState {
 
 const swState: SWState = { status: '' };
 
-const swModule: Module<SWState, BaseState> = {
+export default {
   state: swState,
   mutations: {
     /**
@@ -44,5 +41,3 @@ const swModule: Module<SWState, BaseState> = {
     }
   }
 };
-
-export default swModule;

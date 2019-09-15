@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主脚本文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-08-25 19:46:44
+ * @LastEditTime: 2019-09-15 17:32:27
  */
 
 // 引入Ant Design
@@ -21,7 +21,7 @@ import debounce from 'lodash/debounce';
 
 // 引入配置好的VueRouter与Vuex
 import router from './routes/router';
-import store from '@/store/store';
+import store from './store/store';
 
 // 引入Service-Worker
 import registerSW from '@/service-worker/registerSW';
@@ -90,6 +90,9 @@ router.afterEach((to: Route) => {
 
 // 获得当前环境
 store.dispatch('systemInfo');
+
+// 写入环境变量
+store.commit('env', process.env);
 
 // 获取屏幕状态，并进行brakpoint状态监听
 store.dispatch('screen', $(window).width() || document.documentElement.clientWidth);

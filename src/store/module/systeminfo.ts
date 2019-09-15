@@ -2,11 +2,11 @@
  * @Author: Mr.Hope
  * @Date: 2019-06-26 20:26:14
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-09-15 15:50:45
+ * @LastEditTime: 2019-09-15 17:27:52
  * @Description: Vuex SystemInfo Module
  */
 
-import { ActionContext, Module } from 'vuex';
+import { ActionContext } from 'vuex';
 import { BaseState } from '../state';
 
 export interface SystemState {
@@ -33,7 +33,7 @@ const systemState: SystemState = {
   OSVersion: ''
 };
 
-const systemModule: Module<SystemState, BaseState> = {
+export default {
   state: systemState,
   mutations: {
     /**
@@ -103,5 +103,3 @@ const systemModule: Module<SystemState, BaseState> = {
     }
   }
 };
-
-export default systemModule;

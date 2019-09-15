@@ -2,12 +2,9 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-16 15:35:49
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-09-15 15:48:56
+ * @LastEditTime: 2019-09-15 17:27:10
  * @Description: Vuex Slide Module
  */
-
-import { Module } from 'vuex';
-import { BaseState } from '../state';
 
 /** 菜单项 */
 export interface MenuItem {
@@ -30,7 +27,7 @@ const slideState: SlideState = {
   list: []
 };
 
-const slideModule: Module<SlideState, BaseState> = {
+export default {
   state: slideState,
   mutations: {
 
@@ -69,5 +66,3 @@ const slideModule: Module<SlideState, BaseState> = {
     }
   }
 };
-
-export default slideModule;

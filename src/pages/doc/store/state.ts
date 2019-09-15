@@ -7,9 +7,19 @@
  */
 
 /** 基础状态 */
-export interface BaseState extends Record<string, any> {
+export interface BaseState {
+  /** 内部文档列表 */
+  compiledDoc: Record<string, string>;
+  /** 东师指南列表 */
+  compiledGuide: Record<string, string>;
+  /** 文档加载状态 */
+  docLoading: boolean;
   /** 环境变量 */
   env: Record<string, any>;
+  /** 登录状态 */
+  loginStatus: Record<string, boolean>;
+  /** 密码存储 */
+  password: Record<string, string>;
   /** 夜间模式开启状态 */
   nightmode: boolean;
   /** 当前路径 */
@@ -18,7 +28,12 @@ export interface BaseState extends Record<string, any> {
 
 /** 初始状态 */
 const myState: BaseState = {
+  compiledDoc: {},
+  compiledGuide: {},
+  docLoading: true,
   env: {},
+  loginStatus: {},
+  password: {},
   nightmode: false,
   path: ''
 };

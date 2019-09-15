@@ -2,12 +2,9 @@
  * @Author: Mr.Hope
  * @Date: 2019-06-26 20:26:14
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-09-15 15:58:26
+ * @LastEditTime: 2019-09-15 17:23:32
  * @Description: Vuex ImagePreview Module
  */
-
-import { Module } from 'vuex';
-import { BaseState } from '../state';
 
 export interface ImageState {
   /** 图片的展示状态 */
@@ -25,7 +22,7 @@ const imageState: ImageState = {
   index: 0
 };
 
-const imageModule: Module<ImageState, BaseState> = {
+export default {
   state: imageState,
   mutations: {
     /**
@@ -78,5 +75,3 @@ const imageModule: Module<ImageState, BaseState> = {
     }
   }
 };
-
-export default imageModule;

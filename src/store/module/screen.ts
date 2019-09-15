@@ -2,11 +2,11 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-16 15:35:49
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-09-15 15:48:04
+ * @LastEditTime: 2019-09-15 17:26:35
  * @Description: Vuex Screen Module
  */
 
-import { ActionContext, Module } from 'vuex';
+import { ActionContext } from 'vuex';
 import { BaseState } from '../state';
 
 /** 屏幕状态 */
@@ -42,7 +42,7 @@ const screenState: ScreenState = {
   xxl: false
 };
 
-const screenModule: Module<ScreenState, BaseState> = {
+export default {
   state: screenState,
   mutations: {
 
@@ -117,5 +117,3 @@ const screenModule: Module<ScreenState, BaseState> = {
     }
   }
 };
-
-export default screenModule;
