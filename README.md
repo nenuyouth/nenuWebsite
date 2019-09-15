@@ -9,9 +9,15 @@
 
 该项目使用Node.js，基于Vue框架制作。
 
+## 使用提示
+
+直接克隆本项目即可。
+
+- [更多详情](#项目使用说明)
+
 ## 组件介绍与使用手册
 
-查看[自定义组件文档](https://nenuyouth.com/doc/website/vue/component)
+查看[自定义组件文档](https://nenuyouth.com/doc/private/website/vue/component)
 
 ## 别名设置
 
@@ -22,7 +28,7 @@
 
 ## Linter配置
 
-启动项目之后，请安装eslint与tslint并严格按照Linter提示格式化代码。
+启动项目之后，请在VSCode中安装Eslint插件并严格按照Linter提示格式化代码。
 
 项目不应包含任何无法通过Linter配置检查的代码。
 
@@ -104,14 +110,38 @@
 
 > 需要定期注意更新
 
-- bootstrap@4.1.3
-- weui@2.0.0
+- bootstrap@4.3.1
+- weui@2.0.1
 
-## 初始化项目
+## 项目使用说明
+
+### 下载项目
+
+使用Git clone操作。
+
+- [Git克隆相关说明](https://nenuyouth.com/doc/private/software/git/remote))
+
+具体步骤：
+
+在本机找到一个合适的位置，在文件资源管理器的地址输入`cmd`后回车打开命令提示符。
+
+执行命令：
+
+```shell
+git clone git@github.com:GodofHope/nenuWebsite.git
+```
+
+在项目完成后推荐使用vscode打开并查看项目。
+
+### 初始化项目
 
 ```bash
 npm install
 ```
+
+> 需要先安装Node.js
+>
+> - 更多[Nodejs说明](https://nenuyouth.com/doc/private/software/nodeJS)
 
 ## 更新项目依赖
 
@@ -132,7 +162,12 @@ npm run serve
 ```
 
 > 运行开发环境，可在浏览器通过[http://localhost:8080](http://localhost:8080)直接访问。
+>
 > 使用`ctrl + c`组合键并输入`y`再回车来终止开发环境
+>
+> 推荐使用VSCode
+>
+> - 更多[VSCode说明](https://nenuyouth.com/doc/private/software/vscode)
 
 ### 构建生产环境
 
@@ -222,6 +257,6 @@ npm run e2e
 npm run unit
 ```
 
-### 自定义配置
+## 相关文档
 
-查看 [自定义配置](https://cli.vuejs.org/zh/config/).
+- [Vue](https://nenuyouth.com/doc/private/website/vue)
