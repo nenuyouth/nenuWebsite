@@ -3,6 +3,7 @@
 [![作者：Mr.Hope](https://img.shields.io/badge/作者-Mr.Hope-blue.svg)](https://mrhope.nenuyouth.com)
 [![东师校会官网](https://img.shields.io/badge/link-东师校会官网-success.svg)](https://nenuyouth.com)
 [![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/ac01e629-dcf9-4572-871a-32d580925d0b/deploy-status)](https://app.netlify.com/sites/nenuyouth/deploys)
 
 > 本项目并没有附加任何开源协议，请避免使用、改编、移植任何源码
 

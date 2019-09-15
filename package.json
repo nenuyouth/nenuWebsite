@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
+    "serveinNENU": "vue-cli-service --mode inNENU serve",
     "build": "vue-cli-service build --modern",
+    "buildinNENU": "vue-cli-service build --mode inNENU --modern",
     "rebuild": "vue-cli-service build --modern --no-clean",
     "analyze": "vue-cli-service build --mode analyze --modern",
     "normBuild": "vue-cli-service build",
@@ -31,7 +33,7 @@
     "jquery": "^3.4.1",
     "lodash": "^4.17.15",
     "marked": "^0.7.0",
-    "mavon-editor": "^2.7.5",
+    "mavon-editor": "^2.7.6",
     "register-service-worker": "^1.6.2",
     "viewerjs": "^1.3.6",
     "vue": "^2.6.10",
@@ -42,14 +44,14 @@
     "vuex": "^3.1.1"
   },
   "devDependencies": {
-    "@types/chai": "^4.2.1",
+    "@types/chai": "^4.2.2",
     "@types/highlight.js": "^9.12.3",
     "@types/jquery": "^3.3.31",
     "@types/lodash": "^4.14.138",
     "@types/marked": "0.6.5",
     "@types/mocha": "^5.2.7",
-    "@typescript-eslint/eslint-plugin": "^2.1.0",
-    "@typescript-eslint/parser": "^2.1.0",
+    "@typescript-eslint/eslint-plugin": "^2.2.0",
+    "@typescript-eslint/parser": "^2.2.0",
     "@vue/cli-plugin-babel": "^3.11.0",
     "@vue/cli-plugin-e2e-cypress": "^3.11.0",
     "@vue/cli-plugin-eslint": "^3.11.0",
@@ -63,16 +65,16 @@
     "babel-eslint": "^10.0.3",
     "babel-plugin-import": "^1.12.1",
     "chai": "^4.2.0",
-    "eslint": "^6.3.0",
+    "eslint": "^6.4.0",
     "eslint-plugin-vue": "^5.2.3",
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
-    "sass": "^1.22.10",
+    "sass": "^1.22.12",
     "sass-loader": "^8.0.0",
     "svgo": "^1.3.0",
-    "typescript": "^3.6.2",
+    "typescript": "^3.6.3",
     "vue-svg-loader": "^0.12.0",
     "vue-template-compiler": "^2.6.10",
-    "webpack-bundle-analyzer": "^3.4.1"
+    "webpack-bundle-analyzer": "^3.5.0"
   }
 }
