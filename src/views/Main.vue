@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主页
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-09-02 15:32:31
+ * @LastEditTime: 2019-09-15 19:51:26
 -->
 <template>
   <div class="container">
@@ -14,7 +14,7 @@
       <hr class="my-4" />
       <p>人格的魅力，学习的楷模，工作的典范</p>
       <p class="lead">
-        <a-button @click="$router.push('/intro/studentUnion')" size="large" type="primary">了解校学生会</a-button>
+        <a-button @click="$router.push('/about/studentUnion')" size="large" type="primary">了解校学生会</a-button>
       </p>
     </div>
     <base-carousel v-bind="carouselData" />
