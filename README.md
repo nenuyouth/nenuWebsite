@@ -2,7 +2,7 @@
 
 [![作者：Mr.Hope](https://img.shields.io/badge/作者-Mr.Hope-blue.svg)](https://mrhope.nenuyouth.com)
 [![Travis CI](https://travis-ci.com/nenuyouth/nenuWebsite.svg?branch=work)](https://travis-ci.com/nenuyouth/nenuWebsite)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/f900457b-a946-4874-9fc9-ddf41395417c/deploy-status)](https://app.netlify.com/sites/silly-ramanujan-8600f8/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/ac01e629-dcf9-4572-871a-32d580925d0b/deploy-status)](https://app.netlify.com/sites/nenuyouth/deploys)
 
 > 本项目并没有附加任何开源协议，请避免使用、改编、移植任何源码
 
