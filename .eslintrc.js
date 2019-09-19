@@ -3,29 +3,13 @@
  * @LastEditors: Mr.Hope
  * @Description: eslint配置文件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-09-06 12:45:39
+ * @LastEditTime: 2019-09-15 23:01:22
  */
 module.exports = {
   // 阻止eslint读取父目录或总配置文件的规则
   root: true,
 
-  // es-loader配置
-  // settings: {
-  // 'import/resolver': {
-  //   alias: {
-  //     map: [
-  //       ['icon', './node_modules/@ant-design/icons/lib/'],
-  //       ['ol', './node_modules/@ant-design/icons/lib/outline/'],
-  //       ['@', './src/'],
-  //       ['|', './src/assets/'],
-  //       ['#', './src/components/'],
-  //       ['%', './src/utils/']
-  //     ]
-  //   }
-  // }
-  // },
-
-  // 代码所在环境
+  /** 代码环境 */
   env: {
     browser: true,
     commonjs: true,
@@ -36,18 +20,19 @@ module.exports = {
 
   parser: 'vue-eslint-parser',
 
-  // 设置eslint解释器,
+  /** 设置typescript-eslint解释器, */
   parserOptions: {
     parser: '@typescript-eslint/parser',
     project: './tsconfig.json',
     extraFileExtensions: ['vue']
   },
 
+  /** 所使用的插件 */
   plugins: [
     '@typescript-eslint'
   ],
 
-  // 所使用的规则配置
+  /** 所使用的规则配置 */
   extends: [
     'plugin:vue/essential',
     'eslint:recommended',
@@ -57,7 +42,7 @@ module.exports = {
     '@vue/typescript'
   ],
 
-  // 自定义的额外规则
+  /** 自定义的额外规则 */
   rules: {
     'accessor-pairs': 'error',
     'array-bracket-newline': ['error', { multiline: true }],

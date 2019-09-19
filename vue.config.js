@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: vue config file
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-09-15 16:00:01
+ * @LastEditTime: 2019-09-19 17:09:03
  */
 const path = require('path');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
@@ -157,7 +157,7 @@ module.exports = {
   // 在 multi-page 模式下构建应用
 
   pages: require('./mutiPage'),
-  publicPath: process.env.DEPLOY ? process.env.deployAddress : '/',
+  publicPath: process.env.DeployAddress || '/',
   productionSourceMap: false,
   crossorigin: 'anonymous',
   chainWebpack,
