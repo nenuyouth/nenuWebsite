@@ -3,16 +3,16 @@
     <a-button @click="editable=false" type="primary" v-if="editable">编辑</a-button>
     <a-button @click="editable=true" v-else>编辑</a-button>
     <div id="editor">
-      <mavon-editor :editable="editable" style="height: 100%" v-model="value" />
+      <!-- <mavon-editor :editable="editable" style="height: 100%" v-model="value" /> -->
     </div>
   </div>
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { mavonEditor } from 'mavon-editor';
+// import { mavonEditor } from 'mavon-editor';
 
-// @Component
-@Component({ components: { mavonEditor } })
+// @Component({ components: { mavonEditor } })
+@Component
 export default class MarkdownEditor extends Vue {
   private editable = false;
 
@@ -24,5 +24,5 @@ export default class MarkdownEditor extends Vue {
 }
 </script>
 <style lang='scss'>
-@import '~mavon-editor/dist/css/index.css';
+// @import '~mavon-editor/dist/css/index.css';
 </style>
