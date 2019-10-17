@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Ant Design Icon 部分加载文件
  * @Date: 2019-05-06 00:44:51
- * @LastEditTime: 2019-07-02 13:16:52
+ * @LastEditTime: 2019-10-13 16:33:46
  */
 
 // Nav Icons
@@ -17,28 +17,16 @@ export { default as FireOutline } from 'ol/FireOutline';
 export { default as QuestionOutline } from 'ol/QuestionOutline';
 
 // Internal Doc Icons
-export { default as CodeOutline } from 'ol/CodeOutline';
-export { default as WarningOutline } from 'ol/WarningOutline';
-export { default as ChromeOutline } from 'ol/ChromeOutline';
-export { default as TagsOutline } from 'ol/TagsOutline';
-export { default as SlidersOutline } from 'ol/SlidersOutline';
-export { default as WindowsOutline } from 'ol/WindowsOutline';
-export { default as SettingOutline } from 'ol/SettingOutline';
-export { default as OrderedListOutline } from 'ol/OrderedListOutline';
-export { default as ReloadOutline } from 'ol/ReloadOutline';
-export { default as ToolOutline } from 'ol/ToolOutline';
-export { default as CloudUploadOutline } from 'ol/CloudUploadOutline';
-export { default as BranchesOutline } from 'ol/BranchesOutline';
-export { default as ExperimentOutline } from 'ol/ExperimentOutline';
-export { default as HTML5Outline } from 'ol/Html5Outline';
-export { default as SelectOutline } from 'ol/SelectOutline';
 export { default as EditOutline } from 'ol/EditOutline';
-export { default as SnippetsOutline } from 'ol/SnippetsOutline';
+export { default as CodeOutline } from 'ol/CodeOutline';
+export { default as DiffOutline } from 'ol/DiffOutline';
+export { default as StarOutline } from 'ol/StarOutline';
+export { default as WarningOutline } from 'ol/WarningOutline';
 export { default as MessageOutline } from 'ol/MessageOutline';
 export { default as HighlightOutline } from 'ol/HighlightOutline';
-export { default as ShareAltOutline } from 'ol/ShareAltOutline';
 
 // Guide Page Icons
+export { default as ToolOutline } from 'ol/ToolOutline';
 export { default as BookOutline } from 'ol/BookOutline';
 export { default as LockOutline } from 'ol/LockOutline';
 export { default as BlockOutline } from 'ol/BlockOutline';
