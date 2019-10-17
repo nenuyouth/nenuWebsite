@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: vue config file
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-09-19 17:09:03
+ * @LastEditTime: 2019-10-17 09:49:24
  */
 const path = require('path');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
@@ -152,11 +152,9 @@ const configureWebpack = config => {
  * @property {object} pwa Progressive App支持
  */
 module.exports = {
-
-
   // 在 multi-page 模式下构建应用
-
   pages: require('./mutiPage'),
+
   publicPath: process.env.DeployAddress || '/',
   productionSourceMap: false,
   crossorigin: 'anonymous',
@@ -170,7 +168,9 @@ module.exports = {
       warnings: false,
       errors: true
     },
-    proxy: { // 代理设置
+
+    // 代理设置
+    proxy: {
       '/Res': {
         target: 'http://nenu.com',
         secure: false,

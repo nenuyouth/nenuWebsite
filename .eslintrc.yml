@@ -9,8 +9,6 @@ env:
   jquery: true
   node: true
 
-parser: vue-eslint-parser
-
 # 设置typescript-eslint解释器
 parserOptions:
   parser: '@typescript-eslint/parser'
@@ -24,7 +22,7 @@ plugins:
 
 # 所使用的规则配置
 extends:
-  - 'plugin:vue/essential'
+  - 'plugin:vue/recommended'
   - 'eslint:recommended'
   - 'plugin:@typescript-eslint/eslint-recommended'
   - 'plugin:@typescript-eslint/recommended'
