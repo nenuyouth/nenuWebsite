@@ -1,0 +1,53 @@
+{
+  "name": "vue-tempalte",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build --modern",
+    "rebuild": "vue-cli-service build --modern --no-clean",
+    "analyze": "vue-cli-service build --mode analyze --modern",
+    "inspect": "vue-cli-service inspect --modern > modern.js",
+    "normal-analyze": "vue-cli-service build --mode analyze",
+    "normal-build": "vue-cli-service build",
+    "normal-inspect": "vue-cli-service inspect > normal.js",
+    "normal-rebuild": "vue-cli-service build --modern --no-clean",
+    "test:unit": "vue-cli-service test:unit",
+    "test:e2e": "vue-cli-service test:e2e",
+    "lint": "vue-cli-service lint"
+  },
+  "author": "Mr.Hope",
+  "dependencies": {
+    "core-js": "^3.3.3",
+    "register-service-worker": "^1.6.2",
+    "vue": "^2.6.10",
+    "vue-class-component": "^7.1.0",
+    "vue-property-decorator": "^8.3.0",
+    "vue-router": "^3.1.3",
+    "vuex": "^3.1.1"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.3",
+    "@types/mocha": "^5.2.7",
+    "@vue/cli-plugin-babel": "^4.0.4",
+    "@vue/cli-plugin-e2e-cypress": "^4.0.4",
+    "@vue/cli-plugin-eslint": "^4.0.4",
+    "@vue/cli-plugin-pwa": "^4.0.4",
+    "@vue/cli-plugin-router": "^4.0.4",
+    "@vue/cli-plugin-typescript": "^4.0.4",
+    "@vue/cli-plugin-unit-mocha": "^4.0.4",
+    "@vue/cli-plugin-vuex": "^4.0.4",
+    "@vue/cli-service": "^4.0.4",
+    "@vue/eslint-config-airbnb": "^4.0.1",
+    "@vue/eslint-config-typescript": "^4.0.0",
+    "@vue/test-utils": "1.0.0-beta.29",
+    "chai": "^4.2.0",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^5.2.3",
+    "sass": "^1.23.0",
+    "sass-loader": "^8.0.0",
+    "typescript": "^3.6.4",
+    "vue-template-compiler": "^2.6.10",
+    "webpack-bundle-analyzer": "^3.6.0"
+  }
+}
