@@ -16,7 +16,7 @@ import slide, { SlideState } from '@/store/module/slide';
 import systemInfo, { SystemState } from '@/store/module/systeminfo';
 import serviceWorker, { SWState } from '@/store/module/service-worker';
 
-Vue.use(Vuex);// 使用Vuex
+Vue.use(Vuex); // 使用Vuex
 
 export default new Vuex.Store({
   state: myState,

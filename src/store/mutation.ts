@@ -9,7 +9,6 @@
 import { BaseState } from './state';
 
 const myMutation = {
-
   /**
    * 设置环境变量
    *

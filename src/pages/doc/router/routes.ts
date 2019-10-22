@@ -11,7 +11,10 @@ const route = [
   { path: '/doc/private/readme', redirect: '/doc' },
   { path: '/doc/private/:path1/readme', redirect: '/doc/:path1' },
   { path: '/doc/private/:path1/:path2/readme', redirect: '/doc/:path1/:path2' },
-  { path: '/doc/private/:path1/:path2/:path3/readme', redirect: '/doc/:path1/:path2/:path3' },
+  {
+    path: '/doc/private/:path1/:path2/:path3/readme',
+    redirect: '/doc/:path1/:path2/:path3'
+  },
   {
     path: '/doc/private/:path1?/:path2?/:path3?/:path4?',
     meta: { title: false },
@@ -20,7 +23,10 @@ const route = [
   { path: '/doc/readme', redirect: '/doc' },
   { path: '/doc/:path1/readme', redirect: '/doc/:path1' },
   { path: '/doc/:path1/:path2/readme', redirect: '/doc/:path1/:path2' },
-  { path: '/doc/:path1/:path2/:path3/readme', redirect: '/doc/:path1/:path2/:path3' },
+  {
+    path: '/doc/:path1/:path2/:path3/readme',
+    redirect: '/doc/:path1/:path2/:path3'
+  },
   {
     path: '/doc/:path1?/:path2?/:path3?/:path4?',
     meta: { title: false },

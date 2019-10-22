@@ -54,10 +54,9 @@ export default {
      * @param index 所展示图片的索引
      */
     imageList(state: ImageState, urls?: string | string[], index?: number) {
-      state.list = urls ? typeof urls === 'string' ? [urls] : urls : [''];
+      state.list = urls ? (typeof urls === 'string' ? [urls] : urls) : [''];
       if (index) state.index = index;
     },
-
 
     /**
      * 通过图片地址设置所展示图片的索引值

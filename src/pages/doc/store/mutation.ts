@@ -9,7 +9,6 @@ import Vue from 'vue';
 import { BaseState } from './state';
 
 const myMutation = {
-
   /**
    * 储存编译好的指南页面
    *

@@ -8,8 +8,28 @@
 
 // 引入Ant Design
 import {
-  Anchor, Breadcrumb, Button, Carousel, Col, Divider, Dropdown, Form, Icon, Input, InputNumber,
-  Layout, Menu, Modal, Radio, Row, Select, Skeleton, Spin, Timeline, Tooltip, message
+  Anchor,
+  Breadcrumb,
+  Button,
+  Carousel,
+  Col,
+  Divider,
+  Dropdown,
+  Form,
+  Icon,
+  Input,
+  InputNumber,
+  Layout,
+  Menu,
+  Modal,
+  Radio,
+  Row,
+  Select,
+  Skeleton,
+  Spin,
+  Timeline,
+  Tooltip,
+  message
 } from 'ant-design-vue';
 import { Route } from 'vue-router';
 import Vue from 'vue';
@@ -82,7 +102,9 @@ Vue.prototype.$success = Modal.success;
 Vue.prototype.$warning = Modal.warning;
 
 // 注册IconFont
-const IconFont = Icon.createFromIconfontCN({ scriptUrl: '//at.alicdn.com/t/font_1091332_oo8p0ei73l.js' });
+const IconFont = Icon.createFromIconfontCN({
+  scriptUrl: '//at.alicdn.com/t/font_1091332_oo8p0ei73l.js'
+});
 
 // 全局注册IconFont
 Vue.component('icon-font', IconFont);
@@ -108,10 +130,19 @@ store.dispatch('systemInfo');
 store.commit('env', process.env);
 
 // 获取屏幕状态，并进行brakpoint状态监听
-store.dispatch('screen', $(window).width() || document.documentElement.clientWidth);
-window.addEventListener('resize', debounce(() => {
-  store.dispatch('screen', $(window).width() || document.documentElement.clientWidth);
-}, 300));
+store.dispatch(
+  'screen',
+  $(window).width() || document.documentElement.clientWidth
+);
+window.addEventListener(
+  'resize',
+  debounce(() => {
+    store.dispatch(
+      'screen',
+      $(window).width() || document.documentElement.clientWidth
+    );
+  }, 300)
+);
 
 // 声明Vue实例
 new Vue({

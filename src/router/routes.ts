@@ -33,91 +33,106 @@ const route = [
     path: '/lecture',
     name: 'lecture',
     meta: { title: '讲座信息' },
-    component: () => import(/* webpackChunkName: "tool" */ '@/views/Lecture.vue')
+    component: () =>
+      import(/* webpackChunkName: "tool" */ '@/views/Lecture.vue')
   },
   {
     path: '/lecture/:school',
     name: 'lectureDetail',
     meta: { title: '讲座信息' },
-    component: () => import(/* webpackChunkName: "tool" */ '@/views/Lecture.vue')
+    component: () =>
+      import(/* webpackChunkName: "tool" */ '@/views/Lecture.vue')
   },
   {
     path: '/tool/calendar',
     name: 'calendar',
     meta: { title: '东师校历' },
-    component: () => import(/* webpackChunkName: "tool" */ '@/views/tools/Calendar.vue')
+    component: () =>
+      import(/* webpackChunkName: "tool" */ '@/views/tools/Calendar.vue')
   },
   {
     path: '/tool/calendar/:time',
     name: 'calendarDetail',
     meta: { title: '校历详情' },
-    component: () => import(/* webpackChunkName: "tool" */ '@/views/tools/CalendarDetail.vue')
+    component: () =>
+      import(/* webpackChunkName: "tool" */ '@/views/tools/CalendarDetail.vue')
   },
   {
     path: '/tool/schoolGzh',
     name: 'schoolGzh',
     meta: { title: '学院矩阵' },
-    component: () => import(/* webpackChunkName: "tool" */ '@/views/tools/SchoolGzh.vue')
+    component: () =>
+      import(/* webpackChunkName: "tool" */ '@/views/tools/SchoolGzh.vue')
   },
   {
     path: '/tool/netCharge',
     name: 'NetCharge',
     meta: { title: '网费充值' },
-    component: () => import(/* webpackChunkName: "tool" */ '@/views/tools/NetCharge.vue')
+    component: () =>
+      import(/* webpackChunkName: "tool" */ '@/views/tools/NetCharge.vue')
   },
   {
     path: '/tool/elective',
     name: 'Elective',
     meta: { title: '选课系统' },
-    component: () => import(/* webpackChunkName: "tool" */ '@/views/tools/Elective.vue')
+    component: () =>
+      import(/* webpackChunkName: "tool" */ '@/views/tools/Elective.vue')
   },
   {
     path: '/scence',
     name: 'scence',
     meta: { title: '东师风貌' },
-    component: () => import(/* webpackChunkName: "scence" */ '@/views/scence/Scence.vue')
+    component: () =>
+      import(/* webpackChunkName: "scence" */ '@/views/scence/Scence.vue')
   },
   {
     path: '/scence/benbu',
     name: 'benbuScence',
     meta: { title: '本部风貌' },
-    component: () => import(/* webpackChunkName: "scence" */ '@/views/scence/Benbu.vue')
+    component: () =>
+      import(/* webpackChunkName: "scence" */ '@/views/scence/Benbu.vue')
   },
   {
     path: '/scence/jingyue',
     name: 'jingyueScence',
     meta: { title: '净月风貌' },
-    component: () => import(/* webpackChunkName: "scence" */ '@/views/scence/Jingyue.vue')
+    component: () =>
+      import(/* webpackChunkName: "scence" */ '@/views/scence/Jingyue.vue')
   },
   {
     path: '/about/studentUnion',
     name: 'su',
     meta: { title: '校学生会简介' },
-    component: () => import(/* webpackChunkName: "about" */ '@/views/about/SU.vue')
+    component: () =>
+      import(/* webpackChunkName: "about" */ '@/views/about/SU.vue')
   },
   {
     path: '/about/department',
     name: 'department',
     meta: { title: '校学生会部门简介' },
-    component: () => import(/* webpackChunkName: "about" */ '@/views/about/Department.vue')
+    component: () =>
+      import(/* webpackChunkName: "about" */ '@/views/about/Department.vue')
   },
   {
     path: '/about',
     name: 'about',
     meta: { title: '关于我们' },
-    component: () => import(/* webpackChunkName: "about" */ '@/views/about/About.vue')
+    component: () =>
+      import(/* webpackChunkName: "about" */ '@/views/about/About.vue')
   },
   {
     path: '/about/Mr-Hope',
     name: 'mrhope',
     meta: { title: 'Mr.Hope简介' },
-    component: () => import(/* webpackChunkName: "about" */ '@/views/about/MrHope.vue')
+    component: () =>
+      import(/* webpackChunkName: "about" */ '@/views/about/MrHope.vue')
   },
   {
     path: '/about/question',
     name: 'question',
     meta: { title: '其他问题' },
-    component: () => import(/* webpackChunkName: "about" */ '@/views/about/Question.vue')
+    component: () =>
+      import(/* webpackChunkName: "about" */ '@/views/about/Question.vue')
   },
   {
     path: '*',

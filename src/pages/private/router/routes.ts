@@ -17,12 +17,14 @@ const route = [
   {
     path: '/jsonEditor',
     meta: { title: '小程序页面修改' },
-    component: () => import(/* webpackChunkName: "json" */ '../views/JsonEditor.vue')
+    component: () =>
+      import(/* webpackChunkName: "json" */ '../views/JsonEditor.vue')
   },
   {
     path: '/jsonEdit',
     meta: { title: 'JSON编辑器' },
-    component: () => import(/* webpackChunkName: "json" */ '../components/JsonEdit.vue')
+    component: () =>
+      import(/* webpackChunkName: "json" */ '../components/JsonEdit.vue')
   },
   {
     path: '/mdEditor',

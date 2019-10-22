@@ -3,13 +3,26 @@
  * @LastEditors: Mr.Hope
  * @Description: 主脚本文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-09-15 17:32:27
+ * @LastEditTime: 2019-10-22 10:43:35
  */
 
 // 引入Ant Design
 import {
-  Anchor, Breadcrumb, Button, Col, Form, Icon, Input,
-  Layout, Menu, Modal, Row, Skeleton, Spin, Tooltip, message
+  Anchor,
+  Breadcrumb,
+  Button,
+  Col,
+  Form,
+  Icon,
+  Input,
+  Layout,
+  Menu,
+  Modal,
+  Row,
+  Skeleton,
+  Spin,
+  Tooltip,
+  message
 } from 'ant-design-vue';
 import Vue from 'vue';
 import Component from 'vue-class-component';
@@ -20,8 +33,8 @@ import $ from 'jquery';
 import debounce from 'lodash/debounce';
 
 // 引入配置好的VueRouter与Vuex
-import router from './routes/router';
-import store from './store/store';
+import router from './router';
+import store from './store';
 
 // 引入Service-Worker
 import registerSW from '@/service-worker/registerSW';
@@ -72,7 +85,9 @@ Vue.prototype.$success = Modal.success;
 Vue.prototype.$warning = Modal.warning;
 
 // 注册IconFont
-const IconFont = Icon.createFromIconfontCN({ scriptUrl: '//at.alicdn.com/t/font_1273079_vzgkl6rtnoa.js' });
+const IconFont = Icon.createFromIconfontCN({
+  scriptUrl: '//at.alicdn.com/t/font_1273079_vzgkl6rtnoa.js'
+});
 
 // 全局注册IconFont
 Vue.component('icon-font', IconFont);
@@ -95,10 +110,19 @@ store.dispatch('systemInfo');
 store.commit('env', process.env);
 
 // 获取屏幕状态，并进行brakpoint状态监听
-store.dispatch('screen', $(window).width() || document.documentElement.clientWidth);
-window.addEventListener('resize', debounce(() => {
-  store.dispatch('screen', $(window).width() || document.documentElement.clientWidth);
-}, 300));
+store.dispatch(
+  'screen',
+  $(window).width() || document.documentElement.clientWidth
+);
+window.addEventListener(
+  'resize',
+  debounce(() => {
+    store.dispatch(
+      'screen',
+      $(window).width() || document.documentElement.clientWidth
+    );
+  }, 300)
+);
 
 // 声明Vue实例
 new Vue({

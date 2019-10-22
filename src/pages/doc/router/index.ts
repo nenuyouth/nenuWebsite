@@ -3,12 +3,12 @@
  * @LastEditors: Mr.Hope
  * @Description: router配置文件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-09-15 15:59:30
+ * @LastEditTime: 2019-09-15 16:00:33
  */
 
 import Vue from 'vue';
 import Router from 'vue-router';
-import routes from './route';
+import routes from './routes';
 
 Vue.use(Router); // 使用官方Router
 
@@ -23,7 +23,7 @@ export default new Router({
   mode: 'history',
 
   // 设置根目录为环境变量BASE_URL
-  base: `${process.env.BASE_URL}private/`,
+  base: process.env.BASE_URL,
 
   /**
    * 保存滚动位置

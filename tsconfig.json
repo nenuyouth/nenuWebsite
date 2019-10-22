@@ -10,13 +10,21 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
+    "resolveJsonModule": true,
     "baseUrl": ".",
     "types": [
       "webpack-env",
+      "jquery",
       "mocha",
       "chai"
     ],
     "paths": {
+      "icon/*": [
+        "node_modules/@ant-design/icons/lib/*"
+      ],
+      "ol/*": [
+        "node_modules/@ant-design/icons/lib/outline/*"
+      ],
       "@/*": [
         "src/*"
       ],

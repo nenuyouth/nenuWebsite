@@ -45,7 +45,6 @@ const screenState: ScreenState = {
 export default {
   state: screenState,
   mutations: {
-
     /**
      * 设置屏幕状态
      *
@@ -66,12 +65,14 @@ export default {
 
         state.status = status;
 
-        if (status === 'xs') { // make xs 'true' and the rest 'false'
+        if (status === 'xs') {
+          // make xs 'true' and the rest 'false'
           if (!state.xs) state.xs = true;
           hash.forEach(x => {
             if (state[x]) state[x] = false;
           });
-        } else { // mark xs false
+        } else {
+          // mark xs false
 
           if (state.xs) state.xs = false;
 
@@ -82,7 +83,6 @@ export default {
           while (index2 > index) {
             if (state[hash[index2]]) state[hash[index2]] = false;
             index2 -= 1;
-
           }
           // change the elments before 'status' true
           while (index + 1) {
@@ -104,14 +104,13 @@ export default {
     }
   },
   actions: {
-
     /**
      * 获取屏幕状态
      *
      * @param context state
      * @param width 屏幕宽度
      */
-    screen(context: (ActionContext<ScreenState, BaseState>), width: number) {
+    screen(context: ActionContext<ScreenState, BaseState>, width: number) {
       context.commit('screenWidth', width);
       context.commit('changeScreen', width);
     }

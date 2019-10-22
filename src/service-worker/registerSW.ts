@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: register-service-worker配置文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-10-18 16:16:31
+ * @LastEditTime: 2019-10-22 12:28:06
  */
 
 /* eslint-disable no-console */
@@ -11,8 +11,9 @@
 import { register } from 'register-service-worker';
 import { Store } from 'vuex';
 import { BaseState } from '@/store/state';
+import { BaseState as DocState } from '@/pages/doc/store/state';
 
-const registerServiceWorker = (store: Store<BaseState>) => {
+const registerServiceWorker = (store: Store<BaseState> | Store<DocState>) => {
   if (process.env.NODE_ENV === 'production')
     register(`${process.env.BASE_URL}service-worker/service-worker.js`, {
       ready() {

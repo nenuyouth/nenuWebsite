@@ -30,7 +30,6 @@ const slideState: SlideState = {
 export default {
   state: slideState,
   mutations: {
-
     /**
      * 设置Slide菜单内容
      *

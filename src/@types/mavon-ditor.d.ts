@@ -7,7 +7,7 @@
  */
 
 declare module 'mavon-editor' {
-  import { Component } from "vue";
+  import { Component } from 'vue';
 
   export let mavonEditor: Component;
 

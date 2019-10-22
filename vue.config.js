@@ -1,4 +1,10 @@
-
+/*
+ * @Author: Mr.Hope
+ * @LastEditors: Mr.Hope
+ * @Description: vue config file
+ * @Date: 2019-02-27 00:00:08
+ * @LastEditTime: 2019-10-22 12:21:58
+ */
 const path = require('path');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
@@ -6,7 +12,36 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const isProduction = process.env.NODE_ENV === 'production';
 
 /**
- * @description: Webpack配置
+ * Webpack链式处理
+ *
+ * @param {object} config Webpack配置
+ * @returns {void}
+ */
+const chainWebpack = config => {
+  // 处理SVG模块
+  const svgRule = config.module.rule('svg');
+
+  svgRule.uses.clear();
+  svgRule
+    .use('babel-loader')
+    .loader('babel-loader')
+    .end() // 预先对vue-svg-loader进行处理使其遵守es5标准
+    .use('vue-svg-loader')
+    .loader('vue-svg-loader')
+    .options({
+      // 对svg进行处理
+      plugins: [
+        { removeDoctype: true },
+        { removeComments: true },
+        { removeViewBox: false }
+      ],
+      removeViewBox: false
+    }); // 调用vue-svg-loader
+};
+
+/**
+ * Webpack配置
+ *
  * @param {object} config Webpack配置
  * @returns {void}
  */
@@ -14,16 +49,28 @@ const configureWebpack = config => {
   const myaliasconfig = {
     '|': path.resolve(__dirname, 'src/assets/'),
     '#': path.resolve(__dirname, 'src/components/'),
-    '%': path.resolve(__dirname, 'src/utils/')
+    '%': path.resolve(__dirname, 'src/utils/'),
+    icon: path.resolve(__dirname, 'node_modules/@ant-design/icons/lib/'), // 减小Icon.ts体积
+    ol: path.resolve(__dirname, 'node_modules/@ant-design/icons/lib/outline'), // 减小Icon.ts体积
+    '@ant-design/icons/lib/dist$': path.resolve(__dirname, './src/utils/icon') // 减小 antdIcon 体积
   };
 
-  config.resolve.alias = { ...config.resolve.alias || {}, ...myaliasconfig }; // 配置解析别名，可以简写
+  config.resolve.alias = { ...(config.resolve.alias || {}), ...myaliasconfig }; // 配置解析别名，可以简写
+  config.resolve.extensions = [
+    // 配置解析扩展
+    ...(config.resolve.extensions || []),
+    '.svg'
+  ];
   config.resolve.modules = [path.resolve(__dirname, 'src'), 'node_modules']; // 配置模块解析方式，可加快解析速度
 
   // 生产环境配置
   if (isProduction) {
     // 使用CDN外部引入组件
     config.externals = {
+      axios: 'axios',
+      jquery: '$',
+      tinycolor2: 'tinycolor',
+      viewerjs: 'Viewer',
       vue: 'Vue',
       'vue-router': 'VueRouter',
       vuex: 'Vuex'
@@ -50,11 +97,27 @@ const configureWebpack = config => {
         automaticNameDelimiter: '-',
         name: true,
         cacheGroups: {
+          // 分离ant-design模块
+          antd: {
+            test: /[\\/]node_modules[\\/]ant-design-vue[\\/]/u,
+            name: 'antd',
+            chunks: 'all',
+            priority: -8
+          },
+          // 分离其他
+          common: {
+            test: /[\\/]node_modules[\\/](lodash|vue-class-component)[\\/]/u,
+            // test: /[\\/]node_modules[\\/](axios|lodash|jquery|tinycolor2|viewerjs|vue(-class-component|-router|x)?)[\\/]/u,
+            name: 'common',
+            chunks: 'all', // valid values are all, async, and initial
+            priority: -9
+          },
           vendors: {
             test: /[\\/]node_modules[\\/]/u,
             priority: -10
           },
-          combine: { // 默认块，最小重用两次，优先级最低，不包含已有的chunk内容
+          // 默认块，最小重用两次，优先级最低，不包含已有的chunk内容
+          combine: {
             minChunks: 2,
             priority: -20,
 
@@ -66,15 +129,19 @@ const configureWebpack = config => {
     };
   } else config.devtool = 'source-map';
 
-  if (process.env.ANALYZE) // 分析打包后代码
-    config.plugins.push(new BundleAnalyzerPlugin({ // 使用 webpack 分析插件
-      analyzerPort: 0, // 让 node 使用随机端口
-      defaultSizes: 'gzip' // 默认展示 gzip 大小
-    }));
+  // 分析打包后代码
+  if (process.env.ANALYZE)
+    config.plugins.push(
+      // 使用 webpack 分析插件
+      new BundleAnalyzerPlugin({
+        analyzerPort: 0, // 让 node 使用随机端口
+        defaultSizes: 'gzip' // 默认展示 gzip 大小
+      })
+    );
 };
 
 /**
- * @description: vue输出配置
+ * vue 输出配置
  *
  * @property {string} publicPath @default '/' 网站在服务器上的部署位置
  * @property {string} outputDir @default 'dist' 编译输出目录
@@ -91,25 +158,59 @@ const configureWebpack = config => {
  * @property {object} pwa Progressive App支持
  */
 module.exports = {
+  // 在 multi-page 模式下构建应用
+  pages: require('./mutiPage'),
+
   publicPath: process.env.DeployAddress || '/',
   productionSourceMap: false,
   crossorigin: 'anonymous',
+  chainWebpack,
   configureWebpack,
+  transpileDependencies: ['ant-design-vue'], // 需要babel-pollyfill处理的模块
   devServer: {
     compress: true, // 启用gzip压缩
-    overlay: { // 浮层
+    // 浮层
+    overlay: {
       warnings: false,
       errors: true
     },
+
+    // 代理设置
+    proxy: {
+      '/Res': {
+        target: 'http://nenu.com',
+        secure: false,
+        changeOrigin: true
+      },
+      '/server': {
+        target: 'http://nenu.com',
+        secure: false,
+        changeOrigin: true
+      }
+    },
     open: 'Google Chrome' // 开发环境打开浏览器
   },
+  css: {
+    // 向 CSS 相关的 loader 传递选项
+    loaderOptions: {
+      less: {
+        // 自定义antd主题
+        modifyVars: {
+          'primary-color': '#2ecc71',
+          'link-color': '#2ecc71'
+        },
+        javascriptEnabled: true
+      }
+    }
+  },
   pwa: {
-    name: 'vue demo', // SW注册后的应用名称
-    themeColor: '#42b983', // 主题色
-    msTileColor: '#42b983', // 微软磁贴颜色
+    name: '东师校会官网', // SW注册后的应用名称
+    themeColor: '#2ecc71', // 主题色
+    msTileColor: '#2ecc71', // 微软磁贴颜色
     appleMobileWebAppCapable: 'yes', // iOS启用SW
     appleMobileWebAppStatusBarStyle: 'default', // iOS状态栏样式,可选"black-translucent","black","default"
-    iconPaths: { // 图标路径
+    // 图标路径
+    iconPaths: {
       favicon32: 'img/icons/favicon-32.png',
       favicon16: 'img/icons/favicon-16.png',
       appleTouchIcon: 'img/icons/apple-icon-152.png',
@@ -125,10 +226,11 @@ module.exports = {
       importsDirectory: 'service-worker', // service-worker文件存放路径
       maximumFileSizeToCacheInBytes: '10485760'
     },
-    manifestOptions: { // 定义 manifest.json
-      name: 'vuets',
-      short_name: 'vuets',
-      description: 'vue + ts + router + vuex 项目模板',
+    // 定义 manifest.json
+    manifestOptions: {
+      name: '东师校会官网',
+      short_name: '东师校会官网',
+      description: '服务东师学子',
       icons: [
         {
           src: '/img/icons/chrome-192.png',
@@ -144,7 +246,7 @@ module.exports = {
       start_url: './index.html',
       display: 'standalone',
       background_color: '#ffffff',
-      theme_color: '#42b983'
+      theme_color: '#2ecc71'
     }
   }
 };

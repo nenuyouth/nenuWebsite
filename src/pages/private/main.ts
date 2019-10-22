@@ -3,19 +3,35 @@
  * @LastEditors: Mr.Hope
  * @Description: 内部页面入口文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-10-13 16:32:33
+ * @LastEditTime: 2019-10-22 10:45:39
  */
 
 // 引入Ant Design
 import {
-  Button, Col, Divider, Dropdown, Form, Icon, Input, InputNumber,
-  Layout, Menu, Modal, Radio, Row, Select, Steps, Tooltip, Upload, message
+  Button,
+  Col,
+  Divider,
+  Dropdown,
+  Form,
+  Icon,
+  Input,
+  InputNumber,
+  Layout,
+  Menu,
+  Modal,
+  Radio,
+  Row,
+  Select,
+  Steps,
+  Tooltip,
+  Upload,
+  message
 } from 'ant-design-vue';
 import Vue from 'vue';
 
 // 引入配置好的VueRouter与Vuex
-import router from './routes/router';
-import store from '@/store/store';
+import router from './router';
+import store from '@/store';
 
 // 引入Service-Worker
 import registerSW from '@/service-worker/registerSW';
@@ -62,7 +78,9 @@ Vue.prototype.$success = Modal.success;
 Vue.prototype.$warning = Modal.warning;
 
 // 注册IconFont
-const IconFont = Icon.createFromIconfontCN({ scriptUrl: '//at.alicdn.com/t/font_1273079_70n5h1r9w.js' });
+const IconFont = Icon.createFromIconfontCN({
+  scriptUrl: '//at.alicdn.com/t/font_1273079_70n5h1r9w.js'
+});
 
 // 全局注册IconFont
 Vue.component('icon-font', IconFont);
