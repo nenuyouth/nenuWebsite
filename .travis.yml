@@ -14,7 +14,7 @@ jobs:
     - stage: deploy
       name: "Deploy Demo"
       script: npm run build
-      before_deploy: echo vue-demo.mrhope.site >> dist/CNAME
+      before_deploy: echo dev.nenuyouth.com >> dist/CNAME
       deploy:
         provider: pages
         skip-cleanup: true
