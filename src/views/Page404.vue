@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 404界面
  * @Date: 2019-03-25 12:39:59
- * @LastEditTime: 2019-05-08 13:18:34
+ * @LastEditTime: 2019-06-26 16:45:41
 -->
 <template>
   <div class="container">
@@ -12,9 +12,10 @@
     <p>同时，这也可能是一个bug。</p>
     <p>
       您可以将此错误反馈给
-      <router-link
-        to="http://wpa.qq.com/msgrd?v=3&amp;uin=1178522294&amp;site=qq&amp;menu=yes"
-      >Mr.Hope</router-link>
+      <a
+        href="http://wpa.qq.com/msgrd?v=3&amp;uin=1178522294&amp;site=qq&amp;menu=yes"
+        target="_blank"
+      >Mr.Hope</a>
     </p>
     <h1 mt-1>Page not found</h1>
     <p>
@@ -24,9 +25,10 @@
     <p>Also, this can be a bug.</p>
     <p>
       You can report this error to
-      <router-link
-        to="http://wpa.qq.com/msgrd?v=3&amp;uin=1178522294&amp;site=qq&amp;menu=yes"
-      >Mr.Hope</router-link>.
+      <a
+        href="http://wpa.qq.com/msgrd?v=3&amp;uin=1178522294&amp;site=qq&amp;menu=yes"
+        target="_blank"
+      >Mr.Hope</a>.
     </p>
   </div>
 </template>
@@ -34,5 +36,5 @@
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component
-export default class Page404 extends Vue {}
+export default class Page404 extends Vue { }
 </script>

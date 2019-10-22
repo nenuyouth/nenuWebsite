@@ -1,0 +1,9 @@
+.myfade-enter-active,
+.myfade-leave-active {
+  transition: opacity 0.5s;
+}
+
+.myfade-enter,
+.myfade-leave-to {
+  opacity: 0;
+}

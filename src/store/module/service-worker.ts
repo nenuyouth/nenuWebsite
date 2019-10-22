@@ -1,25 +1,26 @@
-/**
+/*
  * @Author: Mr.Hope
+ * @Date: 2019-05-16 15:35:49
  * @LastEditors: Mr.Hope
+ * @LastEditTime: 2019-09-15 17:26:54
  * @Description: Vuex ServiceWorker Module
- * @Date: 2019-03-24 23:50:48
- * @LastEditTime: 2019-03-25 10:10:26
  */
-import { Module } from 'vuex';
-import { BaseState } from '../state';
 
+/** ServiceWorker状态 */
 export interface SWState {
-  status: string; // service-worker 状态
+  /** ServiceWorker 当前状态 */
+  status: string;
+  /** ServiceWorker错误 */
   error?: any;
 }
 
 const swState: SWState = { status: '' };
 
-const swModule: Module<SWState, BaseState> = {
+export default {
   state: swState,
   mutations: {
     /**
-     * @description: 设置ServiceWorker状态
+     * 设置ServiceWorker状态
      *
      * @param state swState
      * @param status ServiceWorker状态
@@ -29,7 +30,7 @@ const swModule: Module<SWState, BaseState> = {
     },
 
     /**
-     * @description: 设置ServiceWorker错误
+     * 设置ServiceWorker错误
      *
      * @param state imagestate
      * @param error 遇到的错误
@@ -40,5 +41,3 @@ const swModule: Module<SWState, BaseState> = {
     }
   }
 };
-
-export default swModule;
