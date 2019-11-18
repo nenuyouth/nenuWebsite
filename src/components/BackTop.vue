@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: BackTop Button
  * @Date: 2019-03-22 19:30:08
- * @LastEditTime: 2019-08-25 23:01:44
+ * @LastEditTime: 2019-11-07 16:41:19
 -->
 <template>
   <transition name="myfade">
@@ -13,8 +13,8 @@
   </transition>
 </template>
 <script lang="ts">
-import $ from 'jquery';
 import { Component, Vue } from 'vue-property-decorator';
+import $ from 'jquery';
 import BackTopSvg from '|/icon/backTop.svg';
 
 @Component
@@ -36,15 +36,14 @@ export default class BackTop extends Vue {
   }
 }
 </script>
-<style scoped>
-.scrollTop {
-  position: fixed;
-  right: 20px;
-  bottom: 80px;
-  z-index: 3;
-  width: 36px;
-  height: 36px;
-  background-color: #fff;
-  border-radius: 50%;
-}
+<style lang="stylus" scoped>
+.scrollTop
+  position fixed
+  right 20px
+  bottom 80px
+  z-index 3
+  width 36px
+  height 36px
+  background-color #fff
+  border-radius 50%
 </style>

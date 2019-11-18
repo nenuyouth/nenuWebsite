@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Base Carousel
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-08-25 19:02:48
+ * @LastEditTime: 2019-11-07 16:41:44
 -->
 <template>
   <a-carousel
@@ -133,66 +133,58 @@ export default class BaseCarousel extends Vue {
   }
 }
 </script>
-<style lang='scss' scoped>
-.ant-carousel {
-  max-width: 100%;
-}
-.ant-carousel >>> .slick-slide {
-  text-align: center;
-  overflow: hidden;
-}
+<style lang="stylus" scoped>
+.ant-carousel
+  max-width 100%
 
-.ant-carousel >>> .arrow {
-  width: 20px;
-  height: 20px;
-  font-size: 20px;
-  color: #fff;
-  background-color: rgba(31, 45, 61, 0.11);
-  opacity: 0.3;
-}
-.ant-carousel >>> .arrow:before {
-  display: none;
-}
-.ant-carousel >>> .arrow:hover {
-  opacity: 0.5;
-}
+.ant-carousel >>> .slick-slide
+  text-align center
+  overflow hidden
 
-.slick-track {
-  width: 100%;
-}
+.ant-carousel >>> .arrow
+  width 20px
+  height 20px
+  font-size 20px
+  color #fff
+  background-color rgba(31, 45, 61, 0.11)
+  opacity 0.3
 
-.carouselItem {
-  position: relative;
-}
+.ant-carousel >>> .arrow:before
+  display none
 
-.caption {
-  position: absolute;
-  padding-top: 20px;
-  left: 5%;
-  right: 5%;
-  bottom: 20px;
-  color: rgba(255, 255, 255, 1) !important;
-  text-align: center;
-  vertical-align: center;
-  h1 {
-    color: #fff;
-  }
-  h2 {
-    color: #fff;
-  }
-}
+.ant-carousel >>> .arrow:hover
+  opacity 0.5
 
-.textBlack {
-  h1 {
-    color: #000;
-  }
-  h2 {
-    color: #000;
-  }
-}
+.slick-track
+  width 100%
 
-.img {
-  display: block;
-  width: 100%;
-}
+.carouselItem
+  position relative
+
+.caption
+  position absolute
+  padding-top 20px
+  left 5%
+  right 5%
+  bottom 20px
+  color rgba(255, 255, 255, 1) !important
+  text-align center
+  vertical-align center
+
+  h1
+    color #fff
+
+  h2
+    color #fff
+
+.textBlack
+  h1
+    color #000
+
+  h2
+    color #000
+
+.img
+  display block
+  width 100%
 </style>

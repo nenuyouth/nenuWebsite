@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 东师指南页面
  * @Date: 2019-03-24 11:14:13
- * @LastEditTime: 2019-08-25 23:34:21
+ * @LastEditTime: 2019-11-07 16:11:23
 -->
 <template>
   <div class="container">
@@ -24,9 +24,9 @@
 
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator';
+import LectureList from '@/components/LectureList.vue';
 import { Route } from 'vue-router';
 import axios from 'axios';
-import LectureList from '@/components/LectureList.vue';
 
 interface MenuEvent {
   domEvent: MouseEvent;

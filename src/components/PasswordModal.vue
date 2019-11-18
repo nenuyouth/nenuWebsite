@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 密码验证
  * @Date: 2019-03-16 13:44:32
- * @LastEditTime: 2019-09-02 11:03:17
+ * @LastEditTime: 2019-11-07 16:16:52
 -->
 <template>
   <!-- 密码输入框 -->
@@ -86,11 +86,11 @@
 </template>
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import axios from 'axios';
-import User from '|/icon/user.svg';
-import Password from '|/icon/password.svg';
 import Eye from '|/icon/eye.svg';
 import EyeClose from '|/icon/eyeClose.svg';
+import Password from '|/icon/password.svg';
+import User from '|/icon/user.svg';
+import axios from 'axios';
 
 @Component({ components: { User, Password, Eye, EyeClose } })
 export default class PasswordModal extends Vue {

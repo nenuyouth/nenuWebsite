@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 基础页面显示
  * @Date: 2019-02-24 22:21:25
- * @LastEditTime: 2019-08-25 19:35:31
+ * @LastEditTime: 2019-11-07 16:43:06
 -->
 <template>
   <div class="container page">
@@ -12,14 +12,14 @@
 </template>
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
+import BaseCarousel from '#/BaseCarousel.vue';
+import BaseFoot from '#/BaseFoot.vue';
 import BaseHead from '#/BaseHead.vue';
-import BaseTitle from '#/BaseTitle.vue';
-import BaseP from '#/BaseP.vue';
 import BaseImg from '#/BaseImg.vue';
 import BaseList from '#/BaseList.vue';
-import BaseCarousel from '#/BaseCarousel.vue';
+import BaseP from '#/BaseP.vue';
 import BasePhone from '#/BasePhone.vue';
-import BaseFoot from '#/BaseFoot.vue';
+import BaseTitle from '#/BaseTitle.vue';
 
 @Component({
   components: {
@@ -55,8 +55,7 @@ export default class BasePage extends Vue {
   }
 }
 </script>
-<style scoped>
-.page {
-  color: #000;
-}
+<style lang="stylus" scoped>
+.page
+  color #000
 </style>

@@ -5,8 +5,8 @@
  * @LastEditTime: 2019-06-20 18:55:39
  * @Description: 导航插件
  */
-import { VueConstructor } from 'vue';
 import VueRouter, { Route } from 'vue-router';
+import { VueConstructor } from 'vue';
 
 const navigate = (url: string | undefined, router: VueRouter, route: Route) => {
   if (url)

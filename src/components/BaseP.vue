@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Base Paragraph
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-08-25 19:06:38
+ * @LastEditTime: 2019-11-07 16:21:38
 -->
 <template>
   <div :id="myId" class="Ctn">
@@ -24,8 +24,8 @@
 </template>
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import Loading from '|/icon/loading.svg';
 import Error from '|/icon/error.svg';
+import Loading from '|/icon/loading.svg';
 
 interface Style {
   [propName: string]: string;

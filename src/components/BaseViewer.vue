@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-05-16 15:35:49
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-07-01 22:55:54
+ * @LastEditTime: 2019-11-07 16:17:19
  * @Description: Image Viewer
 -->
 <template>
@@ -20,11 +20,11 @@
   </div>
 </template>
 <script lang="ts">
-import Viewer from 'viewerjs';
-import { Component, Vue, Watch } from 'vue-property-decorator';
-
 // 引入ViewJS样式
 import 'viewerjs/dist/viewer.css';
+
+import { Component, Vue, Watch } from 'vue-property-decorator';
+import Viewer from 'viewerjs';
 
 let viewer: Viewer;
 

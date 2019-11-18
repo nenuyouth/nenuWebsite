@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主页
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-09-15 19:51:26
+ * @LastEditTime: 2019-11-07 16:09:18
 -->
 <template>
   <div class="container">
@@ -46,10 +46,10 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import axios from 'axios';
 import BaseCarousel from '#/BaseCarousel.vue';
 import BaseGrid from '#/BaseGrid.vue';
 import BaseTimeLine from '#/BaseTimeLine.vue';
+import axios from 'axios';
 
 @Component({ components: { BaseCarousel, BaseGrid, BaseTimeLine } })
 export default class Main extends Vue {

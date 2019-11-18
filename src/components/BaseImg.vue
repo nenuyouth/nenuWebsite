@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Base Image
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-08-25 19:04:44
+ * @LastEditTime: 2019-11-07 16:42:50
 -->
 <template>
   <div :id="myId" class="ImgCtn">
@@ -18,8 +18,8 @@
 </template>
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import Loading from '|/icon/loading.svg';
 import Error from '|/icon/error.svg';
+import Loading from '|/icon/loading.svg';
 
 @Component({ components: { Loading, Error } })
 export default class BaseImg extends Vue {
@@ -67,66 +67,58 @@ export default class BaseImg extends Vue {
   }
 }
 </script>
-<style lang='scss' scoped>
-.ImgCtn {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+<style lang="stylus" scoped>
+.ImgCtn
+  display flex
+  flex-direction column
+  align-items center
 
-.ImgCtn + .ImgCtn {
-  margin-top: 8px;
-}
+.ImgCtn + .ImgCtn
+  margin-top 8px
 
-.imgIcon {
-  width: 36px;
-  height: 36px;
-}
+.imgIcon
+  width 36px
+  height 36px
 
-.imgCtn {
-  width: 96%;
-  height: 60px;
-  display: -webkit-flex;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 4px 2%;
-  border-radius: 8px;
-  background-color: #efeef4;
-  color: #888;
-  max-width: 560px !important;
-}
+.imgCtn
+  width 96%
+  height 60px
+  display -webkit-flex
+  display flex
+  justify-content center
+  align-items center
+  margin 4px 2%
+  border-radius 8px
+  background-color #efeef4
+  color #888
+  max-width 560px !important
 
-.img {
-  width: 96%;
-  margin: 4px 2%;
-  border-radius: 8px;
-  max-width: 560px !important;
-  @media (min-width: 768px) {
-    margin-top: 12px;
-    margin-bottom: 12px;
-  }
-}
+.img
+  width 96%
+  margin 4px 2%
+  border-radius 8px
+  max-width 560px !important
 
-.P .img {
-  width: 100%;
-  margin: 4px 0;
-}
+  @media (min-width: 768px)
+    margin-top 12px
+    margin-bottom 12px
 
-.imgDesc {
-  margin-top: -2px;
-  margin-bottom: 4px;
-  font-size: 12px;
-  font-weight: 300;
-  text-align: center;
-  color: #222;
-  letter-spacing: 1px;
-  @media (min-width: 768px) {
-    font-size: 14px;
-  }
-}
+.P .img
+  width 100%
+  margin 4px 0
 
-.nm .imgDesc {
-  color: #ddd;
-}
+.imgDesc
+  margin-top -2px
+  margin-bottom 4px
+  font-size 12px
+  font-weight 300
+  text-align center
+  color #222
+  letter-spacing 1px
+
+  @media (min-width: 768px)
+    font-size 14px
+
+.nm .imgDesc
+  color #ddd
 </style>

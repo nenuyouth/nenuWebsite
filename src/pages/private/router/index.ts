@@ -6,8 +6,8 @@
  * @LastEditTime: 2019-10-22 10:45:30
  */
 
-import Vue from 'vue';
 import Router from 'vue-router';
+import Vue from 'vue';
 import routes from './routes';
 
 Vue.use(Router); // 使用官方Router

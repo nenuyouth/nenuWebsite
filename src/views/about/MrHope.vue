@@ -3,8 +3,8 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import axios from 'axios';
 import BasePage from '#/BasePage.vue';
+import axios from 'axios';
 
 @Component({ components: { BasePage } })
 export default class Department extends Vue {

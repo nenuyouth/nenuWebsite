@@ -1,11 +1,9 @@
-/* eslint-disable no-process-env */
-/* eslint-disable camelcase */
 /*
  * @Author: Mr.Hope
  * @LastEditors: Mr.Hope
  * @Description: vue config file
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-11-18 23:55:30
+ * @LastEditTime: 2019-11-19 00:08:41
  */
 const path = require('path');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
@@ -41,6 +39,62 @@ const chainWebpack = config => {
     }); // 调用vue-svg-loader
 };
 
+/** 别名配置 */
+const myaliasconfig = {
+  '|': path.resolve(__dirname, 'src/assets/'),
+  '#': path.resolve(__dirname, 'src/components/'),
+  '%': path.resolve(__dirname, 'src/utils/'),
+  icon: path.resolve(__dirname, 'node_modules/@ant-design/icons/lib/'), // 减小Icon.ts体积
+  ol: path.resolve(__dirname, 'node_modules/@ant-design/icons/lib/outline'), // 减小Icon.ts体积
+  '@ant-design/icons/lib/dist$': path.resolve(__dirname, './src/utils/icon') // 减小 antdIcon 体积
+};
+
+/** 块配置 */
+const optimization = {
+  // 为 webpack 运行时代码创建单独的chunk
+  runtimeChunk: { name: 'manifest' },
+  // chunk分离设置
+  splitChunks: {
+    chunks: 'async',
+    minSize: 30000,
+    maxSize: 0,
+    minChunks: 1,
+    maxAsyncRequests: 10,
+    maxInitialRequests: 5,
+    automaticNameDelimiter: '-',
+    name: true,
+    cacheGroups: {
+      // 分离ant-design模块
+      antd: {
+        test: /[\\/]node_modules[\\/]ant-design-vue[\\/]/u,
+        name: 'antd',
+        chunks: 'all',
+        priority: -8
+      },
+      // 分离其他
+      common: {
+        test: /[\\/]node_modules[\\/](lodash|vue-class-component)[\\/]/u,
+        // test: /[\\/]node_modules[\\/](axios|lodash|jquery|tinycolor2|viewerjs|vue(-class-component|-router|x)?)[\\/]/u,
+        name: 'common',
+        chunks: 'all', // valid values are all, async, and initial
+        priority: -9
+      },
+      vendors: {
+        test: /[\\/]node_modules[\\/]/u,
+        priority: -10
+      },
+      // 默认块，最小重用两次，优先级最低，不包含已有的chunk内容
+      combine: {
+        minChunks: 2,
+        priority: -20,
+
+        // if the chunk contains modules already split out , will be reused
+        reuseExistingChunk: true
+      }
+    }
+  }
+};
+
 /**
  * Webpack配置
  *
@@ -48,15 +102,6 @@ const chainWebpack = config => {
  * @returns {void}
  */
 const configureWebpack = config => {
-  const myaliasconfig = {
-    '|': path.resolve(__dirname, 'src/assets/'),
-    '#': path.resolve(__dirname, 'src/components/'),
-    '%': path.resolve(__dirname, 'src/utils/'),
-    icon: path.resolve(__dirname, 'node_modules/@ant-design/icons/lib/'), // 减小Icon.ts体积
-    ol: path.resolve(__dirname, 'node_modules/@ant-design/icons/lib/outline'), // 减小Icon.ts体积
-    '@ant-design/icons/lib/dist$': path.resolve(__dirname, './src/utils/icon') // 减小 antdIcon 体积
-  };
-
   config.resolve.alias = { ...(config.resolve.alias || {}), ...myaliasconfig }; // 配置解析别名，可以简写
   config.resolve.extensions = [
     // 配置解析扩展
@@ -85,50 +130,7 @@ const configureWebpack = config => {
       maxAssetSize: 1048576
     };
 
-    config.optimization = {
-      // 为 webpack 运行时代码创建单独的chunk
-      runtimeChunk: { name: 'manifest' },
-      // chunk分离设置
-      splitChunks: {
-        chunks: 'async',
-        minSize: 30000,
-        maxSize: 0,
-        minChunks: 1,
-        maxAsyncRequests: 10,
-        maxInitialRequests: 5,
-        automaticNameDelimiter: '-',
-        name: true,
-        cacheGroups: {
-          // 分离ant-design模块
-          antd: {
-            test: /[\\/]node_modules[\\/]ant-design-vue[\\/]/u,
-            name: 'antd',
-            chunks: 'all',
-            priority: -8
-          },
-          // 分离其他
-          common: {
-            test: /[\\/]node_modules[\\/](lodash|vue-class-component)[\\/]/u,
-            // test: /[\\/]node_modules[\\/](axios|lodash|jquery|tinycolor2|viewerjs|vue(-class-component|-router|x)?)[\\/]/u,
-            name: 'common',
-            chunks: 'all', // valid values are all, async, and initial
-            priority: -9
-          },
-          vendors: {
-            test: /[\\/]node_modules[\\/]/u,
-            priority: -10
-          },
-          // 默认块，最小重用两次，优先级最低，不包含已有的chunk内容
-          combine: {
-            minChunks: 2,
-            priority: -20,
-
-            // if the chunk contains modules already split out , will be reused
-            reuseExistingChunk: true
-          }
-        }
-      }
-    };
+    config.optimization = optimization;
   } else config.devtool = 'source-map';
 
   // 分析打包后代码

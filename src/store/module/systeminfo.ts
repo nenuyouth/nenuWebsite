@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-06-26 20:26:14
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-09-15 17:27:52
+ * @LastEditTime: 2019-11-07 20:16:56
  * @Description: Vuex SystemInfo Module
  */
 
@@ -61,8 +61,8 @@ export default {
       const isIE11 =
         userAgent.indexOf('Trident') > -1 && userAgent.indexOf('rv:11.0') > -1;
 
-      // eslint-disable-next-line no-alert
       if (isIE)
+        // eslint-disable-next-line no-alert
         alert('您的浏览器版本为IE11以下，不被本网站支持，请您更换浏览器！');
       if (isEdge) state.Edge = true; // edge
       if (isIE11) state.IEVersion = 11; // IE11

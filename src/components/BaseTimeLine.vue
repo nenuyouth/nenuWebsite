@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 时间轴插件
  * @Date: 2019-03-23 18:29:52
- * @LastEditTime: 2019-08-25 19:38:16
+ * @LastEditTime: 2019-11-07 16:43:30
 -->
 <template>
   <a-timeline :mode="mode">
@@ -65,8 +65,7 @@ export default class BaseTimeLine extends Vue {
   }
 }
 </script>
-<style>
-.timeLineButton {
-  color: rgba(0, 0, 0, 0.65);
-}
+<style lang="stylus">
+.timeLineButton
+  color rgba(0, 0, 0, 0.65)
 </style>

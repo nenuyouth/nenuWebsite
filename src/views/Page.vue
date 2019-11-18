@@ -3,18 +3,18 @@
  * @LastEditors: Mr.Hope
  * @Description: 自动生成界面
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-08-25 23:34:34
+ * @LastEditTime: 2019-11-19 00:06:29
 -->
 <template>
   <keep-alive :max="5">
-    <base-page v-if="pageData" :key="url" :pagedata="pageData"/>
+    <base-page v-if="pageData" :key="url" :pagedata="pageData" />
   </keep-alive>
 </template>
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
+import BasePage from '#/BasePage.vue';
 import { Route } from 'vue-router';
 import axios from 'axios';
-import BasePage from '#/BasePage.vue';
 
 @Component({ components: { BasePage } })
 export default class Page extends Vue {

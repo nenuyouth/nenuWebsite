@@ -3,11 +3,11 @@
  * @LastEditors: Mr.Hope
  * @Description: router配置文件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-10-22 10:27:14
+ * @LastEditTime: 2019-11-07 16:11:33
  */
 
-import Vue from 'vue';
 import Router from 'vue-router';
+import Vue from 'vue';
 import routes from './routes';
 
 Vue.use(Router); // 使用官方Router

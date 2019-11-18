@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 文档视图文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-08-25 23:36:21
+ * @LastEditTime: 2019-11-07 16:16:03
 -->
 <template>
   <a-layout id="app" has-sider="true">
@@ -25,11 +25,11 @@
 </template>
 <script lang='ts'>
 import { Component, Vue, Watch } from 'vue-property-decorator';
-import { Route } from 'vue-router';
 import BackTop from '#/BackTop.vue';
 import BaseViewer from '#/BaseViewer.vue';
-import MySlide from '#/Slide.vue';
 import MyFooter from '#/Footer.vue';
+import MySlide from '#/Slide.vue';
+import { Route } from 'vue-router';
 
 @Component({ components: { BackTop, BaseViewer, MyFooter, MySlide } })
 export default class App extends Vue {

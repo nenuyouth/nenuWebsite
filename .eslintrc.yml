@@ -9,7 +9,7 @@ extends:
   - plugin:vue/recommended
   # - plugin:prettier/recommended
   - prettier
-  # - prettier/@typescript-eslint
+  - prettier/@typescript-eslint
   - prettier/vue
   - "@vue/prettier"
   - "@vue/typescript"
@@ -29,6 +29,9 @@ rules:
   arrow-parens:
     - error
     - as-needed
+
+  camelcase:
+    - off
 
   class-methods-use-this:
     - off
@@ -109,6 +112,9 @@ rules:
     - error
     - allowForLoopAfterthoughts: true
 
+  no-process-env:
+    - off
+
   no-sync:
     - off
 
@@ -159,7 +165,6 @@ rules:
 
   strict:
     - off
-
   vue/html-self-closing:
     - error
     - html:

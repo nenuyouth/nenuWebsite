@@ -5,15 +5,15 @@
  * @Date: 2019-02-24 22:21:25
  * @LastEditTime: 2019-03-07 13:14:57
  */
-import Vue from 'vue';
 import Vuex, { Module } from 'vuex';
-import myMutation from './mutation';
-import myState, { BaseState } from './state';
 import image, { ImageState } from './module/image';
+import myState, { BaseState } from './state';
 import screen, { ScreenState } from './module/screen';
+import serviceWorker, { SWState } from './module/service-worker';
 import slide, { SlideState } from './module/slide';
 import systemInfo, { SystemState } from './module/systeminfo';
-import serviceWorker, { SWState } from './module/service-worker';
+import Vue from 'vue';
+import myMutation from './mutation';
 
 Vue.use(Vuex); // 使用Vuex
 

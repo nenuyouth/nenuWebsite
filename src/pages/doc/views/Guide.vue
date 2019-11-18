@@ -11,9 +11,9 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import MyGuide from '../components/MyGuide.vue';
 import { Route } from 'vue-router';
 import axios from 'axios';
-import MyGuide from '../components/MyGuide.vue';
 import getCompiledMarkdown from '../utils/getMarkdown';
 
 @Component({ components: { MyGuide } })

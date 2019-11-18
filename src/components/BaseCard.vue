@@ -22,7 +22,7 @@
               <small class="text-muted">/起</small>
             </h1>
             <ul class="list-unstyled mb-3">
-              <li v-for="listItem in item.desc" :key="listItem" v-html="listItem"/>
+              <li v-for="listItem in item.desc" :key="listItem" v-html="listItem" />
             </ul>
             <router-link
               :to="item.url"
@@ -38,7 +38,7 @@
             <small class="text-muted">/起</small>
           </h1>
           <ul class="list-unstyled mb-3">
-            <li v-for="listItem in item.desc" :key="listItem" v-html="listItem"/>
+            <li v-for="listItem in item.desc" :key="listItem" v-html="listItem" />
           </ul>
           <router-link
             :to="item.url"
@@ -78,13 +78,12 @@ export default class BaseCard extends Vue {
   }
 }
 </script>
-<style scoped>
-.cardBtn1 {
-  display: block;
-  width: 100%;
-  padding: 0.5rem 1rem;
-  font-size: 1.25rem;
-  line-height: 1.5;
-  border-radius: 0.3rem;
-}
+<style lang="stylus" scoped>
+.cardBtn1
+  display block
+  width 100%
+  padding 0.5rem 1rem
+  font-size 1.25rem
+  line-height 1.5
+  border-radius 0.3rem
 </style>

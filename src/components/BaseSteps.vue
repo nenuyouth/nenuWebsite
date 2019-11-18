@@ -2,7 +2,7 @@
  * @Author: Mr.Hope
  * @Date: 2019-07-02 12:21:47
  * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-08-25 19:36:41
+ * @LastEditTime: 2019-11-07 16:43:15
  * @Description: 基础步骤条
 -->
 <template>
@@ -33,9 +33,8 @@ export default class BaseSteps extends Vue {
   @Model('change', { type: Number }) private current!: number;
 }
 </script>
-<style scoped>
-.steps {
-  margin: 16px 5%;
-  width: 90%;
-}
+<style lang="stylus" scoped>
+.steps
+  margin 16px 5%
+  width 90%
 </style>

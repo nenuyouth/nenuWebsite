@@ -27,24 +27,22 @@ export default class BaseTitle extends Vue {
   @Prop([String, Object]) private readonly myStyle!: string | Style;
 }
 </script>
-<style lang='scss' scoped>
-.myH3 {
-  width: 100%;
-  max-width: 600px;
-  text-align: left;
-  font-weight: 500;
-  padding: 12px 15px 4px 15px;
-  min-height: 24px;
-  font-size: 22px;
-  max-width: 600px;
-  margin: 0 auto;
-  @media (min-width: 768px) {
-    min-height: 26px;
-    font-size: 24px;
-  }
-}
+<style lang="stylus" scoped>
+.myH3
+  width 100%
+  max-width 600px
+  text-align left
+  font-weight 500
+  padding 12px 15px 4px 15px
+  min-height 24px
+  font-size 22px
+  max-width 600px
+  margin 0 auto
 
-.myH3 + .myH3 {
-  padding-top: 2px;
-}
+  @media (min-width: 768px)
+    min-height 26px
+    font-size 24px
+
+.myH3 + .myH3
+  padding-top 2px
 </style>

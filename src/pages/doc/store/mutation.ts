@@ -3,10 +3,10 @@
  * @LastEditors: Mr.Hope
  * @Description: Mutation文件
  * @Date: 2019-03-25 10:37:09
- * @LastEditTime: 2019-09-15 17:18:09
+ * @LastEditTime: 2019-11-07 16:18:20
  */
-import Vue from 'vue';
 import { BaseState } from './state';
+import Vue from 'vue';
 
 const myMutation = {
   /**

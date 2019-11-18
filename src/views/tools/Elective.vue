@@ -31,8 +31,8 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import axios from 'axios';
 import PasswordModal from '#/PasswordModal.vue';
+import axios from 'axios';
 
 @Component({ components: { PasswordModal } })
 export default class Elective extends Vue {
@@ -52,6 +52,7 @@ export default class Elective extends Vue {
   // private login() {
   private login() {
     if (!this.userName || !this.password) {
+      // eslint-disable-next-line no-alert
       alert('输入账号密码！');
 
       return;

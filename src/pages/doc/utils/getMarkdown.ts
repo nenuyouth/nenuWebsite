@@ -8,8 +8,8 @@
 
 import Vue from 'vue';
 import axios from 'axios';
-import marked from 'marked';
 import hljs from './hljs';
+import marked from 'marked';
 
 // init Markdown Render Instance
 const myRenderMD = new marked.Renderer();
@@ -108,6 +108,7 @@ const getCompiledMarkdown = async (
   query: any,
   ctx: Vue,
   stateName: string
+  // eslint-disable-next-line max-params
 ) => {
   const store = ctx.$store;
   const docContent = store.state[stateName].path;

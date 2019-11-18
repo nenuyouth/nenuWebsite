@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 图片浏览器
  * @Date: 2019-04-26 12:05:30
- * @LastEditTime: 2019-07-01 22:59:24
+ * @LastEditTime: 2019-11-19 00:06:19
 -->
 <template>
   <div ref="viewer" class="vue_viewer">
@@ -19,11 +19,11 @@
   </div>
 </template>
 <script lang="ts">
-import Viewer from 'viewerjs';
-import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
-
 // 引入ViewJS样式
 import 'viewerjs/dist/viewer.css';
+
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
+import Viewer from 'viewerjs';
 
 const toolbarDefaultOption: Viewer.ToolbarOptions = {
   zoomIn: 1,
@@ -170,18 +170,8 @@ export default class ImageViewer extends Vue {
 
   private isShow = false;
 
-  // 初始化选项
-  private optionsInit() {
-    this.list = typeof this.images === 'string' ? [this.images] : this.images;
-
-    this.index = this.value;
-    this.toolbar = this.toolbarOptions ? { ...toolbarDefaultOption, ...this.toolbarOptions } : this.toolbarType;
-
-    this.closed = this.visible;
-  }
-
-  private viewerInit() {
-    Viewer.setDefaults({
+  private get viewerOptions() {
+    return {
       initialViewIndex: this.index,
       inline: this.inline,
       button: this.button,
@@ -211,51 +201,35 @@ export default class ImageViewer extends Vue {
       container: this.container,
       filter: this.filter,
       toggleOnDblclick: this.toggleOnDblclick,
-      ready: event => {
-        // 初始化ready事件
-        this.$emit('ready', event);
-      },
-      show: event => {
-        // 显示事件-开始
-        this.$emit('show', event);
-      },
-      shown: event => {
+      shown: (event: CustomEvent) => {
         // 显示事件-结束
         this.closed = true;
-        this.$emit('shown', event);
-        this.$emit('update:visible', true);
+        this.$emit('viewer:shown', event);
+        this.$emit('viewer:update', true);
       },
-      hide: event => {
-        // 隐藏事件-开始
-        this.$emit('hide', event);
-      },
-      hidden: event => {
-        // 隐藏事件-结束
-        this.closed = false;
-        this.$emit('hidden', event);
-        this.$emit('update:visible', false);
-      },
-      view: event => {
-        // 切换事件-开始
-        this.$emit('view', event);
-      },
-      viewed: event => {
+      viewed: (event: CustomEvent) => {
         // 切换事件-结束
         this.index = event.detail.index;
-        this.$emit('viewed', event);
-      },
-      zoom: event => {
-        // 缩放事件-开始
-        this.$emit('zoom', event);
-      },
-      zoomed: event => {
-        // 缩放事件-结束
-        this.$emit('zoomed', event);
+        this.$emit('viewer:viewed', event);
       }
-    });
+    }
+  }
+
+  // 初始化选项
+  private optionsInit() {
+    this.list = typeof this.images === 'string' ? [this.images] : this.images;
+
+    this.index = this.value;
+    this.toolbar = this.toolbarOptions ? { ...toolbarDefaultOption, ...this.toolbarOptions } : this.toolbarType;
+
+    this.closed = this.visible;
+  }
+
+  private viewerInit() {
+    Viewer.setDefaults(this.viewerOptions);
 
     viewer = new Viewer(this.$refs.viewer as Element);
-    if (this.visible) this.show();
+    if (this.visible) viewer.show();
   }
 
   private created() {
@@ -268,7 +242,7 @@ export default class ImageViewer extends Vue {
   @Watch('images')
   private onImagesChange() {
     this.$nextTick(() => {
-      this.update();
+      viewer.update();
     });
   }
 
@@ -276,8 +250,8 @@ export default class ImageViewer extends Vue {
   private onVisibleChange(newVal: boolean) {
     if (this.closed === newVal) return;
     this.closed = newVal;
-    if (newVal) this.show();
-    else this.hide();
+    if (newVal) viewer.show();
+    else viewer.hide();
   }
 
   @Watch('index')
@@ -288,169 +262,12 @@ export default class ImageViewer extends Vue {
   @Watch('value')
   private onValueChange() {
     if (!this.value && this.value !== 0) return;
-    this.view(this.value);
+
+    // 切换到图像到索引的图像位置，如果未显示灯箱，将首先显示灯箱。index = 索引
+    viewer.view(this.value);
   }
 
   private beforeDestroy() {
-    this.destroy();
-  }
-
-  // 显示 immediate = 是否立即显示
-  private show(immediate?: boolean) {
-    viewer.show(immediate);
-
-    return this;
-  }
-
-  // 隐藏 immediate = 是否立即隐藏
-  private hide(immediate?: boolean) {
-    viewer.hide(immediate);
-
-    return this;
-  }
-
-  // 切换到图像到索引的图像位置，如果未显示灯箱，将首先显示灯箱。index = 索引
-  private view(index: number) {
-    viewer.view(index);
-
-    return this;
-  }
-
-  // 上一张，如果未显示灯箱，将首先显示灯箱。 loop = 是否循环
-  private prev(loop = false) {
-    viewer.prev(loop);
-
-    return this;
-  }
-
-  // 下一张，如果未显示灯箱，将首先显示灯箱。 loop = 是否循环
-  private next(loop = false) {
-    viewer.next(loop);
-
-    return this;
-  }
-
-  // 移动 offsetX = '在水平方向上移动尺寸（px）', offsetX = '在垂直方向移动尺寸（px）， 不填默认与offsetX相同'
-  private move(offsetX: number, offsetY?: number) {
-    viewer.move(offsetX, offsetY);
-
-    return this;
-  }
-
-  // 移动到 x = '在水平方向移动到（px）', y = '在垂直方向移动到（px）， 不填默认与x相同'
-  private moveTo(x: number, y?: number) {
-    viewer.moveTo(x, x);
-
-    return this;
-  }
-
-  // 缩放 ratio = '缩放比例，正数放大，负数缩小'， hasTooltip = '是否显示提示'
-  private zoom(ratio: number, hasTooltip = false) {
-    viewer.zoom(ratio, hasTooltip);
-
-    return this;
-  }
-
-  // 缩放到 ratio = '缩放到大小'， hasTooltip = '是否显示提示'
-  private zoomTo(ratio: number, hasTooltip = false) {
-    viewer.zoomTo(ratio, hasTooltip);
-
-    return this;
-  }
-
-  // 旋转 ratio = '旋转角度，正数顺时针，负数逆时针'
-  private rotate(degree: number) {
-    viewer.rotate(degree);
-
-    return this;
-  }
-
-  // 旋转到 ratio = '旋转到角度'
-  private rotateTo(degree: number) {
-    viewer.rotateTo(degree);
-
-    return this;
-  }
-
-  // 拉伸 scaleX = '在水平方向上拉伸比例', scaleY = '在垂直方向拉伸比例， 不填默认与scaleX相同'
-  private scale(scaleX: number, scaleY?: number) {
-    viewer.scale(scaleX, scaleY);
-
-    return this;
-  }
-
-  // 水平方向上拉伸 scaleX = '在水平方向上拉伸比例'
-  private scaleX(scaleX: number) {
-    viewer.scaleX(scaleX);
-
-    return this;
-  }
-
-  // 垂直方向上拉伸 scaleY = '在垂直方向上拉伸比例'
-  private scaleY(scaleY: number) {
-    viewer.scaleY(scaleY);
-
-    return this;
-  }
-
-  // 播放 fullscreen = '是否全屏'
-  private play(fullscreen = false) {
-    viewer.play(fullscreen);
-
-    return this;
-  }
-
-  // 停止播放
-  private stop() {
-    viewer.stop();
-
-    return this;
-  }
-
-  // 进入模态模式
-  private full() {
-    viewer.full();
-
-    return this;
-  }
-
-  // 退出模态模式
-  private exit() {
-    viewer.exit();
-
-    return this;
-  }
-
-  // 显示当前比例
-  private tooltip() {
-    viewer.tooltip();
-
-    return this;
-  }
-
-  // 切换到在自然大小
-  private toggle() {
-    viewer.toggle();
-
-    return this;
-  }
-
-  // 初始化
-  private reset() {
-    viewer.reset();
-
-    return this;
-  }
-
-  // 更新
-  private update() {
-    viewer.update();
-
-    return this;
-  }
-
-  // 销毁
-  private destroy() {
     viewer.destroy();
   }
 }

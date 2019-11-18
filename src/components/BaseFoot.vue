@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Base Foot
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-08-25 19:03:19
+ * @LastEditTime: 2019-11-07 16:42:26
 -->
 <template>
   <div :id="myId" class="Footer">
@@ -53,6 +53,7 @@ export default class BaseFoot extends Vue {
     size: 10px;
     weight: 300;
   }
+
   letter-spacing: 1px;
   line-height: 1.6;
   text-align: center;
@@ -61,6 +62,7 @@ export default class BaseFoot extends Vue {
   display: flex;
   justify-content: center;
   align-items: center;
+
   @media (min-width: 600px) {
     font-size: 12px;
   }
@@ -69,6 +71,7 @@ export default class BaseFoot extends Vue {
 .nm .footerCtn {
   color: #777;
 }
+
 .footLogo {
   width: 20px;
   height: 20px;

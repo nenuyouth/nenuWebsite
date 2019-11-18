@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 内部视图文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-08-25 23:38:19
+ * @LastEditTime: 2019-11-07 16:11:42
 -->
 <template>
   <a-layout id="private">
@@ -23,9 +23,9 @@
 </template>
 <script lang='ts'>
 import { Component, Vue, Watch } from 'vue-property-decorator';
-import { Route } from 'vue-router';
 import BackTop from '#/BackTop.vue';
 import BaseViewer from '#/BaseViewer.vue';
+import { Route } from 'vue-router';
 
 @Component({ components: { BackTop, BaseViewer } })
 export default class App extends Vue {

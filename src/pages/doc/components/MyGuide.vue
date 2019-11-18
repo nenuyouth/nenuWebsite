@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-08-25 23:38:05
+ * @LastEditTime: 2019-11-07 16:16:18
 -->
 <template>
   <!-- 标题设置 -->
@@ -38,15 +38,17 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
-import { Route } from 'vue-router';
-import Back from '|/icon/backSimple.svg';
-import DocView from './DocView.vue';
-import getCompiledMarkdown from '../utils/getMarkdown';
 
 // 导入css样式
 import '../utils/github-markdown.css';
 import 'highlight.js/styles/atom-one-dark.css';
+
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
+import Back from '|/icon/backSimple.svg';
+import DocView from './DocView.vue';
+import { Route } from 'vue-router';
+import getCompiledMarkdown from '../utils/getMarkdown';
+
 
 @Component({ components: { Back, DocView } })
 export default class MyGuide extends Vue {
