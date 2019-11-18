@@ -4,10 +4,10 @@
     <hr class="mx-3" />
     <div class="row px-3">
       <div
-        :key="item.text"
-        @click="$navigate(item.url,$router,$route)"
-        class="col-4 col-sm-3 col-md-2 col-lg-1 col-fix"
         v-for="item in gzh"
+        :key="item.text"
+        class="col-4 col-sm-3 col-md-2 col-lg-1 col-fix"
+        @click="$navigate(item.url,$router,$route)"
       >
         <img
           :src="require(`|/schoolGzh/${item.src}.jpg`)"

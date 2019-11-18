@@ -1,32 +1,32 @@
 <template>
   <div class="container">
     <h1>选课系统登录</h1>
-    <form action="xk/LoginToXkLdap" id="xkForm" method="post">
+    <form id="xkForm" action="xk/LoginToXkLdap" method="post">
       用户名：
       <a-input
-        autocomplete="electiveUserName"
         id="IDToken1"
+        v-model="userName"
+        autocomplete="electiveUserName"
         maxlength="20"
         name="IDToken1"
         suffix="@nenu.edu.cn"
         type="text"
-        v-model="userName"
       />
       <br />密 码：
       <a-input
-        autocomplete="electivePassword"
         id="IDToken2"
+        v-model="password"
+        autocomplete="electivePassword"
         maxlength="20"
         name="IDToken2"
         type="password"
-        v-model="password"
       />
       <br />
       <a-input id="RANDOMCODE" name="RANDOMCODE" type="hidden" value="1234" />
       <a-input id="ymyzm" name="ymyzm" type="hidden" value="1234" />
-      <a-button @click="login" href="#">登录</a-button>
+      <a-button href="#" @click="login">登录</a-button>
     </form>请选择需要登陆的服务器：(0-3)
-    <input id="SERVER" type="number" v-model="server" value="0" />
+    <input id="SERVER" v-model="server" type="number" value="0" />
   </div>
 </template>
 <script lang="ts">
@@ -44,7 +44,9 @@ export default class Elective extends Vue {
   ];
 
   private userName = '';
+
   private password = '';
+
   private server = 0;
 
   // private login() {

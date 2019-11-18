@@ -10,25 +10,25 @@
     <template #title>
       <span>
         <template v-if="props.menuInfo.icon">
-          <icon-font :type="props.menuInfo.icon" v-if="props.menuInfo.icon.slice(0,5)==='icon-'" />
-          <a-icon :type="props.menuInfo.icon" v-else />
+          <icon-font v-if="props.menuInfo.icon.slice(0,5)==='icon-'" :type="props.menuInfo.icon" />
+          <a-icon v-else :type="props.menuInfo.icon" />
         </template>
-        <span class="icon" v-else-if="props.menuInfo.icon" />
+        <span v-else-if="props.menuInfo.icon" class="icon" />
         <span v-text="props.menuInfo.title" />
       </span>
     </template>
     <template v-for="item in props.menuInfo.children">
-      <a-menu-item :key="item.key" v-if="!item.children">
+      <a-menu-item v-if="!item.children" :key="item.key">
         <template v-if="item.icon">
-          <span class="icon" v-if="item.icon===true" />
+          <span v-if="item.icon===true" class="icon" />
           <template v-else>
-            <icon-font :type="item.icon" v-if="item.icon.slice(0,5)==='icon-'" />
-            <a-icon :type="item.icon" v-else />
+            <icon-font v-if="item.icon.slice(0,5)==='icon-'" :type="item.icon" />
+            <a-icon v-else :type="item.icon" />
           </template>
         </template>
         <span v-text="item.title" />
       </a-menu-item>
-      <sub-menu :key="item.key" :menu-info="item" v-else />
+      <sub-menu v-else :key="item.key" :menu-info="item" />
     </template>
   </a-sub-menu>
 </template>

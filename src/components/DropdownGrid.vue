@@ -7,7 +7,7 @@
 -->
 <template>
   <a-divider orientation="left">
-    <a-dropdown @click="visible=true" v-model="visible">
+    <a-dropdown v-model="visible" @click="visible=true">
       <a class="ant-dropdown-link">
         {{selectedText}}
         <a-icon type="down" />
@@ -18,14 +18,14 @@
             <a-menu-item :key="menulist.title" disabled v-text="menulist.title" />
             <!-- <a-menu-divider v-if="index!==0" /> -->
             <a-row :key="`${menulist.title}-content`" class="menuCtn">
-              <a-col :key="item.text" span="6" v-for="(item,index) in menulist.content">
-                <a-menu-item @click="itemChange(menuIndex,index)" class="menuItem">
+              <a-col v-for="(item,index) in menulist.content" :key="item.text" span="6">
+                <a-menu-item class="menuItem" @click="itemChange(menuIndex,index)">
                   <icon-font
+                    v-if="item.icon&&item.icon.slice(0,5)==='icon-'"
                     :type="item.icon"
                     class="popMenuIcon"
-                    v-if="item.icon&&item.icon.slice(0,5)==='icon-'"
                   />
-                  <a-icon :type="item.icon||item.id" class="popMenuIcon" v-else />
+                  <a-icon v-else :type="item.icon||item.id" class="popMenuIcon" />
                   <div v-text="item.text" />
                 </a-menu-item>
               </a-col>

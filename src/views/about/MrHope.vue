@@ -1,5 +1,5 @@
 <template>
-  <base-page :pagedata="pageData" v-if="pageData" />
+  <base-page v-if="pageData" :pagedata="pageData" />
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';

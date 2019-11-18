@@ -119,16 +119,20 @@ const getCompiledMarkdown = async (
       .post(`${url}.php`, query)
       .then(response => {
         if (response.data === 'file not found') {
-          // markdown file unexist
-          // cancel navigate and show alert
+          /*
+           * markdown file unexist
+           * cancel navigate and show alert
+           */
           navigate = false;
           myAlert(ctx);
         } // store the parsed markdown file to Vuex
         else store.commit(stateName, [query.path, marked(response.data)]);
       })
       .catch(err => {
-        // nomally caused by network
-        // cancel navigate and show alert with error msg
+        /*
+         * nomally caused by network
+         * cancel navigate and show alert with error msg
+         */
         navigate = false;
         myAlert(ctx, true, err);
       });

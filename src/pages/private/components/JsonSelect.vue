@@ -24,7 +24,7 @@
 
     <!-- 新增文件 -->
     <a-col :md="8" :sm="24">
-      <a-button @click="newJson" block icon="plus-square" size="large">新建</a-button>
+      <a-button block icon="plus-square" size="large" @click="newJson">新建</a-button>
     </a-col>
 
     <a-divider>
@@ -33,10 +33,10 @@
 
     <!-- 选择线上文件 -->
     <a-col :md="8" :sm="24">
-      <a-button @click="online=true" block icon="plus-square" size="large">选择线上文件</a-button>
-      <div class="jsonNameInputCtn" v-if="online">
-        <a-input class="jsonNameInput" placeholder="请输入Json页面名称" v-model="jsonName" />
-        <a-button @click="getOnlineJson" type="primary">获取</a-button>
+      <a-button block icon="plus-square" size="large" @click="online=true">选择线上文件</a-button>
+      <div v-if="online" class="jsonNameInputCtn">
+        <a-input v-model="jsonName" class="jsonNameInput" placeholder="请输入Json页面名称" />
+        <a-button type="primary" @click="getOnlineJson">获取</a-button>
       </div>
     </a-col>
   </a-row>
@@ -46,7 +46,6 @@ import { Component, Vue } from 'vue-property-decorator';
 
 @Component
 export default class JsonSelect extends Vue {
-
   private online = false;
 
   private jsonName = '';

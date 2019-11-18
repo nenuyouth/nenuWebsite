@@ -7,11 +7,11 @@
 -->
 <template>
   <a-form-item v-bind="configuration.title? labelCol: noLabelCol">
-    <template #label v-if="configuration.title">
+    <template v-if="configuration.title" #label>
       <!-- 表单项名称 -->
       {{configuration.title}}
       <!-- 描述文字 -->
-      <a-tooltip :title="configuration.desc" v-if="configuration.desc">
+      <a-tooltip v-if="configuration.desc" :title="configuration.desc">
         <a-icon style="vertical-align:-0.125em;" type="question-circle" />
       </a-tooltip>
     </template>
@@ -20,7 +20,6 @@
     <slot name="type-select" />
 
     <a-textarea
-      :autosize="{ minRows: 2 }"
       v-decorator="[
         identifier,
         {
@@ -31,6 +30,7 @@
           }]
         }
       ]"
+      :autosize="{ minRows: 2 }"
     />
   </a-form-item>
 </template>
@@ -47,6 +47,7 @@ export default class FormTextareaInput extends Vue {
   @Inject() private form!: any;
 
   private labelCol = { labelCol: { span: 6 }, wrapperCol: { span: 18 } };
+
   private noLabelCol = { wrapperCol: { span: 24 } };
 
   private mounted() {

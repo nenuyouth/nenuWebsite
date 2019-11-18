@@ -9,40 +9,40 @@
   <div>
     <!-- 列表 -->
     <a-form-item
+      v-for="(item, index) in length"
       :key="`${identifier}-${index}`"
       :required="index === 0"
       v-bind="index === 0 ? LabelLayout : noLabelLayout"
-      v-for="(item, index) in length"
     >
-      <template #label v-if="index === 0">
+      <template v-if="index === 0" #label>
         <!-- 表单项名称 -->
         {{configuration.title}}
         <!-- 描述文字 -->
-        <a-tooltip :title="configuration.desc" v-if="configuration.desc">
+        <a-tooltip v-if="configuration.desc" :title="configuration.desc">
           <a-icon style="vertical-align:-0.125em;" type="question-circle" />
         </a-tooltip>
       </template>
 
       <div style="display:flex;align-items:center;">
         <form-input
+          :key="`${identifier}[${index}]`"
           :configuration="itemConfiguration"
           :identifier="`${identifier}[${index}]`"
-          :key="`${identifier}[${index}]`"
           class="formArrayInput"
         />
 
         <a-button
-          @click="remove(index)"
+          v-if="length > 1"
           icon="minus"
           shape="circle"
           size="small"
           style="margin-bottom:24px;"
-          v-if="length > 1"
+          @click="remove(index)"
         />
       </div>
     </a-form-item>
     <a-form-item :key="`${identifier}-add`" v-bind="noLabelLayout">
-      <a-button @click="add" style="border-radius: 16px;">
+      <a-button style="border-radius: 16px;" @click="add">
         <a-icon type="plus" />新增项
       </a-button>
     </a-form-item>
@@ -62,6 +62,7 @@ export default class FormArrayInput extends Vue {
 
   // Form Layout
   private LabelLayout = { labelCol: { span: 6 }, wrapperCol: { span: 18 } };
+
   private noLabelLayout = { wrapperCol: { span: 18, offset: 6 } };
 
   private length = 1;
@@ -97,7 +98,6 @@ export default class FormArrayInput extends Vue {
     this.form.setFieldsValue({ [`${this.identifier}`]: formValue });
     this.length -= 1;
   }
-
 }
 </script>
 <style>

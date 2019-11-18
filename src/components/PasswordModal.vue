@@ -9,29 +9,29 @@
   <!-- 密码输入框 -->
   <a-modal
     :closable="false"
-    :destroyOnClose="true"
+    :destroy-on-close="true"
     :keyboard="false"
-    :maskClosable="false"
+    :mask-closable="false"
     :visible="modalDisplay"
     title="身份验证"
   >
     <a-form :form="form" @submit="validate">
       <!-- 判断是否显示用户名 -->
       <a-form-item
-        :labelCol="{ span: 4 }"
-        :wrapperCol="{ span: 20 }"
-        label="用户名"
         v-if="userNameKey"
+        :label-col="{ span: 4 }"
+        :wrapper-col="{ span: 20 }"
+        label="用户名"
       >
         <a-input
-          :autocomplete="userNameKey"
-          placeholder="请输入用户名"
           v-decorator="[
             'userName',
             {
               rules: [{ required: true, type: 'string' }]
             }
           ]"
+          :autocomplete="userNameKey"
+          placeholder="请输入用户名"
         >
           <!-- 用户名图标 -->
           <template #prefix>
@@ -43,18 +43,18 @@
       </a-form-item>
 
       <!-- 密码 -->
-      <a-form-item :labelCol="{ span: 4 }" :wrapperCol="{ span: 20 }" label="密码">
+      <a-form-item :label-col="{ span: 4 }" :wrapper-col="{ span: 20 }" label="密码">
         <a-input
-          :autocomplete="`${passwordKey}password`"
-          :type="passwordDisplay?'text':'password'"
-          @pressEnter="validate"
-          placeholder="请输入密码"
           v-decorator="[
             'password',
             {
               rules: [{ required: true }]
             }
           ]"
+          :autocomplete="`${passwordKey}password`"
+          :type="passwordDisplay?'text':'password'"
+          placeholder="请输入密码"
+          @pressEnter="validate"
         >
           <!-- 密码图标 -->
           <template #prefix>
@@ -63,7 +63,7 @@
 
           <!-- 控制密码显隐图标 -->
           <template #suffix>
-            <div @click="passwordDisplay=!passwordDisplay" class="togglePassword">
+            <div class="togglePassword" @click="passwordDisplay=!passwordDisplay">
               <eye v-if="passwordDisplay" />
               <eyeClose v-else />
             </div>
@@ -75,10 +75,10 @@
     <!-- 自定义对话框按钮 -->
     <template #footer>
       <a-button
-        :loading="validating"
-        @click="validatePassword"
         key="submit"
+        :loading="validating"
         type="primary"
+        @click="validatePassword"
         v-text="'确定'"
       />
     </template>

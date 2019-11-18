@@ -6,7 +6,7 @@
  * @LastEditTime: 2019-05-16 14:09:00
 -->
 <template>
-  <button></button>
+  <button/>
 </template>
 <script lang="ts">
 import BackTopSvg from '|/icon/backTop.svg';

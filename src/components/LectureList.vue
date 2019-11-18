@@ -1,11 +1,11 @@
 <template>
   <div class="listCtn">
     <div
-      :key="item.text"
-      @click="$navigate(item.url,$router,$route)"
-      class="listItemCtn"
       is="div"
       v-for="item in list"
+      :key="item.text"
+      class="listItemCtn"
+      @click="$navigate(item.url,$router,$route)"
     >
       <div class="title">{{item.text}}</div>
       <div class="time">{{item.time}}</div>

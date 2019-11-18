@@ -54,27 +54,27 @@
 
       <!-- lg及以上屏幕的目录侧边栏 -->
       <a-col :lg="6" class="d-none d-lg-block">
-        <div id="asideCtn" v-if="!noneCatalog">
-          <aside class="shadow" id="aside">
+        <div v-if="!noneCatalog" id="asideCtn">
+          <aside id="aside" class="shadow">
             <a-anchor
               :affix="false"
-              :offsetTop="$store.state.screen.lg?48:42"
-              :showInkInFixed="true"
+              :offset-top="$store.state.screen.lg?48:42"
+              :show-ink-in-fixed="true"
+              wrapper-class="asideList"
               @click="handleClick"
-              wrapperClass="asideList"
             >
               <a-skeleton
+                v-if="aside.length===0"
                 :paragraph="{rows: 12,width:['25%','30%','25%','50%','30%','50%','25%','30%','25%','50%','30%','50%']}"
                 :title="false"
                 active
-                v-if="aside.length===0"
               />
               <a-anchor-link
+                v-for="title in aside"
+                :key="title.text"
                 :class="`asideH${title.level} asideHeading`"
                 :href="`#${title.text}`"
-                :key="title.text"
                 :title="title.text"
-                v-for="title in aside"
               />
             </a-anchor>
           </aside>
@@ -84,36 +84,36 @@
 
     <!-- md及以下屏幕的目录侧边栏 -->
     <!-- 屏幕蒙层 -->
-    <div @click="asideToggle" id="asideScreenMask" style="display:none;" />
+    <div id="asideScreenMask" style="display:none;" @click="asideToggle" />
     <!-- 侧边目录 -->
     <div
-      class="d-block d-lg-none"
-      id="asideSlide"
-      style="left:100%;"
       v-if="!noneCatalog&&aside.length!==0"
+      id="asideSlide"
+      class="d-block d-lg-none"
+      style="left:100%;"
     >
-      <div @click="asideToggle" class="asideSlideBtn">
+      <div class="asideSlideBtn" @click="asideToggle">
         <template v-if="asideExpand">
           <div class="w-100" style="height:49.6px;" />
           <a-icon style="position:absolute;top:24.3px;left:9.5px;" type="close" />
         </template>
         <template v-else>目录</template>
       </div>
-      <aside class="shadow" id="aside">
-        <div @click="scrollTop" class="asideH1 asideHeading" v-text="docTitle" />
+      <aside id="aside" class="shadow">
+        <div class="asideH1 asideHeading" @click="scrollTop" v-text="docTitle" />
         <a-anchor
           :affix="false"
-          :offsetTop="42"
-          :showInkInFixed="true"
+          :offset-top="42"
+          :show-ink-in-fixed="true"
+          wrapper-class="asideList"
           @click="handleClick"
-          wrapperClass="asideList"
         >
           <a-anchor-link
+            v-for="title in aside"
+            :key="title.text"
             :class="`asideH${title.level} asideHeading`"
             :href="`#${title.text}`"
-            :key="title.text"
             :title="title.text"
-            v-for="title in aside"
           />
         </a-anchor>
       </aside>
@@ -134,6 +134,7 @@ interface Aside {
 export default class DocView extends Vue {
   // 文档标题
   private docTitle = '文档';
+
   // 侧边栏内容
   private aside: Aside[] = [];
 
@@ -144,6 +145,7 @@ export default class DocView extends Vue {
 
   // 默认的页面宽高
   private windowWidth = 375;
+
   private windowHeight = 750;
 
   // Markdown内容

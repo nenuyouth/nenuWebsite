@@ -14,37 +14,37 @@
     <div class="Lctn">
       <template v-for="List in listItem">
         <div
-          :class="List.url || List.aim ? 'btn btn-light ' : ''"
+          v-if="List.display !== false && (List.url || List.aim)"
           :id="List.id"
           :key="List.text"
+          :class="List.url || List.aim ? 'btn btn-light ' : ''"
           class="listCtn"
-          v-if="List.display !== false && (List.url || List.aim)"
         >
-          <div @click="navigate(List.aim)" class="list-Container" v-if="List.aim">
-            <img :src="`/img${List.icon}`" class="listIcon" v-if="List.icon" />
+          <div v-if="List.aim" class="list-Container" @click="navigate(List.aim)">
+            <img v-if="List.icon" :src="`/img${List.icon}`" class="listIcon" />
             <div class="LinkText" v-text="List.text" />
             <div class="linkDesciption access" v-text="List.desc" />
           </div>
-          <router-link :to="List.url" class="list-Container" v-else-if="List.url">
-            <img :src="List.icon" class="listIcon" v-if="List.icon" />
+          <router-link v-else-if="List.url" :to="List.url" class="list-Container">
+            <img v-if="List.icon" :src="List.icon" class="listIcon" />
             <div class="LinkText" v-text="List.text" />
             <div class="linkDesciption access" v-text="List.desc" />
           </router-link>
-          <div class="list-Container" v-else>
-            <img :src="`/img${List.icon}`" class="listIcon" v-if="List.icon" />
+          <div v-else class="list-Container">
+            <img v-if="List.icon" :src="`/img${List.icon}`" class="listIcon" />
             <div class="LinkText" v-text="List.text" />
             <div class="linkDesciption" v-text="List.desc" />
           </div>
         </div>
         <div
-          :class="List.icon ? 'listIcon' : ''"
-          :key="List.textKey"
-          class="link-divline"
           v-if="List.display !== false"
+          :key="List.textKey"
+          :class="List.icon ? 'listIcon' : ''"
+          class="link-divline"
         />
       </template>
     </div>
-    <div class="commonfoot" v-if="foot" v-text="foot" />
+    <div v-if="foot" class="commonfoot" v-text="foot" />
   </div>
 </template>
 

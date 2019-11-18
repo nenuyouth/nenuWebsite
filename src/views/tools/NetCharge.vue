@@ -4,7 +4,7 @@
     <hr class="mx-3" />
     <a-row justify="center" type="flex">
       <a-col :lg="6" :xs="12">
-        <a-button @click="navigate" block type="primary">充值入口</a-button>
+        <a-button block type="primary" @click="navigate">充值入口</a-button>
       </a-col>
     </a-row>
 

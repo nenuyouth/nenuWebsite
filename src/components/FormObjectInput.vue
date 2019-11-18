@@ -7,11 +7,11 @@
 -->
 <template>
   <a-form-item v-bind="configuration.title? labelCol: noLabelCol">
-    <template #label v-if="configuration.title">
+    <template v-if="configuration.title" #label>
       <!-- 表单项名称 -->
       {{configuration.title}}
       <!-- 描述文字 -->
-      <a-tooltip :title="configuration.desc" v-if="configuration.desc">
+      <a-tooltip v-if="configuration.desc" :title="configuration.desc">
         <a-icon style="vertical-align:-0.125em;" type="question-circle" />
       </a-tooltip>
     </template>
@@ -21,30 +21,30 @@
 
     <div>
       <span style="margin-right:8px;" v-text="objectValue||'对象为空'" />
-      <a-button @click="modelDisplay=true" icon="edit" shape="circle" size="small" type="primary" />
+      <a-button icon="edit" shape="circle" size="small" type="primary" @click="modelDisplay=true" />
     </div>
 
     <!-- 对象输入框 -->
     <a-modal
       :closable="false"
-      :destroyOnClose="false"
+      :destroy-on-close="false"
       :keyboard="false"
-      :maskClosable="false"
+      :mask-closable="false"
       :title="identifier.split('-')[1]"
       :visible="modelDisplay"
     >
       <template v-for="config in Object.keys(configuration.objectDetail)">
         <!-- 每个选项设置 -->
         <form-input
+          :key="config"
           :configuration="configuration.objectDetail[config]"
           :identifier="`${identifier}[${config}]`"
-          :key="config"
         />
       </template>
       <!-- 自定义对话框按钮 -->
       <template #footer>
-        <a-button @click="validate" key="submit" type="primary" v-text="'确定'" />
-        <a-button @click="modelDisplay=false" type="primary" v-text="'取消'" />
+        <a-button key="submit" type="primary" @click="validate" v-text="'确定'" />
+        <a-button type="primary" @click="modelDisplay=false" v-text="'取消'" />
       </template>
     </a-modal>
   </a-form-item>
@@ -71,6 +71,7 @@ export default class FormObjectInput extends Vue {
   @Inject() private form!: any;
 
   private labelCol = { labelCol: { span: 6 }, wrapperCol: { span: 18 } };
+
   private noLabelCol = { wrapperCol: { span: 24 } };
 
   private modelDisplay = false;

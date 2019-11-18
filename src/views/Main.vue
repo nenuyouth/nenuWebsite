@@ -14,31 +14,31 @@
       <hr class="my-4" />
       <p>人格的魅力，学习的楷模，工作的典范</p>
       <p class="lead">
-        <a-button @click="$router.push('/about/studentUnion')" size="large" type="primary">了解校学生会</a-button>
+        <a-button size="large" type="primary" @click="$router.push('/about/studentUnion')">了解校学生会</a-button>
       </p>
     </div>
     <base-carousel v-bind="carouselData" />
     <h2 class="px-3 pt-3">东师指南</h2>
-    <BaseGrid :key="item.head" v-bind="item" v-for="item in guidelist"/>
+    <BaseGrid v-for="item in guidelist" :key="item.head" v-bind="item"/>
     <h2 class="px-3 pt-3">东师手册</h2>
     <a-button
-      @click="$navigate('https://nenuyouth.com/doc',$router,$route)"
       block
       class="mb-3 blockButton"
       type="primary"
+      @click="$navigate('https://nenuyouth.com/doc',$router,$route)"
     >点击进入</a-button>
     <h2 class="px-3 pt-3">讲座信息</h2>
-    <a-button @click="$router.push('/lecture')" block class="mb-3 blockButton" type="primary">点击进入</a-button>
+    <a-button block class="mb-3 blockButton" type="primary" @click="$router.push('/lecture')">点击进入</a-button>
     <h2 class="px-3 pt-3">东师校历</h2>
     <div class="calendarHolder">
       <base-time-line :time-list="timeList" />
     </div>
     <div class="text-center">
       <a-button
-        @click="$router.push('/tool/calendar')"
         block
         class="mb-3 blockButton"
         type="primary"
+        @click="$router.push('/tool/calendar')"
       >查看详情</a-button>
     </div>
   </div>

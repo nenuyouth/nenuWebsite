@@ -7,7 +7,7 @@
 -->
 <template>
   <div class="container page">
-    <component :is="item.tag" :key="item.id" v-bind="item" v-for="item in myData" />
+    <component :is="item.tag" v-for="item in myData" :key="item.id" v-bind="item" />
   </div>
 </template>
 <script lang="ts">

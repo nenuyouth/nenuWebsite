@@ -7,12 +7,12 @@
 -->
 <template>
   <div class="container">
-    <base-steps :config="config" v-model="current" />
-    <json-select @json="pageJson=$event" @next="next" v-if="current===0" />
+    <base-steps v-model="current" :config="config" />
+    <json-select v-if="current===0" @json="pageJson=$event" @next="next" />
     <div class="footBtnCtn">
-      <a-button @click="done" type="primary" v-if="current + 1 === config.length" v-text="'完成'" />
-      <a-button @click="next" type="primary" v-else v-text="'下一步'" />
-      <a-button @click="previous" v-if="current !== 0" v-text="'上一步'" />
+      <a-button v-if="current + 1 === config.length" type="primary" @click="done" v-text="'完成'" />
+      <a-button v-else type="primary" @click="next" v-text="'下一步'" />
+      <a-button v-if="current !== 0" @click="previous" v-text="'上一步'" />
     </div>
   </div>
 </template>

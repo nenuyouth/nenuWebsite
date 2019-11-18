@@ -7,22 +7,22 @@
 -->
 <template>
   <a-timeline :mode="mode">
-    <a-timeline-item :color="item.color" :key="item.text" v-for="(item,index) in timeList">
-      <template #dot v-if="item.type">
+    <a-timeline-item v-for="(item,index) in timeList" :key="item.text" :color="item.color">
+      <template v-if="item.type" #dot>
         <icon-font
+          v-if="item.type.slice(0,5)==='icon-'"
           :style="`color:${item.color}`"
           :type="type"
           style="font-size:16px;"
-          v-if="item.type.slice(0,5)==='icon-'"
         />
         <a-icon :style="`color:${item.color}`" :type="item.type" style="font-size:16px;" />
       </template>
-      <router-link :to="item.url" class="timeLineButton" v-if="item.url">
-        <h3 :style="item.headingStyle" v-if="item.title" v-text="item.title" />
+      <router-link v-if="item.url" :to="item.url" class="timeLineButton">
+        <h3 v-if="item.title" :style="item.headingStyle" v-text="item.title" />
         <p v-html="list[index]" />
       </router-link>
       <template v-else>
-        <h3 :style="item.headingStyle" v-if="item.title" v-text="item.title" />
+        <h3 v-if="item.title" :style="item.headingStyle" v-text="item.title" />
         <p v-html="list[index]" />
       </template>
     </a-timeline-item>

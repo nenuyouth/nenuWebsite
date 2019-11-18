@@ -21,7 +21,7 @@
       <a-col :lg="6" :xs="12" class="text-sm-center">
         <h3 class="text-white">关于我们</h3>
         <div class="text-small">
-          <div :key="item[2]" class="mb-1" v-for="item in about">
+          <div v-for="item in about" :key="item[2]" class="mb-1">
             <router-link :to="item[0]" class="text-muted" v-text="item[1]" />
           </div>
         </div>
@@ -29,7 +29,7 @@
       <a-col :lg="6" :xs="12" class="text-sm-center">
         <h3 class="text-white">其他媒体</h3>
         <div class="text-small">
-          <div :key="item[1]" class="mb-1" v-for="item in media">
+          <div v-for="item in media" :key="item[1]" class="mb-1">
             <a :href="item[0]" class="text-muted" v-text="item[1]" />
           </div>
         </div>

@@ -7,7 +7,7 @@
  */
 
 declare module 'highlight.js/lib/languages/*' {
-  import { IModeBase, HLJSStatic } from 'highlight.js';
+  import { HLJSStatic, IModeBase } from 'highlight.js';
 
   const language: (hljs?: HLJSStatic) => IModeBase;
 

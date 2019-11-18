@@ -6,8 +6,8 @@
  * @LastEditTime: 2019-10-22 10:37:12
 -->
 <template>
-  <a-layout hasSider="true" id="app">
-    <my-slide id="aside" v-if="$store.state.slide.list.length" />
+  <a-layout id="app" has-sider="true">
+    <my-slide v-if="$store.state.slide.list.length" id="aside" />
     <a-layout id="body">
       <my-nav id="nav" />
       <!-- <transition :name="transitionName"> -->

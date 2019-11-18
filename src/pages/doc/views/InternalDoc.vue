@@ -33,6 +33,7 @@ export default class InternalDoc extends Vue {
     });
     this.$store.commit('menuTitle', '内部文档');
   }
+
   private deactivated() {
     // hide menu
     this.$store.commit('menuList', []);

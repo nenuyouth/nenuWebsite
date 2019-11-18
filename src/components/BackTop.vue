@@ -7,7 +7,7 @@
 -->
 <template>
   <transition name="myfade">
-    <div @click="scrollTop" class="scrollTop" v-if="display">
+    <div v-if="display" class="scrollTop" @click="scrollTop">
       <a-icon :component="BackTopSvg" style="font-size:38px;margin:-1px;" />
     </div>
   </transition>
@@ -20,6 +20,7 @@ import BackTopSvg from '|/icon/backTop.svg';
 @Component
 export default class BackTop extends Vue {
   private display = false;
+
   private BackTopSvg = BackTopSvg;
 
   // Make the website scroll to the top

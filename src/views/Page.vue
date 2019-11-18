@@ -7,7 +7,7 @@
 -->
 <template>
   <keep-alive :max="5">
-    <base-page :key="url" :pagedata="pageData" v-if="pageData"></base-page>
+    <base-page v-if="pageData" :key="url" :pagedata="pageData"/>
   </keep-alive>
 </template>
 <script lang="ts">

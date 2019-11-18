@@ -13,19 +13,19 @@
     </template>
     <a-row class="gridList">
       <a-col
+        v-for="item in content"
         :key="item[1]"
         :lg="3"
         :md="4"
         :xl="2"
         :xs="6"
-        @click="$navigate(item.url,$router,$route)"
         class="grid"
-        v-for="item in content"
+        @click="$navigate(item.url,$router,$route)"
       >
         <img :alt="item.text" :src="item.icon" class="gridIcon" />
         <div class="gridLabel" v-text="item.text" />
       </a-col>
-      <div class="commonfoot" v-if="foot" v-text="foot" />
+      <div v-if="foot" class="commonfoot" v-text="foot" />
     </a-row>
   </div>
 </template>

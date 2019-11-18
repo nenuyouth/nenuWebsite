@@ -9,13 +9,13 @@
   <div ref="viewer">
     <template v-for="(item, index) in list">
       <img
-        :alt="item.title"
-        :key="index"
-        :src="item.url"
         v-if="(item instanceof Object)"
         v-show="false"
+        :key="index"
+        :alt="item.title"
+        :src="item.url"
       />
-      <img :key="index" :src="item" v-else v-show="false" />
+      <img v-else v-show="false" :key="index" :src="item" />
     </template>
   </div>
 </template>
@@ -121,12 +121,14 @@ export default class ImageViewer extends Vue {
 
     return this;
   }
+
   // 切换到图像到索引的图像位置，如果未显示灯箱，将首先显示灯箱。index = 索引
   private view(index: number) {
     viewer.view(index);
 
     return this;
   }
+
   // 上一张，如果未显示灯箱，将首先显示灯箱。 loop = 是否循环
   private prev(loop = false) {
     viewer.prev(loop);
@@ -134,6 +136,7 @@ export default class ImageViewer extends Vue {
 
     return this;
   }
+
   // 下一张，如果未显示灯箱，将首先显示灯箱。 loop = 是否循环
   private next(loop = false) {
     viewer.next(loop);

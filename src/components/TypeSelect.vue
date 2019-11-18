@@ -7,8 +7,8 @@
 -->
 <template>
   <!-- 选择需要的值类型 -->
-  <a-radio-group :value="selected" @change="onChange($event.target.value)" buttonStyle="solid">
-    <a-radio-button :key="item" :value="item" v-for="item in option">{{item}}</a-radio-button>
+  <a-radio-group :value="selected" button-style="solid" @change="onChange($event.target.value)">
+    <a-radio-button v-for="item in option" :key="item" :value="item">{{item}}</a-radio-button>
   </a-radio-group>
 </template>
 <script lang="ts">

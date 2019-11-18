@@ -8,7 +8,7 @@
 <template>
   <div class="container">
     Private Page is building......
-    <base-steps :config="config" v-model="current" />
+    <base-steps v-model="current" :config="config" />
   </div>
 </template>
 <script lang="ts">

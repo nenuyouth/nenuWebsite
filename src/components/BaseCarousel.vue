@@ -9,42 +9,42 @@
   <a-carousel
     :arrows="true"
     :autoplay="autoplay"
-    :autoplaySpeed="autoplaySpeed"
+    :autoplay-speed="autoplaySpeed"
     :dots="dots"
     :speed="speed"
     :vertical="vertical"
   >
     <!-- prevArrow -->
     <template #prevArrow>
-      <div class="arrow" style="left:10px;z-index:1;" v-if="!single&&arrowDisplay">
+      <div v-if="!single&&arrowDisplay" class="arrow" style="left:10px;z-index:1;">
         <a-icon type="vertical-right" />
       </div>
     </template>
 
     <!-- nextArrow -->
     <template #nextArrow>
-      <div class="arrow" style="right:10px;" v-if="!single&&arrowDisplay">
+      <div v-if="!single&&arrowDisplay" class="arrow" style="right:10px;">
         <a-icon type="vertical-left" />
       </div>
     </template>
 
     <!-- carousel item -->
     <div
-      :key="item.caption"
-      @click="$navigate(item.url,$router,$route)"
-      class="carouselItem"
       v-for="item in list"
+      :key="item.caption"
+      class="carouselItem"
+      @click="$navigate(item.url,$router,$route)"
     >
       <img :alt="item.alt" :src="item.src" class="img" />
       <div :class="item.color" class="caption">
         <h1 class="display-4 d-none d-sm-block" v-text="item.caption" />
         <h1 class="font-weight-light d-block d-sm-none" v-text="item.caption" />
         <h1 class="lead" v-text="item.subCaption" />
-        <p class="lead d-none d-sm-block" v-if="item.enSubCaption">{{ item.enSubCaption }}</p>
+        <p v-if="item.enSubCaption" class="lead d-none d-sm-block">{{ item.enSubCaption }}</p>
         <p
+          v-if="item.desc"
           class="d-none d-lg-block text-right font-weight-light"
           style="line-height: 1;"
-          v-if="item.desc"
         >{{ item.desc }}</p>
       </div>
     </div>

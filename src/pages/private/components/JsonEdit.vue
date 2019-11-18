@@ -13,21 +13,21 @@
 
         <!-- 带有分割线、下拉列表的标题 -->
         <!-- <DropdownTitle :key="partIndex" :menu="tagList" v-model="tags[partIndex]" /> -->
-        <DropdownGrid :key="partIndex" :list="tagList" v-model="tags[partIndex]" />
+        <DropdownGrid :key="partIndex" v-model="tags[partIndex]" :list="tagList" />
 
         <!-- 选项列表 -->
         <template v-if="part!=='请选择'">
           <template v-for="config in Object.keys(configuration[part])">
             <form-input
+              :key="`${partIndex}-${config}`"
               :configuration="configuration[part][config]"
               :identifier="`${partIndex}-${config}`"
-              :key="`${partIndex}-${config}`"
             />
           </template>
         </template>
       </template>
       <a-form-item :wrapper-col="{ span: 12, offset: 5 }">
-        <a-button @click="addComponent" class="addNewBtn" type="primary">
+        <a-button class="addNewBtn" type="primary" @click="addComponent">
           <a-icon type="plus" />新增
         </a-button>
       </a-form-item>

@@ -7,38 +7,38 @@
 -->
 <template>
   <!-- 标题设置 -->
-  <div class="w-100" v-wechat-title="docTitle">
+  <div v-wechat-title="docTitle" class="w-100">
     <!-- 面包屑导航 -->
     <div class="container mt-2">
       <!-- 返回按钮 -->
-      <span @click="$router.back()" class="backIcon">
+      <span class="backIcon" @click="$router.back()">
         <back type="icon-back" />&ensp;back&ensp;
       </span>|
       <a-breadcrumb style="display:inline-block">
         <a-breadcrumb-item>
-          <router-link :to="basepath" class="homeIcon" v-if="routes.length">
+          <router-link v-if="routes.length" :to="basepath" class="homeIcon">
             &ensp;
             <a-icon style="font-size:16px;" type="home" />&ensp;home
           </router-link>
-          <a-icon type="home" v-else />
+          <a-icon v-else type="home" />
         </a-breadcrumb-item>
-        <a-breadcrumb-item :key="route" v-for="(route,index) in routes">
+        <a-breadcrumb-item v-for="(route,index) in routes" :key="route">
           <template v-if="index===routes.length-1">{{route}}</template>
-          <router-link :to="`${basepath}/${routes.slice(0,index+1).join('/')}`" v-else>{{route}}</router-link>
+          <router-link v-else :to="`${basepath}/${routes.slice(0,index+1).join('/')}`">{{route}}</router-link>
         </a-breadcrumb-item>
       </a-breadcrumb>
     </div>
     <!-- 密码弹窗 -->
     <PasswordModal
-      @login="login"
-      passwordKey="internal"
-      url="/server/passwordValidate"
       v-if="!$store.state.loginStatus.internal"
+      password-key="internal"
+      url="/server/passwordValidate"
+      @login="login"
     />
     <!-- <transition :name="transitionName" mode="in-out"> -->
     <keep-alive>
       <!-- 文档显示 -->
-      <doc-view :docContent="compiledMarkdown" :key="path" @title="docTitle=$event" />
+      <doc-view :key="path" :doc-content="compiledMarkdown" @title="docTitle=$event" />
     </keep-alive>
     <!-- </transition> -->
   </div>

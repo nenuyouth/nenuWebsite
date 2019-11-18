@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1>东北师大{{title}}校历</h1>
-    <div @click="$router.push('/tool/calendar')" class="backButton">
+    <div class="backButton" @click="$router.push('/tool/calendar')">
       校历
       <br />主页
     </div>
@@ -17,6 +17,7 @@ import BaseTimeLine, { TimeListItem } from '#/BaseTimeLine.vue';
 @Component({ components: { BaseTimeLine } })
 export default class Calendar extends Vue {
   private title = '';
+
   private timeList: TimeListItem[] = [];
 
   private created() {

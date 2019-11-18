@@ -33,6 +33,7 @@ export default class Guide extends Vue {
     });
     this.$store.commit('menuTitle', '东师指南');
   }
+
   private deactivated() {
     // hide menu
     this.$store.commit('menuList', []);

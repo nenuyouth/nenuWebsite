@@ -1,6 +1,6 @@
 <template>
   <div class="row text-center">
-    <div :key="item.title" class="col-lg-4 col-md-6 py-2" v-for="item in cardList">
+    <div v-for="item in cardList" :key="item.title" class="col-lg-4 col-md-6 py-2">
       <div class="card box-shadow">
         <div
           :aria-controls="item.title"
@@ -22,7 +22,7 @@
               <small class="text-muted">/起</small>
             </h1>
             <ul class="list-unstyled mb-3">
-              <li :key="listItem" v-for="listItem in item.desc" v-html="listItem"></li>
+              <li v-for="listItem in item.desc" :key="listItem" v-html="listItem"/>
             </ul>
             <router-link
               :to="item.url"
@@ -38,7 +38,7 @@
             <small class="text-muted">/起</small>
           </h1>
           <ul class="list-unstyled mb-3">
-            <li :key="listItem" v-for="listItem in item.desc" v-html="listItem"></li>
+            <li v-for="listItem in item.desc" :key="listItem" v-html="listItem"/>
           </ul>
           <router-link
             :to="item.url"

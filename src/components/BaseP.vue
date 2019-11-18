@@ -7,17 +7,17 @@
 -->
 <template>
   <div :id="myId" class="Ctn">
-    <div :style="headStyle" class="iOShead" v-if="head" v-text="head" />
+    <div v-if="head" :style="headStyle" class="iOShead" v-text="head" />
     <div :style="{ textAlign: align }" class="iOSP">
       <p :style="myStyle" v-html="pText" />
-      <div class="ImgCtn" v-if="src">
-        <div class="imgCtn" v-if="!loaded">
-          <Error class="imgIcon" v-if="error" />
-          <Loading class="imgIcon" v-else />
+      <div v-if="src" class="ImgCtn">
+        <div v-if="!loaded" class="imgCtn">
+          <Error v-if="error" class="imgIcon" />
+          <Loading v-else class="imgIcon" />
           <span v-text="error ? '图片加载失败' : '加载中...'" />
         </div>
-        <img :src="src" @click="imgDisplay" class="img" v-else />
-        <div class="imgDesc" v-if="desc" v-text="`▲${desc}`" />
+        <img v-else :src="src" class="img" @click="imgDisplay" />
+        <div v-if="desc" class="imgDesc" v-text="`▲${desc}`" />
       </div>
     </div>
   </div>
@@ -66,6 +66,7 @@ export default class BaseP extends Vue {
 
   // Image load status
   private loaded = false;
+
   private error = false;
 
   // Handle text data in order to display correctly with spaces and line breaks on website

@@ -1,19 +1,19 @@
 <template>
-  <a-menu :theme="theme" mode="horizontal" v-model="active">
+  <a-menu v-model="active" :theme="theme" mode="horizontal">
     <a-menu-item key="logo" style="padding:0 10px 0 20px;">
       <transition name="myfade">
-        <Back id="backButton" v-if="backButtonDisplay" />
+        <Back v-if="backButtonDisplay" id="backButton" />
       </transition>
       <transition name="myfade">
         <img
+          v-if="logoDisplay"
+          id="logo"
           :src="`/img/icon/${$store.state.env.personal?'inNENU':'nenuyouth'}.png`"
           alt="东师青年"
-          id="logo"
-          v-if="logoDisplay"
         />
       </transition>
     </a-menu-item>
-    <a-menu-item class="d-none d-lg-inline" disabled key="logoName" style="padding:0 10px 0 0;">
+    <a-menu-item key="logoName" class="d-none d-lg-inline" disabled style="padding:0 10px 0 0;">
       <span class="text-black">{{$store.state.env.personal?'in东师':'东北师范大学学生会'}}</span>
     </a-menu-item>
     <a-menu-item key="/">
@@ -54,6 +54,7 @@ import Back from '|/icon/back.svg';
 @Component({ components: { Back } })
 export default class Nav extends Vue {
   private logoDisplay = true;
+
   private backButtonDisplay = false;
 
   private firstNavigate = true;

@@ -7,13 +7,13 @@
 -->
 <template>
   <div :id="myId" class="ImgCtn">
-    <div class="imgCtn" v-if="!loaded">
-      <Error class="imgIcon" v-if="error" />
-      <Loading class="imgIcon" v-else />
+    <div v-if="!loaded" class="imgCtn">
+      <Error v-if="error" class="imgIcon" />
+      <Loading v-else class="imgIcon" />
       <span v-text="error ? '图片加载失败' : '加载中...'" />
     </div>
-    <img :src="src" @click="imgDisplay" class="img" v-else />
-    <div class="imgDesc" v-if="desc" v-text="`▲${desc}`" />
+    <img v-else :src="src" class="img" @click="imgDisplay" />
+    <div v-if="desc" class="imgDesc" v-text="`▲${desc}`" />
   </div>
 </template>
 <script lang="ts">
@@ -34,6 +34,7 @@ export default class BaseImg extends Vue {
 
   // Image load status
   private loaded = false;
+
   private error = false;
 
   private mounted() {

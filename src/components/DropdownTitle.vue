@@ -16,10 +16,10 @@
         <a-menu>
           <template v-for="(item,index) in menu">
             <template v-if="item[1]==='TITLE'">
-              <a-menu-divider :key="`divider${index}`" v-if="index!==0" />
+              <a-menu-divider v-if="index!==0" :key="`divider${index}`" />
               <a-menu-item :key="`title${index}`" disabled v-text="item[0]" />
             </template>
-            <a-menu-item :key="`item${index}`" @click="itemChange(index)" v-else v-text="item[0]" />
+            <a-menu-item v-else :key="`item${index}`" @click="itemChange(index)" v-text="item[0]" />
           </template>
         </a-menu>
       </template>

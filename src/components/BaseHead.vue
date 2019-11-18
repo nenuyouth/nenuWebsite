@@ -7,7 +7,7 @@
 -->
 <template>
   <!-- 设置网页title -->
-  <div :id="myId" class="title" v-text="title" v-wechat-title="title" />
+  <div :id="myId" v-wechat-title="title" class="title" v-text="title" />
 </template>
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';

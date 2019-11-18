@@ -56,15 +56,11 @@ export { default as LoadingOutline } from 'ol/LoadingOutline';
 export { default as CheckCircleOutline } from 'ol/CheckCircleOutline';
 export { default as InfoCircleOutline } from 'ol/InfoCircleOutline';
 export { default as CloseCircleOutline } from 'ol/CloseCircleOutline';
-export {
-  default as ExclamationCircleOutline
-} from 'ol/ExclamationCircleOutline';
+export { default as ExclamationCircleOutline } from 'ol/ExclamationCircleOutline';
 export { default as CheckCircleFill } from 'icon/fill/CheckCircleFill';
 export { default as InfoCircleFill } from 'icon/fill/InfoCircleFill';
 export { default as CloseCircleFill } from 'icon/fill/CloseCircleFill';
-export {
-  default as ExclamationCircleFill
-} from 'icon/fill/ExclamationCircleFill';
+export { default as ExclamationCircleFill } from 'icon/fill/ExclamationCircleFill';
 export { default as UpOutline } from 'ol/UpOutline';
 export { default as DownOutline } from 'ol/DownOutline';
 export { default as LeftOutline } from 'ol/LeftOutline';

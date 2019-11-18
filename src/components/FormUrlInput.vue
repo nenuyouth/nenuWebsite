@@ -7,17 +7,16 @@
 -->
 <template>
   <a-form-item v-bind="configuration.title? labelCol: noLabelCol">
-    <template #label v-if="configuration.title">
+    <template v-if="configuration.title" #label>
       <!-- 表单项名称 -->
       {{configuration.title}}
       <!-- 描述文字 -->
-      <a-tooltip :title="configuration.desc" v-if="configuration.desc">
+      <a-tooltip v-if="configuration.desc" :title="configuration.desc">
         <a-icon style="vertical-align:-0.125em;" type="question-circle" />
       </a-tooltip>
     </template>
     <!-- 真实的表单项 -->
     <a-input
-      type="hidden"
       v-decorator="[
         identifier,
         {
@@ -27,21 +26,22 @@
           }]
         }
       ]"
+      type="hidden"
     />
 
     <!-- 渲染的表单项 -->
     <a-input v-model="path">
       <!-- 网址输入 -->
       <a-select
+        slot="addonBefore"
+        v-model="prefix"
         :options="[
             { label:'https://', value: 'https://'},
             { label:'http://', value: 'http://'},
             { label:'无前缀', value: ''}
         ]"
-        defaultValue="https://"
-        slot="addonBefore"
+        default-value="https://"
         style="width: 90px"
-        v-model="prefix"
       />
     </a-input>
   </a-form-item>
@@ -61,6 +61,7 @@ export default class FormUrlInput extends Vue {
   @Inject() private form!: any;
 
   private labelCol = { labelCol: { span: 6 }, wrapperCol: { span: 18 } };
+
   private noLabelCol = { wrapperCol: { span: 24 } };
 
   private prefix = 'https://';
@@ -77,6 +78,5 @@ export default class FormUrlInput extends Vue {
   private onUrlChange(newValue: string) {
     this.form.setFieldsValue({ [this.identifier]: newValue });
   }
-
 }
 </script>

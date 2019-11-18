@@ -6,9 +6,9 @@
  * @Description: Form Union Input
 -->
 <template>
-  <component :configuration="configuration" :identifier="identifier" :is="tag">
+  <component :is="tag" :configuration="configuration" :identifier="identifier">
     <template #type-select>
-      <TypeSelect :identifier="identifier" :option="configuration.type" v-model="typeSelect" />
+      <TypeSelect v-model="typeSelect" :identifier="identifier" :option="configuration.type" />
     </template>
   </component>
 </template>

@@ -8,13 +8,13 @@
 <template>
   <div class="container">
     <h2 class="px-3 pt-3">东师指南</h2>
-    <BaseGrid :key="item.head" v-bind="item" v-for="item in guidelist" />
+    <BaseGrid v-for="item in guidelist" :key="item.head" v-bind="item" />
     <h2 class="px-3 pt-3">东师手册</h2>
     <a-button
-      @click="$navigate('https://nenuyouth.com/doc',$router,$route)"
       block
       class="my-3 blockButton"
       type="primary"
+      @click="$navigate('https://nenuyouth.com/doc',$router,$route)"
       v-text="'点击进入'"
     />
   </div>

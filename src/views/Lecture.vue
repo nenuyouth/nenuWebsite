@@ -9,16 +9,16 @@
   <div class="container">
     <h2 class="px-3 pt-3">讲座信息</h2>
     <hr />
-    <a-menu @click="menuHandler" mode="horizontal" v-model="current">
-      <a-menu-item :key="item[0]" v-for="item in schools" v-text="item[1]" />
+    <a-menu v-model="current" mode="horizontal" @click="menuHandler">
+      <a-menu-item v-for="item in schools" :key="item[0]" v-text="item[1]" />
     </a-menu>
     <a-skeleton
+      v-if="lectureList.length===0"
       :paragraph="{rows:10,width:['50%','80%','60%','80%','60%','40%','80%','60%','80%','30%']}"
       active
       title="50%"
-      v-if="lectureList.length===0"
     />
-    <LectureList :list="lectureList" v-else />
+    <LectureList v-else :list="lectureList" />
   </div>
 </template>
 

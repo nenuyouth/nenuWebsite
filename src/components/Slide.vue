@@ -7,21 +7,21 @@
 -->
 <template>
   <aside>
-    <div :style="collapse? '': 'left: 200px;'" @click="trigger" class="d-block d-lg-none slideBtn">
-      <a-icon type="bars" v-if="collapse" />
-      <a-icon type="close" v-else />
+    <div :style="collapse? '': 'left: 200px;'" class="d-block d-lg-none slideBtn" @click="trigger">
+      <a-icon v-if="collapse" type="bars" />
+      <a-icon v-else type="close" />
     </div>
-    <div @click="trigger" class="slideMask" style="display:none;" />
+    <div class="slideMask" style="display:none;" @click="trigger" />
     <a-layout-sider
-      :theme="theme"
-      :trigger="null"
-      @breakpoint="onBreakpoint"
-      breakpoint="lg"
-      collapsedWidth="0"
       id="slide"
       v-model="collapse"
+      :theme="theme"
+      :trigger="null"
+      breakpoint="lg"
+      collapsed-width="0"
+      @breakpoint="onBreakpoint"
     >
-      <div class="asideLogo" v-if="!collapse">
+      <div v-if="!collapse" class="asideLogo">
         <img
           :src="$store.state.slide.icon||'/img/icon/nenuyouth.png'"
           alt="东北师范大学校学生会"
