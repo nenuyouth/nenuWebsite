@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: vue config file
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-11-19 20:05:09
+ * @LastEditTime: 2019-11-19 20:36:02
  */
 const path = require('path');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
@@ -225,7 +225,7 @@ module.exports = {
     workboxPluginMode: 'GenerateSW',
     workboxOptions: {
       importWorkboxFrom: 'local', // service worker 引入方式
-      importsDirectory: 'service-worker', // service-worker文件存放路径
+      importsDirectory: 'service-worker', // service-worker 文件存放路径
       precacheManifestFilename: 'precacheList.[manifestHash].js',
       swDest: 'service-worker/service-worker.js', // serviceworker 存放地址
       maximumFileSizeToCacheInBytes: '10485760'

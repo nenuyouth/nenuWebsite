@@ -11,10 +11,16 @@ import axios from 'axios';
 import hljs from './hljs';
 import marked from 'marked';
 
-// init Markdown Render Instance
+/*
+ * 初始化渲染实例
+ * init Markdown Render Instance
+ */
 const myRenderMD = new marked.Renderer();
 
-// rewrite heading parse
+/*
+ * Rewrite Heading parse
+ * 重写标题解析
+ */
 myRenderMD.heading = (text, level) => {
   let id = '';
 
@@ -31,7 +37,7 @@ myRenderMD.heading = (text, level) => {
     text}" class="mdHeading"><svg viewBox='0 0 1024 1024' class='mdIcon'><use x="0" y="0" xlink:href="#link" /></svg>${text}</h${level}>`;
 };
 
-// rewrite link parse: if link url contains '#', means it's an inside navigation
+// Rewrite link parse: if link url contains '#', means it's an inside navigation
 myRenderMD.link = (url, title, text) =>
   url[0] === '#'
     ? `<a class='md-a' href='${url}' title='${title || text}'>${text}</a>`
@@ -39,7 +45,7 @@ myRenderMD.link = (url, title, text) =>
     ? `<a href='${url}' class='md-link' title='${text}'>${text}<svg width='15' height='15' viewBox="0 0 100 100" class='outbound'><use x="0" y="0" xlink:href="#outbound" /></svg></a>`
     : `<a href='${url}' class='md-link' title='${text}'>${text}</a>`;
 
-// rewrite list parse to prevent seeing link icon on list items
+// Rewrite list parse to prevent seeing link icon on list items
 myRenderMD.listitem = text =>
   `<li>${
     text.indexOf('#link') === -1
@@ -50,9 +56,9 @@ myRenderMD.listitem = text =>
         )
   }</li>`;
 
-// set marked package options
+// Set marked package options
 marked.setOptions({
-  breaks: true, // whether use GitHub Flavored Markdown controls linebreaks output `<br>`
+  breaks: false, // whether use GitHub Flavored Markdown controls linebreaks output `<br>`
   gfm: true, // whether use Github-improved Markdown (Is-Default)
   langPrefix: 'hljs ', // code block class prefix
   pedantic: false, // whether render as native markdown.pl
@@ -60,7 +66,7 @@ marked.setOptions({
   // sanitize: true, // whether clean the html content inside before parsed
   smartLists: true, // whether use advanced list style
   smartypants: false, // whether add additional symbols for specific content
-  xhtml: true, // 是否闭合空标签
+  xhtml: true, // whether close empty tags
   // Highlight Code Block
   highlight: (code, lang) =>
     lang && hljs.getLanguage(lang)

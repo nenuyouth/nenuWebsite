@@ -3,10 +3,9 @@
  * @LastEditors: Mr.Hope
  * @Description: Hightlight.js 配置文件
  * @Date: 2019-05-06 01:30:09
- * @LastEditTime: 2019-08-25 23:37:13
+ * @LastEditTime: 2019-11-19 20:27:05
  */
 
-/* eslint-disable @typescript-eslint/no-var-requires */
 import hljs from 'highlight.js/lib/highlight';
 
 hljs.registerLanguage('apache', require('highlight.js/lib/languages/apache'));

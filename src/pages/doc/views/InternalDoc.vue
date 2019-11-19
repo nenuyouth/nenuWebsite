@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Internal Doc Display
  * @Date: 2019-04-01 23:35:43
- * @LastEditTime: 2019-11-07 16:13:23
+ * @LastEditTime: 2019-11-19 22:04:19
 -->
 <template>
   <MyDoc :baselength="baselength" :loading="$store.state.docLoading" :path="path" />
@@ -19,7 +19,7 @@ import getCompiledMarkdown from '../utils/getMarkdown';
 @Component({ components: { MyDoc } })
 export default class InternalDoc extends Vue {
   // the length of url base part
-  private readonly baselength = 13;
+  private readonly baselength = 5;
 
   // doc path
   private get path() {
@@ -42,6 +42,8 @@ export default class InternalDoc extends Vue {
   // change docPath
   private async beforeRouteUpdate(to: Route, from: Route, next: (navigate?: boolean) => void) {
     const path = to.path.slice(this.baselength) || 'readme';
+    console.log(path);
+
     let navigate = true;
 
     // show loading status

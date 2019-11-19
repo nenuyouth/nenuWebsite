@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-11-19 20:13:50
+ * @LastEditTime: 2019-11-19 20:16:50
 -->
 <template>
   <div class="container mt-3 pb-3">
@@ -28,14 +28,17 @@
           <aside id="aside" class="shadow">
             <a-anchor
               :affix="false"
-              :offset-top="$store.state.screen.lg?48:42"
+              :offset-top="$store.state.screen.lg? 48: 42"
               :show-ink-in-fixed="true"
               wrapper-class="asideList"
               @click="handleClick"
             >
               <a-skeleton
-                v-if="aside.length===0"
-                :paragraph="{rows: 12,width:['25%','30%','25%','50%','30%','50%','25%','30%','25%','50%','30%','50%']}"
+                v-if="aside.length === 0"
+                :paragraph="{ 
+                  rows: 12, 
+                  width: ['25%','30%','25%','50%','30%','50%','25%','30%','25%','50%','30%','50%']
+                }"
                 :title="false"
                 active
               />
@@ -57,7 +60,7 @@
     <div id="asideScreenMask" style="display:none;" @click="asideToggle" />
     <!-- 侧边目录 -->
     <div
-      v-if="!noneCatalog&&aside.length!==0"
+      v-if="!noneCatalog && aside.length !== 0"
       id="asideSlide"
       class="d-block d-lg-none"
       style="left:100%;"

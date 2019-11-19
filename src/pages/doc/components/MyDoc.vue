@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-11-07 16:18:33
+ * @LastEditTime: 2019-11-19 22:13:38
 -->
 <template>
   <!-- 标题设置 -->
@@ -12,19 +12,21 @@
     <div class="container mt-2">
       <!-- 返回按钮 -->
       <span class="backIcon" @click="$router.back()">
-        <back type="icon-back" />&ensp;back&ensp;
-      </span>|
+        <back type="icon-back" style="margin-right: 4px;" />back
+      </span>
+      <span style="margin: 0 8px;">|</span>
       <a-breadcrumb style="display:inline-block">
         <a-breadcrumb-item>
           <router-link v-if="routes.length" :to="basepath" class="homeIcon">
-            &ensp;
-            <a-icon style="font-size:16px;" type="home" />&ensp;home
+            <a-icon style="font-size:16px;margin-right: 4px;" type="home" />home
           </router-link>
-          <a-icon v-else type="home" />
+          <template v-else>
+            <a-icon style="font-size:16px;margin-right: 4px;" type="home" />home
+          </template>
         </a-breadcrumb-item>
         <a-breadcrumb-item v-for="(route,index) in routes" :key="route">
           <template v-if="index===routes.length-1">{{route}}</template>
-          <router-link v-else :to="`${basepath}/${routes.slice(0,index+1).join('/')}`">{{route}}</router-link>
+          <router-link v-else :to="`${basepath}${routes.slice(0,index+1).join('/')}/`">{{route}}</router-link>
         </a-breadcrumb-item>
       </a-breadcrumb>
     </div>
@@ -47,7 +49,7 @@
 <script lang="ts">
 
 // 导入css样式
-import '../utils/github-markdown.css';
+import '../utils/github-markdown.styl';
 import 'highlight.js/styles/atom-one-dark.css';
 
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
@@ -73,7 +75,7 @@ export default class MyDoc extends Vue {
   @Prop(Number) private readonly baselength!: number;
 
   private get basepath() {
-    return this.$route.path.slice(0, this.baselength - 1);
+    return this.$route.path.slice(0, this.baselength);
   }
 
   private get path() {

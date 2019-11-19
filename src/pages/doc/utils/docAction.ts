@@ -1,11 +1,16 @@
 import $ from 'jquery';
+const { resolve } = require('path');
 
 interface Aside {
   text: string;
   level: string;
 }
 
-// 初始化目录
+/**
+ * 初始化目录
+ *
+ * @param ctx Vue组件
+ */
 const catalogGernarate = (ctx: any) => {
   const aside: Aside[] = [];
   const title = $('h1').text();
@@ -41,7 +46,7 @@ const catalogGernarate = (ctx: any) => {
   ctx.aside = aside;
 };
 
-// 注册页面内部链接点击时的滚动动画效果
+/** 注册页面内部链接点击时的滚动动画效果 */
 const registScrollAnimation = () => {
   $('a.md-a').on('click', event => {
     const id = $(event.currentTarget).attr('href');
@@ -60,7 +65,11 @@ const registScrollAnimation = () => {
   });
 };
 
-// 注册页面标题悬停时的动画效果
+/**
+ * 注册页面标题悬停时的动画效果
+ *
+ * @param ctx Vue组件
+ */
 const registHeadingHover = (ctx: any) => {
   if (!ctx.$store.state.systemInfo.iOS) {
     $('.markdown-body :header').on('mouseover', event => {
@@ -76,7 +85,7 @@ const registHeadingHover = (ctx: any) => {
   }
 };
 
-// 注册页面标题点击时的滚动置顶动画效果
+/** 注册页面标题点击时的滚动置顶动画效果 */
 const registScrollTopAnimation = () => {
   $('.markdown-body :header').on('click', event => {
     // 如果当前标题只有一个childNode，且node的标签不是a，进行滚动动画
@@ -104,13 +113,17 @@ const registScrollTopAnimation = () => {
   });
 };
 
-// 注册文档间跳转逻辑
+/**
+ * 注册文档间跳转逻辑
+ *
+ * @param ctx Vue 组件
+ */
 const registRoute = (ctx: any) => {
   const route = ctx.$route;
   const router = ctx.$router;
 
   $('a.md-link').on('click', event => {
-    const url = $(event.currentTarget).attr('href');
+    let url = $(event.currentTarget).attr('href');
 
     if (url)
       if (url && url[0] === '/')
@@ -122,8 +135,10 @@ const registRoute = (ctx: any) => {
       else {
         // 内部相对路径
         const base = route.path.slice(0, route.path.lastIndexOf('/'));
-
-        router.push(`${base}/${url}`);
+        // 处理url
+        if (url.substr(-3) === '.md') url = url.substr(0, url.length - 3);
+        console.log(resolve(`${base}/`, url));
+        router.push(resolve(`${base}/`, url));
       }
     else
       ctx.$confirm({
@@ -148,7 +163,11 @@ const registRoute = (ctx: any) => {
   });
 };
 
-// 注册页面内动作
+/**
+ * 注册页面内动作
+ *
+ * @param ctx Vue 组件
+ */
 const actionRegister = (ctx: any) => {
   catalogGernarate(ctx);
   registScrollAnimation();
