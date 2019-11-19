@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: vue config file
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-11-19 00:08:41
+ * @LastEditTime: 2019-11-19 20:05:09
  */
 const path = require('path');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
@@ -222,12 +222,12 @@ module.exports = {
       msTileImage: 'img/icons/mstile-150.png'
     },
     // 配置 workbox 插件
-    workboxPluginMode: 'InjectManifest',
+    workboxPluginMode: 'GenerateSW',
     workboxOptions: {
-      swSrc: 'src/service-worker/serviceWorker.js', // Service-worker脚本路径
-      swDest: 'service-worker/service-worker.js', // serviceworker存放地点
-      importWorkboxFrom: 'local', // service worker引入方式
+      importWorkboxFrom: 'local', // service worker 引入方式
       importsDirectory: 'service-worker', // service-worker文件存放路径
+      precacheManifestFilename: 'precacheList.[manifestHash].js',
+      swDest: 'service-worker/service-worker.js', // serviceworker 存放地址
       maximumFileSizeToCacheInBytes: '10485760'
     },
     // 定义 manifest.json
