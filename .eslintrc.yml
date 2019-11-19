@@ -11,7 +11,7 @@ extends:
   - prettier
   - prettier/@typescript-eslint
   - prettier/vue
-  - "@vue/prettier"
+  # - "@vue/prettier"
   - "@vue/typescript"
 
 plugins:
