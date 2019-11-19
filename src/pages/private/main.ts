@@ -35,7 +35,7 @@ import router from './router';
 import store from '@/store';
 
 // 引入Service-Worker
-import registerSW from '@/service-worker/registerSW';
+import registerSW from '@/service-worker';
 
 // 引入Vue根元素
 import Private from './Private.vue';

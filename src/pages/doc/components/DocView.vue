@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: Markdown显示组件
  * @Date: 2019-02-26 23:43:23
- * @LastEditTime: 2019-11-07 16:39:37
+ * @LastEditTime: 2019-11-19 20:13:50
 -->
 <template>
   <div class="container mt-3 pb-3">
@@ -102,7 +102,7 @@ interface Aside {
   level: string;
 }
 
-@Component
+@Component({ components: { DocSvg } })
 export default class DocView extends Vue {
   // 文档标题
   private docTitle = '文档';

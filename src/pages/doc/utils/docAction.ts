@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 interface Aside {
   text: string;
   level: string;

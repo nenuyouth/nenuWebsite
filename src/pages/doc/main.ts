@@ -4,7 +4,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主脚本文件
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-11-07 16:20:03
+ * @LastEditTime: 2019-11-19 20:07:15
  */
 
 // 引入Ant Design
@@ -38,7 +38,7 @@ import router from './router';
 import store from './store';
 
 // 引入Service-Worker
-import registerSW from '@/service-worker/registerSW';
+import registerSW from '@/service-worker';
 
 // 引入Vue根元素
 import Doc from './Doc.vue';
