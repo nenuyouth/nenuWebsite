@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: vue config file
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-11-19 20:36:02
+ * @LastEditTime: 2019-11-19 22:33:48
  */
 const path = require('path');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
@@ -112,16 +112,18 @@ const configureWebpack = config => {
 
   // 生产环境配置
   if (isProduction) {
-    // 使用CDN外部引入组件
-    config.externals = {
-      axios: 'axios',
-      jquery: '$',
-      tinycolor2: 'tinycolor',
-      viewerjs: 'Viewer',
-      vue: 'Vue',
-      'vue-router': 'VueRouter',
-      vuex: 'Vuex'
-    };
+    /*
+     * 使用CDN外部引入组件
+     * config.externals = {
+     *   axios: 'axios',
+     *   jquery: '$',
+     *   tinycolor2: 'tinycolor',
+     *   viewerjs: 'Viewer',
+     *   vue: 'Vue',
+     *   'vue-router': 'VueRouter',
+     *   vuex: 'Vuex'
+     * };
+     */
 
     // 提出性能要求
     config.performance = {
