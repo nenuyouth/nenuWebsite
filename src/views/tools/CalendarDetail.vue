@@ -32,7 +32,7 @@ export default class Calendar extends Vue {
       .catch(err => {
         this.$confirm({
           title: '校历获取错误',
-          content: `链接地址有误，错误信息为${err}\n请汇报给Mr.Hope!`,
+          content: `链接地址有误，错误信息为${err}\n请汇报给 Mr.Hope!`,
           autoFocusButton: 'cancel',
           cancelText: '确定',
           okText: '汇报',
@@ -49,25 +49,24 @@ export default class Calendar extends Vue {
   }
 }
 </script>
-<style lang='scss' scoped>
-.backButton {
-  position: fixed;
-  z-index: 2;
-  top: 100px;
-  right: 0;
-  background-color: #fff;
-  padding: 8px;
-  font-size: 14px;
-  line-height: 1.4;
-  letter-spacing: 1px;
-  font-weight: 600;
-  color: #1c2c3a;
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-  -webkit-box-shadow: -2px 0 5px rgba(0, 0, 0, 0.15);
-  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.15);
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.15);
-  }
-}
+<style lang='stylus' scoped>
+.backButton
+  position fixed
+  z-index 2
+  top 100px
+  right 0
+  background-color #fff
+  padding 8px
+  font-size 14px
+  line-height 1.4
+  letter-spacing 1px
+  font-weight 600
+  color #1c2c3a
+  border-top-left-radius 4px
+  border-bottom-left-radius 4px
+  -webkit-box-shadow -2px 0 5px rgba(0, 0, 0, 0.15)
+  box-shadow -2px 0 5px rgba(0, 0, 0, 0.15)
+
+  &:hover
+    background-color rgba(0, 0, 0, 0.15)
 </style>

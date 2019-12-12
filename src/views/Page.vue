@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 自动生成界面
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-11-19 00:06:29
+ * @LastEditTime: 2019-12-02 21:30:03
 -->
 <template>
   <keep-alive :max="5">
@@ -43,8 +43,8 @@ export default class Page extends Vue {
         const router = this.$router;
 
         this.$confirm({
-          title: 'JSON解析失败',
-          content: 'JSON解析失败，请汇报给Mr.Hope!',
+          title: 'JSON 解析失败',
+          content: 'JSON 解析失败，请汇报给 Mr.Hope!',
           autoFocusButton: 'cancel',
           cancelText: '确定',
           okText: '汇报',

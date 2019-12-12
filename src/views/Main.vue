@@ -3,7 +3,7 @@
  * @LastEditors: Mr.Hope
  * @Description: 主页
  * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-11-07 16:09:18
+ * @LastEditTime: 2019-12-02 21:30:47
 -->
 <template>
   <div class="container">
@@ -19,14 +19,7 @@
     </div>
     <base-carousel v-bind="carouselData" />
     <h2 class="px-3 pt-3">东师指南</h2>
-    <BaseGrid v-for="item in guidelist" :key="item.head" v-bind="item"/>
-    <h2 class="px-3 pt-3">东师手册</h2>
-    <a-button
-      block
-      class="mb-3 blockButton"
-      type="primary"
-      @click="$navigate('https://nenuyouth.com/doc',$router,$route)"
-    >点击进入</a-button>
+    <BaseGrid v-for="item in guidelist" :key="item.head" v-bind="item" />
     <h2 class="px-3 pt-3">讲座信息</h2>
     <a-button block class="mb-3 blockButton" type="primary" @click="$router.push('/lecture')">点击进入</a-button>
     <h2 class="px-3 pt-3">东师校历</h2>
@@ -117,19 +110,18 @@ export default class Main extends Vue {
   }
 }
 </script>
-<style lang="scss" scoped>
-.blockButton {
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 15px;
-}
-.calendarHolder {
-  padding: 0 15px;
-  max-height: 300px;
-  overflow-y: auto;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-}
+<style lang="stylus" scoped>
+.blockButton
+  max-width 600px
+  margin-left auto
+  margin-right auto
+  border-radius 15px
+
+.calendarHolder
+  padding 0 15px
+  max-height 300px
+  overflow-y auto
+
+  &::-webkit-scrollbar
+    display none
 </style>

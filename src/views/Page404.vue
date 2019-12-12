@@ -3,13 +3,13 @@
  * @LastEditors: Mr.Hope
  * @Description: 404界面
  * @Date: 2019-03-25 12:39:59
- * @LastEditTime: 2019-06-26 16:45:41
+ * @LastEditTime: 2019-12-02 21:30:10
 -->
 <template>
   <div class="container">
     <h1 mt-1>未找到界面</h1>
     <p>很抱歉，您打开的网页不存在。这可能是由于您输入了错误的路径，或者网页尚未制作。</p>
-    <p>同时，这也可能是一个bug。</p>
+    <p>同时，这也可能是一个 bug。</p>
     <p>
       您可以将此错误反馈给
       <a
