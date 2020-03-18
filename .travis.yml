@@ -1,4 +1,6 @@
 language: node_js
+os: linux
+dist: bionic
 node_js:
   - lts/*
 install:
@@ -14,12 +16,14 @@ jobs:
     - stage: deploy
       name: "Deploy Demo"
       script: yarn run build
-      before_deploy: echo dev.nenuyouth.com >> dist/CNAME
       deploy:
         provider: pages
-        skip-cleanup: true
+        cleanup: false
         local_dir: dist
-        github-token: $Github_Token
+        token: $Github_Token
+        fqdn: dev.nenuyouth.com
+        edge: true
+        strategy: git
 
 stages:
   - name: test-build
