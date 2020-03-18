@@ -15,7 +15,7 @@ importScripts("/service-worker/workbox-v4.3.1/workbox-sw.js");
 workbox.setConfig({modulePathPrefix: "/service-worker/workbox-v4.3.1"});
 
 importScripts(
-  "/service-worker/precache-manifest.a853593f4e0892315fcca2a72827f33a.js"
+  "/service-worker/precache-manifest.a5130040b0101b44a260d54118e6e5d0.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "innenu-website"});
