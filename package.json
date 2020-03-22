@@ -26,7 +26,7 @@
     "highlight.js": "9.18.1",
     "jquery": "3.4.1",
     "lodash": "4.17.15",
-    "marked": "0.8.1",
+    "marked": "0.8.2",
     "register-service-worker": "1.7.1",
     "viewerjs": "1.5.0",
     "vue": "2.6.11",
