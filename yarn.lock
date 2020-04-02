@@ -1717,10 +1717,10 @@ ansi-styles@^4.0.0, ansi-styles@^4.1.0:
     "@types/color-name" "^1.1.1"
     color-convert "^2.0.1"
 
-ant-design-vue@1.5.0:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/ant-design-vue/-/ant-design-vue-1.5.0.tgz#2e2c5658cf1211be06fbee95a18eee02965e089f"
-  integrity sha512-12+mTowYNZZhsXFR848BZRWGtZrWGayJx9j8Dv3gpgPBU4Abi86tz0hUSbnp8RXL6wb7xNcE9JoawNeE9Y83+Q==
+ant-design-vue@1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/ant-design-vue/-/ant-design-vue-1.5.1.tgz#e8bdcf69aa29492a875f028745561b7908d9f17e"
+  integrity sha512-d3ONYB0XfToRJfD0vJ1MquwIcS0SwX0v3NWqE2y4RZZ0VbK8hmCdPGeM2qO7q8D9ePqTeRow84BbPgQ/YZpm1Q==
   dependencies:
     "@ant-design/icons" "^2.1.1"
     "@ant-design/icons-vue" "^2.0.0"
