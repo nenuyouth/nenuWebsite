@@ -19,7 +19,7 @@
   },
   "author": "Mr.Hope",
   "dependencies": {
-    "ant-design-vue": "1.5.1",
+    "ant-design-vue": "1.5.2",
     "axios": "0.19.2",
     "core-js": "3.6.4",
     "github-markdown-css": "4.0.0",
