@@ -6,10 +6,10 @@
  * @Description: Base Document
 -->
 <template>
-  <div/>
+  <div />
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
 export default class BaseDoc extends Vue {
@@ -17,5 +17,4 @@ export default class BaseDoc extends Vue {
   @Prop(Number) private readonly myId!: number;
 }
 </script>
-<style scoped>
-</style>
+<style scoped></style>

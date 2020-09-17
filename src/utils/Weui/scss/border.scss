@@ -1,4 +1,4 @@
-@mixin topBorder($c: #C7C7C7) {
+@mixin topBorder($c: #c7c7c7) {
   content: " ";
   position: absolute;
   left: 0;
@@ -11,7 +11,7 @@
   transform: scaleY(0.5);
 }
 
-@mixin bottomBorder($c: #C7C7C7) {
+@mixin bottomBorder($c: #c7c7c7) {
   content: " ";
   position: absolute;
   left: 0;
@@ -24,7 +24,7 @@
   transform: scaleY(0.5);
 }
 
-@mixin leftBorder($c: #C7C7C7) {
+@mixin leftBorder($c: #c7c7c7) {
   content: " ";
   position: absolute;
   left: 0;
@@ -37,7 +37,7 @@
   transform: scaleX(0.5);
 }
 
-@mixin rightBorder($c: #C7C7C7) {
+@mixin rightBorder($c: #c7c7c7) {
   content: " ";
   position: absolute;
   right: 0;
@@ -50,7 +50,7 @@
   transform: scaleX(0.5);
 }
 
-@mixin allBorder($c:#c7c7c7) {
+@mixin allBorder($c: #c7c7c7) {
   content: " ";
   position: absolute;
   top: 0;

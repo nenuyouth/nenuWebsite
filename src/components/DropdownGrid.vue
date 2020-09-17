@@ -7,25 +7,40 @@
 -->
 <template>
   <a-divider orientation="left">
-    <a-dropdown v-model="visible" @click="visible=true">
+    <a-dropdown v-model="visible" @click="visible = true">
       <a class="ant-dropdown-link">
-        {{selectedText}}
+        {{ selectedText }}
         <a-icon type="down" />
       </a>
       <template #overlay>
         <a-menu class="popMenu">
           <template v-for="(menulist, menuIndex) in list">
-            <a-menu-item :key="menulist.title" disabled v-text="menulist.title" />
+            <a-menu-item
+              :key="menulist.title"
+              disabled
+              v-text="menulist.title"
+            />
             <!-- <a-menu-divider v-if="index!==0" /> -->
             <a-row :key="`${menulist.title}-content`" class="menuCtn">
-              <a-col v-for="(item,index) in menulist.content" :key="item.text" span="6">
-                <a-menu-item class="menuItem" @click="itemChange(menuIndex,index)">
+              <a-col
+                v-for="(item, index) in menulist.content"
+                :key="item.text"
+                span="6"
+              >
+                <a-menu-item
+                  class="menuItem"
+                  @click="itemChange(menuIndex, index)"
+                >
                   <icon-font
-                    v-if="item.icon&&item.icon.slice(0,5)==='icon-'"
+                    v-if="item.icon && item.icon.slice(0, 5) === 'icon-'"
                     :type="item.icon"
                     class="popMenuIcon"
                   />
-                  <a-icon v-else :type="item.icon||item.id" class="popMenuIcon" />
+                  <a-icon
+                    v-else
+                    :type="item.icon || item.id"
+                    class="popMenuIcon"
+                  />
                   <div v-text="item.text" />
                 </a-menu-item>
               </a-col>
@@ -38,7 +53,7 @@
   </a-divider>
 </template>
 <script lang="ts">
-import { Component, Model, Prop, Vue } from 'vue-property-decorator';
+import { Component, Model, Prop, Vue } from "vue-property-decorator";
 
 interface GridMenuItem {
   text: string;
@@ -57,32 +72,32 @@ export default class DropdownGrid extends Vue {
   @Prop(Array) private readonly list!: GridMenuList[];
 
   // Internal selected Data
-  @Model('change', { type: String }) private selected!: string;
+  @Model("change", { type: String }) private selected!: string;
 
   // Displayed selected Data
-  private selectedText = '请选择';
+  private selectedText = "请选择";
 
   private visible = false;
 
   private itemChange(menuIndex: number, index: number) {
     this.selectedText = this.list[menuIndex].content[index].text;
-    this.$emit('change', this.list[menuIndex].content[index].id);
-    this.$emit('onChange', this.list[menuIndex].content[index].text);
+    this.$emit("change", this.list[menuIndex].content[index].id);
+    this.$emit("onChange", this.list[menuIndex].content[index].text);
     this.visible = false;
   }
 
   private mounted() {
-    if (this.selected !== '请选择')
-      this.list.forEach(menuList => {
-        menuList.content.forEach(element => {
+    if (this.selected !== "请选择")
+      this.list.forEach((menuList) => {
+        menuList.content.forEach((element) => {
           if (this.selected === element.id) this.selectedText = element.text;
         });
       });
   }
 }
 </script>
-<style lang='scss' scoped>
-@import '~%/Weui/scss/border';
+<style lang="scss" scoped>
+@import "~%/Weui/scss/border";
 
 .popMenu {
   width: 500px;

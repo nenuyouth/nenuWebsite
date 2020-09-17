@@ -12,38 +12,16 @@
     "sourceMap": true,
     "resolveJsonModule": true,
     "baseUrl": ".",
-    "types": [
-      "webpack-env",
-      "jquery",
-      "mocha",
-      "chai"
-    ],
+    "types": ["webpack-env", "jquery", "mocha", "chai"],
     "paths": {
-      "icon/*": [
-        "node_modules/@ant-design/icons/lib/*"
-      ],
-      "ol/*": [
-        "node_modules/@ant-design/icons/lib/outline/*"
-      ],
-      "@/*": [
-        "src/*"
-      ],
-      "|/*": [
-        "src/assets/*"
-      ],
-      "#/*": [
-        "src/components/*"
-      ],
-      "%/*": [
-        "src/utils/*"
-      ]
+      "icon/*": ["node_modules/@ant-design/icons/lib/*"],
+      "ol/*": ["node_modules/@ant-design/icons/lib/outline/*"],
+      "@/*": ["src/*"],
+      "|/*": ["src/assets/*"],
+      "#/*": ["src/components/*"],
+      "%/*": ["src/utils/*"]
     },
-    "lib": [
-      "esnext",
-      "dom",
-      "dom.iterable",
-      "scripthost"
-    ]
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
   "include": [
     "src/**/*.ts",
@@ -52,8 +30,5 @@
     "tests/**/*.ts",
     "tests/**/*.tsx"
   ],
-  "exclude": [
-    "dist",
-    "node_modules"
-  ]
+  "exclude": ["dist", "node_modules"]
 }

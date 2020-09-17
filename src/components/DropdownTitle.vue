@@ -9,17 +9,22 @@
   <a-divider orientation="left">
     <a-dropdown>
       <a class="ant-dropdown-link">
-        {{selectedText}}
+        {{ selectedText }}
         <a-icon type="down" />
       </a>
       <template #overlay>
         <a-menu>
-          <template v-for="(item,index) in menu">
-            <template v-if="item[1]==='TITLE'">
-              <a-menu-divider v-if="index!==0" :key="`divider${index}`" />
+          <template v-for="(item, index) in menu">
+            <template v-if="item[1] === 'TITLE'">
+              <a-menu-divider v-if="index !== 0" :key="`divider${index}`" />
               <a-menu-item :key="`title${index}`" disabled v-text="item[0]" />
             </template>
-            <a-menu-item v-else :key="`item${index}`" @click="itemChange(index)" v-text="item[0]" />
+            <a-menu-item
+              v-else
+              :key="`item${index}`"
+              @click="itemChange(index)"
+              v-text="item[0]"
+            />
           </template>
         </a-menu>
       </template>
@@ -27,7 +32,7 @@
   </a-divider>
 </template>
 <script lang="ts">
-import { Component, Model, Prop, Vue } from 'vue-property-decorator';
+import { Component, Model, Prop, Vue } from "vue-property-decorator";
 
 @Component
 export default class DropdownTitle extends Vue {
@@ -35,20 +40,20 @@ export default class DropdownTitle extends Vue {
   @Prop(Array) private readonly menu!: string[][];
 
   // Internal selected Data
-  @Model('change', { type: String }) private selected!: string;
+  @Model("change", { type: String }) private selected!: string;
 
   // Displayed selected Data
-  private selectedText = '请选择';
+  private selectedText = "请选择";
 
   private itemChange(index: number) {
     this.selectedText = this.menu[index][0];
-    this.$emit('change', this.menu[index][1]);
-    this.$emit('onChange', this.menu[index][0]);
+    this.$emit("change", this.menu[index][1]);
+    this.$emit("onChange", this.menu[index][0]);
   }
 
   private mounted() {
-    if (this.selected !== '请选择')
-      this.menu.forEach(element => {
+    if (this.selected !== "请选择")
+      this.menu.forEach((element) => {
         if (this.selected === element[1]) this.selectedText = element[0];
       });
   }

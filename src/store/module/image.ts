@@ -19,7 +19,7 @@ export interface ImageState {
 const imageState: ImageState = {
   display: false,
   list: [],
-  index: 0
+  index: 0,
 };
 
 export default {
@@ -54,7 +54,7 @@ export default {
      * @param index 所展示图片的索引
      */
     imageList(state: ImageState, urls?: string | string[], index?: number) {
-      state.list = urls ? (typeof urls === 'string' ? [urls] : urls) : [''];
+      state.list = urls ? (typeof urls === "string" ? [urls] : urls) : [""];
       if (index) state.index = index;
     },
 
@@ -71,6 +71,6 @@ export default {
         state.index = 0;
       } else state.index = state.list.indexOf(url);
       state.display = true;
-    }
-  }
+    },
+  },
 };

@@ -26,23 +26,23 @@ import {
   Steps,
   Tooltip,
   Upload,
-  message
-} from 'ant-design-vue';
-import Vue from 'vue';
+  message,
+} from "ant-design-vue";
+import Vue from "vue";
 
 // 引入配置好的VueRouter与Vuex
-import router from './router';
-import store from '@/store';
+import router from "./router";
+import store from "@/store";
 
 // 引入Service-Worker
-import registerSW from '@/service-worker';
+import registerSW from "@/service-worker";
 
 // 引入Vue根元素
-import Private from './Private.vue';
+import Private from "./Private.vue";
 
 // 自定义css样式
-import '%/customBootstrap.scss';
-import '%/public.scss';
+import "%/customBootstrap.scss";
+import "%/public.scss";
 
 // 使用ant-design
 Vue.use(Button);
@@ -65,9 +65,9 @@ Vue.use(Upload);
 
 // 配置message
 message.config({
-  top: '50px',
+  top: "50px",
   duration: 3,
-  maxCount: 3
+  maxCount: 3,
 });
 
 // 向Vue中封装ant-design方法
@@ -80,11 +80,11 @@ Vue.prototype.$warning = Modal.warning;
 
 // 注册IconFont
 const IconFont = Icon.createFromIconfontCN({
-  scriptUrl: '//at.alicdn.com/t/font_1273079_70n5h1r9w.js'
+  scriptUrl: "//at.alicdn.com/t/font_1273079_70n5h1r9w.js",
 });
 
 // 全局注册IconFont
-Vue.component('icon-font', IconFont);
+Vue.component("icon-font", IconFont);
 
 // 注册service worker
 registerSW(store);
@@ -95,5 +95,5 @@ Vue.config.productionTip = false;
 new Vue({
   router,
   store,
-  render: h => h(Private) // render函数创建了一个元素
-}).$mount('#app'); // 创建元素被挂载到id='app'元素上，挂载时会销毁被挂载元素实例
+  render: (h) => h(Private), // render函数创建了一个元素
+}).$mount("#app"); // 创建元素被挂载到id='app'元素上，挂载时会销毁被挂载元素实例

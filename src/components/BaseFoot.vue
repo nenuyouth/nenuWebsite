@@ -10,19 +10,19 @@
     <div class="footerCtn">
       <div>行遍千山万水，归来仍是东师青年——</div>
       <div class="footLogo rotate">
-        <img src="/img/icon/logo.png" style="width:100%;height:100%;" />
+        <img src="/img/icon/logo.png" style="width: 100%; height: 100%" />
       </div>
     </div>
     <span v-if="desc">{{ desc }}\n</span>
     <span v-if="author">编辑人：{{ author }}&emsp;</span>
     <span v-if="time">最后编辑于{{ time }}</span>
     <span v-if="time || author">
-      <br />
-    </span>Copyright © 2017-2019 HopeStudio
+      <br /> </span
+    >Copyright © 2017-2019 HopeStudio
   </div>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
 export default class BaseFoot extends Vue {
@@ -33,13 +33,13 @@ export default class BaseFoot extends Vue {
   @Prop(String) private readonly desc!: string;
 
   // Author information
-  @Prop({ type: String, default: 'Mr.Hope' }) private readonly author!: string;
+  @Prop({ type: String, default: "Mr.Hope" }) private readonly author!: string;
 
   // Last edit time
   @Prop(String) private readonly time!: string;
 }
 </script>
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 .Footer {
   margin-top: 20px;
   padding: 8px 5%;

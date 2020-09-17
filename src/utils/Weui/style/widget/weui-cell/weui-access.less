@@ -17,32 +17,32 @@
 @import "../../base/fn";
 
 .weui-cell_access {
-    .setTapColor();
-    color: inherit;
-    &:active {
-        background-color: #ECECEC;
+  .setTapColor();
+  color: inherit;
+  &:active {
+    background-color: #ececec;
+  }
+  .weui-cell__ft {
+    padding-right: 16px;
+    position: relative;
+    &:after {
+      content: " ";
+      .setArrow(right, 8px, #B2B2B2, 2px);
+      position: absolute;
+      top: 50%;
+      margin-top: -5px;
+      right: 0;
     }
-    .weui-cell__ft {
-        padding-right: 16px;
-        position: relative;
-        &:after {
-            content: " ";
-            .setArrow(right, 8px, #B2B2B2, 2px);
-            position: absolute;
-            top: 50%;
-            margin-top: -5px;
-            right: 0;
-        }
-    }
+  }
 }
-.weui-cell_link{
-    color: @weuiLinkColorDefault;
-    font-size: 17px;
+.weui-cell_link {
+  color: @weuiLinkColorDefault;
+  font-size: 17px;
 
-    // 由于weui-cell:first-child的:before为隐藏，所以这里要重新显示出来
-    &:first-child{
-        &:before{
-            display: block;
-        }
+  // 由于weui-cell:first-child的:before为隐藏，所以这里要重新显示出来
+  &:first-child {
+    &:before {
+      display: block;
     }
+  }
 }

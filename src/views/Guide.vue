@@ -13,8 +13,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import BaseGrid from '#/BaseGrid.vue';
+import { Component, Vue } from "vue-property-decorator";
+import BaseGrid from "#/BaseGrid.vue";
 
 @Component({ components: { BaseGrid } })
 export default class Guide extends Vue {

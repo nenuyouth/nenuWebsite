@@ -16,14 +16,18 @@
   >
     <!-- prevArrow -->
     <template #prevArrow>
-      <div v-if="!single&&arrowDisplay" class="arrow" style="left:10px;z-index:1;">
+      <div
+        v-if="!single && arrowDisplay"
+        class="arrow"
+        style="left: 10px; z-index: 1"
+      >
         <a-icon type="vertical-right" />
       </div>
     </template>
 
     <!-- nextArrow -->
     <template #nextArrow>
-      <div v-if="!single&&arrowDisplay" class="arrow" style="right:10px;">
+      <div v-if="!single && arrowDisplay" class="arrow" style="right: 10px">
         <a-icon type="vertical-left" />
       </div>
     </template>
@@ -33,25 +37,29 @@
       v-for="item in list"
       :key="item.caption"
       class="carouselItem"
-      @click="$navigate(item.url,$router,$route)"
+      @click="$navigate(item.url, $router, $route)"
     >
       <img :alt="item.alt" :src="item.src" class="img" />
       <div :class="item.color" class="caption">
         <h1 class="display-4 d-none d-sm-block" v-text="item.caption" />
         <h1 class="font-weight-light d-block d-sm-none" v-text="item.caption" />
         <h1 class="lead" v-text="item.subCaption" />
-        <p v-if="item.enSubCaption" class="lead d-none d-sm-block">{{ item.enSubCaption }}</p>
+        <p v-if="item.enSubCaption" class="lead d-none d-sm-block">
+          {{ item.enSubCaption }}
+        </p>
         <p
           v-if="item.desc"
           class="d-none d-lg-block text-right font-weight-light"
-          style="line-height: 1;"
-        >{{ item.desc }}</p>
+          style="line-height: 1"
+        >
+          {{ item.desc }}
+        </p>
       </div>
     </div>
   </a-carousel>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue } from "vue-property-decorator";
 // import navigate from '%/navigate';
 
 interface Carousel {
@@ -85,7 +93,8 @@ export default class BaseCarousel extends Vue {
   @Prop({ type: Boolean, default: true }) private readonly autoplay!: boolean;
 
   // Autoplay time
-  @Prop({ type: Number, default: 3000 }) private readonly autoplaySpeed!: boolean;
+  @Prop({ type: Number, default: 3000 })
+  private readonly autoplaySpeed!: boolean;
 
   // Slide's switching time
   @Prop({ type: Number, default: 500 }) private readonly speed!: number;
@@ -94,10 +103,12 @@ export default class BaseCarousel extends Vue {
   @Prop({ type: Boolean, default: true }) private readonly dotDisplay!: boolean;
 
   // Whether to display swtich arrows
-  @Prop({ type: Boolean, default: true }) private readonly arrowDisplay!: boolean;
+  @Prop({ type: Boolean, default: true })
+  private readonly arrowDisplay!: boolean;
 
   // Switching animation
-  @Prop({ type: String, default: 'easeInOutQuart' }) private readonly easing!: string;
+  @Prop({ type: String, default: "easeInOutQuart" })
+  private readonly easing!: string;
 
   // Display indicators or not
   private get dots() {
@@ -116,16 +127,16 @@ export default class BaseCarousel extends Vue {
 
     this.list.forEach((element: Carousel, index: number) => {
       // init active status for the first carousel item
-      if (index === 0) element.activeStatus = 'active';
+      if (index === 0) element.activeStatus = "active";
 
       // mark 'black' config works
       if (element.black === true) {
-        element.color = 'textBlack';
+        element.color = "textBlack";
         delete element.black;
       }
 
       // make sure carouselItem has an 'alt' option
-      if (!element.alt) element.alt = '轮播图背景';
+      if (!element.alt) element.alt = "轮播图背景";
     });
 
     // set single when containing only one item

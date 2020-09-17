@@ -6,12 +6,12 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import Gear from '|/icon/gear.svg';
-import GearGreen from '|/icon/gearGreen.svg';
+import { Component, Vue } from "vue-property-decorator";
+import Gear from "|/icon/gear.svg";
+import GearGreen from "|/icon/gearGreen.svg";
 
 @Component({ components: { Gear, GearGreen } })
-export default class LoadingGear extends Vue { }
+export default class LoadingGear extends Vue {}
 </script>
 <style scoped>
 .loadingGear {

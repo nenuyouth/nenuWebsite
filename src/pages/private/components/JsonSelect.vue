@@ -19,41 +19,57 @@
     </a-col>
 
     <a-divider type="$store.state.sc">
-      <span style="font-size:18px;">或</span>
+      <span style="font-size: 18px">或</span>
     </a-divider>
 
     <!-- 新增文件 -->
     <a-col :md="8" :sm="24">
-      <a-button block icon="plus-square" size="large" @click="newJson">新建</a-button>
+      <a-button
+block
+icon="plus-square"
+size="large"
+@click="newJson"
+        >新建</a-button
+      >
     </a-col>
 
     <a-divider>
-      <span style="font-size:18px;">或</span>
+      <span style="font-size: 18px">或</span>
     </a-divider>
 
     <!-- 选择线上文件 -->
     <a-col :md="8" :sm="24">
-      <a-button block icon="plus-square" size="large" @click="online=true">选择线上文件</a-button>
+      <a-button
+block
+icon="plus-square"
+size="large"
+@click="online = true"
+        >选择线上文件</a-button
+      >
       <div v-if="online" class="jsonNameInputCtn">
-        <a-input v-model="jsonName" class="jsonNameInput" placeholder="请输入Json页面名称" />
+        <a-input
+          v-model="jsonName"
+          class="jsonNameInput"
+          placeholder="请输入Json页面名称"
+        />
         <a-button type="primary" @click="getOnlineJson">获取</a-button>
       </div>
     </a-col>
   </a-row>
 </template>
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue } from "vue-property-decorator";
 
 @Component
 export default class JsonSelect extends Vue {
   private online = false;
 
-  private jsonName = '';
+  private jsonName = "";
 
   // 新建json文件
   private newJson() {
-    this.$emit('json', '');
-    this.$emit('next');
+    this.$emit("json", "");
+    this.$emit("next");
   }
 
   private getOnlineJson() {

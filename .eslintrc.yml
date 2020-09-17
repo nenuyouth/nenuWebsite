@@ -37,6 +37,8 @@ rules:
         - i
         - j
         - k
+        - x
+        - y
 
   indent:
     - off

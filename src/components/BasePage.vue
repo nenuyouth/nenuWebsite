@@ -7,19 +7,24 @@
 -->
 <template>
   <div class="container page">
-    <component :is="item.tag" v-for="item in myData" :key="item.id" v-bind="item" />
+    <component
+      :is="item.tag"
+      v-for="item in myData"
+      :key="item.id"
+      v-bind="item"
+    />
   </div>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
-import BaseCarousel from '#/BaseCarousel.vue';
-import BaseFoot from '#/BaseFoot.vue';
-import BaseHead from '#/BaseHead.vue';
-import BaseImg from '#/BaseImg.vue';
-import BaseList from '#/BaseList.vue';
-import BaseP from '#/BaseP.vue';
-import BasePhone from '#/BasePhone.vue';
-import BaseTitle from '#/BaseTitle.vue';
+import { Component, Prop, Vue } from "vue-property-decorator";
+import BaseCarousel from "#/BaseCarousel.vue";
+import BaseFoot from "#/BaseFoot.vue";
+import BaseHead from "#/BaseHead.vue";
+import BaseImg from "#/BaseImg.vue";
+import BaseList from "#/BaseList.vue";
+import BaseP from "#/BaseP.vue";
+import BasePhone from "#/BasePhone.vue";
+import BaseTitle from "#/BaseTitle.vue";
 
 @Component({
   components: {
@@ -30,8 +35,8 @@ import BaseTitle from '#/BaseTitle.vue';
     BaseList,
     BaseCarousel,
     BasePhone,
-    BaseFoot
-  }
+    BaseFoot,
+  },
 })
 export default class BasePage extends Vue {
   // Page data
@@ -46,10 +51,10 @@ export default class BasePage extends Vue {
     pageData.forEach((element: any, index: number) => {
       element.myId = index;
       element.tag = `base-${element.tag}`;
-      if ('src' in element) imageList.push(element.src);
+      if ("src" in element) imageList.push(element.src);
     });
 
-    this.$store.commit('imageList', imageList);
+    this.$store.commit("imageList", imageList);
 
     return pageData;
   }

@@ -16,44 +16,42 @@
 
 @import "../../base/fn";
 
-.weui-btn_cell{
-    position: relative;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    box-sizing: border-box;
-    font-weight:700;
-    font-size: @weuiBtnFontSize;
-    text-align: center;
-    text-decoration: none;
-    color: @weuiBtnFontColor;
-    line-height: @weuiBtnCellLineHeight;
-    padding:@weuiBtnCellGap;
-    .setTapColor();
-    overflow: hidden;
-    background-color:#FFFFFF;
-    & + &{
-      margin-top:@weuiBtnDefaultGap;
-    }
-    &:active{
-      background-color:@weuiBgColorActive;
-    }
+.weui-btn_cell {
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+  font-weight: 700;
+  font-size: @weuiBtnFontSize;
+  text-align: center;
+  text-decoration: none;
+  color: @weuiBtnFontColor;
+  line-height: @weuiBtnCellLineHeight;
+  padding: @weuiBtnCellGap;
+  .setTapColor();
+  overflow: hidden;
+  background-color: #ffffff;
+  & + & {
+    margin-top: @weuiBtnDefaultGap;
+  }
+  &:active {
+    background-color: @weuiBgColorActive;
+  }
 }
-.weui-btn_cell__icon{
-  display:inline-block;
-  vertical-align:middle;
-  width:24px;
-  height:24px;
-  margin:-.2em .34em 0 0;
+.weui-btn_cell__icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 24px;
+  height: 24px;
+  margin: -0.2em 0.34em 0 0;
 }
-.weui-btn_cell-default{
-  color:rgba(0,0,0,.9);
+.weui-btn_cell-default {
+  color: rgba(0, 0, 0, 0.9);
 }
-.weui-btn_cell-primary{
-  color:@weuiLinkColorDefault;
+.weui-btn_cell-primary {
+  color: @weuiLinkColorDefault;
 }
-.weui-btn_cell-warn{
-  color:@weuiColorWarn;
+.weui-btn_cell-warn {
+  color: @weuiColorWarn;
 }
-
-

@@ -17,122 +17,122 @@
 @import "../../base/fn";
 
 .weui-dialog {
-    position: fixed;
-    z-index: 5000;
-    top: 50%;
-    left: 16px;
-    right: 16px;
-    transform: translate(0, -50%);
+  position: fixed;
+  z-index: 5000;
+  top: 50%;
+  left: 16px;
+  right: 16px;
+  transform: translate(0, -50%);
 
-    background-color: @weuiDialogBackgroundColor;
-    text-align: center;
-    border-radius: 3px;
-    overflow: hidden;
+  background-color: @weuiDialogBackgroundColor;
+  text-align: center;
+  border-radius: 3px;
+  overflow: hidden;
 }
 .weui-dialog__hd {
-    padding: 32px @weuiDialogGapWidth 16px;
+  padding: 32px @weuiDialogGapWidth 16px;
 }
 .weui-dialog__title {
-    font-weight: 700;
-    font-size: 17px;
-    line-height:1.4;
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 1.4;
 }
 .weui-dialog__bd {
-    padding: 0 @weuiDialogGapWidth 32px;
-    min-height: 40px;
-    font-size: 17px;
-    line-height: 1.4;
-    word-wrap: break-word;
-    word-break: break-all;
-    color: @weuiTextColorDesc;
-    &:first-child{
-        padding:32px @weuiDialogGapWidth;
-        color:@weuiTextColorTitle;
-    }
+  padding: 0 @weuiDialogGapWidth 32px;
+  min-height: 40px;
+  font-size: 17px;
+  line-height: 1.4;
+  word-wrap: break-word;
+  word-break: break-all;
+  color: @weuiTextColorDesc;
+  &:first-child {
+    padding: 32px @weuiDialogGapWidth;
+    color: @weuiTextColorTitle;
+  }
 }
 .weui-dialog__ft {
-    position: relative;
-    line-height: 64px;
-    font-size: 17px;
-    display: flex;
-    &:after {
-        content: " ";
-        .setTopLine(@weuiDialogLineColor);
-    }
+  position: relative;
+  line-height: 64px;
+  font-size: 17px;
+  display: flex;
+  &:after {
+    content: " ";
+    .setTopLine(@weuiDialogLineColor);
+  }
 }
 .weui-dialog__btn {
-    display: block;
-    flex: 1;
-    color: @weuiDialogLinkColor;
-    font-weight:700;
-    text-decoration: none;
-    .setTapColor();
-    &:active {
-        background-color: @weuiDialogLinkActiveBc;
-    }
+  display: block;
+  flex: 1;
+  color: @weuiDialogLinkColor;
+  font-weight: 700;
+  text-decoration: none;
+  .setTapColor();
+  &:active {
+    background-color: @weuiDialogLinkActiveBc;
+  }
 
-    position: relative;
+  position: relative;
+  &:after {
+    content: " ";
+    .setLeftLine(@weuiDialogLineColor);
+  }
+  &:first-child {
     &:after {
-        content: " ";
-        .setLeftLine(@weuiDialogLineColor);
+      display: none;
     }
-    &:first-child {
-        &:after {
-            display: none;
-        }
-    }
+  }
 }
 .weui-dialog__btn_default {
-    color: @weuiTextColorTitle;
+  color: @weuiTextColorTitle;
 }
 
-.weui-skin_android{
-    .weui-dialog {
-        text-align: left;
-        box-shadow: 0 6px 30px 0 rgba(0, 0, 0, .1);
+.weui-skin_android {
+  .weui-dialog {
+    text-align: left;
+    box-shadow: 0 6px 30px 0 rgba(0, 0, 0, 0.1);
+  }
+  .weui-dialog__title {
+    font-size: 22px;
+    line-height: 1.4;
+  }
+  .weui-dialog__hd {
+    text-align: left;
+  }
+  .weui-dialog__bd {
+    color: @weuiTextColorDesc;
+    font-size: 17px;
+    text-align: left;
+    &:first-child {
+      color: @weuiTextColorTitle;
     }
-    .weui-dialog__title{
-      font-size:22px;
-      line-height:1.4;
+  }
+  .weui-dialog__ft {
+    display: block;
+    text-align: right;
+    line-height: 40px;
+    padding: 0 @weuiDialogGapWidth 16px;
+    &:after {
+      display: none;
     }
-    .weui-dialog__hd{
-        text-align: left;
+  }
+  .weui-dialog__btn {
+    display: inline-block;
+    vertical-align: top;
+    padding: 0 0.8em;
+    &:after {
+      display: none;
     }
-    .weui-dialog__bd{
-        color:@weuiTextColorDesc;
-        font-size: 17px;
-        text-align: left;
-        &:first-child{
-            color:@weuiTextColorTitle;
-        }
+    &:last-child {
+      margin-right: -0.8em;
     }
-    .weui-dialog__ft{
-        display: block;
-        text-align: right;
-        line-height: 40px;
-        padding:0 @weuiDialogGapWidth 16px;
-        &:after{
-            display: none;
-        }
-    }
-    .weui-dialog__btn{
-        display: inline-block;
-        vertical-align: top;
-        padding:0 .8em;
-        &:after{
-            display: none;
-        }
-        &:last-child{
-            margin-right: -.8em;
-        }
-    }
-    .weui-dialog__btn_default {
-        color: @weuiTextColorTitle;
-    }
+  }
+  .weui-dialog__btn_default {
+    color: @weuiTextColorTitle;
+  }
 }
 
 @media screen and (min-width: 1024px) {
-    .weui-dialog {
-        width: 35%;
-    }
+  .weui-dialog {
+    width: 35%;
+  }
 }

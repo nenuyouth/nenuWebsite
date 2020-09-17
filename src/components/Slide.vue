@@ -7,11 +7,15 @@
 -->
 <template>
   <aside>
-    <div :style="collapse? '': 'left: 200px;'" class="d-block d-lg-none slideBtn" @click="trigger">
+    <div
+      :style="collapse ? '' : 'left: 200px;'"
+      class="d-block d-lg-none slideBtn"
+      @click="trigger"
+    >
       <a-icon v-if="collapse" type="bars" />
       <a-icon v-else type="close" />
     </div>
-    <div class="slideMask" style="display:none;" @click="trigger" />
+    <div class="slideMask" style="display: none" @click="trigger" />
     <a-layout-sider
       id="slide"
       v-model="collapse"
@@ -23,20 +27,20 @@
     >
       <div v-if="!collapse" class="asideLogo">
         <img
-          :src="$store.state.slide.icon||'/img/icon/nenuyouth.png'"
+          :src="$store.state.slide.icon || '/img/icon/nenuyouth.png'"
           alt="东北师范大学校学生会"
           class="asideIcon mr-1"
         />
-        {{$store.state.slide.title||'东师青年'}}
+        {{ $store.state.slide.title || "东师青年" }}
       </div>
       <base-menu :list="$store.state.slide.list" />
     </a-layout-sider>
   </aside>
 </template>
-<script lang='ts'>
-import { Component, Vue } from 'vue-property-decorator';
-import $ from 'jquery';
-import BaseMenu from '#/BaseMenu.vue';
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
+import $ from "jquery";
+import BaseMenu from "#/BaseMenu.vue";
 
 @Component({ components: { BaseMenu } })
 export default class Slide extends Vue {
@@ -45,23 +49,23 @@ export default class Slide extends Vue {
 
   // 当前主题
   private get theme() {
-    return this.$store.state.nightmode ? 'dark' : 'light';
+    return this.$store.state.nightmode ? "dark" : "light";
   }
 
   private trigger() {
     this.collapse = !this.collapse;
-    $('.ant-layout-sider-children').css({ zIndex: this.collapse ? '-1' : '4' });
-    if (this.collapse) $('.slideMask').fadeOut(200);
-    else $('.slideMask').fadeIn(200);
+    $(".ant-layout-sider-children").css({ zIndex: this.collapse ? "-1" : "4" });
+    if (this.collapse) $(".slideMask").fadeOut(200);
+    else $(".slideMask").fadeIn(200);
   }
 
   private onBreakpoint(broken: boolean) {
-    if (!broken) $('.slideMask').css({ display: 'none' });
-    $('.ant-layout-sider-children').css({ zIndex: broken ? '-1' : '4' });
+    if (!broken) $(".slideMask").css({ display: "none" });
+    $(".ant-layout-sider-children").css({ zIndex: broken ? "-1" : "4" });
   }
 }
 </script>
-<style lang='scss'>
+<style lang="scss">
 .asideLogo {
   position: relative;
   color: #000;

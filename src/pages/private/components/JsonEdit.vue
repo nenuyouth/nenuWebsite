@@ -8,15 +8,19 @@
 <template>
   <div class="container">
     <a-form :form="form" @submit="handleSubmit">
-      <template v-for="(part,partIndex) in tags">
+      <template v-for="(part, partIndex) in tags">
         <!-- 循环pageJson -->
 
         <!-- 带有分割线、下拉列表的标题 -->
         <!-- <DropdownTitle :key="partIndex" :menu="tagList" v-model="tags[partIndex]" /> -->
-        <DropdownGrid :key="partIndex" v-model="tags[partIndex]" :list="tagList" />
+        <DropdownGrid
+          :key="partIndex"
+          v-model="tags[partIndex]"
+          :list="tagList"
+        />
 
         <!-- 选项列表 -->
-        <template v-if="part!=='请选择'">
+        <template v-if="part !== '请选择'">
           <template v-for="config in Object.keys(configuration[part])">
             <form-input
               :key="`${partIndex}-${config}`"
@@ -38,10 +42,10 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Provide, Vue } from 'vue-property-decorator';
-import DropdownGrid, { GridMenuList } from '#/DropdownGrid.vue';
-import DropdownTitle from '#/DropdownTitle.vue';
-import FormInput from '#/FormInput.vue';
+import { Component, Provide, Vue } from "vue-property-decorator";
+import DropdownGrid, { GridMenuList } from "#/DropdownGrid.vue";
+import DropdownTitle from "#/DropdownTitle.vue";
+import FormInput from "#/FormInput.vue";
 
 interface UnionTypeItem {
   [props: string]: string;
@@ -77,26 +81,26 @@ interface NormalObject {
   components: {
     DropdownGrid,
     DropdownTitle,
-    FormInput
-  }
+    FormInput,
+  },
 })
 export default class FormTest extends Vue {
   @Provide() private form: any;
 
-  private pageJson = '';
+  private pageJson = "";
 
-  private tags: string[] = ['head'];
+  private tags: string[] = ["head"];
 
   private unionTypeSelect: UnionTypeItem[] = [{}];
 
   private get configuration() {
-    const configuration: Configuration = require('../assets/jsonConfig');
+    const configuration: Configuration = require("../assets/jsonConfig");
 
     return configuration;
   }
 
   private get tagList() {
-    const tagList: GridMenuList[] = require('../assets/tagList');
+    const tagList: GridMenuList[] = require("../assets/tagList");
 
     return tagList;
   }
@@ -108,22 +112,26 @@ export default class FormTest extends Vue {
   private handleSubmit(e: Event) {
     e.preventDefault();
     this.form.validateFields((err: any, values: any) => {
-      console.log('Received values of form: ', values);
+      console.log("Received values of form: ", values);
       if (!err) {
         const json: NormalObject[] = [];
         const formValue = this.form.getFieldsValue();
 
-        this.tags.forEach(tag => {
+        this.tags.forEach((tag) => {
           json.push({ tag });
         });
 
-        Object.keys(formValue).forEach(x => {
-          const [indexString, key, additional] = x.split('-');
+        Object.keys(formValue).forEach((x) => {
+          const [indexString, key, additional] = x.split("-");
           const index = Number(indexString);
           const value = formValue[x];
 
           // 保证value有定义且不为默认值
-          if (!additional && typeof value !== 'undefined' && value !== this.configuration[json[index].tag][key].default)
+          if (
+            !additional &&
+            typeof value !== "undefined" &&
+            value !== this.configuration[json[index].tag][key].default
+          )
             json[index][key] = value;
         });
 
@@ -136,7 +144,7 @@ export default class FormTest extends Vue {
 
   // Add a new component in the end
   private addComponent() {
-    this.tags.push('请选择');
+    this.tags.push("请选择");
   }
 }
 </script>

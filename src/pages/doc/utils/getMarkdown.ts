@@ -6,10 +6,10 @@
  * @LastEditTime: 2019-03-18 16:48:20
  */
 
-import Vue from 'vue';
-import axios from 'axios';
-import hljs from './hljs';
-import marked from 'marked';
+import Vue from "vue";
+import axios from "axios";
+import hljs from "./hljs";
+import marked from "marked";
 
 /*
  * 初始化渲染实例
@@ -22,15 +22,15 @@ const myRenderMD = new marked.Renderer();
  * 重写标题解析
  */
 myRenderMD.heading = (text, level) => {
-  let id = '';
+  let id = "";
 
   // if link in heading, set id as link text
-  if (text.indexOf('a href') !== -1)
+  if (text.indexOf("a href") !== -1)
     id = text.slice(
-      text.indexOf('>') + 1,
-      text.lastIndexOf('<svg') === -1
-        ? text.indexOf('</a>')
-        : text.lastIndexOf('<svg')
+      text.indexOf(">") + 1,
+      text.lastIndexOf("<svg") === -1
+        ? text.indexOf("</a>")
+        : text.lastIndexOf("<svg")
     );
 
   return `<h${level} id="${
@@ -41,9 +41,9 @@ myRenderMD.heading = (text, level) => {
 // Rewrite link parse: if link url contains '#', means it's an inside navigation
 myRenderMD.link = (url, title, text) =>
   url
-    ? url[0] === '#'
+    ? url[0] === "#"
       ? `<a class='md-a' href='${url}' title='${title || text}'>${text}</a>`
-      : url.indexOf('http://') !== -1 || url.indexOf('https://') !== -1
+      : url.indexOf("http://") !== -1 || url.indexOf("https://") !== -1
       ? `<a href='${url}' class='md-link' title='${text}'>${text}<svg width='15' height='15' viewBox="0 0 100 100" class='outbound'><use x="0" y="0" xlink:href="#outbound" /></svg></a>`
       : `<a href='${url}' class='md-link' title='${text}'>${text}</a>`
     : text;
@@ -51,11 +51,11 @@ myRenderMD.link = (url, title, text) =>
 // Rewrite list parse to prevent seeing link icon on list items
 myRenderMD.listitem = (text) =>
   `<li>${
-    text.indexOf('#link') === -1
+    text.indexOf("#link") === -1
       ? text
       : text.replace(
           /<svg viewBox='0 0 1024 1024' class='mdIcon'><use x="0" y="0" xlink:href="#link" \/><\/svg>/u,
-          ''
+          ""
         )
   }</li>`;
 
@@ -63,7 +63,7 @@ myRenderMD.listitem = (text) =>
 marked.setOptions({
   breaks: false, // whether use GitHub Flavored Markdown controls linebreaks output `<br>`
   gfm: true, // whether use Github-improved Markdown (Is-Default)
-  langPrefix: 'hljs ', // code block class prefix
+  langPrefix: "hljs ", // code block class prefix
   pedantic: false, // whether render as native markdown.pl
   renderer: myRenderMD, // 控制输出渲染
   // sanitize: true, // whether clean the html content inside before parsed
@@ -74,7 +74,7 @@ marked.setOptions({
   highlight: (code, lang) =>
     lang && hljs.getLanguage(lang)
       ? hljs.highlight(lang, code, true).value
-      : hljs.highlightAuto(code).value
+      : hljs.highlightAuto(code).value,
 });
 
 /**
@@ -85,21 +85,21 @@ marked.setOptions({
  * @param [err] 额外的错误信息
  */
 const myAlert = (ctx: Vue, netError?: boolean, err?: string) => {
-  ctx.$store.commit('loadDoc', false);
+  ctx.$store.commit("loadDoc", false);
   ctx.$confirm({
-    title: netError ? '网络请求错误' : '地址错误',
+    title: netError ? "网络请求错误" : "地址错误",
     content: netError
       ? `请求文档出错，错误码为：\n${err}\n您可以汇报给Mr.Hope!`
-      : '链接地址有误。请汇报给Mr.Hope!',
-    autoFocusButton: 'cancel',
-    cancelText: '确定',
-    okText: '汇报',
-    okType: 'danger',
+      : "链接地址有误。请汇报给Mr.Hope!",
+    autoFocusButton: "cancel",
+    cancelText: "确定",
+    okText: "汇报",
+    okType: "danger",
     onOk: () => {
       window.open(
-        'http://wpa.qq.com/msgrd?v=3&uin=1178522294&site=qq&menu=yes'
+        "http://wpa.qq.com/msgrd?v=3&uin=1178522294&site=qq&menu=yes"
       );
-    }
+    },
   });
 };
 
@@ -128,7 +128,7 @@ const getCompiledMarkdown = async (
     await axios
       .post(`${url}.php`, query)
       .then((response) => {
-        if (response.data === 'file not found') {
+        if (response.data === "file not found") {
           /*
            * markdown file unexist
            * cancel navigate and show alert

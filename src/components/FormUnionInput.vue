@@ -8,22 +8,24 @@
 <template>
   <component :is="tag" :configuration="configuration" :identifier="identifier">
     <template #type-select>
-      <TypeSelect v-model="typeSelect" :identifier="identifier" :option="configuration.type" />
+      <TypeSelect
+        v-model="typeSelect"
+        :identifier="identifier"
+        :option="configuration.type"
+      />
     </template>
   </component>
 </template>
 <script lang="ts">
-import {
-  Component, Inject, Prop, Vue, Watch
-} from 'vue-property-decorator';
-import { Config } from '%/pageConfig';
-import FormBooleanInput from '#/FormBooleanInput.vue';
-import FormEnumInput from '#/FormEnumInput.vue';
-import FormNumberInput from '#/FormNumberInput.vue';
-import FormStringInput from '#/FormStringInput.vue';
-import FormTextareaInput from '#/FormTextareaInput.vue';
-import FormUrlInput from '#/FormUrlInput.vue';
-import TypeSelect from '#/TypeSelect.vue';
+import { Component, Inject, Prop, Vue, Watch } from "vue-property-decorator";
+import { Config } from "%/pageConfig";
+import FormBooleanInput from "#/FormBooleanInput.vue";
+import FormEnumInput from "#/FormEnumInput.vue";
+import FormNumberInput from "#/FormNumberInput.vue";
+import FormStringInput from "#/FormStringInput.vue";
+import FormTextareaInput from "#/FormTextareaInput.vue";
+import FormUrlInput from "#/FormUrlInput.vue";
+import TypeSelect from "#/TypeSelect.vue";
 
 @Component({
   components: {
@@ -34,8 +36,8 @@ import TypeSelect from '#/TypeSelect.vue';
     FormTextareaInput,
     FormUrlInput,
     TypeSelect,
-    FormArrayInput: () => import('#/FormArrayInput.vue')
-  }
+    FormArrayInput: () => import("#/FormArrayInput.vue"),
+  },
 })
 export default class FormUnionInput extends Vue {
   @Prop(Object) private readonly configuration!: Config;
@@ -44,7 +46,7 @@ export default class FormUnionInput extends Vue {
 
   @Inject() private form!: any;
 
-  private typeSelect = '';
+  private typeSelect = "";
 
   private get tag() {
     return `form-${this.typeSelect}-input`;
@@ -54,7 +56,7 @@ export default class FormUnionInput extends Vue {
     this.typeSelect = this.configuration.type[0];
   }
 
-  @Watch('typeSelect')
+  @Watch("typeSelect")
   private onTypeChange() {
     this.form.resetFields([`${this.identifier}`]);
   }

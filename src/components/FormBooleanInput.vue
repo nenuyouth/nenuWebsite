@@ -6,13 +6,13 @@
  * @Description: Form Boolean Input
 -->
 <template>
-  <a-form-item v-bind="configuration.title? labelCol: noLabelCol">
+  <a-form-item v-bind="configuration.title ? labelCol : noLabelCol">
     <template v-if="configuration.title" #label>
       <!-- 表单项名称 -->
-      {{configuration.title}}
+      {{ configuration.title }}
       <!-- 描述文字 -->
       <a-tooltip v-if="configuration.desc" :title="configuration.desc">
-        <a-icon style="vertical-align:-0.125em;" type="question-circle" />
+        <a-icon style="vertical-align: -0.125em" type="question-circle" />
       </a-tooltip>
     </template>
 
@@ -24,20 +24,25 @@
         identifier,
         {
           initialValue: configuration.default,
-          rules: [{
-            required: configuration.required,
-            type: 'boolean'
-          }]
-        }
+          rules: [
+            {
+              required: configuration.required,
+              type: 'boolean',
+            },
+          ],
+        },
       ]"
       :name="identifier"
-      :options=" [{ label: 'True', value: true }, { label: 'False', value: false }]"
+      :options="[
+        { label: 'True', value: true },
+        { label: 'False', value: false },
+      ]"
     />
   </a-form-item>
 </template>
 <script lang="ts">
-import { Component, Inject, Prop, Vue } from 'vue-property-decorator';
-import { Config } from '%/pageConfig';
+import { Component, Inject, Prop, Vue } from "vue-property-decorator";
+import { Config } from "%/pageConfig";
 
 @Component
 export default class FormBooleanInput extends Vue {
@@ -57,9 +62,9 @@ export default class FormBooleanInput extends Vue {
       rules: [
         {
           required: this.configuration.required,
-          type: 'boolean'
-        }
-      ]
+          type: "boolean",
+        },
+      ],
     });
   }
 }

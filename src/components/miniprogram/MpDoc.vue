@@ -3,7 +3,7 @@
     <!-- 文档图标 -->
     <image class="doc-icon" src="./icon/{{icon}}.svg" />
     <!-- 文档名称 -->
-    <div class="name">{{name}}</div>
+    <div class="name">{{ name }}</div>
     <!-- 下载按钮 -->
     <div wx:if="{{downloadable !== false}}" class="download" @click="download">
       <img class="icon" src="./icon/download.svg" />
@@ -11,7 +11,7 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
 export default class BaseDoc extends Vue {
@@ -33,5 +33,4 @@ export default class BaseDoc extends Vue {
   }
 }
 </script>
-<style scoped>
-</style>
+<style scoped></style>

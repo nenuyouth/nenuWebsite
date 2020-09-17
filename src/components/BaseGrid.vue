@@ -7,7 +7,7 @@
 -->
 <template>
   <div>
-    <template v-if="head!==false">
+    <template v-if="head !== false">
       <div class="d-block d-lg-none commonhead" v-text="head" />
       <div class="d-none d-lg-block myH3" v-text="head" />
     </template>
@@ -20,7 +20,7 @@
         :xl="2"
         :xs="6"
         class="grid"
-        @click="$navigate(item.url,$router,$route)"
+        @click="$navigate(item.url, $router, $route)"
       >
         <img :alt="item.text" :src="item.icon" class="gridIcon" />
         <div class="gridLabel" v-text="item.text" />
@@ -30,7 +30,7 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue } from "vue-property-decorator";
 
 export interface GridItem {
   text: string; // 文字
@@ -47,14 +47,16 @@ export default class BaseGrid extends Vue {
   @Prop(Array) private readonly content!: GridItem[];
 
   // Grid head text
-  @Prop({ type: [String, Boolean], default: '' }) private readonly head!: string | boolean;
+  @Prop({ type: [String, Boolean], default: "" }) private readonly head!:
+    | string
+    | boolean;
 
   // Grid footer text
   @Prop(String) private readonly foot!: string;
 }
 </script>
-<style lang='scss' scoped>
-@import '~%/Weui/scss/border';
+<style lang="scss" scoped>
+@import "~%/Weui/scss/border";
 
 .myH3 {
   width: 100%;

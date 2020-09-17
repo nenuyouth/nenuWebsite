@@ -35,7 +35,7 @@ const myState: BaseState = {
   loginStatus: {},
   password: {},
   nightmode: false,
-  path: ''
+  path: "",
 };
 
 export default myState;

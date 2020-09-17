@@ -17,34 +17,36 @@
 @import "../../../base/fn";
 
 .weui-cells_checkbox {
-    .weui-check__label{
-      &:before{left:55px;}
+  .weui-check__label {
+    &:before {
+      left: 55px;
     }
-    .weui-cell__hd {
-        padding-right: @weuiCellInnerGapH;
+  }
+  .weui-cell__hd {
+    padding-right: @weuiCellInnerGapH;
+  }
+  .weui-icon-checked {
+    &:before {
+      content: "\EA01";
+      color: @weuiLineColorDark;
+      font-size: 23px;
+      display: block;
+      margin: 0;
     }
-    .weui-icon-checked {
-        &:before {
-            content: '\EA01';
-            color: @weuiLineColorDark;
-            font-size: 23px;
-            display: block;
-            margin:0;
-        }
-    }
+  }
 }
 
 // method2 accessbility
 .weui-check {
-    // checkbox
-    .weui-cells_checkbox & {
-        &:checked {
-            & + .weui-icon-checked {
-                &:before {
-                    content: '\EA06';
-                    color: @weuiColorPrimary;
-                }
-            }
+  // checkbox
+  .weui-cells_checkbox & {
+    &:checked {
+      & + .weui-icon-checked {
+        &:before {
+          content: "\EA06";
+          color: @weuiColorPrimary;
         }
+      }
     }
+  }
 }

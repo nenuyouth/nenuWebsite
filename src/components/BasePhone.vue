@@ -5,8 +5,8 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
-import Phone from '|/icon/phone.svg';
+import { Component, Prop, Vue } from "vue-property-decorator";
+import Phone from "|/icon/phone.svg";
 
 @Component({ components: { Phone } })
 export default class BasePhone extends Vue {

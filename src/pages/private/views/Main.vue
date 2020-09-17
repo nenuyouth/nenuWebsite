@@ -12,14 +12,14 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import BaseSteps from '#/BaseSteps.vue';
+import { Component, Vue } from "vue-property-decorator";
+import BaseSteps from "#/BaseSteps.vue";
 
 @Component({ components: { BaseSteps } })
 export default class Private extends Vue {
   private config = [
-    { title: '张伯望', desc: '太帅了', icon: 'home' },
-    { title: '张伯望2' }
+    { title: "张伯望", desc: "太帅了", icon: "home" },
+    { title: "张伯望2" },
   ];
 
   private current = 0;

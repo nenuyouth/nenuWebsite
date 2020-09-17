@@ -16,14 +16,14 @@
     >
       <template v-if="index === 0" #label>
         <!-- 表单项名称 -->
-        {{configuration.title}}
+        {{ configuration.title }}
         <!-- 描述文字 -->
         <a-tooltip v-if="configuration.desc" :title="configuration.desc">
-          <a-icon style="vertical-align:-0.125em;" type="question-circle" />
+          <a-icon style="vertical-align: -0.125em" type="question-circle" />
         </a-tooltip>
       </template>
 
-      <div style="display:flex;align-items:center;">
+      <div style="display: flex; align-items: center">
         <form-input
           :key="`${identifier}[${index}]`"
           :configuration="itemConfiguration"
@@ -36,23 +36,23 @@
           icon="minus"
           shape="circle"
           size="small"
-          style="margin-bottom:24px;"
+          style="margin-bottom: 24px"
           @click="remove(index)"
         />
       </div>
     </a-form-item>
     <a-form-item :key="`${identifier}-add`" v-bind="noLabelLayout">
-      <a-button style="border-radius: 16px;" @click="add">
+      <a-button style="border-radius: 16px" @click="add">
         <a-icon type="plus" />新增项
       </a-button>
     </a-form-item>
   </div>
 </template>
 <script lang="ts">
-import { Component, Inject, Prop, Vue } from 'vue-property-decorator';
-import { Config } from '%/pageConfig';
+import { Component, Inject, Prop, Vue } from "vue-property-decorator";
+import { Config } from "%/pageConfig";
 
-@Component({ components: { FormInput: () => import('#/FormInput.vue') } })
+@Component({ components: { FormInput: () => import("#/FormInput.vue") } })
 export default class FormArrayInput extends Vue {
   @Prop(Object) private readonly configuration!: Config;
 

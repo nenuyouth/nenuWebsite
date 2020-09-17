@@ -1,6 +1,10 @@
 <template>
   <div class="row text-center">
-    <div v-for="item in cardList" :key="item.title" class="col-lg-4 col-md-6 py-2">
+    <div
+      v-for="item in cardList"
+      :key="item.title"
+      class="col-lg-4 col-md-6 py-2"
+    >
       <div class="card box-shadow">
         <div
           :aria-controls="item.title"
@@ -11,7 +15,13 @@
           role="button"
         >
           <h4 class="mx-1 my-0 font-weight-normal">
-            <img :src="item.icon" alt height="24" style="margin-right: 0.8rem;" width="24" />
+            <img
+              :src="item.icon"
+              alt
+              height="24"
+              style="margin-right: 0.8rem"
+              width="24"
+            />
             {{ item.title }}
           </h4>
         </div>
@@ -22,14 +32,19 @@
               <small class="text-muted">/起</small>
             </h1>
             <ul class="list-unstyled mb-3">
-              <li v-for="listItem in item.desc" :key="listItem" v-html="listItem" />
+              <li
+                v-for="listItem in item.desc"
+                :key="listItem"
+                v-html="listItem"
+              />
             </ul>
             <router-link
               :to="item.url"
               class="btn btn-lg btn-block btn-primary"
               tag="button"
               type="button"
-            >了解更多</router-link>
+              >了解更多</router-link
+            >
           </div>
         </div>
         <div class="card-body d-none d-md-block">
@@ -38,21 +53,26 @@
             <small class="text-muted">/起</small>
           </h1>
           <ul class="list-unstyled mb-3">
-            <li v-for="listItem in item.desc" :key="listItem" v-html="listItem" />
+            <li
+              v-for="listItem in item.desc"
+              :key="listItem"
+              v-html="listItem"
+            />
           </ul>
           <router-link
             :to="item.url"
             class="btn cardBtn1 btn-outline-primary"
             tag="button"
             type="button"
-          >了解更多</router-link>
+            >了解更多</router-link
+          >
         </div>
       </div>
     </div>
   </div>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue } from "vue-property-decorator";
 
 interface Card {
   title: string;

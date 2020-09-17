@@ -8,14 +8,14 @@
 <template>
   <transition name="myfade">
     <div v-if="display" class="scrollTop" @click="scrollTop">
-      <a-icon :component="BackTopSvg" style="font-size:38px;margin:-1px;" />
+      <a-icon :component="BackTopSvg" style="font-size: 38px; margin: -1px" />
     </div>
   </transition>
 </template>
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import $ from 'jquery';
-import BackTopSvg from '|/icon/backTop.svg';
+import { Component, Vue } from "vue-property-decorator";
+import $ from "jquery";
+import BackTopSvg from "|/icon/backTop.svg";
 
 @Component
 export default class BackTop extends Vue {
@@ -25,12 +25,12 @@ export default class BackTop extends Vue {
 
   // Make the website scroll to the top
   private scrollTop() {
-    $('body,html').animate({ scrollTop: 0 }, 800);
+    $("body,html").animate({ scrollTop: 0 }, 800);
   }
 
   // Register event for the "backtop" button
   private mounted() {
-    window.addEventListener('scroll', () => {
+    window.addEventListener("scroll", () => {
       this.display = ($(window).scrollTop() || window.pageYOffset) > 300;
     });
   }

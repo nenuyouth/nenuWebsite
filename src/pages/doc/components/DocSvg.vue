@@ -1,5 +1,5 @@
 <template>
-  <svg style="display:none;">
+  <svg style="display: none">
     <symbol id="link">
       <path
         d="M361.173333 481.834667c48.341333-48.341333 132.650667-48.341333 180.992 0l30.165334 30.165333
@@ -33,8 +33,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue } from "vue-property-decorator";
 
 @Component
-export default class DocSvg extends Vue { }
+export default class DocSvg extends Vue {}
 </script>

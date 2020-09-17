@@ -6,8 +6,8 @@
  * @Description: Vuex Screen Module
  */
 
-import { ActionContext } from 'vuex';
-import { BaseState } from '../state';
+import { ActionContext } from "vuex";
+import { BaseState } from "../state";
 
 /** 屏幕状态 */
 export interface ScreenState {
@@ -33,13 +33,13 @@ export interface ScreenState {
 /** 屏幕基础状态 */
 const screenState: ScreenState = {
   width: 0,
-  status: '',
+  status: "",
   xs: false,
   sm: false,
   md: false,
   lg: false,
   xl: false,
-  xxl: false
+  xxl: false,
 };
 
 export default {
@@ -55,20 +55,20 @@ export default {
       let status;
 
       // judge scrren status
-      if (width > 1200) status = width < 1600 ? 'xl' : 'xxl';
-      else if (width < 768) status = width < 576 ? 'xs' : 'sm';
-      else status = width < 992 ? 'md' : 'lg';
+      if (width > 1200) status = width < 1600 ? "xl" : "xxl";
+      else if (width < 768) status = width < 576 ? "xs" : "sm";
+      else status = width < 992 ? "md" : "lg";
 
       // if there is a new status, then handle state detail
       if (state.status !== status) {
-        const hash = ['sm', 'md', 'lg', 'xl', 'xxl'];
+        const hash = ["sm", "md", "lg", "xl", "xxl"];
 
         state.status = status;
 
-        if (status === 'xs') {
+        if (status === "xs") {
           // make xs 'true' and the rest 'false'
           if (!state.xs) state.xs = true;
-          hash.forEach(x => {
+          hash.forEach((x) => {
             if (state[x]) state[x] = false;
           });
         } else {
@@ -101,7 +101,7 @@ export default {
      */
     screenWidth(state: ScreenState, width: number) {
       state.width = width;
-    }
+    },
   },
   actions: {
     /**
@@ -111,8 +111,8 @@ export default {
      * @param width 屏幕宽度
      */
     screen(context: ActionContext<ScreenState, BaseState>, width: number) {
-      context.commit('screenWidth', width);
-      context.commit('changeScreen', width);
-    }
-  }
+      context.commit("screenWidth", width);
+      context.commit("changeScreen", width);
+    },
+  },
 };

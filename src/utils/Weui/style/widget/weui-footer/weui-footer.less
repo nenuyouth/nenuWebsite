@@ -17,42 +17,42 @@
 @import "../../base/fn";
 
 .weui-footer {
-    color: @weuiTextColorTips;
-    font-size: 14px;
-    line-height:1.4;
-    text-align: center;
-    a{
-        color: @weuiLinkColorDefault;
+  color: @weuiTextColorTips;
+  font-size: 14px;
+  line-height: 1.4;
+  text-align: center;
+  a {
+    color: @weuiLinkColorDefault;
+  }
+}
+.weui-footer_fixed-bottom {
+  position: fixed;
+  bottom: 16px;
+  left: 0;
+  right: 0;
+}
+.weui-footer__links {
+  font-size: 0;
+}
+.weui-footer__link {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+  position: relative;
+  font-size: 14px;
+  &:before {
+    .setLeftLine();
+    left: -8px;
+    top: 0.36em;
+    bottom: 0.36em;
+  }
+  &:first-child {
+    &:before {
+      display: none;
     }
+  }
 }
-.weui-footer_fixed-bottom{
-    position: fixed;
-    bottom: 16px;
-    left: 0;
-    right: 0;
-}
-.weui-footer__links{
-    font-size: 0;
-}
-.weui-footer__link{
-    display: inline-block;
-    vertical-align: top;
-    margin: 0 8px;
-    position: relative;
-    font-size: 14px;
-    &:before{
-        .setLeftLine();
-        left: -8px;
-        top: .36em;
-        bottom: .36em;
-    }
-    &:first-child{
-        &:before{
-            display: none;
-        }
-    }
-}
-.weui-footer__text{
-    padding: 0 16px;
-    font-size: 12px;
+.weui-footer__text {
+  padding: 0 16px;
+  font-size: 12px;
 }

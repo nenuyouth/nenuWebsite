@@ -6,13 +6,13 @@
  * @Description: Form Url Input
 -->
 <template>
-  <a-form-item v-bind="configuration.title? labelCol: noLabelCol">
+  <a-form-item v-bind="configuration.title ? labelCol : noLabelCol">
     <template v-if="configuration.title" #label>
       <!-- 表单项名称 -->
-      {{configuration.title}}
+      {{ configuration.title }}
       <!-- 描述文字 -->
       <a-tooltip v-if="configuration.desc" :title="configuration.desc">
-        <a-icon style="vertical-align:-0.125em;" type="question-circle" />
+        <a-icon style="vertical-align: -0.125em" type="question-circle" />
       </a-tooltip>
     </template>
     <!-- 真实的表单项 -->
@@ -20,11 +20,13 @@
       v-decorator="[
         identifier,
         {
-          rules: [{
-            required: configuration.required,
-            type: path ? prefix==='' ? 'string' :'url' :'string'
-          }]
-        }
+          rules: [
+            {
+              required: configuration.required,
+              type: path ? (prefix === '' ? 'string' : 'url') : 'string',
+            },
+          ],
+        },
       ]"
       type="hidden"
     />
@@ -36,9 +38,9 @@
         slot="addonBefore"
         v-model="prefix"
         :options="[
-            { label:'https://', value: 'https://'},
-            { label:'http://', value: 'http://'},
-            { label:'无前缀', value: ''}
+          { label: 'https://', value: 'https://' },
+          { label: 'http://', value: 'http://' },
+          { label: '无前缀', value: '' },
         ]"
         default-value="https://"
         style="width: 90px"
@@ -47,10 +49,8 @@
   </a-form-item>
 </template>
 <script lang="ts">
-import {
-  Component, Inject, Prop, Vue, Watch
-} from 'vue-property-decorator';
-import { Config } from '%/pageConfig';
+import { Component, Inject, Prop, Vue, Watch } from "vue-property-decorator";
+import { Config } from "%/pageConfig";
 
 @Component
 export default class FormUrlInput extends Vue {
@@ -64,17 +64,17 @@ export default class FormUrlInput extends Vue {
 
   private noLabelCol = { wrapperCol: { span: 24 } };
 
-  private prefix = 'https://';
+  private prefix = "https://";
 
-  private path = '';
+  private path = "";
 
   // 获得正确的url
   private get url() {
-    return this.path ? this.prefix + this.path : '';
+    return this.path ? this.prefix + this.path : "";
   }
 
   // 当url改变时更新表单项
-  @Watch('url')
+  @Watch("url")
   private onUrlChange(newValue: string) {
     this.form.setFieldsValue({ [this.identifier]: newValue });
   }

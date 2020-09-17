@@ -5,15 +5,15 @@
       v-for="item in list"
       :key="item.text"
       class="listItemCtn"
-      @click="$navigate(item.url,$router,$route)"
+      @click="$navigate(item.url, $router, $route)"
     >
-      <div class="title">{{item.text}}</div>
-      <div class="time">{{item.time}}</div>
+      <div class="title">{{ item.text }}</div>
+      <div class="time">{{ item.time }}</div>
     </div>
   </div>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue } from "vue-property-decorator";
 
 interface LectureListItem {
   text: string;

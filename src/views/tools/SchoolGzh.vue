@@ -7,24 +7,24 @@
         v-for="item in gzh"
         :key="item.text"
         class="col-4 col-sm-3 col-md-2 col-lg-1 col-fix"
-        @click="$navigate(item.url,$router,$route)"
+        @click="$navigate(item.url, $router, $route)"
       >
         <img
           :src="require(`|/schoolGzh/${item.src}.jpg`)"
           class="img-thumbnail mt-1 img-fix"
-          style="border-radius:50%;"
+          style="border-radius: 50%"
         />
-        <p class="mx-1 my-2 gzhName">{{item.text}}</p>
+        <p class="mx-1 my-2 gzhName">{{ item.text }}</p>
       </div>
     </div>
   </div>
 </template>
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue } from "vue-property-decorator";
 
 @Component
 export default class SchoolGzh extends Vue {
-  private readonly gzh = require('|/schoolGzh/schoolGzh');
+  private readonly gzh = require("|/schoolGzh/schoolGzh");
 }
 </script>
 <style scoped>

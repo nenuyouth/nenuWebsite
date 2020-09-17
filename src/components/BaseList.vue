@@ -20,12 +20,20 @@
           :class="List.url || List.aim ? 'btn btn-light ' : ''"
           class="listCtn"
         >
-          <div v-if="List.aim" class="list-Container" @click="navigate(List.aim)">
+          <div
+            v-if="List.aim"
+            class="list-Container"
+            @click="navigate(List.aim)"
+          >
             <img v-if="List.icon" :src="`/img${List.icon}`" class="listIcon" />
             <div class="LinkText" v-text="List.text" />
             <div class="linkDesciption access" v-text="List.desc" />
           </div>
-          <router-link v-else-if="List.url" :to="List.url" class="list-Container">
+          <router-link
+            v-else-if="List.url"
+            :to="List.url"
+            class="list-Container"
+          >
             <img v-if="List.icon" :src="List.icon" class="listIcon" />
             <div class="LinkText" v-text="List.text" />
             <div class="linkDesciption access" v-text="List.desc" />
@@ -49,7 +57,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue } from "vue-property-decorator";
 
 interface List {
   [propName: string]: string;
@@ -64,10 +72,14 @@ export default class BaseList extends Vue {
   @Prop({ type: Array, required: true }) private readonly content!: List[];
 
   // List head text
-  @Prop({ type: [String, Boolean], default: '' }) private readonly head!: string | boolean;
+  @Prop({ type: [String, Boolean], default: "" }) private readonly head!:
+    | string
+    | boolean;
 
   // List footer text
-  @Prop({ type: [String, Boolean], default: '' }) private readonly foot!: string | boolean;
+  @Prop({ type: [String, Boolean], default: "" }) private readonly foot!:
+    | string
+    | boolean;
 
   private get listItem() {
     // create a copy of @Prop('content)
@@ -88,8 +100,8 @@ export default class BaseList extends Vue {
   }
 }
 </script>
-<style lang='scss' scope>
-@import '~%/Weui/scss/border';
+<style lang="scss" scope>
+@import "~%/Weui/scss/border";
 
 .Ctn {
   margin: 0 -15px;
@@ -223,7 +235,7 @@ export default class BaseList extends Vue {
   padding-right: 15px;
   position: relative;
   &:after {
-    content: ' ';
+    content: " ";
     display: inline-block;
     width: 7px;
     height: 7px;

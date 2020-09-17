@@ -6,15 +6,24 @@
  * @LastEditTime: 2019-09-15 20:13:54
 -->
 <template>
-  <a-layout-footer :class="slide?'withSlide':''">
-    <a-row align="middle" class="text-center" justify="space-around" type="flex">
+  <a-layout-footer :class="slide ? 'withSlide' : ''">
+    <a-row
+      align="middle"
+      class="text-center"
+      justify="space-around"
+      type="flex"
+    >
       <a-col :lg="12" :xs="24" class="text-center">
         <img
-          :src="`/img/icon/${$store.state.env.personal?'inNENU':'nenuyouth'}.png`"
+          :src="`/img/icon/${
+            $store.state.env.personal ? 'inNENU' : 'nenuyouth'
+          }.png`"
           alt="Nenuyouth"
           class="mb-2 footerLogo"
         />
-        <small class="d-block my-1 text-muted">{{$store.state.env.personal?'in东师':'东北师范大学校学生会'}}</small>
+        <small class="d-block my-1 text-muted">{{
+          $store.state.env.personal ? "in东师" : "东北师范大学校学生会"
+        }}</small>
         <small class="d-block my-1 text-muted">辽ICP备18007023号</small>
         <small class="d-block mt-1 mb-2 text-muted">维护者：Mr.Hope</small>
       </a-col>
@@ -38,7 +47,7 @@
   </a-layout-footer>
 </template>
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue } from "vue-property-decorator";
 
 @Component
 export default class Footer extends Vue {
@@ -46,28 +55,27 @@ export default class Footer extends Vue {
 
   private readonly media = [
     [
-      'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzA5MTQ4NjUzMg==&scene=126&bizpsid=0&subscene=0#wechat_redirectnpm',
-      '微信'
+      "https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzA5MTQ4NjUzMg==&scene=126&bizpsid=0&subscene=0#wechat_redirectnpm",
+      "微信",
     ],
-    ['https://weibo.com/u/6385873676', '微博'],
-    ['http://v.douyin.com/84sfcf/', '抖音'],
-    ['http://wpa.qq.com/msgrd?v=3&uin=1793612094&site=qq&menu=yes', 'QQ']
+    ["https://weibo.com/u/6385873676", "微博"],
+    ["http://v.douyin.com/84sfcf/", "抖音"],
+    ["http://wpa.qq.com/msgrd?v=3&uin=1793612094&site=qq&menu=yes", "QQ"],
   ];
 
   private created() {
-    this.about =
-      this.$store.state.env.personal
-        ? [
-          ['/page/MrHope', '关于Hope Studio'],
-          ['/page/MrHope1', '关于Mr.Hope'],
-          ['/page/MrHope3', '关于in东师'],
-          ['/page/MrHope4', '致谢名单']
+    this.about = this.$store.state.env.personal
+      ? [
+          ["/page/MrHope", "关于Hope Studio"],
+          ["/page/MrHope1", "关于Mr.Hope"],
+          ["/page/MrHope3", "关于in东师"],
+          ["/page/MrHope4", "致谢名单"],
         ]
-        : [
-          ['/about/studentUnion', '校学生会介绍'],
-          ['/about/department', '部门分工'],
-          ['/about/cooperation', '项目合作'],
-          ['/page/MrHope1', '关于Mr.Hope']
+      : [
+          ["/about/studentUnion", "校学生会介绍"],
+          ["/about/department", "部门分工"],
+          ["/about/cooperation", "项目合作"],
+          ["/page/MrHope1", "关于Mr.Hope"],
         ];
   }
 
@@ -77,7 +85,7 @@ export default class Footer extends Vue {
   }
 }
 </script>
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 /* 改变footer底色 */
 #footer {
   background-color: #343a40;

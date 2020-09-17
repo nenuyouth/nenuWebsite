@@ -15,10 +15,7 @@
     "action": {
       "title": "按钮函数名",
       "desc": "填入左上角按钮点击时所触发的函数名称，不填时默认执行返回，设置为true来隐藏默认的返回按钮",
-      "type": [
-        "string",
-        "boolean"
-      ],
+      "type": ["string", "boolean"],
       "required": false
     },
     "leftText": {
@@ -158,10 +155,7 @@
     "head": {
       "title": "标题",
       "desc": "填入true会在留空占位",
-      "type": [
-        "string",
-        "boolean"
-      ],
+      "type": ["string", "boolean"],
       "required": false
     },
     "align": {
@@ -278,10 +272,7 @@
     "head": {
       "title": "头部标题",
       "desc": "不填会在标题所在处留空占位，设置为false来取消留空占位",
-      "type": [
-        "string",
-        "boolean"
-      ],
+      "type": ["string", "boolean"],
       "required": false
     },
     "content": {
@@ -349,11 +340,7 @@
           "title": "选择器值",
           "desc": "小程序专用设置：选择器中包含的值使用变量表示时不支持简单界面",
           "type": "array",
-          "element": [
-            "array",
-            "string",
-            "number"
-          ],
+          "element": ["array", "string", "number"],
           "required": false
         },
         "key": {

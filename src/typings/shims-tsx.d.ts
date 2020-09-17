@@ -6,14 +6,14 @@
  * @LastEditTime: 2019-03-28 15:43:05
  */
 
-import Vue, { VNode } from 'vue';
+import Vue, { VNode } from "vue";
 
 declare global {
   namespace JSX {
     // tslint:disable no-empty-interface
-    type Element = VNode
+    type Element = VNode;
     // tslint:disable no-empty-interface
-    type ElementClass = Vue
+    type ElementClass = Vue;
     interface IntrinsicElements {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       [elem: string]: any;

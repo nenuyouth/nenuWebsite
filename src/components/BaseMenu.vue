@@ -18,9 +18,12 @@
     <template v-for="item in list">
       <a-menu-item v-if="!item.children" :key="item.key">
         <template v-if="item.icon">
-          <span v-if="item.icon===true" class="icon" />
+          <span v-if="item.icon === true" class="icon" />
           <template v-else>
-            <icon-font v-if="item.icon.slice(0,5)==='icon-'" :type="item.icon" />
+            <icon-font
+              v-if="item.icon.slice(0, 5) === 'icon-'"
+              :type="item.icon"
+            />
             <a-icon v-else :type="item.icon" />
           </template>
         </template>
@@ -31,10 +34,10 @@
   </a-menu>
 </template>
 
-<script lang='ts'>
-import { Component, Prop, Vue } from 'vue-property-decorator';
-import { MenuItem } from '@/store/module/slide';
-import SubMenu from '#/BaseSubMenu.vue';
+<script lang="ts">
+import { Component, Prop, Vue } from "vue-property-decorator";
+import { MenuItem } from "@/store/module/slide";
+import SubMenu from "#/BaseSubMenu.vue";
 
 interface SelectEvent {
   domEvent: MouseEvent;
@@ -64,7 +67,7 @@ export default class BaseMenu extends Vue {
 
   // Change the theme according to the "nightmode" status
   private get theme() {
-    return this.$store.state.nightmode ? 'dark' : 'light';
+    return this.$store.state.nightmode ? "dark" : "light";
   }
 
   // navigate to the menuitem page when clicking it

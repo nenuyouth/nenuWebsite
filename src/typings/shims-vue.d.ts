@@ -6,8 +6,8 @@
  * @LastEditTime: 2019-05-01 14:54:08
  */
 
-declare module '*.vue' {
-  import Vue from 'vue';
+declare module "*.vue" {
+  import Vue from "vue";
 
   export default Vue;
 }

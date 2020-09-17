@@ -20,7 +20,7 @@ export interface BaseState extends Record<string, any> {
 const myState: BaseState = {
   env: {},
   nightmode: false,
-  path: ''
+  path: "",
 };
 
 export default myState;

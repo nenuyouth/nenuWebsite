@@ -17,10 +17,10 @@
   </div>
 </template>
 <script lang="ts">
-import { remove } from 'lodash';
-import { Component, Prop, Vue } from 'vue-property-decorator';
-import Error from '|/icon/error.svg';
-import Loading from '|/icon/loading.svg';
+import { remove } from "lodash";
+import { Component, Prop, Vue } from "vue-property-decorator";
+import Error from "|/icon/error.svg";
+import Loading from "|/icon/loading.svg";
 
 @Component({ components: { Loading, Error } })
 export default class BaseImg extends Vue {
@@ -65,7 +65,7 @@ export default class BaseImg extends Vue {
   }
 
   private imgDisplay() {
-    this.$store.commit('imageUrl', this.src);
+    this.$store.commit("imageUrl", this.src);
   }
 }
 </script>

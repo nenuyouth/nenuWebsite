@@ -27,8 +27,8 @@
           v-decorator="[
             'userName',
             {
-              rules: [{ required: true, type: 'string' }]
-            }
+              rules: [{ required: true, type: 'string' }],
+            },
           ]"
           :autocomplete="userNameKey"
           placeholder="请输入用户名"
@@ -38,21 +38,25 @@
             <user />
           </template>
           <!-- 用户名后缀 -->
-          <template #suffix>{{userNameSuffix}}</template>
+          <template #suffix>{{ userNameSuffix }}</template>
         </a-input>
       </a-form-item>
 
       <!-- 密码 -->
-      <a-form-item :label-col="{ span: 4 }" :wrapper-col="{ span: 20 }" label="密码">
+      <a-form-item
+        :label-col="{ span: 4 }"
+        :wrapper-col="{ span: 20 }"
+        label="密码"
+      >
         <a-input
           v-decorator="[
             'password',
             {
-              rules: [{ required: true }]
-            }
+              rules: [{ required: true }],
+            },
           ]"
           :autocomplete="`${passwordKey}password`"
-          :type="passwordDisplay?'text':'password'"
+          :type="passwordDisplay ? 'text' : 'password'"
           placeholder="请输入密码"
           @pressEnter="validate"
         >
@@ -63,7 +67,10 @@
 
           <!-- 控制密码显隐图标 -->
           <template #suffix>
-            <div class="togglePassword" @click="passwordDisplay=!passwordDisplay">
+            <div
+              class="togglePassword"
+              @click="passwordDisplay = !passwordDisplay"
+            >
               <eye v-if="passwordDisplay" />
               <eyeClose v-else />
             </div>
@@ -85,12 +92,12 @@
   </a-modal>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
-import Eye from '|/icon/eye.svg';
-import EyeClose from '|/icon/eyeClose.svg';
-import Password from '|/icon/password.svg';
-import User from '|/icon/user.svg';
-import axios from 'axios';
+import { Component, Prop, Vue } from "vue-property-decorator";
+import Eye from "|/icon/eye.svg";
+import EyeClose from "|/icon/eyeClose.svg";
+import Password from "|/icon/password.svg";
+import User from "|/icon/user.svg";
+import axios from "axios";
 
 @Component({ components: { User, Password, Eye, EyeClose } })
 export default class PasswordModal extends Vue {
@@ -98,13 +105,14 @@ export default class PasswordModal extends Vue {
   @Prop({ type: String, required: true }) private readonly url!: string;
 
   // 用户的autocomplete Key值
-  @Prop({ type: String, default: '' }) private readonly userNameKey!: string;
+  @Prop({ type: String, default: "" }) private readonly userNameKey!: string;
 
   // 密码的autocomplete Key值
-  @Prop({ type: String, default: 'password' }) private readonly passwordKey!: string;
+  @Prop({ type: String, default: "password" })
+  private readonly passwordKey!: string;
 
   // 密码的autocomplete Key值
-  @Prop({ type: String, default: '' }) private readonly userNameSuffix!: string;
+  @Prop({ type: String, default: "" }) private readonly userNameSuffix!: string;
 
   private form: any;
 
@@ -127,20 +135,27 @@ export default class PasswordModal extends Vue {
     this.form.validateFields(async (err: any, values: any) => {
       if (!err) {
         // 显示登录状态
-        this.$message.loading('登陆中..', 0);
+        this.$message.loading("登陆中..", 0);
         this.validating = true;
-        await axios.post(`${this.url}.php`, { password: values.password, userName: values.userName })
-          .then(response => {
+        await axios
+          .post(`${this.url}.php`, {
+            password: values.password,
+            userName: values.userName,
+          })
+          .then((response) => {
             this.$message.destroy();
-            if (response.data === 'correct') {
+            if (response.data === "correct") {
               // 验证成狗
               this.modalDisplay = false; // 隐藏弹窗
-              this.$store.commit('login', this.passwordKey); // 改变internalLogin state
-              this.$store.commit('password', [this.passwordKey, values.password]); // 改变internalPassword state
-              this.$emit('login'); // 触发login事件
+              this.$store.commit("login", this.passwordKey); // 改变internalLogin state
+              this.$store.commit("password", [
+                this.passwordKey,
+                values.password,
+              ]); // 改变internalPassword state
+              this.$emit("login"); // 触发login事件
             } else {
-              this.form.setFieldsValue({ password: '' });// 清空密码
-              this.$message.error('密码错误'); // 提示密码错误
+              this.form.setFieldsValue({ password: "" }); // 清空密码
+              this.$message.error("密码错误"); // 提示密码错误
             }
 
             this.validating = false; // 取消加载状态
@@ -158,7 +173,7 @@ export default class PasswordModal extends Vue {
     if (this.$store.state.internalLogin === true) {
       // 已经登录，取消弹窗并触发login事件
       this.modalDisplay = false;
-      this.$emit('login');
+      this.$emit("login");
     }
   }
 }

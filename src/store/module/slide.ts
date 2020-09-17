@@ -22,9 +22,9 @@ export interface SlideState {
 }
 
 const slideState: SlideState = {
-  icon: '',
-  title: '',
-  list: []
+  icon: "",
+  title: "",
+  list: [],
 };
 
 export default {
@@ -39,8 +39,8 @@ export default {
     menuList(state: SlideState, menuContent: MenuItem[]) {
       state.list = menuContent;
       if (menuContent.length === 0) {
-        state.title = '';
-        state.icon = '';
+        state.title = "";
+        state.icon = "";
       }
     },
 
@@ -62,6 +62,6 @@ export default {
      */
     menuIcon(state: SlideState, icon: string) {
       state.icon = icon;
-    }
-  }
+    },
+  },
 };

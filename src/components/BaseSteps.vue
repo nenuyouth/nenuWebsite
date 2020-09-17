@@ -6,16 +6,20 @@
  * @Description: 基础步骤条
 -->
 <template>
-  <a-steps :current="current" :size="smallSize? 'small' :'default'" class="steps">
+  <a-steps
+    :current="current"
+    :size="smallSize ? 'small' : 'default'"
+    class="steps"
+  >
     <a-step v-for="item in config" :key="item.title">
-      <template #title>{{item.title}}</template>
-      <template v-if="item.desc" #description>{{item.desc}}</template>
+      <template #title>{{ item.title }}</template>
+      <template v-if="item.desc" #description>{{ item.desc }}</template>
       <a-icon v-if="item.icon" slot="icon" :type="item.icon" />
     </a-step>
   </a-steps>
 </template>
 <script lang="ts">
-import { Component, Model, Prop, Vue } from 'vue-property-decorator';
+import { Component, Model, Prop, Vue } from "vue-property-decorator";
 
 interface StepsConfig {
   title: string;
@@ -30,7 +34,7 @@ export default class BaseSteps extends Vue {
   @Prop(Array) private readonly config!: any[];
 
   // Step progress index
-  @Model('change', { type: Number }) private current!: number;
+  @Model("change", { type: Number }) private current!: number;
 }
 </script>
 <style lang="stylus" scoped>

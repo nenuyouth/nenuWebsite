@@ -7,14 +7,18 @@
 -->
 <template>
   <!-- 选择需要的值类型 -->
-  <a-radio-group :value="selected" button-style="solid" @change="onChange($event.target.value)">
-    <a-radio-button v-for="item in option" :key="item" :value="item">{{item}}</a-radio-button>
+  <a-radio-group
+    :value="selected"
+    button-style="solid"
+    @change="onChange($event.target.value)"
+  >
+    <a-radio-button v-for="item in option" :key="item" :value="item">{{
+      item
+    }}</a-radio-button>
   </a-radio-group>
 </template>
 <script lang="ts">
-import {
-  Component, Inject, Model, Prop, Vue
-} from 'vue-property-decorator';
+import { Component, Inject, Model, Prop, Vue } from "vue-property-decorator";
 
 @Component
 export default class TypeSelect extends Vue {
@@ -25,18 +29,17 @@ export default class TypeSelect extends Vue {
   @Prop(String) private readonly identifier!: string;
 
   // Select
-  @Model('change', { type: String }) private selected!: string;
+  @Model("change", { type: String }) private selected!: string;
 
   @Inject() private form!: any;
 
   private mounted() {
     // If the select value is not seted, select the first option by default
-    if (this.selected === '')
-      this.$emit('change', this.option[0]);
+    if (this.selected === "") this.$emit("change", this.option[0]);
   }
 
   private onChange(value: string) {
-    this.$emit('change', value);
+    this.$emit("change", value);
   }
 }
 </script>

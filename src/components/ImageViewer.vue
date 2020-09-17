@@ -12,7 +12,7 @@
     </template>
     <template v-else>
       <div v-for="(item, index) in list" :key="index" class="vue_viewer_item">
-        <img v-if="(item instanceof Object)" :alt="item.title" :src="item.url" />
+        <img v-if="item instanceof Object" :alt="item.title" :src="item.url" />
         <img v-else :src="item" />
       </div>
     </template>
@@ -20,10 +20,10 @@
 </template>
 <script lang="ts">
 // 引入ViewJS样式
-import 'viewerjs/dist/viewer.css';
+import "viewerjs/dist/viewer.css";
 
-import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
-import Viewer from 'viewerjs';
+import { Component, Prop, Vue, Watch } from "vue-property-decorator";
+import Viewer from "viewerjs";
 
 const toolbarDefaultOption: Viewer.ToolbarOptions = {
   zoomIn: 1,
@@ -36,7 +36,7 @@ const toolbarDefaultOption: Viewer.ToolbarOptions = {
   rotateLeft: 1,
   rotateRight: 1,
   flipHorizontal: 1,
-  flipVertical: 1
+  flipVertical: 1,
 };
 
 enum Visibility {
@@ -44,7 +44,7 @@ enum Visibility {
   Visible = 1,
   VisibleOnMediumOrWiderScreen = 2,
   VisibleOnLargeOrWiderScreen = 3,
-  VisibleOnExtraLargeOrWiderScreen = 4
+  VisibleOnExtraLargeOrWiderScreen = 4,
 }
 
 let viewer: Viewer;
@@ -64,23 +64,30 @@ export default class ImageViewer extends Vue {
   @Prop({ type: Boolean, default: true }) private readonly button!: boolean;
 
   // 导航栏的可见性 0/false：隐藏，1/true：显示，2：屏幕宽度大于768像素时显示，3：屏幕宽度大于992像素时显示，4：屏幕宽度大于1200像素时显示
-  @Prop({ type: [Boolean, Number], default: 1 }) private readonly navbar!: boolean | number;
+  @Prop({ type: [Boolean, Number], default: 1 }) private readonly navbar!:
+    | boolean
+    | number;
 
   // 标题的可见性 0/false：隐藏，1/true：显示，2：屏幕宽度大于768像素时显示，3：屏幕宽度大于992像素时显示，4：屏幕宽度大于1200像素时显示, Function: 自定义标题内容，[Number, Function]： Function(image, imageData)
-  @Prop({ type: [Boolean, Number, Function, Array], default: 1 }) private readonly title!:
+  @Prop({ type: [Boolean, Number, Function, Array], default: 1 })
+  private readonly title!:
     | boolean
     | number
     | [Visibility, Function]
     | Visibility;
 
   // 工具栏的可见性 0/false：隐藏，1/true：显示，2：屏幕宽度大于768像素时显示，3：屏幕宽度大于992像素时显示，4：屏幕宽度大于1200像素时显示
-  @Prop({ type: [Boolean, Number], default: 1 }) private readonly toolbarType!: boolean | number | object;
+  @Prop({ type: [Boolean, Number], default: 1 }) private readonly toolbarType!:
+    | boolean
+    | number
+    | object;
 
   // 工具栏按钮的可见性和布局
   @Prop(Object) private readonly toolbarOptions!: object;
 
   // 放大或缩小时图像比率（百分比）提示
-  @Prop({ type: Boolean, default: true }) private readonly tooltipShow!: boolean;
+  @Prop({ type: Boolean, default: true })
+  private readonly tooltipShow!: boolean;
 
   // 是否可以移动图像
   @Prop({ type: Boolean, default: true }) private readonly movable!: boolean;
@@ -104,7 +111,8 @@ export default class ImageViewer extends Vue {
   @Prop({ type: Boolean, default: true }) private readonly keyboard!: boolean;
 
   // 是否启用遮罩，static不可点击遮罩关闭
-  @Prop({ type: [Boolean, String], default: true }) private readonly backdrop!: boolean;
+  @Prop({ type: [Boolean, String], default: true })
+  private readonly backdrop!: boolean;
 
   // 加载图像时是否显示加载动画
   @Prop({ type: Boolean, default: true }) private readonly loading!: boolean;
@@ -137,16 +145,20 @@ export default class ImageViewer extends Vue {
   @Prop({ type: Number, default: 100 }) private readonly zIndexInline!: number;
 
   // 占位图片
-  @Prop({ type: [String, Function], default: 'src' }) private readonly url!: string | Function;
+  @Prop({ type: [String, Function], default: "src" }) private readonly url!:
+    | string
+    | Function;
 
   // 插入位置
-  @Prop({ type: [Element, String], default: 'body' }) private readonly container!: any;
+  @Prop({ type: [Element, String], default: "body" })
+  private readonly container!: any;
 
   // 过滤器
   @Prop({ type: Function, default: () => true }) private readonly filter!: any;
 
   // 双击功能
-  @Prop({ type: Boolean, default: true }) private readonly toggleOnDblclick!: any;
+  @Prop({ type: Boolean, default: true })
+  private readonly toggleOnDblclick!: any;
 
   @Prop(Number) private value!: number;
 
@@ -161,9 +173,9 @@ export default class ImageViewer extends Vue {
   private closed = false;
 
   private photo = [
-    { url: 'https://dummyimage.com/100x100', title: '哈哈哈' },
-    'https://dummyimage.com/110x110',
-    'https://dummyimage.com/120x120'
+    { url: "https://dummyimage.com/100x100", title: "哈哈哈" },
+    "https://dummyimage.com/110x110",
+    "https://dummyimage.com/120x120",
   ];
 
   private viewerVal = 0;
@@ -204,23 +216,25 @@ export default class ImageViewer extends Vue {
       shown: (event: CustomEvent) => {
         // 显示事件-结束
         this.closed = true;
-        this.$emit('viewer:shown', event);
-        this.$emit('viewer:update', true);
+        this.$emit("viewer:shown", event);
+        this.$emit("viewer:update", true);
       },
       viewed: (event: CustomEvent) => {
         // 切换事件-结束
         this.index = event.detail.index;
-        this.$emit('viewer:viewed', event);
-      }
-    }
+        this.$emit("viewer:viewed", event);
+      },
+    };
   }
 
   // 初始化选项
   private optionsInit() {
-    this.list = typeof this.images === 'string' ? [this.images] : this.images;
+    this.list = typeof this.images === "string" ? [this.images] : this.images;
 
     this.index = this.value;
-    this.toolbar = this.toolbarOptions ? { ...toolbarDefaultOption, ...this.toolbarOptions } : this.toolbarType;
+    this.toolbar = this.toolbarOptions
+      ? { ...toolbarDefaultOption, ...this.toolbarOptions }
+      : this.toolbarType;
 
     this.closed = this.visible;
   }
@@ -239,14 +253,14 @@ export default class ImageViewer extends Vue {
     });
   }
 
-  @Watch('images')
+  @Watch("images")
   private onImagesChange() {
     this.$nextTick(() => {
       viewer.update();
     });
   }
 
-  @Watch('visible')
+  @Watch("visible")
   private onVisibleChange(newVal: boolean) {
     if (this.closed === newVal) return;
     this.closed = newVal;
@@ -254,12 +268,12 @@ export default class ImageViewer extends Vue {
     else viewer.hide();
   }
 
-  @Watch('index')
+  @Watch("index")
   private onIndexChange() {
-    this.$emit('input', this.index);
+    this.$emit("input", this.index);
   }
 
-  @Watch('value')
+  @Watch("value")
   private onValueChange() {
     if (!this.value && this.value !== 0) return;
 

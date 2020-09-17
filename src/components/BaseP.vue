@@ -23,19 +23,19 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
-import Error from '|/icon/error.svg';
-import Loading from '|/icon/loading.svg';
+import { Component, Prop, Vue } from "vue-property-decorator";
+import Error from "|/icon/error.svg";
+import Loading from "|/icon/loading.svg";
 
 interface Style {
   [propName: string]: string;
 }
 
 enum Align {
-  'left',
-  'right',
-  'center',
-  'justify'
+  "left",
+  "right",
+  "center",
+  "justify",
 }
 
 @Component({ components: { Loading, Error } })
@@ -62,7 +62,7 @@ export default class BaseP extends Vue {
   @Prop([String, Object]) private readonly headStyle!: string | Style;
 
   // Text Align
-  @Prop({ default: 'left' }) private readonly align!: Align;
+  @Prop({ default: "left" }) private readonly align!: Align;
 
   // Image load status
   private loaded = false;
@@ -71,7 +71,7 @@ export default class BaseP extends Vue {
 
   // Handle text data in order to display correctly with spaces and line breaks on website
   private get pText() {
-    return this.text.replace(/\n/gu, '<br/>').replace(/\s/gu, '&ensp;');
+    return this.text.replace(/\n/gu, "<br/>").replace(/\s/gu, "&ensp;");
   }
 
   private mounted() {
@@ -101,12 +101,12 @@ export default class BaseP extends Vue {
   }
 
   private imgDisplay() {
-    this.$store.commit('imageUrl', this.src);
+    this.$store.commit("imageUrl", this.src);
   }
 }
 </script>
-<style lang='scss' scoped>
-@import '~%/Weui/scss/border';
+<style lang="scss" scoped>
+@import "~%/Weui/scss/border";
 
 .iOShead {
   text-align: left;

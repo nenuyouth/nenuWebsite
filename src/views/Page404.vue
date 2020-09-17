@@ -8,19 +8,22 @@
 <template>
   <div class="container">
     <h1 mt-1>未找到界面</h1>
-    <p>很抱歉，您打开的网页不存在。这可能是由于您输入了错误的路径，或者网页尚未制作。</p>
+    <p>
+      很抱歉，您打开的网页不存在。这可能是由于您输入了错误的路径，或者网页尚未制作。
+    </p>
     <p>同时，这也可能是一个 bug。</p>
     <p>
       您可以将此错误反馈给
       <a
         href="http://wpa.qq.com/msgrd?v=3&amp;uin=1178522294&amp;site=qq&amp;menu=yes"
         target="_blank"
-      >Mr.Hope</a>
+        >Mr.Hope</a
+      >
     </p>
     <h1 mt-1>Page not found</h1>
     <p>
-      We are sorry. The page you are looking for does not exist.
-      This can be caused by inputing the wrong url, or the website is not made yet.
+      We are sorry. The page you are looking for does not exist. This can be
+      caused by inputing the wrong url, or the website is not made yet.
     </p>
     <p>Also, this can be a bug.</p>
     <p>
@@ -28,13 +31,14 @@
       <a
         href="http://wpa.qq.com/msgrd?v=3&amp;uin=1178522294&amp;site=qq&amp;menu=yes"
         target="_blank"
-      >Mr.Hope</a>.
+        >Mr.Hope</a
+      >.
     </p>
   </div>
 </template>
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue } from "vue-property-decorator";
 
 @Component
-export default class Page404 extends Vue { }
+export default class Page404 extends Vue {}
 </script>

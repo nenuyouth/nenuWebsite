@@ -14,7 +14,7 @@ export interface SWState {
   error?: any;
 }
 
-const swState: SWState = { status: '' };
+const swState: SWState = { status: "" };
 
 export default {
   state: swState,
@@ -36,8 +36,8 @@ export default {
      * @param error 遇到的错误
      */
     index(state: SWState, error: any) {
-      state.status = 'error';
+      state.status = "error";
       state.error = error;
-    }
-  }
+    },
+  },
 };

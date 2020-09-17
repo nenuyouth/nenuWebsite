@@ -9,7 +9,7 @@
   <div ref="viewer">
     <template v-for="(item, index) in list">
       <img
-        v-if="(item instanceof Object)"
+        v-if="item instanceof Object"
         v-show="false"
         :key="index"
         :alt="item.title"
@@ -21,10 +21,10 @@
 </template>
 <script lang="ts">
 // 引入ViewJS样式
-import 'viewerjs/dist/viewer.css';
+import "viewerjs/dist/viewer.css";
 
-import { Component, Vue, Watch } from 'vue-property-decorator';
-import Viewer from 'viewerjs';
+import { Component, Vue, Watch } from "vue-property-decorator";
+import Viewer from "viewerjs";
 
 let viewer: Viewer;
 
@@ -52,27 +52,27 @@ export default class ImageViewer extends Vue {
         prev: 1,
         play: 1,
         next: 1,
-        reset: 1
+        reset: 1,
       },
       interval: 3000,
       zIndex: 200,
-      shown: event => {
+      shown: (event) => {
         // 显示事件-结束
-        this.$store.commit('displayImage', true);
-        this.$emit('shown', event);
-        this.$emit('update:visible', true);
+        this.$store.commit("displayImage", true);
+        this.$emit("shown", event);
+        this.$emit("update:visible", true);
       },
-      hidden: event => {
+      hidden: (event) => {
         // 隐藏事件-结束
-        this.$store.commit('displayImage', false);
-        this.$emit('hidden', event);
-        this.$emit('update:visible', false);
+        this.$store.commit("displayImage", false);
+        this.$emit("hidden", event);
+        this.$emit("update:visible", false);
       },
-      viewed: event => {
+      viewed: (event) => {
         // 切换事件-结束
-        this.$store.commit('imageIndex', event.detail.index);
-        this.$emit('viewed', event);
-      }
+        this.$store.commit("imageIndex", event.detail.index);
+        this.$emit("viewed", event);
+      },
     });
 
     viewer = new Viewer(this.$refs.viewer as Element);
@@ -85,20 +85,20 @@ export default class ImageViewer extends Vue {
     });
   }
 
-  @Watch('list')
+  @Watch("list")
   private onListChange() {
     this.$nextTick(() => {
       viewer.update();
     });
   }
 
-  @Watch('display')
+  @Watch("display")
   private onDisplayChange(newVal: boolean) {
     if (newVal) this.view(this.index);
     else this.hide();
   }
 
-  @Watch('index')
+  @Watch("index")
   private onIndexChange() {
     if (this.display) this.view(this.index);
   }

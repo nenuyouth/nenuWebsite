@@ -1,6 +1,6 @@
 <template>
   <a-menu v-model="active" :theme="theme" mode="horizontal">
-    <a-menu-item key="logo" style="padding:0 10px 0 20px;">
+    <a-menu-item key="logo" style="padding: 0 10px 0 20px">
       <transition name="myfade">
         <Back v-if="backButtonDisplay" id="backButton" />
       </transition>
@@ -8,23 +8,28 @@
         <img
           v-if="logoDisplay"
           id="logo"
-          :src="`/img/icon/${$store.state.env.personal?'inNENU':'nenuyouth'}.png`"
+          :src="`/img/icon/${
+            $store.state.env.personal ? 'inNENU' : 'nenuyouth'
+          }.png`"
           alt="东师青年"
         />
       </transition>
     </a-menu-item>
-    <a-menu-item key="logoName" class="d-none d-lg-inline" disabled style="padding:0 10px 0 0;">
-      <span class="text-black">{{$store.state.env.personal?'in东师':'东北师范大学学生会'}}</span>
+    <a-menu-item
+      key="logoName"
+      class="d-none d-lg-inline"
+      disabled
+      style="padding: 0 10px 0 0"
+    >
+      <span class="text-black">{{
+        $store.state.env.personal ? "in东师" : "东北师范大学学生会"
+      }}</span>
     </a-menu-item>
     <a-menu-item key="/">
-      <router-link to="/">
-        <a-icon type="home" />主页
-      </router-link>
+      <router-link to="/"> <a-icon type="home" />主页 </router-link>
     </a-menu-item>
     <a-menu-item key="/guide">
-      <router-link to="/guide">
-        <a-icon type="bulb" />新生攻略
-      </router-link>
+      <router-link to="/guide"> <a-icon type="bulb" />新生攻略 </router-link>
     </a-menu-item>
     <!-- <a-sub-menu>
       <template #title>
@@ -48,8 +53,8 @@
   </a-menu>
 </template>
 <script lang="ts">
-import { Component, Vue, Watch } from 'vue-property-decorator';
-import Back from '|/icon/back.svg';
+import { Component, Vue, Watch } from "vue-property-decorator";
+import Back from "|/icon/back.svg";
 
 @Component({ components: { Back } })
 export default class Nav extends Vue {
@@ -61,11 +66,11 @@ export default class Nav extends Vue {
 
   // 获得主题
   private get theme() {
-    return this.$store.state.nightmode ? 'dark' : 'light';
+    return this.$store.state.nightmode ? "dark" : "light";
   }
 
   private set active(active: any) {
-    if (active[0] === 'logo') this.$router.back();
+    if (active[0] === "logo") this.$router.back();
     // do nothing
   }
 
@@ -74,7 +79,7 @@ export default class Nav extends Vue {
     return [this.$store.state.path];
   }
 
-  @Watch('$route')
+  @Watch("$route")
   private onRouteChange() {
     if (this.firstNavigate) {
       this.firstNavigate = false;
@@ -88,7 +93,7 @@ export default class Nav extends Vue {
   }
 }
 </script>
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 #nav {
   position: fixed;
   top: 0px;

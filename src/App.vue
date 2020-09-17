@@ -13,8 +13,11 @@
       <!-- <transition :name="transitionName"> -->
       <a-layout-content id="content">
         <keep-alive :max="10">
-          <router-view v-if="$route.meta.title===false" />
-          <router-view v-else v-wechat-title="$route.meta.title||'东北师范大学学生会'" />
+          <router-view v-if="$route.meta.title === false" />
+          <router-view
+            v-else
+            v-wechat-title="$route.meta.title || '东北师范大学学生会'"
+          />
         </keep-alive>
       </a-layout-content>
       <!-- </transition> -->
@@ -24,22 +27,22 @@
     <base-viewer />
   </a-layout>
 </template>
-<script lang='ts'>
-import { Component, Vue, Watch } from 'vue-property-decorator';
-import BackTop from '#/BackTop.vue';
-import BaseViewer from '#/BaseViewer.vue';
-import MyFooter from '#/Footer.vue';
-import MyNav from '#/Nav.vue';
-import MySlide from '#/Slide.vue';
-import { Route } from 'vue-router';
+<script lang="ts">
+import { Component, Vue, Watch } from "vue-property-decorator";
+import BackTop from "#/BackTop.vue";
+import BaseViewer from "#/BaseViewer.vue";
+import MyFooter from "#/Footer.vue";
+import MyNav from "#/Nav.vue";
+import MySlide from "#/Slide.vue";
+import { Route } from "vue-router";
 
 @Component({ components: { BackTop, BaseViewer, MyNav, MyFooter, MySlide } })
 export default class App extends Vue {
   /** 动画名称 */
-  private transitionName = 'slide-right';
+  private transitionName = "slide-right";
 
   /** 改变动画效果 */
-  @Watch('$route')
+  @Watch("$route")
   private onRouteChange(to: Route, from: Route) {
     const remove = (array: string[], value: string) => {
       for (let i = 0; i < array.length; i += 1)
@@ -50,15 +53,15 @@ export default class App extends Vue {
 
       return array;
     };
-    const toDepth = remove(to.path.split('/'), '').length;
-    const fromDepth = remove(from.path.split('/'), '').length;
+    const toDepth = remove(to.path.split("/"), "").length;
+    const fromDepth = remove(from.path.split("/"), "").length;
 
     // 改变动画效果
-    this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left';
+    this.transitionName = toDepth < fromDepth ? "slide-right" : "slide-left";
   }
 }
 </script>
-<style lang='scss'>
+<style lang="scss">
 /* App.vue主布局 */
 #app {
   -webkit-font-smoothing: antialiased;

@@ -10,7 +10,7 @@
   <div :id="myId" v-wechat-title="title" class="title" v-text="title" />
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
 export default class BaseHead extends Vue {

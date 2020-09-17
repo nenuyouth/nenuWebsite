@@ -7,15 +7,23 @@
 -->
 <template>
   <a-timeline :mode="mode">
-    <a-timeline-item v-for="(item,index) in timeList" :key="item.text" :color="item.color">
+    <a-timeline-item
+      v-for="(item, index) in timeList"
+      :key="item.text"
+      :color="item.color"
+    >
       <template v-if="item.type" #dot>
         <icon-font
-          v-if="item.type.slice(0,5)==='icon-'"
+          v-if="item.type.slice(0, 5) === 'icon-'"
           :style="`color:${item.color}`"
           :type="type"
-          style="font-size:16px;"
+          style="font-size: 16px"
         />
-        <a-icon :style="`color:${item.color}`" :type="item.type" style="font-size:16px;" />
+        <a-icon
+          :style="`color:${item.color}`"
+          :type="item.type"
+          style="font-size: 16px"
+        />
       </template>
       <router-link v-if="item.url" :to="item.url" class="timeLineButton">
         <h3 v-if="item.title" :style="item.headingStyle" v-text="item.title" />
@@ -29,7 +37,7 @@
   </a-timeline>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue } from "vue-property-decorator";
 
 export interface TimeListItem {
   title?: string;
@@ -53,7 +61,9 @@ export default class BaseTimeLine extends Vue {
     const list: string[] = [];
 
     this.timeList.forEach((element, index) => {
-      list[index] = element.text.replace(/\n/gu, '<br/>').replace(/\s/gu, '&ensp;');
+      list[index] = element.text
+        .replace(/\n/gu, "<br/>")
+        .replace(/\s/gu, "&ensp;");
     });
 
     return list;
@@ -61,7 +71,7 @@ export default class BaseTimeLine extends Vue {
 
   // change display mode according to screen width
   private get mode() {
-    return this.$store.state.screen.sm ? 'alternate' : 'left';
+    return this.$store.state.screen.sm ? "alternate" : "left";
   }
 }
 </script>
