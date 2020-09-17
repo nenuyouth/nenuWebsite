@@ -33,20 +33,23 @@ myRenderMD.heading = (text, level) => {
         : text.lastIndexOf('<svg')
     );
 
-  return `<h${level} id="${id ||
-    text}" class="mdHeading"><svg viewBox='0 0 1024 1024' class='mdIcon'><use x="0" y="0" xlink:href="#link" /></svg>${text}</h${level}>`;
+  return `<h${level} id="${
+    id || text
+  }" class="mdHeading"><svg viewBox='0 0 1024 1024' class='mdIcon'><use x="0" y="0" xlink:href="#link" /></svg>${text}</h${level}>`;
 };
 
 // Rewrite link parse: if link url contains '#', means it's an inside navigation
 myRenderMD.link = (url, title, text) =>
-  url[0] === '#'
-    ? `<a class='md-a' href='${url}' title='${title || text}'>${text}</a>`
-    : url.indexOf('http://') !== -1 || url.indexOf('https://') !== -1
-    ? `<a href='${url}' class='md-link' title='${text}'>${text}<svg width='15' height='15' viewBox="0 0 100 100" class='outbound'><use x="0" y="0" xlink:href="#outbound" /></svg></a>`
-    : `<a href='${url}' class='md-link' title='${text}'>${text}</a>`;
+  url
+    ? url[0] === '#'
+      ? `<a class='md-a' href='${url}' title='${title || text}'>${text}</a>`
+      : url.indexOf('http://') !== -1 || url.indexOf('https://') !== -1
+      ? `<a href='${url}' class='md-link' title='${text}'>${text}<svg width='15' height='15' viewBox="0 0 100 100" class='outbound'><use x="0" y="0" xlink:href="#outbound" /></svg></a>`
+      : `<a href='${url}' class='md-link' title='${text}'>${text}</a>`
+    : text;
 
 // Rewrite list parse to prevent seeing link icon on list items
-myRenderMD.listitem = text =>
+myRenderMD.listitem = (text) =>
   `<li>${
     text.indexOf('#link') === -1
       ? text
@@ -124,7 +127,7 @@ const getCompiledMarkdown = async (
     // if the markdown file hasn't been download yet, download now and cache it
     await axios
       .post(`${url}.php`, query)
-      .then(response => {
+      .then((response) => {
         if (response.data === 'file not found') {
           /*
            * markdown file unexist
@@ -135,7 +138,7 @@ const getCompiledMarkdown = async (
         } // store the parsed markdown file to Vuex
         else store.commit(stateName, [query.path, marked(response.data)]);
       })
-      .catch(err => {
+      .catch((err) => {
         /*
          * nomally caused by network
          * cancel navigate and show alert with error msg

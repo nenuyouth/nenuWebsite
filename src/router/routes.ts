@@ -79,60 +79,11 @@ const route = [
       import(/* webpackChunkName: "tool" */ '@/views/tools/Elective.vue')
   },
   {
-    path: '/scence',
-    name: 'scence',
-    meta: { title: '东师风貌' },
-    component: () =>
-      import(/* webpackChunkName: "scence" */ '@/views/scence/Scence.vue')
-  },
-  {
-    path: '/scence/benbu',
-    name: 'benbuScence',
-    meta: { title: '本部风貌' },
-    component: () =>
-      import(/* webpackChunkName: "scence" */ '@/views/scence/Benbu.vue')
-  },
-  {
-    path: '/scence/jingyue',
-    name: 'jingyueScence',
-    meta: { title: '净月风貌' },
-    component: () =>
-      import(/* webpackChunkName: "scence" */ '@/views/scence/Jingyue.vue')
-  },
-  {
-    path: '/about/studentUnion',
-    name: 'su',
-    meta: { title: '校学生会简介' },
-    component: () =>
-      import(/* webpackChunkName: "about" */ '@/views/about/SU.vue')
-  },
-  {
-    path: '/about/department',
-    name: 'department',
-    meta: { title: '校学生会部门简介' },
-    component: () =>
-      import(/* webpackChunkName: "about" */ '@/views/about/Department.vue')
-  },
-  {
-    path: '/about',
-    name: 'about',
-    meta: { title: '关于我们' },
-    component: () =>
-      import(/* webpackChunkName: "about" */ '@/views/about/About.vue')
-  },
-  {
     path: '/about/Mr-Hope',
     name: 'mrhope',
     meta: { title: 'Mr.Hope简介' },
     component: () =>
       import(/* webpackChunkName: "about" */ '@/views/about/MrHope.vue')
-  },
-  {
-    path: '/about/question',
-    name: 'question',
-    meta: { title: '其他问题' },
-    component: () =>
-      import(/* webpackChunkName: "about" */ '@/views/about/Question.vue')
   },
   {
     path: '*',

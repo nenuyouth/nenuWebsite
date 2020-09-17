@@ -17,6 +17,7 @@
   </div>
 </template>
 <script lang="ts">
+import { remove } from 'lodash';
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import Error from '|/icon/error.svg';
 import Loading from '|/icon/loading.svg';
@@ -58,7 +59,8 @@ export default class BaseImg extends Vue {
     img.onload = () => {
       this.loaded = true;
 
-      delete img.onload;
+      // eslint-disable-next-line no-empty-function
+      img.onload = () => {};
     };
   }
 
@@ -99,7 +101,7 @@ export default class BaseImg extends Vue {
   border-radius 8px
   max-width 560px !important
 
-  @media (min-width: 768px)
+  @media (min-width 768px)
     margin-top 12px
     margin-bottom 12px
 
@@ -116,7 +118,7 @@ export default class BaseImg extends Vue {
   color #222
   letter-spacing 1px
 
-  @media (min-width: 768px)
+  @media (min-width 768px)
     font-size 14px
 
 .nm .imgDesc

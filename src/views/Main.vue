@@ -80,17 +80,17 @@ export default class Main extends Vue {
     ]
   };
 
-  private readonly guidelist = require('|/guideList');
+  private readonly guidelist = [];
 
   private timeList = [];
 
   private created() {
     axios
       .get('/config/calendar/2019fall.json')
-      .then(response => {
+      .then((response) => {
         this.timeList = response.data[1];
       })
-      .catch(err => {
+      .catch((err) => {
         this.$confirm({
           title: '校历获取错误',
           content: `校历获取失败，错误信息为${err}\n请汇报给Mr.Hope!`,
@@ -100,7 +100,9 @@ export default class Main extends Vue {
           okType: 'danger',
           onOk: () => {
             this.$router.back();
-            window.open('http://wpa.qq.com/msgrd?v=3&uin=1178522294&site=qq&menu=yes');
+            window.open(
+              'http://wpa.qq.com/msgrd?v=3&uin=1178522294&site=qq&menu=yes'
+            );
           },
           onCancel: () => {
             this.$router.back();

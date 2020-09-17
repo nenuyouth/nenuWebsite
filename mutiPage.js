@@ -1,11 +1,3 @@
-/*
- * @Author: Mr.Hope
- * @Date: 2019-06-20 19:34:52
- * @LastEditors: Mr.Hope
- * @LastEditTime: 2019-06-25 10:00:57
- * @Description: 多界面配置
- */
-
 const fs = require('fs');
 const path = require('path');
 

@@ -18,7 +18,7 @@ import BaseGrid from '#/BaseGrid.vue';
 
 @Component({ components: { BaseGrid } })
 export default class Guide extends Vue {
-  private readonly guidelist = require('|/guideList');
+  private readonly guidelist = [];
 }
 </script>
 <style lang="stylus" scoped>

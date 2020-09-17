@@ -95,7 +95,8 @@ export default class BaseP extends Vue {
     img.onload = () => {
       this.loaded = true;
 
-      delete img.onload;
+      // eslint-disable-next-line no-empty-function
+      img.onload = () => {};
     };
   }
 

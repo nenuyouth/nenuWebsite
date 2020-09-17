@@ -1,10 +1,3 @@
-/*
- * @Author: Mr.Hope
- * @LastEditors: Mr.Hope
- * @Description: vue config file
- * @Date: 2019-02-27 00:00:08
- * @LastEditTime: 2019-11-20 00:01:54
- */
 const path = require('path');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 

@@ -6,7 +6,7 @@
  * @LastEditTime: 2019-11-19 20:27:05
  */
 
-import hljs from 'highlight.js/lib/highlight';
+import hljs from 'highlight.js/lib/core';
 
 hljs.registerLanguage('apache', require('highlight.js/lib/languages/apache'));
 hljs.registerLanguage('xml', require('highlight.js/lib/languages/xml'));
@@ -44,7 +44,7 @@ hljs.registerLanguage(
 );
 hljs.registerLanguage('scss', require('highlight.js/lib/languages/scss'));
 hljs.registerLanguage('shell', require('highlight.js/lib/languages/shell'));
-hljs.registerLanguage('tex', require('highlight.js/lib/languages/tex'));
+hljs.registerLanguage('latex', require('highlight.js/lib/languages/latex'));
 hljs.registerLanguage(
   'typescript',
   require('highlight.js/lib/languages/typescript')
