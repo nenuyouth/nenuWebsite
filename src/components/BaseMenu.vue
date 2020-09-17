@@ -71,8 +71,8 @@ export default class BaseMenu extends Vue {
   }
 
   // navigate to the menuitem page when clicking it
-  private select(e: SelectEvent) {
-    this.$router.push(e.key);
+  private select(event: SelectEvent) {
+    this.$router.push(event.key);
   }
 }
 </script>

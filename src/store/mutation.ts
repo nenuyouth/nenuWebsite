@@ -15,7 +15,7 @@ const myMutation = {
    * @param state state
    * @param envOption 环境变量选项
    */
-  env(state: BaseState, envOption: Record<string, any>) {
+  env(state: BaseState, envOption: Record<string, any>): void {
     Object.keys(envOption).forEach((prop) => {
       if (prop.indexOf("VUE_APP_") !== -1) {
         envOption[prop.slice(8)] = envOption[prop];
@@ -30,7 +30,7 @@ const myMutation = {
    *
    * @param state state
    */
-  nightmode(state: BaseState) {
+  nightmode(state: BaseState): void {
     state.nightmode = !state.nightmode;
   },
 
@@ -40,7 +40,7 @@ const myMutation = {
    * @param state state
    * @param path 当前的路径
    */
-  path(state: BaseState, path: string) {
+  path(state: BaseState, path: string): void {
     state.path = path;
   },
 };

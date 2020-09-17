@@ -11,7 +11,7 @@ export interface SWState {
   /** ServiceWorker 当前状态 */
   status: string;
   /** ServiceWorker错误 */
-  error?: any;
+  error?: Error;
 }
 
 const swState: SWState = { status: "" };
@@ -25,7 +25,7 @@ export default {
      * @param state swState
      * @param status ServiceWorker状态
      */
-    setList(state: SWState, status: string) {
+    setList(state: SWState, status: string): void {
       state.status = status;
     },
 
@@ -35,7 +35,7 @@ export default {
      * @param state imagestate
      * @param error 遇到的错误
      */
-    index(state: SWState, error: any) {
+    index(state: SWState, error: Error): void {
       state.status = "error";
       state.error = error;
     },

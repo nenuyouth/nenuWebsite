@@ -109,8 +109,8 @@ export default class FormTest extends Vue {
     this.form = this.$form.createForm(this);
   }
 
-  private handleSubmit(e: Event) {
-    e.preventDefault();
+  private handleSubmit(event: Event) {
+    event.preventDefault();
     this.form.validateFields((err: any, values: any) => {
       console.log("Received values of form: ", values);
       if (!err) {

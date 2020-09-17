@@ -10,7 +10,7 @@
     "inspect": "vue-cli-service inspect --modern > modern.js",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
-    "lint": "prettier . --check --write && vue-cli-service lint --fix",
+    "lint": "eslint --ext .ts,.vue . --fix && prettier . --check --write && vue-cli-service lint --fix",
     "lint:check": "prettier . --check && vue-cli-service lint"
   },
   "author": "Mr.Hope",

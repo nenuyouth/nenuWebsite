@@ -25,7 +25,7 @@ import {
   Tooltip,
   message,
 } from "ant-design-vue";
-import Vue from "vue";
+import Vue, { VNode } from "vue";
 import Component from "vue-class-component";
 import { Route } from "vue-router";
 
@@ -78,20 +78,25 @@ message.config({
 });
 
 // 向Vue中封装ant-design方法
+// eslint-disable-next-line @typescript-eslint/unbound-method
 Vue.prototype.$confirm = Modal.confirm;
+// eslint-disable-next-line @typescript-eslint/unbound-method
 Vue.prototype.$error = Modal.error;
+// eslint-disable-next-line @typescript-eslint/unbound-method
 Vue.prototype.$info = Modal.info;
 Vue.prototype.$message = message;
+// eslint-disable-next-line @typescript-eslint/unbound-method
 Vue.prototype.$success = Modal.success;
+// eslint-disable-next-line @typescript-eslint/unbound-method
 Vue.prototype.$warning = Modal.warning;
 
 // 注册IconFont
-const IconFont = Icon.createFromIconfontCN({
+const iconFont = Icon.createFromIconfontCN({
   scriptUrl: "//at.alicdn.com/t/font_1273079_vzgkl6rtnoa.js",
 });
 
 // 全局注册IconFont
-Vue.component("icon-font", IconFont);
+Vue.component("icon-font", iconFont);
 
 // 注册service worker
 registerSW(store);
@@ -105,20 +110,20 @@ router.afterEach((to: Route) => {
 });
 
 // 获得当前环境
-store.dispatch("systemInfo");
+void store.dispatch("systemInfo");
 
 // 写入环境变量
 store.commit("env", process.env);
 
 // 获取屏幕状态，并进行brakpoint状态监听
-store.dispatch(
+void store.dispatch(
   "screen",
   $(window).width() || document.documentElement.clientWidth
 );
 window.addEventListener(
   "resize",
   debounce(() => {
-    store.dispatch(
+    void store.dispatch(
       "screen",
       $(window).width() || document.documentElement.clientWidth
     );
@@ -129,5 +134,5 @@ window.addEventListener(
 new Vue({
   router,
   store,
-  render: (h) => h(Doc), // render函数创建了一个元素
+  render: (h): VNode => h(Doc), // render函数创建了一个元素
 }).$mount("#app"); // 创建元素被挂载到id='app'元素上，挂载时会销毁被挂载元素实例

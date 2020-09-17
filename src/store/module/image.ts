@@ -31,7 +31,7 @@ export default {
      * @param state imagestate
      * @param status 展示状态
      */
-    displayImage(state: ImageState, status?: boolean) {
+    displayImage(state: ImageState, status?: boolean): void {
       if (!status) state.display = !state.display;
       else if (status !== state.display) state.display = status;
     },
@@ -42,7 +42,7 @@ export default {
      * @param state imagestate
      * @param index 所展示图片的索引
      */
-    imageIndex(state: ImageState, index: number) {
+    imageIndex(state: ImageState, index: number): void {
       state.index = index;
     },
 
@@ -53,7 +53,11 @@ export default {
      * @param urls 图片地址
      * @param index 所展示图片的索引
      */
-    imageList(state: ImageState, urls?: string | string[], index?: number) {
+    imageList(
+      state: ImageState,
+      urls?: string | string[],
+      index?: number
+    ): void {
       state.list = urls ? (typeof urls === "string" ? [urls] : urls) : [""];
       if (index) state.index = index;
     },
@@ -65,7 +69,7 @@ export default {
      * @param url 所展示图片的地址
      * @param only 是否仅展示本图片
      */
-    imageUrl(state: ImageState, url: string, only?: boolean) {
+    imageUrl(state: ImageState, url: string, only?: boolean): void {
       if (only) {
         state.list = [url];
         state.index = 0;

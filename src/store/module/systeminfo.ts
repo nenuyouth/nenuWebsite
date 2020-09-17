@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 /*
  * @Author: Mr.Hope
  * @Date: 2019-06-26 20:26:14

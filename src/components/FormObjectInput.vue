@@ -93,8 +93,8 @@ export default class FormObjectInput extends Vue {
 
   private objectValue = "";
 
-  private validate(e: Event) {
-    e.preventDefault();
+  private validate(event: Event) {
+    event.preventDefault();
 
     const value = this.form.getFieldValue(this.identifier);
     const objectValue: NormalObject = {};

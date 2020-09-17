@@ -51,7 +51,7 @@ export default {
      * @param state state
      * @param width 屏幕宽度
      */
-    changeScreen(state: ScreenState, width: number) {
+    changeScreen(state: ScreenState, width: number): void {
       let status;
 
       // judge scrren status
@@ -99,7 +99,7 @@ export default {
      * @param state state
      * @param width 屏幕宽度
      */
-    screenWidth(state: ScreenState, width: number) {
+    screenWidth(state: ScreenState, width: number): void {
       state.width = width;
     },
   },
@@ -110,7 +110,10 @@ export default {
      * @param context state
      * @param width 屏幕宽度
      */
-    screen(context: ActionContext<ScreenState, BaseState>, width: number) {
+    screen(
+      context: ActionContext<ScreenState, BaseState>,
+      width: number
+    ): void {
       context.commit("screenWidth", width);
       context.commit("changeScreen", width);
     },

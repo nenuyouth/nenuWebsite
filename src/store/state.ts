@@ -7,8 +7,10 @@
  */
 
 /** 基础状态 */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export interface BaseState extends Record<string, any> {
   /** 环境变量 */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   env: Record<string, any>;
   /** 夜间模式开启状态 */
   nightmode: boolean;

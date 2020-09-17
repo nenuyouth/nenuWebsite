@@ -21,7 +21,7 @@ const myRenderMD = new marked.Renderer();
  * Rewrite Heading parse
  * 重写标题解析
  */
-myRenderMD.heading = (text, level) => {
+myRenderMD.heading = (text, level): string => {
   let id = "";
 
   // if link in heading, set id as link text
@@ -39,7 +39,7 @@ myRenderMD.heading = (text, level) => {
 };
 
 // Rewrite link parse: if link url contains '#', means it's an inside navigation
-myRenderMD.link = (url, title, text) =>
+myRenderMD.link = (url, title, text): string =>
   url
     ? url[0] === "#"
       ? `<a class='md-a' href='${url}' title='${title || text}'>${text}</a>`
@@ -49,7 +49,7 @@ myRenderMD.link = (url, title, text) =>
     : text;
 
 // Rewrite list parse to prevent seeing link icon on list items
-myRenderMD.listitem = (text) =>
+myRenderMD.listitem = (text): string =>
   `<li>${
     text.indexOf("#link") === -1
       ? text
@@ -84,13 +84,15 @@ marked.setOptions({
  * @param [netError] 错误类型是否为网络错误
  * @param [err] 额外的错误信息
  */
-const myAlert = (ctx: Vue, netError?: boolean, err?: string) => {
+const myAlert = (ctx: Vue, netError?: boolean, err?: Error): void => {
   ctx.$store.commit("loadDoc", false);
   ctx.$confirm({
     title: netError ? "网络请求错误" : "地址错误",
     content: netError
-      ? `请求文档出错，错误码为：\n${err}\n您可以汇报给Mr.Hope!`
-      : "链接地址有误。请汇报给Mr.Hope!",
+      ? `请求文档出错\n您可以汇报给 Mr.Hope!${
+          err ? `\n错误信息为: ${err.message}` : ""
+        }`
+      : "链接地址有误。请汇报给 Mr.Hope!",
     autoFocusButton: "cancel",
     cancelText: "确定",
     okText: "汇报",

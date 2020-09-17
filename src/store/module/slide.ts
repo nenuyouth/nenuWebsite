@@ -36,7 +36,7 @@ export default {
      * @param state state
      * @param menuContent Slide菜单内容
      */
-    menuList(state: SlideState, menuContent: MenuItem[]) {
+    menuList(state: SlideState, menuContent: MenuItem[]): void {
       state.list = menuContent;
       if (menuContent.length === 0) {
         state.title = "";
@@ -50,7 +50,7 @@ export default {
      * @param state state
      * @param title Slide标题内容
      */
-    menuTitle(state: SlideState, title: string) {
+    menuTitle(state: SlideState, title: string): void {
       state.title = title;
     },
 
@@ -60,7 +60,7 @@ export default {
      * @param state state
      * @param icon Slide图标内容
      */
-    menuIcon(state: SlideState, icon: string) {
+    menuIcon(state: SlideState, icon: string): void {
       state.icon = icon;
     },
   },

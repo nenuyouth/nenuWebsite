@@ -193,12 +193,14 @@ module.exports = {
     // 向 CSS 相关的 loader 传递选项
     loaderOptions: {
       less: {
-        // 自定义antd主题
-        modifyVars: {
-          "primary-color": "#2ecc71",
-          "link-color": "#2ecc71",
+        lessOptions: {
+          // 自定义antd主题
+          modifyVars: {
+            "primary-color": "#2ecc71",
+            "link-color": "#2ecc71",
+          },
+          javascriptEnabled: true,
         },
-        javascriptEnabled: true,
       },
     },
   },

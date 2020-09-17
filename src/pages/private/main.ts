@@ -71,11 +71,16 @@ message.config({
 });
 
 // 向Vue中封装ant-design方法
+// eslint-disable-next-line @typescript-eslint/unbound-method
 Vue.prototype.$confirm = Modal.confirm;
+// eslint-disable-next-line @typescript-eslint/unbound-method
 Vue.prototype.$error = Modal.error;
+// eslint-disable-next-line @typescript-eslint/unbound-method
 Vue.prototype.$info = Modal.info;
 Vue.prototype.$message = message;
+// eslint-disable-next-line @typescript-eslint/unbound-method
 Vue.prototype.$success = Modal.success;
+// eslint-disable-next-line @typescript-eslint/unbound-method
 Vue.prototype.$warning = Modal.warning;
 
 // 注册IconFont

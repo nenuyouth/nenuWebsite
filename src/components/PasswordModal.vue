@@ -125,8 +125,8 @@ export default class PasswordModal extends Vue {
   // 按钮加载状态控制
   private validating = false;
 
-  private validate(e: Event) {
-    e.preventDefault(); // 阻止原生事件刷新浏览器
+  private validate(event: Event) {
+    event.preventDefault(); // 阻止原生事件刷新浏览器
     this.validatePassword();
   }
 

@@ -31,6 +31,7 @@ rules:
     - error
     - min: 2
       exceptions:
+        - $
         - a
         - b
         - h
@@ -114,8 +115,6 @@ overrides:
       parser: "@typescript-eslint/parser"
       project:
         - "./tsconfig.json"
-        - "./commonjs-tsconfig.json"
-        - "./test-tsconfig.json"
 
     rules:
       "@typescript-eslint/explicit-function-return-type":

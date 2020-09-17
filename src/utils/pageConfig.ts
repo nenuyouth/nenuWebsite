@@ -7,6 +7,7 @@
  */
 
 interface EnumConfig {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   value: any;
   label: string;
 }
@@ -16,6 +17,7 @@ export interface Config {
   desc?: string;
   type: string | string[];
   required: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   default?: any;
   enum?: EnumConfig[];
   element?: string[] | string;

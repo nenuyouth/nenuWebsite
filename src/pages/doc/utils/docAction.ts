@@ -11,7 +11,9 @@ interface Aside {
  *
  * @param ctx Vue组件
  */
-const catalogGernarate = (ctx: any) => {
+const catalogGernarate = (
+  ctx: Vue & { docTitle: string; noneCatalog: boolean; aside: Aside[] }
+): void => {
   const aside: Aside[] = [];
   const title = $("h1").text();
 
@@ -47,7 +49,7 @@ const catalogGernarate = (ctx: any) => {
 };
 
 /** 注册页面内部链接点击时的滚动动画效果 */
-const registScrollAnimation = () => {
+const registScrollAnimation = (): void => {
   $("a.md-a").on("click", (event) => {
     const id = $(event.currentTarget).attr("href");
 
@@ -70,7 +72,7 @@ const registScrollAnimation = () => {
  *
  * @param ctx Vue组件
  */
-const registHeadingHover = (ctx: any) => {
+const registHeadingHover = (ctx: Vue): void => {
   if (!ctx.$store.state.systemInfo.iOS) {
     $(".markdown-body :header").on("mouseover", (event) => {
       $(event.currentTarget).children("svg").css({ display: "inline-block" });
@@ -82,7 +84,7 @@ const registHeadingHover = (ctx: any) => {
 };
 
 /** 注册页面标题点击时的滚动置顶动画效果 */
-const registScrollTopAnimation = () => {
+const registScrollTopAnimation = (): void => {
   $(".markdown-body :header").on("click", (event) => {
     // 如果当前标题只有一个childNode，且node的标签不是a，进行滚动动画
     if ($(event.currentTarget).children()[0].tagName !== "A") {
@@ -110,7 +112,7 @@ const registScrollTopAnimation = () => {
  *
  * @param ctx Vue 组件
  */
-const registRoute = (ctx: any) => {
+const registRoute = (ctx: Vue): void => {
   const route = ctx.$route;
   const router = ctx.$router;
 
@@ -120,7 +122,7 @@ const registRoute = (ctx: any) => {
     if (url)
       if (url && url[0] === "/")
         // 内部绝对路径
-        router.push(url);
+        void router.push(url);
       else if (url.indexOf("http://") !== -1 || url.indexOf("https://") !== -1)
         // 外部链接
         window.open(url);
@@ -129,8 +131,7 @@ const registRoute = (ctx: any) => {
         const base = route.path.slice(0, route.path.lastIndexOf("/"));
         // 处理url
         if (url.substr(-3) === ".md") url = url.substr(0, url.length - 3);
-        console.log(resolve(`${base}/`, url));
-        router.push(resolve(`${base}/`, url));
+        void router.push(resolve(`${base}/`, url));
       }
     else
       ctx.$confirm({
@@ -160,7 +161,9 @@ const registRoute = (ctx: any) => {
  *
  * @param ctx Vue 组件
  */
-const actionRegister = (ctx: any) => {
+const actionRegister = (
+  ctx: Vue & { docTitle: string; noneCatalog: boolean; aside: Aside[] }
+): void => {
   catalogGernarate(ctx);
   registScrollAnimation();
   registHeadingHover(ctx);

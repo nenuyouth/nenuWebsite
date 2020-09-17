@@ -1,10 +1,6 @@
-/*
- * @Author: Mr.Hope
- * @LastEditors: Mr.Hope
- * @Description: 路由配置文件
- * @Date: 2019-03-25 12:27:33
- * @LastEditTime: 2019-07-03 11:39:47
- */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+
 import Main from "@/pages/private/views/Main.vue";
 import Page404 from "@/views/Page404.vue";
 
