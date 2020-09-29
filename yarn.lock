@@ -10961,10 +10961,10 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
-viewerjs@1.6.2:
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/viewerjs/-/viewerjs-1.6.2.tgz#0826eaa9bb143875690b0506712335722dcbeaa3"
-  integrity sha512-EHepcPFz2YOv0wOKMUU7JwcUGdF3EmTH8A4owYeNPCM1t5XuE7ePelACY8ltWvh6O2yPOdJ9CI3T6m04RjsmpQ==
+viewerjs@1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/viewerjs/-/viewerjs-1.7.0.tgz#7ef2c35df8a2cf1be0179764fb688b64cc2c648a"
+  integrity sha512-tv1a+PKCLs30bMZkKgV8/A7eaIM+AL6QRTGQ4A2zVxJCb9Kg1xGlf0+q+Pn6acSnqMK8bKAyQBWuPssVwyfxBA==
 
 vm-browserify@^1.0.1:
   version "1.1.2"
