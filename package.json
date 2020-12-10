@@ -39,7 +39,7 @@
     "@types/lodash": "4.14.161",
     "@types/marked": "1.1.0",
     "@types/mocha": "8.0.3",
-    "@types/node": "^14.10.3",
+    "@types/node": "^14.14.12",
     "@typescript-eslint/eslint-plugin": "4.1.1",
     "@typescript-eslint/parser": "4.1.1",
     "@vue/cli-plugin-babel": "4.5.6",
