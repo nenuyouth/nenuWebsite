@@ -21,7 +21,7 @@
     "github-markdown-css": "4.0.0",
     "highlight.js": "10.2.0",
     "jquery": "3.5.1",
-    "lodash": "4.17.20",
+    "lodash": "4.17.21",
     "marked": "1.1.1",
     "register-service-worker": "1.7.1",
     "viewerjs": "1.6.2",
